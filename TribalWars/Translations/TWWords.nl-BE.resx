@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Academy" xml:space="preserve">
+    <value>Adelshoeve</value>
+  </data>
+  <data name="Barracks" xml:space="preserve">
+    <value>Kazerne</value>
+  </data>
+  <data name="BuildingLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Buildings" xml:space="preserve">
+    <value>Gebouwen</value>
+  </data>
+  <data name="Clay" xml:space="preserve">
+    <value>Leem</value>
+  </data>
+  <data name="ContinentAbreviation" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Demolition" xml:space="preserve">
+    <value>Afbraak</value>
+  </data>
+  <data name="Farm" xml:space="preserve">
+    <value>Boerderij</value>
+  </data>
+  <data name="HidingPlace" xml:space="preserve">
+    <value>Schuilplaats</value>
+  </data>
+  <data name="Iron" xml:space="preserve">
+    <value>IJzer</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Markt</value>
+  </data>
+  <data name="Morale" xml:space="preserve">
+    <value>Moraal</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Punten</value>
+  </data>
+  <data name="RallyPoint" xml:space="preserve">
+    <value>Verzamelplaats</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>herbenoemen</value>
+  </data>
+  <data name="ReportAttacker" xml:space="preserve">
+    <value>Aanvaller</value>
+  </data>
+  <data name="ReportAttackerLCase" xml:space="preserve">
+    <value>aanvaller</value>
+  </data>
+  <data name="ReportCatas" xml:space="preserve">
+    <value>Schade door katapultbeschietingen</value>
+  </data>
+  <data name="ReportCatasBetween" xml:space="preserve">
+    <value>naar level</value>
+  </data>
+  <data name="ReportCatasPre" xml:space="preserve">
+    <value>is beschadigd van level</value>
+  </data>
+  <data name="ReportDefender" xml:space="preserve">
+    <value>Verdediger</value>
+  </data>
+  <data name="ReportDefenderLCase" xml:space="preserve">
+    <value>verdediger</value>
+  </data>
+  <data name="ReportEspionage" xml:space="preserve">
+    <value>Spionage</value>
+  </data>
+  <data name="ReportHasWon" xml:space="preserve">
+    <value>heeft gewonnen</value>
+  </data>
+  <data name="ReportHaul" xml:space="preserve">
+    <value>Buit</value>
+  </data>
+  <data name="ReportLosses" xml:space="preserve">
+    <value>Verliezen</value>
+  </data>
+  <data name="ReportLoyalty" xml:space="preserve">
+    <value>Verandering van de toestemming</value>
+  </data>
+  <data name="ReportLoyaltyBetween" xml:space="preserve">
+    <value>naar</value>
+  </data>
+  <data name="ReportLoyaltyPre" xml:space="preserve">
+    <value>Toestemming is gedaald van</value>
+  </data>
+  <data name="ReportNoDefense" xml:space="preserve">
+    <value>Geen enkele krijger heeft het overleefd. Er kon geen informatie over de troepensterkte van je tegenstander worden ingewonnen.</value>
+  </data>
+  <data name="ReportQuantity" xml:space="preserve">
+    <value>Aantal</value>
+  </data>
+  <data name="ReportRams" xml:space="preserve">
+    <value>Schade door rammen</value>
+  </data>
+  <data name="ReportRamsBetween" xml:space="preserve">
+    <value>naar level</value>
+  </data>
+  <data name="ReportRamsPre" xml:space="preserve">
+    <value>Muur is beschadigd van level</value>
+  </data>
+  <data name="ReportResourcesScouted" xml:space="preserve">
+    <value>Ontdekte grondstoffen</value>
+  </data>
+  <data name="ReportResourcesScoutedNone" xml:space="preserve">
+    <value>geen</value>
+  </data>
+  <data name="ReportSent" xml:space="preserve">
+    <value>Verzonden</value>
+  </data>
+  <data name="ReportSubject" xml:space="preserve">
+    <value>Onderwerp</value>
+  </data>
+  <data name="ReportUnitsInTransit" xml:space="preserve">
+    <value>Troepen van de verdediger die onderweg waren</value>
+  </data>
+  <data name="ReportUnitsOtherVillages" xml:space="preserve">
+    <value>Troepen van de verdediger in andere dorpen</value>
+  </data>
+  <data name="ReportUnitsOutside" xml:space="preserve">
+    <value>Eenheden buiten het dorp</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Grondstoffen</value>
+  </data>
+  <data name="Stable" xml:space="preserve">
+    <value>Stal</value>
+  </data>
+  <data name="Statue" xml:space="preserve">
+    <value>Standbeeld</value>
+  </data>
+  <data name="The" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value>Dorp</value>
+  </data>
+  <data name="VillageHeadquarters" xml:space="preserve">
+    <value>Hoofdgebouw</value>
+  </data>
+  <data name="Wall" xml:space="preserve">
+    <value>Muur</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Opslagplaats</value>
+  </data>
+  <data name="Wood" xml:space="preserve">
+    <value>Hout</value>
+  </data>
+</root>

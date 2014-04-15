@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Windows.Forms;
+
+namespace TribalWars.Controls
+{
+    /// <summary>
+    /// Adds addings time functionality to the TimeConverterControl
+    /// </summary>
+    public partial class TimeConverterCalculatorControl : UserControl
+    {
+        #region Constructors
+        public TimeConverterCalculatorControl()
+        {
+            InitializeComponent();
+        }
+        #endregion
+
+        #region Event Handlers
+        /// <summary>
+        /// Adds the time to the original date value
+        /// </summary>
+        private void AddTime_Click(object sender, EventArgs e)
+        {
+            if (ToAdd.Value.Hour == 0 && ToAdd.Value.Minute == 0 && ToAdd.Value.Second == 0)
+            {
+                MessageBox.Show("Specify the time in the right box (format: HH:MM:SS (hours, minutes, seconds)) to be added to the time in the box left." + Environment.NewLine + "This can be handy when you need to calculate the time to send your troops.");
+            }
+            else
+            {
+                TimeSpan span = new TimeSpan(ToAdd.Value.Hour, ToAdd.Value.Minute, ToAdd.Value.Second);
+                TimeConverter.Value = TimeConverter.Value.Add(span);
+            }
+        }
+        #endregion
+    }
+}
