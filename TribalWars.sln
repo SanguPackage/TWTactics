@@ -1,13 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TribalWars", "TribalWars\TribalWars.csproj", "{17A66FAE-A878-4599-8FAF-C81E81B96E86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable", "XPTable\XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JanusExtensions", "JanusExtensions\JanusExtensions.vbproj", "{FF98F467-8427-4825-8665-6161EC2BE42A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JanusExtension", "JanusExtension\JanusExtension.csproj", "{77CA2130-0C6E-4B4C-962F-B100BA74C828}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +18,6 @@ Global
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF98F467-8427-4825-8665-6161EC2BE42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF98F467-8427-4825-8665-6161EC2BE42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF98F467-8427-4825-8665-6161EC2BE42A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77CA2130-0C6E-4B4C-962F-B100BA74C828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77CA2130-0C6E-4B4C-962F-B100BA74C828}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77CA2130-0C6E-4B4C-962F-B100BA74C828}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77CA2130-0C6E-4B4C-962F-B100BA74C828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
