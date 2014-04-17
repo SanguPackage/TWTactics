@@ -24,7 +24,6 @@ namespace TribalWars
     public partial class FormMain : Form
     {
         #region Fields
-        //private MainFormManager _manager;
         private TribalWars.Controls.ToolStripLocationChangerControl _locationChanger;
         #endregion
 
@@ -57,7 +56,6 @@ namespace TribalWars
             World.Default.Map.InitializeMap(Map);
             World.Default.MiniMap.InitializeMap(MiniMap, World.Default.Map);
 
-            //_manager = new MainFormManager(this);
             World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(OnWorldLoaded);
             World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(OnWorldSettingsLoaded);
             World.Default.Map.EventPublisher.DisplayTypeChanged += new EventHandler<MapDisplayTypeEventArgs>(EventPublisher_DisplayTypeChanged);

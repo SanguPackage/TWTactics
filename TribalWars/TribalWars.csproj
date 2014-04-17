@@ -706,7 +706,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="!ToBeRemoved\Data\settings.xml" />
     <Content Include="WorldTemplate\world.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -745,9 +744,6 @@
     <None Include="Resources\Flag_greenHS.png" />
     <None Include="Resources\Flag_blueHS.png" />
     <None Include="Resources\PushpinHS.png" />
-    <Content Include="!ToBeRemoved\tmp\report.xml" />
-    <Content Include="!ToBeRemoved\Proto\WorldStandard.xml" />
-    <Content Include="!ToBeRemoved\temp.txt" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\shapes.png" />
     <None Include="Resources\Noble.png" />
