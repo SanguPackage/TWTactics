@@ -12,12 +12,6 @@ namespace TribalWars
         [STAThread]
         static void Main()
         {
-            //if (DateTime.Now > new DateTime(2010, 10, 01))
-            //{
-            //    MessageBox.Show("Expired :) Contact Laoujin for the latest version");
-            //    return;
-            //}
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

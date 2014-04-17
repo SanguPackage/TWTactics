@@ -1,0 +1,353 @@
+<World>
+	<Server>http://www.TribalWars.nl</Server>
+	<Name>{WorldName}</Name>
+	<Offset>3600</Offset>
+	<Speed>{WorldSpeed}</Speed>
+	<UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
+	<Culture>nl-BE</Culture>
+	<Data>
+		<Village>http://{WorldName}.tribalwars.nl/map/village.txt.gz</Village>
+		<Player>http://{WorldName}.tribalwars.nl/map/tribe.txt.gz</Player>
+		<Tribe>http://{WorldName}.tribalwars.nl/map/ally.txt.gz</Tribe>
+	</Data>
+	<Game>
+		<Village>http://{WorldName}.tribalwars.nl/game.php?village={0}&amp;screen={1}</Village>
+	</Game>
+	<TWStats>
+		<General>http://nl.twstats.com/{WorldName}/index.php</General>
+		<Village>http://nl.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</Village>
+		<Player>http://nl.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</Player>
+		<Tribe>http://nl.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</Tribe>
+    <PlayerGraph>http://nl.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</PlayerGraph>
+    <TribeGraph>http://nl.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TribeGraph>
+  </TWStats>
+  <Views>
+    <View Category="Background" Type="Points" Name="Points">
+      <Drawer Type="EllipseDrawer" Icon="village1" Value="300" ExtraValue="" />
+      <Drawer Type="EllipseDrawer" Icon="village2" Value="1000" />
+      <Drawer Type="EllipseDrawer" Icon="village3" Value="3000" />
+      <Drawer Type="RectangleDrawer" Icon="village4" Value="9000" />
+      <Drawer Type="RectangleDrawer" Icon="village5" Value="12000" />
+      <Drawer Type="RectangleDrawer" Icon="village6" Value="99999" />
+    </View>
+    <View Category="Background" Type="Points" Name="PointsAbandoned">
+      <Drawer Type="EllipseDrawer" Icon="barbarian1" Value="300" />
+      <Drawer Type="EllipseDrawer" Icon="barbarian2" Value="1000" />
+      <Drawer Type="EllipseDrawer" Icon="barbarian3" Value="3000" />
+      <Drawer Type="RectangleDrawer" Icon="barbarian4" Value="9000" />
+      <Drawer Type="RectangleDrawer" Icon="barbarian5" Value="12000" />
+      <Drawer Type="RectangleDrawer" Icon="barbarian6" Value="99999" />
+    </View>
+    <View Category="Background" Type="Points" Name="PointsBonus">
+      <Drawer Type="EllipseDrawer" Icon="bvillage1" Value="300" />
+      <Drawer Type="EllipseDrawer" Icon="bvillage2" Value="1000" />
+      <Drawer Type="EllipseDrawer" Icon="bvillage3" Value="3000" />
+      <Drawer Type="RectangleDrawer" Icon="bvillage4" Value="9000" />
+      <Drawer Type="RectangleDrawer" Icon="bvillage5" Value="12000" />
+      <Drawer Type="RectangleDrawer" Icon="bvillage6" Value="99999" />
+    </View>
+    <View Category="Background" Type="Points" Name="PointsBonusAbandoned">
+      <Drawer Type="EllipseDrawer" Icon="bbarbarian1" Value="300" />
+      <Drawer Type="EllipseDrawer" Icon="bbarbarian2" Value="1000" />
+      <Drawer Type="EllipseDrawer" Icon="bbarbarian3" Value="3000" />
+      <Drawer Type="RectangleDrawer" Icon="bbarbarian4" Value="9000" />
+      <Drawer Type="RectangleDrawer" Icon="bbarbarian5" Value="12000" />
+      <Drawer Type="RectangleDrawer" Icon="bbarbarian6" Value="99999" />
+    </View>
+    <View Category="Decorator" Type="VillageType" Name="VillageType">
+      <Drawer Type="BorderDrawer" Icon="Attack" ExtraValue="Black" Value="1" />
+      <Drawer Type="BorderDrawer" Icon="Defense" ExtraValue="White" Value="2" />
+      <Drawer Type="BorderDrawer" Icon="Scout" ExtraValue="Transparant" Value="8" />
+      <Drawer Type="BorderDrawer" Icon="Farm" ExtraValue="Transparant" Value="16" />
+    </View>
+    <View Category="Decorator" Type="Defense" Name="Defense">
+      <Drawer Type="BorderDrawer" Icon="defense1" Value="10000" ExtraValue="Green" />
+      <Drawer Type="BorderDrawer" Icon="defense2" Value="30000" ExtraValue="Yellow" />
+      <Drawer Type="BorderDrawer" Icon="defense3" Value="50000" ExtraValue="Orange" />
+      <Drawer Type="BorderDrawer" Icon="defense4" Value="99999" ExtraValue="Red" />
+    </View>
+  </Views>
+	<Buildings>
+    <Building>
+      <Name>Hoofdgebouw</Name>
+      <Type>VillageHeadquarters</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/main.png</Image>
+      <Points>10, 12, 14, 17, 21, 25, 30, 36, 43, 52, 62, 74, 89, 107, 128, 145, 185, 222, 266, 319, 383, 460, 552, 662, 795, 954, 1145, 1648, 1978</Points>
+      <People>5, 6, 7, 8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72, 84, 99, 116, 135, 158, 185, 216, 253, 296, 347, 406, 475</People>
+    </Building>
+    <Building>
+      <Name>Kazerne</Name>
+      <Type>Barracks</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/barracks.png</Image>
+      <Points>16, 19, 23, 28, 33, 40, 48, 57, 69, 83, 99, 119, 143, 171, 205, 247, 296, 355, 426, 511, 613, 736, 883, 1060, 1272</Points>
+      <People>7, 8, 10, 11, 13, 15, 18, 21, 25, 29, 34, 39, 46, 54, 63, 74, 86, 101, 118, 138, 162, 189, 221, 259, 303</People>
+    </Building>
+    <Building>
+      <Name>Stal</Name>
+      <Type>Stable</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/stable.png</Image>
+      <Points>20, 24, 29, 35, 41, 50, 60, 72, 86, 103, 124, 149, 178, 214, 257, 308, 370, 444, 532, 639</Points>
+      <People>8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72, 84, 99, 115, 135, 158</People>
+    </Building>
+    <Building>
+      <Name>Werkplaats</Name>
+      <Type>Workshop</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/garage.png</Image>
+      <Points>24, 29, 35, 41, 50, 60, 72, 86, 103, 124, 149, 178, 214, 257, 308</Points>
+      <People>8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72</People>
+    </Building>
+    <Building>
+      <Name>Adelshoeve</Name>
+      <Type>Academy</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/snob.png</Image>
+      <Points>512, 614, 737</Points>
+      <People>80, 94, 110</People>
+    </Building>
+    <Building>
+      <Name>Smederij</Name>
+      <Type>Smithy</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/smith.png</Image>
+      <Points>19, 23, 27, 33, 39, 47, 57, 68, 82, 98, 118, 141, 169, 203, 244, 293, 351, 422, 506, 607</Points>
+      <People>20, 23, 27, 32, 37, 44, 51, 60, 70, 82, 96, 112, 132, 154, 180, 211, 247, 289, 338, 395</People>
+    </Building>
+    <Building>
+      <Name>Verzamelplaats</Name>
+      <Type>RallyPoint</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/place.png</Image>
+      <Points>0</Points>
+    </Building>
+    <Building>
+      <Name>Standbeeld</Name>
+      <Type>Statue</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/statue.png</Image>
+      <Points>24</Points>
+      <People>10</People>
+    </Building>
+    <Building>
+      <Name>Markt</Name>
+      <Type>Market</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/market.png</Image>
+      <Points>10, 12, 14, 17, 21, 25, 30, 36, 43, 52, 62, 74, 89, 107, 128, 154, 185, 222, 266, 319, 383, 460, 552, 662, 795</Points>
+      <People>20, 23, 27, 32, 37, 44, 51, 60, 70, 82, 96, 112, 132, 154, 180, 211, 247, 289, 338, 395, 462, 541, 633, 740, 866</People>
+    </Building>
+    <Building>
+      <Name>Houthakkers</Name>
+      <Type>TimberCamp</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/wood.png</Image>
+      <Points>6, 7, 9, 10, 12, 15, 18, 21, 26, 31, 37, 45, 53, 64, 77, 92, 111, 133, 160, 192, 230, 276, 331, 397, 477, 572, 687, 824, 989, 1187</Points>
+      <Production>45, 52, 61, 71, 82, 96, 111, 130, 151, 175, 204, 237, 276, 321, 373, 434, 505, 587, 683, 794, 924, 1075, 1250, 1454, 1691, 1967, 2288, 2661, 3095, 3600</Production>
+      <People>5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 21, 24, 28, 33, 38, 43, 50, 58, 67, 77, 89, 103, 119, 138, 159, 183, 212, 245, 283, 326</People>
+    </Building>
+    <Building>
+      <Name>Leemgroeve</Name>
+      <Type>ClayPit</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/stone.png</Image>
+      <Points>6, 7, 9, 10, 12, 15, 18, 21, 26, 31, 37, 45, 53, 64, 77, 92, 111, 133, 160, 192, 230, 276, 331, 397, 477, 572, 687, 824, 989, 1187</Points>
+      <Production>45, 52, 61, 71, 82, 96, 111, 130, 151, 175, 204, 237, 276, 321, 373, 434, 505, 587, 683, 794, 924, 1075, 1250, 1454, 1691, 1967, 2288, 2661, 3095, 3600</Production>
+      <People>10, 11, 13, 15, 17, 19, 22, 25, 29, 33, 37, 42, 48, 55, 63, 71, 81, 93, 106, 121, 137, 157, 179, 204, 232, 265, 302, 344, 392, 447</People>
+    </Building>
+    <Building>
+      <Name>IJzermijn</Name>
+      <Type>IronMine</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/iron.png</Image>
+      <Points>6, 7, 9, 10, 12, 15, 18, 21, 26, 31, 37, 45, 53, 64, 77, 92, 111, 133, 160, 192, 230, 276, 331, 397, 477, 572, 687, 824, 989, 1187</Points>
+      <Production>45, 52, 61, 71, 82, 96, 111, 130, 151, 175, 204, 237, 276, 321, 373, 434, 505, 587, 683, 794, 924, 1075, 1250, 1454, 1691, 1967, 2288, 2661, 3095, 3600</Production>
+      <People>10, 12, 14, 16, 19, 22, 26, 30, 35, 41, 48, 56, 66, 77, 90, 105, 123, 144, 169, 197, 231, 270, 316, 370, 433, 507, 593, 696, 811, 949</People>
+    </Building>
+    <Building>
+      <Name>Boerderij</Name>
+      <Type>Farm</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/farm.png</Image>
+      <Points>5, 6, 7, 9, 10, 12, 15, 18, 21, 26, 31, 37, 45, 53, 64, 77, 92, 111, 133, 160, 192, 230, 276, 331, 397, 477, 572, 687, 824, 989</Points>
+      <Production>240, 281, 329, 386, 452, 530, 622, 729, 854, 1002, 1174, 1376, 1613, 1891, 2216, 2598, 3045, 3569, 4183, 4904, 5748, 6737, 7896, 9255, 10848, 12715, 14904, 17469, 20476, 24000</Production>
+    </Building>
+    <Building>
+      <Name>Opslagplaats</Name>
+      <Type>Warehouse</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/storage.png</Image>
+      <Points>6, 7, 9, 10, 12, 15, 18, 21, 26, 31, 37, 45, 53, 64, 77, 92, 111, 133, 160, 192, 230, 276, 331, 397, 477, 572, 687, 824, 989, 1187</Points>
+      <Production>1000, 1229, 1512, 1859, 2285, 2810, 3454, 4247, 5222, 6420, 7893, 9705, 11932, 14670, 18037, 22177, 27266, 33523, 41217, 50675, 62305, 76604, 94184, 115798, 142373, 175047, 215219, 264611, 325337, 400000</Production>
+      <People></People>
+    </Building>
+    <Building>
+      <Name>Schuilplaats</Name>
+      <Type>HidingPlace</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/hide.png</Image>
+      <Points>5, 6, 7, 9, 10, 12, 15, 18, 21, 26</Points>
+      <Production>150, 200, 267, 356, 474, 632, 843, 1125, 1500, 2000</Production>
+      <People>2, 2, 3, 3, 4, 4, 5, 6, 7, 8</People>
+    </Building>
+    <Building>
+      <Name>Muur</Name>
+      <Type>Wall</Type>
+      <Image>http://en12.tribalwars.net/graphic/buildings/wall.png</Image>
+      <Points>8, 10, 12, 14, 17, 20, 24, 29, 34, 41, 50, 59, 71, 86, 103, 123, 148, 177, 213, 256</Points>
+      <Production>104, 108, 112, 116, 120, 124, 129, 134, 139, 144, 149, 155, 160, 166, 172, 179, 185, 192, 199, 207</Production>
+      <People>5, 6, 7, 8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72, 84, 99</People>
+    </Building>
+	</Buildings>
+	<Units>
+    <Unit>
+      <Position>0</Position>
+      <Name>Speervechter</Name>
+      <Short>speer</Short>
+      <Type>Spearman</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_spear.png</Image>
+      <Carry>25</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>18</Speed>
+      <Offense>false</Offense>
+      <Cost>
+        <Wood>50</Wood>
+        <Clay>30</Clay>
+        <Iron>10</Iron>
+        <People>1</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>1</Position>
+      <Name>Zwaardvechter</Name>
+      <Short>zwaard</Short>
+      <Type>Swordsman</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_sword.png</Image>
+      <Carry>15</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>22</Speed>
+      <Offense>false</Offense>
+      <Cost>
+        <Wood>30</Wood>
+        <Clay>30</Clay>
+        <Iron>70</Iron>
+        <People>1</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>2</Position>
+      <Name>Bijlstrijder</Name>
+      <Short>bijl</Short>
+      <Type>Axeman</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_axe.png</Image>
+      <Carry>10</Carry>
+      <Farmer>false</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>18</Speed>
+      <Offense>true</Offense>
+      <Cost>
+        <Wood>60</Wood>
+        <Clay>30</Clay>
+        <Iron>40</Iron>
+        <People>1</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>3</Position>
+      <Name>Verkenner</Name>
+      <Short>verk</Short>
+      <Type>Scout</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_spy.png</Image>
+      <Carry>0</Carry>
+      <Farmer>false</Farmer>
+      <HideAttacker>true</HideAttacker>
+      <Speed>9</Speed>
+      <Offense>false</Offense>
+      <Cost>
+        <Wood>50</Wood>
+        <Clay>50</Clay>
+        <Iron>20</Iron>
+        <People>2</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>4</Position>
+      <Name>Lichte cavalrie</Name>
+      <Short>lc</Short>
+      <Type>LightCavalry</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_light.png</Image>
+      <Carry>80</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>10</Speed>
+      <Offense>true</Offense>
+      <Cost>
+        <Wood>125</Wood>
+        <Clay>100</Clay>
+        <Iron>250</Iron>
+        <People>4</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>5</Position>
+      <Name>Zware cavalrie</Name>
+      <Short>zc</Short>
+      <Type>HeavyCavalry</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_heavy.png</Image>
+      <Carry>50</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>11</Speed>
+      <Offense>false</Offense>
+      <Cost>
+        <Wood>200</Wood>
+        <Clay>150</Clay>
+        <Iron>600</Iron>
+        <People>6</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>6</Position>
+      <Name>Ram</Name>
+      <Short>ram</Short>
+      <Type>Ram</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_ram.png</Image>
+      <Carry>0</Carry>
+      <Farmer>false</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>30</Speed>
+      <Offense>true</Offense>
+      <Cost>
+        <Wood>300</Wood>
+        <Clay>200</Clay>
+        <Iron>200</Iron>
+        <People>5</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>7</Position>
+      <Name>Katapult</Name>
+      <Short>kata</Short>
+      <Type>Catapult</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_catapult.png</Image>
+      <Carry>0</Carry>
+      <Farmer>false</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>30</Speed>
+      <Offense>true</Offense>
+      <Cost>
+        <Wood>320</Wood>
+        <Clay>400</Clay>
+        <Iron>100</Iron>
+        <People>8</People>
+      </Cost>
+    </Unit>
+    <Unit>
+      <Position>8</Position>
+      <Name>Edelman</Name>
+      <Short>edel</Short>
+      <Type>Nobleman</Type>
+      <Image>http://en12.tribalwars.net/graphic/unit/unit_snob.png</Image>
+      <Carry>0</Carry>
+      <Farmer>false</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>35</Speed>
+      <Offense>true</Offense>
+      <Cost>
+        <Wood>0</Wood>
+        <Clay>0</Clay>
+        <Iron>0</Iron>
+        <People>0</People>
+      </Cost>
+    </Unit>
+  </Units>
+</World>

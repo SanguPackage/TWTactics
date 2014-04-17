@@ -386,14 +386,12 @@ namespace TribalWars
         /// <param name="settings">The settings filename</param>
         public bool LoadWorld(string dataPath, string settings)
         {
-            // TODO: LoadWorld en LoadSettings
             _hasLoaded = false;
-            if (dataPath == null || dataPath.Length == 0)
+            if (string.IsNullOrEmpty(dataPath) || !Directory.Exists(dataPath))
                 return false;
 
             _structure = new InternalStructure();
             _structure.SetPath(dataPath, settings);
-            //_structure.LoadDictionaries(out _villages, out _players, out _tribes);
             _structure.LoadDictionaries(out _villages, out _players, out _tribes);
 
             // Settings
@@ -473,6 +471,21 @@ namespace TribalWars
         //        World.Default.Map.EventPublisher.PaintMap(null);
         //    }
         //}
+        #endregion
+
+        #region New World
+        /// <summary>
+        /// Downloads available worlds on the server
+        /// </summary>
+        public static string[] GetAllWorlds()
+        {
+            return InternalStructure.DownloadWorlds();
+        }
+
+        public void CreateNewWorld(string path)
+        {
+            InternalStructure.CreateWorld(path);
+        }
         #endregion
 
         #region Public Methods

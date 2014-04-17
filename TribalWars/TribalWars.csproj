@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TribalWars</RootNamespace>
     <AssemblyName>TribalWars</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -71,12 +73,14 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Accordeon\Details\DetailsCommand.cs" />
@@ -462,12 +466,6 @@
     <Compile Include="Data\VillageTools.cs" />
     <Compile Include="FormSettings.cs">
     </Compile>
-    <Compile Include="Forms\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\LoadWorldForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,11 +473,9 @@
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm\FormEventHandler.cs" />
-    <Compile Include="Forms\MainForm\MainFormManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Tools\Common.cs" />
     <Compile Include="Tools\Parsers\Common.cs" />
+    <Compile Include="Tools\PhpDeserializer.cs" />
     <Compile Include="Tools\PropertyGrid.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -501,12 +497,6 @@
     </Compile>
     <Compile Include="Forms\FormParse.Designer.cs">
       <DependentUpon>FormParse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormTest.Designer.cs">
-      <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -654,10 +644,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm\FormMain.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -665,10 +651,6 @@
     <EmbeddedResource Include="Forms\FormParse.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FormParse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTest.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoadWorldForm.resx">
       <SubType>Designer</SubType>
@@ -716,10 +698,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TWWords.resx</DependentUpon>
     </Compile>
+    <None Include="WorldTemplate\default.sets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldTemplate\villagetypes.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="!Templates\regions.txt" />
     <Content Include="!ToBeRemoved\Data\settings.xml" />
+    <Content Include="WorldTemplate\world.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Controls\Main\Polygon\PolygonDataSet.xsc">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
@@ -878,7 +868,6 @@
     <None Include="Resources\PolyHandle.cur" />
     <None Include="Resources\Pencil.cur" />
     <None Include="Resources\World.dat" />
-    <None Include="ThaMap.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XPTable\XPTable.csproj">

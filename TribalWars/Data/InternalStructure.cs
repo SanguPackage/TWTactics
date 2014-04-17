@@ -1,9 +1,15 @@
 #region Using
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
+using System.Xml.Linq;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
 using System.Drawing;
@@ -21,6 +27,49 @@ namespace TribalWars
         public class InternalStructure
         {
             #region Constants
+
+            private const string AvailableWorlds = "http://www.tribalwars.nl/backend/get_servers.php";
+            private const string NormalWorldPattern = @"nl(\d+)";
+            private static readonly Regex NormalWorldRegex = new Regex(NormalWorldPattern);
+            private const string NormalWorldPrefix = "nl";
+
+            #region TribalWars API
+            private const string ServerSettingsUrl = "http://{0}.tribalwars.nl/interface.php?func={1}";
+
+            /// <summary>
+            /// Downloads the global world settings and extracts the world speeds
+            /// </summary>
+            private static WorldSettings DownloadWorldSettings(string worldName)
+            {
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_config"));
+                var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
+                var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
+
+                return new WorldSettings(worldSpeed, worldUnitSpeed);
+            }
+
+            private static object DownloadWorldUnitSettings(string worldName)
+            {
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
+                //var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
+                //var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
+
+                return null;
+            }
+
+            private class WorldSettings
+            {
+                public decimal WorldUnitSpeed { get; private set; }
+                public decimal UnitSpeed { get; private set; }
+
+                public WorldSettings(decimal worldSpeed, decimal worldUnitSpeed)
+                {
+                    WorldUnitSpeed = worldSpeed;
+                    UnitSpeed = worldUnitSpeed;
+                }
+            }
+            #endregion
+
             public const string FileVillageString = @"village.txt";
             public const string FileTribeString = @"ally.txt";
             public const string FilePlayerString = @"tribe.txt";
@@ -35,7 +84,7 @@ namespace TribalWars
             public const string WorldString = "World";
             public const string DefaultSettingsString = "default.sets";
             public const string SettingsWildcardString = "*.sets";
-            public const string WorldXMLString = "world.xml";
+            public const string WorldXmlString = "world.xml";
             public const string VillageTypesString = "villagetypes.dat";
 
             public const int WorldVillageCount = 50000;
@@ -123,13 +172,24 @@ namespace TribalWars
                 {
                     if (!File.Exists(CurrentWorldDirectory + VillageTypesString))
                     {
-                        using (FileStream stream = File.Create(CurrentWorldDirectory + VillageTypesString))
+                        using (FileStream stream = File.Create(Path.Combine(WorldTemplateDirectory, VillageTypesString)))
                         {
                             for (int i = 1; i <= 999999; i++)
                                 stream.WriteByte(0);
                         }
                     }
                     return File.Open(CurrentWorldDirectory + VillageTypesString, FileMode.Open, FileAccess.ReadWrite);
+                }
+            }
+
+            /// <summary>
+            /// Template directory with files required for creating a new world
+            /// </summary>
+            private static string WorldTemplateDirectory
+            {
+                get
+                {
+                    return AppDomain.CurrentDomain.BaseDirectory + @"\WorldTemplate";
                 }
             }
             #endregion
@@ -145,8 +205,6 @@ namespace TribalWars
             /// Reads world.xml
             /// Downloads the data if necessary
             /// </summary>
-            /// <param name="world"></param>
-            /// <param name="settings"></param>
             public bool SetPath(string world, string settings)
             {
                 try
@@ -154,20 +212,13 @@ namespace TribalWars
                     _currentData = string.Empty;
                     _previousData = string.Empty;
 
-                    DirectoryInfo worldPath = new DirectoryInfo(world);
-                    if (worldPath.Name.StartsWith(InternalStructure.WorldString, StringComparison.InvariantCultureIgnoreCase) && worldPath.Name != DirectoryWorldDataString) // god how long did it say <> instead of != and me not understanding why it was a syntax error :)
+                    var worldPath = new DirectoryInfo(world);
+                    if (worldPath.Name != DirectoryWorldDataString)
                     {
                         // general world selected
                         _currentWorld = worldPath.Name;
 
-                        // World stats (server sets, Buildings & units)
-                        XmlReaderSettings sets = new XmlReaderSettings();
-                        sets.IgnoreWhitespace = true;
-                        sets.CloseInput = true;
-                        using (XmlReader worldXml = XmlReader.Create(File.Open(worldPath + InternalStructure.WorldXMLString, FileMode.Open, FileAccess.Read), sets))
-                        {
-                            Data.Builder.ReadWorld(worldXml, World.Default.Map, World.Default.MiniMap);
-                        }
+                        ReadWorldSettings(worldPath.FullName);
 
                         // If there is no datapath, read the last directory
                         string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory);
@@ -187,7 +238,8 @@ namespace TribalWars
                     else
                     {
                         _currentData = worldPath.Name;
-                        _currentWorld = worldPath.Parent.Parent.Name;
+                        DirectoryInfo realWorldPath = worldPath.Parent.Parent;
+                        _currentWorld = realWorldPath.Name;
                         string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory);
                         if (dirs.Length > 1)
                         {
@@ -202,14 +254,7 @@ namespace TribalWars
                             }
                         }
 
-                        // World stats (server sets, Buildings & units)
-                        XmlReaderSettings sets = new XmlReaderSettings();
-                        sets.IgnoreWhitespace = true;
-                        sets.CloseInput = true;
-                        using (XmlReader worldXml = XmlReader.Create(File.Open(worldPath.Parent.Parent.FullName + "\\" + InternalStructure.WorldXMLString, FileMode.Open, FileAccess.Read), sets))
-                        {
-                            Data.Builder.ReadWorld(worldXml, World.Default.Map, World.Default.MiniMap);
-                        }
+                        ReadWorldSettings(worldPath.FullName);
 
                         worldPath = new DirectoryInfo(CurrentWorldDirectory);
                         if (!worldPath.Name.StartsWith(InternalStructure.WorldString, StringComparison.InvariantCultureIgnoreCase))
@@ -227,6 +272,22 @@ namespace TribalWars
                 }
 
                 return _currentData != string.Empty;
+            }
+
+            /// <summary>
+            /// World stats (server sets, Buildings & units)
+            /// </summary>
+            private void ReadWorldSettings(string worldPath)
+            {
+                var sets = new XmlReaderSettings
+                {
+                    IgnoreWhitespace = true,
+                    CloseInput = true
+                };
+                using (XmlReader worldXml = XmlReader.Create(File.Open(Path.Combine(worldPath, InternalStructure.WorldXmlString), FileMode.Open, FileAccess.Read), sets))
+                {
+                    Data.Builder.ReadWorld(worldXml, World.Default.Map, World.Default.MiniMap);
+                }
             }
             #endregion
 
@@ -346,9 +407,71 @@ namespace TribalWars
                 }
                 return false;
             }
+
+            /// <summary>
+            /// Create required infrastructure for a new world
+            /// </summary>
+            public static void CreateWorld(string path)
+            {
+                var dir = new DirectoryInfo(path);
+                string worldName = dir.Name;
+                if (!dir.Exists)
+                {
+                    dir.Create();
+                }
+
+                // villagetypes.dat
+                File.Copy(Path.Combine(WorldTemplateDirectory, VillageTypesString), Path.Combine(path, VillageTypesString));
+
+                // world.xml
+                var worldXmlTemplate = new StringBuilder(File.ReadAllText(Path.Combine(WorldTemplateDirectory, WorldXmlString)));
+                worldXmlTemplate.Replace("{WorldName}", worldName);
+                WorldSettings worldSettings = DownloadWorldSettings(worldName);
+                worldXmlTemplate.Replace("{WorldSpeed}", worldSettings.WorldUnitSpeed.ToString(CultureInfo.InvariantCulture));
+                worldXmlTemplate.Replace("{WorldUnitSpeed}", worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture));
+
+                File.WriteAllText(Path.Combine(path, WorldXmlString), worldXmlTemplate.ToString());
+
+                // TODO: also get the units so that archers are added if necessary
+
+                // default.sets
+                Directory.CreateDirectory(Path.Combine(path, DirectorySettingsString));
+                var settingsTemplatePath = Path.Combine(WorldTemplateDirectory, DefaultSettingsString);
+                
+
+                string targetPath = Path.Combine(path, DirectorySettingsString, DefaultSettingsString);
+                File.Copy(settingsTemplatePath, targetPath);
+            }
             #endregion
 
             #region Download
+            /// <summary>
+            /// Get all available worlds on the server
+            /// </summary>
+            public static string[] DownloadWorlds()
+            {
+                var request = new System.Net.WebClient();
+                var file = request.DownloadString(AvailableWorlds);
+                var worldsObject = (Hashtable)new Conversive.PHPSerializationLibrary.Serializer().Deserialize(file);
+
+                string[] worlds = worldsObject.Keys.OfType<string>().ToArray();
+                IEnumerable<string> specialWorlds = worlds.Where(x => !NormalWorldRegex.IsMatch(x));
+
+                // Only the worlds where one can still start are returned from the server (or something)
+                int lastStartedWorld = 
+                    (from world in worlds
+                     where NormalWorldRegex.IsMatch(world)
+                     let worldNumber = int.Parse(NormalWorldRegex.Match(world).Groups[1].Value)
+                     orderby worldNumber descending 
+                     select worldNumber).First();
+
+                IEnumerable<string> normalWorlds =
+                    Enumerable.Range(1, lastStartedWorld)
+                              .Select(x => NormalWorldPrefix + x.ToString(CultureInfo.InvariantCulture));
+
+                return normalWorlds.Union(specialWorlds).ToArray();
+            }
+
             /// <summary>
             /// Downloads the latest Tribal Wars data
             /// </summary>

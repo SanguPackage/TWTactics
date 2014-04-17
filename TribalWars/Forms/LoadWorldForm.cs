@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace TribalWars
     {
         #region Fields
         //ListViewSorter listviewsorter = new ListViewSorter();
+        private string[] _existingWorlds;
         #endregion
 
         #region Constants
@@ -49,6 +51,10 @@ namespace TribalWars
                 Worlds.SelectedNode = Worlds.Nodes[TribalWars.Properties.Settings.Default.LastWorld];
                 Worlds.SelectedNode.Expand();
             }
+
+            // Add a new world
+            string[] worlds = World.GetAllWorlds();
+            AvailableWorlds.DataSource = worlds.Where(x => !_existingWorlds.Contains(x)).ToArray();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -117,23 +123,11 @@ namespace TribalWars
 
         private void btnNewWorld_Click(object sender, EventArgs e)
         {
-            string world = Microsoft.VisualBasic.Interaction.InputBox("Give the name of the new world", "New World", "World ", this.Left + this.ClientSize.Width / 3, this.Top + this.ClientSize.Height / 3);
-            if (world.IndexOfAny(Path.GetInvalidPathChars()) != -1)
-            {
-                foreach (char c in Path.GetInvalidPathChars())
-                {
-                    world = world.Replace(c, '-');
-                }
-            }
+            string world = AvailableWorlds.SelectedItem.ToString();
             string path = World.InternalStructure.WorldDataDirectory + world;
-            if (world.StartsWith(World.InternalStructure.WorldString, StringComparison.InvariantCultureIgnoreCase))
-            {
-                World.Default.LoadWorld(path);
-            }
-            else
-            {
-                MessageBox.Show("A new world has to start with 'World' :)");
-            }
+            World.Default.CreateNewWorld(path);
+            World.Default.LoadWorld(path);
+            Close();
         }
         #endregion
 
@@ -181,39 +175,17 @@ namespace TribalWars
         {
             Worlds.Nodes.Clear();
             string path = World.InternalStructure.WorldDataDirectory;
-            string[] worldsSorted = Directory.GetDirectories(path); // Sort on world ID instead of on world string
-
-            // sort world dirs
-            Array.Sort<string>(worldsSorted,
-                delegate(string left, string right)
-                {
-                    // sorting by number
-                    // there is also "World Classic/Speed": string comparison is used for those
-                    string l;
-                    if (left.LastIndexOf(" ") != -1) l = left.Substring(left.LastIndexOf(" "));
-                    else l = left;
-                    string r;
-                    if (right.LastIndexOf(" ") != -1) r = right.Substring(right.LastIndexOf(" "));
-                    else r = right;
-                    int il, ir;
-                    if (int.TryParse(l, out il) && int.TryParse(r, out ir))
-                    {
-                        return il - ir;
-                    }
-                    else
-                    {
-                        return l.CompareTo(r);
-                    }
-                });
+            var worlds = Directory.GetDirectories(path); // Sort on world ID instead of on world string
+            _existingWorlds = worlds.Select(x => new DirectoryInfo(x).Name).ToArray();
 
             // create tree
-            foreach (string worlds in worldsSorted)
+            foreach (string world in worlds)
             {
-                string pathData = worlds + @"\" + World.InternalStructure.DirectoryDataString + @"\";
-                if (worlds.StartsWith(path/* + World.PathWorldName*/, StringComparison.InvariantCultureIgnoreCase))
+                string pathData = world + @"\" + World.InternalStructure.DirectoryDataString + @"\";
+                if (world.StartsWith(path, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    DirectoryInfo worldInfo = new DirectoryInfo(worlds);
-                    TreeNode WorldNode = Worlds.Nodes.Add(worlds + @"\", worldInfo.Name, ImageWorld, ImageWorld);
+                    DirectoryInfo worldInfo = new DirectoryInfo(world);
+                    TreeNode WorldNode = Worlds.Nodes.Add(world + @"\", worldInfo.Name, ImageWorld, ImageWorld);
                     if (Directory.Exists(pathData))
                     {
                         // add all data for selected world

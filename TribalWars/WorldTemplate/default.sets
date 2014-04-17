@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings Date="{SettingsDate}">
+ <You Name="{YourName}">
+  <MarkerGroup Name="You" Enabled="True" Color="Black" ExtraColor="Yellow" View="Points" />
+  <MarkerGroup Name="Your Tribe" Enabled="True" Color="Black" ExtraColor="Transparent" View="Points" />
+  <MarkerGroup Name="Enemy" Enabled="True" Color="Red" ExtraColor="Transparent" View="Points" />
+  <MarkerGroup Name="Abandoned" Enabled="True" Color="Olive" ExtraColor="Transparent" View="PointsAbandoned" />
+ </You>
+ <Monitor />
+ <MainMap>
+  <Location Display="Shape" XY="500|500" Zoom="6" />
+  <Display BackgroundColor="Green">
+   <LinesContinent>True</LinesContinent>
+   <LinesProvince>False</LinesProvince>
+   <HideAbandoned>False</HideAbandoned>
+   <MarkedOnly>False</MarkedOnly>
+  </Display>
+  <MarkerGroups>
+    
+  </MarkerGroups>
+  <Manipulators>
+   <Manipulator Type="Default" />
+   <Manipulator Type="Polygon">
+    <BBCodeManipulator>
+     
+    </BBCodeManipulator>
+   </Manipulator>
+  </Manipulators>
+ </MainMap>
+</Settings>

@@ -24,7 +24,7 @@ namespace TribalWars
     public partial class FormMain : Form
     {
         #region Fields
-        private MainFormManager _manager;
+        //private MainFormManager _manager;
         private TribalWars.Controls.ToolStripLocationChangerControl _locationChanger;
         #endregion
 
@@ -57,7 +57,7 @@ namespace TribalWars
             World.Default.Map.InitializeMap(Map);
             World.Default.MiniMap.InitializeMap(MiniMap, World.Default.Map);
 
-            _manager = new MainFormManager(this);
+            //_manager = new MainFormManager(this);
             World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(OnWorldLoaded);
             World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(OnWorldSettingsLoaded);
             World.Default.Map.EventPublisher.DisplayTypeChanged += new EventHandler<MapDisplayTypeEventArgs>(EventPublisher_DisplayTypeChanged);
@@ -76,33 +76,6 @@ namespace TribalWars
 
             Polygon.Initialize();
             ToolStripDefaultManipulator.CheckState = CheckState.Checked;
-
-            //test();
-        }
-
-        private void test()
-        {
-            int i = 0;
-
-            List<Village> vils = new List<Village>();
-            foreach (Village vil in World.Default.Villages.Values)
-            {
-                vils.Add(vil);
-                i++;
-                if (i > 10) break;
-            }
-
-            //VillageCollection col = new VillageCollection(vils);
-
-            /*ExtendedGridEx gridEX1 = new ExtendedGridEx();
-            gridEX1.Visible = true;
-            uiTabPage1.Controls.Add(gridEX1);
-            gridEX1.Width = 500;
-            gridEX1.Height = 500;
-            gridEX1.Dock = DockStyle.Fill;
-            gridEX1.SetDataBinding(vils, "");
-            gridEX1.RetrieveStructure(true);
-            gridEX1.Refresh();*/
         }
 
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
@@ -386,6 +359,16 @@ namespace TribalWars
         }
 
         private void MenuFileSaveSettingsAs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void holyWarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

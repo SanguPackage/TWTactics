@@ -480,7 +480,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Point GetGameLocation(Location sets, int mapWidth, int mapHeight, int x, int y)
         {
-            /// Get location from map and convert it to game location
+            // Get location from map and convert it to game location
             //int off = (int)((x - sets.X));
 
             int height = _displayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);

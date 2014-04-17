@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TribalWars", "TribalWars\Tr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTable", "XPTable\XPTable.csproj", "{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TribalWarsTests", "TribalWarsTests\TribalWarsTests.csproj", "{7D28AFCB-EFA6-451B-9F04-3F4B1B4BEEE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADD2ECB-2B24-4162-8965-3EFAA9BB041E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D28AFCB-EFA6-451B-9F04-3F4B1B4BEEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D28AFCB-EFA6-451B-9F04-3F4B1B4BEEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D28AFCB-EFA6-451B-9F04-3F4B1B4BEEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D28AFCB-EFA6-451B-9F04-3F4B1B4BEEE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

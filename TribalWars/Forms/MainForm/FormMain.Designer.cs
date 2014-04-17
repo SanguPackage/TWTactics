@@ -97,6 +97,7 @@ namespace TribalWars
             this.LeftNavigationTable = new System.Windows.Forms.TableLayoutPanel();
             this.LeftNavigation = new Ascend.Windows.Forms.NavigationPane();
             this.LeftNavigation_Location = new Ascend.Windows.Forms.NavigationPanePage();
+            this.locationControl1 = new TribalWars.Controls.Accordeon.Location.LocationControl();
             this.LeftNavigation_QuickFind = new Ascend.Windows.Forms.NavigationPanePage();
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Controls.MarkersContainerControl();
@@ -109,6 +110,8 @@ namespace TribalWars
             this.LeftNavigation_Monitor = new Ascend.Windows.Forms.NavigationPanePage();
             this.MonitorAccordeon = new TribalWars.Controls.Accordeon.MonitorControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
+            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
+            this.detailsControl1 = new TribalWars.Controls.Accordeon.Details.DetailsControl();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
             this.TabsGameBrowser = new Janus.Windows.UI.Tab.UITabPage();
@@ -120,18 +123,19 @@ namespace TribalWars
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
             this.MenuBar.SuspendLayout();
             this.ToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormSplitter)).BeginInit();
             this.FormSplitter.Panel1.SuspendLayout();
             this.FormSplitter.Panel2.SuspendLayout();
             this.FormSplitter.SuspendLayout();
             this.LeftNavigationTable.SuspendLayout();
             this.LeftNavigation.SuspendLayout();
+            this.LeftNavigation_Location.SuspendLayout();
             this.LeftNavigation_Markers.SuspendLayout();
             this.LeftNavigation_Distance.SuspendLayout();
             this.LeftNavigation_You.SuspendLayout();
@@ -139,6 +143,7 @@ namespace TribalWars
             this.LeftNavigation_Monitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
+            this.uiTabPage1.SuspendLayout();
             this.TabsMap.SuspendLayout();
             this.TabsGameBrowser.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
@@ -203,9 +208,9 @@ namespace TribalWars
             // StatusXY
             // 
             this.StatusXY.AutoSize = false;
-            this.StatusXY.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusXY.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusXY.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusXY.Name = "StatusXY";
             this.StatusXY.Size = new System.Drawing.Size(50, 19);
@@ -214,9 +219,9 @@ namespace TribalWars
             // StatusVillage
             // 
             this.StatusVillage.AutoSize = false;
-            this.StatusVillage.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusVillage.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusVillage.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusVillage.Name = "StatusVillage";
             this.StatusVillage.Size = new System.Drawing.Size(150, 19);
@@ -226,9 +231,9 @@ namespace TribalWars
             // StatusPlayer
             // 
             this.StatusPlayer.AutoSize = false;
-            this.StatusPlayer.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusPlayer.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusPlayer.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusPlayer.Name = "StatusPlayer";
             this.StatusPlayer.Size = new System.Drawing.Size(150, 19);
@@ -238,9 +243,9 @@ namespace TribalWars
             // StatusTribe
             // 
             this.StatusTribe.AutoSize = false;
-            this.StatusTribe.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusTribe.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusTribe.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusTribe.Name = "StatusTribe";
             this.StatusTribe.Size = new System.Drawing.Size(50, 19);
@@ -249,9 +254,9 @@ namespace TribalWars
             // 
             // StatusSettings
             // 
-            this.StatusSettings.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusSettings.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusSettings.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusSettings.Name = "StatusSettings";
             this.StatusSettings.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
@@ -261,9 +266,9 @@ namespace TribalWars
             // 
             // StatusWorld
             // 
-            this.StatusWorld.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusWorld.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusWorld.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusWorld.Name = "StatusWorld";
             this.StatusWorld.Size = new System.Drawing.Size(58, 19);
@@ -272,9 +277,9 @@ namespace TribalWars
             // StatusServerTime
             // 
             this.StatusServerTime.AutoSize = false;
-            this.StatusServerTime.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusServerTime.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusServerTime.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusServerTime.Name = "StatusServerTime";
             this.StatusServerTime.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
@@ -449,13 +454,13 @@ namespace TribalWars
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem1
@@ -473,25 +478,27 @@ namespace TribalWars
             // holyWarToolStripMenuItem
             // 
             this.holyWarToolStripMenuItem.Name = "holyWarToolStripMenuItem";
-            this.holyWarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.holyWarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.holyWarToolStripMenuItem.Text = "&Holy War";
+            this.holyWarToolStripMenuItem.Click += new System.EventHandler(this.holyWarToolStripMenuItem_Click);
             // 
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.contentsToolStripMenuItem.Text = "&Contents";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(120, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // imageList1
             // 
@@ -768,6 +775,7 @@ namespace TribalWars
             this.LeftNavigation_Location.AutoScroll = true;
             this.LeftNavigation_Location.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.LeftNavigation_Location.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_Location.Controls.Add(this.locationControl1);
             this.LeftNavigation_Location.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LeftNavigation_Location.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.LeftNavigation_Location.HighlightGradientHighColor = System.Drawing.Color.White;
@@ -789,6 +797,16 @@ namespace TribalWars
             this.LeftNavigation_Location.Text = "Location Options";
             this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LeftNavigation_Location.ToolTipText = null;
+            // 
+            // locationControl1
+            // 
+            this.locationControl1.BackColor = System.Drawing.Color.Transparent;
+            this.locationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationControl1.Location = new System.Drawing.Point(0, 0);
+            this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.locationControl1.Name = "locationControl1";
+            this.locationControl1.Size = new System.Drawing.Size(311, 174);
+            this.locationControl1.TabIndex = 0;
             // 
             // LeftNavigation_QuickFind
             // 
@@ -1024,7 +1042,7 @@ namespace TribalWars
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.TabsMap;
+            this.Tabs.InputFocusTab = this.uiTabPage1;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.Size = new System.Drawing.Size(870, 609);
@@ -1037,6 +1055,24 @@ namespace TribalWars
             this.TabsPolygon,
             this.TabsMonitoring,
             this.uiTabPage1});
+            // 
+            // uiTabPage1
+            // 
+            this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
+            this.uiTabPage1.Name = "uiTabPage1";
+            this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
+            this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.Text = "New Tab";
+            // 
+            // detailsControl1
+            // 
+            this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
+            this.detailsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailsControl1.Location = new System.Drawing.Point(0, 0);
+            this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.detailsControl1.Name = "detailsControl1";
+            this.detailsControl1.Size = new System.Drawing.Size(866, 585);
+            this.detailsControl1.TabIndex = 1;
             // 
             // TabsMap
             // 
@@ -1142,14 +1178,6 @@ namespace TribalWars
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "New Tab";
-            // 
             // FormToolbarContainer
             // 
             // 
@@ -1192,9 +1220,11 @@ namespace TribalWars
             this.ToolStrip.PerformLayout();
             this.FormSplitter.Panel1.ResumeLayout(false);
             this.FormSplitter.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FormSplitter)).EndInit();
             this.FormSplitter.ResumeLayout(false);
             this.LeftNavigationTable.ResumeLayout(false);
             this.LeftNavigation.ResumeLayout(false);
+            this.LeftNavigation_Location.ResumeLayout(false);
             this.LeftNavigation_Markers.ResumeLayout(false);
             this.LeftNavigation_Distance.ResumeLayout(false);
             this.LeftNavigation_You.ResumeLayout(false);
@@ -1203,6 +1233,7 @@ namespace TribalWars
             this.LeftNavigation_Monitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
+            this.uiTabPage1.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
             this.TabsGameBrowser.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
@@ -1283,15 +1314,15 @@ namespace TribalWars
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem MenuFileWorldDownload;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Location;
-        private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
+        //private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
         private TribalWars.Controls.MarkersContainerControl markersContainerControl1;
         private TribalWars.Controls.Maps.MapControl Map;
         private TribalWars.Controls.Main.Browser.BrowserControl Browser;
         private TribalWars.Controls.ParserControl Parser;
         private TribalWars.Controls.PolygonControl Polygon;
         private TribalWars.Controls.Accordeon.MonitorControl MonitorAccordeon;
-        private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;
-        private TribalWars.Controls.Main.Monitoring.MonitoringControl monitoringControl1;
+        //private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;
+        //private TribalWars.Controls.Main.Monitoring.MonitoringControl monitoringControl1;
         private TribalWars.Controls.Main.Browser.BrowserControl browserControl1;
         private System.Windows.Forms.ToolStripButton ToolStripDownload;
         private System.Windows.Forms.ToolStripButton ToolStripHome;
@@ -1315,6 +1346,8 @@ namespace TribalWars
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private Ascend.Windows.Forms.NavigationPane LeftNavigation;
+        private Controls.Accordeon.Details.DetailsControl detailsControl1;
+        private Controls.Accordeon.Location.LocationControl locationControl1;
     }
 }
 
