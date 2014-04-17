@@ -815,6 +815,7 @@ namespace TribalWars
             this.LeftNavigation_QuickFind.AutoScroll = true;
             this.LeftNavigation_QuickFind.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.LeftNavigation_QuickFind.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_QuickFind.Controls.Add(this.detailsControl1);
             this.LeftNavigation_QuickFind.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LeftNavigation_QuickFind.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.LeftNavigation_QuickFind.HighlightGradientHighColor = System.Drawing.Color.White;
