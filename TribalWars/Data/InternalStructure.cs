@@ -213,7 +213,7 @@ namespace TribalWars
                     _previousData = string.Empty;
 
                     var worldPath = new DirectoryInfo(world);
-                    if (worldPath.Name != DirectoryWorldDataString)
+                    if (worldPath.Parent.Name == DirectoryWorldDataString && worldPath.Name != DirectoryWorldDataString)
                     {
                         // general world selected
                         _currentWorld = worldPath.Name;
@@ -238,31 +238,23 @@ namespace TribalWars
                     else
                     {
                         _currentData = worldPath.Name;
-                        DirectoryInfo realWorldPath = worldPath.Parent.Parent;
-                        _currentWorld = realWorldPath.Name;
-                        string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory);
+                        worldPath = worldPath.Parent.Parent;
+                        _currentWorld = worldPath.Name;
+                        string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory).OrderBy(x => x).ToArray();
                         if (dirs.Length > 1)
                         {
-                            string lastDir = string.Empty;
-                            foreach (string dir in dirs)
+                            DirectoryInfo lastDir = null;
+                            foreach (DirectoryInfo dir in dirs.Select(x => new DirectoryInfo(x)))
                             {
-                                if (dir + "\\" == worldPath.FullName && !string.IsNullOrEmpty(lastDir))
+                                if (dir.Name == _currentData && lastDir != null)
                                 {
-                                    _previousData = new FileInfo(lastDir).Name;
+                                    _previousData = lastDir.Name;
                                 }
                                 lastDir = dir;
                             }
                         }
 
                         ReadWorldSettings(worldPath.FullName);
-
-                        worldPath = new DirectoryInfo(CurrentWorldDirectory);
-                        if (!worldPath.Name.StartsWith(InternalStructure.WorldString, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            _currentWorld = string.Empty;
-                            _currentData = string.Empty;
-                            _previousData = string.Empty;
-                        }
                     }
                 }
                 catch (Exception ex)

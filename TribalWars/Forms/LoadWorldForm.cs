@@ -15,7 +15,6 @@ namespace TribalWars
     public partial class LoadWorldForm : Form
     {
         #region Fields
-        //ListViewSorter listviewsorter = new ListViewSorter();
         private string[] _existingWorlds;
         #endregion
 
@@ -38,12 +37,6 @@ namespace TribalWars
         #region Events
         private void LoadWorldForm_Load(object sender, EventArgs e)
         {
-            //listviewsorter.ListView = this.WorldSettings;
-
-            // Register Comparer for each column
-            //listviewsorter.ColumnComparerCollection["Name"] = new TribalWars.Tools.StringComparer();
-            //listviewsorter.ColumnComparerCollection["Created"] = new TribalWars.Tools.DateComparer();
-
             // Load last selected world
             FillTree();
             if (Worlds.Nodes.ContainsKey(TribalWars.Properties.Settings.Default.LastWorld))
@@ -103,8 +96,8 @@ namespace TribalWars
                 foreach (string sets in Directory.GetFiles(pathSettings, World.InternalStructure.SettingsWildcardString))
                 {
                     string fileName = Path.GetFileNameWithoutExtension(sets);
-                    ListViewItem itm = new ListViewItem(fileName);
-                    FileInfo fileInfo = new FileInfo(sets);
+                    var itm = new ListViewItem(fileName);
+                    var fileInfo = new FileInfo(sets);
                     itm.Tag = fileName;
                     itm.SubItems.Add(fileInfo.CreationTime.ToString());
                     WorldSettings.Items.Add(itm);
@@ -161,21 +154,11 @@ namespace TribalWars
             return string.Empty;
         }
 
-        private string FindSelectedWorldName()
-        {
-            if (Worlds.SelectedNode.ImageIndex == ImageWorld)
-                return Worlds.SelectedNode.Text;
-            else if (Worlds.SelectedNode.ImageIndex == ImageData)
-                return Worlds.SelectedNode.Parent.Text;
-
-            return string.Empty;
-        }
-
         private void FillTree()
         {
             Worlds.Nodes.Clear();
             string path = World.InternalStructure.WorldDataDirectory;
-            var worlds = Directory.GetDirectories(path); // Sort on world ID instead of on world string
+            var worlds = Directory.GetDirectories(path);
             _existingWorlds = worlds.Select(x => new DirectoryInfo(x).Name).ToArray();
 
             // create tree
@@ -184,7 +167,7 @@ namespace TribalWars
                 string pathData = world + @"\" + World.InternalStructure.DirectoryDataString + @"\";
                 if (world.StartsWith(path, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    DirectoryInfo worldInfo = new DirectoryInfo(world);
+                    var worldInfo = new DirectoryInfo(world);
                     TreeNode WorldNode = Worlds.Nodes.Add(world + @"\", worldInfo.Name, ImageWorld, ImageWorld);
                     if (Directory.Exists(pathData))
                     {
@@ -196,7 +179,7 @@ namespace TribalWars
                             if (World.InternalStructure.IsValidDataPath(dir))
                             {
                                 DateTime dirDate;
-                                DirectoryInfo dirInfo = new DirectoryInfo(dir);
+                                var dirInfo = new DirectoryInfo(dir);
                                 if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dirDate))
                                 {
                                     WorldNode.Nodes.Add(dir + @"\", dirDate.ToString(), ImageData, ImageData);
