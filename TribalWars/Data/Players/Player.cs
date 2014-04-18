@@ -155,7 +155,7 @@ namespace TribalWars.Data.Players
             {
                 if (PreviousPlayerDetails == null) return null;
                 if (_gainedVillages == null) CalculateConquers();
-                if (_gainedVillages.Count == 0 && _lostVillages.Count == 0) return null;
+                if (_gainedVillages.Count == 0 && (_lostVillages == null) || _lostVillages.Count == 0) return null;
                 return string.Format("+{0}-{1}", _gainedVillages.Count.ToString(), _lostVillages.Count.ToString());
             }
         }

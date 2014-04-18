@@ -101,7 +101,6 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             LocationHistory.Add(e.NewLocation, e.NewLocation.ToString());
 
-
             // Location
             txtX.Text = e.NewLocation.X.ToString();
             txtY.Text = e.NewLocation.Y.ToString();
@@ -116,13 +115,17 @@ namespace TribalWars.Controls.Accordeon.Location
             int continent;
             if (int.TryParse(txtK.Text, out continent) && continent <= 99 && continent >= 0)
             {
-                txtY.Text = txtK.Text.Substring(0, 1) + "50";
-                if (txtK.Text.Length == 2) txtX.Text = txtK.Text.Substring(1, 1);
-                else txtX.Text = "";
-                txtX.Text += "50";
-                txtZ.Text = "10";
-                txtWidth.Text = "1";
-                World.Default.Map.EventPublisher.PaintMap(null);
+                int x = continent % 10 * 100 + 50;
+                int y = (continent - continent % 10) * 10 + 50;
+                World.Default.Map.SetCenter(x, y);
+
+                //txtY.Text = txtK.Text.Substring(0, 1) + "50";
+                //if (txtK.Text.Length == 2) txtX.Text = txtK.Text.Substring(1, 1);
+                //else txtX.Text = "";
+                //txtX.Text += "50";
+                //txtZ.Text = "10";
+                //txtWidth.Text = "1";
+                //World.Default.Map.EventPublisher.PaintMap(null);
             }
         }
 
