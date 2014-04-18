@@ -416,16 +416,16 @@ namespace TribalWars.Data.Maps
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
-        public static Location GetSpan(IEnumerable<Village> vils)
+        public static Location GetSpan(IEnumerable<Village> vils, bool tryRespectCurrentZoom = true)
         {
-            return GetSpan(vils, new Size(World.Default.Map.Control.PictureWidth, World.Default.Map.Control.PictureHeight));
+            return GetSpan(vils, new Size(World.Default.Map.Control.PictureWidth, World.Default.Map.Control.PictureHeight), tryRespectCurrentZoom);
         }
 
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
-        public static Location GetSpan(IEnumerable<Village> vils, Size world)
+        public static Location GetSpan(IEnumerable<Village> vils, Size world, bool tryRespectCurrentZoom = true)
         {
             int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
             foreach (Village vil in vils)
@@ -436,23 +436,29 @@ namespace TribalWars.Data.Maps
                 if (vil.Y > bottomY) bottomY = vil.Y;
             }
 
-            return GetSpan(world, leftX, topY, rightX, bottomY);
+            return GetSpan(world, leftX, topY, rightX, bottomY, tryRespectCurrentZoom);
         }
 
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
-        public static Location GetSpan(Size world, int leftX, int topY, int rightX, int bottomY)
+        public static Location GetSpan(Size world, int leftX, int topY, int rightX, int bottomY, bool tryRespectCurrentZoom = true)
         {
             int x = (leftX + rightX) / 2;
             int y = (topY + bottomY) / 2;
 
             int requiredWidth = world.Width / (rightX - leftX + 5);
             int requiredHeight = world.Height / (bottomY - topY + 5);
+            int requiredMin = Math.Min(requiredWidth, requiredHeight);
 
-            int zoom = Math.Max(World.Default.Map.Location.Zoom, Math.Min(requiredWidth, requiredHeight));
+            if (!tryRespectCurrentZoom)
+            {
+                // use optimal zoom level for given parameters
+                return new Location(x, y, requiredMin);
+            }
 
-            return new Location(x, y, zoom);
+            // Only change zoom when villages don't fit with current zoom
+            return new Location(x, y, Math.Min(requiredMin, World.Default.Map.Location.Zoom));
         }
 
         /// <summary>

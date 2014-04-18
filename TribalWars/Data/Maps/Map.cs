@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Drawers;
@@ -177,6 +178,16 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
+        /// Changes center so that all villages are visible
+        /// </summary>
+        public void SetCenter(IEnumerable<Village> villages)
+        {
+            Debug.Assert(villages != null);
+            Location location = TribalWars.Data.Maps.Display.GetSpan(villages, false);
+            SetCenter(location);
+        }
+
+        /// <summary>
         /// Changes the x and y coordinates and the zoom level
         /// </summary>
         public void SetCenter(int x, int y, int zoom)
@@ -226,7 +237,6 @@ namespace TribalWars.Data.Maps
             else
                 _mapLocation = null;
         }
-
 
         /// <summary>
         /// Changes the current view on the map

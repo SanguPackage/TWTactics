@@ -44,7 +44,7 @@ namespace TribalWars.Controls.Accordeon.Location
 
             if (World.Default.PlayerSelected)
             {
-                You.Text = World.Default.You.Player.Name;
+                You.SetPlayer(World.Default.You.Player);
             }
 
             _worldLoaded = true;
@@ -129,12 +129,14 @@ namespace TribalWars.Controls.Accordeon.Location
             }
         }
 
-        private void You_TextChanged(object sender, EventArgs e)
+        private void You_PlayerSelected(object sender, PlayerEventArgs e)
         {
-            if (_worldLoaded && World.Default.Players.ContainsKey(You.Text.ToUpper()))
+            if (_worldLoaded)
             {
-                World.Default.You.Player = World.Default.Players[You.Text.ToUpper()];
+                World.Default.You.Player = e.SelectedPlayer;
                 World.Default.Map.Display.DisplayManager.CacheSpecialMarkers();
+                World.Default.MiniMap.Display.DisplayManager.CacheSpecialMarkers();
+                World.Default.Map.SetCenter(e.SelectedPlayer);
             }
         }
     }

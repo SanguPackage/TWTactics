@@ -45,8 +45,8 @@ namespace TribalWars.Controls.Accordeon.Location
             this.StripHome = new System.Windows.Forms.ToolStripButton();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.You = new TribalWars.Controls.VillageTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.You = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmdCenterKingdom = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -225,8 +225,8 @@ namespace TribalWars.Controls.Accordeon.Location
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.You);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Location = new System.Drawing.Point(70, 25);
@@ -234,6 +234,18 @@ namespace TribalWars.Controls.Accordeon.Location
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(226, 150);
             this.panel1.TabIndex = 6;
+            // 
+            // You
+            // 
+            this.You.AllowPlayer = true;
+            this.You.AllowVillage = false;
+            this.You.BackColor = System.Drawing.Color.Red;
+            this.You.GameLocation = null;
+            this.You.Location = new System.Drawing.Point(134, 14);
+            this.You.Name = "You";
+            this.You.Size = new System.Drawing.Size(84, 20);
+            this.You.TabIndex = 11;
+            this.You.PlayerSelected += new System.EventHandler<TribalWars.Data.Events.PlayerEventArgs>(this.You_PlayerSelected);
             // 
             // label6
             // 
@@ -243,14 +255,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "You";
-            // 
-            // You
-            // 
-            this.You.Location = new System.Drawing.Point(134, 14);
-            this.You.Name = "You";
-            this.You.Size = new System.Drawing.Size(89, 20);
-            this.You.TabIndex = 9;
-            this.You.TextChanged += new System.EventHandler(this.You_TextChanged);
             // 
             // groupBox1
             // 
@@ -361,7 +365,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.GroupBox groupBox3;
         private LocationList LocationHistory;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox You;
+        private VillageTextBox You;
 
     }
 }
