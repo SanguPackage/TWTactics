@@ -100,7 +100,6 @@ namespace TribalWars
             this.LeftNavigation_Monitor = new Ascend.Windows.Forms.NavigationPanePage();
             this.MonitorAccordeon = new TribalWars.Controls.Accordeon.MonitorControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
             this.TabsGameBrowser = new Janus.Windows.UI.Tab.UITabPage();
@@ -112,6 +111,7 @@ namespace TribalWars
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
+            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
@@ -399,7 +399,7 @@ namespace TribalWars
             // 
             this.MenuMapScreenshot.Name = "MenuMapScreenshot";
             this.MenuMapScreenshot.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.MenuMapScreenshot.Size = new System.Drawing.Size(191, 22);
+            this.MenuMapScreenshot.Size = new System.Drawing.Size(173, 22);
             this.MenuMapScreenshot.Text = "Screenshot";
             this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
             // 
@@ -970,14 +970,6 @@ namespace TribalWars
             this.TabsMonitoring,
             this.uiTabPage1});
             // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "New Tab";
-            // 
             // TabsMap
             // 
             this.TabsMap.Controls.Add(this.Map);
@@ -1082,6 +1074,14 @@ namespace TribalWars
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             // 
+            // uiTabPage1
+            // 
+            this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
+            this.uiTabPage1.Name = "uiTabPage1";
+            this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
+            this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.Text = "New Tab";
+            // 
             // FormToolbarContainer
             // 
             // 
@@ -1109,10 +1109,11 @@ namespace TribalWars
             this.Controls.Add(this.FormToolbarContainer);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.MenuBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TW Tactics V0.1";
+            this.Text = "TW Tactics v0.2 - by Sangu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMain_Load);
             panel1.ResumeLayout(false);
