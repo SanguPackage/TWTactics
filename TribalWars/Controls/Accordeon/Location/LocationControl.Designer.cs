@@ -28,7 +28,11 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.GroupBox groupBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationControl));
+            this.cmdCenterKingdom = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtK = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.mapFinderControl1 = new TribalWars.Controls.Accordeon.Location.MapFinderControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -45,21 +49,58 @@ namespace TribalWars.Controls.Accordeon.Location
             this.StripHome = new System.Windows.Forms.ToolStripButton();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.You = new TribalWars.Controls.VillageTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmdCenterKingdom = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtK = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LocationHistory = new TribalWars.Controls.LocationList();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            groupBox1.Controls.Add(this.cmdCenterKingdom);
+            groupBox1.Controls.Add(this.label5);
+            groupBox1.Controls.Add(this.txtK);
+            groupBox1.Location = new System.Drawing.Point(97, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(126, 42);
+            groupBox1.TabIndex = 8;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Center on continent";
+            // 
+            // cmdCenterKingdom
+            // 
+            this.cmdCenterKingdom.Location = new System.Drawing.Point(70, 14);
+            this.cmdCenterKingdom.Name = "cmdCenterKingdom";
+            this.cmdCenterKingdom.Size = new System.Drawing.Size(51, 23);
+            this.cmdCenterKingdom.TabIndex = 2;
+            this.cmdCenterKingdom.Text = "Center";
+            this.cmdCenterKingdom.UseVisualStyleBackColor = true;
+            this.cmdCenterKingdom.Click += new System.EventHandler(this.cmdCenterKingdom_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "C";
+            // 
+            // txtK
+            // 
+            this.txtK.Location = new System.Drawing.Point(18, 16);
+            this.txtK.Name = "txtK";
+            this.txtK.Size = new System.Drawing.Size(46, 20);
+            this.txtK.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -225,9 +266,8 @@ namespace TribalWars.Controls.Accordeon.Location
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.You);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(groupBox1);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Location = new System.Drawing.Point(70, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -235,64 +275,27 @@ namespace TribalWars.Controls.Accordeon.Location
             this.panel1.Size = new System.Drawing.Size(226, 150);
             this.panel1.TabIndex = 6;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.You);
+            this.groupBox4.Location = new System.Drawing.Point(97, 52);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(121, 47);
+            this.groupBox4.TabIndex = 13;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Change active player";
+            // 
             // You
             // 
             this.You.AllowPlayer = true;
             this.You.AllowVillage = false;
             this.You.BackColor = System.Drawing.Color.Red;
             this.You.GameLocation = null;
-            this.You.Location = new System.Drawing.Point(134, 14);
+            this.You.Location = new System.Drawing.Point(6, 19);
             this.You.Name = "You";
-            this.You.Size = new System.Drawing.Size(84, 20);
+            this.You.Size = new System.Drawing.Size(109, 20);
             this.You.TabIndex = 11;
             this.You.PlayerSelected += new System.EventHandler<TribalWars.Data.Events.PlayerEventArgs>(this.You_PlayerSelected);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(102, 17);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "You";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.cmdCenterKingdom);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtK);
-            this.groupBox1.Location = new System.Drawing.Point(97, 43);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 38);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            // 
-            // cmdCenterKingdom
-            // 
-            this.cmdCenterKingdom.Location = new System.Drawing.Point(70, 10);
-            this.cmdCenterKingdom.Name = "cmdCenterKingdom";
-            this.cmdCenterKingdom.Size = new System.Drawing.Size(51, 23);
-            this.cmdCenterKingdom.TabIndex = 2;
-            this.cmdCenterKingdom.Text = "Center";
-            this.cmdCenterKingdom.UseVisualStyleBackColor = true;
-            this.cmdCenterKingdom.Click += new System.EventHandler(this.cmdCenterKingdom_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "K";
-            // 
-            // txtK
-            // 
-            this.txtK.Location = new System.Drawing.Point(18, 12);
-            this.txtK.Name = "txtK";
-            this.txtK.Size = new System.Drawing.Size(46, 20);
-            this.txtK.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -325,6 +328,8 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Name = "LocationControl";
             this.Size = new System.Drawing.Size(298, 359);
             this.Load += new System.EventHandler(this.LocationControl_Load);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -332,9 +337,8 @@ namespace TribalWars.Controls.Accordeon.Location
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -354,7 +358,6 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.TextBox txtX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdDraw;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button cmdCenterKingdom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtK;
@@ -364,8 +367,8 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.ToolStripButton StripHome;
         private System.Windows.Forms.GroupBox groupBox3;
         private LocationList LocationHistory;
-        private System.Windows.Forms.Label label6;
         private VillageTextBox You;
+        private System.Windows.Forms.GroupBox groupBox4;
 
     }
 }

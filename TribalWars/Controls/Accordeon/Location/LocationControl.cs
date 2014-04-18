@@ -20,7 +20,6 @@ namespace TribalWars.Controls.Accordeon.Location
     /// </summary>
     public partial class LocationControl : UserControl
     {
-        private Data.Maps.Location _startLocation;
         private bool _worldLoaded;
 
         public LocationControl()
@@ -36,7 +35,6 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            _startLocation = World.Default.Map.Location;
             txtX.Text = World.Default.Map.Location.X.ToString();
             txtY.Text = World.Default.Map.Location.Y.ToString();
             txtZ.Text = World.Default.Map.Location.Zoom.ToString();
@@ -113,11 +111,9 @@ namespace TribalWars.Controls.Accordeon.Location
         private void cmdCenterKingdom_Click(object sender, EventArgs e)
         {
             int continent;
-            if (int.TryParse(txtK.Text, out continent) && continent <= 99 && continent >= 0)
+            if (int.TryParse(txtK.Text, out continent))
             {
-                int x = continent % 10 * 100 + 50;
-                int y = (continent - continent % 10) * 10 + 50;
-                World.Default.Map.SetCenter(x, y);
+                World.Default.Map.SetCenter(continent);
             }
         }
 
@@ -125,7 +121,11 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(_startLocation);
+                DialogResult result = MessageBox.Show("Use the current position as your home?", "Set Homepage", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    World.Default.Map.HomeLocation = World.Default.Map.Location;
+                }
             }
         }
 
@@ -138,6 +138,14 @@ namespace TribalWars.Controls.Accordeon.Location
                 World.Default.MiniMap.Display.DisplayManager.CacheSpecialMarkers();
                 World.Default.Map.SetCenter(e.SelectedPlayer);
             }
+        }
+
+        public void FocusYouControl()
+        {
+            // When starting out, select the You control
+            // it's probably a good idea to start by providing
+            // your player name
+            You.Focus();
         }
     }
 }

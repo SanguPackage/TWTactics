@@ -60,18 +60,7 @@ namespace TribalWars
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMapHoverTooltip = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMapHoverTooltipFull = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.holyWarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -99,6 +88,7 @@ namespace TribalWars
             this.LeftNavigation_Location = new Ascend.Windows.Forms.NavigationPanePage();
             this.locationControl1 = new TribalWars.Controls.Accordeon.Location.LocationControl();
             this.LeftNavigation_QuickFind = new Ascend.Windows.Forms.NavigationPanePage();
+            this.detailsControl1 = new TribalWars.Controls.Accordeon.Details.DetailsControl();
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Controls.MarkersContainerControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
@@ -111,7 +101,6 @@ namespace TribalWars
             this.MonitorAccordeon = new TribalWars.Controls.Accordeon.MonitorControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
-            this.detailsControl1 = new TribalWars.Controls.Accordeon.Details.DetailsControl();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
             this.TabsGameBrowser = new Janus.Windows.UI.Tab.UITabPage();
@@ -136,6 +125,7 @@ namespace TribalWars
             this.LeftNavigationTable.SuspendLayout();
             this.LeftNavigation.SuspendLayout();
             this.LeftNavigation_Location.SuspendLayout();
+            this.LeftNavigation_QuickFind.SuspendLayout();
             this.LeftNavigation_Markers.SuspendLayout();
             this.LeftNavigation_Distance.SuspendLayout();
             this.LeftNavigation_You.SuspendLayout();
@@ -143,7 +133,6 @@ namespace TribalWars
             this.LeftNavigation_Monitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
-            this.uiTabPage1.SuspendLayout();
             this.TabsMap.SuspendLayout();
             this.TabsGameBrowser.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
@@ -310,9 +299,7 @@ namespace TribalWars
             // 
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.mapToolStripMenuItem,
-            this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem1});
+            this.mapToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.Size = new System.Drawing.Size(1199, 24);
@@ -378,14 +365,14 @@ namespace TribalWars
             this.MenuFileSaveSettings.Name = "MenuFileSaveSettings";
             this.MenuFileSaveSettings.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.MenuFileSaveSettings.Size = new System.Drawing.Size(155, 22);
-            this.MenuFileSaveSettings.Text = "&Save {0}";
+            this.MenuFileSaveSettings.Text = "&Save";
             this.MenuFileSaveSettings.Click += new System.EventHandler(this.MenuFileSaveSettings_Click);
             // 
             // MenuFileSaveSettingsAs
             // 
             this.MenuFileSaveSettingsAs.Name = "MenuFileSaveSettingsAs";
             this.MenuFileSaveSettingsAs.Size = new System.Drawing.Size(155, 22);
-            this.MenuFileSaveSettingsAs.Text = "Save {0} &As";
+            this.MenuFileSaveSettingsAs.Text = "Save &As";
             this.MenuFileSaveSettingsAs.Click += new System.EventHandler(this.MenuFileSaveSettingsAs_Click);
             // 
             // toolStripSeparator2
@@ -403,35 +390,10 @@ namespace TribalWars
             // mapToolStripMenuItem
             // 
             this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuMapHoverTooltip,
-            this.MenuMapHoverTooltipFull,
-            this.toolStripMenuItem3,
             this.MenuMapScreenshot});
             this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
             this.mapToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.mapToolStripMenuItem.Text = "&Map";
-            // 
-            // MenuMapHoverTooltip
-            // 
-            this.MenuMapHoverTooltip.Checked = true;
-            this.MenuMapHoverTooltip.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MenuMapHoverTooltip.Name = "MenuMapHoverTooltip";
-            this.MenuMapHoverTooltip.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.MenuMapHoverTooltip.Size = new System.Drawing.Size(191, 22);
-            this.MenuMapHoverTooltip.Text = "Simple tooltip";
-            this.MenuMapHoverTooltip.Click += new System.EventHandler(this.MenuMapHoverTooltip_Click);
-            // 
-            // MenuMapHoverTooltipFull
-            // 
-            this.MenuMapHoverTooltipFull.Name = "MenuMapHoverTooltipFull";
-            this.MenuMapHoverTooltipFull.Size = new System.Drawing.Size(191, 22);
-            this.MenuMapHoverTooltipFull.Text = "Full tooltip";
-            this.MenuMapHoverTooltipFull.Click += new System.EventHandler(this.MenuMapHoverTooltipFull_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(188, 6);
             // 
             // MenuMapScreenshot
             // 
@@ -440,65 +402,6 @@ namespace TribalWars
             this.MenuMapScreenshot.Size = new System.Drawing.Size(191, 22);
             this.MenuMapScreenshot.Text = "Screenshot";
             this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "&Tools";
-            this.toolsToolStripMenuItem.Visible = false;
-            // 
-            // customizeToolStripMenuItem
-            // 
-            this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.customizeToolStripMenuItem.Text = "&Customize";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.optionsToolStripMenuItem.Text = "&Options";
-            // 
-            // helpToolStripMenuItem1
-            // 
-            this.helpToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.holyWarToolStripMenuItem,
-            this.contentsToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem1.Text = "&Help";
-            this.helpToolStripMenuItem1.Visible = false;
-            // 
-            // holyWarToolStripMenuItem
-            // 
-            this.holyWarToolStripMenuItem.Name = "holyWarToolStripMenuItem";
-            this.holyWarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.holyWarToolStripMenuItem.Text = "&Holy War";
-            this.holyWarToolStripMenuItem.Click += new System.EventHandler(this.holyWarToolStripMenuItem_Click);
-            // 
-            // contentsToolStripMenuItem
-            // 
-            this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.contentsToolStripMenuItem.Text = "&Contents";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(120, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.aboutToolStripMenuItem.Text = "&About...";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // imageList1
             // 
@@ -838,6 +741,16 @@ namespace TribalWars
             this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LeftNavigation_QuickFind.ToolTipText = null;
             // 
+            // detailsControl1
+            // 
+            this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
+            this.detailsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailsControl1.Location = new System.Drawing.Point(0, 0);
+            this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.detailsControl1.Name = "detailsControl1";
+            this.detailsControl1.Size = new System.Drawing.Size(311, 174);
+            this.detailsControl1.TabIndex = 1;
+            // 
             // LeftNavigation_Markers
             // 
             this.LeftNavigation_Markers.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
@@ -1043,7 +956,7 @@ namespace TribalWars
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.uiTabPage1;
+            this.Tabs.InputFocusTab = this.TabsMap;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.Size = new System.Drawing.Size(870, 609);
@@ -1064,16 +977,6 @@ namespace TribalWars
             this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
             this.uiTabPage1.TabStop = true;
             this.uiTabPage1.Text = "New Tab";
-            // 
-            // detailsControl1
-            // 
-            this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
-            this.detailsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.detailsControl1.Location = new System.Drawing.Point(0, 0);
-            this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.detailsControl1.Name = "detailsControl1";
-            this.detailsControl1.Size = new System.Drawing.Size(866, 585);
-            this.detailsControl1.TabIndex = 1;
             // 
             // TabsMap
             // 
@@ -1226,6 +1129,7 @@ namespace TribalWars
             this.LeftNavigationTable.ResumeLayout(false);
             this.LeftNavigation.ResumeLayout(false);
             this.LeftNavigation_Location.ResumeLayout(false);
+            this.LeftNavigation_QuickFind.ResumeLayout(false);
             this.LeftNavigation_Markers.ResumeLayout(false);
             this.LeftNavigation_Distance.ResumeLayout(false);
             this.LeftNavigation_You.ResumeLayout(false);
@@ -1234,7 +1138,6 @@ namespace TribalWars
             this.LeftNavigation_Monitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
-            this.uiTabPage1.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
             this.TabsGameBrowser.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
@@ -1286,20 +1189,10 @@ namespace TribalWars
         private System.Windows.Forms.ToolStripMenuItem MenuFileSaveSettingsAs;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem MenuFileExit;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem holyWarToolStripMenuItem;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_YourTribe;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Markers;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_QuickFind;
         private System.Windows.Forms.ToolStripMenuItem mapToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem MenuMapHoverTooltip;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem MenuMapScreenshot;
         internal System.Windows.Forms.ToolStripStatusLabel StatusPlayer;
         internal System.Windows.Forms.ToolStripStatusLabel StatusTribe;
@@ -1309,7 +1202,6 @@ namespace TribalWars
         private System.Windows.Forms.TableLayoutPanel YouLayout;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Monitor;
-        private System.Windows.Forms.ToolStripMenuItem MenuMapHoverTooltipFull;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Distance;
         private TribalWars.Controls.MapDistanceCollectionControl MapDistance;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;

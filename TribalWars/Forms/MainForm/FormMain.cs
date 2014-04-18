@@ -24,7 +24,7 @@ namespace TribalWars
     public partial class FormMain : Form
     {
         #region Fields
-        private TribalWars.Controls.ToolStripLocationChangerControl _locationChanger;
+        private readonly TribalWars.Controls.ToolStripLocationChangerControl _locationChanger;
         #endregion
 
         #region Constructor
@@ -43,7 +43,7 @@ namespace TribalWars
             //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
             //ToolStrip.Items.Add(ctl);
 
-            TribalWars.Controls.ToolStripTimeConverterCalculator ctl2 = new TribalWars.Controls.ToolStripTimeConverterCalculator();
+            var ctl2 = new TribalWars.Controls.ToolStripTimeConverterCalculator();
             ToolStrip.Items.Add(ctl2);
         }
         #endregion
@@ -68,8 +68,9 @@ namespace TribalWars
             if (!World.Default.LoadWorld(lastWorld, lastSettings))
             {
                 // Here begins the wizard for creating a new world...
-                LoadWorldForm loadForm = new LoadWorldForm();
+                var loadForm = new LoadWorldForm();
                 loadForm.ShowDialog();
+                locationControl1.FocusYouControl();
             }
 
             Polygon.Initialize();
@@ -118,11 +119,11 @@ namespace TribalWars
 
                 // Fill settings contextmenu
                 ToolStripSettings.DropDownItems.Clear();
-                string[] SettingFiles = Directory.GetFiles(w.Structure.CurrentWorldSettingsDirectory, World.InternalStructure.SettingsWildcardString);
-                foreach (string setting in SettingFiles)
+                string[] settingFiles = Directory.GetFiles(w.Structure.CurrentWorldSettingsDirectory, World.InternalStructure.SettingsWildcardString);
+                foreach (string setting in settingFiles)
                 {
-                    FileInfo settingInfo = new FileInfo(setting);
-                    ToolStripMenuItem itm = new ToolStripMenuItem(settingInfo.Name);
+                    var settingInfo = new FileInfo(setting);
+                    var itm = new ToolStripMenuItem(settingInfo.Name);
                     ToolStripSettings.DropDownItems.Add(itm);
                     itm.Click += new EventHandler(Settings_Click);
                     if (settingInfo.Name == w.SettingsName)
@@ -153,7 +154,7 @@ namespace TribalWars
 
         private void Settings_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem selected = sender as ToolStripMenuItem;
+            var selected = sender as ToolStripMenuItem;
             if (selected != null)
             {
                 foreach (ToolStripMenuItem itm in ToolStripSettings.DropDownItems)
@@ -231,19 +232,19 @@ namespace TribalWars
         #region Menu
         private void MenuFileNew_Click(object sender, EventArgs e)
         {
-            LoadWorldForm frm = new LoadWorldForm();
+            var frm = new LoadWorldForm();
             frm.ShowDialog();
         }
 
         private void MenuFileLoadWorld_Click(object sender, EventArgs e)
         {
-            LoadWorldForm frm = new LoadWorldForm();
+            var frm = new LoadWorldForm();
             frm.ShowDialog();
         }
 
         private void MenuFileExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void MenuMapScreenshot_Click(object sender, EventArgs e)
@@ -256,18 +257,6 @@ namespace TribalWars
             World.Default.Map.Control.Screenshot(lFile);
         }
 
-        private void MenuMapHoverTooltip_Click(object sender, EventArgs e)
-        {
-            MenuMapHoverTooltip.Checked = !MenuMapHoverTooltip.Checked;
-            MenuMapHoverTooltipFull.Checked = !MenuMapHoverTooltip.Checked;
-        }
-
-        private void MenuMapHoverTooltipFull_Click(object sender, EventArgs e)
-        {
-            MenuMapHoverTooltipFull.Checked = !MenuMapHoverTooltipFull.Checked;
-            MenuMapHoverTooltip.Checked = !MenuMapHoverTooltipFull.Checked;
-        }
-
         private void MenuFileWorldDownload_Click(object sender, EventArgs e)
         {
             World.Default.Structure.Download();
@@ -278,7 +267,7 @@ namespace TribalWars
         #region ToolStrips
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
-            LoadWorldForm x = new LoadWorldForm();
+            var x = new LoadWorldForm();
             x.ShowDialog();
         }
 
@@ -302,7 +291,7 @@ namespace TribalWars
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(World.Default.Map.StartLocation);
+                World.Default.Map.SetCenter();
             }
         }
 
@@ -345,28 +334,12 @@ namespace TribalWars
         }
         #endregion
 
-        // TODO: let the Builder do the Loading & Saving 
-        private void changeCenterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //this.Map.SetActiveTool(VillageTools.ChangeCenter);
-        }
-
         private void MenuFileSaveSettings_Click(object sender, EventArgs e)
         {
 
         }
 
         private void MenuFileSaveSettingsAs_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void holyWarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

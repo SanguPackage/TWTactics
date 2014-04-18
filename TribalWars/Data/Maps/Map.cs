@@ -23,8 +23,6 @@ namespace TribalWars.Data.Maps
     {
         #region Fields
         private Display _mapDisplay;
-        private Location _mapLocation;
-        private Location _mapStartLocation;
         private ScrollableMapControl _mapControl;
         private MarkerManager _markerManager;
 
@@ -69,18 +67,12 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Gets or sets the Map location &amp; zoom level
         /// </summary>
-        public Location Location
-        {
-            get { return _mapLocation; }
-        }
+        public Location Location { get; private set; }
 
         /// <summary>
-        /// Gets the original position of the map
+        /// Gets the home position of the map
         /// </summary>
-        public Location StartLocation
-        {
-            get { return _mapStartLocation; }
-        }
+        public Location HomeLocation { get; set; }
 
         /// <summary>
         /// Gets the map UserControl
@@ -145,6 +137,27 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Change Map Center
+        /// <summary>
+        /// Center on home location
+        /// </summary>
+        public void SetCenter()
+        {
+            SetCenter(World.Default.Map.HomeLocation);
+        }
+
+        /// <summary>
+        /// Center on middle of a continent
+        /// </summary>
+        public void SetCenterContinent(int continent)
+        {
+            if (continent <= 99 && continent >= 0)
+            {
+                int x = continent % 10 * 100 + 50;
+                int y = (continent - continent % 10) * 10 + 50;
+                SetCenter(this, new Location(x, y, Location.Zoom), false);
+            }
+        }
+
         /// <summary>
         /// Changes the x and y coordinates
         /// </summary>
@@ -218,8 +231,8 @@ namespace TribalWars.Data.Maps
         {
             if (value != null)
             {
-                if (_mapLocation == null)
-                    _mapStartLocation = new Location(value);
+                if (Location == null)
+                    HomeLocation = new Location(value);
 
                 DisplayBase.ZoomInfo info = _mapDisplay.DisplayManager.CurrentDisplay.Zoom;
                 if (value.Zoom < info.Minimum)
@@ -227,15 +240,15 @@ namespace TribalWars.Data.Maps
                 else if (value.Zoom > info.Maximum)
                     value = new Location(value, info.Maximum);
 
-                if (!value.Equals(_mapLocation) || forceRaiseEvent)
+                if (!value.Equals(Location) || forceRaiseEvent)
                 {
-                    Location oldLocation = _mapLocation;
-                    _mapLocation = value;
+                    Location oldLocation = Location;
+                    Location = value;
                     _eventPublisher.SetMapCenter(sender, new MapLocationEventArgs(value, oldLocation, info));
                 }
             }
             else
-                _mapLocation = null;
+                Location = null;
         }
 
         /// <summary>

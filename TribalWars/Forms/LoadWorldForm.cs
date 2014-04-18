@@ -74,14 +74,6 @@ namespace TribalWars
                 World.Default.LoadWorld(pathData, settings);
                 this.Close();
             }
-
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The following error occured:" + Environment.NewLine + ex.ToString());
-            }
         }
 
         private void Worlds_AfterSelect(object sender, TreeViewEventArgs e)

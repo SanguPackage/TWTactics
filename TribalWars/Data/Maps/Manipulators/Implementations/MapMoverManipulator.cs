@@ -113,7 +113,7 @@ namespace TribalWars.Data.Maps.Manipulators
                         return MoveMap(0, largeStep);
 
                     case Keys.Home:
-                        _map.SetCenter(_map.StartLocation);
+                        _map.SetCenter(_map.HomeLocation);
                         return true;
 
                     case Keys.Add:
