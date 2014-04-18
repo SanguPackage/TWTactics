@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 using System.IO;
@@ -131,6 +132,7 @@ namespace TribalWars
         /// </summary>
         public PlayerYou You
         {
+            [DebuggerStepThrough()]
             get { return PlayerYou.Default; }
         }
 
@@ -362,6 +364,7 @@ namespace TribalWars
         /// </summary>
         public static World Default
         {
+            [DebuggerStepThrough()]
             get
             {
                 return world;

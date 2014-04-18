@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data.Maps;
@@ -12,9 +13,14 @@ using TribalWars.Data.Events;
 
 namespace TribalWars.Controls.Accordeon.Location
 {
+    /// <summary>
+    /// UI control with Location, History, You (=current player) setting,
+    /// continent center and grid with search options for village, player
+    /// and tribe
+    /// </summary>
     public partial class LocationControl : UserControl
     {
-        Data.Maps.Location StartLocation;
+        Data.Maps.Location _startLocation;
 
         public LocationControl()
         {
@@ -24,15 +30,12 @@ namespace TribalWars.Controls.Accordeon.Location
         private void LocationControl_Load(object sender, EventArgs e)
         {
             World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(World_SettingsLoaded);
-            // Subscribe to setting events
             World.Default.Map.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(Location_Changed);
         }
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            // Stuff
-            //LocationFav.Add(World.Default.Settings.Location, string.Format("Start {0}|{1}", World.Default.Settings.Location.X, World.Default.Settings.Location.Y));
-            StartLocation = World.Default.Map.Location;
+            _startLocation = World.Default.Map.Location;
             txtX.Text = World.Default.Map.Location.X.ToString();
             txtY.Text = World.Default.Map.Location.Y.ToString();
             txtZ.Text = World.Default.Map.Location.Zoom.ToString();
@@ -41,8 +44,6 @@ namespace TribalWars.Controls.Accordeon.Location
             if (World.Default.PlayerSelected)
             {
                 You.Text = World.Default.You.Player.Name;
-                //if (World.Default.Settings.You.Player.HasTribe)
-                //    YourTribe.Text = World.Default.Settings.You.Player.Tribe.Tag;
             }
         }
 
@@ -101,13 +102,9 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             LocationHistory.Add(e.NewLocation, e.NewLocation.ToString());
 
-            // Location
-            txtX.Text = e.NewLocation.X.ToString();
-            txtY.Text = e.NewLocation.Y.ToString();
-            txtZ.Text = e.NewLocation.Zoom.ToString();
-            //txtWidth.Text = e.NewLocation.Width.ToString();
-
-            //World.Default.Map.EventPublisher.PaintMap(null);
+            txtX.Text = e.NewLocation.X.ToString(CultureInfo.InvariantCulture);
+            txtY.Text = e.NewLocation.Y.ToString(CultureInfo.InvariantCulture);
+            txtZ.Text = e.NewLocation.Zoom.ToString(CultureInfo.InvariantCulture);
         }
 
         private void cmdCenterKingdom_Click(object sender, EventArgs e)
@@ -118,14 +115,6 @@ namespace TribalWars.Controls.Accordeon.Location
                 int x = continent % 10 * 100 + 50;
                 int y = (continent - continent % 10) * 10 + 50;
                 World.Default.Map.SetCenter(x, y);
-
-                //txtY.Text = txtK.Text.Substring(0, 1) + "50";
-                //if (txtK.Text.Length == 2) txtX.Text = txtK.Text.Substring(1, 1);
-                //else txtX.Text = "";
-                //txtX.Text += "50";
-                //txtZ.Text = "10";
-                //txtWidth.Text = "1";
-                //World.Default.Map.EventPublisher.PaintMap(null);
             }
         }
 
@@ -133,7 +122,7 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(StartLocation);
+                World.Default.Map.SetCenter(_startLocation);
             }
         }
 
