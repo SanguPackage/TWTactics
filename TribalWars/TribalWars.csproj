@@ -271,10 +271,10 @@
     <Compile Include="Controls\Main\ParserControl.designer.cs">
       <DependentUpon>ParserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ToBeRemoved\LocationList.cs">
+    <Compile Include="Controls\Accordeon\Location\LocationList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ToBeRemoved\LocationList.Designer.cs">
+    <Compile Include="Controls\Accordeon\Location\LocationList.Designer.cs">
       <DependentUpon>LocationList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AttackPlan\MapDistanceControl.cs">
@@ -315,12 +315,6 @@
     </Compile>
     <Compile Include="Controls\Common\VillageTextBox.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ToBeRemoved\YouTree.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ToBeRemoved\YouTree.Designer.cs">
-      <DependentUpon>YouTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TWContextMenu\TribeContextMenu.cs">
       <SubType>Component</SubType>
@@ -573,7 +567,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>MapPolygonControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ToBeRemoved\LocationList.resx">
+    <EmbeddedResource Include="Controls\Accordeon\Location\LocationList.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LocationList.cs</DependentUpon>
     </EmbeddedResource>
@@ -600,10 +594,6 @@
     <EmbeddedResource Include="Controls\Common\TimeConverterControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ToBeRemoved\YouTree.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>YouTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Buildings\Images.resx">
       <SubType>Designer</SubType>
