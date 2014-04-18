@@ -137,7 +137,7 @@ namespace TribalWars.Data.Maps.Manipulators
             MouseButtons button = e.MouseEventArgs.Button;
             if (button == MouseButtons.Left)
             {
-                if (_activePolygon != null || _activePolygon.Drawing)
+                if (_activePolygon != null && _activePolygon.Drawing)
                 {
                     // Add extra point to the polygon
                     if (_activePolygon.Add(x, y))
