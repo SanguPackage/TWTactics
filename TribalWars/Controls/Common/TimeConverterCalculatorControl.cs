@@ -20,6 +20,12 @@ namespace TribalWars.Controls
         }
         #endregion
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            TimeConverter.Value = DateTime.Today;
+        }
+
         #region Event Handlers
         /// <summary>
         /// Adds the time to the original date value
@@ -32,7 +38,7 @@ namespace TribalWars.Controls
             }
             else
             {
-                TimeSpan span = new TimeSpan(ToAdd.Value.Hour, ToAdd.Value.Minute, ToAdd.Value.Second);
+                var span = new TimeSpan(ToAdd.Value.Hour, ToAdd.Value.Minute, ToAdd.Value.Second);
                 TimeConverter.Value = TimeConverter.Value.Add(span);
             }
         }
