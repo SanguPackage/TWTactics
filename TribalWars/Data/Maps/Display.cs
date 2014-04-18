@@ -444,18 +444,16 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public static Location GetSpan(Size world, int leftX, int topY, int rightX, int bottomY)
         {
-            int x = (int)((leftX + rightX) / 2);
-            int y = (int)((topY + bottomY) / 2);
+            int x = (leftX + rightX) / 2;
+            int y = (topY + bottomY) / 2;
 
-            int requiredWidth = (int)(world.Width / (rightX - leftX + 5));
-            int requiredHeight = (int)(world.Height / (bottomY - topY + 5));
+            int requiredWidth = world.Width / (rightX - leftX + 5);
+            int requiredHeight = world.Height / (bottomY - topY + 5);
 
-            // TODO: Min(Current zoom level, Math.Min(.... (extra param: CurrentLocation ofzo)
-            int zoom = Math.Min(World.Default.Map.Location.Zoom, Math.Min(requiredWidth, requiredHeight));
+            int zoom = Math.Max(World.Default.Map.Location.Zoom, Math.Min(requiredWidth, requiredHeight));
 
             return new Location(x, y, zoom);
         }
-
 
         /// <summary>
         /// Converts a map location to the game location
