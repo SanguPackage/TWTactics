@@ -20,7 +20,8 @@ namespace TribalWars.Controls.Accordeon.Location
     /// </summary>
     public partial class LocationControl : UserControl
     {
-        Data.Maps.Location _startLocation;
+        private Data.Maps.Location _startLocation;
+        private bool _worldLoaded;
 
         public LocationControl()
         {
@@ -45,6 +46,8 @@ namespace TribalWars.Controls.Accordeon.Location
             {
                 You.Text = World.Default.You.Player.Name;
             }
+
+            _worldLoaded = true;
         }
 
         private void cmdDraw_Click(object sender, EventArgs e)
@@ -128,11 +131,10 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void You_TextChanged(object sender, EventArgs e)
         {
-            if (World.Default.Players.ContainsKey(You.Text.ToUpper()))
+            if (_worldLoaded && World.Default.Players.ContainsKey(You.Text.ToUpper()))
             {
                 World.Default.You.Player = World.Default.Players[You.Text.ToUpper()];
-                //World.Default.You.MarkPlayer.Clear();
-                //World.Default.You.MarkPlayer.Add(new PlayerMarker(World.Default.Settings.You.MarkPlayer, World.Default.You));
+                World.Default.Map.Display.DisplayManager.CacheSpecialMarkers();
             }
         }
     }

@@ -116,14 +116,6 @@ namespace TribalWars.Data.Maps.Displays
         protected abstract Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData);
 
         protected abstract DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData);
-
-        /// <summary>
-        /// Resets the cache
-        /// </summary>
-        public void Reset()
-        {
-
-        }
         #endregion
 
         #region Data Structure

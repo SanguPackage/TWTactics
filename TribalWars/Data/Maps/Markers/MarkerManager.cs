@@ -14,86 +14,48 @@ namespace TribalWars.Data.Maps.Markers
     /// </summary>
     public class MarkerManager
     {
-        #region Fields
-        private Map _map;
-
-        private List<MarkerGroup> _markers;
-        private MarkerGroup _yourMarker;
-        private MarkerGroup _yourTribeMarker;
-        private MarkerGroup _enemyMarker;
-        private MarkerGroup _bonusMarker;
-        private MarkerGroup _abandonedMarker;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the map the markers are displayed on
         /// </summary>
-        public Map Map
-        {
-            get { return _map; }
-        }
+        public Map Map { get; private set; }
 
         /// <summary>
         /// Gets all specific markers 
         /// </summary>
-        public List<MarkerGroup> Markers
-        {
-            get { return _markers; }
-            set { _markers = value; }
-        }
+        public List<MarkerGroup> Markers { get; set; }
 
         /// <summary>
         /// Gets the markergroup for your own villages
         /// </summary>
-        public MarkerGroup YourMarker
-        {
-            get { return _yourMarker; }
-            set { _yourMarker = value; }
-        }
+        public MarkerGroup YourMarker { get; set; }
 
         /// <summary>
         /// Gets the markergroup for bonus villages
         /// </summary>
-        public MarkerGroup BonusMarker
-        {
-            get { return _bonusMarker; }
-            set { _bonusMarker = value; }
-        }
+        public MarkerGroup BonusMarker { get; set; }
 
         /// <summary>
         /// Gets the markergroup for all other villages
         /// </summary>
-        public MarkerGroup EnemyMarker
-        {
-            get { return _enemyMarker; }
-            set { _enemyMarker = value; }
-        }
+        public MarkerGroup EnemyMarker { get; set; }
 
         /// <summary>
         /// Gets the markergroup for villages within your tribe
         /// </summary>
-        public MarkerGroup YourTribeMarker
-        {
-            get { return _yourTribeMarker; }
-            set { _yourTribeMarker = value; }
-        }
+        public MarkerGroup YourTribeMarker { get; set; }
 
         /// <summary>
         /// Gets the markergroup for abandoned villages
         /// </summary>
-        public MarkerGroup AbandonedMarker
-        {
-            get { return _abandonedMarker; }
-            set { _abandonedMarker = value; }
-        }
+        public MarkerGroup AbandonedMarker { get; set; }
         #endregion
 
         #region Constructors
         public MarkerManager(Map map)
         {
-            _map = map;
-            _markers = new List<MarkerGroup>();
+            Map = map;
+            Markers = new List<MarkerGroup>();
         }
         #endregion
 
@@ -103,8 +65,8 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public void AddMarker(MarkerGroup[] groups)
         {
-            List<Tribe> tribes = new List<Tribe>();
-            List<Player> players = new List<Player>();
+            var tribes = new List<Tribe>();
+            var players = new List<Player>();
             foreach (MarkerGroup group in groups)
             {
                 bool add = true;
@@ -122,12 +84,9 @@ namespace TribalWars.Data.Maps.Markers
                 }
                 if (group.Players.Count == 0 && group.Tribes.Count == 0) add = false;
 
-                if (add) _markers.Add(group);
+                if (add) Markers.Add(group);
             }
         }
-        #endregion
-
-        #region Event Handlers
         #endregion
     }
 }

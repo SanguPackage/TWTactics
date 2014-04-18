@@ -57,7 +57,6 @@ namespace TribalWars.Data
                     Player ply = World.Default.GetPlayer(youString);
                     if (ply != null)
                     {
-                        // TODO: YouPlayer inherits from Player?
                         World.Default.You.Player = ply;
                     }
 
@@ -205,8 +204,8 @@ namespace TribalWars.Data
         /// </summary>
         private static ViewBase ReadView(XmlReader r)
         {
-            Categories category = (Categories)Enum.Parse(typeof(Categories), r.GetAttribute("Category"));
-            Types type = (Types)Enum.Parse(typeof(Types), r.GetAttribute("Type"));
+            var category = (Categories)Enum.Parse(typeof(Categories), r.GetAttribute("Category"));
+            var type = (Types)Enum.Parse(typeof(Types), r.GetAttribute("Type"));
             string name = r.GetAttribute("Name");
             ViewBase d = CreateView(name, type, category);
 
@@ -280,7 +279,7 @@ namespace TribalWars.Data
         /// </summary>
         public static void WriteSettings(FileInfo file, Map map)
         {
-            XmlWriterSettings sets = new XmlWriterSettings();
+            var sets = new XmlWriterSettings();
             sets.Indent = true;
             sets.IndentChars = " ";
             using (XmlWriter w = XmlWriter.Create(file.FullName, sets))
@@ -404,7 +403,7 @@ namespace TribalWars.Data
         /// </summary>
         private static Dictionary<BuildingTypes, Building> ReadWorldBuildings(XmlReader r)
         {
-            Dictionary<BuildingTypes, Building> buildings = new Dictionary<BuildingTypes, Building>();
+            var buildings = new Dictionary<BuildingTypes, Building>();
             while (r.IsStartElement("Building"))
             {
                 r.ReadStartElement();
@@ -416,7 +415,7 @@ namespace TribalWars.Data
                 string production = null;
                 if (r.IsStartElement("Production")) production = r.ReadElementString("Production");
                 if (r.IsStartElement("People")) people = r.ReadElementString("People");
-                Building build = new Building(name, type, image, points, people);
+                var build = new Building(name, type, image, points, people);
                 if (production != null) build.Production = production;
                 r.ReadEndElement();
 
@@ -431,7 +430,7 @@ namespace TribalWars.Data
         /// </summary>
         private static Dictionary<UnitTypes, Unit> ReadWorldUnits(XmlReader r)
         {
-            Dictionary<UnitTypes, Unit>  units = new Dictionary<UnitTypes, Unit>();
+            var  units = new Dictionary<UnitTypes, Unit>();
             while (r.IsStartElement("Unit"))
             {
                 r.ReadStartElement();
@@ -466,7 +465,6 @@ namespace TribalWars.Data
         /// </summary>
         private static void WriteView(XmlWriter w, KeyValuePair<string, ViewBase> pair)
         {
-            //string name = pair.Key;
             ViewBase view = pair.Value;
 
             w.WriteStartElement("View");

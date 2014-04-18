@@ -108,6 +108,7 @@ namespace TribalWars
         /// </summary>
         public Map Map
         {
+            [DebuggerStepThrough()]
             get { return _mainMap; }
         }
 
@@ -116,6 +117,7 @@ namespace TribalWars
         /// </summary>
         public Map MiniMap
         {
+            [DebuggerStepThrough()]
             get { return _miniMap; }
         }
 

@@ -22,101 +22,48 @@ namespace TribalWars.Data.Maps.Markers
     /// </summary>
     public class MarkerGroup : IEquatable<MarkerGroup>
     {
-        #region Fields
-        private string _name;
-        private bool _enabled;
-        private Color _color;
-        private Color _extraColor;
-
-        private string _view;
-        private string _decorator;
-
-        private MarkerManager _markerManager;
-
-        private List<Player> _players;
-        private List<Tribe> _tribes;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the tribes marked by the group
         /// </summary>
-        public List<Tribe> Tribes
-        {
-            get { return _tribes; }
-        }
+        public List<Tribe> Tribes { get; private set; }
 
         /// <summary>
         /// Gets the players marked by the group
         /// </summary>
-        public List<Player> Players
-        {
-            get { return _players; }
-        }
+        public List<Player> Players { get; private set; }
 
         /// <summary>
         /// Gets or sets the description
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating the markers are to be drawn
         /// </summary>
-        public bool Enabled
-        {
-            get { return _enabled; }
-            set { _enabled = value; }
-        }
-
-        /*/// <summary>
-        /// Gets the list of markers
-        /// </summary>
-        public IList<MarkerBase> Markers
-        {
-            get { return _collection; }
-        }*/
+        public bool Enabled { get; set; }
 
         /// <summary>
         /// Gets or sets the secundary color for the marker
         /// </summary>
-        public Color ExtraColor
-        {
-            get { return _extraColor; }
-            set { _extraColor = value; }
-        }
+        public Color ExtraColor { get; set; }
 
         /// <summary>
         /// Gets or sets the primary color for the marker
         /// </summary>
-        public Color Color
-        {
-            get { return _color; }
-            set { _color = value; }
-        }
+        public Color Color { get; set; }
 
         /// <summary>
         /// Gets or sets how to represent the marked
         /// villages on the map
         /// </summary>
-        public string View
-        {
-            get { return _view; }
-            set { _view = value; }
-        }
+        public string View { get; set; }
 
         /// <summary>
         /// Gets or sets how to extra decorate the marked
         /// villages on the map
         /// </summary>
-        public string Decorator
-        {
-            get { return _decorator; }
-            set { _decorator = value; }
-        }
+        public string Decorator { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether 
@@ -124,7 +71,7 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public bool HasView
         {
-            get { return _view != null; }
+            get { return View != null; }
         }
 
         /// <summary>
@@ -133,16 +80,13 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public bool HasDecorator
         {
-            get { return _decorator != null; }
+            get { return Decorator != null; }
         }
 
         /// <summary>
         /// Gets the marker manager this group belongs to
         /// </summary>
-        public MarkerManager MarkerManager
-        {
-            get { return _markerManager; }
-        }
+        public MarkerManager MarkerManager { get; private set; }
         #endregion
 
         #region Constructor
@@ -160,17 +104,16 @@ namespace TribalWars.Data.Maps.Markers
 
         public MarkerGroup(Map map, string name, bool enabled, Color color, Color extraColor, string view, string decorator)
         {
-            _markerManager = map.MarkerManager;
-            _name = name;
-            _enabled = enabled;
-            _color = color;
-            _extraColor = extraColor;
-            _view = view;
-            _decorator = decorator;
-            //_collection = new MarkerGroupCollection(_markerManager, this);
+            MarkerManager = map.MarkerManager;
+            Name = name;
+            Enabled = enabled;
+            Color = color;
+            ExtraColor = extraColor;
+            View = view;
+            Decorator = decorator;
 
-            _players = new List<Player>();
-            _tribes = new List<Tribe>();
+            Players = new List<Player>();
+            Tribes = new List<Tribe>();
         }
         #endregion
 
@@ -182,9 +125,8 @@ namespace TribalWars.Data.Maps.Markers
         {
             if (itm != null && itm.Player != null)
             {
-                //_collection.Add((MarkerBase)itm);
-                if (!_players.Contains(itm.Player))
-                    _players.Add(itm.Player);
+                if (!Players.Contains(itm.Player))
+                    Players.Add(itm.Player);
             }
         }
 
@@ -195,9 +137,8 @@ namespace TribalWars.Data.Maps.Markers
         {
             if (itm != null && itm.Tribe != null)
             {
-                //_collection.Add((MarkerBase)itm);
-                if (!_tribes.Contains(itm.Tribe))
-                    _tribes.Add(itm.Tribe);
+                if (!Tribes.Contains(itm.Tribe))
+                    Tribes.Add(itm.Tribe);
             }
         }
 
@@ -208,9 +149,8 @@ namespace TribalWars.Data.Maps.Markers
         {
             if (itm != null && itm.Player != null)
             {
-                //_collection.Remove((MarkerBase)itm);
-                if (_players.Contains(itm.Player))
-                    _players.Remove(itm.Player);
+                if (Players.Contains(itm.Player))
+                    Players.Remove(itm.Player);
             }
         }
 
@@ -221,9 +161,8 @@ namespace TribalWars.Data.Maps.Markers
         {
             if (itm != null && itm.Tribe != null)
             {
-                //_collection.Remove((MarkerBase)itm);
-                if (_tribes.Contains(itm.Tribe))
-                    _tribes.Remove(itm.Tribe);
+                if (Tribes.Contains(itm.Tribe))
+                    Tribes.Remove(itm.Tribe);
             }
         }
         #endregion
@@ -232,9 +171,9 @@ namespace TribalWars.Data.Maps.Markers
         public override string ToString()
         {
             string views = string.Empty;
-            if (_view != null) views = _view;
-            if (_decorator != null) views += (_view == null ? "" : ", ") + _decorator;
-            return string.Format("{0} ({1} - {2})", _name, views, _color.ToKnownColor()); 
+            if (View != null) views = View;
+            if (Decorator != null) views += (View == null ? "" : ", ") + Decorator;
+            return string.Format("{0} ({1} - {2})", Name, views, Color.ToKnownColor()); 
         }
         #endregion
 
@@ -242,128 +181,9 @@ namespace TribalWars.Data.Maps.Markers
         public bool Equals(MarkerGroup other)
         {
             if (other == null) return false;
-            return this._view == other.View && _decorator == other.Decorator
-                && _color == other.Color && _extraColor == other.ExtraColor;
+            return this.View == other.View && Decorator == other.Decorator
+                && Color == other.Color && ExtraColor == other.ExtraColor;
         }
         #endregion
     }
 }
-
-
-
-/*
- * #region MarkerGroupCollection
-/// <summary>
-/// Handles the different markers
-/// </summary>
-private class MarkerGroupCollection : Collection<MarkerBase>
-{
-    #region Fields
-    private MarkerManager _markerManager;
-    private MarkerGroup _parent;
-    private Dictionary<Village, int> _villages;
-    #endregion
-
-    #region Properties
-    /// <summary>
-    /// Gets the counter how many times a village
-    /// is included in one of the MarkerBases
-    /// </summary>
-    public Dictionary<Village, int> Villages
-    {
-        get { return _villages; }
-    }
-    #endregion
-
-    #region Constructors
-    public MarkerGroupCollection(MarkerManager markerManager, MarkerGroup parent)
-    {
-        _villages = new Dictionary<Village, int>();
-        _markerManager = markerManager;
-        _parent = parent;
-    }
-    #endregion
-
-    #region Public Methods
-    protected override void InsertItem(int index, MarkerBase item)
-    {
-        item.Parent = _parent;
-        foreach (Village village in item)
-        {
-            if (!_villages.ContainsKey(village)) _villages.Add(village, 0);
-            _villages[village] += 1;
-        }
-        base.InsertItem(index, item);
-        _markerManager.Map.EventPublisher.InformMarkersChanged(this, new MapMarkerEventArgs(item, true));
-    }
-
-    protected override void RemoveItem(int index)
-    {
-        MarkerBase item = this.Items[index];
-        foreach (Village village in item)
-        {
-            _villages[village] -= 1;
-            if (_villages[village] <= 0) _villages.Remove(village);
-        }
-        _markerManager.Map.EventPublisher.InformMarkersChanged(this, new MapMarkerEventArgs(item, false));
-        base.RemoveItem(index);
-    }
-    #endregion
-}
-
-/*private class MarkerGroupCollection : Collection<MarkerBase>
-{
-    #region Fields
-    private MarkerManager _markerManager;
-    private MarkerGroup _parent;
-    private List<string> _players;
-    private List<string> _tribes;
-    #endregion
-
-    #region Properties
-    /// <summary>
-    /// Gets the counter how many times a village
-    /// is included in one of the MarkerBases
-    /// </summary>
-    public Dictionary<Village, int> Villages
-    {
-        get { return _villages; }
-    }
-    #endregion
-
-    #region Constructors
-    public MarkerGroupCollection(MarkerManager markerManager, MarkerGroup parent)
-    {
-        _villages = new Dictionary<Village, int>();
-        _markerManager = markerManager;
-        _parent = parent;
-    }
-    #endregion
-
-    #region Public Methods
-    protected override void InsertItem(int index, MarkerBase item)
-    {
-        item.Parent = _parent;
-        foreach (Village village in item)
-        {
-            if (!_villages.ContainsKey(village)) _villages.Add(village, 0);
-            _villages[village] += 1;
-        }
-        base.InsertItem(index, item);
-        _markerManager.Map.EventPublisher.InformMarkersChanged(this, new MapMarkerEventArgs(item, true));
-    }
-
-    protected override void RemoveItem(int index)
-    {
-        //MarkerBase item = this.Items[index];
-        //foreach (Village village in item)
-        //{
-        //    _villages[village] -= 1;
-        //    if (_villages[village] <= 0) _villages.Remove(village);
-        //}
-        //_markerManager.Map.EventPublisher.InformMarkersChanged(this, new MapMarkerEventArgs(item, false));
-        
-        //base.RemoveItem(index);
-    }
-    #endregion
-}*/
