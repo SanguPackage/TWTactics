@@ -450,8 +450,6 @@
     <Compile Include="Data\Villages\Villages.cs" />
     <Compile Include="Data\Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
-    <Compile Include="FormSettings.cs">
-    </Compile>
     <Compile Include="Forms\LoadWorldForm.cs">
       <SubType>Form</SubType>
     </Compile>
