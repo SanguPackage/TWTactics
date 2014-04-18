@@ -19,7 +19,7 @@ namespace TribalWars.Data.Maps.Displays
     /// Manages the different view collections
     /// </summary>
     /// <remarks>
-    /// Currently the ViewManager allows us to switch between
+    /// Currently the <see cref="DisplayManager"/> allows us to switch between
     /// Shape and Icon displays
     /// </remarks>
     public class DisplayManager
@@ -177,68 +177,15 @@ namespace TribalWars.Data.Maps.Displays
             }
         }
 
-        /*/// <summary>
-        /// Creates the drawers for one markergroup
-        /// </summary>
-        private DrawerBase CreateDrawer(MarkerGroup markerGroup, Village village, out DrawerBase decoratorDrawer, out DrawerBase decoratorVillageType)
-        {
-            // View GetDrawer gets the DrawerBase(s) immediately.
-            // Ok dat gaat dus niet want:
-            // DrawerData is iets dat gebruikt wordt door de Displays om een DrawerBase van te maken
-            // elke Display doet er iets anders mee...
-
-            DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-            if (markerGroup.HasDecorator && _currentDisplay.SupportDecorators)
-            {
-                if (village.Type != VillageType.None)
-                {
-                    DrawerBase defaultDecorator = null;
-
-                    DrawerBase defaultDecorator = World.Default.Views[Views.Types.Nobles.ToString()].GetDrawer(village);
-                    if (defaultDecorator != null)
-                        defaultDecorator.PaintVillage(g, mapX, mapY, width, height);
-
-                    defaultDecorator = World.Default.Views[Views.Types.Comments.ToString()].GetDrawer(village);
-                    if (defaultDecorator != null)
-                        defaultDecorator.PaintVillage(g, mapX, mapY, width, height);
-
-                    defaultDecorator = World.Default.Views[Views.Types.VillageType.ToString()].GetDrawer(village);
-                    if (defaultDecorator != null)
-                        defaultDecorator.PaintVillage(g, mapX, mapY, width, height);
-                }
-
-                DrawerData data = World.Default.Views[markerGroup.Decorator].GetDrawer(village);
-                if (data != null)
-                {
-                    decoratorDrawer = _currentDisplay.CreateDrawer(data, markerGroup, mainData);
-                } 
-                else decoratorDrawer = null;
-            }
-            else decoratorDrawer = null;
-
-            return _currentDisplay.CreateDrawer(mainData, markerGroup, null);
-        }*/
-
         /// <summary>
-        /// Cache all special markers in the background
+        /// Cache all special markers
         /// </summary>
         public void CacheSpecialMarkers()
         {
             _markPlayer = new SortedDictionary<int, MarkerGroup>();
             _markTribe = new SortedDictionary<int, MarkerGroup>();
 
-            // your villages
-            Player you = World.Default.You.Player;
-            if (you != null)
-            {
-                _markPlayer.Add(you.ID, _map.MarkerManager.YourMarker);
-                // your tribe
-                Tribe youTribe = World.Default.You.Player.Tribe;
-                if (youTribe != null)
-                {
-                    _markTribe.Add(youTribe.ID, _map.MarkerManager.YourTribeMarker);
-                }
-            }
+            CacheYouMarkers();
 
             foreach (MarkerGroup markerGroup in _map.MarkerManager.Markers)
             {
@@ -257,6 +204,23 @@ namespace TribalWars.Data.Maps.Displays
         }
 
         /// <summary>
+        /// Cache you and your tribe markers
+        /// </summary>
+        private void CacheYouMarkers()
+        {
+            Player you = World.Default.You.Player;
+            if (you != null)
+            {
+                _markPlayer.Add(you.ID, _map.MarkerManager.YourMarker);
+                Tribe youTribe = World.Default.You.Player.Tribe;
+                if (youTribe != null)
+                {
+                    _markTribe.Add(youTribe.ID, _map.MarkerManager.YourTribeMarker);
+                }
+            }
+        }
+
+        /// <summary>
         /// TODO: ERROR on reading new settings, loading a new world, ..
         /// </summary>
         public void Reset(DisplayTypes type)
@@ -265,9 +229,6 @@ namespace TribalWars.Data.Maps.Displays
             _currentDisplay = _displays[type];
         }
 
-        /// <summary>
-        /// Debug ToString
-        /// </summary>
         public override string ToString()
         {
             return string.Format("DisplayManager: {0}", CurrentDisplayType.ToString());
@@ -275,37 +236,3 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
     }
 }
-
-
-/*/// <summary>
-        /// Gets the markers for a village
-        /// </summary>
-        /// <returns>
-        /// A list of markergroups. At index 0 there is the backgroundmarker
-        /// the other elements are decorators
-        /// </returns>
-        public MarkerGroup[] GetDefaultMarker(Village village)
-        {
-            //if (village != null)
-            //{
-                // TODO: this can faster :)
-                // Default markers:
-                //List<MarkerGroup> activeMarkers = new List<MarkerGroup>();
-                if (!village.HasPlayer)
-                {
-                    //AddMarkerGroup(activeMarkers, ref backgroundMarker, _abandonedMarker);
-                    return new MarkerGroup[] { _abandonedMarker };
-                }
-                else
-                {
-                    //AddMarkerGroup(activeMarkers, ref backgroundMarker, _enemyMarker);
-                    return new MarkerGroup[] { _enemyMarker };
-                } 
-                //if (village.Bonus != Village.BonusType.None) AddMarkerGroup(activeMarkers, ref backgroundMarker, _bonusMarker);
-
-                //activeMarkers.Insert(0, backgroundMarker);
-                
-                //return activeMarkers.ToArray();
-            //}
-            return null;
-        }*/
