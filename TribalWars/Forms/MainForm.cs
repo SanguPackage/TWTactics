@@ -284,7 +284,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter();
+                World.Default.Map.GoHome();
             }
         }
 

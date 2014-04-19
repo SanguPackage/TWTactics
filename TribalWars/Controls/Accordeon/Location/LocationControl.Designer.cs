@@ -52,9 +52,9 @@ namespace TribalWars.Controls.Accordeon.Location
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.You = new VillagePlayerTribeFinderTextBox();
+            this.You = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.LocationHistory = new LocationList();
+            this.LocationHistory = new TribalWars.Controls.Accordeon.Location.LocationList();
             groupBox1 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -125,7 +125,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.tableLayoutPanel1.Size = new System.Drawing.Size(298, 359);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // mapFinderControl1
+            // _locationFinderControl1
             // 
             this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.SetColumnSpan(this._locationFinderControl1, 2);
@@ -257,7 +257,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.StripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.StripHome.Name = "StripHome";
             this.StripHome.Size = new System.Drawing.Size(23, 22);
-            this.StripHome.Text = "Home";
+            this.StripHome.Text = "Set home location";
             this.StripHome.Click += new System.EventHandler(this.StripHome_Click);
             // 
             // ProgressBar

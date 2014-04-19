@@ -22,48 +22,26 @@ namespace TribalWars.Data.Maps
     /// </summary>
     public class Map
     {
-        #region Fields
-        private Display _mapDisplay;
-        private ScrollableMapControl _mapControl;
-        private MarkerManager _markerManager;
-
-        private Publisher _eventPublisher;
-
-        private ManipulatorManagerController _manipulators;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets all villages to mark
         /// </summary>
-        public MarkerManager MarkerManager
-        {
-            get { return _markerManager; }
-        }
+        public MarkerManager MarkerManager { get; private set; }
 
         /// <summary>
         /// Gets the object that interacts with the user
         /// </summary>
-        public ManipulatorManagerController Manipulators
-        {
-            get { return _manipulators; }
-        }
+        public ManipulatorManagerController Manipulators { get; private set; }
 
         /// <summary>
         /// Gets the object that encapsulates event raising
         /// </summary>
-        public Publisher EventPublisher
-        {
-            get { return _eventPublisher; }
-        }
+        public Publisher EventPublisher { get; private set; }
 
         /// <summary>
         /// Gets the map visual settings
         /// </summary>
-        public Display Display
-        {
-            get { return _mapDisplay; }
-        }
+        public Display Display { get; private set; }
 
         /// <summary>
         /// Gets or sets the Map location &amp; zoom level
@@ -76,12 +54,14 @@ namespace TribalWars.Data.Maps
         public Location HomeLocation { get; set; }
 
         /// <summary>
+        /// Gets the home icon/shape display on the map
+        /// </summary>
+        public DisplayTypes HomeDisplay { get; set; }
+
+        /// <summary>
         /// Gets the map UserControl
         /// </summary>
-        public ScrollableMapControl Control
-        {
-            get { return _mapControl; }
-        }
+        public ScrollableMapControl Control { get; private set; }
         #endregion
 
         #region Constructors
@@ -90,10 +70,10 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Map(Map mainMap)
         {
-            _eventPublisher = new Publisher(this);
-            _mapDisplay = new Display(this, DisplayTypes.MiniMap);
-            _markerManager = mainMap.MarkerManager;
-            _manipulators = new ManipulatorManagerController(this, mainMap);
+            EventPublisher = new Publisher(this);
+            Display = new Display(this, DisplayTypes.MiniMap);
+            MarkerManager = mainMap.MarkerManager;
+            Manipulators = new ManipulatorManagerController(this, mainMap);
         }
 
         /// <summary>
@@ -101,10 +81,10 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Map()
         {
-            _eventPublisher = new Publisher(this);
-            _mapDisplay = new Display(this);
-            _markerManager = new MarkerManager(this);
-            _manipulators = new ManipulatorManagerController(this);
+            EventPublisher = new Publisher(this);
+            Display = new Display(this);
+            MarkerManager = new MarkerManager(this);
+            Manipulators = new ManipulatorManagerController(this);
         }
 
         /// <summary>
@@ -112,8 +92,8 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void InitializeMap(ScrollableMapControl map)
         {
-            _mapControl = map;
-            _mapControl.SetMap(this);
+            Control = map;
+            Control.SetMap(this);
         }
 
         /// <summary>
@@ -121,8 +101,8 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void InitializeMap(MapControl map)
         {
-            _mapControl = map.ScrollableMap;
-            _mapControl.SetMap(this);
+            Control = map.ScrollableMap;
+            Control.SetMap(this);
             map.SetMap(this);
         }
 
@@ -131,21 +111,13 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void InitializeMap(MiniMapControl miniMap, Map mainMap)
         {
-            _mapControl = miniMap;
-            _mapControl.SetMap(this);
+            Control = miniMap;
+            Control.SetMap(this);
             miniMap.SetMap(this, mainMap);
         }
         #endregion
 
         #region Change Map Center
-        /// <summary>
-        /// Center on home location
-        /// </summary>
-        public void SetCenter()
-        {
-            SetCenter(World.Default.Map.HomeLocation);
-        }
-
         /// <summary>
         /// Center on middle of a continent
         /// </summary>
@@ -235,7 +207,7 @@ namespace TribalWars.Data.Maps
                 if (Location == null)
                     HomeLocation = new Location(value);
 
-                DisplayBase.ZoomInfo info = _mapDisplay.DisplayManager.CurrentDisplay.Zoom;
+                DisplayBase.ZoomInfo info = Display.DisplayManager.CurrentDisplay.Zoom;
                 if (value.Zoom < info.Minimum)
                     value = new Location(value, info.Minimum);
                 else if (value.Zoom > info.Maximum)
@@ -245,7 +217,7 @@ namespace TribalWars.Data.Maps
                 {
                     Location oldLocation = Location;
                     Location = value;
-                    _eventPublisher.SetMapCenter(sender, new MapLocationEventArgs(value, oldLocation, info));
+                    EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(value, oldLocation, info));
                 }
             }
             else
@@ -257,7 +229,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void ChangeDisplay()
         {
-            ChangeDisplay(_mapDisplay.DisplayManager.CurrentDisplayType);
+            ChangeDisplay(Display.DisplayManager.CurrentDisplayType);
         }
 
         /// <summary>
@@ -275,15 +247,31 @@ namespace TribalWars.Data.Maps
         /// <remarks>Resets the minipulators and display</remarks>
         public void ChangeDisplay(DisplayTypes display, Location location)
         {
-            if (_mapDisplay.DisplayManager.CurrentDisplayType != display)
+            if (Display.DisplayManager.CurrentDisplayType != display)
             {
-                if (_mapDisplay.DisplayManager.CurrentDisplay != null)
-                    _mapDisplay.DisplayManager.CurrentDisplay.Zoom.Current = location.Zoom;
-                _mapDisplay.Reset(display);
-                SetCenter(this, new Location(location, _mapDisplay.DisplayManager.CurrentDisplay.Zoom.Current), true);
+                if (Display.DisplayManager.CurrentDisplay != null)
+                    Display.DisplayManager.CurrentDisplay.Zoom.Current = location.Zoom;
+                Display.Reset(display);
+                SetCenter(this, new Location(location, Display.DisplayManager.CurrentDisplay.Zoom.Current), true);
 
-                _eventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display, Location));
+                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display, Location));
             }
+        }
+
+        /// <summary>
+        /// Center on home location
+        /// </summary>
+        public void GoHome()
+        {
+            if (HomeDisplay != Display.DisplayManager.CurrentDisplayType)
+            {
+                ChangeDisplay(HomeDisplay, HomeLocation);
+            }
+            else
+            {
+                SetCenter(HomeLocation);
+            }
+            
         }
         #endregion
 
@@ -293,7 +281,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCursor()
         {
-            _mapControl.Cursor = System.Windows.Forms.Cursors.Default;
+            Control.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
         /// <summary>
@@ -301,7 +289,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCursor(System.Windows.Forms.Cursor cursor)
         {
-            _mapControl.Cursor = cursor;
+            Control.Cursor = cursor;
         }
         #endregion
     }

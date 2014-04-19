@@ -158,7 +158,7 @@ namespace TribalWars.Data.Maps.Displays
             
             public override string ToString()
             {
-                return string.Format("Type:{0},Color:{1},{2} (Value: {3}", Type, Color.ToString(), ExtraColor.ToString(), Value);
+                return string.Format("Type:{0},Color:{1},{2} (Value: {3}", Type, Color, ExtraColor, Value);
             }
             #endregion
         }
@@ -197,6 +197,11 @@ namespace TribalWars.Data.Maps.Displays
                 Current = current;
             }
             #endregion
+
+            public override string ToString()
+            {
+                return string.Format("Min={0}, Max={1}, Current={2}", Minimum, Maximum, Current);
+            }
         }
         #endregion
     }

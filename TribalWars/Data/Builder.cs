@@ -1,22 +1,13 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
-using System.Xml.Serialization;
-using System.ComponentModel;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Maps;
-using TribalWars.Data.Monitoring;
-using TribalWars.Data.Events;
-using TribalWars.Controls.Maps;
 using TribalWars.Data.Maps.Views;
-using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Players;
 using TribalWars.Data.Buildings;
@@ -24,8 +15,6 @@ using TribalWars.Data.Units;
 using TribalWars.Data.Tribes;
 using TribalWars.Tools;
 using System.Globalization;
-using System.Windows.Forms;
-using TribalWars.Data.Maps.Manipulators;
 using TribalWars.Data.Maps.Displays;
 #endregion
 
@@ -44,10 +33,10 @@ namespace TribalWars.Data
         {
             if (file.Exists)
             {
-                XmlReaderSettings sets = new XmlReaderSettings();
+                var sets = new XmlReaderSettings();
                 sets.IgnoreWhitespace = true;
                 sets.CloseInput = true;
-                using (XmlReader r = XmlReader.Create(System.IO.File.Open(file.FullName, FileMode.Open, FileAccess.Read), sets))
+                using (XmlReader r = XmlReader.Create(File.Open(file.FullName, FileMode.Open, FileAccess.Read), sets))
                 {
                     r.ReadStartElement();
                     //DateTime date = XmlConvert.ToDateTime(r.GetAttribute("Date"));
@@ -86,10 +75,11 @@ namespace TribalWars.Data
                         x = location.Value.X;
                         y = location.Value.Y;
                     }
-                    int z = System.Convert.ToInt32(r.GetAttribute("Zoom"));
-                    DisplayTypes displayType = (DisplayTypes)Enum.Parse(typeof(DisplayTypes), r.GetAttribute("Display"), true);
+                    int z = Convert.ToInt32(r.GetAttribute("Zoom"));
+                    var displayType = (DisplayTypes)Enum.Parse(typeof(DisplayTypes), r.GetAttribute("Display"), true);
                     if (displayType == DisplayTypes.None) displayType = DisplayTypes.Icon;
                     map.ChangeDisplay(displayType, new Location(x, y, z));
+                    map.HomeDisplay = displayType;
 
                     // MainMap: Display
                     r.ReadStartElement();
@@ -97,15 +87,15 @@ namespace TribalWars.Data
                     map.Display.BackgroundColor = backgroundColor;
 
                     r.ReadStartElement();
-                    map.Display.ContinentLines = System.Convert.ToBoolean(r.ReadElementString("LinesContinent"));
-                    map.Display.ProvinceLines = System.Convert.ToBoolean(r.ReadElementString("LinesProvince"));
-                    map.Display.HideAbandoned = System.Convert.ToBoolean(r.ReadElementString("HideAbandoned"));
-                    map.Display.MarkedOnly = System.Convert.ToBoolean(r.ReadElementString("MarkedOnly"));
+                    map.Display.ContinentLines = Convert.ToBoolean(r.ReadElementString("LinesContinent"));
+                    map.Display.ProvinceLines = Convert.ToBoolean(r.ReadElementString("LinesProvince"));
+                    map.Display.HideAbandoned = Convert.ToBoolean(r.ReadElementString("HideAbandoned"));
+                    map.Display.MarkedOnly = Convert.ToBoolean(r.ReadElementString("MarkedOnly"));
                     r.ReadEndElement();
 
                     // MainMap: MarkerGroups
                     r.ReadStartElement();
-                    List<MarkerGroup> markers = new List<MarkerGroup>();
+                    var markers = new List<MarkerGroup>();
                     while (r.IsStartElement("MarkerGroup"))
                     {
                         markers.Add(ReadMarkerGroup(r, map));
@@ -117,7 +107,7 @@ namespace TribalWars.Data
                     r.ReadStartElement();
                     while (r.IsStartElement("Manipulator"))
                     {
-                        ManipulatorManagerTypes manipulatorType = (ManipulatorManagerTypes)Enum.Parse(typeof(ManipulatorManagerTypes), r.GetAttribute("Type"));
+                        var manipulatorType = (ManipulatorManagerTypes)Enum.Parse(typeof(ManipulatorManagerTypes), r.GetAttribute("Type"));
                         Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> dict = map.Manipulators.Manipulators;
                         if (dict.ContainsKey(manipulatorType))
                         {
@@ -147,7 +137,7 @@ namespace TribalWars.Data
             Color extraColor = XmlHelper.GetColor(r.GetAttribute("ExtraColor"));
             string view = r.GetAttribute("View");
             string decorator = r.GetAttribute("Decorator");
-            MarkerGroup m = new MarkerGroup(map, name, enabled, color, extraColor, view, decorator);
+            var m = new MarkerGroup(map, name, enabled, color, extraColor, view, decorator);
 
             if (!r.IsEmptyElement)
             {
@@ -170,7 +160,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Writes a markergroup to the XML node
         /// </summary>
-        private static void WriteMarkerGroup(XmlWriter w, MarkerGroup group, Map map)
+        private static void WriteMarkerGroup(XmlWriter w, MarkerGroup group)
         {
             w.WriteStartElement("MarkerGroup");
             w.WriteAttributeString("Name", group.Name);
@@ -203,12 +193,12 @@ namespace TribalWars.Data
         /// <summary>
         /// Reads a view from the XML node
         /// </summary>
-        private static ViewBase ReadView(XmlReader r)
+        private static void ReadView(XmlReader r)
         {
-            var category = (Categories)Enum.Parse(typeof(Categories), r.GetAttribute("Category"));
+            //var category = (Categories)Enum.Parse(typeof(Categories), r.GetAttribute("Category"));
             var type = (Types)Enum.Parse(typeof(Types), r.GetAttribute("Type"));
             string name = r.GetAttribute("Name");
-            ViewBase d = CreateView(name, type, category);
+            ViewBase d = CreateView(name, type);
 
             r.ReadStartElement();
             while (r.IsStartElement("Drawer"))
@@ -223,8 +213,6 @@ namespace TribalWars.Data
             r.ReadEndElement();
 
             World.Default.Views.Add(d.Name, d);
-
-            return d;
         }
 
         /// <summary>
@@ -258,7 +246,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Creates a view from the XML node
         /// </summary>
-        private static ViewBase CreateView(string name, Types type, Categories category)
+        private static ViewBase CreateView(string name, Types type)
         {
             switch (type)
             {
@@ -290,10 +278,10 @@ namespace TribalWars.Data
 
                 w.WriteStartElement("You");
                 w.WriteAttributeString("Name", World.Default.You.Player.Name);
-                WriteMarkerGroup(w, map.MarkerManager.YourMarker, map);
-                WriteMarkerGroup(w, map.MarkerManager.YourTribeMarker, map);
-                WriteMarkerGroup(w, map.MarkerManager.EnemyMarker, map);
-                WriteMarkerGroup(w, map.MarkerManager.AbandonedMarker, map);
+                WriteMarkerGroup(w, map.MarkerManager.YourMarker);
+                WriteMarkerGroup(w, map.MarkerManager.YourTribeMarker);
+                WriteMarkerGroup(w, map.MarkerManager.EnemyMarker);
+                WriteMarkerGroup(w, map.MarkerManager.AbandonedMarker);
                 w.WriteEndElement();
 
                 w.WriteStartElement("Monitor");
@@ -302,8 +290,8 @@ namespace TribalWars.Data
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
                 w.WriteAttributeString("Display", map.Display.DisplayManager.CurrentDisplayType.ToString());
-                w.WriteAttributeString("XY", map.Location.X.ToString() + "|" + map.Location.Y.ToString());
-                w.WriteAttributeString("Zoom", map.Location.Zoom.ToString());
+                w.WriteAttributeString("XY", map.Location.X + "|" + map.Location.Y);
+                w.WriteAttributeString("Zoom", map.Location.Zoom.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
 
                 w.WriteStartElement("Display");
@@ -317,7 +305,7 @@ namespace TribalWars.Data
                 w.WriteStartElement("MarkerGroups");
                 foreach (MarkerGroup group in map.MarkerManager.Markers)
                 {
-                    WriteMarkerGroup(w, group, map);
+                    WriteMarkerGroup(w, group);
                 }
                 w.WriteEndElement();
 
@@ -353,9 +341,9 @@ namespace TribalWars.Data
             r.Read();
             w.Server = new Uri(r.ReadElementString("Server"));
             w.Name = r.ReadElementString("Name");
-            w.ServerOffset = new TimeSpan(0, 0, System.Convert.ToInt32(r.ReadElementString("Offset")));
-            w.Speed = System.Convert.ToSingle(r.ReadElementString("Speed"), System.Globalization.CultureInfo.InvariantCulture);
-            w.UnitSpeed = System.Convert.ToSingle(r.ReadElementString("UnitSpeed"), System.Globalization.CultureInfo.InvariantCulture);
+            w.ServerOffset = new TimeSpan(0, 0, Convert.ToInt32(r.ReadElementString("Offset")));
+            w.Speed = Convert.ToSingle(r.ReadElementString("Speed"), CultureInfo.InvariantCulture);
+            w.UnitSpeed = Convert.ToSingle(r.ReadElementString("UnitSpeed"), CultureInfo.InvariantCulture);
             w.Culture = new CultureInfo(r.ReadElementString("Culture"));
 
             r.ReadStartElement();
@@ -435,27 +423,27 @@ namespace TribalWars.Data
             while (r.IsStartElement("Unit"))
             {
                 r.ReadStartElement();
-                int pos = System.Convert.ToInt32(r.ReadElementString("Position"));
+                int pos = Convert.ToInt32(r.ReadElementString("Position"));
                 string name = r.ReadElementString("Name");
                 string shortname = r.ReadElementString("Short");
                 string type = r.ReadElementString("Type");
                 string image = r.ReadElementString("Image");
-                int carry = System.Convert.ToInt32(r.ReadElementString("Carry"));
-                bool farmer = System.Convert.ToBoolean(r.ReadElementString("Farmer"));
-                bool hideAttacker = System.Convert.ToBoolean(r.ReadElementString("HideAttacker"));
-                float speed = System.Convert.ToSingle(r.ReadElementString("Speed"), System.Globalization.CultureInfo.InvariantCulture);
-                bool offense = System.Convert.ToBoolean(r.ReadElementString("Offense"));
+                int carry = Convert.ToInt32(r.ReadElementString("Carry"));
+                bool farmer = Convert.ToBoolean(r.ReadElementString("Farmer"));
+                bool hideAttacker = Convert.ToBoolean(r.ReadElementString("HideAttacker"));
+                float speed = Convert.ToSingle(r.ReadElementString("Speed"), CultureInfo.InvariantCulture);
+                bool offense = Convert.ToBoolean(r.ReadElementString("Offense"));
 
                 r.ReadStartElement();
-                int wood = System.Convert.ToInt32(r.ReadElementString("Wood"));
-                int clay = System.Convert.ToInt32(r.ReadElementString("Clay"));
-                int iron = System.Convert.ToInt32(r.ReadElementString("Iron"));
-                int people = System.Convert.ToInt32(r.ReadElementString("People"));
+                int wood = Convert.ToInt32(r.ReadElementString("Wood"));
+                int clay = Convert.ToInt32(r.ReadElementString("Clay"));
+                int iron = Convert.ToInt32(r.ReadElementString("Iron"));
+                int people = Convert.ToInt32(r.ReadElementString("People"));
 
                 r.ReadEndElement();
                 r.ReadEndElement();
 
-                Unit unit = new Unit(pos, name, shortname, type, image, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
+                var unit = new Unit(pos, name, shortname, type, image, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
                 units.Add(unit.Type, unit);
             }
             return units;
