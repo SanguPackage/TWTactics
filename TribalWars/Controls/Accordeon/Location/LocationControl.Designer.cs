@@ -315,7 +315,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.LocationHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LocationHistory.Location = new System.Drawing.Point(3, 16);
             this.LocationHistory.Margin = new System.Windows.Forms.Padding(0);
-            this.LocationHistory.MaxLinks = 5;
             this.LocationHistory.Name = "LocationHistory";
             this.LocationHistory.Size = new System.Drawing.Size(81, 125);
             this.LocationHistory.TabIndex = 0;

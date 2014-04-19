@@ -11,7 +11,7 @@ namespace TribalWars.Controls.Accordeon.Location
     /// </summary>
     public partial class LocationList : UserControl
     {
-        private int _maxLinks = 5;
+        private int _maxLinks = 6;
         private readonly Dictionary<LinkLabel, Data.Maps.Location> _locations = new Dictionary<LinkLabel, Data.Maps.Location>(5);
 
         #region Constructors
