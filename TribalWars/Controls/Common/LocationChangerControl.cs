@@ -25,24 +25,24 @@ namespace TribalWars.Controls.Common
         public LocationChangerControl()
         {
             InitializeComponent();
-            VillageTextBox.AllowPlayer = true;
-            VillageTextBox.AllowTribe = true;
-            VillageTextBox.ShowButton = true;
+            _villagePlayerTribeFinderTextBox.AllowPlayer = true;
+            _villagePlayerTribeFinderTextBox.AllowTribe = true;
+            _villagePlayerTribeFinderTextBox.ShowButton = true;
         }
 
         public void Initialize(Map map)
         {
             ZoomControl.Value = map.Location.Zoom;
             _map = map;
-            VillageTextBox.Initialize(map);
+            _villagePlayerTribeFinderTextBox.Initialize(map);
             _map.EventPublisher.LocationChanged += new EventHandler<TribalWars.Data.Events.MapLocationEventArgs>(EventPublisher_LocationChanged);
         }
         #endregion
 
         #region Properties
-        public VillageTextBox TextBox
+        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox
         {
-            get { return VillageTextBox; }
+            get { return _villagePlayerTribeFinderTextBox; }
         }
         #endregion
 

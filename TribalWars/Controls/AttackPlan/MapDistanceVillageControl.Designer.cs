@@ -36,7 +36,7 @@ namespace TribalWars.Controls
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.DateSend = new System.Windows.Forms.Label();
             this.UnitBox = new TribalWars.Controls.ImageCombobox();
-            this.Coords = new TribalWars.Controls.VillageTextBox();
+            this.Coords = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
             this.Close = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -159,7 +159,7 @@ namespace TribalWars.Controls
         private System.Windows.Forms.Label DateNow;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label DateSend;
-        private VillageTextBox Coords;
+        private VillagePlayerTribeFinderTextBox Coords;
         private System.Windows.Forms.LinkLabel Close;
     }
 }

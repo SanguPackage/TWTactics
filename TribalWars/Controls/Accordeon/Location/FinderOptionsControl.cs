@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data.Events;
@@ -18,8 +19,8 @@ namespace TribalWars.Controls.Accordeon.Location
     public partial class FinderOptionsControl : UserControl
     {
         #region Constants
-        private const int OPTIONS_PANE_SMALL = 35;
-        private const int OPTIONS_PANE_BIG = 178;
+        private const int OptionsPaneSmall = 35;
+        private const int OptionsPaneBig = 178;
         #endregion
 
         #region Fields
@@ -33,12 +34,8 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool Expanded
         {
-            get { return this.Height == OPTIONS_PANE_BIG; }
-            set
-            {
-                if (value) this.Height = OPTIONS_PANE_BIG;
-                else this.Height = OPTIONS_PANE_SMALL;
-            }
+            get { return Height == OptionsPaneBig; }
+            set { Height = value ? OptionsPaneBig : OptionsPaneSmall; }
         }
 
         /// <summary>
@@ -80,7 +77,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private void DropDown_Click(object sender, EventArgs e)
         {
-            this.Height = (this.Height == OPTIONS_PANE_BIG) ? OPTIONS_PANE_SMALL : OPTIONS_PANE_BIG;
+            Height = (Height == OptionsPaneBig) ? OptionsPaneSmall : OptionsPaneBig;
         }
 
         /// <summary>
@@ -91,11 +88,7 @@ namespace TribalWars.Controls.Accordeon.Location
             FinderOptions options = LoadFinderOptions();
             if (World.Default.HasLoaded)
             {
-                List<Player> list = new List<Player>();
-                foreach (Player ply in options.PlayerMatches())
-                {
-                    list.Add(ply);
-                }
+                List<Player> list = options.PlayerMatches().ToList();
                 if (PlayersFound != null)
                 {
                     PlayersFound(this, new PlayersEventArgs(list, VillageTools.Default));
@@ -111,11 +104,7 @@ namespace TribalWars.Controls.Accordeon.Location
             FinderOptions options = LoadFinderOptions();
             if (World.Default.HasLoaded)
             {
-                List<TribalWars.Data.Tribes.Tribe> list = new List<TribalWars.Data.Tribes.Tribe>();
-                foreach (TribalWars.Data.Tribes.Tribe tribe in options.TribeMatches())
-                {
-                    list.Add(tribe);
-                }
+                var list = options.TribeMatches().ToList();
                 if (TribesFound != null)
                 {
                     TribesFound(this, new TribesEventArgs(list, VillageTools.Default));
@@ -146,11 +135,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 else
                 {
                     // Loop all villages in the world to match the input
-                    List<Village> list = new List<Village>();
-                    foreach (Village village in options.VillageMatches())
-                    {
-                        list.Add(village);
-                    }
+                    var list = options.VillageMatches().ToList();
                     if (VillagesFound != null)
                     {
                         VillagesFound(this, new VillagesEventArgs(list, VillageTools.Default));
@@ -169,7 +154,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public FinderOptions LoadFinderOptions()
         {
-            FinderOptions options = new FinderOptions();
+            var options = new FinderOptions();
             if (Location.SelectedIndex == -1)
                 options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
             else

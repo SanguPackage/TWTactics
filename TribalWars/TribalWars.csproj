@@ -313,7 +313,7 @@
     <Compile Include="Controls\Common\TimeConverterControl.Designer.cs">
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\VillageTextBox.cs">
+    <Compile Include="Controls\Common\VillagePlayerTribeFinderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TWContextMenu\TribeContextMenu.cs">

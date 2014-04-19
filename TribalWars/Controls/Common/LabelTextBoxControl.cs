@@ -73,8 +73,6 @@ namespace TribalWars.Controls
 
         private void _TextBox_Leave(object sender, EventArgs e)
         {
-            // I could add an enum and base the autocomplete list on that
-            // list for villages, players, tribes
             if (!LabelTextBox._autoCompleteList.Contains(_TextBox.Text))
                 LabelTextBox._autoCompleteList.Add(_TextBox.Text);
         }

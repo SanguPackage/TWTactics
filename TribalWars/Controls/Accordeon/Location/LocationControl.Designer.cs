@@ -50,7 +50,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.You = new TribalWars.Controls.VillageTextBox();
+            this.You = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LocationHistory = new TribalWars.Controls.LocationList();
             groupBox1 = new System.Windows.Forms.GroupBox();
@@ -367,7 +367,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.ToolStripButton StripHome;
         private System.Windows.Forms.GroupBox groupBox3;
         private LocationList LocationHistory;
-        private VillageTextBox You;
+        private VillagePlayerTribeFinderTextBox You;
         private System.Windows.Forms.GroupBox groupBox4;
 
     }

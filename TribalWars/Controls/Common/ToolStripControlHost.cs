@@ -72,9 +72,9 @@ namespace TribalWars.Controls
         /// <summary>
         /// Gets the underlying VillageTextBox
         /// </summary>
-        public VillageTextBox TextBox
+        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox
         {
-            get { return Control as VillageTextBox; }
+            get { return Control as VillagePlayerTribeFinderTextBox; }
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace TribalWars.Controls
         [Browsable(false)]
         public Village Village
         {
-            get { return TextBox.Village; }
-            set { TextBox.SetVillage(value, false); }
+            get { return PlayerTribeFinderTextBox.Village; }
+            set { PlayerTribeFinderTextBox.SetVillage(value, false); }
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace TribalWars.Controls
         [Browsable(false)]
         public Player Player
         {
-            get { return TextBox.Player; }
-            set { TextBox.SetPlayer(value, false); }
+            get { return PlayerTribeFinderTextBox.Player; }
+            set { PlayerTribeFinderTextBox.SetPlayer(value, false); }
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace TribalWars.Controls
         [Browsable(false)]
         public Tribe Tribe
         {
-            get { return TextBox.Tribe; }
-            set { TextBox.SetTribe(value, false); }
+            get { return PlayerTribeFinderTextBox.Tribe; }
+            set { PlayerTribeFinderTextBox.SetTribe(value, false); }
         }
 
         /// <summary>
@@ -114,8 +114,8 @@ namespace TribalWars.Controls
         [DefaultValue(false)]
         public bool AllowTribe
         {
-            get { return TextBox.AllowTribe; }
-            set { TextBox.AllowTribe = value; }
+            get { return PlayerTribeFinderTextBox.AllowTribe; }
+            set { PlayerTribeFinderTextBox.AllowTribe = value; }
         }
 
         /// <summary>
@@ -125,8 +125,8 @@ namespace TribalWars.Controls
         [DefaultValue(false)]
         public bool AllowPlayer
         {
-            get { return TextBox.AllowPlayer; }
-            set { TextBox.AllowPlayer = value; }
+            get { return PlayerTribeFinderTextBox.AllowPlayer; }
+            set { PlayerTribeFinderTextBox.AllowPlayer = value; }
         }
 
         /// <summary>
@@ -136,21 +136,21 @@ namespace TribalWars.Controls
         [DefaultValue(true)]
         public bool AllowVillage
         {
-            get { return TextBox.AllowVillage; }
-            set { TextBox.AllowVillage = value; }
+            get { return PlayerTribeFinderTextBox.AllowVillage; }
+            set { PlayerTribeFinderTextBox.AllowVillage = value; }
         }
         #endregion
 
         #region Constructors
         public ToolStripVillageTextBox()
-            : base(new VillageTextBox())
+            : base(new VillagePlayerTribeFinderTextBox())
         {
             AutoSize = false;
             Text = string.Empty;
             ToolTipText = string.Empty;
 
-            TextBox.Width = 50;
-            TextBox.Text = string.Empty;
+            PlayerTribeFinderTextBox.Width = 50;
+            PlayerTribeFinderTextBox.Text = string.Empty;
         }
         #endregion
 
@@ -160,9 +160,9 @@ namespace TribalWars.Controls
             base.OnSubscribeControlEvents(control);
 
             // Add the event.
-            TextBox.VillageSelected += new EventHandler<VillageEventArgs>(control_VillageSelected);
-            TextBox.TribeSelected += new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
-            TextBox.PlayerSelected += new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
+            PlayerTribeFinderTextBox.VillageSelected += new EventHandler<VillageEventArgs>(control_VillageSelected);
+            PlayerTribeFinderTextBox.TribeSelected += new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
+            PlayerTribeFinderTextBox.PlayerSelected += new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
         }
 
         private void TextBox_PlayerSelected(object sender, PlayerEventArgs e)
@@ -185,9 +185,9 @@ namespace TribalWars.Controls
             base.OnUnsubscribeControlEvents(control);
 
             // Remove the event.
-            TextBox.VillageSelected -= new EventHandler<VillageEventArgs>(control_VillageSelected);
-            TextBox.TribeSelected -= new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
-            TextBox.PlayerSelected -= new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
+            PlayerTribeFinderTextBox.VillageSelected -= new EventHandler<VillageEventArgs>(control_VillageSelected);
+            PlayerTribeFinderTextBox.TribeSelected -= new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
+            PlayerTribeFinderTextBox.PlayerSelected -= new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
         }
         #endregion
     }

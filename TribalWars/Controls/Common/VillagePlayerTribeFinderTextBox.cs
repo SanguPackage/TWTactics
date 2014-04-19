@@ -20,9 +20,9 @@ using TribalWars.Data.Maps;
 namespace TribalWars.Controls
 {
     /// <summary>
-    /// Extended TextBox that accepts Village coordinates
+    /// Extended TextBox that accepts Village coordinates, player names and tribe tags
     /// </summary>
-    public class VillageTextBox : MaskedEditBox
+    public class VillagePlayerTribeFinderTextBox : MaskedEditBox
     {
         #region Constants
         private const string PropertyGridCategory = "Tribal Wars";
@@ -36,7 +36,7 @@ namespace TribalWars.Controls
 
         #region Fields
         private Map _map;
-        private ToolTip _tooltip = new ToolTip();
+        private readonly ToolTip _tooltip = new ToolTip();
 
         private bool _allowVillage = true;
         private bool _allowPlayer;
@@ -163,8 +163,7 @@ namespace TribalWars.Controls
         #endregion
 
         #region Constructors
-        public VillageTextBox()
-            : base()
+        public VillagePlayerTribeFinderTextBox()
         {
             Width = 50;
             Text = string.Empty;
@@ -378,9 +377,6 @@ namespace TribalWars.Controls
                 EmptyTextBox();
             }
         }
-        #endregion
-
-        #region Event Handlers
         #endregion
 
         #region Private methods

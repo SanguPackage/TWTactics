@@ -30,7 +30,7 @@ namespace TribalWars.Controls
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coords = new TribalWars.Controls.VillageTextBox();
+            this.Coords = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
@@ -219,6 +219,6 @@ namespace TribalWars.Controls
         private System.Windows.Forms.LinkLabel Close;
         private TimeConverterControl Date;
         private System.Windows.Forms.ComboBox InfoText;
-        private VillageTextBox Coords;
+        private VillagePlayerTribeFinderTextBox Coords;
     }
 }

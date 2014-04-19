@@ -14,6 +14,8 @@ namespace TribalWarsTests
         public void TestMethod1()
         {
             Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
+
+            
         }
     }
 }

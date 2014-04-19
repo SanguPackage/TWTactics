@@ -28,24 +28,24 @@ namespace TribalWars.Controls.Common
         /// </summary>
         private void InitializeComponent()
         {
-            this.VillageTextBox = new TribalWars.Controls.VillageTextBox();
+            this._villagePlayerTribeFinderTextBox = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
             this.ZoomControl = new Janus.Windows.GridEX.EditControls.IntegerUpDown();
             this.SuspendLayout();
             // 
             // VillageTextBox
             // 
-            this.VillageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._villagePlayerTribeFinderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.VillageTextBox.BackColor = System.Drawing.Color.Red;
-            this.VillageTextBox.ButtonStyle = Janus.Windows.GridEX.EditControls.EditButtonStyle.TextButton;
-            this.VillageTextBox.ButtonText = "» OK «";
-            this.VillageTextBox.GameLocation = null;
-            this.VillageTextBox.Location = new System.Drawing.Point(3, 3);
-            this.VillageTextBox.Name = "VillageTextBox";
-            this.VillageTextBox.ShowButton = true;
-            this.VillageTextBox.Size = new System.Drawing.Size(174, 20);
-            this.VillageTextBox.TabIndex = 0;
+            this._villagePlayerTribeFinderTextBox.BackColor = System.Drawing.Color.Red;
+            this._villagePlayerTribeFinderTextBox.ButtonStyle = Janus.Windows.GridEX.EditControls.EditButtonStyle.TextButton;
+            this._villagePlayerTribeFinderTextBox.ButtonText = "» OK «";
+            this._villagePlayerTribeFinderTextBox.GameLocation = null;
+            this._villagePlayerTribeFinderTextBox.Location = new System.Drawing.Point(3, 3);
+            this._villagePlayerTribeFinderTextBox.Name = "_villagePlayerTribeFinderTextBox";
+            this._villagePlayerTribeFinderTextBox.ShowButton = true;
+            this._villagePlayerTribeFinderTextBox.Size = new System.Drawing.Size(174, 20);
+            this._villagePlayerTribeFinderTextBox.TabIndex = 0;
             // 
             // ZoomControl
             // 
@@ -66,7 +66,7 @@ namespace TribalWars.Controls.Common
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.ZoomControl);
-            this.Controls.Add(this.VillageTextBox);
+            this.Controls.Add(this._villagePlayerTribeFinderTextBox);
             this.Name = "LocationChangerControl";
             this.Size = new System.Drawing.Size(222, 26);
             this.ResumeLayout(false);
@@ -76,7 +76,7 @@ namespace TribalWars.Controls.Common
 
         #endregion
 
-        private VillageTextBox VillageTextBox;
+        private VillagePlayerTribeFinderTextBox _villagePlayerTribeFinderTextBox;
         private Janus.Windows.GridEX.EditControls.IntegerUpDown ZoomControl;
 
     }

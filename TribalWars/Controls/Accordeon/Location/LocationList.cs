@@ -9,6 +9,9 @@ using TribalWars.Data.Maps;
 
 namespace TribalWars.Controls
 {
+    /// <summary>
+    /// Used as history list with links of the last Map.Locations
+    /// </summary>
     public partial class LocationList : UserControl
     {
         private int _MaxLinks = 5;

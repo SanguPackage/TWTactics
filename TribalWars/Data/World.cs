@@ -592,20 +592,6 @@ namespace TribalWars
         }
 
         /// <summary>
-        /// Gets the village with the specified tw id
-        /// </summary>
-        public Village GetVillage(int id)
-        {
-            throw new NotImplementedException();
-            // TODO: make the regex get the coordinates instead
-            // or add parameter string player, so we can look
-            // in that player's villages only
-            /*Village village = null;
-            Villages.TryGetValue(location, out village);
-            return village;*/
-        }
-
-        /// <summary>
         /// Gets the village at the specified location
         /// </summary>
         public Village GetVillage(int x, int y)
