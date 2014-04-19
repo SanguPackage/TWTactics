@@ -14,37 +14,31 @@ namespace TribalWars.Controls.TWContextMenu
         #region Constants
         public class Village
         {
-            public const string VISIT = "VISIT";
-            public const string PLAYER = "PLAYER";
-            public const string TRIBE = "TRIBE";
-            public const string MARK = "MARK";
-            public const string CLIPBOARD_TEXT = "CLIPBOARDTEXT";
-            public const string PINPOINT = "PINPOINT";
-            public const string PLAYERSEPERATOR = "PLAYERSEP";
-            //public const string  = "";
-            //public const string  = "";
-            //public const string  = "";
+            public const string Visit = "VISIT";
+            public const string Player = "PLAYER";
+            public const string Tribe = "TRIBE";
+            public const string Mark = "MARK";
+            public const string ClipboardText = "CLIPBOARDTEXT";
+            public const string Pinpoint = "PINPOINT";
+            public const string Playerseperator = "PLAYERSEP";
         }
 
         public class Player
         {
-            public const string BBCODE = "PLAYERBBCODE";
-            //public const string  = "";
-            //public const string  = "";
-            //public const string  = "";
+            public const string Bbcode = "PLAYERBBCODE";
         }
 
         public class Polygon
         {
-            public const string GENERATE = "GENERATE";
-            public const string DELETE = "DELETE";
-            public const string EDIT = "EDIT";
-            public const string HIDE = "HIDE";
-            public const string SHOWALL = "SHOWALL";
-            public const string SHOW = "SHOW";
-            public const string CLEARALL = "CLEARALL";
-            public const string HIDEALL = "HIDEALL";
-            public const string GROUPS = "GROUPS"; // --> Add a submenu item for each polygon group to toggle visibility
+            public const string Generate = "GENERATE";
+            public const string Delete = "DELETE";
+            public const string Edit = "EDIT";
+            public const string Hide = "HIDE";
+            public const string Showall = "SHOWALL";
+            public const string Show = "SHOW";
+            public const string Clearall = "CLEARALL";
+            public const string Hideall = "HIDEALL";
+            public const string Groups = "GROUPS";
         }
         #endregion
 

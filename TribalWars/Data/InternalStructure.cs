@@ -524,15 +524,15 @@ namespace TribalWars.Data
                         var player = new Player(playerString.Split(','));
 
                         // Find tribe
-                        if (player._TribeID != 0 && tempTribes.ContainsKey(player._TribeID))
+                        if (player.TribeId != 0 && tempTribes.ContainsKey(player.TribeId))
                         {
-                            Tribe tribe = tribes[tempTribes[player._TribeID]];
+                            Tribe tribe = tribes[tempTribes[player.TribeId]];
                             player.Tribe = tribe;
                             tribes[tribe.Tag.ToUpper()].AddPlayer(player);
                         }
 
                         players.Add(player.Name.ToUpper(), player);
-                        tempPlayers.Add(player.ID, player.Name.ToUpper());
+                        tempPlayers.Add(player.Id, player.Name.ToUpper());
                     }
 
                     // Load villages

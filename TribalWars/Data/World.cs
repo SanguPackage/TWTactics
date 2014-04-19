@@ -427,7 +427,7 @@ namespace TribalWars.Data
         {
             foreach (Player player in Players.Values)
             {
-                if (player.ID == id)
+                if (player.Id == id)
                     return player;
             }
             return null;

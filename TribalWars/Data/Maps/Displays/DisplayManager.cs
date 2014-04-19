@@ -130,7 +130,7 @@ namespace TribalWars.Data.Maps.Displays
                 else
                 {
                     Player ply = village.Player;
-                    if (!_markPlayer.TryGetValue(ply.ID, out markerGroup))
+                    if (!_markPlayer.TryGetValue(ply.Id, out markerGroup))
                     {
                         if (!(ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.ID, out markerGroup)))
                             markerGroup = _map.MarkerManager.EnemyMarker;
@@ -189,8 +189,8 @@ namespace TribalWars.Data.Maps.Displays
             {
                 foreach (Player player in markerGroup.Players)
                 {
-                    if ( !_markPlayer.ContainsKey(player.ID))
-                        _markPlayer.Add(player.ID, markerGroup);
+                    if ( !_markPlayer.ContainsKey(player.Id))
+                        _markPlayer.Add(player.Id, markerGroup);
                 }
 
                 foreach (Tribe tribe in markerGroup.Tribes)
@@ -209,7 +209,7 @@ namespace TribalWars.Data.Maps.Displays
             Player you = World.Default.You.Player;
             if (you != null)
             {
-                _markPlayer.Add(you.ID, _map.MarkerManager.YourMarker);
+                _markPlayer.Add(you.Id, _map.MarkerManager.YourMarker);
                 Tribe youTribe = World.Default.You.Player.Tribe;
                 if (youTribe != null)
                 {

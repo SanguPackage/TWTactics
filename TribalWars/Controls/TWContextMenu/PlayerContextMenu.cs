@@ -156,7 +156,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 try
                 {
-                    Clipboard.SetText(_player.BBCodeMatt()); 
+                    Clipboard.SetText(_player.BbCodeMatt()); 
                 }
                 catch (Exception)
                 {
@@ -173,7 +173,7 @@ namespace TribalWars.Controls.TWContextMenu
         {
             if (_player != null)
             {
-                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.ID.ToString());
+                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.Id.ToString());
             }
         }
 

@@ -38,28 +38,28 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             _menu = new UICommand();
 
             // Contextmenu
-            UICommand generate = new UICommand(ContextMenuKeys.Polygon.GENERATE, "Generate", CommandType.Command);
+            UICommand generate = new UICommand(ContextMenuKeys.Polygon.Generate, "Generate", CommandType.Command);
             generate.Click += OnGenerate;
 
-            UICommand delete = new UICommand(ContextMenuKeys.Polygon.DELETE, "Delete", CommandType.Command);
+            UICommand delete = new UICommand(ContextMenuKeys.Polygon.Delete, "Delete", CommandType.Command);
             delete.Click += OnDelete;
 
-            UICommand edit = new UICommand(ContextMenuKeys.Polygon.EDIT, "Edit", CommandType.Command);
+            UICommand edit = new UICommand(ContextMenuKeys.Polygon.Edit, "Edit", CommandType.Command);
             edit.Click += OnEdit;
 
-            UICommand hide = new UICommand(ContextMenuKeys.Polygon.HIDE, "Hide", CommandType.Command);
+            UICommand hide = new UICommand(ContextMenuKeys.Polygon.Hide, "Hide", CommandType.Command);
             hide.Click += OnHide;
 
-            UICommand show = new UICommand(ContextMenuKeys.Polygon.SHOW, "Show", CommandType.Command);
+            UICommand show = new UICommand(ContextMenuKeys.Polygon.Show, "Show", CommandType.Command);
             show.Click += OnHide;
 
-            UICommand clearAll = new UICommand(ContextMenuKeys.Polygon.CLEARALL, "Clear All", CommandType.Command);
+            UICommand clearAll = new UICommand(ContextMenuKeys.Polygon.Clearall, "Clear All", CommandType.Command);
             clearAll.Click += OnClear;
 
-            UICommand hideAll = new UICommand(ContextMenuKeys.Polygon.HIDEALL, "Hide All", CommandType.Command);
+            UICommand hideAll = new UICommand(ContextMenuKeys.Polygon.Hideall, "Hide All", CommandType.Command);
             hideAll.Click += OnClear;
 
-            UICommand showAll = new UICommand(ContextMenuKeys.Polygon.SHOWALL, "Show All", CommandType.Command);
+            UICommand showAll = new UICommand(ContextMenuKeys.Polygon.Showall, "Show All", CommandType.Command);
             showAll.Click += OnShowAll;
 
             _menu.Commands.AddRange(new UICommand[] { 
