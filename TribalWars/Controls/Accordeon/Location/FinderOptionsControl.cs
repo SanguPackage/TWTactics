@@ -116,8 +116,6 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Displays all villages that match the input
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void cmdVillage_Click(object sender, EventArgs e)
         {
             FinderOptions options = LoadFinderOptions();

@@ -1,5 +1,4 @@
 #region Using
-
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -11,7 +10,6 @@ using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Data.Maps;
-
 #endregion
 
 namespace TribalWars.Controls.Common

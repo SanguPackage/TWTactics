@@ -48,19 +48,10 @@ namespace TribalWars.Controls.Display
         #endregion
 
         #region Fields
-        private ColumnDisplayTypeEnum _displayType = ColumnDisplayTypeEnum.Default;
         private ColumnModel _playerColumnModel;
         private ColumnModel _villageColumnModel;
         private ColumnModel _tribeColumnModel;
         private ColumnModel _reportColumnModel;
-
-        private PlayerFields _playerFields;
-        private VillageFields _villageFields;
-        private TribeFields _tribeFields;
-        private ReportFields _reportFields;
-
-        private bool _autoSelectSingleRow = true;
-        private RowSelectionActionEnum _rowSelectionAction = RowSelectionActionEnum.SelectVillage;
         #endregion
 
         #region Properties
@@ -69,72 +60,44 @@ namespace TribalWars.Controls.Display
         /// all columns, the most import columns or
         /// custom selected columns are visible
         /// </summary>
-        public ColumnDisplayTypeEnum DisplayType
-        {
-            get { return _displayType; }
-            set { _displayType = value; }
-        }
+        public ColumnDisplayTypeEnum DisplayType { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating which
         /// columns are visible for the report display
         /// </summary>
-        public ReportFields VisibleReportFields
-        {
-            get { return _reportFields; }
-            set { _reportFields = value; }
-        }
+        public ReportFields VisibleReportFields { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating which
         /// columns are visible for the tribe display
         /// </summary>
-        public TribeFields VisibleTribeFields
-        {
-            get { return _tribeFields; }
-            set { _tribeFields = value; }
-        }
+        public TribeFields VisibleTribeFields { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating which
         /// columns are visible for the village display
         /// </summary>
-        public VillageFields VisibleVillageFields
-        {
-            get { return _villageFields; }
-            set { _villageFields = value; }
-        }
+        public VillageFields VisibleVillageFields { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating which
         /// columns are visible for the player display
         /// </summary>
-        public PlayerFields VisiblePlayerFields
-        {
-            get { return _playerFields; }
-            set { _playerFields = value; }
-        }
+        public PlayerFields VisiblePlayerFields { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether
         /// the row should be automatically selected
         /// when there is only one record
         /// </summary>
-        public bool AutoSelectSingleRow
-        {
-            get { return _autoSelectSingleRow; }
-            set { _autoSelectSingleRow = value; }
-        }
+        public bool AutoSelectSingleRow { get; set; }
 
         /// <summary>
         /// Gets or sets the action when the user
         /// selects a row
         /// </summary>
-        public RowSelectionActionEnum RowSelectionAction
-        {
-            get { return _rowSelectionAction; }
-            set { _rowSelectionAction = value; }
-        }
+        public RowSelectionActionEnum RowSelectionAction { get; set; }
 
         /// <summary>
         /// Gets the player XPTable ColumnModel
@@ -145,10 +108,10 @@ namespace TribalWars.Controls.Display
             {
                 if (_playerColumnModel == null)
                 {
-                    switch (_displayType)
+                    switch (DisplayType)
                     {
                         case ColumnDisplayTypeEnum.Custom:
-                            _playerColumnModel = ColumnDisplay.CreateColumnModel(_playerFields);
+                            _playerColumnModel = ColumnDisplay.CreateColumnModel(VisiblePlayerFields);
                             break;
                         case ColumnDisplayTypeEnum.All:
                             _playerColumnModel = ColumnDisplay.CreateColumnModel(PlayerFields.All);
@@ -171,10 +134,10 @@ namespace TribalWars.Controls.Display
             {
                 if (_villageColumnModel == null)
                 {
-                    switch (_displayType)
+                    switch (DisplayType)
                     {
                         case ColumnDisplayTypeEnum.Custom:
-                            _villageColumnModel = ColumnDisplay.CreateColumnModel(_villageFields);
+                            _villageColumnModel = ColumnDisplay.CreateColumnModel(VisibleVillageFields);
                             break;
                         case ColumnDisplayTypeEnum.All:
                             _villageColumnModel = ColumnDisplay.CreateColumnModel(VillageFields.All);
@@ -197,10 +160,10 @@ namespace TribalWars.Controls.Display
             {
                 if (_tribeColumnModel == null)
                 {
-                    switch (_displayType)
+                    switch (DisplayType)
                     {
                         case ColumnDisplayTypeEnum.Custom:
-                            _tribeColumnModel = ColumnDisplay.CreateColumnModel(_tribeFields);
+                            _tribeColumnModel = ColumnDisplay.CreateColumnModel(VisibleTribeFields);
                             break;
                         case ColumnDisplayTypeEnum.All:
                             _tribeColumnModel = ColumnDisplay.CreateColumnModel(TribeFields.All);
@@ -223,10 +186,10 @@ namespace TribalWars.Controls.Display
             {
                 if (_reportColumnModel == null)
                 {
-                    switch (_displayType)
+                    switch (DisplayType)
                     {
                         case ColumnDisplayTypeEnum.Custom:
-                            _reportColumnModel = ColumnDisplay.CreateColumnModel(_reportFields);
+                            _reportColumnModel = ColumnDisplay.CreateColumnModel(VisibleReportFields);
                             break;
                         case ColumnDisplayTypeEnum.All:
                             _reportColumnModel = ColumnDisplay.CreateColumnModel(ReportFields.All);
@@ -244,6 +207,9 @@ namespace TribalWars.Controls.Display
         #region Constructors
         public TableWrapperControl()
         {
+            RowSelectionAction = RowSelectionActionEnum.SelectVillage;
+            AutoSelectSingleRow = true;
+            DisplayType = ColumnDisplayTypeEnum.Default;
             InitializeComponent();
         }
         #endregion
@@ -285,7 +251,7 @@ namespace TribalWars.Controls.Display
                 if (Table.TableModel.Selections.SelectedItems.Length == 1)
                 {
                     var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
-                    switch (_rowSelectionAction)
+                    switch (RowSelectionAction)
                     {
                         case RowSelectionActionEnum.RaiseSelectEvent:
                             if (RowSelected != null)
@@ -328,7 +294,7 @@ namespace TribalWars.Controls.Display
                 {
                     Table.TableModel.Rows.Add(new PlayerTableRow(ply));
                 }
-                if (_autoSelectSingleRow && Table.TableModel.Rows.Count == 1)
+                if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
                     Player player = ((PlayerTableRow)Table.TableModel.Rows[0]).Player;
                     World.Default.Map.EventPublisher.SelectVillages(null, player, VillageTools.PinPoint);
@@ -352,7 +318,7 @@ namespace TribalWars.Controls.Display
                 {
                     Table.TableModel.Rows.Add(new TribeTableRow(tribe));
                 }
-                if (_autoSelectSingleRow && Table.TableModel.Rows.Count == 1)
+                if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
                     Tribe tribe = ((TribeTableRow)Table.TableModel.Rows[0]).Tribe;
                     World.Default.Map.EventPublisher.SelectVillages(null, tribe, VillageTools.PinPoint);
@@ -377,7 +343,7 @@ namespace TribalWars.Controls.Display
                     Table.TableModel.Rows.Add(new VillageTableRow(vil));
                 }
                 Table.ResumeLayout();
-                if (_autoSelectSingleRow && Table.TableModel.Rows.Count == 1)
+                if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
                     Village village = ((VillageTableRow)Table.TableModel.Rows[0]).Village;
                     World.Default.Map.EventPublisher.SelectVillages(null, village, VillageTools.PinPoint);
@@ -402,7 +368,7 @@ namespace TribalWars.Controls.Display
                     Table.TableModel.Rows.Add(new ReportTableRow(village, report));
                 }
                 Table.ResumeLayout();
-                if (_autoSelectSingleRow && Table.TableModel.Rows.Count == 1)
+                if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
                     Report report = ((ReportTableRow)Table.TableModel.Rows[0]).Report;
                     var list = new List<Village>();

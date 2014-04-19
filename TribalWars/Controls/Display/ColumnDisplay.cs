@@ -176,8 +176,8 @@ namespace TribalWars.Controls.Display
         {
             ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20);
             TextColumn playerNameColumn = CreateTextColumn("Name", 85);
-            TextColumn playerTribeColumn = CreateTextColumn("New tribe", 85);
-            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 60);
+            TextColumn playerTribeColumn = CreateTextColumn("New tribe", 60);
+            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 75);
             NumberColumn playerVillagesColumn = CreateNumberColumn("Villages", 55);
             TextColumn playerVillagesDifferenceColumn = CreateTextColumn("Diff.", 60);
             TextColumn playerTribeDifferenceColumn = CreateTextColumn("Tribe", 60);

@@ -24,12 +24,7 @@ namespace TribalWars.Controls.Accordeon.Location
     /// </summary>
     public class FinderOptions
     {
-        #region Fields
-
-        #endregion
-
         #region Properties
-
         /// <summary>
         /// Gets a value indicating what to search for
         /// </summary>
@@ -78,7 +73,6 @@ namespace TribalWars.Controls.Accordeon.Location
         /// Gets or sets the specific searching method
         /// </summary>
         public FinderOptionsEnum Options { private get; set; }
-
         #endregion
 
         #region Match Lists
@@ -90,12 +84,14 @@ namespace TribalWars.Controls.Accordeon.Location
             switch (Evaluate)
             {
                 case FinderLocationEnum.VisibleMap:
-                    // TODO
-                    return null; // PlayerMatches(new List<Player>(World.Default.Map.Controller.VisiblePlayers.Values));
+                    return PlayerMatches(new List<Player>(World.Default.Players.Values.Where(World.Default.Map.Display.IsVisible)));
+
                 case FinderLocationEnum.EntireMap:
                     return PlayerMatches(new List<Player>(World.Default.Players.Values));
+
                 case FinderLocationEnum.Polygon:
                     return null;
+
                 case FinderLocationEnum.ActiveRectangle:
                     var list = new List<Player>();
                     foreach (Village village in World.Default.Villages.Values)
@@ -144,12 +140,14 @@ namespace TribalWars.Controls.Accordeon.Location
             switch (Evaluate)
             {
                 case FinderLocationEnum.VisibleMap:
-                    // todo
-                    return null; // TribeMatches(new List<Tribe>(World.Default.Map.Controller.VisibleTribes.Values));
+                    return TribeMatches(new List<Tribe>(World.Default.Tribes.Values.Where(World.Default.Map.Display.IsVisible)));
+
                 case FinderLocationEnum.EntireMap:
                     return TribeMatches(new List<Tribe>(World.Default.Tribes.Values));
+
                 case FinderLocationEnum.Polygon:
                     return null;
+
                 case FinderLocationEnum.ActiveRectangle:
                     var list = new List<Tribe>();
                     foreach (Village village in World.Default.Villages.Values)
@@ -198,17 +196,19 @@ namespace TribalWars.Controls.Accordeon.Location
             switch (Evaluate)
             {
                 case FinderLocationEnum.EntireMap:
-                    // todo
-                    //return null; // VillageMatches(new List<Village>(World.Default.Villages.Values));
+                    return VillageMatches(new List<Village>(World.Default.Villages.Values));
+
                 case FinderLocationEnum.VisibleMap:
-                    // todo
-                    //return null; // VillageMatches(new List<Village>(World.Default.Map.Controller.VisibleVillages.Values));
+                    return VillageMatches(new List<Village>(World.Default.Villages.Values.Where(World.Default.Map.Display.IsVisible)));
+
                 case FinderLocationEnum.Polygon:
-                    //return null;
+                    return null;
+
                 case FinderLocationEnum.ActiveRectangle:
                     var list = World.Default.Villages.Values.Where(village => World.Default.Monitor.ActiveRectangle.Contains(village.Location)).ToList();
                     return VillageMatches(list);
             }
+
             return null;
         }
 

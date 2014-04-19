@@ -23,7 +23,7 @@ namespace TribalWars.Controls.Accordeon.Location
 
         public int MaxLinks
         {
-            private get { return _maxLinks; }
+            get { return _maxLinks; }
             set { _maxLinks = value; }
         }
 
