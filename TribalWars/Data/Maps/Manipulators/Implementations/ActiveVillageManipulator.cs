@@ -62,6 +62,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 _unpinpointedVillage = null;
                 return true;
             }
+            if (e.Village == null && PinPointedVillage == null && SelectedVillage != null)
+            {
+                SelectedVillage = null;
+                return true;
+            }
             return false;
         }
 
