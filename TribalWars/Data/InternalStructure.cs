@@ -2,9 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -15,9 +15,11 @@ using TribalWars.Data.Villages;
 using System.Drawing;
 using TribalWars.Data.Tribes;
 using System.Windows.Forms;
+using TribalWars.Tools;
+
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Data
 {
     public partial class World
     {
@@ -42,6 +44,7 @@ namespace TribalWars
             private static WorldSettings DownloadWorldSettings(string worldName)
             {
                 var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_config"));
+                Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
 
@@ -93,10 +96,6 @@ namespace TribalWars
             #endregion
 
             #region Fields
-            private string _downloadVillage;
-            private string _downloadPlayer;
-            private string _downloadTribe;
-
             private static string _currentDirectory;
             private string _currentWorld;
             private string _currentData;
@@ -107,29 +106,17 @@ namespace TribalWars
             /// <summary>
             /// Gets or sets the the URL to village.txt
             /// </summary>
-            public string DownloadVillage
-            {
-                get { return _downloadVillage; }
-                set { _downloadVillage = value; }
-            }
+            public string DownloadVillage { get; set; }
 
             /// <summary>
             /// Gets or sets the the URL to tribe.txt
             /// </summary>
-            public string DownloadPlayer
-            {
-                get { return _downloadPlayer; }
-                set { _downloadPlayer = value; }
-            }
+            public string DownloadPlayer { get; set; }
 
             /// <summary>
             /// Gets or sets the the URL to ally.txt
             /// </summary>
-            public string DownloadTribe
-            {
-                get { return _downloadTribe; }
-                set { _downloadTribe = value; }
-            }
+            public string DownloadTribe { get; set; }
 
             /// <summary>
             /// Gets the date of the current data
@@ -139,7 +126,7 @@ namespace TribalWars
                 get
                 {
                     DateTime test;
-                    if (DateTime.TryParseExact(_currentData, "yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
+                    if (DateTime.TryParseExact(_currentData, "yyyyMMddHH", CultureInfo.InvariantCulture, DateTimeStyles.None, out test))
                     {
                         return test;
                     }
@@ -155,7 +142,7 @@ namespace TribalWars
                 get
                 {
                     DateTime test;
-                    if (DateTime.TryParseExact(_previousData, "yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
+                    if (DateTime.TryParseExact(_previousData, "yyyyMMddHH", CultureInfo.InvariantCulture, DateTimeStyles.None, out test))
                     {
                         return test;
                     }
@@ -195,11 +182,6 @@ namespace TribalWars
             #endregion
 
             #region Constructors
-            public InternalStructure()
-            {
-                
-            }
-
             /// <summary>
             /// Sets up the paths
             /// Reads world.xml
@@ -213,6 +195,7 @@ namespace TribalWars
                     _previousData = string.Empty;
 
                     var worldPath = new DirectoryInfo(world);
+                    Debug.Assert(worldPath.Parent != null, "worldPath.Parent != null");
                     if (worldPath.Parent.Name == DirectoryWorldDataString && worldPath.Name != DirectoryWorldDataString)
                     {
                         // general world selected
@@ -230,7 +213,7 @@ namespace TribalWars
                         else
                         {
                             // no data found: download!
-                            this.Download();
+                            Download();
                             dirs = Directory.GetDirectories(CurrentWorldDataDirectory);
                             _currentData = new DirectoryInfo(dirs[0]).Name;
                         }
@@ -239,6 +222,7 @@ namespace TribalWars
                     {
                         _currentData = worldPath.Name;
                         worldPath = worldPath.Parent.Parent;
+                        Debug.Assert(worldPath != null, "worldPath != null");
                         _currentWorld = worldPath.Name;
                         string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory).OrderBy(x => x).ToArray();
                         if (dirs.Length > 1)
@@ -276,9 +260,9 @@ namespace TribalWars
                     IgnoreWhitespace = true,
                     CloseInput = true
                 };
-                using (XmlReader worldXml = XmlReader.Create(File.Open(Path.Combine(worldPath, InternalStructure.WorldXmlString), FileMode.Open, FileAccess.Read), sets))
+                using (XmlReader worldXml = XmlReader.Create(File.Open(Path.Combine(worldPath, WorldXmlString), FileMode.Open, FileAccess.Read), sets))
                 {
-                    Data.Builder.ReadWorld(worldXml, World.Default.Map, World.Default.MiniMap);
+                    Builder.ReadWorld(worldXml, Default.Map, Default.MiniMap);
                 }
             }
             #endregion
@@ -287,15 +271,14 @@ namespace TribalWars
             /// <summary>
             /// Gets the executable directory
             /// </summary>
-            /// <remarks>\</remarks>
             public static string MainDirectory
             {
                 get
                 {
-                    if (InternalStructure._currentDirectory == null)
-                        InternalStructure._currentDirectory = Environment.CurrentDirectory + "\\";
+                    if (_currentDirectory == null)
+                        _currentDirectory = Environment.CurrentDirectory + "\\";
 
-                    return InternalStructure._currentDirectory;
+                    return _currentDirectory;
                 }
             }
 
@@ -305,7 +288,7 @@ namespace TribalWars
             /// <remarks>\WorldData\</remarks>
             public static string WorldDataDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\"); }
             }
 
             /// <summary>
@@ -314,7 +297,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\</remarks>
             public string CurrentWorldDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\"); }
             }
 
             /// <summary>
@@ -323,7 +306,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Reports\</remarks>
             public string CurrentWorldReportsDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryReportsString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryReportsString + "\\"); }
             }
 
             /// <summary>
@@ -332,7 +315,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Monitor\</remarks>
             public string CurrentWorldMonitorDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryMonitorString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryMonitorString + "\\"); }
             }
 
             /// <summary>
@@ -341,7 +324,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Screenshot\</remarks>
             public string CurrentWorldScreenshotDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryScreenshotString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryScreenshotString + "\\"); }
             }
 
             /// <summary>
@@ -350,7 +333,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Settings\</remarks>
             public string CurrentWorldSettingsDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectorySettingsString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectorySettingsString + "\\"); }
             }
 
             /// <summary>
@@ -359,7 +342,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Data\</remarks>
             public string CurrentWorldDataDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\"); }
             }
 
             /// <summary>
@@ -368,7 +351,7 @@ namespace TribalWars
             /// <remarks>\WorldData\World 1\Data\20080101\</remarks>
             public string CurrentWorldDataDateDirectory
             {
-                get { return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\" + _currentData + "\\"); }
+                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\" + _currentData + "\\"); }
             }
 
             /// <summary>
@@ -379,7 +362,7 @@ namespace TribalWars
                 get
                 {
                     if (string.IsNullOrEmpty(_previousData)) return null;
-                    return InternalStructure.GetPath(InternalStructure.MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\" + _previousData + "\\");
+                    return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\" + _previousData + "\\");
                 }
             }
             #endregion
@@ -444,7 +427,7 @@ namespace TribalWars
             {
                 var request = new System.Net.WebClient();
                 var file = request.DownloadString(AvailableWorlds);
-                var worldsObject = (Hashtable)new Conversive.PHPSerializationLibrary.Serializer().Deserialize(file);
+                var worldsObject = (Hashtable)new Serializer().Deserialize(file);
 
                 string[] worlds = worldsObject.Keys.OfType<string>().ToArray();
                 IEnumerable<string> specialWorlds = worlds.Where(x => !NormalWorldRegex.IsMatch(x));
@@ -470,17 +453,17 @@ namespace TribalWars
             public void Download()
             {
                 _previousData = _currentData;
-                _currentData = DateTime.Now.ToString("yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture);
+                _currentData = DateTime.Now.ToString("yyyyMMddHH", CultureInfo.InvariantCulture);
                 string dirName = CurrentWorldDataDirectory + _currentData;
                 if (Directory.Exists(dirName))
                 {
-                    System.Windows.Forms.MessageBox.Show("You can only download the data once per hour!");
+                    MessageBox.Show("You can only download the data once per hour!");
                 }
                 else
                 {
                     // Download data
                     Directory.CreateDirectory(dirName);
-                    System.Net.WebClient client = new System.Net.WebClient();
+                    var client = new System.Net.WebClient();
 
                     DownloadFile(client, DownloadVillage, dirName + "\\" + FileVillageString);
                     DownloadFile(client, DownloadTribe, dirName + "\\" + FileTribeString);
@@ -495,9 +478,9 @@ namespace TribalWars
             {
                 using (Stream stream = client.OpenRead(urlFile))
                 {
-                    using (System.IO.Compression.GZipStream unzip = new System.IO.Compression.GZipStream(stream, System.IO.Compression.CompressionMode.Decompress))
+                    using (var unzip = new System.IO.Compression.GZipStream(stream, System.IO.Compression.CompressionMode.Decompress))
                     {
-                        using (FileStream writer = new FileStream(outputFile, FileMode.Create))
+                        using (var writer = new FileStream(outputFile, FileMode.Create))
                         {
                             byte[] block = new byte[4096];
                             int read;
@@ -517,19 +500,19 @@ namespace TribalWars
                 if (IsValidDataPath(dataPath))
                 {
                     // load map files
-                    string[] readVillages = File.ReadAllLines(dataPath + InternalStructure.FileVillageString);
-                    string[] readPlayers = File.ReadAllLines(dataPath + InternalStructure.FilePlayerString);
-                    string[] readTribes = File.ReadAllLines(dataPath + InternalStructure.FileTribeString);
+                    string[] readVillages = File.ReadAllLines(dataPath + FileVillageString);
+                    string[] readPlayers = File.ReadAllLines(dataPath + FilePlayerString);
+                    string[] readTribes = File.ReadAllLines(dataPath + FileTribeString);
 
                     // Temporary dictionaries for mapping
-                    Dictionary<int, string> tempPlayers = new Dictionary<int, string>(InternalStructure.WorldPlayerCount);
-                    Dictionary<int, string> tempTribes = new Dictionary<int, string>(InternalStructure.WorldTribeCount);
+                    var tempPlayers = new Dictionary<int, string>(WorldPlayerCount);
+                    var tempTribes = new Dictionary<int, string>(WorldTribeCount);
 
                     // Load tribes
                     tribes = new Dictionary<string, Tribe>(readTribes.Length + 1);
                     foreach (string tribeString in readTribes)
                     {
-                        Tribe tribe = new Tribe(tribeString.Split(','));
+                        var tribe = new Tribe(tribeString.Split(','));
                         tribes.Add(tribe.Tag.ToUpper(), tribe);
                         tempTribes.Add(tribe.ID, tribe.Tag.ToUpper());
                     }
@@ -538,7 +521,7 @@ namespace TribalWars
                     players = new Dictionary<string, Player>(readPlayers.Length + 1);
                     foreach (string playerString in readPlayers)
                     {
-                        Player player = new Player(playerString.Split(','));
+                        var player = new Player(playerString.Split(','));
 
                         // Find tribe
                         if (player._TribeID != 0 && tempTribes.ContainsKey(player._TribeID))
@@ -556,12 +539,12 @@ namespace TribalWars
                     villages = new WorldVillagesCollection(readVillages.Length + 1);
                     foreach (string villageString in readVillages)
                     {
-                        Village village = new Village(villageString.Split(','));
+                        var village = new Village(villageString.Split(','));
 
                         // links to and from players
-                        if (village._PlayerID != 0 && tempPlayers.ContainsKey(village._PlayerID))
+                        if (village.PlayerId != 0 && tempPlayers.ContainsKey(village.PlayerId))
                         {
-                            Player player = players[tempPlayers[village._PlayerID]];
+                            Player player = players[tempPlayers[village.PlayerId]];
                             village.Player = player;
                             players[player.Name.ToUpper()].AddVillage(village);
                         }
@@ -610,8 +593,8 @@ namespace TribalWars
                     wrapper.Players = players;
                     wrapper.Path = PreviousWorldDataDateDirectory;
 
-                    DictionaryLoader invoker = new DictionaryLoader(BeginDictionaryAsync);
-                    invoker.BeginInvoke(wrapper, new AsyncCallback(EndDictionaryAsync), null);
+                    DictionaryLoader invoker = BeginDictionaryAsync;
+                    invoker.BeginInvoke(wrapper, EndDictionaryAsync, null);
                 }
             }
 

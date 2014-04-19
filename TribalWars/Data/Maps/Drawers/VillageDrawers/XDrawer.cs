@@ -1,12 +1,9 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using TribalWars.Data.Maps.Markers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws smaller rectangles inside a village
@@ -14,7 +11,7 @@ namespace TribalWars.Data.Maps.Drawers
     public class XDrawer : DrawerBase
     {
         #region Properties
-        private Brush _brush;
+        private readonly Brush _brush;
         #endregion
 
         #region Properties
@@ -42,13 +39,13 @@ namespace TribalWars.Data.Maps.Drawers
         {
             if (width > 5)
             {
-                int off = width - (int)(width / 2 - 1);
+                int off = width - (width/2 - 1);
                 int w = width - off;
 
                 g.FillRectangle(
                     _brush,
-                    x + off / 2,
-                    y + off / 2,
+                    x + off/2,
+                    y + off/2,
                     w,
                     w);
             }

@@ -34,7 +34,7 @@ namespace TribalWars.Data.Players
         /// </summary>
         public static PlayerYou Default
         {
-            [DebuggerStepThrough()]
+            [DebuggerStepThrough]
             get { return _instance; }
         }
         #endregion

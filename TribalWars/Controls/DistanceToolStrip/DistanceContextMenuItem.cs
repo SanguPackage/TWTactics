@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace TribalWars.Controls.DistanceToolStrip
@@ -11,8 +9,8 @@ namespace TribalWars.Controls.DistanceToolStrip
     class DistanceContextMenuItem : ToolStripMenuItem
     {
         #region Fields
-        private ShowDistanceEnum _distance;
-        private DistanceCollectionControl _collection;
+        private readonly ShowDistanceEnum _distance;
+        private readonly DistanceCollectionControl _collection;
         #endregion
 
         #region Constructors
@@ -21,7 +19,7 @@ namespace TribalWars.Controls.DistanceToolStrip
         {
             _distance = dist;
             _collection = parent;
-            this.Click += new EventHandler(DistanceContextMenuItem_Click);
+            Click += DistanceContextMenuItem_Click;
         }
         #endregion
 
@@ -32,7 +30,7 @@ namespace TribalWars.Controls.DistanceToolStrip
             foreach (ToolStripMenuItem itm in _collection.SpeedStrip.Items)
                 itm.Checked = false;
 
-            DistanceContextMenuItem sent = (DistanceContextMenuItem)sender;
+            var sent = (DistanceContextMenuItem)sender;
             sent.Checked = true;
 
             // Changes the size of the DistanceControls
@@ -57,9 +55,8 @@ namespace TribalWars.Controls.DistanceToolStrip
         /// <param name="width">New width for each DistanceControl</param>
         private void SetDistance(int width)
         {
-            foreach (Control ctl in _collection.Items)
+            foreach (DistanceControl dist in _collection.Items)
             {
-                DistanceControl dist = ctl as DistanceControl;
                 if (dist != null)
                 {
                     dist.Width = width;

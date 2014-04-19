@@ -1,4 +1,4 @@
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Accordeon
 {
     partial class MarkersContainerControl
     {

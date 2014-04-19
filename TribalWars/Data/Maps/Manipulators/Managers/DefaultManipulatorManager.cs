@@ -1,17 +1,13 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
-using TribalWars.Controls.TWContextMenu;
+using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Maps.Manipulators.Implementations;
 using TribalWars.Data.Villages;
-using TribalWars.Controls.Maps;
-using System.Xml;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     /// <summary>
     /// The default manipulatormanager for a map
@@ -19,44 +15,28 @@ namespace TribalWars.Data.Maps.Manipulators
     public class DefaultManipulatorManager : ManipulatorManagerBase
     {
         #region Fields
-        private ActiveVillageManipulator _activeVillageManipulator;
-        private MapMoverManipulator _mapMover;
-        private MapDraggerManipulator _mapDragger;
-        private PinPointManipulator _mapPinPoint; // TODO: dit is nog een lege doos!
         #endregion
 
         #region Properties
         /// <summary>
         /// Moves the map with the mouse
         /// </summary>
-        internal MapDraggerManipulator MapDragger
-        {
-            get { return _mapDragger; }
-        }
+        internal MapDraggerManipulator MapDragger { get; private set; }
 
         /// <summary>
         /// Marks the active village
         /// </summary>
-        internal ActiveVillageManipulator ActiveVillageManipulator
-        {
-            get { return _activeVillageManipulator; }
-        }
+        internal ActiveVillageManipulator ActiveVillageManipulator { get; private set; }
 
         /// <summary>
         /// Moves the map with the keyboard
         /// </summary>
-        internal MapMoverManipulator MapMover
-        {
-            get { return _mapMover; }
-        }
+        internal MapMoverManipulator MapMover { get; private set; }
 
         /// <summary>
         /// Marks players and tribes
         /// </summary>
-        internal PinPointManipulator MapPinPointer
-        {
-            get { return _mapPinPoint; }
-        }
+        internal PinPointManipulator MapPinPointer { get; private set; }
         #endregion
 
         #region Constructors
@@ -64,15 +44,15 @@ namespace TribalWars.Data.Maps.Manipulators
             : base(map)
         {
             // Active manipulators
-            _activeVillageManipulator = new ActiveVillageManipulator(map, SystemColors.HighlightText, Color.LimeGreen, Color.Red, SystemColors.HighlightText);
-            _mapMover = new MapMoverManipulator(map);
-            _mapDragger = new MapDraggerManipulator(map, this, 1);
-            _mapPinPoint = new PinPointManipulator(map);
+            ActiveVillageManipulator = new ActiveVillageManipulator(map, SystemColors.HighlightText, Color.LimeGreen, Color.Red, SystemColors.HighlightText);
+            MapMover = new MapMoverManipulator(map);
+            MapDragger = new MapDraggerManipulator(map, this, 1);
+            MapPinPointer = new PinPointManipulator(map);
 
-            _manipulators.Add(_activeVillageManipulator);
-            _manipulators.Add(_mapMover);
-            _manipulators.Add(_mapDragger);
-            _manipulators.Add(_mapPinPoint);
+            _manipulators.Add(ActiveVillageManipulator);
+            _manipulators.Add(MapMover);
+            _manipulators.Add(MapDragger);
+            _manipulators.Add(MapPinPointer);
         }
         #endregion
 
@@ -107,7 +87,6 @@ namespace TribalWars.Data.Maps.Manipulators
         #region IMapDrawer Members
         public override void Dispose()
         {
-            
         }
         #endregion
     }

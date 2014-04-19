@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Monitoring;
@@ -368,12 +369,12 @@ namespace TribalWars.Data
             r.ReadEndElement();
 
             r.ReadStartElement();
-            w.TWStats.Default = new Uri(r.ReadElementString("General"));
-            w.TWStats.Village = r.ReadElementString("Village");
-            w.TWStats.Player = r.ReadElementString("Player");
-            w.TWStats.Tribe = r.ReadElementString("Tribe");
-            w.TWStats.PlayerGraph = r.ReadElementString("PlayerGraph");
-            w.TWStats.TribeGraph = r.ReadElementString("TribeGraph");
+            w.TwStats.Default = new Uri(r.ReadElementString("General"));
+            w.TwStats.Village = r.ReadElementString("Village");
+            w.TwStats.Player = r.ReadElementString("Player");
+            w.TwStats.Tribe = r.ReadElementString("Tribe");
+            w.TwStats.PlayerGraph = r.ReadElementString("PlayerGraph");
+            w.TwStats.TribeGraph = r.ReadElementString("TribeGraph");
             r.ReadEndElement();
 
             // Views

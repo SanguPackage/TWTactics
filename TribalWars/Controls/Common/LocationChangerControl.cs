@@ -1,10 +1,5 @@
 #region Imports
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data.Maps;
 #endregion
@@ -25,25 +20,22 @@ namespace TribalWars.Controls.Common
         public LocationChangerControl()
         {
             InitializeComponent();
-            _villagePlayerTribeFinderTextBox.AllowPlayer = true;
-            _villagePlayerTribeFinderTextBox.AllowTribe = true;
-            _villagePlayerTribeFinderTextBox.ShowButton = true;
+            PlayerTribeFinderTextBox.AllowPlayer = true;
+            PlayerTribeFinderTextBox.AllowTribe = true;
+            PlayerTribeFinderTextBox.ShowButton = true;
         }
 
         public void Initialize(Map map)
         {
             ZoomControl.Value = map.Location.Zoom;
             _map = map;
-            _villagePlayerTribeFinderTextBox.Initialize(map);
-            _map.EventPublisher.LocationChanged += new EventHandler<TribalWars.Data.Events.MapLocationEventArgs>(EventPublisher_LocationChanged);
+            PlayerTribeFinderTextBox.Initialize(map);
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
         #endregion
 
         #region Properties
-        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox
-        {
-            get { return _villagePlayerTribeFinderTextBox; }
-        }
+        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox { get; private set; }
         #endregion
 
         #region Event Handlers
@@ -54,15 +46,15 @@ namespace TribalWars.Controls.Common
         {
             if (_map != null && !_updatingZoom)
             {
-                int Value = ZoomControl.Value;
-                _map.SetCenter(Value);
+                int value = ZoomControl.Value;
+                _map.SetCenter(value);
             }
         }
 
         /// <summary>
         /// New location
         /// </summary>
-        private void EventPublisher_LocationChanged(object sender, TribalWars.Data.Events.MapLocationEventArgs e)
+        private void EventPublisher_LocationChanged(object sender, Data.Events.MapLocationEventArgs e)
         {
             _updatingZoom = true;
             ZoomControl.Minimum = e.ZoomInfo.Minimum;
@@ -70,10 +62,6 @@ namespace TribalWars.Controls.Common
             ZoomControl.Value = e.NewLocation.Zoom;
             _updatingZoom = false;
         }
-        #endregion
-
-        #region Public Methods
-
         #endregion
     }
 }

@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Drawing;
-
-using TribalWars.Data.Players;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Reporting;
 
@@ -16,7 +13,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Lists the different columns in the ReportTableRow columns
     /// </summary>
-    [Flags()]
+    [Flags]
     public enum ReportFields
     {
         None = 0,
@@ -34,11 +31,11 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents an XPTable row for a report
     /// </summary>
-    public class ReportTableRow : XPTable.Models.Row, TribalWars.Controls.TWContextMenu.ITWContextMenu
+    public class ReportTableRow : Row, TWContextMenu.ITWContextMenu
     {
         #region Fields
-        private Report _report;
-        private Village _village;
+        private readonly Report _report;
+        private readonly Village _village;
         private Village _villageOther;
         #endregion
 
@@ -98,7 +95,7 @@ namespace TribalWars.Controls.Display
             //    World.Default.Map.Manipulators.CurrentManipulator.VillageContextMenu.Show(this.TableModel.Table, p, _village);
         }
 
-        public IEnumerable<TribalWars.Data.Villages.Village> GetVillages()
+        public IEnumerable<Village> GetVillages()
         {
             return _village;
         }

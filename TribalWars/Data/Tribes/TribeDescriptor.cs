@@ -12,7 +12,7 @@ namespace TribalWars.Data.Tribes
     /// <summary>
     /// Descriptor used in ExtendedPlayerDescriptor and ExtendedVillageDescriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class TribeDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -77,7 +77,7 @@ namespace TribalWars.Data.Tribes
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return tribe.BBCode(); }

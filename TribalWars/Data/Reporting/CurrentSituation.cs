@@ -26,43 +26,27 @@ namespace TribalWars.Data.Reporting
         // incomings, support from other villages etc...
 
         #region Fields
-        private Village _village;
-        private Resource _resources;
         private float _loyalty;
-        private VillageBuildings _buildings;
-        private VillageDefense _defense;
 
         internal DateTime _villageDate;
         internal DateTime _loyaltyDate;
-        internal DateTime _resourcesDate;
-        internal DateTime _defenseDate;
-        internal DateTime _buildingsDate;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the defenses of the village
         /// </summary>
-        public VillageDefense Defense
-        {
-            get { return _defense; }
-        }
+        public VillageDefense Defense { get; private set; }
 
         /// <summary>
         /// Gets the buildings in the village
         /// </summary>
-        public VillageBuildings Buildings
-        {
-            get { return _buildings; }
-        }
+        public VillageBuildings Buildings { get; private set; }
 
         /// <summary>
         /// Gets the village
         /// </summary>
-        public Village Village
-        {
-            get { return _village; }
-        }
+        public Village Village { get; private set; }
 
         /// <summary>
         /// Gets the loyalty
@@ -75,34 +59,22 @@ namespace TribalWars.Data.Reporting
         /// <summary>
         /// Gets the last time building levels were updated
         /// </summary>
-        public DateTime BuildingsDate
-        {
-            get { return _buildingsDate; }
-        }
+        public DateTime BuildingsDate { get; internal set; }
 
         /// <summary>
         /// Gets the last time defense levels were updated
         /// </summary>
-        public DateTime DefenseDate
-        {
-            get { return _defenseDate; }
-        }
+        public DateTime DefenseDate { get; internal set; }
 
         /// <summary>
         /// Gets the last known resource level
         /// </summary>
-        public Resource Resources
-        {
-            get { return _resources; }
-        }
+        public Resource Resources { get; private set; }
 
         /// <summary>
         /// Gets the last time resource levels were updated
         /// </summary>
-        public DateTime ResourcesDate
-        {
-            set { _resourcesDate = value; }
-        }
+        public DateTime ResourcesDate { internal get; set; }
 
         /// <summary>
         /// Gets or sets the last known loyalty level
@@ -138,10 +110,10 @@ namespace TribalWars.Data.Reporting
         #region Constructors
         public CurrentSituation(Village village)
         {
-            _village = village;
-            _buildings = new VillageBuildings();
-            _defense = new VillageDefense();
-            _resources = new Resource();
+            Village = village;
+            Buildings = new VillageBuildings();
+            Defense = new VillageDefense();
+            Resources = new Resource();
         }
         #endregion
 
@@ -171,22 +143,22 @@ namespace TribalWars.Data.Reporting
                 Pen borderPen = new Pen(Color.Black, 2);
                 int ImageYOffset = 20;
                 int ImageYTextOffset = 5;
-                if (_resourcesDate != DateTime.MinValue)
+                if (ResourcesDate != DateTime.MinValue)
                 {
                     g.DrawImage(TribalWars.Data.Resources.Images.wood, x, ResourceYOffset);
-                    g.DrawString(_resources.WoodString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    g.DrawString(Resources.WoodString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
 
-                    x += g.MeasureString(_resources.WoodString, SystemFonts.DefaultFont).Width;
+                    x += g.MeasureString(Resources.WoodString, SystemFonts.DefaultFont).Width;
                     x += ImageXOffset + ResourceXOffset;
                     g.DrawImage(TribalWars.Data.Resources.Images.clay, x, ResourceYOffset);
-                    g.DrawString(_resources.ClayString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    g.DrawString(Resources.ClayString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
 
-                    x += g.MeasureString(_resources.ClayString, SystemFonts.DefaultFont).Width;
+                    x += g.MeasureString(Resources.ClayString, SystemFonts.DefaultFont).Width;
                     x += ImageXOffset + ResourceXOffset;
                     g.DrawImage(TribalWars.Data.Resources.Images.iron, x, ResourceYOffset);
-                    g.DrawString(_resources.IronString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    g.DrawString(Resources.IronString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
 
-                    x += g.MeasureString(_resources.IronString, SystemFonts.DefaultFont).Width;
+                    x += g.MeasureString(Resources.IronString, SystemFonts.DefaultFont).Width;
                     x += ImageXOffset + ResourceXOffset;
 
                     g.DrawRectangle(borderPen, 0, 0, x, ResourceYOffset + ImageYOffset + 3);
@@ -212,7 +184,7 @@ namespace TribalWars.Data.Reporting
                     string dateString = string.Format("Date: {0}", Tools.Common.GetPrettyDate(BuildingsDate, true));
                     g.DrawString(dateString, SystemFonts.DefaultFont, Brushes.Black,  5, 5);
                     y += g.MeasureString(dateString, SystemFonts.DefaultFont).Height + 5;
-                    foreach (KeyValuePair<Building, int> building in this.Buildings)
+                    foreach (KeyValuePair<Building, int> building in Buildings)
                     {
                         column++;
                         g.DrawImage(building.Key.Image, 5 + xAdd, y);
@@ -242,7 +214,7 @@ namespace TribalWars.Data.Reporting
                     string dateString = string.Format("Date: {0}", Tools.Common.GetPrettyDate(DefenseDate, true));
                     g.DrawString(dateString, SystemFonts.DefaultFont, Brushes.Black, 5, 5);
                     y += g.MeasureString(dateString, SystemFonts.DefaultFont).Height + 5;
-                    foreach (KeyValuePair<UnitTypes, int> unit in this.Defense.OwnTroops)
+                    foreach (KeyValuePair<UnitTypes, int> unit in Defense.OwnTroops)
                     {
                         column++;
                         g.DrawImage(WorldUnits.Default[unit.Key].Image, 5 + xAdd, y);
@@ -268,59 +240,59 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public void UpdateDefender(Report report)
         {
-            if (_resourcesDate < report.Date)
+            if (ResourcesDate < report.Date)
             {
                 // Update resources
                 if (report.ResourceHaulGot < report.ResourceHaulMax)
                 {
                     // All resources taken
-                    _resources = new Resource();
-                    _resourcesDate = report.Date;
+                    Resources = new Resource();
+                    ResourcesDate = report.Date;
                 }
                 else if (report.ResourcesLeft.Set)
                 {
                     // Espionage resource
-                    _resources = report.ResourcesLeft.Clone();
-                    _resourcesDate = report.Date;
+                    Resources = report.ResourcesLeft.Clone();
+                    ResourcesDate = report.Date;
                 }
                 else if (report.ResourcesHaul.Set && Resources.Set)
                 {
                     // Subtract haul from stock
                     Update();
-                    if (_resources.Wood < report.ResourcesHaul.Wood)
+                    if (Resources.Wood < report.ResourcesHaul.Wood)
                     {
                         // If barbarian + we have building info
                         // We need to inform the user that the buildings have been upgraded?
                     }
 
-                    _resources.Wood -= report.ResourcesHaul.Wood;
-                    _resources.Clay -= report.ResourcesHaul.Clay;
-                    _resources.Iron -= report.ResourcesHaul.Iron;
+                    Resources.Wood -= report.ResourcesHaul.Wood;
+                    Resources.Clay -= report.ResourcesHaul.Clay;
+                    Resources.Iron -= report.ResourcesHaul.Iron;
                 }
             }
-            if (_buildingsDate < report.Date && report.Buildings.Count > 0)
+            if (BuildingsDate < report.Date && report.Buildings.Count > 0)
             {
                 // Update buildings
                 foreach (ReportBuilding building in report.Buildings.Values)
                 {
-                    _buildings[building.Building.Type] = building.Level;
+                    Buildings[building.Building.Type] = building.Level;
                     //if (_buildings[building.Building.Type] .ContainsKey(building.Building.Type)) _buildings[building.Building.Type].Level = building.Level;
                     //else _buildings.Add(building.Building.Type, building.Clone());
                 }
-                _buildingsDate = report.Date;
+                BuildingsDate = report.Date;
             }
-            if (_defenseDate < report.Date && (report.ReportFlag & ReportFlags.SeenDefense) != 0)
+            if (DefenseDate < report.Date && (report.ReportFlag & ReportFlags.SeenDefense) != 0)
             {
                 // Update defenses
                 foreach (ReportUnit unit in report.Defense.Values)
                 {
-                    _defense.OwnTroops[unit.Unit.Type] = unit.AmountEnd;
+                    Defense.OwnTroops[unit.Unit.Type] = unit.AmountEnd;
                     //if (_defense.ContainsKey(unit.Unit.Type)) _defense[unit.Unit.Type] = unit.Clone();
                     //else _defense.Add(unit.Unit.Type, unit.Clone());
 
                     //_defense[unit.Unit.Type].AmountStart -= _defense[unit.Unit.Type].AmountLost;
                 }
-                _defenseDate = report.Date;
+                DefenseDate = report.Date;
 
                 // Mark the village as a farm / to noble
                 if ((report.ReportFlag & ReportFlags.Clear) > 0)
@@ -348,16 +320,16 @@ namespace TribalWars.Data.Reporting
         public void UpdateAttacker(Report report)
         {
             Update();
-            if (_defenseDate == DateTime.MinValue || _defenseDate < report.Date)
+            if (DefenseDate == DateTime.MinValue || DefenseDate < report.Date)
             {
                 foreach (ReportUnit unit in report.Attack.Values)
                 {
-                    if (_defense.OwnTroops[unit.Unit.Type] >= unit.AmountLost)
-                        _defense.OwnTroops[unit.Unit.Type] -= unit.AmountLost;
+                    if (Defense.OwnTroops[unit.Unit.Type] >= unit.AmountLost)
+                        Defense.OwnTroops[unit.Unit.Type] -= unit.AmountLost;
                     else
-                        _defense.OwnTroops[unit.Unit.Type] = 0;
+                        Defense.OwnTroops[unit.Unit.Type] = 0;
                 }
-                _defenseDate = report.Date;
+                DefenseDate = report.Date;
             }
             if (_villageDate < report.Date) _villageDate = report.Date;
         }
@@ -374,10 +346,10 @@ namespace TribalWars.Data.Reporting
                     // Update resources
                     TimeSpan elapsed = World.Default.ServerTime - VillageDate;
                     //TimeSpan elapsed = new DateTime( 2008, 9, 7, 15, 29, 0) - VillageDate;
-                    Resources.Wood += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.TimberCamp].GetTotalProduction(_buildings[BuildingTypes.TimberCamp]) / 3600);
-                    Resources.Clay += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.ClayPit].GetTotalProduction(_buildings[BuildingTypes.ClayPit]) / 3600);
-                    Resources.Iron += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.IronMine].GetTotalProduction(_buildings[BuildingTypes.IronMine]) / 3600);
-                    int warehouse = WorldBuildings.Default[BuildingTypes.Warehouse].GetTotalProduction(_buildings[BuildingTypes.Warehouse]);
+                    Resources.Wood += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.TimberCamp].GetTotalProduction(Buildings[BuildingTypes.TimberCamp]) / 3600);
+                    Resources.Clay += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.ClayPit].GetTotalProduction(Buildings[BuildingTypes.ClayPit]) / 3600);
+                    Resources.Iron += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.IronMine].GetTotalProduction(Buildings[BuildingTypes.IronMine]) / 3600);
+                    int warehouse = WorldBuildings.Default[BuildingTypes.Warehouse].GetTotalProduction(Buildings[BuildingTypes.Warehouse]);
                     if (Resources.Wood > warehouse) Resources.Wood = warehouse;
                     if (Resources.Clay > warehouse) Resources.Clay = warehouse;
                     if (Resources.Iron > warehouse) Resources.Iron = warehouse;
@@ -409,7 +381,7 @@ namespace TribalWars.Data.Reporting
                 bool flagNoble = false;
                 bool flagScout = false;
 
-                CurrentSituation current = _village.Reports.CurrentSituation;
+                CurrentSituation current = Village.Reports.CurrentSituation;
                 foreach (KeyValuePair<UnitTypes, int> pair in current.Defense.OwnTroops)
                 {
                     Unit unit = WorldUnits.Default[pair.Key];
@@ -426,16 +398,16 @@ namespace TribalWars.Data.Reporting
 
                 if (off + def < 200)
                 {
-                    _village.Type = VillageType.Farm;
+                    Village.Type = VillageType.Farm;
                 }
                 else
                 {
-                    if (def > off * 1.2) _village.Type = VillageType.Defense;
-                    else if (off > def * 1.2) _village.Type = VillageType.Attack;
-                    else _village.Type = VillageType.Attack | VillageType.Defense;
+                    if (def > off * 1.2) Village.Type = VillageType.Defense;
+                    else if (off > def * 1.2) Village.Type = VillageType.Attack;
+                    else Village.Type = VillageType.Attack | VillageType.Defense;
                 }
-                if (flagNoble) _village.Type |= VillageType.Noble;
-                if (flagScout) _village.Type |= VillageType.Scout;
+                if (flagNoble) Village.Type |= VillageType.Noble;
+                if (flagScout) Village.Type |= VillageType.Scout;
             }
         }
 
@@ -457,7 +429,7 @@ namespace TribalWars.Data.Reporting
             }
 
             _villageDate = World.Default.ServerTime;
-            _defenseDate = _villageDate;
+            DefenseDate = _villageDate;
             GuessVillageType();
         }
         #endregion
@@ -486,12 +458,12 @@ namespace TribalWars.Data.Reporting
 
             // resources
             DateTime? tempDate;
-            _resources.ReadXml(r, out tempDate);
-            if (tempDate.HasValue) _resourcesDate = tempDate.Value;
+            Resources.ReadXml(r, out tempDate);
+            if (tempDate.HasValue) ResourcesDate = tempDate.Value;
 
             // defense
             if (r.HasAttributes)
-                _defenseDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+                DefenseDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
 
             r.Read();
             if (r.IsStartElement("Unit"))
@@ -502,9 +474,9 @@ namespace TribalWars.Data.Reporting
                     if (Enum.IsDefined(typeof(UnitTypes), typeDesc))
                     {
                         UnitTypes type = (UnitTypes)Enum.Parse(typeof(UnitTypes), typeDesc);
-                        _defense.OwnTroops[type] = System.Convert.ToInt32(r.GetAttribute("OwnTroops"));
-                        _defense.OutTroops[type] = System.Convert.ToInt32(r.GetAttribute("OutTroops"));
-                        _defense.OtherDefenses[type] = System.Convert.ToInt32(r.GetAttribute("OtherDefenses"));
+                        Defense.OwnTroops[type] = System.Convert.ToInt32(r.GetAttribute("OwnTroops"));
+                        Defense.OutTroops[type] = System.Convert.ToInt32(r.GetAttribute("OutTroops"));
+                        Defense.OtherDefenses[type] = System.Convert.ToInt32(r.GetAttribute("OtherDefenses"));
                     }
                     r.Read();
                 }
@@ -512,9 +484,9 @@ namespace TribalWars.Data.Reporting
             }
             
             // buildings
-            _buildings.Clear();
+            Buildings.Clear();
             if (r.HasAttributes)
-                _buildingsDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+                BuildingsDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
 
             r.Read();
             if (r.IsStartElement("Building"))
@@ -526,7 +498,7 @@ namespace TribalWars.Data.Reporting
                     {
                         BuildingTypes type = (BuildingTypes)Enum.Parse(typeof(BuildingTypes), typeDesc);
                         int level = System.Convert.ToInt32(r.GetAttribute(1));
-                        _buildings[type] = level;
+                        Buildings[type] = level;
                     }
                     r.Read();
                 }
@@ -553,29 +525,29 @@ namespace TribalWars.Data.Reporting
             w.WriteEndElement();
 
             // Comments
-            w.WriteElementString("Comments", _village.Comments);
+            w.WriteElementString("Comments", Village.Comments);
 
-            _resources.WriteXml(w, _resourcesDate);
+            Resources.WriteXml(w, ResourcesDate);
 
             w.WriteStartElement("Defense");
-            if (_defenseDate != DateTime.MinValue)
-                w.WriteAttributeString("Date", _defenseDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
-            foreach (UnitTypes key in _defense)
+            if (DefenseDate != DateTime.MinValue)
+                w.WriteAttributeString("Date", DefenseDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            foreach (UnitTypes key in Defense)
             {
                 w.WriteStartElement("Unit");
                 w.WriteAttributeString("Type", key.ToString());
-                w.WriteAttributeString("OwnTroops", _defense.OwnTroops[key].ToString());
-                w.WriteAttributeString("OutTroops", _defense.OutTroops[key].ToString());
-                w.WriteAttributeString("OtherDefenses", _defense.OtherDefenses[key].ToString());
+                w.WriteAttributeString("OwnTroops", Defense.OwnTroops[key].ToString());
+                w.WriteAttributeString("OutTroops", Defense.OutTroops[key].ToString());
+                w.WriteAttributeString("OtherDefenses", Defense.OtherDefenses[key].ToString());
                 w.WriteEndElement();
             }
             w.WriteEndElement();
 
 
             w.WriteStartElement("Buildings");
-            if (_buildingsDate != DateTime.MinValue)
-                w.WriteAttributeString("Date", _buildingsDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
-            foreach (KeyValuePair<Building, int> build in _buildings)
+            if (BuildingsDate != DateTime.MinValue)
+                w.WriteAttributeString("Date", BuildingsDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            foreach (KeyValuePair<Building, int> build in Buildings)
             {
                 w.WriteStartElement("Building");
                 w.WriteAttributeString("Type", build.Key.Type.ToString());
@@ -665,44 +637,29 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public class VillageDefense : IEnumerable<UnitTypes>
         {
-            #region Fields
-            private Units _ownHomeTroops;
-            private Units _outTroops;
-            private Units _otherDefenses;
-            #endregion
-
             #region Properties
             /// <summary>
             /// Gets the total own troops
             /// </summary>
-            public Units OwnTroops
-            {
-                get { return _ownHomeTroops; }
-            }
+            public Units OwnTroops { get; private set; }
 
             /// <summary>
             /// Gets the own troops not at home
             /// </summary>
-            public Units OutTroops
-            {
-                get { return _outTroops; }
-            }
+            public Units OutTroops { get; private set; }
 
             /// <summary>
             /// Gets the own troops not at home
             /// </summary>
-            public Units OtherDefenses
-            {
-                get { return _otherDefenses; }
-            }
+            public Units OtherDefenses { get; private set; }
             #endregion
 
             #region Constructors
             public VillageDefense()
             {
-                _ownHomeTroops = new Units();
-                _outTroops = new Units();
-                _otherDefenses = new Units();
+                OwnTroops = new Units();
+                OutTroops = new Units();
+                OtherDefenses = new Units();
             }
             #endregion
 
@@ -712,16 +669,16 @@ namespace TribalWars.Data.Reporting
             /// </summary>
             public void Clear()
             {
-                _ownHomeTroops = new Units();
-                _outTroops = new Units();
-                _otherDefenses = new Units();
+                OwnTroops = new Units();
+                OutTroops = new Units();
+                OtherDefenses = new Units();
             }
             #endregion
 
             #region IEnumerable Members
             public IEnumerator<UnitTypes> GetEnumerator()
             {
-                foreach (KeyValuePair<UnitTypes, int> pair in _ownHomeTroops)
+                foreach (KeyValuePair<UnitTypes, int> pair in OwnTroops)
                     yield return pair.Key;
             }
 

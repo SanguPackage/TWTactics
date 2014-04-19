@@ -1,13 +1,6 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using System.IO;
-using System.Xml;
-using System.Xml.XPath;
-using System.Xml.Serialization;
 using TribalWars.Data.Reporting;
 #endregion
 
@@ -19,13 +12,14 @@ namespace TribalWars.Data.Buildings
     public class Building : IEquatable<Building>
     {
         #region Fields
-        protected int[] _production;
-        public string _productionImage;
-        protected string _name;
-        protected int[] _points;
-        protected int[] _people;
-        protected string _image;
-        private BuildingTypes _type;
+
+        private int[] _production;
+        public readonly string ProductionImage;
+        private readonly string _name;
+        private int[] _points;
+        private int[] _people;
+        private readonly string _image;
+        private readonly BuildingTypes _type;
         #endregion
 
         #region Properties
@@ -48,7 +42,7 @@ namespace TribalWars.Data.Buildings
         /// <summary>
         /// Gets the building image in BBCode
         /// </summary>
-        public string BBCodeImage
+        public string BbCodeImage
         {
             get { return string.Format("[img]{0}[/img]", _image); }
         }
@@ -63,37 +57,37 @@ namespace TribalWars.Data.Buildings
                 switch (_type)
                 {
                     case BuildingTypes.Academy:
-                        return (System.Drawing.Image)Images.Academy;
+                        return Images.Academy;
                     case BuildingTypes.Barracks:
-                        return (System.Drawing.Image)Images.Barracks;
+                        return Images.Barracks;
                     case BuildingTypes.ClayPit:
-                        return (System.Drawing.Image)Images.ClayPit;
+                        return Images.ClayPit;
                     case BuildingTypes.Farm:
-                        return (System.Drawing.Image)Images.Farm;
+                        return Images.Farm;
                     case BuildingTypes.HidingPlace:
-                        return (System.Drawing.Image)Images.HidingPlace;
+                        return Images.HidingPlace;
                     case BuildingTypes.IronMine:
-                        return (System.Drawing.Image)Images.IronMine;
+                        return Images.IronMine;
                     case BuildingTypes.Market:
-                        return (System.Drawing.Image)Images.Market;
+                        return Images.Market;
                     case BuildingTypes.RallyPoint:
-                        return (System.Drawing.Image)Images.RallyPoint;
+                        return Images.RallyPoint;
                     case BuildingTypes.Smithy:
-                        return (System.Drawing.Image)Images.Smithy;
+                        return Images.Smithy;
                     case BuildingTypes.Stable:
-                        return (System.Drawing.Image)Images.Stable;
+                        return Images.Stable;
                     case BuildingTypes.Statue:
-                        return (System.Drawing.Image)Images.Statue;
+                        return Images.Statue;
                     case BuildingTypes.TimberCamp:
-                        return (System.Drawing.Image)Images.TimberCamp;
+                        return Images.TimberCamp;
                     case BuildingTypes.VillageHeadquarters:
-                        return (System.Drawing.Image)Images.VillageHeadquarters;
+                        return Images.VillageHeadquarters;
                     case BuildingTypes.Wall:
-                        return (System.Drawing.Image)Images.Wall;
+                        return Images.Wall;
                     case BuildingTypes.Warehouse:
-                        return (System.Drawing.Image)Images.Warehouse;
+                        return Images.Warehouse;
                     case BuildingTypes.Workshop:
-                        return (System.Drawing.Image)Images.Workshop;
+                        return Images.Workshop;
                     default:
                         return null;
                 }
@@ -196,13 +190,13 @@ namespace TribalWars.Data.Buildings
         #region Constructors
         internal Building(Building build)
         {
-            this._image = build._image;
-            this._name = build._name;
-            this._people = build._people;
-            this._points = build._points;
-            this._production = build._production;
-            this._type = build._type;
-            this._productionImage = build._productionImage;
+            _image = build._image;
+            _name = build._name;
+            _people = build._people;
+            _points = build._points;
+            _production = build._production;
+            _type = build._type;
+            ProductionImage = build.ProductionImage;
         }
 
         internal Building(string name, string type, string image, string points, string people)
@@ -263,7 +257,7 @@ namespace TribalWars.Data.Buildings
         /// <summary>
         /// Checks if the report contains info on the resource buildings
         /// </summary>
-        /// <param name="BuildingList">The building list for the report</param>
+        /// <param name="buildingList">The building list for the report</param>
         public static bool HasResourceInfo(Dictionary<BuildingTypes, ReportBuilding> buildingList)
         {
             if (!buildingList.ContainsKey(BuildingTypes.Warehouse)) return false;
@@ -276,7 +270,7 @@ namespace TribalWars.Data.Buildings
         /// <summary>
         /// Checks if the list contains info on the resource buildings
         /// </summary>
-        /// <param name="BuildingList">The building list for the report</param>
+        /// <param name="buildingList">The building list for the report</param>
         public static bool HasResourceInfo(IEnumerable<KeyValuePair<Building, int>> buildingList)
         {
             foreach (KeyValuePair<Building, int> building in buildingList)

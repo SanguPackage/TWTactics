@@ -1,3 +1,5 @@
+using TribalWars.Controls.Common;
+
 namespace TribalWars.Controls.Accordeon.Details
 {
     partial class DetailsControl
@@ -31,7 +33,7 @@ namespace TribalWars.Controls.Accordeon.Details
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsControl));
             this.QuickFinderLayout = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.SelectedVillage = new TribalWars.Controls.ToolStripVillageTextBox();
+            this.SelectedVillage = new ToolStripVillageTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.UndoButton = new System.Windows.Forms.ToolStripButton();
             this.RedoButton = new System.Windows.Forms.ToolStripButton();

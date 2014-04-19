@@ -1,13 +1,8 @@
-using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Windows.Forms.Design;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Common
 {
     /// <summary>
     /// Combobox that displays images only
@@ -17,7 +12,7 @@ namespace TribalWars.Controls
     public partial class ImageCombobox : ComboBox
     {
         #region Fields
-        private ImageList _ImageList = new ImageList();
+        private ImageList _imageList = new ImageList();
         #endregion
 
         #region Properties
@@ -27,16 +22,16 @@ namespace TribalWars.Controls
         [Category("Appearance")]
         public ImageList ImageList
         {
-            get { return _ImageList; }
+            get { return _imageList; }
             set
             {
                 Items.Clear();
-                _ImageList = value;
-                for (int i = 0; i < _ImageList.Images.Count; i++)
+                _imageList = value;
+                for (int i = 0; i < _imageList.Images.Count; i++)
                     Items.Add(i);
 
-                this.DropDownHeight = Items.Count * (_ImageList.ImageSize.Height + 2);
-                this.DropDownWidth = ImageList.ImageSize.Width;
+                DropDownHeight = Items.Count * (_imageList.ImageSize.Height + 2);
+                DropDownWidth = ImageList.ImageSize.Width;
             }
         }
 
@@ -57,13 +52,12 @@ namespace TribalWars.Controls
 
         #region Constructors
         public ImageCombobox()
-            : base()
         {
             base.DrawMode = DrawMode.OwnerDrawFixed;
             base.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.DisplayMember = "ItemData";
+            DisplayMember = "ItemData";
             base.BackColor = Color.FromArgb(248, 244, 232);
-            base.Size = new System.Drawing.Size(50, 20);
+            Size = new Size(50, 20);
         }
         #endregion
 
@@ -83,7 +77,7 @@ namespace TribalWars.Controls
                     }
                     else
                     {
-                        g.DrawString(Items[e.Index].ToString(), this.Font, new SolidBrush(this.ForeColor), e.Bounds.Location);
+                        g.DrawString(Items[e.Index].ToString(), Font, new SolidBrush(ForeColor), e.Bounds.Location);
                     }
                     e.DrawFocusRectangle();
                 }

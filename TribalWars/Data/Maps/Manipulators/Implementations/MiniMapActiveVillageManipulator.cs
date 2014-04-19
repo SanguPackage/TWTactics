@@ -1,15 +1,13 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Events;
 using System.Windows.Forms;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+using TribalWars.Data.Events;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Villages;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Adds some extra stuff to the minimap
@@ -17,14 +15,14 @@ namespace TribalWars.Data.Maps.Manipulators
     public class MiniMapActiveVillageManipulator : ManipulatorBase
     {
         #region Fields
-        private Map _mainMap;
+        private readonly Map _mainMap;
         private Rectangle _mainMapRectangle;
         private Village _mainMapSelectedVillage;
 
-        private Pen _mainMapActiveBorderPen;
-        private Pen _mainMapSelectedVillagesPen;
-        private Font _continentFont;
-        private Pen _activeVillagePen;
+        private readonly Pen _mainMapActiveBorderPen;
+        private readonly Pen _mainMapSelectedVillagesPen;
+        private readonly Font _continentFont;
+        private readonly Pen _activeVillagePen;
         #endregion
 
         #region Constructors
@@ -32,10 +30,10 @@ namespace TribalWars.Data.Maps.Manipulators
             : base(map)
         {
             _mainMap = mainMap;
-            mainMap.EventPublisher.VillagesSelected += new EventHandler<VillagesEventArgs>(EventPublisher_MainMapVillagesSelected);
-            mainMap.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(EventPublisher_MainMapLocationChanged);
-            mainMap.EventPublisher.DisplayTypeChanged += new EventHandler<MapDisplayTypeEventArgs>(EventPublisher_MainMapDisplayTypeChanged);
-            map.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(EventPublisher_OwnLocationChanged);
+            mainMap.EventPublisher.VillagesSelected += EventPublisher_MainMapVillagesSelected;
+            mainMap.EventPublisher.LocationChanged += EventPublisher_MainMapLocationChanged;
+            mainMap.EventPublisher.DisplayTypeChanged += EventPublisher_MainMapDisplayTypeChanged;
+            map.EventPublisher.LocationChanged += EventPublisher_OwnLocationChanged;
 
             _mainMapActiveBorderPen = new Pen(Color.Yellow);
             _mainMapSelectedVillagesPen = new Pen(Color.Black);
@@ -50,12 +48,16 @@ namespace TribalWars.Data.Maps.Manipulators
             if (_mainMapSelectedVillage != null)
             {
                 TribalWars.Data.Players.Player player = _mainMapSelectedVillage.Player;
-                if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null && _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer) player = _mainMapSelectedVillage.PreviousVillageDetails.Player;
+                if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null &&
+                    _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer)
+                    player = _mainMapSelectedVillage.PreviousVillageDetails.Player;
                 if (player != null)
                 {
-                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-                    int offset = 1;
+                    int villageWidth =
+                        _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                    int villageHeight =
+                        _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    const int offset = 1;
 
                     foreach (Village village in player)
                     {
@@ -70,20 +72,19 @@ namespace TribalWars.Data.Maps.Manipulators
 
 
                         e.Graphics.DrawLine(pen,
-                            villageLocation.X - offset,
-                            villageLocation.Y - offset,
-                            villageLocation.X + villageWidth + offset,
-                            villageLocation.Y + villageHeight + offset);
+                                            villageLocation.X - offset,
+                                            villageLocation.Y - offset,
+                                            villageLocation.X + villageWidth + offset,
+                                            villageLocation.Y + villageHeight + offset);
 
                         // top right to left bottom
                         e.Graphics.DrawLine(pen,
-                            villageLocation.X + villageWidth + offset,
-                            villageLocation.Y - offset,
-                            villageLocation.X - offset,
-                            villageLocation.Y + villageHeight + offset);
+                                            villageLocation.X + villageWidth + offset,
+                                            villageLocation.Y - offset,
+                                            villageLocation.X - offset,
+                                            villageLocation.Y + villageHeight + offset);
                     }
                 }
-
             }
 
             // Draws the rectangle active on the mainmap
@@ -96,31 +97,35 @@ namespace TribalWars.Data.Maps.Manipulators
             // Draw the continent in the top right corner
             Point cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Right, e.FullMapRectangle.Top);
             string continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
-            
+
             int width = 40;
             int height = 35;
             int cOff = -5;
 
             e.Graphics.FillRectangle(Brushes.Black, e.FullMapRectangle.Right - width - cOff, -1, width, height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, e.FullMapRectangle.Right - width + 3, e.FullMapRectangle.Top - 2);
+            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption,
+                                  e.FullMapRectangle.Right - width + 3, e.FullMapRectangle.Top - 2);
 
             // Left top
             cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Top);
             continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
             e.Graphics.FillRectangle(Brushes.Black, cOff, -1, width, height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, cOff + 2);
+            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1,
+                                  cOff + 2);
 
             // Left bottom
             cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Bottom);
             continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
-            e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width, height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, e.FullMapRectangle.Bottom - height - cOff);
+            e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width,
+                                     height + cOff);
+            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1,
+                                  e.FullMapRectangle.Bottom - height - cOff);
         }
 
         /// <summary>
         /// Moves the center of the map
         /// </summary>
-        internal protected override bool MouseDownCore(MapMouseEventArgs e)
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
@@ -196,12 +201,11 @@ namespace TribalWars.Data.Maps.Manipulators
         #region Private Methods
         private int GetDistance(Location first, Location last)
         {
-            return (first.X - last.X) * (first.X - last.X) + (first.Y - last.Y) * (first.Y - last.Y);
+            return (first.X - last.X)*(first.X - last.X) + (first.Y - last.Y)*(first.Y - last.Y);
         }
 
         private void CalculateActiveRectangle()
         {
-            
         }
 
         public override void Dispose()

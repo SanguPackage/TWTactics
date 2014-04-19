@@ -12,25 +12,18 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class TribeEventArgs : VillagesEventArgs
     {
-        #region Fields
-        private Tribe _selectedTribe;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the tribe
         /// </summary>
-        public Tribe SelectedTribe
-        {
-            get { return _selectedTribe; }
-        }
+        public Tribe SelectedTribe { get; private set; }
         #endregion
 
         #region Constructors
         public TribeEventArgs(Tribe tribe, VillageTools tool)
             : base(tribe, tool)
         {
-            _selectedTribe = tribe;
+            SelectedTribe = tribe;
         }
         #endregion
     }

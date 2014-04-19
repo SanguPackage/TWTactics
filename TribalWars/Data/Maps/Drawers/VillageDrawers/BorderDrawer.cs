@@ -1,12 +1,11 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing;
 using TribalWars.Data.Maps.Displays;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws a border around a rectangle or
@@ -15,18 +14,17 @@ namespace TribalWars.Data.Maps.Drawers
     public class BorderDrawer : DrawerBase
     {
         #region Fields
-        private Pen _pen;
-        private ShapeDisplay.Shapes _shape;
+
+        private readonly ShapeDisplay.Shapes _shape;
         #endregion
 
         #region Properties
+
         /// <summary>
         /// Gets the pen the border gets drawn with
         /// </summary>
-        public Pen Pen
-        {
-            get { return _pen; }
-        }
+        public Pen Pen { get; private set; }
+
         #endregion
 
         #region Constructors
@@ -34,8 +32,8 @@ namespace TribalWars.Data.Maps.Drawers
         {
             // TODO: borderdrawer doesn't really work does it?
             // A border gets drawn but not as it should be
-            _pen = new Pen(color, 3);
-            _pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            Pen = new Pen(color, 3);
+            Pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
             _shape = shape;
         }
         #endregion
@@ -47,9 +45,9 @@ namespace TribalWars.Data.Maps.Drawers
         protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
             if (_shape == ShapeDisplay.Shapes.EllipseDrawer)
-                g.DrawEllipse(_pen, x, y, width, height);
+                g.DrawEllipse(Pen, x, y, width, height);
             else
-                g.DrawRectangle(_pen, x, y, width, height);
+                g.DrawRectangle(Pen, x, y, width, height);
         }
 
         /// <summary>
@@ -57,7 +55,7 @@ namespace TribalWars.Data.Maps.Drawers
         /// </summary>
         public override void Dispose(bool disposing)
         {
-            _pen.Dispose();
+            Pen.Dispose();
         }
         #endregion
     }

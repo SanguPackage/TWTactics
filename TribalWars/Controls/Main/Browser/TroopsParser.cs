@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TribalWars.Data;
 using TribalWars.Data.Reporting;
 using System.Text.RegularExpressions;
-using System.Drawing;
 using TribalWars.Data.Villages;
-using TribalWars.Tools.Parsers;
-using TribalWars.Translations;
 using TribalWars.Data.Units;
 #endregion
 
@@ -26,7 +24,7 @@ namespace TribalWars.Controls.Main.Browser
         /// <summary>
         /// Gets the pattern for analysing the url
         /// </summary>
-        public System.Text.RegularExpressions.Regex UrlRegex
+        public Regex UrlRegex
         {
             get { return null; }
         }
@@ -54,7 +52,7 @@ namespace TribalWars.Controls.Main.Browser
             _documentRegex = new Regex(pattern, RegexOptions.Multiline);
             MatchCollection matches = _documentRegex.Matches(document, index);
 
-            Dictionary<int, Village> ownVillages = new Dictionary<int, Village>();
+            var ownVillages = new Dictionary<int, Village>();
             /*foreach (Village vil in World.Default.You.Player.Villages)
             {
                 ownVillages.Add(vil.ID, vil);
@@ -129,12 +127,12 @@ namespace TribalWars.Controls.Main.Browser
         /// <param name="troops">The RegEx group with troops</param>
         private static Dictionary<UnitTypes, int> GetTroops(Group troops)
         {
-            Dictionary<UnitTypes, int> outTroops = new Dictionary<UnitTypes, int>();
+            var outTroops = new Dictionary<UnitTypes, int>();
             for (int i = 0; i < troops.Captures.Count; i++)
             {
                 if (WorldUnits.Default[i] != null)
                 {
-                    int val = 0;
+                    int val;
                     if (ReportParser.GetTroopCount(troops.Captures[i].Value, out val))
                     {
                         outTroops.Add(WorldUnits.Default[i].Type, val);
@@ -149,7 +147,7 @@ namespace TribalWars.Controls.Main.Browser
         /// </summary>
         private string GetDocumentPattern()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             //            <tr>
             //    <td rowspan="5" valign="top">	

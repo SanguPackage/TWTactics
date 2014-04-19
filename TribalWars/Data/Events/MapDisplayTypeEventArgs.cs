@@ -1,7 +1,5 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps;
 #endregion
@@ -14,8 +12,8 @@ namespace TribalWars.Data.Events
     public class MapDisplayTypeEventArgs : EventArgs
     {
         #region Fields
-        private DisplayTypes _display;
-        private Location _loc;
+        private readonly DisplayTypes _display;
+        private readonly Location _loc;
         #endregion
 
         #region Properties

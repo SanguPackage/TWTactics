@@ -1,12 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-using System.Xml;
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+
 #endregion
 
 namespace TribalWars.Data.Buildings
@@ -28,12 +24,7 @@ namespace TribalWars.Data.Buildings
         {
             get
             {
-                foreach (Building building in _buildings.Values)
-                {
-                    if (building.Name == name)
-                        return _buildings[building.Type];
-                }
-                return null;
+                return _buildings.Values.Where(x => x.Name == name).Select(x => _buildings[x.Type]).FirstOrDefault();
             }
         }
 
@@ -46,32 +37,27 @@ namespace TribalWars.Data.Buildings
             {
                 if (_buildings.ContainsKey(name))
                     return _buildings[name];
-                else
-                    return null;
+
+                return null;
             }
         }
         #endregion
 
         #region Singleton
-        static WorldBuildings singleton;
+        private static WorldBuildings _singleton;
 
         /// <summary>
         /// Gets the singleton instance
         /// </summary>
         public static WorldBuildings Default
         {
-            // simple enough
-            // using a simpleton because there
-            // is no such thing as a static indexer
-            // TODO: heh heh wrong singleton implementation :)
-            // The private ctor is also missing
             get
             {
-                if (singleton == null)
+                if (_singleton == null)
                 {
-                    singleton = new WorldBuildings();
+                    _singleton = new WorldBuildings();
                 }
-                return singleton;
+                return _singleton;
             }
         }
         #endregion

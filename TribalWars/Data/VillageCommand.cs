@@ -1,10 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Data
 {
     /// <summary>
     /// Encapsulates an action to be performed
@@ -13,21 +11,16 @@ namespace TribalWars
     public class VillageCommand
     {
         #region Fields
-        private VillageTools _tool;
         #endregion
 
         #region Properties
-        public VillageTools Tool
-        {
-            get { return _tool; }
-            set { _tool = value; }
-        }
+        public VillageTools Tool { get; set; }
         #endregion
 
         #region Constructors
         public VillageCommand(VillageTools tool)
         {
-            _tool = tool;
+            Tool = tool;
         }
         #endregion
 

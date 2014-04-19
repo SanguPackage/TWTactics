@@ -1,8 +1,6 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TribalWars.Data.Maps.Drawers;
+using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Maps.Markers;
 using System.Drawing;
 #endregion
@@ -12,7 +10,7 @@ namespace TribalWars.Data.Maps.Displays
     public class MiniMapDisplay : DisplayBase
     {
         #region Fields
-        const int FixedZoomLevel = 3;
+        private const int FixedZoomLevel = 3;
         #endregion
 
         #region Properties

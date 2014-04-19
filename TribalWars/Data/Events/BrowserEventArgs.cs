@@ -14,9 +14,9 @@ namespace TribalWars.Data.Events
     public class BrowserEventArgs : EventArgs
     {
         #region Fields
-        private bool _gameDestination;
-        private DestinationEnum _destination;
-        private System.Collections.ObjectModel.ReadOnlyCollection<string> _args;	
+        private readonly bool _gameDestination;
+        private readonly DestinationEnum _destination;
+        private readonly System.Collections.ObjectModel.ReadOnlyCollection<string> _args;	
         #endregion
 
         #region Properties
@@ -52,9 +52,9 @@ namespace TribalWars.Data.Events
         {
             switch (dest)
             {
-                case DestinationEnum.TWStatsPlayer:
-                case DestinationEnum.TWStatsTribe:
-                case DestinationEnum.TWStatsVillage:
+                case DestinationEnum.TwStatsPlayer:
+                case DestinationEnum.TwStatsTribe:
+                case DestinationEnum.TwStatsVillage:
                     _gameDestination = false;
                     break;
                 default:

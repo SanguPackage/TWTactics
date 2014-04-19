@@ -85,7 +85,7 @@ namespace TribalWars.Data.Reporting
     /// <summary>
     /// The possible secundary effects of the attack
     /// </summary>
-    [Flags()]
+    [Flags]
     public enum ReportFlags
     {
         /// <summary>

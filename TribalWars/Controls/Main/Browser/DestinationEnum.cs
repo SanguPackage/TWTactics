@@ -12,15 +12,15 @@ namespace TribalWars.Controls.Main.Browser
         /// <summary>
         /// Opens TW stats for the selected village
         /// </summary>
-        TWStatsVillage,
+        TwStatsVillage,
         /// <summary>
         /// Opens TW stats for the selected player
         /// </summary>
-        TWStatsPlayer,
+        TwStatsPlayer,
         /// <summary>
         /// Opens TW stats for the selected tribe
         /// </summary>
-        TWStatsTribe,
+        TwStatsTribe,
         /// <summary>
         /// Navigates to the global village overview page
         /// </summary>
@@ -28,6 +28,6 @@ namespace TribalWars.Controls.Main.Browser
         /// <summary>
         /// Navigates to a village overview page
         /// </summary>
-        Info_Village
+        InfoVillage
     }
 }

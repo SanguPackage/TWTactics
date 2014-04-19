@@ -7,6 +7,7 @@ using System.Data;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Events;
 #endregion
@@ -29,16 +30,16 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void LocationControl_Load(object sender, EventArgs e)
         {
-            World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(World_SettingsLoaded);
-            World.Default.Map.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(Location_Changed);
+            World.Default.EventPublisher.SettingsLoaded += World_SettingsLoaded;
+            World.Default.Map.EventPublisher.LocationChanged += Location_Changed;
         }
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            txtX.Text = World.Default.Map.Location.X.ToString();
-            txtY.Text = World.Default.Map.Location.Y.ToString();
-            txtZ.Text = World.Default.Map.Location.Zoom.ToString();
-            //txtWidth.Text = World.Default.Map.Location.Width.ToString();
+            txtX.Text = World.Default.Map.Location.X.ToString(CultureInfo.InvariantCulture);
+            txtY.Text = World.Default.Map.Location.Y.ToString(CultureInfo.InvariantCulture);
+            txtZ.Text = World.Default.Map.Location.Zoom.ToString(CultureInfo.InvariantCulture);
+            //txtWidth.Text = World.Default.Map.Location.Width.ToString(CultureInfo.InvariantCulture);
 
             if (World.Default.PlayerSelected)
             {

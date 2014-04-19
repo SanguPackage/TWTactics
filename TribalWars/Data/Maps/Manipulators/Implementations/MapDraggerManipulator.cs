@@ -1,11 +1,11 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
+using TribalWars.Data.Maps.Manipulators.Helpers;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Allows the user to move the map around by dragging
@@ -16,7 +16,6 @@ namespace TribalWars.Data.Maps.Manipulators
         public MapDraggerManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset)
             : base(map, parentManipulatorHandler, polygonOffset, false)
         {
-            
         }
         #endregion
 
@@ -26,7 +25,6 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected override void Start(Polygon polygon)
         {
-
         }
 
         /// <summary>

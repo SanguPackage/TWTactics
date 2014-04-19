@@ -1,4 +1,4 @@
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Controls
 {
     partial class MapPolygonControl
     {

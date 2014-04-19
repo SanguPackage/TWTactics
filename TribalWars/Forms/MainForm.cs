@@ -1,34 +1,27 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
-
-using TribalWars.Tools;
+using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
-
+using TribalWars.Data;
+using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
-using TribalWars.Data.Maps;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Players;
 using TribalWars.Data.Events;
-//using JanusExtension.GridEx;
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Forms
 {
-    public partial class FormMain : Form
+    public partial class MainForm : Form
     {
         #region Fields
-        private readonly TribalWars.Controls.ToolStripLocationChangerControl _locationChanger;
+        private readonly ToolStripLocationChangerControl _locationChanger;
         #endregion
 
         #region Constructor
-        public FormMain()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -36,14 +29,14 @@ namespace TribalWars
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-            _locationChanger = new TribalWars.Controls.ToolStripLocationChangerControl();
+            _locationChanger = new ToolStripLocationChangerControl();
             ToolStrip.Items.Add(_locationChanger);
 
             // Distance calc toolstrip
             //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
             //ToolStrip.Items.Add(ctl);
 
-            var ctl2 = new TribalWars.Controls.ToolStripTimeConverterCalculator();
+            var ctl2 = new ToolStripTimeConverterCalculator();
             ToolStrip.Items.Add(ctl2);
         }
         #endregion
@@ -56,15 +49,15 @@ namespace TribalWars
             World.Default.Map.InitializeMap(Map);
             World.Default.MiniMap.InitializeMap(MiniMap, World.Default.Map);
 
-            World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(OnWorldLoaded);
-            World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(OnWorldSettingsLoaded);
-            World.Default.Map.EventPublisher.DisplayTypeChanged += new EventHandler<MapDisplayTypeEventArgs>(EventPublisher_DisplayTypeChanged);
-            World.Default.Map.EventPublisher.ManipulatorChanged += new EventHandler<ManipulatorEventArgs>(EventPublisher_ManipulatorChanged);
-            World.Default.Map.EventPublisher.PolygonActivated += new EventHandler<PolygonEventArgs>(EventPublisher_PolygonActivated);
+            World.Default.EventPublisher.Loaded += OnWorldLoaded;
+            World.Default.EventPublisher.SettingsLoaded += OnWorldSettingsLoaded;
+            World.Default.Map.EventPublisher.DisplayTypeChanged += EventPublisher_DisplayTypeChanged;
+            World.Default.Map.EventPublisher.ManipulatorChanged += EventPublisher_ManipulatorChanged;
+            World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
 
             // Auto load world
-            string lastWorld = TribalWars.Properties.Settings.Default.LastWorld;
-            string lastSettings = TribalWars.Properties.Settings.Default.LastSettings;
+            string lastWorld = Properties.Settings.Default.LastWorld;
+            string lastSettings = Properties.Settings.Default.LastSettings;
             if (!World.Default.LoadWorld(lastWorld, lastSettings))
             {
                 // Here begins the wizard for creating a new world...
@@ -84,20 +77,20 @@ namespace TribalWars
 
         private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
         {
-            ToolStripPolygonManipulator.CheckState = e.ManipulatorType == TribalWars.Data.Maps.Manipulators.ManipulatorManagerTypes.Polygon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripDefaultManipulator.CheckState = e.ManipulatorType == TribalWars.Data.Maps.Manipulators.ManipulatorManagerTypes.Default ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripPolygonManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Polygon ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripDefaultManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Default ? CheckState.Checked : CheckState.Unchecked;
         }
 
         private void EventPublisher_DisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
         {
-            ToolStripIconDisplay.CheckState = e.DisplayType == TribalWars.Data.Maps.Displays.DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripShapeDisplay.CheckState = e.DisplayType == TribalWars.Data.Maps.Displays.DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripIconDisplay.CheckState = e.DisplayType == Data.Maps.Displays.DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripShapeDisplay.CheckState = e.DisplayType == Data.Maps.Displays.DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
         }
 
         private void OnWorldSettingsLoaded(object sender, EventArgs e)
         {
             StatusSettings.Text = World.Default.SettingsName;
-            // TODO: this cannot be in the FormMain code but needs to be 
+            // TODO: this cannot be in the MainForm code but needs to be 
             // in the Map class!
             // additional maps will not work due this
             // TODO: the CacheSpecialMarkers needs to be in the MarkerGroups
@@ -125,7 +118,7 @@ namespace TribalWars
                     var settingInfo = new FileInfo(setting);
                     var itm = new ToolStripMenuItem(settingInfo.Name);
                     ToolStripSettings.DropDownItems.Add(itm);
-                    itm.Click += new EventHandler(Settings_Click);
+                    itm.Click += Settings_Click;
                     if (settingInfo.Name == w.SettingsName)
                     {
                         itm.Checked = true;
@@ -165,8 +158,8 @@ namespace TribalWars
                 //WorldSettings.ReadSettings(selected.Text, this.MapCon);
 
                 // Save last setting
-                TribalWars.Properties.Settings.Default.LastSettings = selected.Text;
-                TribalWars.Properties.Settings.Default.Save();
+                Properties.Settings.Default.LastSettings = selected.Text;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -251,8 +244,8 @@ namespace TribalWars
         {
             int i = 0;
             string lFile = string.Format(@"{0}\TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
-            while (File.Exists(lFile + i.ToString() + ".png")) i++;
-            lFile += i.ToString() + ".png";
+            while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
+            lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
 
             World.Default.Map.Control.Screenshot(lFile);
         }
@@ -297,22 +290,22 @@ namespace TribalWars
 
         private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(TribalWars.Data.Maps.Displays.DisplayTypes.Icon);
+            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon);
         }
 
         private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(TribalWars.Data.Maps.Displays.DisplayTypes.Shape);
+            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Shape);
         }
 
         private void ToolStripDefaultManipulator_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(TribalWars.Data.Maps.Manipulators.ManipulatorManagerTypes.Default);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
         }
 
         private void ToolStripPolygonManipulator_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(TribalWars.Data.Maps.Manipulators.ManipulatorManagerTypes.Polygon);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
         }
         #endregion
 

@@ -1,19 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Villages;
-
 using TribalWars.Controls.Accordeon.Location;
 using TribalWars.Controls.Display;
-using TribalWars.Controls.TWContextMenu;
-
+using TribalWars.Data;
 using XPTable.Models;
 
 namespace TribalWars.Controls.Main.Monitoring
@@ -81,7 +71,7 @@ namespace TribalWars.Controls.Main.Monitoring
             for (int i = 0; i <= OptionsTree.Nodes.Count - 1; i++)
                 OptionsTree.Nodes[i].Expand();
 
-            World.Default.EventPublisher.MonitorLoaded += new EventHandler<EventArgs>(EventPublisher_Monitor);
+            World.Default.EventPublisher.MonitorLoaded += EventPublisher_Monitor;
         }
         #endregion
 
@@ -128,11 +118,11 @@ namespace TribalWars.Controls.Main.Monitoring
             // TODO: Use an Invoke mechanism instead of doing all the ifs...
             ClearPreviousDateList();
             string[] dirs = System.IO.Directory.GetDirectories(World.Default.Structure.CurrentWorldDataDirectory);
-            List<string> dirsList = new List<string>(dirs);
+            var dirsList = new List<string>(dirs);
             dirsList.Reverse();
             foreach (string dir in dirsList)
             {
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(dir);
+                var info = new System.IO.DirectoryInfo(dir);
                 AddPreviousDateItem(info.Name);
             }
             SetPreviousDateEnablement(true);
@@ -230,7 +220,7 @@ namespace TribalWars.Controls.Main.Monitoring
         /// <param name="tag">The search criteria to create description</param>
         private FinderOptions CreateOption(string tag)
         {
-            FinderOptions options = new FinderOptions();
+            var options = new FinderOptions();
             options.Evaluate = FinderOptions.FinderLocationEnum.ActiveRectangle;
 
             switch (tag)
@@ -285,8 +275,6 @@ namespace TribalWars.Controls.Main.Monitoring
                     break;
                 case "Filter":
                     options = OptionsGroupBox.LoadFinderOptions();
-                    break;
-                default:
                     break;
             }
 

@@ -1,45 +1,36 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators.Helpers
+namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
     public class MapMouseEventArgs : MapEventArgs
     {
         #region Fields
-        private MouseEventArgs _mouse;
-        private Village _village;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the mouse event arguments
         /// </summary>
-        public MouseEventArgs MouseEventArgs
-        {
-            get { return _mouse; }
-        }
+        public MouseEventArgs MouseEventArgs { get; private set; }
 
         /// <summary>
         /// Gets the village
         /// </summary>
-        public Village Village
-        {
-            get { return _village; }
-        }
+        public Village Village { get; private set; }
         #endregion
 
         #region Constructors
         public MapMouseEventArgs(ManipulatorManagerBase p, Graphics g, MouseEventArgs e, Village vil, Rectangle rec)
             : base(p, g, rec)
         {
-            _mouse = e;
-            _village = vil;
+            MouseEventArgs = e;
+            Village = vil;
         }
         #endregion
     }

@@ -1,10 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Gets the different locations a village bitmap

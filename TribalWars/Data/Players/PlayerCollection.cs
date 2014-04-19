@@ -11,7 +11,7 @@ namespace TribalWars.Data.Players
     /// Collection of players used in ExtendedTribeDescriptor
     /// Returns either PlayerDescriptor or ExtendedPlayerDescriptors
     /// </summary>
-    [Editor(typeof(VillagePointerUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class PlayerCollection : ICustomTypeDescriptor, IEnumerable<Village>
     {
         #region Fields

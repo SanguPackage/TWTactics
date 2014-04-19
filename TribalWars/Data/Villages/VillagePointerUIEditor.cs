@@ -10,7 +10,7 @@ namespace TribalWars.Data.Villages
     /// <summary>
     /// UI Editor for showing pinpoint markers from a PropertyGrid
     /// </summary>
-    public class VillagePointerUIEditor : System.Drawing.Design.UITypeEditor
+    public class VillagePointerUiEditor : System.Drawing.Design.UITypeEditor
     {
         #region Overriden Methods
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
@@ -29,7 +29,7 @@ namespace TribalWars.Data.Villages
                     int x, y;
                     if (int.TryParse(loc[0], out x) && int.TryParse(loc[1], out y))
                     {
-                        Point p = new Point(x, y);
+                        var p = new Point(x, y);
                         if (World.Default.Villages.ContainsKey(p))
                             vil = World.Default.Villages[p];
                     }

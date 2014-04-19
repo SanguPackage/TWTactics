@@ -12,27 +12,16 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class TribesEventArgs : EventArgs
     {
-        #region Fields
-        private IEnumerable<Tribe> _tribes;
-        private VillageTools _tool;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the tribes
         /// </summary>
-        public IEnumerable<Tribe> Tribes
-        {
-            get { return _tribes; }
-        }
+        public IEnumerable<Tribe> Tribes { get; private set; }
 
         /// <summary>
         /// Gets the tool requesting the event
         /// </summary>
-        public VillageTools Tool
-        {
-            get { return _tool; }
-        }
+        public VillageTools Tool { get; private set; }
 
         /// <summary>
         /// Gets the first player in the list
@@ -41,8 +30,8 @@ namespace TribalWars.Data.Events
         {
             get
             {
-                if (_tribes != null)
-                    foreach (Tribe tribe in _tribes)
+                if (Tribes != null)
+                    foreach (Tribe tribe in Tribes)
                         return tribe;
 
                 return null;
@@ -53,8 +42,8 @@ namespace TribalWars.Data.Events
         #region Constructors
         public TribesEventArgs(IEnumerable<Tribe> tribe, VillageTools tool)
         {
-            _tribes = tribe;
-            _tool = tool;
+            Tribes = tribe;
+            Tool = tool;
         }
         #endregion
     }

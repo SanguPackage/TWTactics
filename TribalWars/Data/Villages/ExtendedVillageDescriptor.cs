@@ -64,7 +64,7 @@ namespace TribalWars.Data.Villages
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(15), Editor(typeof(VillagePointerUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(15), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string Location
         {
             get { return Village.LocationString; }
@@ -97,7 +97,7 @@ namespace TribalWars.Data.Villages
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50), Editor(typeof(ClipboardCopierUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Village.BBCode(); }

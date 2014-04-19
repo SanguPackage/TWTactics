@@ -1,4 +1,4 @@
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Main.Polygon
 {
     partial class PolygonControl
     {

@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel;
-using System.Drawing;
-
-using System.Text.RegularExpressions;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Tribes;
-using System.Windows.Forms;
 
 namespace TribalWars.Data.Players
 {
@@ -221,23 +216,23 @@ namespace TribalWars.Data.Players
             if (vil != null && vil.HasPlayer)
             {
                 Player p = vil.Player;
-                this._Id = p.ID;
-                this._Name = p.Name;
-                this._Points = p.Points;
-                this._Rank = p.Rank;
-                this._Tribe = p.Tribe;
-                this._Villages = p.Villages;
+                _Id = p.ID;
+                _Name = p.Name;
+                _Points = p.Points;
+                _Rank = p.Rank;
+                _Tribe = p.Tribe;
+                _Villages = p.Villages;
             }
         }
 
         internal Player(string[] pPlayer)
         {
             //$id, $name, $ally, $villages, $points, $rank
-            int.TryParse(pPlayer[0], out this._Id);
-            this._Name = System.Web.HttpUtility.UrlDecode(pPlayer[1]);
-            int.TryParse(pPlayer[2], out this._TribeID);
-            int.TryParse(pPlayer[4], out this._Points);
-            int.TryParse(pPlayer[5], out this._Rank);
+            int.TryParse(pPlayer[0], out _Id);
+            _Name = System.Web.HttpUtility.UrlDecode(pPlayer[1]);
+            int.TryParse(pPlayer[2], out _TribeID);
+            int.TryParse(pPlayer[4], out _Points);
+            int.TryParse(pPlayer[5], out _Rank);
         }
         #endregion
 
@@ -249,8 +244,7 @@ namespace TribalWars.Data.Players
 
         public virtual string BBCode()
         {
-            string str;
-            str = string.Format("[player]{0}[/player]", Name);
+            string str = string.Format("[player]{0}[/player]", Name);
             if (Villages.Count > 1) str += string.Format(" ({0:#,0}pts|{1}vils)", Points, Villages.Count);
             return str;
         }
@@ -331,24 +325,24 @@ namespace TribalWars.Data.Players
 
             //http://nl.twstats.com/image.php?type=playerssgraph&id=661959&s=nl10&graph=points
             str.AppendLine();
-            string link = string.Format(World.Default.TWStats.Player, ID.ToString());
+            string link = string.Format(World.Default.TwStats.Player, ID.ToString());
             str.AppendFormat("[url={0}]TWStats Link[/url]", link);
 
             str.AppendLine();
             str.AppendLine();
 
-            link = string.Format(World.Default.TWStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.points.ToString());
+            link = string.Format(World.Default.TwStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.points.ToString());
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TWStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.rank.ToString());
+            link = string.Format(World.Default.TwStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.rank.ToString());
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();
 
-            link = string.Format(World.Default.TWStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.odd.ToString());
+            link = string.Format(World.Default.TwStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.odd.ToString());
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TWStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.villages.ToString());
+            link = string.Format(World.Default.TwStats.PlayerGraph, ID.ToString(), World.TWStatsLinks.Graphs.villages.ToString());
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();
@@ -438,7 +432,7 @@ namespace TribalWars.Data.Players
         #region IEquatable<Player> Members
         public int CompareTo(Player other)
         {
-            return other._Points - this._Points;
+            return other._Points - _Points;
         }
 
         public bool Equals(Player other)

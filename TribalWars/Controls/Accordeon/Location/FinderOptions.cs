@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Globalization;
-
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
@@ -24,52 +25,30 @@ namespace TribalWars.Controls.Accordeon.Location
     public class FinderOptions
     {
         #region Fields
-        private FinderLocationEnum _evaluate;
-        private int _pointsBetweenStart;
-        private int _pointsBetweenEnd;
-        private int _resultLimit;
-        private FinderOptionsEnum _options;
-        private string _text;
-        private Tribe _tribe;
-        private SearchForEnum _searchFor;
+
         #endregion
 
         #region Properties
+
         /// <summary>
         /// Gets a value indicating what to search for
         /// </summary>
-        public SearchForEnum SearchFor
-        {
-            get { return _searchFor; }
-            set { _searchFor = value; }
-        }
+        public SearchForEnum SearchFor { get; set; }
 
         /// <summary>
         /// Gets or sets the tribe the results need to be filtered on
         /// </summary>
-        public Tribe Tribe
-        {
-            get { return _tribe; }
-            set { _tribe = value; }
-        }
+        public Tribe Tribe { private get; set; }
 
         /// <summary>
         /// Gets or sets the search string
         /// </summary>
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
+        public string Text { get; set; }
 
         /// <summary>
         /// Gets or sets the area that needs to be evaluated
         /// </summary>
-        public FinderLocationEnum Evaluate
-        {
-            get { return _evaluate; }
-            set { _evaluate = value; }
-        }
+        public FinderLocationEnum Evaluate { private get; set; }
 
         /// <summary>
         /// Gets a value indicating whether only the currently
@@ -77,44 +56,29 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool EvaluateScreenOnly
         {
-            get { return _evaluate == FinderLocationEnum.VisibleMap; }
+            get { return Evaluate == FinderLocationEnum.VisibleMap; }
         }
 
         /// <summary>
         /// Gets or sets the beginning point search range
         /// </summary>
-        public int PointsBetweenStart
-        {
-            get { return _pointsBetweenStart; }
-            set { _pointsBetweenStart = value; }
-        }
+        public int PointsBetweenStart { private get; set; }
 
         /// <summary>
         /// Gets or sets the end point search range
         /// </summary>
-        public int PointsBetweenEnd
-        {
-            get { return _pointsBetweenEnd; }
-            set { _pointsBetweenEnd = value; }
-        }
+        public int PointsBetweenEnd { private get; set; }
 
         /// <summary>
         /// Gets or sets the limit of search results
         /// </summary>
-        public int ResultLimit
-        {
-            get { return _resultLimit; }
-            set { _resultLimit = value; }
-        }
+        public int ResultLimit { private get; set; }
 
         /// <summary>
         /// Gets or sets the specific searching method
         /// </summary>
-        public FinderOptionsEnum Options
-        {
-            get { return _options; }
-            set { _options = value; }
-        }
+        public FinderOptionsEnum Options { private get; set; }
+
         #endregion
 
         #region Match Lists
@@ -133,7 +97,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 case FinderLocationEnum.Polygon:
                     return null;
                 case FinderLocationEnum.ActiveRectangle:
-                    List<Player> list = new List<Player>();
+                    var list = new List<Player>();
                     foreach (Village village in World.Default.Villages.Values)
                     {
                         if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
@@ -152,7 +116,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Player> PlayerMatches(List<Player> list)
         {
-            List<Player> outList = new List<Player>();
+            var outList = new List<Player>();
             int results = 0;
 
             if (Options == FinderOptionsEnum.Strongest)
@@ -166,7 +130,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     results++;
                 }
 
-                if (_resultLimit != 0 && results == _resultLimit)
+                if (ResultLimit != 0 && results == ResultLimit)
                     return outList;
             }
             return outList;
@@ -187,7 +151,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 case FinderLocationEnum.Polygon:
                     return null;
                 case FinderLocationEnum.ActiveRectangle:
-                    List<Tribe> list = new List<Tribe>();
+                    var list = new List<Tribe>();
                     foreach (Village village in World.Default.Villages.Values)
                     {
                         if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
@@ -206,10 +170,10 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Tribe> TribeMatches(List<Tribe> list)
         {
-            List<Tribe> outList = new List<Tribe>();
+            var outList = new List<Tribe>();
             int results = 0;
 
-            if (this.Options == FinderOptionsEnum.Strongest)
+            if (Options == FinderOptionsEnum.Strongest)
                 list.Sort();
 
             foreach (Tribe tribe in list)
@@ -220,7 +184,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     results++;
                 }
 
-                if (_resultLimit != 0 && results == _resultLimit)
+                if (ResultLimit != 0 && results == ResultLimit)
                     return outList;
             }
             return outList;
@@ -242,14 +206,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 case FinderLocationEnum.Polygon:
                     //return null;
                 case FinderLocationEnum.ActiveRectangle:
-                    List<Village> list = new List<Village>();
-                    foreach (Village village in World.Default.Villages.Values)
-                    {
-                        if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
-                        {
-                            list.Add(village);
-                        }
-                    }
+                    var list = World.Default.Villages.Values.Where(village => World.Default.Monitor.ActiveRectangle.Contains(village.Location)).ToList();
                     return VillageMatches(list);
             }
             return null;
@@ -260,10 +217,10 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Village> VillageMatches(List<Village> list)
         {
-            List<Village> outList = new List<Village>();
+            var outList = new List<Village>();
             int results = 0;
 
-            if (this.Options == FinderOptionsEnum.Strongest)
+            if (Options == FinderOptionsEnum.Strongest)
                 list.Sort();
 
             foreach (Village village in list)
@@ -274,7 +231,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     results++;
                 }
 
-                if (_resultLimit != 0 && results == _resultLimit)
+                if (ResultLimit != 0 && results == ResultLimit)
                     return outList;
             }
             return outList;
@@ -287,10 +244,10 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool Match(Player ply)
         {
-            if (_tribe != null && !_tribe.Equals(ply.Tribe))
+            if (Tribe != null && !Tribe.Equals(ply.Tribe))
                 return false;
 
-            if (!string.IsNullOrEmpty(_text) && !ply.Name.ToUpper(CultureInfo.InvariantCulture).Contains(_text))
+            if (!string.IsNullOrEmpty(Text) && !ply.Name.ToUpper(CultureInfo.InvariantCulture).Contains(Text))
             {
                 return false;
             }
@@ -299,9 +256,8 @@ namespace TribalWars.Controls.Accordeon.Location
                 case FinderOptionsEnum.Inactives:
                     if (ply.PreviousPlayerDetails == null)
                         return false;
-                    foreach (Village village in ply)
-                        if (village.Points > village.PreviousVillageDetails.Points)
-                            return false;
+                    if (ply.Any(village => village.Points > village.PreviousVillageDetails.Points))
+                        return false;
                     break;
                 case FinderOptionsEnum.LostPoints:
                     if (ply.PreviousPlayerDetails == null || ply.Points >= ply.PreviousPlayerDetails.Points)
@@ -314,7 +270,7 @@ namespace TribalWars.Controls.Accordeon.Location
             }
 
 
-            if (ply.Points < _pointsBetweenStart || (_pointsBetweenEnd > 0 && ply.Points > _pointsBetweenEnd))
+            if (ply.Points < PointsBetweenStart || (PointsBetweenEnd > 0 && ply.Points > PointsBetweenEnd))
                 return false;
 
             return true;
@@ -325,12 +281,12 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool Match(Tribe tribe)
         {
-            if (_text.Length != 0 && !tribe.Name.ToUpper(CultureInfo.InvariantCulture).Contains(_text) && !tribe.Tag.ToUpper(CultureInfo.InvariantCulture).Contains(_text))
+            if (Text.Length != 0 && !tribe.Name.ToUpper(CultureInfo.InvariantCulture).Contains(Text) && !tribe.Tag.ToUpper(CultureInfo.InvariantCulture).Contains(Text))
             {
                 return false;
             }
 
-            if (tribe.AllPoints < _pointsBetweenStart || (_pointsBetweenEnd > 0 && tribe.AllPoints > _pointsBetweenEnd))
+            if (tribe.AllPoints < PointsBetweenStart || (PointsBetweenEnd > 0 && tribe.AllPoints > PointsBetweenEnd))
                 return false;
 
             return true;
@@ -346,18 +302,18 @@ namespace TribalWars.Controls.Accordeon.Location
                 if (!village.HasPlayer || village.PreviousVillageDetails == null || village.Player.Equals(village.PreviousVillageDetails.Player))
                     return false;
 
-                if (_tribe != null && 
+                if (Tribe != null && 
                     (
-                        (!village.HasTribe || !_tribe.Equals(village.Player.Tribe))
+                        (!village.HasTribe || !Tribe.Equals(village.Player.Tribe))
                         && 
-                        (!village.PreviousVillageDetails.HasTribe || !_tribe.Equals(village.PreviousVillageDetails.Player.Tribe))
+                        (!village.PreviousVillageDetails.HasTribe || !Tribe.Equals(village.PreviousVillageDetails.Player.Tribe))
                      )
                     )
                     return false;
             }
             else
             {
-                if (_tribe != null && (!village.HasTribe || !_tribe.Equals(village.Player.Tribe)))
+                if (Tribe != null && (!village.HasTribe || !Tribe.Equals(village.Player.Tribe)))
                     return false;
 
                 switch (Options)
@@ -373,12 +329,12 @@ namespace TribalWars.Controls.Accordeon.Location
                 }
             }
 
-            if (!string.IsNullOrEmpty(_text) && !village.ToString().ToUpper(CultureInfo.InvariantCulture).Contains(_text))
+            if (!string.IsNullOrEmpty(Text) && !village.ToString().ToUpper(CultureInfo.InvariantCulture).Contains(Text))
             {
                 return false;
             }
 
-            if (village.Points < _pointsBetweenStart || (_pointsBetweenEnd > 0 && village.Points > _pointsBetweenEnd))
+            if (village.Points < PointsBetweenStart || (PointsBetweenEnd > 0 && village.Points > PointsBetweenEnd))
                 return false;
 
             return true;
@@ -391,7 +347,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private List<Village> GetVillageList()
         {
-            List<Village> list = new List<Village>();
+            var list = new List<Village>();
             foreach (Village village in World.Default.Villages.Values)
             {
                 switch (Evaluate)
@@ -415,7 +371,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private List<Tribe> GetTribeList()
         {
-            List<Tribe> list = new List<Tribe>();
+            var list = new List<Tribe>();
             foreach (Village village in World.Default.Villages.Values)
             {
                 if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))

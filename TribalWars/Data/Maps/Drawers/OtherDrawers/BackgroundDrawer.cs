@@ -1,12 +1,10 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing;
-using TribalWars.Data.Maps.Markers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.OtherDrawers
 {
     /// <summary>
     /// Draws a bitmap to the map
@@ -14,7 +12,7 @@ namespace TribalWars.Data.Maps.Drawers
     public class BackgroundDrawer : DrawerBase
     {
         #region Fields
-        private Bitmap _bitmap;
+        private readonly Bitmap _bitmap;
         #endregion
 
         #region Properties

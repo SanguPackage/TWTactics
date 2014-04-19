@@ -27,7 +27,7 @@ namespace TribalWars.Data.Reporting
         internal ReportVillage _attacker;
 
         // report date
-        internal Nullable<DateTime> _dateReport;
+        internal DateTime? _dateReport;
         internal DateTime _dateCopied;
 
         // General stuff
@@ -335,7 +335,7 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public string BBCode()
         {
-            return ReportBBCodeOutput.Generate(this);
+            return ReportBbCodeOutput.Generate(this);
         }
         #endregion
 

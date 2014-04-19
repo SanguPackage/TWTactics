@@ -1,10 +1,7 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
-using TribalWars.Data.Maps.Views;
 #endregion
 
 namespace TribalWars.Data.Maps.Drawers
@@ -18,19 +15,6 @@ namespace TribalWars.Data.Maps.Drawers
     /// </remarks>
     public class DrawerBase : IDrawer
     {
-        #region Fields
-        #endregion
-
-        #region Properties
-        #endregion
-
-        #region Constructors
-        public DrawerBase()
-        {
-                       
-        }
-        #endregion
-
         #region Public Methods
         /// <summary>
         /// Paints non village related stuff
@@ -61,7 +45,6 @@ namespace TribalWars.Data.Maps.Drawers
         /// </summary>
         protected virtual void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
-
         }
 
         /// <summary>

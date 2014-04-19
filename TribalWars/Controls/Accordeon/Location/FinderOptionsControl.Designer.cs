@@ -1,3 +1,5 @@
+using TribalWars.Controls.Common;
+
 namespace TribalWars.Controls.Accordeon.Location
 {
     partial class FinderOptionsControl
@@ -45,7 +47,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.DropDown = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.Tribe = new System.Windows.Forms.TextBox();
-            this.Search = new TribalWars.Controls.LabelTextBox();
+            this.Search = new LabelTextBox();
             this.What = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PointsBetweenEnd)).BeginInit();

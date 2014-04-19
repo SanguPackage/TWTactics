@@ -6,6 +6,7 @@ using System.Collections;
 
 using System.Windows.Forms;
 using System.Reflection;
+using TribalWars.Data;
 
 namespace TribalWars.Tools
 {
@@ -68,7 +69,7 @@ namespace TribalWars.Tools
         /// Formats a date as on the Tribal Wars server
         /// </summary>
         /// <param name="date">The date to format</param>
-        /// <param name="short">Removes 'on'</param>
+        /// <param name="shortFormat">Removes 'on'</param>
         public static string GetPrettyDate(DateTime date, bool shortFormat)
         {
             DateTime serverTime = World.Default.ServerTime;

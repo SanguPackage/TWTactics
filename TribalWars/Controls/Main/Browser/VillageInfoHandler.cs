@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using System.Drawing;
 
@@ -63,7 +62,7 @@ namespace TribalWars.Controls.Main.Browser
             Match match = Regex.Match(document);
             if (match.Success)
             {
-                Point vil = new Point(System.Convert.ToInt32(match.Groups["x"].Value), System.Convert.ToInt32(match.Groups["y"].Value));
+                var vil = new Point(Convert.ToInt32(match.Groups["x"].Value), Convert.ToInt32(match.Groups["y"].Value));
                 if (World.Default.Villages.ContainsKey(vil))
                 {
                     Village village = World.Default.Villages[vil];

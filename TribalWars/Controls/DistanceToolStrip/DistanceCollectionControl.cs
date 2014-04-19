@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Units;
 using TribalWars.Data.Events;
@@ -36,8 +36,8 @@ namespace TribalWars.Controls.DistanceToolStrip
         private Village _villageStart;
         private Village _villageEnd;
         //private Button _moraleButton;
-        private Button _speedButton;
-        private ContextMenuStrip _speedStrip;
+        private readonly Button _speedButton;
+        private readonly ContextMenuStrip _speedStrip;
         private ShowDistanceEnum _speed = ShowDistanceEnum.TravelTime;
         #endregion
 
@@ -88,16 +88,15 @@ namespace TribalWars.Controls.DistanceToolStrip
 
         #region Constructors
         public DistanceCollectionControl()
-            : base()
         {
-            this.AutoSize = false;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Margin = new Padding(0);
-            this.Padding = new Padding(0);
+            AutoSize = false;
+            BackColor = System.Drawing.Color.Transparent;
+            Margin = new Padding(0);
+            Padding = new Padding(0);
             
 
-            World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(World_Loaded);
-            World.Default.Map.EventPublisher.VillagesSelected += new EventHandler<VillagesEventArgs>(World_VillagesSelected);
+            World.Default.EventPublisher.Loaded += World_Loaded;
+            World.Default.Map.EventPublisher.VillagesSelected += World_VillagesSelected;
 
             // Loads the speed strip & items
             _speedStrip = new ContextMenuStrip();
@@ -109,7 +108,7 @@ namespace TribalWars.Controls.DistanceToolStrip
 
             _speedButton = new Button();
             _speedButton.AutoSize = false;
-            _speedButton.Image = TribalWars.Properties.Resources.speed;
+            _speedButton.Image = Properties.Resources.speed;
             _speedButton.ContextMenuStrip = _speedStrip;
             _speedButton.Size = new System.Drawing.Size(21, 21);
             _speedButton.Text = string.Empty;
@@ -118,7 +117,7 @@ namespace TribalWars.Controls.DistanceToolStrip
             _speedButton.Margin = new Padding(0);
             _speedButton.Padding = new Padding(0);
             _speedButton.Font = new System.Drawing.Font(System.Drawing.FontFamily.GenericSansSerif, 15, System.Drawing.FontStyle.Bold);
-            _speedButton.MouseClick += new MouseEventHandler(SpeedButton_MouseClick);
+            _speedButton.MouseClick += SpeedButton_MouseClick;
             Controls.Add(_speedButton);
 
             #region Commented Morale
@@ -165,7 +164,7 @@ namespace TribalWars.Controls.DistanceToolStrip
             {
                 for (int i = 0; i < _items.Count; i++)
                 {
-                    DistanceControl ctl = _items[i] as DistanceControl;
+                    var ctl = _items[i];
                     if (ctl != null)
                     {
                         ctl.Dispose();
@@ -175,16 +174,16 @@ namespace TribalWars.Controls.DistanceToolStrip
 
             // Add all units
             _items = new List<DistanceControl>();
-            float LastSpeed = 0;
+            float lastSpeed = 0;
             foreach (Unit unit in WorldUnits.Default)
             {
-                if (unit.Speed != LastSpeed)
+                if (unit.Speed != lastSpeed)
                 {
-                    DistanceControl ctl = new DistanceControl(this, unit);
+                    var ctl = new DistanceControl(this, unit);
                     Controls.Add(ctl);
                     _items.Add(ctl);
                 }
-                LastSpeed = unit.Speed;
+                lastSpeed = unit.Speed;
             }
             SetSize();
 
@@ -243,9 +242,9 @@ namespace TribalWars.Controls.DistanceToolStrip
         /// </summary>
         public void SetSize()
         {
-            int width = DistanceCollectionControl.TravelWidth;
-            if (CurrentSpeed == ShowDistanceEnum.TravelTime || CurrentSpeed == ShowDistanceEnum.TravelTime2) width = DistanceCollectionControl.TimeWidth;
-            this.Size = new System.Drawing.Size((width + 3) * _items.Count + _speedButton.Width + 2, 21);
+            int width = TravelWidth;
+            if (CurrentSpeed == ShowDistanceEnum.TravelTime || CurrentSpeed == ShowDistanceEnum.TravelTime2) width = TimeWidth;
+            Size = new System.Drawing.Size((width + 3) * _items.Count + _speedButton.Width + 2, 21);
         }
         #endregion
     }

@@ -1,11 +1,9 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing;
 
 using TribalWars.Data.Maps.Drawers;
-using TribalWars.Data.Villages;
+using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Maps.Markers;
 using TribalWars.Tools;
 #endregion

@@ -1,13 +1,11 @@
 #region Using
-using System;
+
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Markers;
-using System.Diagnostics;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Maps.Views;
@@ -25,9 +23,9 @@ namespace TribalWars.Data.Maps.Displays
     public class DisplayManager
     {
         #region Fields
-        private Map _map;
+        private readonly Map _map;
 
-        private Dictionary<DisplayTypes, DisplayBase> _displays;
+        private readonly Dictionary<DisplayTypes, DisplayBase> _displays;
         private DisplayBase _currentDisplay;
         private DisplayTypes _currentDisplayType = DisplayTypes.None; 
 
@@ -123,8 +121,8 @@ namespace TribalWars.Data.Maps.Displays
             // misschien moet dit ook al in de _currentDisplay zitten? (ie abstract op de DisplayBase)
             // ShapeDisplay heeft geen NonVillageDrawer
             // MiniShapeDisplay moet geen decorators tonen
-            DrawerBase finalCache = null;
-            Village village = null;
+            DrawerBase finalCache;
+            Village village;
             if (World.Default.Villages.TryGetValue(game, out village))
             {
                 MarkerGroup markerGroup;
@@ -148,7 +146,7 @@ namespace TribalWars.Data.Maps.Displays
                     // Allows show VillageType
                     if (village.Type != VillageType.None)
                     {
-                        DrawerData data = World.Default.Views[Views.Types.VillageType.ToString()].GetDrawer(village);
+                        DrawerData data = World.Default.Views[Types.VillageType.ToString()].GetDrawer(village);
                         if (data != null)
                         {
                             DrawerBase decoratorVillageType = _currentDisplay.CreateDrawer(data, markerGroup, mainData);

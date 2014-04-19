@@ -1,29 +1,26 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
-using TribalWars.Data.Villages;
-using TribalWars.Controls;
 using System.Xml;
-using TribalWars.Controls.Maps;
+using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-using Janus.Windows.UI.CommandBars;
-using TribalWars.Controls.TWContextMenu;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Allows the user to draw polygons on the map
     /// </summary>
-    internal class BBCodeManipulator : MouseMoveManipulatorBase
+    internal class BbCodeManipulator : MouseMoveManipulatorBase
     {
         #region Fields
-        private Pen _pen;
-        private SolidBrush _brush;
-        private Font _font;
+        private readonly Pen _pen;
+        private readonly SolidBrush _brush;
+        private readonly Font _font;
 
         private MapPolygonControl _control;
         #endregion
@@ -32,7 +29,7 @@ namespace TribalWars.Data.Maps.Manipulators
         #endregion
 
         #region Constructors
-        public BBCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset)
+        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset)
             : base(map, parentManipulatorHandler, polygonOffset)
         {
             _pen = new Pen(Color.White);
@@ -146,7 +143,7 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected internal override void ReadXmlCore(XmlReader r)
         {
-            this.Clear();
+            Clear();
             if (r.IsStartElement("BBCodeManipulator") && !r.IsEmptyElement)
             {
                 r.ReadStartElement();
@@ -154,7 +151,7 @@ namespace TribalWars.Data.Maps.Manipulators
                 {
                     string id = r.GetAttribute("ID");
                     bool visible = System.Convert.ToBoolean(r.GetAttribute("Visible"));
-                    List<Point> points = new List<Point>();
+                    var points = new List<Point>();
                     r.ReadStartElement();
                     while (r.IsStartElement("Point"))
                     {
@@ -163,7 +160,7 @@ namespace TribalWars.Data.Maps.Manipulators
                         points.Add(new Point(x, y));
                         r.Read();
                     }
-                    Polygon poly = new Polygon(id, visible, points);
+                    var poly = new Polygon(id, visible, points);
                     Polygons.Add(poly);
                     r.ReadEndElement();
                 }
@@ -205,7 +202,7 @@ namespace TribalWars.Data.Maps.Manipulators
         #endregion
 
         #region Private Implementation
-        //--> This stuff needs to be in the ManipulatorBase
+        //--> TODO This stuff needs to be in the ManipulatorBase
         //--> Adding a control to the map
         public void AddControl()
         {
@@ -222,7 +219,6 @@ namespace TribalWars.Data.Maps.Manipulators
                 _map.Control.Controls.Remove(_control);
                 _control.Dispose();
             }
-
         }
         #endregion
     }

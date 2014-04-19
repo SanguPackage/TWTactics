@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Units;
 using TribalWars.Data.Villages;
 
@@ -14,8 +13,8 @@ namespace TribalWars.Controls.DistanceToolStrip
     public class DistanceControl : Button
     {
         #region Fields
-        private DistanceCollectionControl _collection;
-        private Unit _unit;	
+        private readonly DistanceCollectionControl _collection;
+        private readonly Unit _unit;	
         #endregion
 
         #region Properties
@@ -38,7 +37,6 @@ namespace TribalWars.Controls.DistanceToolStrip
 
         #region Constructors
         public DistanceControl(DistanceCollectionControl col, Unit unit)
-            : base()
         {
             _collection = col;
             _unit = unit;
@@ -50,10 +48,10 @@ namespace TribalWars.Controls.DistanceToolStrip
             BackColor = System.Drawing.Color.Transparent;
             AutoSize = false;
             Size = new System.Drawing.Size(DistanceCollectionControl.TravelWidth, 21);
-            this.Margin = new Padding(0);
-            this.Padding = new Padding(0);
-            this.FlatAppearance.BorderSize = 0;
-            this.Enabled = false;
+            Margin = new Padding(0);
+            Padding = new Padding(0);
+            FlatAppearance.BorderSize = 0;
+            Enabled = false;
         }
         #endregion
 
@@ -61,18 +59,18 @@ namespace TribalWars.Controls.DistanceToolStrip
         /// <summary>
         /// Shows the time in the Distance buttons for the specified villages and speed
         /// </summary>
-        public void ShowTime(Village start, Village end, ShowDistanceEnum _speed)
+        public void ShowTime(Village start, Village end, ShowDistanceEnum speed)
         {
             if (start != null && end != null)
             {
                 TimeSpan time = Village.TravelTime(start, end, Unit);
-                switch (_speed)
+                switch (speed)
                 {
                     case ShowDistanceEnum.ArrivalTime:
-                        Text = TribalWars.Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time));
+                        Text = Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time));
                         break;
                     case ShowDistanceEnum.ReturnTime:
-                        Text = TribalWars.Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time + time));
+                        Text = Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time + time));
                         break;
                     case ShowDistanceEnum.TravelTime:
                         Text = time.ToString();

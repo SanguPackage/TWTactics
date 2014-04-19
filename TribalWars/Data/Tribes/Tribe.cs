@@ -170,13 +170,13 @@ namespace TribalWars.Data.Tribes
         internal Tribe(string[] pAlly)
         {
             //$id, $name, $tag, $members, $villages, $points, $all_points, $rank
-            int.TryParse(pAlly[0], out this._Id);
-            this._Name = System.Web.HttpUtility.UrlDecode(pAlly[1]);
-            this._Tag = System.Web.HttpUtility.UrlDecode(pAlly[2]);
-            int.TryParse(pAlly[4], out this._Villages);
-            int.TryParse(pAlly[5], out this._Points);
-            int.TryParse(pAlly[6], out this._AllPoints);
-            int.TryParse(pAlly[7], out this._Rank);
+            int.TryParse(pAlly[0], out _Id);
+            _Name = System.Web.HttpUtility.UrlDecode(pAlly[1]);
+            _Tag = System.Web.HttpUtility.UrlDecode(pAlly[2]);
+            int.TryParse(pAlly[4], out _Villages);
+            int.TryParse(pAlly[5], out _Points);
+            int.TryParse(pAlly[6], out _AllPoints);
+            int.TryParse(pAlly[7], out _Rank);
         }
         #endregion
 

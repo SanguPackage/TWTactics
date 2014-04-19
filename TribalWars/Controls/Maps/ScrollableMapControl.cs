@@ -1,12 +1,10 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using TribalWars.Data;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Villages;
-using System.Diagnostics;
 using TribalWars.Data.Events;
 #endregion
 
@@ -18,19 +16,15 @@ namespace TribalWars.Controls.Maps
     public class ScrollableMapControl : ScrollableControl
     {
         #region Fields
-        protected Map _map;
-        protected ToolTip _villageToolTipControl;
-        private Timer _timer;
+        protected Map Map;
+        private readonly ToolTip _villageToolTipControl;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the timercontrol for animated painting
         /// </summary>
-        public Timer Timer
-        {
-            get { return _timer; }
-        }
+        public Timer Timer { get; private set; }
 
         /// <summary>
         /// Gets the width of the canvas
@@ -59,20 +53,19 @@ namespace TribalWars.Controls.Maps
 
         #region Constructors
         public ScrollableMapControl()
-            : base()
         {
             BackColor = Color.Green;
             _villageToolTipControl = new ToolTip();
             _villageToolTipControl.Active = true;
             _villageToolTipControl.IsBalloon = true;
-            this.SetStyle(ControlStyles.DoubleBuffer, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.UserPaint, true);
 
-            _timer = new Timer();
-            _timer.Enabled = false;
-            _timer.Interval = 10;
-            _timer.Tick += new EventHandler(Timer_Tick);
+            Timer = new Timer();
+            Timer.Enabled = false;
+            Timer.Interval = 10;
+            Timer.Tick += Timer_Tick;
             
         }
         #endregion
@@ -81,7 +74,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (this.Visible && _map != null && _map.Manipulators.KeyDown(e, this))
+            if (Visible && Map != null && Map.Manipulators.KeyDown(e, this))
             {
                 Invalidate();
             }
@@ -90,7 +83,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyUp(KeyEventArgs e)
         {
             base.OnKeyUp(e);
-            if (this.Visible && _map != null && _map.Manipulators.KeyUp(e, this))
+            if (Visible && Map != null && Map.Manipulators.KeyUp(e, this))
             {
                 Invalidate();
             }
@@ -144,7 +137,7 @@ namespace TribalWars.Controls.Maps
         {
             base.OnMouseDown(e);
             Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (this.Visible && _map != null && _map.Manipulators.MouseDown(e, village, this))
+            if (Visible && Map != null && Map.Manipulators.MouseDown(e, village, this))
             {
                 Invalidate();
             }
@@ -162,13 +155,13 @@ namespace TribalWars.Controls.Maps
         /// </remarks>
         public virtual void GiveFocus()
         {
-            this.Focus();
+            Focus();
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (this.Visible && _map != null && _map.Manipulators.MouseMove(e, this, _villageToolTipControl))
+            if (Visible && Map != null && Map.Manipulators.MouseMove(e, this, _villageToolTipControl))
             {
                 Invalidate();
             }
@@ -178,7 +171,7 @@ namespace TribalWars.Controls.Maps
         {
             base.OnMouseUp(e);
             Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (this.Visible && _map != null && _map.Manipulators.MouseUp(e, village, this))
+            if (Visible && Map != null && Map.Manipulators.MouseUp(e, village, this))
             {
                 Invalidate();
             }
@@ -188,7 +181,7 @@ namespace TribalWars.Controls.Maps
         {
             base.OnMouseDoubleClick(e);
             Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (this.Visible && _map != null && _map.Manipulators.OnVillageDoubleClick(e, village, this))
+            if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village, this))
             {
                 Invalidate();
             }
@@ -196,38 +189,38 @@ namespace TribalWars.Controls.Maps
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (!this.Visible || DesignMode || !World.Default.HasLoaded || _map == null)
+            if (!Visible || DesignMode || !World.Default.HasLoaded || Map == null)
             {
 
             }
             else
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                _map.Display.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
+                Map.Display.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
 
-                _map.Manipulators.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
+                Map.Manipulators.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
             }
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            if (_map != null && World.Default.HasLoaded)
+            if (Map != null && World.Default.HasLoaded)
             {
-                _map.Display.ResetCache();
+                Map.Display.ResetCache();
                 Invalidate();
             }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!this.Visible || DesignMode || !World.Default.HasLoaded || _map == null)
+            if (!Visible || DesignMode || !World.Default.HasLoaded || Map == null)
             {
 
             }
             else
             {
-                _map.Manipulators.TimerPaint(this, ClientRectangle);
+                Map.Manipulators.TimerPaint(this, ClientRectangle);
                 //this.Invalidate();
             }
         }
@@ -249,10 +242,10 @@ namespace TribalWars.Controls.Maps
         /// </summary>
         public void SetMap(Map map)
         {
-            _map = map;
-            _map.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(EventPublisher_LocationChanged);
-            _map.EventPublisher.VillagesSelected += new EventHandler<VillagesEventArgs>(EventPublisher_VillagesSelected);
-            _timer.Enabled = true;
+            Map = map;
+            Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+            Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
+            Timer.Enabled = true;
         }
 
         /// <summary>

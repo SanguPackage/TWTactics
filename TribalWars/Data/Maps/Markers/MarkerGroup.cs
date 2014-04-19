@@ -1,16 +1,7 @@
 #region Imports
 using System;
 using System.Collections.Generic;
-using System.Text;
-
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections.ObjectModel;
-
 using System.Drawing;
-using TribalWars.Data.Maps.Views;
-using TribalWars.Data.Events;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 #endregion
@@ -36,7 +27,7 @@ namespace TribalWars.Data.Maps.Markers
         /// <summary>
         /// Gets or sets the description
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating the markers are to be drawn
@@ -181,7 +172,7 @@ namespace TribalWars.Data.Maps.Markers
         public bool Equals(MarkerGroup other)
         {
             if (other == null) return false;
-            return this.View == other.View && Decorator == other.Decorator
+            return View == other.View && Decorator == other.Decorator
                 && Color == other.Color && ExtraColor == other.ExtraColor;
         }
         #endregion

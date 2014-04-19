@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Events;
 using System.Globalization;
 using TribalWars.Data.Players;
@@ -159,9 +160,9 @@ namespace TribalWars.Controls.Accordeon.Location
                 options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
             else
                 options.Evaluate = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
-            options.PointsBetweenEnd = (int)this.PointsBetweenEnd.Value;
-            options.PointsBetweenStart = (int)this.PointsBetweenStart.Value;
-            options.ResultLimit = (int)this.ResultLimit.Value;
+            options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
+            options.PointsBetweenStart = (int)PointsBetweenStart.Value;
+            options.ResultLimit = (int)ResultLimit.Value;
             if (Filter.SelectedIndex == -1)
                 options.Options = FinderOptions.FinderOptionsEnum.All;
             else
@@ -180,7 +181,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     break;
             }
 
-            options.Text = this.Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
+            options.Text = Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
             if (!string.IsNullOrEmpty(Tribe.Text) && World.Default.Tribes.ContainsKey(Tribe.Text.ToUpper(CultureInfo.InvariantCulture)))
                 options.Tribe = World.Default.Tribes[Tribe.Text.ToUpper(CultureInfo.InvariantCulture)];
             return options;

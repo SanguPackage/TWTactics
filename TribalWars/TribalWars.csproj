@@ -142,16 +142,7 @@
     <Compile Include="Controls\Display\PlayerTableRow.cs" />
     <Compile Include="Controls\Display\TribeTableRow.cs" />
     <Compile Include="Controls\Display\VillageTableRow.cs" />
-    <Compile Include="Controls\Accordeon\MonitorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Accordeon\MonitorControl.Designer.cs">
-      <DependentUpon>MonitorControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\AttackPlan\MapdistanceVillageComparor.cs" />
-    <Compile Include="Controls\AttackPlan\MapDistanceVillageMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Common\ImageCombobox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -170,7 +161,7 @@
     <Compile Include="Controls\Common\TimeConverterCalculatorControl.Designer.cs">
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\ToolStripControlHost.cs">
+    <Compile Include="Controls\Common\ToolStripControlHostWrappers.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Accordeon\Location\LocationControl.cs">
@@ -362,7 +353,6 @@
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\ManipulatorImplementationBase.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\Polygon.cs" />
@@ -459,7 +449,6 @@
     <Compile Include="Data\Villages\VillagePlayerDescriptor.cs" />
     <Compile Include="Data\Villages\VillagePointerUIEditor.cs" />
     <Compile Include="Data\Villages\VillagePropertyDescriptor.cs" />
-    <Compile Include="Data\Villages\Villages.cs" />
     <Compile Include="Data\Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
     <Compile Include="Forms\LoadWorldForm.cs">
@@ -481,17 +470,17 @@
     <Compile Include="Data\Monitoring\Monitor.cs" />
     <Compile Include="Data\Tribes\Tribe.cs" />
     <Compile Include="Data\Buildings\Building.cs" />
-    <Compile Include="Forms\FormMain.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormParse.cs">
+    <Compile Include="Forms\ParseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormParse.Designer.cs">
-      <DependentUpon>FormParse.cs</DependentUpon>
+    <Compile Include="Forms\ParseForm.Designer.cs">
+      <DependentUpon>ParseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -514,10 +503,6 @@
     <EmbeddedResource Include="Controls\Accordeon\Location\FinderOptionsControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\MonitorControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MonitorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Common\LabelTextBoxControl.resx">
       <SubType>Designer</SubType>
@@ -635,13 +620,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMain.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>FormMain.cs</DependentUpon>
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormParse.resx">
+    <EmbeddedResource Include="Forms\ParseForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>FormParse.cs</DependentUpon>
+      <DependentUpon>ParseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoadWorldForm.resx">
       <SubType>Designer</SubType>
@@ -863,9 +848,7 @@
       <Name>XPTable</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Maps\Manipulators\Helpers\ContextMenus\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

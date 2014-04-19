@@ -1,13 +1,10 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Villages;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws an extra icon (Attack, Defense, ...)
@@ -16,12 +13,12 @@ namespace TribalWars.Data.Maps.Drawers
     public class IconDrawerDecorator : DrawerBase
     {
         #region Fields
-        private Bitmap _bitmap;
-        private bool _comments;
-        private bool _nobles;
+        private readonly Bitmap _bitmap;
+        private readonly bool _comments;
+        private readonly bool _nobles;
 
-        private static Bitmap _commentsBitmap;
-        private static Bitmap _noblesBitmap;
+        private static readonly Bitmap _commentsBitmap;
+        private static readonly Bitmap _noblesBitmap;
         #endregion
 
         #region Properties

@@ -1,4 +1,4 @@
-namespace TribalWars
+namespace TribalWars.Forms
 {
     partial class LoadWorldForm
     {

@@ -1,15 +1,13 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Text;
-using TribalWars.Data.Villages;
-using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-//using System.Linq;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Base class for mousemove gestures implemantations (Drawing, ...)
@@ -17,9 +15,9 @@ namespace TribalWars.Data.Maps.Manipulators
     internal abstract class MouseMoveManipulatorBase : ManipulatorBase
     {
         #region Fields
-        private int _polygonOffset;
-        private DefaultManipulatorManager _parent;
-        private int _nextID = 1;
+        private readonly int _polygonOffset;
+        private readonly DefaultManipulatorManager _parent;
+        private int _nextId = 1;
         private Polygon _activePolygon;
         private Polygon _currentSelectedPolygon;
         private List<Polygon> _collection = new List<Polygon>();
@@ -58,17 +56,17 @@ namespace TribalWars.Data.Maps.Manipulators
         #endregion
 
         #region Constructors
-        public MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset, bool differentVillage)
+        protected MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset, bool differentVillage)
             : base(map)
         {
             _polygonOffset = polygonOffset;
             _parent = parent;
+            _differentVillage = differentVillage;
         }
 
-        public MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset)
+        protected MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset)
             : this(map, parent, polygonOffset, true)
         {
-
         }
         #endregion
 
@@ -83,7 +81,7 @@ namespace TribalWars.Data.Maps.Manipulators
                 if (_activePolygon == null || !_activePolygon.Drawing)
                 {
                     // Start a new polygon
-                    _activePolygon = new Polygon(_nextID.ToString(), x, y, _polygonOffset, _differentVillage);
+                    _activePolygon = new Polygon(_nextId.ToString(), x, y, _polygonOffset, _differentVillage);
                     _collection.Add(_activePolygon);
                     _parent.SetFullControlManipulator(this);
                     Start(_activePolygon);
@@ -104,7 +102,7 @@ namespace TribalWars.Data.Maps.Manipulators
                 {
                     // Polygon completed
                     _activePolygon.Stop(x, y);
-                    _nextID++;
+                    _nextId++;
                     Stop(_activePolygon);
                 }
                 else
@@ -155,7 +153,6 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected virtual void Start(Polygon polygon)
         {
-
         }
 
         /// <summary>
@@ -163,7 +160,6 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected virtual void Continue(Polygon polygon)
         {
-
         }
 
         /// <summary>
@@ -171,7 +167,6 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected virtual void Stop(Polygon polygon)
         {
-
         }
 
         /// <summary>
@@ -181,7 +176,7 @@ namespace TribalWars.Data.Maps.Manipulators
         {
             _collection = new List<Polygon>();
             _activePolygon = null;
-            _nextID = 1;
+            _nextId = 1;
             _map.Control.Invalidate();
         }
 
@@ -285,7 +280,6 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         protected virtual void OnVisibilityChanged(bool activeOnly, bool visible)
         {
-
         }
         #endregion
     }

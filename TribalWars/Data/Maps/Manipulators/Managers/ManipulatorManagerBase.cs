@@ -1,17 +1,11 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using System.Drawing;
-using TribalWars.Controls.TWContextMenu;
-using TribalWars.Data.Villages;
-using TribalWars.Controls.Maps;
 using System.Xml;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     /// <summary>
     /// The base class for a manipulator manager
@@ -19,8 +13,6 @@ namespace TribalWars.Data.Maps.Manipulators
     public class ManipulatorManagerBase : ManipulatorBase
     {
         #region Fields
-        private bool _showTooltip;
-
         protected List<ManipulatorBase> _manipulators;
         protected ManipulatorBase _fullControllManipulator;
         #endregion
@@ -30,11 +22,7 @@ namespace TribalWars.Data.Maps.Manipulators
         /// Gets a value indicating whether a tooltip should
         /// show up when hovering over a village
         /// </summary>
-        public bool ShowTooltip
-        {
-            get { return _showTooltip; }
-            set { _showTooltip = value; }
-        }
+        public bool ShowTooltip { get; set; }
         #endregion
 
         #region Constructors
@@ -42,7 +30,7 @@ namespace TribalWars.Data.Maps.Manipulators
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();
-            _showTooltip = true;
+            ShowTooltip = true;
         }
         #endregion
 
@@ -81,7 +69,6 @@ namespace TribalWars.Data.Maps.Manipulators
 
         protected internal virtual void InitializeCore()
         {
-
         }
 
         /// <summary>
@@ -115,7 +102,7 @@ namespace TribalWars.Data.Maps.Manipulators
         /// Informs all the manipulators the user
         /// has clicked the map
         /// </summary>
-        internal protected override bool MouseDownCore(MapMouseEventArgs e)
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
             if (_fullControllManipulator != null)
                 return _fullControllManipulator.MouseDownCore(e);
@@ -127,7 +114,7 @@ namespace TribalWars.Data.Maps.Manipulators
             }
         }
 
-        internal protected override bool MouseUpCore(MapMouseEventArgs e)
+        protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
             if (_fullControllManipulator != null)
                 return _fullControllManipulator.MouseUpCore(e);
@@ -139,7 +126,7 @@ namespace TribalWars.Data.Maps.Manipulators
             }
         }
 
-        internal protected override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
             if (_fullControllManipulator != null)
                 return _fullControllManipulator.MouseMoveCore(e);
@@ -151,7 +138,7 @@ namespace TribalWars.Data.Maps.Manipulators
             }
         }
 
-        internal protected override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
+        protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
         {
             if (_fullControllManipulator != null)
                 return _fullControllManipulator.OnVillageDoubleClickCore(e);
@@ -215,7 +202,6 @@ namespace TribalWars.Data.Maps.Manipulators
 
         public override void Dispose()
         {
-
         }
         #endregion
     }

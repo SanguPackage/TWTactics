@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Manipulators;
 using TribalWars.Data.Maps;
@@ -102,7 +103,7 @@ namespace TribalWars.Controls.TWContextMenu
         {
             if (Village != null)
             {
-                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.Info_Village, Village.ID.ToString());
+                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.InfoVillage, Village.Id.ToString());
             }
         }
 

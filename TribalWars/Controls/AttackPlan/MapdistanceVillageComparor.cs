@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TribalWars.Data.Villages;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.AttackPlan
 {
     public class MapDistanceVillageComparor : IComparable<MapDistanceVillageComparor>
     {

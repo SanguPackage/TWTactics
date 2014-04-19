@@ -24,19 +24,12 @@ namespace TribalWars.Data.Maps
         #region Fields
         private Map _map;
 
-        private bool _continentLines;
-        private bool _provinceLines;
-        private bool _hideAbandoned;
-        private bool _markedOnly;
-
         private Pen _continentPen;
         private Pen _provincePen;
         private Rectangle? _visibleRectangle;
 
         private Brush _backgroundBrush;
         private Color _backgroundColor;
-
-        private DisplayManager _displayManager;
 
         private Bitmap _background;
         #endregion
@@ -46,10 +39,7 @@ namespace TribalWars.Data.Maps
         /// Gets the manager that holds
         /// Shape &amp; Icon displays
         /// </summary>
-        public DisplayManager DisplayManager
-        {
-            get { return _displayManager; }
-        }
+        public DisplayManager DisplayManager { get; private set; }
 
         /// <summary>
         /// Gets the brush used to paint the entire map canvas
@@ -77,45 +67,28 @@ namespace TribalWars.Data.Maps
                 _backgroundBrush = new SolidBrush(value);
             }
         }
-	
 
         /// <summary>
         /// Gets a value indicating whether continent lines should be drawn
         /// </summary>
-        public bool ContinentLines
-        {
-            get { return _continentLines; }
-            set { _continentLines = value; }
-        }
+        public bool ContinentLines { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether province lines should be drawn
         /// </summary>
-        public bool ProvinceLines
-        {
-            get { return _provinceLines; }
-            set { _provinceLines = value; }
-        }
+        public bool ProvinceLines { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating wether abandoned 
         /// villages should be shown on the map
         /// </summary>
-        public bool HideAbandoned
-        {
-            get { return _hideAbandoned; }
-            set { _hideAbandoned = value; }
-        }
+        public bool HideAbandoned { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating wether unmarked
         /// villages should be shown on the map
         /// </summary>
-        public bool MarkedOnly
-        {
-            get { return _markedOnly; }
-            set { _markedOnly = value; }
-        }
+        public bool MarkedOnly { get; set; }
         #endregion
 
         #region Constructors
@@ -131,14 +104,14 @@ namespace TribalWars.Data.Maps
 
             _backgroundBrush = new SolidBrush(Color.Green);
 
-            _displayManager = new DisplayManager(map, displayType);
+            DisplayManager = new DisplayManager(map, displayType);
 
             _continentPen = new Pen(Color.Black, 1);
             _continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
             _provincePen = new Pen(Color.FromArgb(42, 94, 31), 1f);
             _provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
 
-            _map.EventPublisher.LocationChanged += new EventHandler<TribalWars.Data.Events.MapLocationEventArgs>(EventPublisher_LocationChanged);
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
 
         private void EventPublisher_LocationChanged(object sender, TribalWars.Data.Events.MapLocationEventArgs e)
@@ -156,7 +129,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void Reset(DisplayTypes type)
         {
-            _displayManager.Reset(type);
+            DisplayManager.Reset(type);
             _background = null;
         }
 
@@ -207,7 +180,7 @@ namespace TribalWars.Data.Maps
                 int xOffset = GetMapLocation(gameTopLeft).X;
                 int yOffset = GetMapLocation(gameTopLeft).Y;
 
-                DisplayBase displayType = _displayManager.CurrentDisplay;
+                DisplayBase displayType = DisplayManager.CurrentDisplay;
                 int zoom = _map.Location.Zoom;
                 int width = displayType.GetVillageWidthSpacing(zoom);
                 int height = displayType.GetVillageHeightSpacing(zoom);
@@ -249,7 +222,7 @@ namespace TribalWars.Data.Maps
                         gameX = gameTopLeft.X;
                         for (int xMap = mapX; xMap <= fullMap.Right; xMap += width)
                         {
-                            _displayManager.Paint(g, new Point(gameX, gameY), xMap, yMap, villageWidth, villageHeight);
+                            DisplayManager.Paint(g, new Point(gameX, gameY), xMap, yMap, villageWidth, villageHeight);
                             gameX += 1;
                             villagesDrawed++;
                         }
@@ -401,8 +374,8 @@ namespace TribalWars.Data.Maps
         public Point GetMapLocation(Location sets, int mapWidth, int mapHeight, int x, int y)
         {
             // Get location from game and convert it to location on the map
-            int height = _displayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
-            int width = _displayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
+            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
+            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
 
             int off = (int)((x - sets.X) * width);
             x = off + mapWidth / 2; // +(2 * x - 1);
@@ -487,8 +460,8 @@ namespace TribalWars.Data.Maps
             // Get location from map and convert it to game location
             //int off = (int)((x - sets.X));
 
-            int height = _displayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
-            int width = _displayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
+            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
+            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
 
             int newx = (int)((x + sets.X * width - mapWidth / 2) / width);
             int newy = (int)((y + sets.Y * height - mapHeight / 2) / height);

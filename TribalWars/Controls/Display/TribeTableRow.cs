@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Drawing;
-
+using TribalWars.Data;
 using TribalWars.Data.Tribes;
 
 using XPTable.Models;
@@ -16,7 +16,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Lists the different columns in the TribeTableRow columns
     /// </summary>
-    [Flags()]
+    [Flags]
     public enum TribeFields
     {
         None = 0,

@@ -1,10 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Data
 {
     /// <summary>
     /// The actions that can be performed on the world

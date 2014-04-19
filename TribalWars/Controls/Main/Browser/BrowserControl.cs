@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-
+using TribalWars.Data;
 using TribalWars.Data.Events;
 
 namespace TribalWars.Controls.Main.Browser
@@ -68,8 +66,8 @@ namespace TribalWars.Controls.Main.Browser
         {
             InitializeComponent();
 
-            Browser.CanGoForwardChanged += new EventHandler(Browser_CanGoForwardChanged);
-            Browser.CanGoBackChanged += new EventHandler(Browser_CanGoBackChanged);
+            Browser.CanGoForwardChanged += Browser_CanGoForwardChanged;
+            Browser.CanGoBackChanged += Browser_CanGoBackChanged;
 
             World.Default.EventPublisher.Browse += OnBrowseEvent;
             World.Default.EventPublisher.SettingsLoaded += OnSettingsLoaded;
@@ -86,14 +84,14 @@ namespace TribalWars.Controls.Main.Browser
             {
                 switch (e.Destination)
                 {
-                    case DestinationEnum.TWStatsPlayer:
-                        WebBrowser.Navigate(string.Format(World.Default.TWStats.Player, e.Arguments[0]));
+                    case DestinationEnum.TwStatsPlayer:
+                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Player, e.Arguments[0]));
                         break;
-                    case DestinationEnum.TWStatsTribe:
-                        WebBrowser.Navigate(string.Format(World.Default.TWStats.Tribe, e.Arguments[0]));
+                    case DestinationEnum.TwStatsTribe:
+                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Tribe, e.Arguments[0]));
                         break;
-                    case DestinationEnum.TWStatsVillage:
-                        WebBrowser.Navigate(string.Format(World.Default.TWStats.Village, e.Arguments[0]));
+                    case DestinationEnum.TwStatsVillage:
+                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Village, e.Arguments[0]));
                         break;
                 }
             }
@@ -105,8 +103,8 @@ namespace TribalWars.Controls.Main.Browser
                     case DestinationEnum.Overview:
                         WebBrowser.Navigate(string.Format(World.Default.GameLink, e.Arguments[0], "overview"));
                         break;
-                    case DestinationEnum.Info_Village:
-                        WebBrowser.Navigate(string.Format(World.Default.GameLink, _activeVillage.ToString(), "info_village&id=" + e.Arguments[0]));
+                    case DestinationEnum.InfoVillage:
+                        WebBrowser.Navigate(string.Format(World.Default.GameLink, _activeVillage.ToString(CultureInfo.InvariantCulture), "info_village&id=" + e.Arguments[0]));
                         break;
                 }
             }
@@ -116,7 +114,7 @@ namespace TribalWars.Controls.Main.Browser
         {
             if (World.Default.PlayerSelected)
             {
-                _activeVillage = World.Default.You.Player.Villages[0].ID;
+                _activeVillage = World.Default.You.Player.Villages[0].Id;
             }
             else
             {
@@ -135,7 +133,7 @@ namespace TribalWars.Controls.Main.Browser
             }
             else
             {
-                Browser.Navigate(World.Default.TWStats.Default);
+                Browser.Navigate(World.Default.TwStats.Default);
             }
         }
         #endregion
@@ -171,7 +169,7 @@ namespace TribalWars.Controls.Main.Browser
         {
             if (World.Default.HasLoaded)
             {
-                Browser.Navigate(World.Default.TWStats.Default);
+                Browser.Navigate(World.Default.TwStats.Default);
             }
         }
 
@@ -211,27 +209,27 @@ namespace TribalWars.Controls.Main.Browser
                 Match match = _activeVillageRegEx.Match(url);
                 if (match.Success)
                 {
-                    _activeVillage = System.Convert.ToInt32(match.Groups["village"].Value);
+                    _activeVillage = Convert.ToInt32(match.Groups["village"].Value);
 
                     // Get server time
                     DateTime serverTime;
                     Tools.Parsers.CommonParsers.ServerTime(Browser.DocumentText, out serverTime);
 
                     // parse the document
-                    this.ParseResultLabel.Text = string.Empty;
+                    ParseResultLabel.Text = string.Empty;
                     foreach (IBrowserParser parser in _parsers)
                     {
                         if (parser.Handles(url))
                         {
                             if (parser.Handle(Browser.DocumentText, serverTime))
                             {
-                                this.ParseResultLabel.Text = "Success";
-                                this.ParseResultLabel.BackColor = Color.Green;
+                                ParseResultLabel.Text = "Success";
+                                ParseResultLabel.BackColor = Color.Green;
                             }
                             else
                             {
-                                this.ParseResultLabel.Text = "Failure";
-                                this.ParseResultLabel.BackColor = Color.Red;
+                                ParseResultLabel.Text = "Failure";
+                                ParseResultLabel.BackColor = Color.Red;
                             }
                         }
                     }

@@ -1,6 +1,11 @@
-namespace TribalWars
+using TribalWars.Controls.Accordeon;
+using TribalWars.Controls.AttackPlan;
+using TribalWars.Controls.Main;
+using TribalWars.Controls.Main.Polygon;
+
+namespace TribalWars.Forms
 {
-    partial class FormMain
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +35,7 @@ namespace TribalWars
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Panel panel1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MiniMap = new TribalWars.Controls.Maps.MiniMapControl();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.PickColor = new System.Windows.Forms.ColorDialog();
@@ -90,15 +95,9 @@ namespace TribalWars
             this.LeftNavigation_QuickFind = new Ascend.Windows.Forms.NavigationPanePage();
             this.detailsControl1 = new TribalWars.Controls.Accordeon.Details.DetailsControl();
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
-            this.markersContainerControl1 = new TribalWars.Controls.MarkersContainerControl();
+            this.markersContainerControl1 = new TribalWars.Controls.Accordeon.MarkersContainerControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this.MapDistance = new TribalWars.Controls.MapDistanceCollectionControl();
-            this.LeftNavigation_YourTribe = new Ascend.Windows.Forms.NavigationPanePage();
-            this.LeftNavigation_You = new Ascend.Windows.Forms.NavigationPanePage();
-            this.YouLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.LeftNavigation_Monitor = new Ascend.Windows.Forms.NavigationPanePage();
-            this.MonitorAccordeon = new TribalWars.Controls.Accordeon.MonitorControl();
+            this.MapDistance = new TribalWars.Controls.AttackPlan.MapDistanceCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
@@ -107,9 +106,9 @@ namespace TribalWars
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Controls.Main.Browser.BrowserControl();
             this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
-            this.Parser = new TribalWars.Controls.ParserControl();
+            this.Parser = new ParserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new TribalWars.Controls.PolygonControl();
+            this.Polygon = new PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
@@ -128,9 +127,6 @@ namespace TribalWars
             this.LeftNavigation_QuickFind.SuspendLayout();
             this.LeftNavigation_Markers.SuspendLayout();
             this.LeftNavigation_Distance.SuspendLayout();
-            this.LeftNavigation_You.SuspendLayout();
-            this.YouLayout.SuspendLayout();
-            this.LeftNavigation_Monitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
             this.TabsMap.SuspendLayout();
@@ -647,9 +643,6 @@ namespace TribalWars
             this.LeftNavigation.Controls.Add(this.LeftNavigation_QuickFind);
             this.LeftNavigation.Controls.Add(this.LeftNavigation_Markers);
             this.LeftNavigation.Controls.Add(this.LeftNavigation_Distance);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_YourTribe);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_You);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_Monitor);
             this.LeftNavigation.Cursor = System.Windows.Forms.Cursors.Default;
             this.LeftNavigation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftNavigation.FooterGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -663,10 +656,7 @@ namespace TribalWars
             this.LeftNavigation_Location,
             this.LeftNavigation_QuickFind,
             this.LeftNavigation_Markers,
-            this.LeftNavigation_Distance,
-            this.LeftNavigation_YourTribe,
-            this.LeftNavigation_You,
-            this.LeftNavigation_Monitor});
+            this.LeftNavigation_Distance});
             this.LeftNavigation.Size = new System.Drawing.Size(313, 367);
             this.LeftNavigation.TabIndex = 0;
             this.LeftNavigation.VisibleButtonCount = 4;
@@ -832,127 +822,6 @@ namespace TribalWars
             this.MapDistance.Sound = false;
             this.MapDistance.TabIndex = 0;
             // 
-            // LeftNavigation_YourTribe
-            // 
-            this.LeftNavigation_YourTribe.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_YourTribe.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_YourTribe.AutoScroll = true;
-            this.LeftNavigation_YourTribe.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_YourTribe.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_YourTribe.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_YourTribe.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_YourTribe.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_YourTribe.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_YourTribe.Image = null;
-            this.LeftNavigation_YourTribe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_YourTribe.ImageFooter = null;
-            this.LeftNavigation_YourTribe.ImageIndex = -1;
-            this.LeftNavigation_YourTribe.ImageIndexFooter = -1;
-            this.LeftNavigation_YourTribe.ImageKey = "";
-            this.LeftNavigation_YourTribe.ImageKeyFooter = "";
-            this.LeftNavigation_YourTribe.ImageList = null;
-            this.LeftNavigation_YourTribe.ImageListFooter = null;
-            this.LeftNavigation_YourTribe.Key = "LeftNavigation_YourTribe";
-            this.LeftNavigation_YourTribe.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_YourTribe.Name = "LeftNavigation_YourTribe";
-            this.LeftNavigation_YourTribe.Size = new System.Drawing.Size(311, 174);
-            this.LeftNavigation_YourTribe.TabIndex = 2;
-            this.LeftNavigation_YourTribe.Text = "Your Tribe";
-            this.LeftNavigation_YourTribe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_YourTribe.ToolTipText = null;
-            // 
-            // LeftNavigation_You
-            // 
-            this.LeftNavigation_You.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_You.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_You.AutoScroll = true;
-            this.LeftNavigation_You.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_You.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_You.Controls.Add(this.YouLayout);
-            this.LeftNavigation_You.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_You.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_You.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_You.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_You.Image = null;
-            this.LeftNavigation_You.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_You.ImageFooter = null;
-            this.LeftNavigation_You.ImageIndex = -1;
-            this.LeftNavigation_You.ImageIndexFooter = -1;
-            this.LeftNavigation_You.ImageKey = "";
-            this.LeftNavigation_You.ImageKeyFooter = "";
-            this.LeftNavigation_You.ImageList = null;
-            this.LeftNavigation_You.ImageListFooter = null;
-            this.LeftNavigation_You.Key = "LeftNavigation_You";
-            this.LeftNavigation_You.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_You.Name = "LeftNavigation_You";
-            this.LeftNavigation_You.Size = new System.Drawing.Size(311, 174);
-            this.LeftNavigation_You.TabIndex = 0;
-            this.LeftNavigation_You.Text = "You";
-            this.LeftNavigation_You.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_You.ToolTipText = null;
-            // 
-            // YouLayout
-            // 
-            this.YouLayout.ColumnCount = 1;
-            this.YouLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.YouLayout.Controls.Add(this.toolStrip2, 0, 0);
-            this.YouLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.YouLayout.Location = new System.Drawing.Point(0, 0);
-            this.YouLayout.Name = "YouLayout";
-            this.YouLayout.RowCount = 2;
-            this.YouLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.YouLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.YouLayout.Size = new System.Drawing.Size(311, 174);
-            this.YouLayout.TabIndex = 0;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(311, 25);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // LeftNavigation_Monitor
-            // 
-            this.LeftNavigation_Monitor.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_Monitor.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Monitor.AutoScroll = true;
-            this.LeftNavigation_Monitor.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_Monitor.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_Monitor.Controls.Add(this.MonitorAccordeon);
-            this.LeftNavigation_Monitor.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_Monitor.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_Monitor.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_Monitor.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Monitor.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Monitor.Image")));
-            this.LeftNavigation_Monitor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Monitor.ImageFooter = null;
-            this.LeftNavigation_Monitor.ImageIndex = -1;
-            this.LeftNavigation_Monitor.ImageIndexFooter = -1;
-            this.LeftNavigation_Monitor.ImageKey = "";
-            this.LeftNavigation_Monitor.ImageKeyFooter = "";
-            this.LeftNavigation_Monitor.ImageList = null;
-            this.LeftNavigation_Monitor.ImageListFooter = null;
-            this.LeftNavigation_Monitor.Key = "LeftNavigation_Monitor";
-            this.LeftNavigation_Monitor.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_Monitor.Name = "LeftNavigation_Monitor";
-            this.LeftNavigation_Monitor.Size = new System.Drawing.Size(311, 174);
-            this.LeftNavigation_Monitor.TabIndex = 5;
-            this.LeftNavigation_Monitor.Text = "Monitor";
-            this.LeftNavigation_Monitor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Monitor.ToolTipText = null;
-            // 
-            // MonitorAccordeon
-            // 
-            this.MonitorAccordeon.BackColor = System.Drawing.Color.Transparent;
-            this.MonitorAccordeon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MonitorAccordeon.Location = new System.Drawing.Point(0, 0);
-            this.MonitorAccordeon.Margin = new System.Windows.Forms.Padding(0);
-            this.MonitorAccordeon.Name = "MonitorAccordeon";
-            this.MonitorAccordeon.Size = new System.Drawing.Size(311, 174);
-            this.MonitorAccordeon.TabIndex = 0;
-            // 
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1101,7 +970,7 @@ namespace TribalWars
             // 
             this.FormToolbarContainer.TopToolStripPanel.Controls.Add(this.ToolStrip);
             // 
-            // FormMain
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1111,7 +980,7 @@ namespace TribalWars
             this.Controls.Add(this.MenuBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
-            this.Name = "FormMain";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TW Tactics v0.2 - by Sangu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1133,10 +1002,6 @@ namespace TribalWars
             this.LeftNavigation_QuickFind.ResumeLayout(false);
             this.LeftNavigation_Markers.ResumeLayout(false);
             this.LeftNavigation_Distance.ResumeLayout(false);
-            this.LeftNavigation_You.ResumeLayout(false);
-            this.YouLayout.ResumeLayout(false);
-            this.YouLayout.PerformLayout();
-            this.LeftNavigation_Monitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
@@ -1181,7 +1046,6 @@ namespace TribalWars
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private System.Windows.Forms.SplitContainer FormSplitter;
         private System.Windows.Forms.ToolStripContainer FormToolbarContainer;
-        private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_You;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem MenuFileNew;
         private System.Windows.Forms.ToolStripMenuItem MenuFileLoadWorld;
@@ -1190,7 +1054,6 @@ namespace TribalWars
         private System.Windows.Forms.ToolStripMenuItem MenuFileSaveSettingsAs;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem MenuFileExit;
-        private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_YourTribe;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Markers;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_QuickFind;
         private System.Windows.Forms.ToolStripMenuItem mapToolStripMenuItem;
@@ -1200,21 +1063,17 @@ namespace TribalWars
         internal System.Windows.Forms.ToolStripStatusLabel StatusVillage;
         private System.Windows.Forms.ToolStripDropDownButton ToolStripSettings;
         //private Controls.YouTreeold YouTree;
-        private System.Windows.Forms.TableLayoutPanel YouLayout;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Monitor;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Distance;
-        private TribalWars.Controls.MapDistanceCollectionControl MapDistance;
+        private MapDistanceCollectionControl MapDistance;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem MenuFileWorldDownload;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Location;
         //private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
-        private TribalWars.Controls.MarkersContainerControl markersContainerControl1;
+        private MarkersContainerControl markersContainerControl1;
         private TribalWars.Controls.Maps.MapControl Map;
         private TribalWars.Controls.Main.Browser.BrowserControl Browser;
-        private TribalWars.Controls.ParserControl Parser;
-        private TribalWars.Controls.PolygonControl Polygon;
-        private TribalWars.Controls.Accordeon.MonitorControl MonitorAccordeon;
+        private ParserControl Parser;
+        private PolygonControl Polygon;
         //private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;
         //private TribalWars.Controls.Main.Monitoring.MonitoringControl monitoringControl1;
         private TribalWars.Controls.Main.Browser.BrowserControl browserControl1;

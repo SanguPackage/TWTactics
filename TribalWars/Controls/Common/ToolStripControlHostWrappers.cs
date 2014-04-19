@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms.Design;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Units;
 using TribalWars.Data.Events;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 using System.ComponentModel;
-using TribalWars.Controls.Common;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Common
 {
     /// <summary>
     /// Wrapper for a Unit ImageCombobox for use in a ToolStrip
@@ -160,9 +158,9 @@ namespace TribalWars.Controls
             base.OnSubscribeControlEvents(control);
 
             // Add the event.
-            PlayerTribeFinderTextBox.VillageSelected += new EventHandler<VillageEventArgs>(control_VillageSelected);
-            PlayerTribeFinderTextBox.TribeSelected += new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
-            PlayerTribeFinderTextBox.PlayerSelected += new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
+            PlayerTribeFinderTextBox.VillageSelected += control_VillageSelected;
+            PlayerTribeFinderTextBox.TribeSelected += TextBox_TribeSelected;
+            PlayerTribeFinderTextBox.PlayerSelected += TextBox_PlayerSelected;
         }
 
         private void TextBox_PlayerSelected(object sender, PlayerEventArgs e)
@@ -185,9 +183,9 @@ namespace TribalWars.Controls
             base.OnUnsubscribeControlEvents(control);
 
             // Remove the event.
-            PlayerTribeFinderTextBox.VillageSelected -= new EventHandler<VillageEventArgs>(control_VillageSelected);
-            PlayerTribeFinderTextBox.TribeSelected -= new EventHandler<TribeEventArgs>(TextBox_TribeSelected);
-            PlayerTribeFinderTextBox.PlayerSelected -= new EventHandler<PlayerEventArgs>(TextBox_PlayerSelected);
+            PlayerTribeFinderTextBox.VillageSelected -= control_VillageSelected;
+            PlayerTribeFinderTextBox.TribeSelected -= TextBox_TribeSelected;
+            PlayerTribeFinderTextBox.PlayerSelected -= TextBox_PlayerSelected;
         }
         #endregion
     }

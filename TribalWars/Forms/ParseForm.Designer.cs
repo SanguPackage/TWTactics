@@ -1,6 +1,6 @@
-namespace TribalWars
+namespace TribalWars.Forms
 {
-    partial class FormParse
+    partial class ParseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace TribalWars
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormParse));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParseForm));
             this.txtInput = new System.Windows.Forms.TextBox();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.cmdParse = new System.Windows.Forms.Button();
@@ -84,7 +84,7 @@ namespace TribalWars
             this.Controls.Add(this.cmdParse);
             this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.txtInput);
-            this.Name = "FormParse";
+            this.Name = "ParseForm";
             this.Text = "Parser";
             this.ResumeLayout(false);
             this.PerformLayout();

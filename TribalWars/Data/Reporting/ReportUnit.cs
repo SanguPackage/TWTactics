@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
-using System.Xml.Serialization;
 using System.Xml;
-
+using System.Xml.Serialization;
 using TribalWars.Data.Units;
 
 namespace TribalWars.Data.Reporting
@@ -15,10 +12,10 @@ namespace TribalWars.Data.Reporting
     public class ReportUnit : IXmlSerializable, IEquatable<ReportUnit>
     {
         #region Fields
-        private int _AmountStart = 0;
-        private int _AmountLost = 0;
-        private int _AmountOut = 0;
-        private Unit _unit;	
+        private int _AmountStart;
+        private int _AmountLost;
+        private int _AmountOut;
+        private readonly Unit _unit;
         #endregion
 
         #region Properties
@@ -121,7 +118,7 @@ namespace TribalWars.Data.Reporting
         #region Public Methods
         public override string ToString()
         {
-            return string.Format("{0} ({1} - {2})", this.Unit.Name, _AmountStart.ToString("#,0"), _AmountLost.ToString("#,0"));
+            return string.Format("{0} ({1} - {2})", Unit.Name, _AmountStart.ToString("#,0"), _AmountLost.ToString("#,0"));
         }
 
         public override int GetHashCode()
@@ -138,9 +135,9 @@ namespace TribalWars.Data.Reporting
         {
             if (other == null) return false;
             return _unit.Equals(other.Unit)
-                && _AmountStart == other.AmountStart
-                && _AmountLost == other.AmountLost
-                && _AmountOut == other.AmountOut;
+                   && _AmountStart == other.AmountStart
+                   && _AmountLost == other.AmountLost
+                   && _AmountOut == other.AmountOut;
         }
         #endregion
 
@@ -247,9 +244,9 @@ namespace TribalWars.Data.Reporting
                 while (r.IsStartElement("Unit"))
                 {
                     string typeDesc = r.GetAttribute(0);
-                    if (Enum.IsDefined(typeof(UnitTypes), typeDesc))
+                    if (Enum.IsDefined(typeof (UnitTypes), typeDesc))
                     {
-                        UnitTypes type = (UnitTypes)Enum.Parse(typeof(UnitTypes), typeDesc);
+                        UnitTypes type = (UnitTypes) Enum.Parse(typeof (UnitTypes), typeDesc);
                         r.Read();
                         //r.Read();
                         int amount = System.Convert.ToInt32(r.ReadElementString("Home"));

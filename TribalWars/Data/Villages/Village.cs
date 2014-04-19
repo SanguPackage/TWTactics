@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;
@@ -75,21 +76,17 @@ namespace TribalWars.Data.Villages
 
         #region Fields
         private int _Id;
-        private string _Name;
         internal int _X;
-        internal int _Y;
+        internal readonly int _Y;
 
-        private Player _Player;
-        internal int _PlayerID;
+        private Player _player;
+        internal readonly int PlayerId;
         internal int _Points;
-        private BonusType _Bonus;
-        private Point _location;
-        protected int _Kingdom;
+        private readonly Point _location;
+        protected readonly int _Kingdom;
         private VillageType _type;
         private bool _typeIsSet;
         private string _tooltip;
-
-        private Village _previousVillageDetails;
 
         private VillageReportCollection _reports;
         private string _comments;
@@ -103,14 +100,14 @@ namespace TribalWars.Data.Villages
         {
             get
             {
-                if (_Player == null)
+                if (_player == null)
                     return _comments;
 
                 if (string.IsNullOrEmpty(_comments))
-                    return _Player.Comments;
+                    return _player.Comments;
 
-                if (!string.IsNullOrEmpty(_Player.Comments))
-                    return string.Format("{0}{1}---------------------------------------------{1}{2}", _comments, System.Environment.NewLine, _Player.Comments);
+                if (!string.IsNullOrEmpty(_player.Comments))
+                    return string.Format("{0}{1}---------------------------------------------{1}{2}", _comments, Environment.NewLine, _player.Comments);
 
                 return _comments;
             }
@@ -148,11 +145,7 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets or sets the current name of the village
         /// </summary>
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the location of the village
@@ -167,8 +160,8 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public Player Player
         {
-            get { return _Player; }
-            set { _Player = value; }
+            get { return _player; }
+            set { _player = value; }
         }
 
         /// <summary>
@@ -176,7 +169,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int PlayerID
         {
-            get { return _PlayerID; }
+            get { return PlayerId; }
         }
 
         /// <summary>
@@ -191,15 +184,12 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets the bonusvillage type
         /// </summary>
-        public BonusType Bonus
-        {
-            get { return _Bonus; }
-        }
+        public BonusType Bonus { get; private set; }
 
         /// <summary>
         /// Gets the Tribal Wars Database ID of the village
         /// </summary>
-        public int ID
+        public int Id
         {
             get { return _Id; }
         }
@@ -256,10 +246,7 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets the village details of the previous downloaded data
         /// </summary>
-        public Village PreviousVillageDetails
-        {
-            get { return _previousVillageDetails; }
-        }
+        public Village PreviousVillageDetails { get; private set; }
 
         /// <summary>
         /// Gets the user defined type of the village
@@ -271,15 +258,15 @@ namespace TribalWars.Data.Villages
                 switch (Type)
                 {
                     case VillageType.Attack:
-                        return TribalWars.Data.Buildings.Images.Barracks;
+                        return Buildings.Images.Barracks;
                     case VillageType.Defense:
-                        return TribalWars.Properties.Resources.Defense;
+                        return Properties.Resources.Defense;
                     case VillageType.Farm:
-                        return TribalWars.Data.Buildings.Images.Farm;
+                        return Buildings.Images.Farm;
                     case VillageType.Scout:
-                        return TribalWars.Data.Units.Images.Scout;
+                        return Units.Images.Scout;
                     case VillageType.Noble:
-                        return TribalWars.Data.Units.Images.Noble;
+                        return Units.Images.Noble;
                 }
                 return null;
             }
@@ -320,7 +307,7 @@ namespace TribalWars.Data.Villages
                     // "current map control"
                     // so this will be moved away from here after all
 
-                    StringBuilder str = new StringBuilder();
+                    var str = new StringBuilder();
 
                     // Calculate previous stuff
                     int prevPoints = 0;
@@ -387,7 +374,7 @@ namespace TribalWars.Data.Villages
                         {
                             str.AppendFormat("Abandoned by {0} ({1})", prevPlayer.Name, prevPlayer.Points.ToString("#,0"));
                             str.AppendLine();
-                            str.AppendFormat("Villages: {0}", prevPlayer.Villages.Count.ToString());
+                            str.AppendFormat("Villages: {0}", prevPlayer.Villages.Count.ToString(CultureInfo.InvariantCulture));
                         }
                         else
                         {
@@ -407,15 +394,15 @@ namespace TribalWars.Data.Villages
         internal Village(string[] pVillage)
         {
             // $id, $name, $x, $y, $tribe, $points, $rank
-            int.TryParse(pVillage[0], out this._Id);
-            this._Name = System.Web.HttpUtility.HtmlDecode(System.Web.HttpUtility.UrlDecode(pVillage[1]));
-            int.TryParse(pVillage[2], out this._X);
-            int.TryParse(pVillage[3], out this._Y);
-            int.TryParse(pVillage[5], out this._Points);
-            int.TryParse(pVillage[4], out this._PlayerID);
+            int.TryParse(pVillage[0], out _Id);
+            Name = System.Web.HttpUtility.HtmlDecode(System.Web.HttpUtility.UrlDecode(pVillage[1]));
+            int.TryParse(pVillage[2], out _X);
+            int.TryParse(pVillage[3], out _Y);
+            int.TryParse(pVillage[5], out _Points);
+            int.TryParse(pVillage[4], out PlayerId);
             int bonus;
             int.TryParse(pVillage[6], out bonus);
-            this._Bonus = (BonusType)bonus;
+            Bonus = (BonusType)bonus;
             _Kingdom = (int)(Math.Floor((double)X / 100) + 10 * Math.Floor((double)Y / 100));
             _location = new Point(_X, _Y);
         }
@@ -470,7 +457,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public void SetPreviousDetails(Village village)
         {
-            _previousVillageDetails = village;
+            PreviousVillageDetails = village;
         }
 
         /// <summary>

@@ -1,10 +1,9 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+using TribalWars.Data.Maps.Manipulators.Implementations;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     /// <summary>
     /// Manages user interaction for the minimap

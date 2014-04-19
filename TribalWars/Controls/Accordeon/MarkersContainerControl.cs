@@ -1,16 +1,13 @@
 #region Using
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using TribalWars.Data.Maps;
+using TribalWars.Data;
 using TribalWars.Data.Events;
+
 #endregion
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Accordeon
 {
     public partial class MarkersContainerControl : UserControl
     {
@@ -21,8 +18,8 @@ namespace TribalWars.Controls
 
         private void MarkersContainerControl_Load(object sender, EventArgs e)
         {
-            World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(World_SettingsLoaded);
-            World.Default.Map.EventPublisher.MarkersChanged += new EventHandler<MapMarkerEventArgs>(World_MarkersChanged);
+            World.Default.EventPublisher.SettingsLoaded += World_SettingsLoaded;
+            World.Default.Map.EventPublisher.MarkersChanged += World_MarkersChanged;
         }
 
         void World_MarkersChanged(object sender, MapMarkerEventArgs e)
@@ -31,7 +28,7 @@ namespace TribalWars.Controls
             Markers.Items.Clear();
 
             MarkerGroups.Columns.Clear();
-            ColumnHeader hd = new ColumnHeader();
+            var hd = new ColumnHeader();
             hd.Text = "Name";
             hd.Width = 60;
             MarkerGroups.Columns.Add(hd);

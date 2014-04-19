@@ -1,61 +1,44 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Units;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.AttackPlan
 {
     public partial class MapDistanceCollectionControl : UserControl
     {
-        private Dictionary<ToolStripMenuItem, MapDistanceControl> _Plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
+        private readonly Dictionary<ToolStripMenuItem, MapDistanceControl> _plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
         public MapDistanceControl this[ToolStripMenuItem itm]
         {
             get
             {
-                if (_Plans.ContainsKey(itm)) return _Plans[itm];
-                return null;
+                return _plans.ContainsKey(itm) ? _plans[itm] : null;
             }
         }
 
         #region Fields
-        private MapDistanceControl _ActivePlan;
-        private bool _sound;
-        //private List<MapDistanceControl> _plans;
-
-        /*public List<MapDistanceControl> Plans
-        {
-            get { return _plans; }
-        }*/
-	
+        private MapDistanceControl _activePlan;
         #endregion
 
         #region Properties
         public MapDistanceControl ActivePlan
         {
-            get { return _ActivePlan; }
+            get { return _activePlan; }
             set
             {
-                if (_ActivePlan != null) _ActivePlan.Visible = false;
+                if (_activePlan != null) _activePlan.Visible = false;
                 if (value != null) value.Visible = true;
-                _ActivePlan = value;
+                _activePlan = value;
             }
         }
 
-        public bool Sound
-        {
-            get { return _sound; }
-            set { _sound = value; }
-        }
+        public bool Sound { get; set; }
 
-        public Panel AllPlans
-        {
-            get { return AllContainer; }
-        }
+        public Panel AllPlans { get; private set; }
         #endregion
 
         #region Constructors
@@ -63,7 +46,7 @@ namespace TribalWars.Controls
         {
             InitializeComponent();
 
-            World.Default.EventPublisher.SettingsLoaded += new EventHandler<EventArgs>(Default_SettingsLoaded);
+            World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
         }
         #endregion
 
@@ -107,15 +90,15 @@ namespace TribalWars.Controls
             {
                 foreach (Village village in World.Default.You.Player)
                 {
-                    Unit Unit = UnitInput.Unit;
-                    if (Unit != null)
+                    Unit unit = UnitInput.Unit;
+                    if (unit != null)
                     {
-                        TimeSpan TravelTime = Village.TravelTime(ActivePlan.Target, village, Unit);
-                        TimeSpan left = ActivePlan.AttackDate - World.Default.ServerTime.Add(TravelTime);
+                        TimeSpan travelTime = Village.TravelTime(ActivePlan.Target, village, unit);
+                        TimeSpan left = ActivePlan.AttackDate - World.Default.ServerTime.Add(travelTime);
                         if (left.TotalSeconds > 0 && left.TotalHours < 3)
                         {
                             MapDistanceVillageControl ctl = ActivePlan.AddVillage(village);
-                            ctl.UnitSelectedIndex = Unit.Position;
+                            ctl.UnitSelectedIndex = unit.Position;
                         }
                     }
                 }
@@ -145,17 +128,17 @@ namespace TribalWars.Controls
         #region Public Methods
         public void AddTarget(Village vil)
         {
-            ToolStripMenuItem newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString.ToString(), vil.Name, vil.Points.ToString("#,0")), null, SelectPlan);
+            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, vil.Points.ToString("#,0")), null, SelectPlan);
             if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
             AttackDropDown.DropDownItems.Add(newItm);
             if (AttackDropDown.DropDownItems.Count == 1)
                 newItm.Checked = true;
 
-            MapDistanceControl distance = new MapDistanceControl(this, WorldUnits.Default.ImageList);
+            var distance = new MapDistanceControl(this, WorldUnits.Default.ImageList);
             distance.Target = vil;
             distance.Dock = DockStyle.Fill;
-            _Plans.Add(newItm, distance);
-            AllContainer.Controls.Add(distance);
+            _plans.Add(newItm, distance);
+            AllPlans.Controls.Add(distance);
 
             SelectPlan(AttackDropDown.DropDownItems[AttackDropDown.DropDownItems.Count - 1], EventArgs.Empty);
             Timer.Enabled = true;
@@ -165,7 +148,7 @@ namespace TribalWars.Controls
         {
             Collection.Controls.Remove(target);
             ToolStripMenuItem menuItm = null;
-            foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _Plans)
+            foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _plans)
             {
                 if (pair.Value == target)
                 {
@@ -174,14 +157,14 @@ namespace TribalWars.Controls
             }
             if (menuItm != null)
             {
-                _Plans.Remove(menuItm);
+                _plans.Remove(menuItm);
                 AttackDropDown.DropDownItems.Remove(menuItm);
             }
 
             if (ActivePlan == target)
             {
                 if (AttackDropDown.DropDownItems.Count > 2)
-                    SelectPlan((ToolStripMenuItem)AttackDropDown.DropDownItems[2], EventArgs.Empty);
+                    SelectPlan(AttackDropDown.DropDownItems[2], EventArgs.Empty);
                 else
                 {
                     SelectPlan(null, EventArgs.Empty);
@@ -201,9 +184,9 @@ namespace TribalWars.Controls
                     ((ToolStripMenuItem)AttackDropDown.DropDownItems[i]).Checked = false;
                 }
 
-                ToolStripMenuItem SelectedItem = (ToolStripMenuItem)sender;
-                SelectedItem.Checked = true;
-                ActivePlan = _Plans[SelectedItem];
+                var selectedItem = (ToolStripMenuItem)sender;
+                selectedItem.Checked = true;
+                ActivePlan = _plans[selectedItem];
             }
             else
             {
@@ -231,7 +214,7 @@ namespace TribalWars.Controls
                 if (last != null)
                 {
                     MapDistanceControl plan = null;
-                    foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _Plans)
+                    foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _plans)
                     {
                         if (pair.Value.Target == last)
                         {
@@ -261,7 +244,7 @@ namespace TribalWars.Controls
                 if (ActivePlan != null)
                     Clipboard.SetText(ActivePlan.GetPlan(false));
             }
-            catch (Exception)
+            catch
             {
                 
             }
@@ -274,7 +257,7 @@ namespace TribalWars.Controls
                 if (ActivePlan != null)
                     Clipboard.SetText(ActivePlan.GetPlan(true));
             }
-            catch (Exception)
+            catch
             {
 
             }
@@ -287,7 +270,7 @@ namespace TribalWars.Controls
                 string str = GetPlans(false);
                 if (str.Length != 0) Clipboard.SetText(str);
             }
-            catch (Exception)
+            catch
             {
                 
             }
@@ -300,26 +283,26 @@ namespace TribalWars.Controls
                 string str = GetPlans(true);
                 if (str.Length != 0) Clipboard.SetText(str);
             }
-            catch (Exception)
+            catch
             {
                 
             }
         }
 
-        private string GetPlans(bool BBCodes)
+        private string GetPlans(bool bbCodes)
         {
-            List<MapDistanceVillageComparor> list = new List<MapDistanceVillageComparor>();
-            foreach (MapDistanceControl distance in _Plans.Values)
+            var list = new List<MapDistanceVillageComparor>();
+            foreach (MapDistanceControl distance in _plans.Values)
             {
                 if (distance != null)
                     list.AddRange(distance.GetVillageList());
             }
             list.Sort();
 
-            StringBuilder str = new StringBuilder();
+            var str = new StringBuilder();
             foreach (MapDistanceVillageComparor comp in list)
             {
-                str.Append(comp.MapDistanceVillage.ToString(BBCodes, comp.MapDistanceVillage.TargetControl.Target));
+                str.Append(comp.MapDistanceVillage.ToString(bbCodes, comp.MapDistanceVillage.TargetControl.Target));
             }
             return str.ToString().Trim();
         }
@@ -328,14 +311,14 @@ namespace TribalWars.Controls
         #region MapDrawing
         public void Draw(Graphics g)
         {
-            foreach (MapDistanceControl plan in _Plans.Values)
+            foreach (MapDistanceControl plan in _plans.Values)
             {
                 Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.X, plan.Target.Y);
-                int size = 1; // World.Default.Map.RectangleSize;
-                if (plan == _ActivePlan)
+                const int size = 1; // World.Default.Map.RectangleSize;
+                if (plan == _activePlan)
                 {
-                    Bitmap bitmap = TribalWars.Properties.Resources.pin;
-                    loc.Offset((int)(size / 2), (int)(size / 2));
+                    Bitmap bitmap = Properties.Resources.pin;
+                    loc.Offset(size / 2, size / 2);
                     loc.Offset(-3, -40);
                     g.DrawImage(bitmap, loc);
 
@@ -345,17 +328,17 @@ namespace TribalWars.Controls
                         foreach (MapDistanceVillageComparor itm in list)
                         {
                             loc = World.Default.Map.Display.GetMapLocation(itm.Village.X, itm.Village.Y);
-                            loc.Offset((int)(size / 2), (int)(size / 2));
+                            loc.Offset(size / 2, size / 2);
                             loc.Offset(-10, -17);
-                            g.DrawImage(TribalWars.Properties.Resources.FlagBlue, loc);
+                            g.DrawImage(Properties.Resources.FlagBlue, loc);
                         }
                     }
                 }
                 else
                 {
-                    loc.Offset((int)(size / 2), (int)(size / 2));
+                    loc.Offset(size / 2, size / 2);
                     loc.Offset(-3, -17);
-                    g.DrawImage(TribalWars.Properties.Resources.PinSmall, loc);
+                    g.DrawImage(Properties.Resources.PinSmall, loc);
                 }
             }
         }

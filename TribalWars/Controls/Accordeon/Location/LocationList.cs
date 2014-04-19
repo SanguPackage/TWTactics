@@ -1,21 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
-using TribalWars.Data.Maps;
+using TribalWars.Data;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Accordeon.Location
 {
     /// <summary>
     /// Used as history list with links of the last Map.Locations
     /// </summary>
     public partial class LocationList : UserControl
     {
-        private int _MaxLinks = 5;
-        private Dictionary<LinkLabel, Location> Locations = new Dictionary<LinkLabel, Location>(5);
+        private int _maxLinks = 5;
+        private readonly Dictionary<LinkLabel, Data.Maps.Location> _locations = new Dictionary<LinkLabel, Data.Maps.Location>(5);
 
         #region Constructors
         public LocationList()
@@ -26,14 +23,14 @@ namespace TribalWars.Controls
 
         public int MaxLinks
         {
-            get { return _MaxLinks; }
-            set { _MaxLinks = value; }
+            private get { return _maxLinks; }
+            set { _maxLinks = value; }
         }
 
-        public void Add(Location location, string name)
+        public void Add(Data.Maps.Location location, string name)
         {
             bool exists = false;
-            foreach (KeyValuePair<LinkLabel, Location> pair in Locations)
+            foreach (KeyValuePair<LinkLabel, Data.Maps.Location> pair in _locations)
             {
                 if (location.Equals(pair.Value))
                 {
@@ -41,9 +38,7 @@ namespace TribalWars.Controls
                     Panel.Controls.Remove(pair.Key);
 
                     // fill tmp
-                    List<Control> tmpControls = new List<Control>();
-                    foreach (Control control in Panel.Controls)
-                        tmpControls.Add(control);
+                    List<Control> tmpControls = Panel.Controls.Cast<Control>().ToList();
                     tmpControls.Add(pair.Key);
 
                     // switch
@@ -55,16 +50,14 @@ namespace TribalWars.Controls
             }
             if (!exists)
             {
-                LinkLabel link = new LinkLabel();
-                link.Text = name;
-                link.Height = 20;
-                link.Click += new EventHandler(Link_Click);
-                Locations.Add(link, location);
+                var link = new LinkLabel {Text = name, Height = 20};
+                link.Click += Link_Click;
+                _locations.Add(link, location);
                 Panel.Controls.Add(link);
             }
             if (Panel.Controls.Count > MaxLinks)
             {
-                Locations.Remove((LinkLabel)Panel.Controls[0]);
+                _locations.Remove((LinkLabel)Panel.Controls[0]);
                 Panel.Controls.RemoveAt(0);
             }
             Panel.Invalidate();
@@ -72,9 +65,10 @@ namespace TribalWars.Controls
 
         private void Link_Click(object sender, EventArgs e)
         {
-            if (sender is LinkLabel)
+            var key = sender as LinkLabel;
+            if (key != null)
             {
-                Location loc = Locations[(LinkLabel)sender];
+                Data.Maps.Location loc = _locations[key];
                 World.Default.Map.SetCenter(loc);
             }
         }

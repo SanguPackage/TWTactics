@@ -11,7 +11,7 @@ namespace TribalWars.Data.Players
     /// <summary>
     /// Descriptor used in ExtendedTribeDescriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class PlayerDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -44,7 +44,7 @@ namespace TribalWars.Data.Players
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(55), Editor(typeof(ClipboardCopierUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(55), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Player.BBCode(); }

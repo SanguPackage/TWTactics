@@ -1,22 +1,19 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using TribalWars.Data.Maps.Manipulators;
-using TribalWars.Data.Maps;
+using TribalWars.Data.Maps.Manipulators.Helpers;
+using TribalWars.Data.Maps.Manipulators.Implementations;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Controls
 {
     public partial class MapPolygonControl : UserControl
     {
         #region Fields
-        private Polygon _polygon;
-        private BBCodeManipulator _manipulator;
+        private readonly Polygon _polygon;
+        private readonly BbCodeManipulator _manipulator;
         #endregion
 
         #region Constructors
@@ -25,15 +22,15 @@ namespace TribalWars.Data.Maps.Manipulators
             InitializeComponent();
         }
 
-        internal MapPolygonControl(Polygon polygon, BBCodeManipulator manipulator, Point location)
+        internal MapPolygonControl(Polygon polygon, BbCodeManipulator manipulator, Point location)
         {
             InitializeComponent();
 
-            this.Width = 149;
-            this.Height = 70;
-            this.Visible = true;
-            this.Left = location.X + 100; 
-            this.Top = location.Y + 100;
+            Width = 149;
+            Height = 70;
+            Visible = true;
+            Left = location.X + 100;
+            Top = location.Y + 100;
 
             _polygon = polygon;
             _manipulator = manipulator;

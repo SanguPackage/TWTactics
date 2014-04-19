@@ -1,4 +1,4 @@
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Main
 {
     partial class ParserControl
     {

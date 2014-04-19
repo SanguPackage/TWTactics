@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Drawing;
-
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 
 using XPTable.Models;
@@ -15,7 +13,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Lists the different columns in the VillageTableRow columns
     /// </summary>
-    [Flags()]
+    [Flags]
     public enum VillageFields
     {
         /// <summary>
@@ -43,10 +41,10 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a village row in an XPTable
     /// </summary>
-    public class VillageTableRow : XPTable.Models.Row, TribalWars.Controls.TWContextMenu.ITWContextMenu
+    public class VillageTableRow : Row, TWContextMenu.ITWContextMenu
     {
         #region Fields
-        private Village _village;
+        private readonly Village _village;
         #endregion
 
         #region Properties
@@ -67,7 +65,7 @@ namespace TribalWars.Controls.Display
             // Village is currently visible?
             if (World.Default.Map.Display.IsVisible(village))
             {
-                Cells.Add(new Cell(string.Empty, TribalWars.Properties.Resources.Visible));
+                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
             }
             else
             {
@@ -94,7 +92,7 @@ namespace TribalWars.Controls.Display
             {
                 Cells.Add(new Cell());
             }
-            Cell checkBoxCell = new Cell(village.Reports != null && village.Reports.Count > 0);
+            var checkBoxCell = new Cell(village.Reports != null && village.Reports.Count > 0);
             Cells.Add(checkBoxCell);
 
             // village owner details
@@ -149,7 +147,7 @@ namespace TribalWars.Controls.Display
             //    World.Default.Map.Manipulators.CurrentManipulator.VillageContextMenu.Show(this.TableModel.Table, p, _village);
         }
 
-        public IEnumerable<TribalWars.Data.Villages.Village> GetVillages()
+        public IEnumerable<Village> GetVillages()
         {
             return _village;
         }

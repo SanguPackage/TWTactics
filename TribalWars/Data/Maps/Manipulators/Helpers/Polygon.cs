@@ -1,12 +1,12 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
+using System.Linq;
 using TribalWars.Data.Villages;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Helpers
 {
     /// <summary>
     /// Encapsulates the Polygon defined by userdrawing
@@ -14,13 +14,9 @@ namespace TribalWars.Data.Maps.Manipulators
     public class Polygon
     {
         #region Fields
-        private int _minOffset;
+        private readonly int _minOffset;
 
-        private bool _drawing;
-        private string _name;
-        private LinkedList<Point> _points;
-        private bool _visible;
-        private bool _differentVillage;
+        private readonly bool _differentVillage;
         #endregion
 
         #region Properties
@@ -28,18 +24,12 @@ namespace TribalWars.Data.Maps.Manipulators
         /// Gets a value indicating whether we are currently drawing
         /// the polygon
         /// </summary>
-        public bool Drawing
-        {
-            get { return _drawing; }
-        }
+        public bool Drawing { get; private set; }
 
         /// <summary>
         /// Gets the list with points on the polygon border
         /// </summary>
-        public LinkedList<Point> List
-        {
-            get { return _points; }
-        }
+        public LinkedList<Point> List { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the polygon is defined
@@ -52,39 +42,31 @@ namespace TribalWars.Data.Maps.Manipulators
         /// <summary>
         /// Gets or sets an string id identifying the polygon
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this
         /// polygon should be drawn to the map
         /// </summary>
-        public bool Visible
-        {
-            get { return _visible; }
-            set { _visible = value; }
-        }
+        public bool Visible { get; set; }
         #endregion
 
         #region Constructors
         public Polygon(string name, int x, int y, int minOffset, bool differentVillage)
         {
             _minOffset = minOffset;
-            _name = name;
-            _visible = true;
+            Name = name;
+            Visible = true;
             _differentVillage = differentVillage;
             Start(x, y);
         }
 
         public Polygon(string name, bool visible, List<Point> points)
         {
-            _minOffset = 15 * 15;
-            _name = name;
-            _visible = visible;
-            _points = new LinkedList<Point>(points);
+            _minOffset = 15*15;
+            Name = name;
+            Visible = visible;
+            List = new LinkedList<Point>(points);
         }
         #endregion
 
@@ -94,17 +76,11 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public IEnumerable<Village> GetVillages()
         {
-            List<Village> villages = new List<Village>();
+            var villages = new List<Village>();
             if (Defined)
             {
                 Region areaRegion = GetRegion();
-                foreach (Village vil in World.Default.Villages.Values)
-                {
-                    if (areaRegion.IsVisible(vil.Location))
-                    {
-                        villages.Add(vil);
-                    }
-                }
+                villages.AddRange(World.Default.Villages.Values.Where(vil => areaRegion.IsVisible(vil.Location)));
             }
             return villages;
         }
@@ -114,9 +90,9 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public void Start(int x, int y)
         {
-            _drawing = true;
-            _points = new LinkedList<Point>();
-            _points.AddFirst(GetPoint(x, y));
+            Drawing = true;
+            List = new LinkedList<Point>();
+            List.AddFirst(GetPoint(x, y));
         }
 
         /// <summary>
@@ -124,14 +100,14 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public bool Add(int x, int y)
         {
-            Point last = _points.Last.Value;
-            int distance = (x - last.X) * (x - last.X) + (y - last.Y) * (y - last.Y);
+            Point last = List.Last.Value;
+            int distance = (x - last.X)*(x - last.X) + (y - last.Y)*(y - last.Y);
             if (distance > _minOffset)
             {
                 Point game = GetPoint(x, y);
                 if (game != last || !_differentVillage)
                 {
-                    _points.AddLast(game);
+                    List.AddLast(game);
                     return true;
                 }
             }
@@ -143,8 +119,8 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public void Stop(int x, int y)
         {
-            _drawing = false;
-            _points.AddLast(GetPoint(x, y));
+            Drawing = false;
+            List.AddLast(GetPoint(x, y));
         }
 
         /// <summary>
@@ -152,8 +128,8 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public bool IsHitIn(int x, int y)
         {
-            Region AreaRegion = GetRegion();
-            return AreaRegion.IsVisible(GetPoint(x, y));
+            Region areaRegion = GetRegion();
+            return areaRegion.IsVisible(GetPoint(x, y));
         }
 
         /// <summary>
@@ -161,7 +137,7 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public Region GetRegion()
         {
-            System.Drawing.Drawing2D.GraphicsPath AreaPath = new System.Drawing.Drawing2D.GraphicsPath();
+            var AreaPath = new System.Drawing.Drawing2D.GraphicsPath();
             int x = -1, y = -1;
             foreach (Point p in List)
             {

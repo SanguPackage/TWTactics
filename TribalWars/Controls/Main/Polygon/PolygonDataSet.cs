@@ -8,7 +8,7 @@ namespace TribalWars.Controls
     {
         public void AddVILLAGERow(Village village, string polygonName)
         {
-            VILLAGERow row = this.VILLAGE.NewVILLAGERow();
+            VILLAGERow row = VILLAGE.NewVILLAGERow();
             row.KINGDOM = village.Kingdom.ToString();
             row.LOCATION = village.LocationString;
             row.NAME = village.Name;
@@ -31,7 +31,7 @@ namespace TribalWars.Controls
             row.POLYGON = polygonName;
             row.BBCODE = village.BBCode();
 
-            this.VILLAGE.Rows.Add(row);
+            VILLAGE.Rows.Add(row);
         }
     }
 }

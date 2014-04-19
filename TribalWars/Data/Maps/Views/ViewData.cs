@@ -11,49 +11,38 @@ namespace TribalWars.Data.Maps.Views
     /// </summary>
     public class ViewData
     {
-        #region Fields
-        private int _value;
-        private object _extraValues;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the extra values if necessary for determinating
         /// the DrawerBase for a certain village
         /// </summary>
-        public object ExtraValues
-        {
-            get { return _extraValues; }
-        }
+        public object ExtraValues { get; private set; }
 
         /// <summary>
         /// Gets the value that decides which DrawerBase to use
         /// for a certain village
         /// </summary>
-        public int Value
-        {
-            get { return _value; }
-        }
+        public int Value { get; private set; }
         #endregion
 
         #region Constructors
         public ViewData(int value)
         {
-            _value = value;
+            Value = value;
         }
 
         public ViewData(int value, object extraValues)
         {
-            _value = value;
-            _extraValues = extraValues;
+            Value = value;
+            ExtraValues = extraValues;
         }
         #endregion
 
         #region Public Methods
         public override int GetHashCode()
         {
-            if (_extraValues != null) return _value.GetHashCode() + _extraValues.GetHashCode();
-            return _value.GetHashCode();
+            if (ExtraValues != null) return Value.GetHashCode() + ExtraValues.GetHashCode();
+            return Value.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -64,13 +53,13 @@ namespace TribalWars.Data.Maps.Views
 
         public bool Equals(ViewData other)
         {
-            return _value == other.Value && _extraValues == other.ExtraValues;
+            return Value == other.Value && ExtraValues == other.ExtraValues;
         }
 
         public override string ToString()
         {
-            if (_extraValues == null) return string.Format("ViewData: {0}", _value.ToString());
-            return string.Format("ViewData: {0} ({1})", _value.ToString(), _extraValues.ToString());
+            if (ExtraValues == null) return string.Format("ViewData: {0}", Value.ToString());
+            return string.Format("ViewData: {0} ({1})", Value.ToString(), ExtraValues.ToString());
         }
         #endregion
     }

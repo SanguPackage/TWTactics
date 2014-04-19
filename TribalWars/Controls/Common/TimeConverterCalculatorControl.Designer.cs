@@ -1,4 +1,4 @@
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Common
 {
     partial class TimeConverterCalculatorControl
     {
@@ -29,7 +29,7 @@ namespace TribalWars.Controls
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeConverterCalculatorControl));
-            this.TimeConverter = new TribalWars.Controls.TimeConverterControl();
+            this.TimeConverter = new TimeConverterControl();
             this.AddTime = new System.Windows.Forms.PictureBox();
             this.ToAdd = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.AddTime)).BeginInit();

@@ -1,15 +1,11 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Events;
 using System.Drawing;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Allows the user to move the map by left/right clicking
@@ -18,9 +14,6 @@ namespace TribalWars.Data.Maps.Manipulators
     internal class MapMoverManipulator : ManipulatorBase
     {
         #region Fields
-        private bool _rightClickToMove;
-        private bool _leftClickToMove;
-        private bool _arrowsToMove;
         #endregion
 
         #region Properties
@@ -28,56 +21,43 @@ namespace TribalWars.Data.Maps.Manipulators
         /// Gets or sets a value whether the map can be moved
         /// by right clicking somewhere on the 'ground'
         /// </summary>
-        public bool RightClickToMove
-        {
-            get { return _rightClickToMove; }
-            set { _rightClickToMove = value; }
-        }
+        public bool RightClickToMove { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether the map can be moved
         /// by left clicking somewhere on the 'ground'
         /// </summary>
-        public bool LeftClickToMove
-        {
-            get { return _leftClickToMove; }
-            set { _leftClickToMove = value; }
-        }
+        public bool LeftClickToMove { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether the map can be moved
         /// by using the arrow keys
         /// </summary>
-        public bool ArrowsToMove
-        {
-            get { return _arrowsToMove; }
-            set { _arrowsToMove = value; }
-        }
+        public bool ArrowsToMove { get; set; }
         #endregion
 
         #region Constructors
         public MapMoverManipulator(Map map)
             : this(map, false, false, true)
         {
-            
         }
 
         public MapMoverManipulator(Map map, bool rightClick, bool leftClick, bool arrows)
             : base(map)
         {
-            _rightClickToMove = rightClick;
-            _leftClickToMove = leftClick;
-            _arrowsToMove = arrows;
+            RightClickToMove = rightClick;
+            LeftClickToMove = leftClick;
+            ArrowsToMove = arrows;
         }
         #endregion
 
         #region Public Methods
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            if (_arrowsToMove)
+            if (ArrowsToMove)
             {
-                int step = 5;
-                int largeStep = 20;
+                const int step = 5;
+                const int largeStep = 20;
                 switch (e.KeyEventArgs.KeyData)
                 {
                     case Keys.Left:
@@ -131,9 +111,10 @@ namespace TribalWars.Data.Maps.Manipulators
         /// <summary>
         /// Moves the center of the map
         /// </summary>
-        internal protected override bool MouseDownCore(MapMouseEventArgs e)
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
-            if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && _rightClickToMove) || (e.MouseEventArgs.Button == MouseButtons.Left && _leftClickToMove))
+            if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && RightClickToMove) ||
+                (e.MouseEventArgs.Button == MouseButtons.Left && LeftClickToMove))
             {
                 Point game = _map.Display.GetGameLocation(e.MouseEventArgs.X, e.MouseEventArgs.Y);
                 _map.SetCenter(game.X, game.Y);

@@ -14,30 +14,26 @@ namespace TribalWars.Data.Players
     public class PlayerPropertyDescriptor : PropertyDescriptor
     {
         #region Fields
-        private Player player = null;
-        bool ShowExtended;
+        private readonly bool _showExtended;
         #endregion
 
         #region Properties
-        public Player Player
-        {
-            get { return player; }
-        }
+        public Player Player { get; private set; }
         #endregion
 
         #region Constructors
         public PlayerPropertyDescriptor(Player ply, bool showExtended)
             : base(ply.Name, null)
         {
-            player = ply;
-            ShowExtended = showExtended;
+            Player = ply;
+            _showExtended = showExtended;
         }
         #endregion
 
         #region Public Methods
         public override string ToString()
         {
-            return player.Points.ToString("#,0") + " points";
+            return Player.Points.ToString("#,0") + " points";
         }
         #endregion
 
@@ -54,8 +50,8 @@ namespace TribalWars.Data.Players
 
         public override object GetValue(object component)
         {
-            if (ShowExtended) return new ExtendedPlayerDescriptor(player);
-            return new PlayerDescriptor(player);
+            if (_showExtended) return new ExtendedPlayerDescriptor(Player);
+            return new PlayerDescriptor(Player);
         }
 
         public override bool IsReadOnly
@@ -67,7 +63,7 @@ namespace TribalWars.Data.Players
         {
             get
             {
-                if (ShowExtended) return typeof(ExtendedPlayerDescriptor);
+                if (_showExtended) return typeof(ExtendedPlayerDescriptor);
                 return typeof(PlayerDescriptor);
             }
         }

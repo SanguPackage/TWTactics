@@ -1,17 +1,18 @@
 #region Using
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-
 using TribalWars.Data.Maps.Drawers;
+using TribalWars.Data.Maps.Drawers.OtherDrawers;
+using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Markers;
 using System.IO;
-using TribalWars.Data.Maps.Displays;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Views
+namespace TribalWars.Data.Maps.Displays
 {
     /// <summary>
     /// Create and cache IconDrawers
@@ -22,8 +23,8 @@ namespace TribalWars.Data.Maps.Views
         private const int StandardIconWidth = 53;
         private const int StandardIconHeight = 38;
 
-        private MemoryStream _background;
-        private Dictionary<int, DrawerBase> _backgroundCache;
+        private readonly MemoryStream _background;
+        private readonly Dictionary<int, DrawerBase> _backgroundCache;
         #endregion
 
         #region Properties
@@ -34,7 +35,7 @@ namespace TribalWars.Data.Maps.Views
         public IconDisplay()
             : base(new ZoomInfo(1, 1, 1))
         {
-            _background = new MemoryStream(TribalWars.Data.Maps.Displays.WorldData.WorldBackgroundData);
+            _background = new MemoryStream(WorldData.WorldBackgroundData);
 
             _backgroundCache = new Dictionary<int, DrawerBase>();
             _backgroundCache.Add(0, CreateArray(new BackgroundDrawer(Icons.Background.gras1)));

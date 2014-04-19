@@ -13,8 +13,9 @@ namespace TribalWars.Data.Events
     public class MapDrawingEventArgs : EventArgs
     {
         #region Fields
-        private bool _drawBackground = true;
-        private bool _drawForeground = true;
+        private readonly bool _drawBackground = true;
+        private readonly bool _drawForeground = true;
+
         #endregion
 
         #region Properties

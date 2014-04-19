@@ -17,8 +17,8 @@ namespace TribalWars.Data.Maps.Displays
     public abstract class DisplayBase
     {
         #region Fields
-        protected Dictionary<Data, DrawerBase> _cache;
-        private ZoomInfo _zoom;
+        protected readonly Dictionary<Data, DrawerBase> _cache;
+        private readonly ZoomInfo _zoom;
         #endregion
 
         #region Properties
@@ -43,7 +43,7 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public DisplayBase(ZoomInfo zoom)
+        protected DisplayBase(ZoomInfo zoom)
         {
             _cache = new Dictionary<Data, DrawerBase>();
             _zoom = zoom;
@@ -171,46 +171,30 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         public class ZoomInfo
         {
-            #region Fields
-            private int _min;
-            private int _max;
-            private int _current;
-            #endregion
-
             #region Properties
             /// <summary>
             /// Gets the minimum zoom level
             /// </summary>
-            public int Minimum
-            {
-                get { return _min; }
-            }
+            public int Minimum { get; private set; }
 
             /// <summary>
             /// Gets the maximum zoom level
             /// </summary>
-            public int Maximum
-            {
-                get { return _max; }
-            }
+            public int Maximum { get; private set; }
 
             /// <summary>
             /// Gets or sets the zoom level that will be used
             /// when the user switches back to this displaytype
             /// </summary>
-            public int Current
-            {
-                get { return _current; }
-                set { _current = value; }
-            }
+            public int Current { get; set; }
             #endregion
 
             #region Constructors
             public ZoomInfo(int min, int max, int current)
             {
-                _min = min;
-                _max = max;
-                _current = current;
+                Minimum = min;
+                Maximum = max;
+                Current = current;
             }
             #endregion
         }

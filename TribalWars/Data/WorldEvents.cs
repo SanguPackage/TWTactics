@@ -1,16 +1,10 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Maps;
 using TribalWars.Data.Events;
-using TribalWars.Data.Tribes;
+
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Data
 {
     /// <summary>
     /// Defines a TW world

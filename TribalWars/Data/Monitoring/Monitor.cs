@@ -48,18 +48,10 @@ namespace TribalWars.Data.Monitoring
         }
         #endregion
 
-        #region Constructors
-        public Monitor()
-        {
-            
-
-
-            // TODO: need new event: downloaded
-            // also start explictly for old data
-            // do async in case there is a big rectangle :)
-            //World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(EventPublisher_Loaded);
-        }
-        #endregion
+        // TODO: need new event: downloaded
+        // also start explictly for old data
+        // do async in case there is a big rectangle :)
+        //World.Default.EventPublisher.Loaded += new EventHandler<EventArgs>(EventPublisher_Loaded);
 
         #region Actual Monitoring
         /// <summary>

@@ -2,31 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-
 using System.Drawing;
-using TribalWars.Data.Players;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Maps;
-using TribalWars.Controls.TWContextMenu;
-using TribalWars.Data.Reporting;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Monitoring;
-using TribalWars.Controls.Maps;
-using TribalWars.Data.Maps.Markers;
-using System.Text.RegularExpressions;
 using System.Globalization;
-using System.Resources;
+using System.IO;
+using System.Text.RegularExpressions;
+using TribalWars.Controls.TWContextMenu;
+using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Views;
+using TribalWars.Data.Monitoring;
+using TribalWars.Data.Players;
+using TribalWars.Data.Tribes;
+using TribalWars.Data.Villages;
+
 #endregion
 
-namespace TribalWars
+namespace TribalWars.Data
 {
     /// <summary>
     /// Defines a TW world
@@ -34,92 +24,46 @@ namespace TribalWars
     public partial class World : IDisposable
     {
         #region Fields
-        private bool _hasLoaded;
-        private Uri _server;
-        private string _name;
         private CultureInfo _culture;
-
-        private InternalStructure _structure;
-        private TimeSpan _serverOffset;
-
-        private TWStatsLinks _twStats;
-
-        private float _speed;
-        private float _unitSpeed = 1;
-
-        private string _gameLink;
 
         private Dictionary<string, Player> _players;
         private WorldVillagesCollection _villages;
         private Dictionary<string, Tribe> _tribes;
         private FileStream _villageTypes;
 
-        private Map _mainMap;
-        private Map _miniMap;
-        private Monitor _monitor;
-        private Publisher _eventPublisher;
-
-        private string _settings;
-
         private static Regex _villagePattern;
-
-        private Dictionary<string, ViewBase> _views;
-
-        private PlayerContextMenu _playerContextMenu;
-        private TribeContextMenu _tribeContextMenu;
-        private VillageContextMenu _villageContextMenu;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the ContextMenu with standard village operations
         /// </summary>
-        public VillageContextMenu VillageContextMenu
-        {
-            get { return _villageContextMenu; }
-        }
+        public VillageContextMenu VillageContextMenu { get; private set; }
 
         /// <summary>
         /// Gets the ContextMenu with standard player operations
         /// </summary>
-        public PlayerContextMenu PlayerContextMenu
-        {
-            get { return _playerContextMenu; }
-        }
+        public PlayerContextMenu PlayerContextMenu { get; private set; }
 
         /// <summary>
         /// Gets the ContextMenu with standard tribe operations
         /// </summary>
-        public TribeContextMenu TribeContextMenu
-        {
-            get { return _tribeContextMenu; }
-        }
+        public TribeContextMenu TribeContextMenu { get; private set; }
 
         /// <summary>
         /// Gets all map views
         /// </summary>
-        public Dictionary<string, ViewBase> Views
-        {
-            get { return _views; }
-        }
+        public Dictionary<string, ViewBase> Views { get; private set; }
 
         /// <summary>
         /// Gets the main WorldMap
         /// </summary>
-        public Map Map
-        {
-            [DebuggerStepThrough()]
-            get { return _mainMap; }
-        }
+        public Map Map { get; private set; }
 
         /// <summary>
         /// Gets the main WorldMiniMap
         /// </summary>
-        public Map MiniMap
-        {
-            [DebuggerStepThrough()]
-            get { return _miniMap; }
-        }
+        public Map MiniMap { get; private set; }
 
         /// <summary>
         /// Gets a value indicating if there is an active player
@@ -134,26 +78,18 @@ namespace TribalWars
         /// </summary>
         public PlayerYou You
         {
-            [DebuggerStepThrough()]
-            get { return PlayerYou.Default; }
+            [DebuggerStepThrough] get { return PlayerYou.Default; }
         }
 
         /// <summary>
         /// Gets a value indicating if world data has been loaded
         /// </summary>
-        public bool HasLoaded
-        {
-            get { return _hasLoaded; }
-        }
+        public bool HasLoaded { get; private set; }
 
         /// <summary>
         /// Gets the URL of the Tribal Wars server
         /// </summary>
-        public Uri Server
-        {
-            get { return _server; }
-            set { _server = value; }
-        }
+        public Uri Server { get; set; }
 
         /// <summary>
         /// Gets the culture of the TW server
@@ -171,72 +107,46 @@ namespace TribalWars
         /// <summary>
         /// Gets the name of the World
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the internal directory structure wrapper
         /// </summary>
-        internal InternalStructure Structure
-        {
-            get { return _structure; }
-        }
+        internal InternalStructure Structure { get; private set; }
 
         /// <summary>
         /// Gets or sets the time difference between local and server
         /// </summary>
-        public TimeSpan ServerOffset
-        {
-            get { return _serverOffset; }
-            set { _serverOffset = value; }
-        }
+        public TimeSpan ServerOffset { get; set; }
 
         /// <summary>
         /// Gets the current Tribal Wars server time
         /// </summary>
         public DateTime ServerTime
         {
-            get { return DateTime.UtcNow.Add(_serverOffset); }
+            get { return DateTime.UtcNow.Add(ServerOffset); }
         }
 
         /// <summary>
         /// Gets the world speed
         /// </summary>
-        public float Speed
-        {
-            get { return _speed; }
-            set { _speed = value; }
-        }
+        public float Speed { get; set; }
 
         /// <summary>
         /// Gets the world unit speed
         /// </summary>
-        public float UnitSpeed
-        {
-            get { return _unitSpeed; }
-            set { _unitSpeed = value; }
-        }
+        public float UnitSpeed { get; set; }
 
         /// <summary>
         /// Gets the TW Uris
         /// </summary>
-        public TWStatsLinks TWStats
-        {
-            get { return _twStats; }
-        }
+        public TWStatsLinks TwStats { get; private set; }
 
         /// <summary>
         /// Gets the gameplay link
         /// </summary>
         /// <remarks>Replace {0} by village id, {1} by the screen</remarks>
-        public string GameLink
-        {
-            get { return _gameLink; }
-            set { _gameLink = value; }
-        }
+        public string GameLink { get; set; }
 
         /// <summary>
         /// Gets the dictionary with all players
@@ -268,28 +178,19 @@ namespace TribalWars
         /// <summary>
         /// Gets the player monitoring object
         /// </summary>
-        public Monitor Monitor
-        {
-            get { return _monitor; }
-        }
+        public Monitor Monitor { get; private set; }
 
         /// <summary>
         /// Gets the object that encapsulates event raising
         /// </summary>
-        public Publisher EventPublisher
-        {
-            get { return _eventPublisher; }
-        }
+        public Publisher EventPublisher { get; private set; }
 
         /// <summary>
         /// Gets the date of the current data
         /// </summary>
         public DateTime? CurrentData
         {
-            get
-            {
-                return _structure.CurrentData;
-            }
+            get { return Structure.CurrentData; }
         }
 
         /// <summary>
@@ -297,20 +198,13 @@ namespace TribalWars
         /// </summary>
         public DateTime? PreviousData
         {
-            get
-            {
-                return _structure.PreviousData;
-            }
+            get { return Structure.PreviousData; }
         }
 
         /// <summary>
         /// Gets or sets the settings filename
         /// </summary>
-        public string SettingsName
-        {
-            get { return _settings; }
-            set { _settings = value; }
-        }
+        public string SettingsName { get; set; }
 
         /// <summary>
         /// Gets the RegEx pattern to recognize valid Village input
@@ -333,20 +227,21 @@ namespace TribalWars
         #region Constructors
         private World()
         {
-            _playerContextMenu = new PlayerContextMenu();
-            _tribeContextMenu = new TribeContextMenu();
-            _villageContextMenu = new VillageContextMenu();
+            UnitSpeed = 1;
+            PlayerContextMenu = new PlayerContextMenu();
+            TribeContextMenu = new TribeContextMenu();
+            VillageContextMenu = new VillageContextMenu();
 
-            _eventPublisher = new Publisher();
-            _mainMap = new Map();
-            _miniMap = new Map(_mainMap);
+            EventPublisher = new Publisher();
+            Map = new Map();
+            MiniMap = new Map(Map);
 
             _players = new Dictionary<string, Player>();
             _tribes = new Dictionary<string, Tribe>();
             _villages = new WorldVillagesCollection();
 
-            _views = new Dictionary<string, ViewBase>();
-            _twStats = new TWStatsLinks();
+            Views = new Dictionary<string, ViewBase>();
+            TwStats = new TWStatsLinks();
         }
 
         ~World()
@@ -359,18 +254,14 @@ namespace TribalWars
         #endregion
 
         #region Singleton
-        private readonly static World world = new World();
+        private static readonly World world = new World();
 
         /// <summary>
         /// Gets the currently loaded world
         /// </summary>
         public static World Default
         {
-            [DebuggerStepThrough()]
-            get
-            {
-                return world;
-            }
+            [DebuggerStepThrough] get { return world; }
         }
         #endregion
 
@@ -391,23 +282,23 @@ namespace TribalWars
         /// <param name="settings">The settings filename</param>
         public bool LoadWorld(string dataPath, string settings)
         {
-            _hasLoaded = false;
+            HasLoaded = false;
             if (string.IsNullOrEmpty(dataPath) || !Directory.Exists(dataPath))
                 return false;
 
-            _structure = new InternalStructure();
-            _structure.SetPath(dataPath, settings);
-            _structure.LoadDictionaries(out _villages, out _players, out _tribes);
+            Structure = new InternalStructure();
+            Structure.SetPath(dataPath, settings);
+            Structure.LoadDictionaries(out _villages, out _players, out _tribes);
 
             // Settings
-            _monitor = new TribalWars.Data.Monitoring.Monitor();
-            Data.Builder.ReadSettings(new FileInfo(_structure.CurrentWorldSettingsDirectory + settings), _mainMap, _miniMap);
+            Monitor = new TribalWars.Data.Monitoring.Monitor();
+            Data.Builder.ReadSettings(new FileInfo(Structure.CurrentWorldSettingsDirectory + settings), Map, MiniMap);
 
             if (_villageTypes != null) _villageTypes.Close();
-            _villageTypes = _structure.CurrentVillageTypes;
+            _villageTypes = Structure.CurrentVillageTypes;
 
-            _settings = settings;
-            _hasLoaded = true;
+            SettingsName = settings;
+            HasLoaded = true;
 
             EventPublisher.InformLoaded(this, EventArgs.Empty);
             EventPublisher.InformSettingsLoaded(this, EventArgs.Empty);
@@ -421,8 +312,8 @@ namespace TribalWars
         /// </summary>
         public void SaveWorld()
         {
-            FileInfo sets = new FileInfo(_structure.CurrentWorldSettingsDirectory + _settings);
-            Data.Builder.WriteSettings(sets, this._mainMap);
+            FileInfo sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + SettingsName);
+            Data.Builder.WriteSettings(sets, Map);
         }
 
         ///// <summary>
@@ -500,8 +391,8 @@ namespace TribalWars
         /// <remarks>Offense, Defense, ...</remarks>
         public VillageType GetVillageType(Village village)
         {
-            _villageTypes.Position = village.Y * 1000 + village.X;
-            return (VillageType)_villageTypes.ReadByte();
+            _villageTypes.Position = village.Y*1000 + village.X;
+            return (VillageType) _villageTypes.ReadByte();
         }
 
         /// <summary>
@@ -510,8 +401,8 @@ namespace TribalWars
         /// <remarks>Offense, Defense, ...</remarks>
         public void SetVillageType(Village village, VillageType value)
         {
-            _villageTypes.Position = village.Y * 1000 + village.X;
-            _villageTypes.WriteByte((byte)value);
+            _villageTypes.Position = village.Y*1000 + village.X;
+            _villageTypes.WriteByte((byte) value);
         }
         #endregion
 
@@ -550,7 +441,8 @@ namespace TribalWars
             Match match = VillagePattern.Match(input.Trim());
             if (match.Success)
             {
-                int x; int y;
+                int x;
+                int y;
                 if (int.TryParse(match.Groups[1].Value, out x) && int.TryParse(match.Groups[2].Value, out y)
                     && x > 0 && x < 1000 && y > 0 && y < 1000)
                 {
@@ -568,7 +460,8 @@ namespace TribalWars
             Match match = VillagePattern.Match(input.Trim());
             if (match.Success)
             {
-                int x; int y;
+                int x;
+                int y;
                 if (int.TryParse(match.Groups[1].Value, out x) && int.TryParse(match.Groups[2].Value, out y))
                 {
                     Point loc = new Point(x, y);
@@ -627,7 +520,6 @@ namespace TribalWars
         #region IDisposable Members
         public void Dispose()
         {
-            
         }
         #endregion
 
@@ -639,7 +531,7 @@ namespace TribalWars
         public class WorldVillagesCollection
         {
             #region Fields
-            private Dictionary<int, Village> _v;
+            private readonly Dictionary<int, Village> _v;
             #endregion
 
             #region Constructors
@@ -684,7 +576,7 @@ namespace TribalWars
             /// </summary>
             public IEnumerable<Village> Values
             {
-                get { return (IEnumerable<Village>)_v.Values; }
+                get { return _v.Values; }
             }
 
             /// <summary>
@@ -699,7 +591,7 @@ namespace TribalWars
             #region Private Methods
             private int c(Point p)
             {
-                return p.X * 1000 + p.Y;
+                return p.X*1000 + p.Y;
             }
             #endregion
         }
@@ -809,11 +701,6 @@ namespace TribalWars
 
             #region Fields
             private Uri _twStats;
-            private string _twStatsVillage;
-            private string _twStatsPlayer;
-            private string _twStatsTribe;
-            private string _twStatsGraph;
-            private string _tribeGraph;
             #endregion
 
             #region Properties
@@ -830,51 +717,31 @@ namespace TribalWars
             /// Gets the direct link to TW stats village overview
             /// </summary>
             /// <remarks>Replace {0} by the village id</remarks>
-            public string Village
-            {
-                get { return _twStatsVillage; }
-                set { _twStatsVillage = value; }
-            }
+            public string Village { get; set; }
 
             /// <summary>
             /// Gets the direct link to TW stats player overview
             /// </summary>
             /// <remarks>Replace {0} by the player id</remarks>
-            public string Player
-            {
-                get { return _twStatsPlayer; }
-                set { _twStatsPlayer = value; }
-            }
+            public string Player { get; set; }
 
             /// <summary>
             /// Gets the direct link to TW stats tribe overview
             /// </summary>
             /// <remarks>Replace {0} by the tribe id</remarks>
-            public string Tribe
-            {
-                get { return _twStatsTribe; }
-                set { _twStatsTribe = value; }
-            }
+            public string Tribe { get; set; }
 
             /// <summary>
             /// Gets the direct link to the TW stats player graphs
             /// </summary>
             /// <remarks>Replace {0} with the player ID, {1} with the tpye of graph</remarks>
-            public string PlayerGraph
-            {
-                get { return _twStatsGraph; }
-                set { _twStatsGraph = value; }
-            }
+            public string PlayerGraph { get; set; }
 
             /// <summary>
             /// Gets the direct link to the TW stats player graphs
             /// </summary>
             /// <remarks>Replace {0} with the tribe ID, {1} with the tpye of graph</remarks>
-            public string TribeGraph
-            {
-                get { return _tribeGraph; }
-                set { _tribeGraph = value; }
-            }
+            public string TribeGraph { get; set; }
             #endregion
         }
         #endregion

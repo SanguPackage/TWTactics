@@ -1,18 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
-
-using TribalWars.Tools;
+using TribalWars.Data;
 using TribalWars.Data.Reporting;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Main
 {
     /// <summary>
     /// Monitors the clipboard and parses reports
@@ -20,7 +12,7 @@ namespace TribalWars.Controls
     public partial class ParserControl : UserControl
     {
         #region Constants
-        string[] formatsAll = new string[] 
+        private string[] _formatsAll = new[] 
 		{
 			DataFormats.Bitmap,
 			DataFormats.CommaSeparatedValue,

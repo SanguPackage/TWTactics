@@ -13,24 +13,19 @@ namespace TribalWars.Data.Events
     public class ReportEventArgs : EventArgs
     {
         #region Fields
-        private Report _selectedReport;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the report
         /// </summary>
-        public Report SelectedTribe
-        {
-            get { return _selectedReport; }
-            set { _selectedReport = value; }
-        }
+        public Report SelectedTribe { get; set; }
         #endregion
 
         #region Constructors
         public ReportEventArgs(Report report)
         {
-            _selectedReport = report;
+            SelectedTribe = report;
         }
         #endregion
     }

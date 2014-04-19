@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Data;
 using TribalWars.Data.Players;
 
 using TribalWars.Data.Maps;
@@ -172,7 +173,7 @@ namespace TribalWars.Controls.TWContextMenu
         {
             if (_player != null)
             {
-                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TWStatsPlayer, _player.ID.ToString());
+                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.ID.ToString());
             }
         }
 

@@ -12,24 +12,17 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class PolygonEventArgs : EventArgs
     {
-        #region Fields
-        private PolygonDataSet _ds;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the villages DataSet
         /// </summary>
-        public PolygonDataSet Villages
-        {
-            get { return _ds; }
-        }
+        public PolygonDataSet Villages { get; private set; }
         #endregion
 
         #region Constructors
         public PolygonEventArgs(PolygonDataSet ds)
         {
-            _ds = ds;
+            Villages = ds;
         }
         #endregion
     }

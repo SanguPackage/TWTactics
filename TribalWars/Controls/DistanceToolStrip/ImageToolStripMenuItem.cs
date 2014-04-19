@@ -8,18 +8,12 @@ namespace TribalWars.Controls.DistanceToolStrip
 {
     public class ImageToolStripMenuItem : ToolStripMenuItem
     {
-        private int _Index;
-
-        public int Index
-        {
-            get { return _Index; }
-            set { _Index = value; }
-        }
+        public int Index { get; set; }
 
         public ImageToolStripMenuItem(Image img, int index)
             : base(img)
         {
-            _Index = index;
+            Index = index;
             CheckOnClick = true;
             Size = new Size(img.Size.Width + 4, img.Size.Height + 2);
         }

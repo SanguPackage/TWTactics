@@ -1,3 +1,5 @@
+using TribalWars.Controls.Common;
+
 namespace TribalWars.Controls.Accordeon.Location
 {
     partial class LocationControl
@@ -34,7 +36,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.label5 = new System.Windows.Forms.Label();
             this.txtK = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mapFinderControl1 = new TribalWars.Controls.Accordeon.Location.MapFinderControl();
+            this._locationFinderControl1 = new TribalWars.Controls.Accordeon.Location.LocationFinderControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmdDraw = new System.Windows.Forms.Button();
             this.txtWidth = new System.Windows.Forms.TextBox();
@@ -50,9 +52,9 @@ namespace TribalWars.Controls.Accordeon.Location
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.You = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
+            this.You = new VillagePlayerTribeFinderTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.LocationHistory = new TribalWars.Controls.LocationList();
+            this.LocationHistory = new LocationList();
             groupBox1 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,7 +110,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.mapFinderControl1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this._locationFinderControl1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 1);
@@ -125,14 +127,14 @@ namespace TribalWars.Controls.Accordeon.Location
             // 
             // mapFinderControl1
             // 
-            this.mapFinderControl1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.SetColumnSpan(this.mapFinderControl1, 2);
-            this.mapFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapFinderControl1.Location = new System.Drawing.Point(0, 175);
-            this.mapFinderControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.mapFinderControl1.Name = "mapFinderControl1";
-            this.mapFinderControl1.Size = new System.Drawing.Size(298, 184);
-            this.mapFinderControl1.TabIndex = 7;
+            this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel1.SetColumnSpan(this._locationFinderControl1, 2);
+            this._locationFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._locationFinderControl1.Location = new System.Drawing.Point(0, 175);
+            this._locationFinderControl1.Margin = new System.Windows.Forms.Padding(0);
+            this._locationFinderControl1.Name = "_locationFinderControl1";
+            this._locationFinderControl1.Size = new System.Drawing.Size(298, 184);
+            this._locationFinderControl1.TabIndex = 7;
             // 
             // groupBox2
             // 
@@ -363,7 +365,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.TextBox txtK;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripProgressBar ProgressBar;
-        private MapFinderControl mapFinderControl1;
+        private LocationFinderControl _locationFinderControl1;
         private System.Windows.Forms.ToolStripButton StripHome;
         private System.Windows.Forms.GroupBox groupBox3;
         private LocationList LocationHistory;

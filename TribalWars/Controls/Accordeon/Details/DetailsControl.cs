@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
@@ -35,15 +35,15 @@ namespace TribalWars.Controls.Accordeon.Details
     public partial class DetailsControl : UserControl
     {
         #region Constants
-        private const int SPLITTER_WIDTH = 72;
+        private const int SplitterWidth = 72;
         #endregion
 
         #region Fields
-        private ToolStripItem[] _villageContext;
-        private ToolStripItem[] _playerContext;
-        private ToolStripItem[] _tribeContext;
+        private readonly ToolStripItem[] _villageContext;
+        private readonly ToolStripItem[] _playerContext;
+        private readonly ToolStripItem[] _tribeContext;
 
-        private Stack<DetailsCommand> _undo = new Stack<DetailsCommand>();
+        private readonly Stack<DetailsCommand> _undo = new Stack<DetailsCommand>();
         private Stack<DetailsCommand> _redo = new Stack<DetailsCommand>();
         private DetailsCommand _current = new DetailsCommand();
         #endregion
@@ -56,9 +56,9 @@ namespace TribalWars.Controls.Accordeon.Details
             ContextStrip.Items.Clear();
             _villageContext = new ToolStripItem[] { DefenseFlag, AttackFlag, FarmFlag, NobleFlag, ScoutFlag, VillageSeperator, VillageCurrentSituation };
 
-            World.Default.Map.EventPublisher.TribeSelected += new EventHandler<TribalWars.Data.Events.TribeEventArgs>(EventPublisher_TribeSelected);
-            World.Default.Map.EventPublisher.PlayerSelected += new EventHandler<TribalWars.Data.Events.PlayerEventArgs>(EventPublisher_PlayerSelected);
-            World.Default.Map.EventPublisher.VillagesSelected += new EventHandler<TribalWars.Data.Events.VillagesEventArgs>(EventPublisher_VillagesSelected);
+            World.Default.Map.EventPublisher.TribeSelected += EventPublisher_TribeSelected;
+            World.Default.Map.EventPublisher.PlayerSelected += EventPublisher_PlayerSelected;
+            World.Default.Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
         }
         #endregion
 
@@ -69,7 +69,7 @@ namespace TribalWars.Controls.Accordeon.Details
         private void DetailsControl_Load(object sender, EventArgs e)
         {
             // Value is overwritten if the splitter is moved in the constructor
-            TribalWars.Tools.Common.MoveSplitter(this.DetailsGrid, SPLITTER_WIDTH);
+            Tools.Common.MoveSplitter(DetailsGrid, SplitterWidth);
         }
 
         /// <summary>
@@ -184,23 +184,31 @@ namespace TribalWars.Controls.Accordeon.Details
         /// </summary>
         private void Table_RowSelected(object sender, EventArgs e)
         {
+            //var test = sender as ITWContextMenu;
+            //if (test != null)
+            //{
+            //    test.DisplayDetails();
+            //}
+
+            // TODO NEW: This can be refactored. it probably doesn't work right now
             if (sender is VillageTableRow)
             {
-                VillageTableRow row = (VillageTableRow)sender;
+                var row = (VillageTableRow)sender;
+                row.DisplayDetails();
             }
             else if (sender is PlayerTableRow)
             {
-                PlayerTableRow row = (PlayerTableRow)sender;
+                var row = (PlayerTableRow)sender;
                 row.DisplayDetails();
             }
             else if (sender is ReportTableRow)
             {
-                ReportTableRow row = (ReportTableRow)sender;
+                var row = (ReportTableRow)sender;
                 SpecialVillage.SetReport(row.Report);
             }
             else if (sender is TribeTableRow)
             {
-                TribeTableRow row = (TribeTableRow)sender;
+                var row = (TribeTableRow)sender;
                 row.DisplayDetails();
             }
         }

@@ -14,18 +14,11 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class VillageEventArgs : VillagesEventArgs
     {
-        #region Fields
-        private Village _selectedVillage;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the village
         /// </summary>
-        public Village SelectedVillage
-        {
-            get { return _selectedVillage; }
-        }
+        public Village SelectedVillage { get; private set; }
 
         /// <summary>
         /// Gets the village
@@ -34,7 +27,7 @@ namespace TribalWars.Data.Events
         {
             get
             {
-                return _selectedVillage;
+                return SelectedVillage;
             }
         }
         #endregion
@@ -43,7 +36,7 @@ namespace TribalWars.Data.Events
         public VillageEventArgs(Village vil, VillageTools tool)
             : base(vil, tool)
         {
-            _selectedVillage = vil;
+            SelectedVillage = vil;
         }
         #endregion
     }

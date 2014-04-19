@@ -1,17 +1,15 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Controls;
+using TribalWars.Data.Maps.Manipulators.Implementations;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-using System.Windows.Forms;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     /// <summary>
     /// The managing polygonmanipulator
@@ -19,7 +17,7 @@ namespace TribalWars.Data.Maps.Manipulators
     public class PolygonManipulatorManager : DefaultManipulatorManager
     {
         #region Fields
-        private BBCodeManipulator _bbCode;
+        private BbCodeManipulator _bbCode;
 
         private UICommand _menu;
         #endregion
@@ -32,7 +30,7 @@ namespace TribalWars.Data.Maps.Manipulators
             : base(map)
         {
             // Active manipulators
-            _bbCode = new BBCodeManipulator(map, this, 15 * 15);
+            _bbCode = new BbCodeManipulator(map, this, 15 * 15);
             _manipulators.Add(_bbCode);
 
             MapMover.RightClickToMove = false;

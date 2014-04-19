@@ -1,4 +1,6 @@
-namespace TribalWars.Controls
+using TribalWars.Controls.Common;
+
+namespace TribalWars.Controls.AttackPlan
 {
     partial class MapDistanceCollectionControl
     {
@@ -50,9 +52,9 @@ namespace TribalWars.Controls
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdSound = new System.Windows.Forms.ToolStripButton();
             this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.VillageInput = new TribalWars.Controls.ToolStripVillageTextBox();
-            this.UnitInput = new TribalWars.Controls.ToolStripUnitsImageCombobox();
-            this.AllContainer = new System.Windows.Forms.Panel();
+            this.VillageInput = new ToolStripVillageTextBox();
+            this.UnitInput = new ToolStripUnitsImageCombobox();
+            this.AllPlans = new System.Windows.Forms.Panel();
             this.Collection.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +64,7 @@ namespace TribalWars.Controls
             this.Collection.ColumnCount = 1;
             this.Collection.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Collection.Controls.Add(this.toolStrip1, 0, 0);
-            this.Collection.Controls.Add(this.AllContainer, 0, 1);
+            this.Collection.Controls.Add(this.AllPlans, 0, 1);
             this.Collection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Collection.Location = new System.Drawing.Point(0, 0);
             this.Collection.Margin = new System.Windows.Forms.Padding(0);
@@ -262,13 +264,13 @@ namespace TribalWars.Controls
             // 
             // AllContainer
             // 
-            this.AllContainer.AutoScroll = true;
-            this.AllContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AllContainer.Location = new System.Drawing.Point(0, 25);
-            this.AllContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.AllContainer.Name = "AllContainer";
-            this.AllContainer.Size = new System.Drawing.Size(319, 345);
-            this.AllContainer.TabIndex = 5;
+            this.AllPlans.AutoScroll = true;
+            this.AllPlans.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AllPlans.Location = new System.Drawing.Point(0, 25);
+            this.AllPlans.Margin = new System.Windows.Forms.Padding(0);
+            this.AllPlans.Name = "AllPlans";
+            this.AllPlans.Size = new System.Drawing.Size(319, 345);
+            this.AllPlans.TabIndex = 5;
             // 
             // MapDistanceCollectionControl
             // 
@@ -309,6 +311,5 @@ namespace TribalWars.Controls
         private System.Windows.Forms.ToolStripButton cmdClear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton cmdSound;
-        private System.Windows.Forms.Panel AllContainer;
     }
 }

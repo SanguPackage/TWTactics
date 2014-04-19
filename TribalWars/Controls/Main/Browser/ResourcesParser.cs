@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using TribalWars.Data;
 using TribalWars.Data.Reporting;
 using System.Text.RegularExpressions;
-using System.Drawing;
 using TribalWars.Data.Villages;
 using TribalWars.Tools.Parsers;
 using TribalWars.Translations;
@@ -26,7 +27,7 @@ namespace TribalWars.Controls.Main.Browser
         /// <summary>
         /// Gets the pattern for analysing the url
         /// </summary>
-        public System.Text.RegularExpressions.Regex UrlRegex
+        public Regex UrlRegex
         {
             get { return null; }
         }
@@ -54,12 +55,7 @@ namespace TribalWars.Controls.Main.Browser
             _documentRegex = new Regex(pattern, RegexOptions.Multiline);
             MatchCollection matches = _documentRegex.Matches(document, index);
 
-            Dictionary<int, Village> ownVillages = new Dictionary<int, Village>();
-            foreach (Village vil in World.Default.You.Player.Villages)
-            {
-                ownVillages.Add(vil.ID, vil);
-            }
-
+            var ownVillages = World.Default.You.Player.Villages.ToDictionary(vil => vil.Id);
             if (matches.Count > 0)
             {
                 for (int i = 0; i < matches.Count; i++)
@@ -82,18 +78,18 @@ namespace TribalWars.Controls.Main.Browser
         /// <param name="serverTime">Time the page was generated</param>
         private void HandleMatch(Dictionary<int, Village> ownVillages, Match match, DateTime serverTime)
         {
-            int villageID;
-            if (CommonParsers.ParseInt(match.Groups["id"].Value, out villageID))
+            int villageId;
+            if (CommonParsers.ParseInt(match.Groups["id"].Value, out villageId))
             {
                 Village vil = null;
-                if (ownVillages.ContainsKey(villageID))
-                    vil = ownVillages[villageID];
+                if (ownVillages.ContainsKey(villageId))
+                    vil = ownVillages[villageId];
                 else
                 {
                     // newly conquered village: change owner
                     foreach (Village village in World.Default.Villages.Values)
                     {
-                        if (village.ID == villageID)
+                        if (village.Id == villageId)
                         {
                             vil = village;
                             vil.Player = World.Default.You.Player;
@@ -110,7 +106,7 @@ namespace TribalWars.Controls.Main.Browser
                         vil.Points = tempInt;
 
                     string pattern = string.Format(@"(\<img src="".*\.png(\?1)?"" title=""({0}|{1}|{2})"" alt="""" /\>(\<span class=""warn""\>)?(?<res>(\d*<span class=""grey""\>\.\</span\>)?\d*)(\</span\>)?\s*)", TWWords.Wood, TWWords.Clay, TWWords.Iron);
-                    Regex res = new Regex(pattern);
+                    var res = new Regex(pattern);
                     MatchCollection resMatches = res.Matches(match.Groups["res"].Value);
                     if (resMatches.Count == 3)
                     {
@@ -121,7 +117,7 @@ namespace TribalWars.Controls.Main.Browser
                         if (CommonParsers.ParseInt(resMatches[2].Groups["res"].Value, out tempInt))
                             situation.Resources.Iron = tempInt;
 
-                        situation._resourcesDate = serverTime;
+                        situation.ResourcesDate = serverTime;
                     }
 
                     vil.Reports.Save();
@@ -134,7 +130,7 @@ namespace TribalWars.Controls.Main.Browser
         /// </summary>
         private string GetDocumentPattern()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             //<tr style="white-space:nowrap" class="nowrap row_a">
             //<td>

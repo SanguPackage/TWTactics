@@ -1,23 +1,20 @@
 #region Using
+
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using System.Text.RegularExpressions;
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
-using System.Globalization;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Data.Maps;
+
 #endregion
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Common
 {
     /// <summary>
     /// Extended TextBox that accepts Village coordinates, player names and tribe tags
@@ -37,14 +34,6 @@ namespace TribalWars.Controls
         #region Fields
         private Map _map;
         private readonly ToolTip _tooltip = new ToolTip();
-
-        private bool _allowVillage = true;
-        private bool _allowPlayer;
-        private bool _allowTribe;
-
-        private Village _village;
-        private Player _player;
-        private Tribe _tribe;
 
         private bool _showButton;
 
@@ -74,70 +63,40 @@ namespace TribalWars.Controls
         /// Gets the selected Village
         /// </summary>
         [Browsable(false)]
-        public Village Village
-        {
-            get
-            {
-                return _village;
-            }
-        }
+        public Village Village { get; private set; }
 
         /// <summary>
         /// Gets or sets the active player
         /// </summary>
         [Browsable(false)]
-        public Player Player
-        {
-            get
-            {
-                return _player;
-            }
-        }
+        public Player Player { get; private set; }
 
         /// <summary>
         /// Gets or sets the active tribe
         /// </summary>
-        [Browsable(false)]    
-        public Tribe Tribe
-        {
-            get
-            {
-                return _tribe;
-            }
-        }
+        [Browsable(false)]
+        public Tribe Tribe { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether
         /// the textbox allows entering tribe tags
         /// </summary>
         [Category(PropertyGridCategory), DefaultValue(false)]
-        public bool AllowTribe
-        {
-            get { return _allowTribe; }
-            set { _allowTribe = value; }
-        }
+        public bool AllowTribe { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether
         /// the textbox allows entering players
         /// </summary>
         [Category(PropertyGridCategory), DefaultValue(false)]
-        public bool AllowPlayer
-        {
-            get { return _allowPlayer; }
-            set { _allowPlayer = value; }
-        }
+        public bool AllowPlayer { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether
         /// the textbox allow entering village coordinates
         /// </summary>
         [Category(PropertyGridCategory), DefaultValue(true)]
-        public bool AllowVillage
-        {
-            get { return _allowVillage; }
-            set { _allowVillage = value; }
-        }
+        public bool AllowVillage { get; set; }
 
         /// <summary>
         /// Shows or hides the location changer button
@@ -150,12 +109,12 @@ namespace TribalWars.Controls
             {
                 if (value)
                 {
-                    base.ButtonStyle = EditButtonStyle.TextButton;
-                    base.ButtonText = "» OK «";
+                    ButtonStyle = EditButtonStyle.TextButton;
+                    ButtonText = "» OK «";
                 }
                 else
                 {
-                    base.ButtonStyle = EditButtonStyle.NoButton;
+                    ButtonStyle = EditButtonStyle.NoButton;
                 }
                 _showButton = value;
             }
@@ -165,6 +124,7 @@ namespace TribalWars.Controls
         #region Constructors
         public VillagePlayerTribeFinderTextBox()
         {
+            AllowVillage = true;
             Width = 50;
             Text = string.Empty;
             _tooltip.Active = true;
@@ -223,7 +183,7 @@ namespace TribalWars.Controls
 
         protected override void OnEnter(EventArgs e)
         {
-            this.SelectAll();
+            SelectAll();
             base.OnEnter(e);
         }
 
@@ -246,9 +206,9 @@ namespace TribalWars.Controls
         /// </summary>
         public void EmptyTextBox()
         {
-            _village = null;
-            _player = null;
-            _tribe = null;
+            Village = null;
+            Player = null;
+            Tribe = null;
             Text = string.Empty;
             BackColor = Color.White;
             _tooltip.ToolTipTitle = string.Empty;
@@ -268,7 +228,7 @@ namespace TribalWars.Controls
         /// </summary>
         public void SetVillage(Village village, bool raiseEvent)
         {
-            _village = village;
+            Village = village;
             if (village != null)
             {
                 if (Text != village.LocationString)
@@ -309,7 +269,7 @@ namespace TribalWars.Controls
         /// </summary>
         public void SetPlayer(Player player, bool raiseEvent)
         {
-            _player = player;
+            Player = player;
             if (player != null)
             {
                 if (Text != player.Name)
@@ -350,7 +310,7 @@ namespace TribalWars.Controls
         /// </summary>
         public void SetTribe(Tribe tribe, bool raiseEvent)
         {
-            _tribe = tribe;
+            Tribe = tribe;
             if (tribe != null)
             {
                 if (Text != tribe.Tag)

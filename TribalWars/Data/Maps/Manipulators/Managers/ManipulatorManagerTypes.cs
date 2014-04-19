@@ -1,10 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     public enum ManipulatorManagerTypes
     {

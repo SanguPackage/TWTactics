@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using TribalWars.Data.Buildings;
 using TribalWars.Data.Units;
@@ -10,14 +11,14 @@ namespace TribalWars.Data.Reporting
     /// <summary>
     /// Generates a BBCode report
     /// </summary>
-    public class ReportBBCodeOutput
+    public class ReportBbCodeOutput
     {
         #region Fields
-        Report _report;
+        private readonly Report _report;
         #endregion
 
         #region Constructors
-        public ReportBBCodeOutput(Report report)
+        public ReportBbCodeOutput(Report report)
         {
             _report = report;
         }
@@ -28,22 +29,22 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public static string Generate(Report report)
         {
-            ReportBBCodeOutput output = new ReportBBCodeOutput(report);
+            var output = new ReportBbCodeOutput(report);
             switch (report.ReportType)
             {
                 case ReportTypes.Scout:
-                    return output.BBCodeScout();
+                    return output.BbCodeScout();
                 default:
-                    return output.BBCodeStandard();
+                    return output.BbCodeStandard();
             }
         }
         #endregion
 
         #region Output Types
-        public string BBCodeStandard()
+        public string BbCodeStandard()
         {
             // players
-            StringBuilder str = new StringBuilder(200);
+            var str = new StringBuilder(200);
             PrintPlayers(str);
 
             if (_report.ReportDate.HasValue)
@@ -64,8 +65,7 @@ namespace TribalWars.Data.Reporting
             // print free space
             if (_report.ReportOptions.People)
             {
-                string space = "";
-                space = Environment.NewLine + Resource.FaceBBCodeString;
+                string space = Environment.NewLine + Resource.FaceBBCodeString;
                 space += "[b]" + Report.GetTotalPeople(_report.Defense, TotalPeople.End).ToString("#,0") + "[/b]";
                 if (_report.Buildings != null && _report.Buildings.Count > 2)
                 {
@@ -76,9 +76,9 @@ namespace TribalWars.Data.Reporting
                     if (_report.Buildings.ContainsKey(BuildingTypes.Farm))
                     {
                         ReportBuilding farm = _report.Buildings[BuildingTypes.Farm];
-                        int TotalFarm = farm.GetTotalProduction();
+                        int totalFarm = farm.GetTotalProduction();
                         //space += string.Format(" + {0:#,0}", farmBuildings);
-                        space = string.Format("{1} ({0:#,0} free)", TotalFarm - farmBuildings - Report.GetTotalPeople(_report.Defense, TotalPeople.End), space);
+                        space = string.Format("{1} ({0:#,0} free)", totalFarm - farmBuildings - Report.GetTotalPeople(_report.Defense, TotalPeople.End), space);
                     }
                 }
                 if (space.Length > 0)
@@ -94,10 +94,10 @@ namespace TribalWars.Data.Reporting
             return str.ToString();
         }
 
-        public string BBCodeScout()
+        public string BbCodeScout()
         {
             // players
-            StringBuilder str = new StringBuilder(200);
+            var str = new StringBuilder(200);
             PrintPlayers(str);
 
             if (_report.ReportDate.HasValue)
@@ -119,12 +119,12 @@ namespace TribalWars.Data.Reporting
         #endregion
 
         #region Buildings
-        protected string PrintBuildings(string title, Dictionary<BuildingTypes, ReportBuilding> buildings)
+        private string PrintBuildings(string title, Dictionary<BuildingTypes, ReportBuilding> buildings)
         {
             string str = "";
             foreach (ReportBuilding build in buildings.Values)
             {
-                str += ", " + string.Format(build.BBCode());
+                str += ", " + string.Format(build.BbCode());
             }
             if (str.Length > 2)
             {
@@ -138,8 +138,7 @@ namespace TribalWars.Data.Reporting
         #region Troops
         private string PrintTroops(string title, Dictionary<UnitTypes, ReportUnit> troops, bool isAttacker)
         {
-            int TroopsTotalLost = 0;
-            int TroopsTotal = 0;
+            int troopsTotalLost = 0;
             string str = string.Empty;
             foreach (ReportUnit unit in troops.Values)
             {
@@ -155,11 +154,10 @@ namespace TribalWars.Data.Reporting
                             str += string.Format(" ([b]{0}[/b])", unit.AmountEnd.ToString("#,0"));
                         }
                     }
-                    TroopsTotal += unit.AmountStart;
-                    TroopsTotalLost += unit.AmountLost;
+                    troopsTotalLost += unit.AmountLost;
                 }
             }
-            if (TroopsTotalLost > 0)
+            if (troopsTotalLost > 0)
             {
                 // print cost lost troops
                 int clay = 0, iron = 0, wood = 0;
@@ -219,12 +217,12 @@ namespace TribalWars.Data.Reporting
             int room = _report.GetTotalResourceRoom();
             if (room > 0)
             {
-                str += Environment.NewLine + string.Format("{0} [b]{2:#,0}[/b] / {1:#,0}", _report.Buildings[BuildingTypes.Warehouse].Building.BBCodeImage, room, totalLeft);
+                str += Environment.NewLine + string.Format("{0} [b]{2:#,0}[/b] / {1:#,0}", _report.Buildings[BuildingTypes.Warehouse].Building.BbCodeImage, room, totalLeft);
 
-                string pattern = "{1} {0:#,0} ({2})";
-                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Wood, Resource.WoodBBCodeString, _report.Buildings[BuildingTypes.TimberCamp].BBCodeForResource(room, _report.ResourcesLeft.Wood)); ;
-                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Clay, Resource.ClayBBCodeString, _report.Buildings[BuildingTypes.ClayPit].BBCodeForResource(room, _report.ResourcesLeft.Clay));
-                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Iron, Resource.IronBBCodeString, _report.Buildings[BuildingTypes.IronMine].BBCodeForResource(room, _report.ResourcesLeft.Iron));
+                const string pattern = "{1} {0:#,0} ({2})";
+                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Wood, Resource.WoodBBCodeString, _report.Buildings[BuildingTypes.TimberCamp].BbCodeForResource(room, _report.ResourcesLeft.Wood));
+                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Clay, Resource.ClayBBCodeString, _report.Buildings[BuildingTypes.ClayPit].BbCodeForResource(room, _report.ResourcesLeft.Clay));
+                str += Environment.NewLine + string.Format(pattern, _report.ResourcesLeft.Iron, Resource.IronBBCodeString, _report.Buildings[BuildingTypes.IronMine].BbCodeForResource(room, _report.ResourcesLeft.Iron));
             }
             else if (_report.ResourcesLeft.Total() > 0)
             {
@@ -298,7 +296,7 @@ namespace TribalWars.Data.Reporting
             if (_report.LoyaltyBegin > 0)
             {
                 Unit snob = WorldUnits.Default[UnitTypes.Nobleman];
-                return string.Format("{0} [b]{1}[/b] to [b]{2}[/b]", snob.BBCodeImage, _report.LoyaltyBegin.ToString(), _report.LoyaltyEnd.ToString());
+                return string.Format("{0} [b]{1}[/b] to [b]{2}[/b]", snob.BBCodeImage, _report.LoyaltyBegin.ToString(CultureInfo.InvariantCulture), _report.LoyaltyEnd.ToString(CultureInfo.InvariantCulture));
             }
             if (_report.Winner == "attacker")
                 return "[b]won[/b] against";

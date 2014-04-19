@@ -1,17 +1,14 @@
 #region Imports
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Xml;
-using TribalWars.Controls.Maps;
-using TribalWars.Controls.TWContextMenu;
 using System.Windows.Forms;
+using TribalWars.Controls.Maps;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators
+namespace TribalWars.Data.Maps.Manipulators.Managers
 {
     /// <summary>
     /// Manages the user interaction with a map
@@ -23,24 +20,12 @@ namespace TribalWars.Data.Maps.Manipulators
         #endregion
 
         #region Fields
-        private Map _map;
-
-        private ManipulatorManagerBase _currentManipulator;
-        private Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> _manipulators;
-
-        private DefaultManipulatorManager _defaultManipulator;
-        private PolygonManipulatorManager _polygonManipulator;
-
-        protected Point _activeLocation;
-        protected Point _activeVillage;
-        protected Point _lastActiveVillage;
+        private readonly Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> _manipulators;
 
         // MouseMove Delegate move to the controller
         // --> the controller makes sure only the necessary MouseMove, KeyDown etc methods are executed
         // --> ScrollableMapControl executes the methods of the Controller
         private MouseMovedDelegate _mouseMoved;
-
-
 
 
         // MapMoverManipulator: overrides SetFullControl for cursor
@@ -51,10 +36,7 @@ namespace TribalWars.Data.Maps.Manipulators
         /// <summary>
         /// Gets the currently active manipulatormanager
         /// </summary>
-        public ManipulatorManagerBase CurrentManipulator
-        {
-            get { return _currentManipulator; }
-        }
+        public ManipulatorManagerBase CurrentManipulator { get; private set; }
 
         /// <summary>
         /// Gets all available manipulatormanagers
@@ -67,50 +49,32 @@ namespace TribalWars.Data.Maps.Manipulators
         /// <summary>
         /// Gets the map the manipulators are active on
         /// </summary>
-        public Map Map
-        {
-            get { return _map; }
-        }
+        public Map Map { get; private set; }
 
         /// <summary>
         /// Gets the default manipulator
         /// </summary>
-        public DefaultManipulatorManager DefaultManipulator
-        {
-            get { return _defaultManipulator; }
-        }
+        public DefaultManipulatorManager DefaultManipulator { get; private set; }
 
         /// <summary>
         /// Gets the polygon manipulator
         /// </summary>
-        public PolygonManipulatorManager PolygonManipulator
-        {
-            get { return _polygonManipulator; }
-        }
+        public PolygonManipulatorManager PolygonManipulator { get; private set; }
 
         /// <summary>
         /// The last village the cursor was on or is still on
         /// </summary>
-        public Point ActiveVillage
-        {
-            get { return _activeVillage; }
-        }
+        public Point ActiveVillage { get; protected set; }
 
         /// <summary>
         /// The 2nd last village the cursors was on
         /// </summary>
-        public Point LastActiveVillage
-        {
-            get { return _lastActiveVillage; }
-        }
+        public Point LastActiveVillage { get; protected set; }
 
         /// <summary>
         /// The location the cursors is on
         /// </summary>
-        public Point ActiveLocation
-        {
-            get { return _activeLocation; }
-        }
+        public Point ActiveLocation { get; protected set; }
         #endregion
 
         #region Constructors
@@ -119,10 +83,10 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public ManipulatorManagerController(Map miniMap, Map mainMap)
         {
-            _map = miniMap;
+            Map = miniMap;
             _manipulators = new Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase>();
-            _currentManipulator = new MiniMapManipulatorManager(miniMap, mainMap);
-            _manipulators.Add(ManipulatorManagerTypes.Default, _currentManipulator);
+            CurrentManipulator = new MiniMapManipulatorManager(miniMap, mainMap);
+            _manipulators.Add(ManipulatorManagerTypes.Default, CurrentManipulator);
         }
 
         /// <summary>
@@ -130,13 +94,13 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public ManipulatorManagerController(Map map)
         {
-            _map = map;
+            Map = map;
             _manipulators = new Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase>();
-            _defaultManipulator = new DefaultManipulatorManager(map);
-            _currentManipulator = _defaultManipulator;
-            _manipulators.Add(ManipulatorManagerTypes.Default, _currentManipulator);
-            _polygonManipulator = new PolygonManipulatorManager(map);
-            _manipulators.Add(ManipulatorManagerTypes.Polygon, _polygonManipulator);
+            DefaultManipulator = new DefaultManipulatorManager(map);
+            CurrentManipulator = DefaultManipulator;
+            _manipulators.Add(ManipulatorManagerTypes.Default, CurrentManipulator);
+            PolygonManipulator = new PolygonManipulatorManager(map);
+            _manipulators.Add(ManipulatorManagerTypes.Polygon, PolygonManipulator);
         }
         #endregion
 
@@ -167,97 +131,97 @@ namespace TribalWars.Data.Maps.Manipulators
         /// </summary>
         public void SetManipulator(ManipulatorManagerTypes manipulator)
         {
-            _currentManipulator = _manipulators[manipulator];
-            _currentManipulator.Initialize();
-            _map.EventPublisher.ChangeManipulator(this, new TribalWars.Data.Events.ManipulatorEventArgs(_currentManipulator, manipulator));
+            CurrentManipulator = _manipulators[manipulator];
+            CurrentManipulator.Initialize();
+            Map.EventPublisher.ChangeManipulator(this, new TribalWars.Data.Events.ManipulatorEventArgs(CurrentManipulator, manipulator));
         }
 
         public bool KeyDown(KeyEventArgs e, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            return _currentManipulator.OnKeyDownCore(new MapKeyEventArgs(_currentManipulator, g, e, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnKeyDownCore(new MapKeyEventArgs(CurrentManipulator, g, e, mapPicture.ClientRectangle));
         }
 
         public bool KeyUp(KeyEventArgs e, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            return _currentManipulator.OnKeyUpCore(new MapKeyEventArgs(_currentManipulator, g, e, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnKeyUpCore(new MapKeyEventArgs(CurrentManipulator, g, e, mapPicture.ClientRectangle));
         }
 
         public bool OnVillageDoubleClick(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            return _currentManipulator.OnVillageDoubleClickCore(new MapVillageEventArgs(_currentManipulator, g, e, village, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnVillageDoubleClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
         }
 
         public bool MouseDown(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            bool down = false;
-            if (village != null && e.Button == MouseButtons.Left) down = down || _currentManipulator.OnVillageClickCore(new MapVillageEventArgs(_currentManipulator, g, e, village, mapPicture.ClientRectangle));
-            return _currentManipulator.MouseDownCore(new MapMouseEventArgs(_currentManipulator, g, e, village, mapPicture.ClientRectangle)) || down;
+            bool down = false; // TODO: expression is always false
+            if (village != null && e.Button == MouseButtons.Left) down = down || CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
+            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) || down;
         }
 
         public bool MouseUp(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            bool up = _currentManipulator.MouseUpCore(new MapMouseEventArgs(_currentManipulator, g, e, village, mapPicture.ClientRectangle));
+            bool up = CurrentManipulator.MouseUpCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
             return up;
         }
 
         public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture, ToolTip villageTooltip)
         {
             // TODO: Creating a graphics object here *every* time might not be a good idea :)
-            Point game = _map.Display.GetGameLocation(e.X, e.Y);
+            Point game = Map.Display.GetGameLocation(e.X, e.Y);
             //System.Diagnostics.Debug.Print(game.ToString());
             Village village = World.Default.GetVillage(game);
-            Point map = _map.Display.GetMapLocation(game);
+            Point map = Map.Display.GetMapLocation(game);
             Graphics g = mapPicture.CreateGraphics();
 
             // Display village tooltip
             if (village != null)
             {
-                if (_activeVillage != village.Location || !villageTooltip.Active)
+                if (ActiveVillage != village.Location || !villageTooltip.Active)
                 {
-                    _lastActiveVillage = ActiveVillage;
-                    _activeVillage = village.Location;
+                    LastActiveVillage = ActiveVillage;
+                    ActiveVillage = village.Location;
 
-                    if (_currentManipulator.ShowTooltip)
+                    if (CurrentManipulator.ShowTooltip)
                     {
                         villageTooltip.Active = true;
                         villageTooltip.ToolTipTitle = village.ToString();
-                        villageTooltip.SetToolTip(mapPicture, _map.Manipulators.CurrentManipulator.VillageTooltip(village));
+                        villageTooltip.SetToolTip(mapPicture, Map.Manipulators.CurrentManipulator.VillageTooltip(village));
                     }
                 }
             }
             else
             {
-                if (_currentManipulator.ShowTooltip)
+                if (CurrentManipulator.ShowTooltip)
                     villageTooltip.Active = false;
             }
 
             // Invoke the MouseMoved delegate each time the current mouse location is different from the last location
-            if (_mouseMoved != null && _activeLocation != game)
+            if (_mouseMoved != null && ActiveLocation != game)
             {
-                _activeLocation = game;
-                _mouseMoved(e, map, village, _activeLocation, _activeVillage);
+                ActiveLocation = game;
+                _mouseMoved(e, map, village, ActiveLocation, ActiveVillage);
             }
 
             // TODO: also only call this one if _activeLocation != game?
-            return _currentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(_currentManipulator, g, e, map, village, mapPicture.ClientRectangle));
+            return CurrentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(CurrentManipulator, g, e, map, village, mapPicture.ClientRectangle));
         }
 
         public void Paint(Graphics graphics, Rectangle rec, Rectangle fullMap)
         {
             foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
-                manipulator.Paint(new MapPaintEventArgs(graphics, rec, fullMap, manipulator == _currentManipulator));
+                manipulator.Paint(new MapPaintEventArgs(graphics, rec, fullMap, manipulator == CurrentManipulator));
         }
 
         public void TimerPaint(ScrollableMapControl mapPicture, Rectangle fullMap)
         {
             Graphics g = mapPicture.CreateGraphics();
             foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
-                manipulator.TimerPaint(new MapTimerPaintEventArgs(g, fullMap, manipulator == _currentManipulator));
+                manipulator.TimerPaint(new MapTimerPaintEventArgs(g, fullMap, manipulator == CurrentManipulator));
         }
         #endregion
     }

@@ -1,49 +1,37 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing;
 using TribalWars.Data.Maps.Markers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws village ellipses
     /// </summary>
     public class EllipseDrawer : DrawerBase
     {
-        #region Fields
-        private Brush _brush;
-        private Brush _extraColorBrush;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the brush the ellipse gets drawn with
         /// </summary>
-        public Brush Brush
-        {
-            get { return _brush; }
-        }
+        public Brush Brush { get; private set; }
 
         /// <summary>
         /// Gets the brush a smaller circle inside
         /// the main circle gets drawn with
         /// </summary>
-        public Brush ExtraColorBrush
-        {
-            get { return _extraColorBrush; }
-        }
+        public Brush ExtraColorBrush { get; private set; }
         #endregion
 
         #region Constructors
         public EllipseDrawer(MarkerGroup colors)
         {
-            _brush = new SolidBrush(colors.Color);
+            Brush = new SolidBrush(colors.Color);
             if (colors.ExtraColor != Color.Transparent)
             {
-                _extraColorBrush = new SolidBrush(colors.ExtraColor);
+                ExtraColorBrush = new SolidBrush(colors.ExtraColor);
             }
         }
         #endregion
@@ -56,8 +44,8 @@ namespace TribalWars.Data.Maps.Drawers
         {
             if (width > 5)
             {
-                g.FillEllipse(_brush, x, y, width, height);
-                if (_extraColorBrush != null)
+                g.FillEllipse(Brush, x, y, width, height);
+                if (ExtraColorBrush != null)
                 {
                     float rec = width - 6;
                     float spacing = 3; // width / 4f;
@@ -66,13 +54,13 @@ namespace TribalWars.Data.Maps.Drawers
                         rec = 3;
                         spacing = 1;
                     }
-                    g.FillEllipse(_extraColorBrush, x + spacing, y + spacing, rec, rec);
+                    g.FillEllipse(ExtraColorBrush, x + spacing, y + spacing, rec, rec);
                 }
             }
             else
             {
-                if (_extraColorBrush != null && width > 3) g.FillRectangle(_extraColorBrush, x, y, width, height);
-                else g.FillRectangle(_brush, x, y, width, height);
+                if (ExtraColorBrush != null && width > 3) g.FillRectangle(ExtraColorBrush, x, y, width, height);
+                else g.FillRectangle(Brush, x, y, width, height);
             }
         }
 
@@ -81,9 +69,9 @@ namespace TribalWars.Data.Maps.Drawers
         /// </summary>
         public override void Dispose(bool disposing)
         {
-            _brush.Dispose();
-            if (_extraColorBrush != null)
-                _extraColorBrush.Dispose();
+            Brush.Dispose();
+            if (ExtraColorBrush != null)
+                ExtraColorBrush.Dispose();
         }
         #endregion
     }

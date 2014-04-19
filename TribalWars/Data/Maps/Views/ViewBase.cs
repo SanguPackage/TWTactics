@@ -56,7 +56,7 @@ namespace TribalWars.Data.Maps.Views
         #endregion
 
         #region Constructors
-        public ViewBase(string name, Types type, Categories category)
+        protected ViewBase(string name, Types type, Categories category)
         {
             _name = name;
             _type = type;

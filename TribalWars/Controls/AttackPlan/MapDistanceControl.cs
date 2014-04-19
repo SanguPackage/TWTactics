@@ -1,50 +1,33 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using TribalWars.Data;
 using TribalWars.Data.Villages;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.AttackPlan
 {
     public partial class MapDistanceControl : UserControl
     {
         #region Fields
-        private Village _Target;
-        private MapDistanceCollectionControl _Parent;
-        private ImageList UnitImageList;
+        private Village _target;
+        private readonly MapDistanceCollectionControl _parent;
+        private readonly ImageList _unitImageList;
         #endregion
 
         #region Properties
         public Village Target
         {
-            get { return _Target; }
+            get { return _target; }
             set
             {
-                _Target = value;
+                _target = value;
                 if (value != null)
                 {
                     Coords.Text = value.LocationString;
                     _Village.Text = value.Name;
-                    if (value.HasPlayer)
-                    {
-                        _Player.Text = value.Player.ToString();
-                    }
-                    else
-                    {
-                        _Player.Text = "";
-                    }
-                    if (value.HasTribe)
-                    {
-                        _Tribe.Text = value.Player.Tribe.ToString();
-                    }
-                    else
-                    {
-                        _Tribe.Text = "";
-                    }
+                    _Player.Text = value.HasPlayer ? value.Player.ToString() : "";
+                    _Tribe.Text = value.HasTribe ? value.Player.Tribe.ToString() : "";
                 }
                 DistanceContainer.Controls.Clear();
                 DistanceContainer.RowCount = 1;
@@ -59,7 +42,7 @@ namespace TribalWars.Controls
 
         public MapDistanceCollectionControl Collection
         {
-            get { return _Parent; }
+            get { return _parent; }
         }
         #endregion
 
@@ -68,8 +51,8 @@ namespace TribalWars.Controls
         {
             InitializeComponent();
 
-            _Parent = parent;
-            UnitImageList = imageList;
+            _parent = parent;
+            _unitImageList = imageList;
             Date.Value = World.Default.ServerTime.AddHours(8);
         }
         #endregion
@@ -82,17 +65,17 @@ namespace TribalWars.Controls
 
         private void Player_DoubleClick(object sender, EventArgs e)
         {
-            if (_Target.HasPlayer)
+            if (_target.HasPlayer)
             {
-                World.Default.Map.EventPublisher.SelectVillages(this, _Target.Player, VillageTools.PinPoint);
+                World.Default.Map.EventPublisher.SelectVillages(this, _target.Player, VillageTools.PinPoint);
             }
         }
 
         private void Tribe_DoubleClick(object sender, EventArgs e)
         {
-            if (_Target.HasTribe)
+            if (_target.HasTribe)
             {
-                World.Default.Map.EventPublisher.SelectVillages(this, _Target.Player.Tribe, VillageTools.PinPoint);
+                World.Default.Map.EventPublisher.SelectVillages(this, _target.Player.Tribe, VillageTools.PinPoint);
             }
         }
         #endregion
@@ -102,7 +85,7 @@ namespace TribalWars.Controls
         {
             foreach (Control ctl in DistanceContainer.Controls)
             {
-                MapDistanceVillageControl distanceControl = ctl as MapDistanceVillageControl;
+                var distanceControl = ctl as MapDistanceVillageControl;
                 if (distanceControl != null) distanceControl.Calculate();
             }
         }
@@ -111,7 +94,7 @@ namespace TribalWars.Controls
         {
             foreach (Control ctl in DistanceContainer.Controls)
             {
-                MapDistanceVillageControl distanceControl = ctl as MapDistanceVillageControl;
+                var distanceControl = ctl as MapDistanceVillageControl;
                 if (distanceControl != null) distanceControl.CalculateVariable();
             }
         }
@@ -126,7 +109,7 @@ namespace TribalWars.Controls
             DistanceContainer.RowCount++;
             DistanceContainer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            MapDistanceVillageControl ctl = new MapDistanceVillageControl(UnitImageList, village, this, DistanceContainer.RowCount - 1);
+            var ctl = new MapDistanceVillageControl(_unitImageList, village, this, DistanceContainer.RowCount - 1);
             DistanceContainer.Controls.Add(ctl, 0, DistanceContainer.RowCount - 2);
 
             //World.Default.EventPublisher.DoPaint(false);
@@ -150,8 +133,8 @@ namespace TribalWars.Controls
             {
                 for (int i = villageControl.Row - 1; i < DistanceContainer.RowCount - 2; i++)
                 {
-                    MapDistanceVillageControl mdv1 = DistanceContainer.Controls[i] as MapDistanceVillageControl;
-                    MapDistanceVillageControl mdv2 = DistanceContainer.Controls[i + 1] as MapDistanceVillageControl;
+                    var mdv1 = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                    var mdv2 = DistanceContainer.Controls[i + 1] as MapDistanceVillageControl;
                     if (mdv1 != null)
                     {
                         mdv1.SetVillage(mdv2.Village, mdv2.UnitSelectedIndex);
@@ -173,29 +156,22 @@ namespace TribalWars.Controls
         }
         #endregion
 
-        public string GetPlan(bool BBCodes)
+        public string GetPlan(bool bbCodes)
         {
-            return GetPlan(BBCodes, true);
+            return GetPlan(bbCodes, true);
         }
 
-        public string GetPlan(bool BBCodes, bool standAlone)
+        public string GetPlan(bool bbCodes, bool standAlone)
         {
             Sort();
 
-            if (_Target != null)
+            if (_target != null)
             {
-                StringBuilder str = new StringBuilder();
+                var str = new StringBuilder();
                 if (standAlone)
                 {
                     str.AppendLine("*** Attack Plan ***");
-                    if (!BBCodes)
-                    {
-                        str.AppendLine(_Target.ToString());
-                    }
-                    else
-                    {
-                        str.AppendLine(_Target.BBCode());
-                    }
+                    str.AppendLine(!bbCodes ? _target.ToString() : _target.BBCode());
                     str.AppendLine();
 
                     str.AppendLine("Arrival time: " + Date.Value.ToString(Date.CustomFormat));
@@ -204,10 +180,10 @@ namespace TribalWars.Controls
                 }
                 for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
                 {
-                    MapDistanceVillageControl mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                    var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                     if (mdv != null)
                     {
-                        str.Append(mdv.ToString(BBCodes, standAlone ? null : _Target));
+                        str.Append(mdv.ToString(bbCodes, standAlone ? null : _target));
                     }
                 }
                 return str.ToString().Trim();
@@ -217,10 +193,10 @@ namespace TribalWars.Controls
 
         public List<MapDistanceVillageComparor> GetVillageList()
         {
-            List<MapDistanceVillageComparor> list = new List<MapDistanceVillageComparor>();
+            var list = new List<MapDistanceVillageComparor>();
             for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
             {
-                MapDistanceVillageControl mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 if (mdv != null) list.Add(new MapDistanceVillageComparor(mdv, mdv.TimeLeftBeforeSendTotalSeconds));
             }
             return list;
@@ -232,7 +208,7 @@ namespace TribalWars.Controls
             list.Sort();
             for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
             {
-                MapDistanceVillageControl mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 if (mdv != null)
                 {
                     mdv.SetVillage(list[i].Village, list[i].UnitSelectedIndex);
@@ -242,21 +218,21 @@ namespace TribalWars.Controls
 
         private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            _Parent.Remove(this);
+            _parent.Remove(this);
             for (int i = DistanceContainer.RowCount - 2; i >= 0 ; i--)
             {
-                MapDistanceVillageControl mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 mdv.Dispose();
                 DistanceContainer.Controls.Remove(mdv);
             }
-            this.Dispose();
+            Dispose();
         }
 
         public void Clear()
         {
             for (int i = DistanceContainer.RowCount - 2; i >= 0; i--)
             {
-                MapDistanceVillageControl mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 mdv.Dispose();
                 DistanceContainer.Controls.Remove(mdv);
                 DistanceContainer.RowStyles.Remove(DistanceContainer.RowStyles[i]);

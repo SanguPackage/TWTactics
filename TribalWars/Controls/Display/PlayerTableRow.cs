@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Drawing;
-
+using TribalWars.Data;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
 
@@ -15,7 +13,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Lists the different columns in the PlayerTableRow columns
     /// </summary>
-    [Flags()]
+    [Flags]
     public enum PlayerFields
     {
         None = 0,
@@ -34,10 +32,10 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a player row in an XPTable
     /// </summary>
-    public class PlayerTableRow : XPTable.Models.Row, TribalWars.Controls.TWContextMenu.ITWContextMenu
+    public class PlayerTableRow : Row, TWContextMenu.ITWContextMenu
     {
         #region Fields
-        private Player _player;
+        private readonly Player _player;
         #endregion
 
         #region Properties
@@ -58,7 +56,7 @@ namespace TribalWars.Controls.Display
             // player is currently visible?
             if (World.Default.Map.Display.IsVisible(ply))
             {
-                Cells.Add(new Cell(string.Empty, TribalWars.Properties.Resources.Visible));
+                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
             }
             else
             {
@@ -113,7 +111,7 @@ namespace TribalWars.Controls.Display
             //    World.Default.Map.Manipulators.CurrentManipulator.PlayerContextMenu.Show(this.TableModel.Table, p, _player);
         }
 
-        public IEnumerable<TribalWars.Data.Villages.Village> GetVillages()
+        public IEnumerable<Village> GetVillages()
         {
             return _player;
         }

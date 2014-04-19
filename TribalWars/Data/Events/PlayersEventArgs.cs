@@ -10,39 +10,28 @@ namespace TribalWars.Data.Events
     /// <summary>
     /// EventArgs wrapper for multiple players
     /// </summary>
-    public class PlayersEventArgs : EventArgs
+    public sealed class PlayersEventArgs : EventArgs
     {
-        #region Fields
-        private IEnumerable<Player> _players;
-        private VillageTools _tool;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the players
         /// </summary>
-        public IEnumerable<Player> Players
-        {
-            get { return _players; }
-        }
+        public IEnumerable<Player> Players { get; private set; }
 
         /// <summary>
         /// Gets the tool requesting the event
         /// </summary>
-        public VillageTools Tool
-        {
-            get { return _tool; }
-        }
+        public VillageTools Tool { get; private set; }
 
         /// <summary>
         /// Gets the first player in the list
         /// </summary>
-        public virtual Player FirstPlayer
+        public Player FirstPlayer
         {
             get
             {
-                if (_players != null)
-                    foreach (Player ply in _players)
+                if (Players != null)
+                    foreach (Player ply in Players)
                         return ply;
 
                 return null;
@@ -53,8 +42,8 @@ namespace TribalWars.Data.Events
         #region Constructors
         public PlayersEventArgs(IEnumerable<Player> ply, VillageTools tool)
         {
-            _players = ply;
-            _tool = tool;
+            Players = ply;
+            Tool = tool;
         }
         #endregion
     }

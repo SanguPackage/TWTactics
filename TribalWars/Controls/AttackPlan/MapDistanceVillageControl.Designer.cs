@@ -1,4 +1,6 @@
-namespace TribalWars.Controls
+using TribalWars.Controls.Common;
+
+namespace TribalWars.Controls.AttackPlan
 {
     partial class MapDistanceVillageControl
     {
@@ -35,8 +37,8 @@ namespace TribalWars.Controls
             this.DateNow = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.DateSend = new System.Windows.Forms.Label();
-            this.UnitBox = new TribalWars.Controls.ImageCombobox();
-            this.Coords = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
+            this.UnitBox = new ImageCombobox();
+            this.Coords = new VillagePlayerTribeFinderTextBox();
             this.Close = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 

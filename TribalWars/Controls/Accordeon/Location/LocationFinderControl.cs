@@ -21,10 +21,10 @@ namespace TribalWars.Controls.Accordeon.Location
     /// Search the world for villages, players and tribes
     /// and display them in an XPTable
     /// </summary>
-    public partial class MapFinderControl : UserControl
+    public partial class LocationFinderControl : UserControl
     {
         #region Constructors
-        public MapFinderControl()
+        public LocationFinderControl()
         {
             InitializeComponent();
         }
@@ -39,7 +39,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Display found players
         /// </summary>
-        private void Options_PlayersFound(object sender, TribalWars.Data.Events.PlayersEventArgs e)
+        private void Options_PlayersFound(object sender, Data.Events.PlayersEventArgs e)
         {
             Table.DisplayPlayers(e.Players);
         }
@@ -47,7 +47,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Display found tribes
         /// </summary>
-        private void Options_TribesFound(object sender, TribalWars.Data.Events.TribesEventArgs e)
+        private void Options_TribesFound(object sender, Data.Events.TribesEventArgs e)
         {
             Table.DisplayTribes(e.Tribes);
         }
@@ -55,7 +55,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Display found villages
         /// </summary>
-        private void Options_VillagesFound(object sender, TribalWars.Data.Events.VillagesEventArgs e)
+        private void Options_VillagesFound(object sender, Data.Events.VillagesEventArgs e)
         {
             Table.DisplayVillages(e.Villages);
         }

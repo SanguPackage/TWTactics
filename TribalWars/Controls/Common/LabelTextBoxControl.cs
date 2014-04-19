@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Common
 {
     /// <summary>
     /// Combines a Label &amp; TextBox
@@ -15,14 +11,14 @@ namespace TribalWars.Controls
     public partial class LabelTextBox : UserControl
     {
         #region Fields
-        private static AutoCompleteStringCollection _autoCompleteList = new AutoCompleteStringCollection();
+        private static readonly AutoCompleteStringCollection AutoCompleteList = new AutoCompleteStringCollection();
         #endregion
 
         #region Constructors
         public LabelTextBox()
         {
             InitializeComponent();
-            _TextBox.AutoCompleteCustomSource = LabelTextBox._autoCompleteList;
+            _TextBox.AutoCompleteCustomSource = AutoCompleteList;
         }
 
         public LabelTextBox(string description, int widthTextbox)
@@ -30,7 +26,7 @@ namespace TribalWars.Controls
             InitializeComponent();
             _Label.Text = description;
             _TextBox.Width = widthTextbox;
-            _TextBox.AutoCompleteCustomSource = LabelTextBox._autoCompleteList;
+            _TextBox.AutoCompleteCustomSource = AutoCompleteList;
         }
         #endregion
 
@@ -73,8 +69,8 @@ namespace TribalWars.Controls
 
         private void _TextBox_Leave(object sender, EventArgs e)
         {
-            if (!LabelTextBox._autoCompleteList.Contains(_TextBox.Text))
-                LabelTextBox._autoCompleteList.Add(_TextBox.Text);
+            if (!AutoCompleteList.Contains(_TextBox.Text))
+                AutoCompleteList.Add(_TextBox.Text);
         }
         #endregion
     }

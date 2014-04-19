@@ -25,7 +25,7 @@ namespace TribalWars.Data.Villages
         public VillagePropertyDescriptor(Village vil)
             : base(vil.Name, null)
         {
-            this.village = new VillageDescriptor(vil);
+            village = new VillageDescriptor(vil);
         }
         #endregion
 

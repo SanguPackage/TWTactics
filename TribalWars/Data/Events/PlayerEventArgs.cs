@@ -10,25 +10,18 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class PlayerEventArgs : VillagesEventArgs
     {
-        #region Fields
-        private Player _selectedPlayer;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the player
         /// </summary>
-        public Player SelectedPlayer
-        {
-            get { return _selectedPlayer; }
-        }
+        public Player SelectedPlayer { get; private set; }
         #endregion
 
         #region Constructors
         public PlayerEventArgs(Player ply, VillageTools tool)
             : base(ply, tool)
         {
-            _selectedPlayer = ply;
+            SelectedPlayer = ply;
         }
         #endregion
     }

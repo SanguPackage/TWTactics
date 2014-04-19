@@ -36,12 +36,7 @@ namespace TribalWars.Controls.Main.Browser
         /// </summary>
         public Regex ReportCoreRegex
         {
-            get
-            {
-                if (_reportCoreRegex == null)
-                    _reportCoreRegex = new Regex(GetReportCorePattern(), regexOptions);
-                return _reportCoreRegex;
-            }
+            get { return _reportCoreRegex ?? (_reportCoreRegex = new Regex(GetReportCorePattern(), regexOptions)); }
         }
 
         /// <summary>
@@ -49,11 +44,9 @@ namespace TribalWars.Controls.Main.Browser
         /// </summary>
         public Regex ReportEspionageRegex
         {
-            get
-            {
-                if (_reportEspionageRegex == null)
-                    _reportEspionageRegex = new Regex(GetReportEspionagePattern(), regexOptions);
-                return _reportEspionageRegex;
+            get {
+                return _reportEspionageRegex ??
+                       (_reportEspionageRegex = new Regex(GetReportEspionagePattern(), regexOptions));
             }
         }
 
@@ -62,19 +55,7 @@ namespace TribalWars.Controls.Main.Browser
         /// </summary>
         public Regex ReportRestRegex
         {
-            get
-            {
-                if (_reportRestRegex == null)
-                    _reportRestRegex = new Regex(GetReportRestPattern(), regexOptions);
-                return _reportRestRegex;
-            }
-        }
-        #endregion
-
-        #region Constructors
-        public HtmlReportParser()
-        {
-
+            get { return _reportRestRegex ?? (_reportRestRegex = new Regex(GetReportRestPattern(), regexOptions)); }
         }
         #endregion
 
@@ -99,13 +80,13 @@ namespace TribalWars.Controls.Main.Browser
             if (index == -1) return false;
             document = document.Substring(index);
 
-            Dictionary<string, Group> matches = new Dictionary<string, Group>();
+            var matches = new Dictionary<string, Group>();
             if (HandleReportCore(matches, document))
             {
                 bool testEspionage = HandleReportEspionage(matches, document);
                 bool testRest = HandleReportRest(matches, document);
 
-                ReportOutputOptions options = new ReportOutputOptions();
+                var options = new ReportOutputOptions();
                 Report report = ReportParser.ParseHtmlMatch(matches, options);
                 VillageReportCollection.Save(report);
                 return true;
@@ -199,7 +180,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportPatternCata()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
             pattern.Append(string.Format(@"\<tr\>\<th\>{0}:\</th\>\s*", TWWords.ReportCatas));
             pattern.Append(string.Format(@"\<td colspan=""2""\>({2} )?(?<catBuilding>\w*) {0}\s?\<b\>(?<catBefore>\d*)\</b\> {1}\s?\<b\>(?<catAfter>\d*)\</b\>\</td\>\</tr\>\s*", TWWords.ReportCatasPre, TWWords.ReportCatasBetween, TWWords.The));
             return pattern.ToString();
@@ -207,7 +188,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportPatternLoyalty()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
             pattern.Append(string.Format(@"\<tr\>\<th\>{0}\</th\>\s*", TWWords.ReportLoyalty));
             pattern.Append(string.Format(@"\<td colspan=""2""\>{0} \<b\>(?<loyaltyBegin>\d*)\</b\> {1} \<b\>(?<loyaltyEnd>-?\d*)\</b\>\</td\>\</tr\>", TWWords.ReportLoyaltyPre, TWWords.ReportLoyaltyBetween));
             return pattern.ToString();
@@ -215,7 +196,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportPatternRam()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
             pattern.Append(string.Format(@"\<tr\>\<th\>{0}:\</th\>\s*", TWWords.ReportRams));
             pattern.Append(string.Format(@"\<td colspan=""2""\>{0} \<b\>(?<ramBefore>\d*)\</b\> {1} \<b\>(?<ramAfter>\d*)\</b\>\</td\>\</tr\>\s*", TWWords.ReportRamsPre, TWWords.ReportRamsBetween));
             return pattern.ToString();
@@ -223,7 +204,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportPatternHaul()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
             pattern.Append(@"\<table width=""100%"" style=""border: 1px solid #DED3B9""\>\s*");
             pattern.Append(string.Format(@"\<tr\>\<th\>{0}:\</th\>\s*\<td width=""220""\>", TWWords.ReportHaul));
             pattern.Append(string.Format(@"(?<res>\<img src="".*\.png(\?1)?"" title=""({0}|{1}|{2})"" alt="""" /\>(\d*\<span class=""grey""\>\.\</span\>)?\d*\s*){{0,3}}\</td\>\s*", TWWords.Wood, TWWords.Clay, TWWords.Iron));
@@ -233,7 +214,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportPatternOutside()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             pattern.Append(string.Format(@"\<h4\>{0}\</h4\>\s*", TWWords.ReportUnitsInTransit));
             pattern.Append(@"\<table\>\s*");
@@ -339,10 +320,10 @@ namespace TribalWars.Controls.Main.Browser
             //</table><br /><br />
             #endregion
 
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             // Date, luck, morale, ...
-            pattern.Append(string.Format(@"\<tr\>\<td\>{0}\</td\>\<td\>(?<date>.*)\</td\>\</tr\>", Translations.TWWords.ReportSent));
+            pattern.Append(string.Format(@"\<tr\>\<td\>{0}\</td\>\<td\>(?<date>.*)\</td\>\</tr\>", TWWords.ReportSent));
             pattern.Append(@"[\s\S]*");
             pattern.Append(string.Format(@"\<h3\>{0}\s*(?<winner>({1}|{2})) {3}\</h3\>", TWWords.The, TWWords.ReportAttackerLCase, TWWords.ReportDefenderLCase, TWWords.ReportHasWon));
             pattern.Append(@"[\s\S]*");
@@ -399,7 +380,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportEspionagePattern()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             #region Example
             //<h4>Espionage</h4>
@@ -456,7 +437,7 @@ namespace TribalWars.Controls.Main.Browser
 
         private string GetReportRestPattern()
         {
-            StringBuilder pattern = new StringBuilder();
+            var pattern = new StringBuilder();
 
             pattern.Append(@"(");
             pattern.Append(string.Format(@"\<h4\>{0}\</h4\>\s*", TWWords.ReportUnitsInTransit));

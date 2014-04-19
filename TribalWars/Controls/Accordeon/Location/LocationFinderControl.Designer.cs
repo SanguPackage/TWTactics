@@ -1,6 +1,6 @@
 namespace TribalWars.Controls.Accordeon.Location
 {
-    partial class MapFinderControl
+    partial class LocationFinderControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -107,7 +107,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "MapFinderControl";
+            this.Name = "LocationFinderControl";
             this.Size = new System.Drawing.Size(296, 180);
             this.groupBox1.ResumeLayout(false);
             this.MainTable.ResumeLayout(false);

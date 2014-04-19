@@ -10,7 +10,7 @@ namespace TribalWars.Data.Villages
     /// <summary>
     /// Represents a list of villages in a PropertyGrid
     /// </summary>
-    [Editor(typeof(VillagePointerUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class VillageCollection : ICustomTypeDescriptor, IEnumerable<Village>
     {
         #region Fields

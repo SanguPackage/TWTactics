@@ -1,20 +1,17 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
-using TribalWars.Data.Villages;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators.Helpers
+namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
     public class MapEventArgs
     {
         #region Fields
-        private ManipulatorManagerBase _parent;
-        private Graphics _g;
-        private Rectangle _rec;
+        private readonly ManipulatorManagerBase _parent;
+        private readonly Graphics _g;
+        private readonly Rectangle _rec;
         #endregion
 
         #region Properties

@@ -1,19 +1,16 @@
 #region Using
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
+using TribalWars.Data;
 using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
+
 #endregion
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Main.Polygon
 {
     /// <summary>
     /// Manages the villages inside the BBCodeArea polygons
@@ -28,7 +25,7 @@ namespace TribalWars.Controls
 
         public void Initialize()
         {
-            World.Default.Map.EventPublisher.PolygonActivated += new EventHandler<PolygonEventArgs>(EventPublisher_PolygonActivated);
+            World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
         }
         #endregion
 
@@ -50,7 +47,7 @@ namespace TribalWars.Controls
         {
             if (GridExPolygon.RowCount == 0) return;
 
-            StringBuilder str = new StringBuilder();
+            var str = new StringBuilder();
             foreach (GridEXRow groupRow in GridExPolygon.GetRows())
             {
                 if (groupRow.RowType == RowType.GroupHeader)
@@ -60,7 +57,7 @@ namespace TribalWars.Controls
                     str.AppendLine(groupRow.GroupValue.ToString());
                     foreach (GridEXRow row in groupRow.GetChildRecords())
                     {
-                        PolygonDataSet.VILLAGERow villageRow = (PolygonDataSet.VILLAGERow)((DataRowView)row.DataRow).Row;
+                        var villageRow = (PolygonDataSet.VILLAGERow)((DataRowView)row.DataRow).Row;
                         if (!villageRow.IsTYPENull() && !string.IsNullOrEmpty(villageRow.TYPE))
                         {
                             str.AppendLine(villageRow.BBCODE + " (" + villageRow.TYPE + ")");
@@ -90,7 +87,7 @@ namespace TribalWars.Controls
             {
                 Clipboard.SetText(str.ToString().Trim());
             }
-            catch (Exception)
+            catch
             {
                 
             }

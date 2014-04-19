@@ -1,8 +1,8 @@
 #region Using
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TribalWars.Data.Maps.Manipulators;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
 namespace TribalWars.Data.Events
@@ -13,8 +13,8 @@ namespace TribalWars.Data.Events
     public class ManipulatorEventArgs : EventArgs
     {
         #region Fields
-        private ManipulatorManagerBase _manipulator;
-        private ManipulatorManagerTypes _type;
+        private readonly ManipulatorManagerBase _manipulator;
+        private readonly ManipulatorManagerTypes _type;
         #endregion
 
         #region Properties

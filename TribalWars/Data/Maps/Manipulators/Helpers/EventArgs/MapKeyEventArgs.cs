@@ -1,35 +1,26 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
-using TribalWars.Data.Villages;
+using TribalWars.Data.Maps.Manipulators.Managers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators.Helpers
+namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
     public class MapKeyEventArgs : MapEventArgs
     {
-        #region Fields
-        private KeyEventArgs _keys;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the key event arguments
         /// </summary>
-        public KeyEventArgs KeyEventArgs
-        {
-            get { return _keys; }
-        }
+        public KeyEventArgs KeyEventArgs { get; private set; }
         #endregion
 
         #region Constructors
         public MapKeyEventArgs(ManipulatorManagerBase p, Graphics g, KeyEventArgs e, Rectangle rec)
             : base(p, g, rec)
         {
-            _keys = e;
+            KeyEventArgs = e;
         }
         #endregion
     }

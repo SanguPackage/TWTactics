@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using TribalWars.Data;
 using TribalWars.Tools;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Reporting;
@@ -59,7 +59,7 @@ namespace TribalWars.Controls.Maps
         public void SetMap(Map map)
         {
             _map = map;
-            _map.EventPublisher.LocationChanged += new EventHandler<MapLocationEventArgs>(EventPublisher_LocationChanged);
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
         #endregion
 

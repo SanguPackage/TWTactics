@@ -14,39 +14,22 @@ namespace TribalWars.Data.Reporting
     /// </summary>
     public class ReportBuilding : IXmlSerializable
     {
-        #region Fields
-        private int _level;
-        private int _originalLevel;
-        private Building _building;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the building
         /// </summary>
-        public Building Building
-        {
-            get { return _building; }
-        }
+        public Building Building { get; private set; }
 
         /// <summary>
         /// Gets or sets the current level
         /// </summary>
-        public int Level
-        {
-            get { return _level; }
-            set { _level = value; }
-        }
+        public int Level { get; set; }
 
         /// <summary>
         /// Gets or sets the level before the report
         /// </summary>
         /// <remarks>Only relevant when rams or catapults were used</remarks>
-        public int OriginalLevel
-        {
-            get { return _originalLevel; }
-            set { _originalLevel = value; }
-        }
+        public int OriginalLevel { get; set; }
         #endregion
 
         #region Constructors
@@ -57,58 +40,58 @@ namespace TribalWars.Data.Reporting
 
         public ReportBuilding(Building build, int level)
         {
-            _level = level;
-            _building = build;
+            Level = level;
+            Building = build;
         }
 
         public ReportBuilding(Building build, int level, int origLevel)
         {
-            _level = level;
-            _originalLevel = origLevel;
-            _building = build;
+            Level = level;
+            OriginalLevel = origLevel;
+            Building = build;
         }
         #endregion
 
         #region BBCodes
         public override string ToString()
         {
-            return string.Format("{0} ({1}", this.Building.Name, this._level);
+            return string.Format("{0} ({1}", Building.Name, Level);
         }
 
-        public string BBCode()
+        public string BbCode()
         {
-            string str =  string.Format("{0} {1}", Building.BBCodeImage, _level);
-            if (_originalLevel != 0) str += string.Format(" (-{0})", _originalLevel - _level);
+            string str =  string.Format("{0} {1}", Building.BbCodeImage, Level);
+            if (OriginalLevel != 0) str += string.Format(" (-{0})", OriginalLevel - Level);
             return str;
         }
 
-        public string BBCodeExtended(int warehouse, int stock)
+        public string BbCodeExtended(int warehouse, int stock)
         {
             // warehouse & stock overload are only for economy buildings
             string str = string.Empty;
-            if (Building.Production != null && Building.GetTotalProduction(_level) > 0)
+            if (Building.Production != null && Building.GetTotalProduction(Level) > 0)
             {
-                str += string.Format(Building._productionImage, Building.GetTotalProduction(_level));
+                str += string.Format(Building.ProductionImage, Building.GetTotalProduction(Level));
                 str = string.Format("{0}", str);
                 if (warehouse > 0)
                 {
-                    str += string.Format("|{0}hours", Math.Round((double)(warehouse - stock) / Building.GetTotalProduction(_level)));
+                    str += string.Format("|{0}hours", Math.Round((double)(warehouse - stock) / Building.GetTotalProduction(Level)));
                 }
                 return str;
             }
-            return BBCode();
+            return BbCode();
         }
 
-        public virtual string BBCodeForResource(int warehouse, int stock)
+        public virtual string BbCodeForResource(int warehouse, int stock)
         {
             string str = string.Empty;
-            if (Building.Production != null && _building.GetTotalProduction(_level) > 0)
+            if (Building.Production != null && Building.GetTotalProduction(Level) > 0)
             {
-                str += string.Format("{0:#,0}", _building.GetTotalProduction(_level));
+                str += string.Format("{0:#,0}", Building.GetTotalProduction(Level));
                 str = string.Format("{0}", str);
                 if (warehouse > 0)
                 {
-                    str += string.Format("|{0}hours", Math.Round((double)(warehouse - stock) / _building.GetTotalProduction(_level)));
+                    str += string.Format("|{0}hours", Math.Round((double)(warehouse - stock) / Building.GetTotalProduction(Level)));
                 }
                 str += "";
             }
@@ -122,7 +105,7 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public int GetTotalPeople()
         {
-            return _building.GetTotalPeople(_level);
+            return Building.GetTotalPeople(Level);
         }
 
         /// <summary>
@@ -130,7 +113,7 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public int GetTotalPoints()
         {
-            return _building.GetTotalPoints(_level);
+            return Building.GetTotalPoints(Level);
         }
 
         /// <summary>
@@ -140,7 +123,7 @@ namespace TribalWars.Data.Reporting
         /// </summary>
         public int GetTotalProduction()
         {
-            return _building.GetTotalProduction(_level);
+            return Building.GetTotalProduction(Level);
         }
         #endregion
 
@@ -159,7 +142,7 @@ namespace TribalWars.Data.Reporting
         {
             w.WriteStartElement("Building");
             w.WriteAttributeString("Type", Building.Type.ToString());
-            w.WriteAttributeString("Level", _level.ToString());
+            w.WriteAttributeString("Level", Level.ToString());
             w.WriteEndElement();
         }
 
@@ -216,7 +199,7 @@ namespace TribalWars.Data.Reporting
         #region ICloneable Members
         public ReportBuilding Clone()
         {
-            return new ReportBuilding(_building, _level, _originalLevel);
+            return new ReportBuilding(Building, Level, OriginalLevel);
         }
 
         public static Dictionary<BuildingTypes, ReportBuilding> Clone(Dictionary<BuildingTypes, ReportBuilding> originalList)

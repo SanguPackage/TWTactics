@@ -1,12 +1,9 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using TribalWars.Data.Maps.Markers;
+
 #endregion
 
-namespace TribalWars.Data.Maps.Drawers
+namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws village rectangles
@@ -14,7 +11,7 @@ namespace TribalWars.Data.Maps.Drawers
     public class MiniMapDrawer : DrawerBase
     {
         #region Fields
-        private Brush _colorBrush;
+        private readonly Brush _colorBrush;
         #endregion
 
         #region Properties

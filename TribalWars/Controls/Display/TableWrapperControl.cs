@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-
+using TribalWars.Data;
 using XPTable.Models;
 
 using TribalWars.Data.Players;
@@ -13,7 +9,6 @@ using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
 
 using TribalWars.Controls.Accordeon.Location;
-using TribalWars.Controls.Display;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Reporting;
 
@@ -264,8 +259,8 @@ namespace TribalWars.Controls.Display
                 if (Table.TableModel.Selections.SelectedItems.Length > 1)
                 {
                     // Show context menu for multiple villages
-                    TribalWars.Controls.TWContextMenu.VillagesContextMenu menu = new VillagesContextMenu();
-                    List<Village> vils = new List<Village>();
+                    var menu = new VillagesContextMenu();
+                    var vils = new List<Village>();
                     foreach (Row row in Table.TableModel.Selections.SelectedItems)
                     {
                         vils.AddRange(((ITWContextMenu)row).GetVillages());
@@ -279,7 +274,7 @@ namespace TribalWars.Controls.Display
                     Table.TableModel.Selections.SelectCells(Table.RowIndexAt(e.Location), 0, Table.RowIndexAt(e.Location), Table.ColumnModel.Columns.Count - 1);
                     if (Table.TableModel.Selections.SelectedItems.Length == 1)
                     {
-                        ITWContextMenu row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                        var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
                         row.ShowContext(e.Location);
                     }
                 }
@@ -289,7 +284,7 @@ namespace TribalWars.Controls.Display
                 // Raise the select event
                 if (Table.TableModel.Selections.SelectedItems.Length == 1)
                 {
-                    ITWContextMenu row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                    var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
                     switch (_rowSelectionAction)
                     {
                         case RowSelectionActionEnum.RaiseSelectEvent:
@@ -311,7 +306,7 @@ namespace TribalWars.Controls.Display
         {
             if (Table.TableModel.Selections.SelectedItems.Length > 0)
             {
-                ITWContextMenu row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
                 World.Default.Map.EventPublisher.SelectVillages(null, row.GetVillages(), VillageTools.PinPoint);
             }
         }
@@ -410,7 +405,7 @@ namespace TribalWars.Controls.Display
                 if (_autoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
                     Report report = ((ReportTableRow)Table.TableModel.Rows[0]).Report;
-                    List<Village> list = new List<Village>();
+                    var list = new List<Village>();
                     list.Add(report.Defender.Village);
                     list.Add(report.Attacker.Village);
                     World.Default.Map.EventPublisher.SelectVillages(null, list, VillageTools.PinPoint);

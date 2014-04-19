@@ -1,4 +1,6 @@
-namespace TribalWars.Controls
+using TribalWars.Controls.Common;
+
+namespace TribalWars.Controls.AttackPlan
 {
     partial class MapDistanceControl
     {
@@ -30,7 +32,7 @@ namespace TribalWars.Controls
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coords = new TribalWars.Controls.VillagePlayerTribeFinderTextBox();
+            this.Coords = new VillagePlayerTribeFinderTextBox();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
@@ -38,7 +40,7 @@ namespace TribalWars.Controls
             this.DistanceContainer = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.InfoText = new System.Windows.Forms.ComboBox();
-            this.Date = new TribalWars.Controls.TimeConverterControl();
+            this.Date = new TimeConverterControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();

@@ -1,16 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using System.IO;
-using TribalWars.Tools;
+using TribalWars.Data;
 
-namespace TribalWars
+namespace TribalWars.Forms
 {
     public partial class LoadWorldForm : Form
     {
@@ -72,7 +66,7 @@ namespace TribalWars
                 TribalWars.Properties.Settings.Default.Save();
 
                 World.Default.LoadWorld(pathData, settings);
-                this.Close();
+                Close();
             }
         }
 
