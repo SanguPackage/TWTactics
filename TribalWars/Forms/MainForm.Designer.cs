@@ -325,7 +325,7 @@ namespace TribalWars.Forms
             this.MenuFileNew.Image = ((System.Drawing.Image)(resources.GetObject("MenuFileNew.Image")));
             this.MenuFileNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MenuFileNew.Name = "MenuFileNew";
-            this.MenuFileNew.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileNew.Size = new System.Drawing.Size(229, 22);
             this.MenuFileNew.Text = "&New world";
             this.MenuFileNew.Click += new System.EventHandler(this.MenuFileNew_Click);
             // 
@@ -334,26 +334,29 @@ namespace TribalWars.Forms
             this.MenuFileLoadWorld.Image = ((System.Drawing.Image)(resources.GetObject("MenuFileLoadWorld.Image")));
             this.MenuFileLoadWorld.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MenuFileLoadWorld.Name = "MenuFileLoadWorld";
-            this.MenuFileLoadWorld.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileLoadWorld.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.MenuFileLoadWorld.Size = new System.Drawing.Size(229, 22);
             this.MenuFileLoadWorld.Text = "&Load world";
             this.MenuFileLoadWorld.Click += new System.EventHandler(this.MenuFileLoadWorld_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(226, 6);
             // 
             // MenuFileWorldDownload
             // 
             this.MenuFileWorldDownload.Name = "MenuFileWorldDownload";
-            this.MenuFileWorldDownload.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileWorldDownload.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D)));
+            this.MenuFileWorldDownload.Size = new System.Drawing.Size(229, 22);
             this.MenuFileWorldDownload.Text = "&Download Data";
             this.MenuFileWorldDownload.Click += new System.EventHandler(this.MenuFileWorldDownload_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
             // MenuFileSaveSettings
             // 
@@ -361,26 +364,26 @@ namespace TribalWars.Forms
             this.MenuFileSaveSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MenuFileSaveSettings.Name = "MenuFileSaveSettings";
             this.MenuFileSaveSettings.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.MenuFileSaveSettings.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileSaveSettings.Size = new System.Drawing.Size(229, 22);
             this.MenuFileSaveSettings.Text = "&Save";
             this.MenuFileSaveSettings.Click += new System.EventHandler(this.MenuFileSaveSettings_Click);
             // 
             // MenuFileSaveSettingsAs
             // 
             this.MenuFileSaveSettingsAs.Name = "MenuFileSaveSettingsAs";
-            this.MenuFileSaveSettingsAs.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileSaveSettingsAs.Size = new System.Drawing.Size(229, 22);
             this.MenuFileSaveSettingsAs.Text = "Save &As";
             this.MenuFileSaveSettingsAs.Click += new System.EventHandler(this.MenuFileSaveSettingsAs_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
             // 
             // MenuFileExit
             // 
             this.MenuFileExit.Name = "MenuFileExit";
-            this.MenuFileExit.Size = new System.Drawing.Size(155, 22);
+            this.MenuFileExit.Size = new System.Drawing.Size(229, 22);
             this.MenuFileExit.Text = "E&xit";
             this.MenuFileExit.Click += new System.EventHandler(this.MenuFileExit_Click);
             // 
@@ -450,7 +453,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(336, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(305, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolStripOpen
