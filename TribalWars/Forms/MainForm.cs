@@ -289,9 +289,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.Display.ResetCache();
-                World.Default.Map.Control.Invalidate();
-                World.Default.MiniMap.Control.Invalidate();
+                World.Default.DrawMaps();
             }
         }
 

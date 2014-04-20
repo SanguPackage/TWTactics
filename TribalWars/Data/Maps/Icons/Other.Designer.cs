@@ -73,16 +73,6 @@ namespace TribalWars.Data.Maps.Icons {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Comment {
-            get {
-                object obj = ResourceManager.GetObject("Comment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Defense {
             get {
                 object obj = ResourceManager.GetObject("Defense", resourceCulture);
@@ -106,6 +96,16 @@ namespace TribalWars.Data.Maps.Icons {
         internal static System.Drawing.Bitmap Noble {
             get {
                 object obj = ResourceManager.GetObject("Noble", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Note {
+            get {
+                object obj = ResourceManager.GetObject("Note", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

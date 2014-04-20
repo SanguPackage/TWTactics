@@ -42,7 +42,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 
         static IconDrawerDecorator()
         {
-            _commentsBitmap = Icons.Other.Comment;
+            _commentsBitmap = Icons.Other.Note;
             _noblesBitmap = Icons.Other.Noble;
         }
         #endregion
@@ -56,13 +56,13 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
             if (width == IconDisplay.StandardIconWidth)
             {
                 if (_bitmap != null)
-                    g.DrawImageUnscaledAndClipped(_bitmap, new Rectangle(x + 36, y, 16, 16));
+                    g.DrawImage(_bitmap, new Point(x + 35, y)); // 16x16 (farm) and 18x18
 
                 if (_comments)
-                    g.DrawImageUnscaledAndClipped(_commentsBitmap, new Rectangle(x + 9, y + 20, 10, 12));
+                    g.DrawImage(_commentsBitmap, new Point(x + 9, y + 20)); // 15x15
 
                 if (_nobles)
-                    g.DrawImageUnscaledAndClipped(_noblesBitmap, new Rectangle(x + 36, y + 19, 16, 16));
+                    g.DrawImage(_noblesBitmap, new Point(x + 35, y + 19)); //18x18
             }
         }
 

@@ -33,7 +33,7 @@ namespace TribalWars.Controls.Accordeon.Details
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsControl));
             this.QuickFinderLayout = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.SelectedVillage = new ToolStripVillageTextBox();
+            this.SelectedVillage = new TribalWars.Controls.Common.ToolStripVillageTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.UndoButton = new System.Windows.Forms.ToolStripButton();
             this.RedoButton = new System.Windows.Forms.ToolStripButton();
@@ -67,9 +67,11 @@ namespace TribalWars.Controls.Accordeon.Details
             this.panel1.SuspendLayout();
             this.ContextStrip.SuspendLayout();
             this.ContentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -124,7 +126,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.SelectedVillage.ForeColor = System.Drawing.SystemColors.WindowText;
             this.SelectedVillage.Name = "SelectedVillage";
             this.SelectedVillage.Player = null;
-            this.SelectedVillage.Size = new System.Drawing.Size(50, 21);
+            this.SelectedVillage.Size = new System.Drawing.Size(50, 23);
             this.SelectedVillage.Tribe = null;
             this.SelectedVillage.Village = null;
             this.SelectedVillage.VillageSelected += new System.EventHandler<TribalWars.Data.Events.VillageEventArgs>(this.SelectedVillage_VillageSelected);
@@ -239,8 +241,8 @@ namespace TribalWars.Controls.Accordeon.Details
             // 
             this.ContextStrip.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DefenseFlag,
             this.AttackFlag,
+            this.DefenseFlag,
             this.ScoutFlag,
             this.NobleFlag,
             this.FarmFlag,
@@ -255,7 +257,7 @@ namespace TribalWars.Controls.Accordeon.Details
             // DefenseFlag
             // 
             this.DefenseFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DefenseFlag.Image = ((System.Drawing.Image)(resources.GetObject("DefenseFlag.Image")));
+            this.DefenseFlag.Image = global::TribalWars.Properties.Resources.Defense;
             this.DefenseFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DefenseFlag.Name = "DefenseFlag";
             this.DefenseFlag.Size = new System.Drawing.Size(23, 22);
@@ -403,25 +405,25 @@ namespace TribalWars.Controls.Accordeon.Details
             this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
             this.Table.Size = new System.Drawing.Size(261, 141);
             this.Table.TabIndex = 0;
-            this.Table.VisiblePlayerFields = ((TribalWars.Controls.Display.PlayerFields)(((((TribalWars.Controls.Display.PlayerFields.Name | TribalWars.Controls.Display.PlayerFields.Points)
-                        | TribalWars.Controls.Display.PlayerFields.PointsDifference)
-                        | TribalWars.Controls.Display.PlayerFields.Villages)
-                        | TribalWars.Controls.Display.PlayerFields.VillagesDifference)));
-            this.Table.VisibleReportFields = ((TribalWars.Controls.Display.ReportFields)((((((TribalWars.Controls.Display.ReportFields.Type | TribalWars.Controls.Display.ReportFields.Status)
-                        | TribalWars.Controls.Display.ReportFields.Village)
-                        | TribalWars.Controls.Display.ReportFields.Player)
-                        | TribalWars.Controls.Display.ReportFields.Date)
-                        | TribalWars.Controls.Display.ReportFields.Flag)));
-            this.Table.VisibleTribeFields = ((TribalWars.Controls.Display.TribeFields)((((((TribalWars.Controls.Display.TribeFields.Tag | TribalWars.Controls.Display.TribeFields.Name)
-                        | TribalWars.Controls.Display.TribeFields.Players)
-                        | TribalWars.Controls.Display.TribeFields.Points)
-                        | TribalWars.Controls.Display.TribeFields.Villages)
-                        | TribalWars.Controls.Display.TribeFields.Rank)));
-            this.Table.VisibleVillageFields = ((TribalWars.Controls.Display.VillageFields)((((((TribalWars.Controls.Display.VillageFields.Type | TribalWars.Controls.Display.VillageFields.Coordinates)
-                        | TribalWars.Controls.Display.VillageFields.Name)
-                        | TribalWars.Controls.Display.VillageFields.Points)
-                        | TribalWars.Controls.Display.VillageFields.PointsDifference)
-                        | TribalWars.Controls.Display.VillageFields.HasReport)));
+            this.Table.VisiblePlayerFields = ((TribalWars.Controls.Display.PlayerFields)(((((TribalWars.Controls.Display.PlayerFields.Name | TribalWars.Controls.Display.PlayerFields.Points) 
+            | TribalWars.Controls.Display.PlayerFields.PointsDifference) 
+            | TribalWars.Controls.Display.PlayerFields.Villages) 
+            | TribalWars.Controls.Display.PlayerFields.VillagesDifference)));
+            this.Table.VisibleReportFields = ((TribalWars.Controls.Display.ReportFields)((((((TribalWars.Controls.Display.ReportFields.Type | TribalWars.Controls.Display.ReportFields.Status) 
+            | TribalWars.Controls.Display.ReportFields.Village) 
+            | TribalWars.Controls.Display.ReportFields.Player) 
+            | TribalWars.Controls.Display.ReportFields.Date) 
+            | TribalWars.Controls.Display.ReportFields.Flag)));
+            this.Table.VisibleTribeFields = ((TribalWars.Controls.Display.TribeFields)((((((TribalWars.Controls.Display.TribeFields.Tag | TribalWars.Controls.Display.TribeFields.Name) 
+            | TribalWars.Controls.Display.TribeFields.Players) 
+            | TribalWars.Controls.Display.TribeFields.Points) 
+            | TribalWars.Controls.Display.TribeFields.Villages) 
+            | TribalWars.Controls.Display.TribeFields.Rank)));
+            this.Table.VisibleVillageFields = ((TribalWars.Controls.Display.VillageFields)((((((TribalWars.Controls.Display.VillageFields.Type | TribalWars.Controls.Display.VillageFields.Coordinates) 
+            | TribalWars.Controls.Display.VillageFields.Name) 
+            | TribalWars.Controls.Display.VillageFields.Points) 
+            | TribalWars.Controls.Display.VillageFields.PointsDifference) 
+            | TribalWars.Controls.Display.VillageFields.HasReport)));
             this.Table.RowSelected += new System.EventHandler<System.EventArgs>(this.Table_RowSelected);
             // 
             // SpecialTribe
@@ -480,10 +482,12 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ContentPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 

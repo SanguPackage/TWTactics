@@ -674,6 +674,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\note.png" />
+    <None Include="Resources\Noble.png" />
+    <None Include="Resources\Scout.png" />
+    <None Include="Resources\Farm.png" />
+    <None Include="Resources\Defense.png" />
+    <None Include="Resources\Attack.png" />
     <Content Include="WorldTemplate\world.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -714,11 +720,6 @@
     <None Include="Resources\PushpinHS.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\shapes.png" />
-    <None Include="Resources\Noble.png" />
-    <None Include="Resources\Farm.png" />
-    <None Include="Resources\Defense.png" />
-    <None Include="Resources\Attack.png" />
-    <None Include="Resources\Scout.png" />
     <None Include="Resources\Village.jpg" />
     <None Include="Resources\Tribe.jpg" />
     <None Include="Resources\Player.jpg" />

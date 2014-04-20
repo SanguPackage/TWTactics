@@ -398,7 +398,7 @@ namespace TribalWars.Controls.Accordeon.Details
 
         /// <summary>
         /// Changes the flags for a village
-        /// and saves it in the report
+        /// and saves it in the village report txt
         /// </summary>
         private void FlagSwitcher(VillageType type, ToolStripButton button)
         {
@@ -409,7 +409,8 @@ namespace TribalWars.Controls.Accordeon.Details
                 else villageType &= ~type;
                 button.Checked = (villageType & type) != 0;
                 _current.Village.Type = villageType;
-                //_current.Village.Reports.Save();
+                
+                World.Default.DrawMaps();
             }
         }
 

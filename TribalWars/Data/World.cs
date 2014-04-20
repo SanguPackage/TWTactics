@@ -401,6 +401,16 @@ namespace TribalWars.Data
             _villageTypes.Position = village.Y*1000 + village.X;
             _villageTypes.WriteByte((byte) value);
         }
+
+        /// <summary>
+        /// Force redrawing the maps
+        /// </summary>
+        public void DrawMaps()
+        {
+            Map.Display.ResetCache();
+            Map.Control.Invalidate();
+            MiniMap.Control.Invalidate();
+        }
         #endregion
 
         #region Finders
