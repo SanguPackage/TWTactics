@@ -48,12 +48,6 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public DisplayManager(Map map)
-            : this(map, DisplayTypes.None)
-        {
-            
-        }
-
         public DisplayManager(Map map, DisplayTypes type)
         {
             _displays = new Dictionary<DisplayTypes, DisplayBase>();
@@ -63,19 +57,6 @@ namespace TribalWars.Data.Maps.Displays
 
             _map = map;
 
-            // TODO: De DisplayManager zit hier nog in de Views Namespace.. Die in de Displays namespace stoppen
-            // Alle displays zitten nog in de Views Namespace blijkbaar.
-            // --> DisplayManager property noemt ook nog de ViewManager -> Hernoemen
-            // De _views komt in World.Default te zitten (en wordt gelezen uit World.xml)
-
-            // Dan alles eens opnieuw uittekenen om te zien waar we juist verkeerd zitten. (het is ingewikkelder dan het moet zijn denk ik)
-            // Bekijken nut van de DrawerData/ViewData want daarvan weet ik het niet zo goed meer :(
-
-            // we hebben dan een IconDisplay, MiniMapDisplay en ShapeDisplay
-            // --> De Displays beslissen welke "Views" actief zijn voor welke DisplayBase
-            // --> Dus de Views verdwijnen niet!
-
-            
             _markPlayer = new SortedDictionary<int, MarkerGroup>();
             _markTribe = new SortedDictionary<int, MarkerGroup>();
             _currentDisplayType = type;
@@ -107,16 +88,6 @@ namespace TribalWars.Data.Maps.Displays
                 int q = 10;
             }*/
 
-            // TODO
-            // momenteel zijn de Decorators verbonden aan de settings files
-            // maar een VillageType - die moet sowieso altijd getekend worden
-            // decorator wordt dan iets exclusiever: euh?
-            // mss moet er helemaal geen decorator zijn...
-
-            // TODO:
-            // misschien moet dit ook al in de _currentDisplay zitten? (ie abstract op de DisplayBase)
-            // ShapeDisplay heeft geen NonVillageDrawer
-            // MiniShapeDisplay moet geen decorators tonen
             DrawerBase finalCache;
             Village village;
             if (World.Default.Villages.TryGetValue(game, out village))
@@ -163,9 +134,9 @@ namespace TribalWars.Data.Maps.Displays
                     }
                 }
             }
-            else //if (_currentDisplay.SupportsBackground)
+            else
             {
-                finalCache = CurrentDisplay.CreateNonVillageDrawer(game);
+                finalCache = CurrentDisplay.CreateNonVillageDrawer(game, width);
                 if (finalCache != null)
                     finalCache.PaintVillage(g, mapX, mapY, width, height);
             }

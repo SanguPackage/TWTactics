@@ -10,15 +10,11 @@ using TribalWars.Data.Villages;
 
 namespace TribalWars.Data.Maps.Views
 {
+    /// <summary>
+    /// Display villages based on the amount of points
+    /// </summary>
     public class PointsView : ViewBase
     {
-        #region Fields
-        #endregion
-
-        #region Properties
-
-        #endregion
-
         #region Constructors
         public PointsView(string name)
             : base(name, Types.Points, Categories.Background)
@@ -36,9 +32,6 @@ namespace TribalWars.Data.Maps.Views
             }
             return null;
         }
-        #endregion
-
-        #region Private Methods
         #endregion
     }
 }

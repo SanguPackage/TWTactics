@@ -38,7 +38,7 @@ namespace TribalWars.Data.Maps.Drawers.OtherDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
-            g.DrawImageUnscaledAndClipped(_bitmap, new Rectangle(x, y, width, height));
+            g.DrawImage(_bitmap, new Rectangle(x, y, width, height));
         }
 
         /// <summary>

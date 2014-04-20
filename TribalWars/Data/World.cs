@@ -326,7 +326,7 @@ namespace TribalWars.Data
             Builder.ReadSettings(settingsFile, Map, MiniMap);
             SettingsName = settings;
 
-            InvalidateMaps();
+            InvalidateMarkers();
 
             if (publishLoad)
             {
@@ -339,7 +339,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Rebuilds all markers on all maps
         /// </summary>
-        public void InvalidateMaps()
+        public void InvalidateMarkers()
         {
             Map.Display.DisplayManager.CacheSpecialMarkers();
             MiniMap.Display.DisplayManager.CacheSpecialMarkers();

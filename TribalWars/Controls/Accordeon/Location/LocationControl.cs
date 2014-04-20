@@ -136,7 +136,7 @@ namespace TribalWars.Controls.Accordeon.Location
             if (_worldLoaded)
             {
                 World.Default.You.Player = e.SelectedPlayer;
-                World.Default.InvalidateMaps();
+                World.Default.InvalidateMarkers();
                 World.Default.Map.SetCenter(e.SelectedPlayer);
             }
         }

@@ -9,7 +9,7 @@ using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Markers;
 using System.IO;
-
+using TribalWars.Tools;
 #endregion
 
 namespace TribalWars.Data.Maps.Displays
@@ -20,20 +20,34 @@ namespace TribalWars.Data.Maps.Displays
     public class IconDisplay : DisplayBase
     {
         #region Fields
-        private const int StandardIconWidth = 53;
-        private const int StandardIconHeight = 38;
+        public const int StandardIconWidth = 53;
+        public const int StandardIconHeight = 38;
+
+        /// <summary>
+        /// Width x Height on different zoom levels (index is zoom level)
+        /// </summary>
+        private static readonly List<Tuple<int, int>> VillageSizes = new TupleList<int, int>
+            {
+                {0, 0}, // there is no zoom 0
+                {StandardIconWidth, StandardIconHeight},
+                {40, 29},
+                {35, 25},
+                {30, 22},
+                {25, 18},
+                {20, 14},
+                {15, 11}
+            };
 
         private readonly MemoryStream _background;
         private readonly Dictionary<int, DrawerBase> _backgroundCache;
-        #endregion
 
-        #region Properties
-
+        private const int BackgroundGrasCount = 4;
+        private const int BackgroundSea = 12;
         #endregion
 
         #region Constructors
         public IconDisplay()
-            : base(new ZoomInfo(1, 1, 1))
+            : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
         {
             _background = new MemoryStream(WorldData.WorldBackgroundData);
 
@@ -48,7 +62,7 @@ namespace TribalWars.Data.Maps.Displays
             _backgroundCache.Add(10, CreateArray(new BackgroundDrawer(Icons.Background.berg3)));
             _backgroundCache.Add(11, CreateArray(new BackgroundDrawer(Icons.Background.berg4)));
 
-            _backgroundCache.Add(12, CreateArray(new BackgroundDrawer(Icons.Background.see)));
+            _backgroundCache.Add(BackgroundSea, CreateArray(new BackgroundDrawer(Icons.Background.see)));
 
             _backgroundCache.Add(16, CreateArray(new BackgroundDrawer(Icons.Background.forest0000)));
             _backgroundCache.Add(17, CreateArray(new BackgroundDrawer(Icons.Background.forest0001)));
@@ -67,12 +81,6 @@ namespace TribalWars.Data.Maps.Displays
             _backgroundCache.Add(30, CreateArray(new BackgroundDrawer(Icons.Background.forest1110)));
             _backgroundCache.Add(31, CreateArray(new BackgroundDrawer(Icons.Background.forest1111)));
 
-            /*for (int i = 4; i <= 7; i++)
-                _backgroundCache.Add(i, null);
-            _backgroundCache.Add(13, null);
-            _backgroundCache.Add(14, null);
-            _backgroundCache.Add(15, null);*/
-
             //0-3 Gras
             //8-11 Berg
             //12 See
@@ -81,7 +89,6 @@ namespace TribalWars.Data.Maps.Displays
 
         private DrawerBase CreateArray(DrawerBase backgroundDrawer)
         {
-            //return new DrawerBase[] { backgroundDrawer };
             return backgroundDrawer;
         }
         #endregion
@@ -110,30 +117,51 @@ namespace TribalWars.Data.Maps.Displays
             return new Data(data.IconDrawer, colors.Color, colors.ExtraColor, data.Value);
         }
 
+        private int GetVillageWidthCore(int zoom)
+        {
+            return VillageSizes[zoom].Item1;
+        }
+
+        private int GetVillageHeightCore(int zoom)
+        {
+            return VillageSizes[zoom].Item2;
+        }
+
         public override int GetVillageHeightSpacing(int zoom)
         {
-            return StandardIconHeight;
+            return GetVillageHeightCore(zoom);
         }
 
         public override int GetVillageWidthSpacing(int zoom)
         {
-            return StandardIconWidth;
+            return GetVillageWidthCore(zoom);
         }
 
-        protected override DrawerBase CreateNonVillageDrawerCore(Point game)
+        protected override DrawerBase CreateNonVillageDrawerCore(Point game, int width)
         {
             _background.Position = game.Y * 1000 + game.X;
-            return _backgroundCache[_background.ReadByte()];
+            int villageType = _background.ReadByte();
+
+            if (width < 28)
+            {
+                // Stop displaying mountains, forests and sea
+                // BackgroundGrasCount = 0->3 = grass
+                if (villageType < BackgroundGrasCount) return _backgroundCache[villageType];
+                if (villageType == BackgroundSea) return _backgroundCache[BackgroundSea];
+                return _backgroundCache[villageType % BackgroundGrasCount];
+            }
+
+            return _backgroundCache[villageType];
         }
 
         public override int GetVillageWidth(int zoom)
         {
-            return StandardIconWidth;
+            return GetVillageWidthCore(zoom);
         }
 
         public override int GetVillageHeight(int zoom)
         {
-            return StandardIconHeight;
+            return GetVillageHeightCore(zoom);
         }
 
         public override string ToString()

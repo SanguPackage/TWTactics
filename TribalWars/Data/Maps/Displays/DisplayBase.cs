@@ -80,15 +80,15 @@ namespace TribalWars.Data.Maps.Displays
         /// <summary>
         /// Gets drawer for a location on the map where there is no village present
         /// </summary>
-        public DrawerBase CreateNonVillageDrawer(Point game)
+        public DrawerBase CreateNonVillageDrawer(Point game, int width)
         {
-            return CreateNonVillageDrawerCore(game);
+            return CreateNonVillageDrawerCore(game, width);
         }
 
         /// <summary>
         /// Gets drawer for a location on the map where there is no village present
         /// </summary>
-        protected virtual DrawerBase CreateNonVillageDrawerCore(Point game)
+        protected virtual DrawerBase CreateNonVillageDrawerCore(Point game, int width)
         {
             return null;
         }

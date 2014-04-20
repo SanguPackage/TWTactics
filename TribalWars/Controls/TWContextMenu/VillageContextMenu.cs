@@ -39,22 +39,22 @@ namespace TribalWars.Controls.TWContextMenu
         #region Constructors
         public VillageContextMenu()
         {
-            UICommand visit = new UICommand(ContextMenuKeys.Village.Visit, "Visit", CommandType.Command);
+            UICommand visit = new UICommand(ContextMenuKeys.VillageKeys.Visit, "Visit", CommandType.Command);
             visit.Click += OnVillageOverview;
 
-            UICommand pinpoint = new UICommand(ContextMenuKeys.Village.Pinpoint, "Pinpoint", CommandType.Command);
+            UICommand pinpoint = new UICommand(ContextMenuKeys.VillageKeys.Pinpoint, "Pinpoint", CommandType.Command);
             pinpoint.Click += OnPinpoint;
 
-            UICommand clipboard = new UICommand(ContextMenuKeys.Village.ClipboardText, "Clipboard", CommandType.Command);
+            UICommand clipboard = new UICommand(ContextMenuKeys.VillageKeys.ClipboardText, "Clipboard", CommandType.Command);
             clipboard.Click += OnBBCode;
 
-            UICommand mark = new UICommand(ContextMenuKeys.Village.Mark, "Mark", CommandType.Command);
+            UICommand mark = new UICommand(ContextMenuKeys.VillageKeys.Mark, "Mark", CommandType.Command);
             mark.Click += OnMark;
 
-            UICommand player = new UICommand(ContextMenuKeys.Village.Player, "Player", CommandType.Command);
+            UICommand player = new UICommand(ContextMenuKeys.VillageKeys.Player, "Player", CommandType.Command);
             //player.Commands.AddRange(World.Default.PlayerContextMenu);
 
-            UICommand tribe = new UICommand(ContextMenuKeys.Village.Tribe, "Tribe", CommandType.Command);
+            UICommand tribe = new UICommand(ContextMenuKeys.VillageKeys.Tribe, "Tribe", CommandType.Command);
 
             _menu = new UIContextMenu("DefaultVillageContextMenu");
             _menu.Commands.AddRange(new UICommand[] {
@@ -62,7 +62,7 @@ namespace TribalWars.Controls.TWContextMenu
                 pinpoint,
                 clipboard,
                 mark,
-                new UICommand(ContextMenuKeys.Village.Playerseperator, string.Empty, CommandType.Separator),
+                new UICommand(ContextMenuKeys.VillageKeys.Playerseperator, string.Empty, CommandType.Separator),
                 player,
                 tribe
                 });
@@ -79,17 +79,17 @@ namespace TribalWars.Controls.TWContextMenu
             _village = target;
             if (_village.HasPlayer)
             {
-                _menu.Commands[ContextMenuKeys.Village.Player].Text = _village.Player.Name;
-                _menu.Commands[ContextMenuKeys.Village.Player].ToolTipText = _village.Player.Tooltip;
+                _menu.Commands[ContextMenuKeys.VillageKeys.Player].Text = _village.Player.Name;
+                _menu.Commands[ContextMenuKeys.VillageKeys.Player].ToolTipText = _village.Player.Tooltip;
                 if (_village.HasTribe)
                 {
-                    _menu.Commands[ContextMenuKeys.Village.Tribe].Text = _village.Player.Tribe.Tag;
-                    _menu.Commands[ContextMenuKeys.Village.Tribe].ToolTipText = _village.Player.Tribe.Tooltip;
+                    _menu.Commands[ContextMenuKeys.VillageKeys.Tribe].Text = _village.Player.Tribe.Tag;
+                    _menu.Commands[ContextMenuKeys.VillageKeys.Tribe].ToolTipText = _village.Player.Tribe.Tooltip;
                 }
             }
-            _menu.Commands[ContextMenuKeys.Village.Tribe].Visible = _village.HasTribe ? InheritableBoolean.True : InheritableBoolean.False;
-            _menu.Commands[ContextMenuKeys.Village.Player].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
-            _menu.Commands[ContextMenuKeys.Village.Playerseperator].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
+            _menu.Commands[ContextMenuKeys.VillageKeys.Tribe].Visible = _village.HasTribe ? InheritableBoolean.True : InheritableBoolean.False;
+            _menu.Commands[ContextMenuKeys.VillageKeys.Player].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
+            _menu.Commands[ContextMenuKeys.VillageKeys.Playerseperator].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
 
             _menu.Show(control, position);
         }

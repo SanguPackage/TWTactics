@@ -21,9 +21,6 @@ namespace TribalWars.Data.Maps.Views
         private VillageType[] _importance;
         #endregion
 
-        #region Properties
-        #endregion
-
         #region Constructors
         public VillageTypeView(string name)
             : base(name, Types.Points, Categories.Background)
@@ -63,75 +60,20 @@ namespace TribalWars.Data.Maps.Views
         public override void AddDrawer(string drawerType, string drawerIcon, int value, object extraValues)
         {
             // Value=VillageType, extraValues=Color for BorderDrawer
-            VillageType type = (VillageType)value;
+            var type = (VillageType)value;
             Color color = XmlHelper.GetColor(extraValues.ToString());
             _cache.Add(type, new DrawerData(drawerType, drawerIcon, color, value));
         }
 
         public override void AddDrawer(DrawerData drawer, int value)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override void AddDrawer(DrawerData drawer, int value, object extraValues)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
         #endregion
-
-        /*#region TypedViewData
-        /// <summary>
-        /// View data with typed VillageType value
-        /// </summary>
-        private class TypedViewData : ViewData
-        {
-            #region Fields
-            private VillageType _value;
-            #endregion
-
-            #region Properties
-            /// <summary>
-            /// Gets the value that decides which DrawerBase to use
-            /// for a certain village
-            /// </summary>
-            public VillageType VillageType
-            {
-                get { return _value; }
-            }
-            #endregion
-
-            #region Constructors
-            public TypedViewData(VillageType villageType)
-                : base((int)villageType)
-            {
-                _value = villageType;
-            }
-            #endregion
-
-            #region Public Methods
-            public override int GetHashCode()
-            {
-                return _value.GetHashCode();
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj == null) return false;
-                return Equals(obj as TypedViewData);
-            }
-
-            public bool Equals(TypedViewData other)
-            {
-                if (other == null) return false;
-                return _value == other.VillageType;
-            }
-
-            public override string ToString()
-            {
-                return string.Format("TypedViewData: {0}", _value.ToString());
-            }
-            #endregion
-        }
-        #endregion*/
     }
 }

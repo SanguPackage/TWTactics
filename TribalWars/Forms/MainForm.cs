@@ -78,6 +78,7 @@ namespace TribalWars.Forms
 
         #region Switching Location & Map Display
         private int? _lastShapeZoom;
+        private int? _lastIconZoom;
         private bool _isInShapeDisplay;
 
         private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
@@ -87,7 +88,7 @@ namespace TribalWars.Forms
 
         private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon, 1);
+            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon, _lastIconZoom ?? 1);
         }
         
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
@@ -95,6 +96,10 @@ namespace TribalWars.Forms
             if (_isInShapeDisplay)
             {
                 _lastShapeZoom = e.NewLocation.Zoom;
+            }
+            else
+            {
+                _lastIconZoom = e.NewLocation.Zoom;
             }
         }
 
@@ -104,10 +109,6 @@ namespace TribalWars.Forms
             ToolStripShapeDisplay.CheckState = e.DisplayType == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
 
             _isInShapeDisplay = e.DisplayType == DisplayTypes.Shape;
-            if (_isInShapeDisplay)
-            {
-                //_lastShapeZoom = e.Location.Zoom;
-            }
         }
 
         private void Map_MouseMoved(MouseEventArgs e, Point mapLocation, Village village, Point activeLocation, Point activeVillage)
@@ -288,7 +289,9 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(World.Default.Map.Location);
+                World.Default.Map.Display.ResetCache();
+                World.Default.Map.Control.Invalidate();
+                World.Default.MiniMap.Control.Invalidate();
             }
         }
 

@@ -41,5 +41,10 @@ namespace TribalWars.Data.Events
             _loc = loc;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", DisplayType, Location);
+        }
     }
 }

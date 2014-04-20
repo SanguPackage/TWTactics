@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using TribalWars.Data.Maps.Markers;
 
 #endregion
@@ -35,7 +36,6 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
             if (colors.ExtraColor != Color.Transparent)
             {
                 ExtraColorBrush = new SolidBrush(colors.ExtraColor);
-                //_extraPen = new Pen(colors.ExtraColor, 2);
             }
 
             Bitmap = icon;
@@ -48,19 +48,22 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
-            g.DrawImageUnscaledAndClipped(Bitmap, new Rectangle(x, y, width, height));
-            g.FillEllipse(ColorBrush, x + 0.5f, y + 0.5f, 7, 7);
-
-            if (ExtraColorBrush != null)
+            g.DrawImage(Bitmap, new Rectangle(x, y, width, height));
+            
+            if (width < 31)
             {
-                // cirkel rond de dorpen
-                //g.DrawEllipse(_extraPen, x + 5, y + 5, 53 - 10, 38 - 10);
-
-                // vierkantje in het midden
-                //g.FillRectangle(_extraColorBrush, x + 20, y + 11, 12, 12);
-
-                // cirkel naast eerste cirkel
-                g.FillEllipse(ExtraColorBrush, x + 10f, y + 0.5f, 7, 7);
+                g.FillEllipse(ExtraColorBrush ?? ColorBrush, x + 0.5f, y + 0.5f, 4, 4);
+            }
+            else
+            {
+                int size = width > 35 ? 7 : 5;
+                g.FillEllipse(ColorBrush, x + 0.5f, y + 0.5f, size, size);
+                if (ExtraColorBrush != null && width > 20)
+                {
+                    // cirkel naast eerste cirkel
+                    float xOffset = width > 35 ? 10f : 6f;
+                    g.FillEllipse(ExtraColorBrush, x + xOffset, y + 0.5f, size, size);
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Villages;
 
 #endregion
@@ -52,14 +53,17 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
-            if (_bitmap != null)
-                g.DrawImageUnscaledAndClipped(_bitmap, new Rectangle(x + 36, y, 16, 16));
+            if (width == IconDisplay.StandardIconWidth)
+            {
+                if (_bitmap != null)
+                    g.DrawImageUnscaledAndClipped(_bitmap, new Rectangle(x + 36, y, 16, 16));
 
-            if (_comments)
-                g.DrawImageUnscaledAndClipped(_commentsBitmap, new Rectangle(x + 9, y + 20, 10, 12));
+                if (_comments)
+                    g.DrawImageUnscaledAndClipped(_commentsBitmap, new Rectangle(x + 9, y + 20, 10, 12));
 
-            if (_nobles)
-                g.DrawImageUnscaledAndClipped(_noblesBitmap, new Rectangle(x + 36, y + 19, 16, 16));
+                if (_nobles)
+                    g.DrawImageUnscaledAndClipped(_noblesBitmap, new Rectangle(x + 36, y + 19, 16, 16));
+            }
         }
 
         /// <summary>

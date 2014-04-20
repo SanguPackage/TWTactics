@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Data.Events;
+using TribalWars.Data.Maps.Markers;
 
 #endregion
 
@@ -37,15 +38,17 @@ namespace TribalWars.Controls.Accordeon
             hd.Width = 40;
             MarkerGroups.Columns.Add(hd);
 
-            /*foreach (MapFilter.Key filter in World.Default.Map.MarkerDrawer.Markers.Keys)
+
+            // TODO: Hier de markers fixen :)
+            /*foreach (var filter in World.Default.Views)
             {
                 hd = new ColumnHeader();
                 hd.Text = string.Format("to {0}", filter.Upper.ToString());
                 hd.Width = 80;
                 MarkerGroups.Columns.Add(hd);
-            }*/
+            }
 
-            /*foreach (MarkerGroup mg in World.Default.Map.MarkerDrawer.Markers)
+            foreach (MarkerGroup mg in World.Default.Map.MarkerDrawer.Markers)
             {
                 MarkerGroups.Items.Add(new MarkerGroupListViewItem(mg));
             }*/
