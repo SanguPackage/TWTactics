@@ -1,5 +1,6 @@
 #region Using
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -306,11 +307,18 @@ namespace TribalWars.Forms
         private void MenuMapScreenshot_Click(object sender, EventArgs e)
         {
             int i = 0;
-            string lFile = string.Format(@"{0}\TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
+            string lFile = string.Format(@"{0}TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
             while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
             lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
 
             World.Default.Map.Control.Screenshot(lFile);
+
+            StatusMessage.Text = "Screenshot saved as " + lFile;
+        }
+
+        private void MenuMapSeeScreenshots_Click(object sender, EventArgs e)
+        {
+            Process.Start(World.Default.Structure.CurrentWorldScreenshotDirectory);
         }
         #endregion
 

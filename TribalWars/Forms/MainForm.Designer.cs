@@ -113,6 +113,7 @@ namespace TribalWars.Forms
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -386,7 +387,8 @@ namespace TribalWars.Forms
             // mapToolStripMenuItem
             // 
             this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuMapScreenshot});
+            this.MenuMapScreenshot,
+            this.MenuMapSeeScreenshots});
             this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
             this.mapToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.mapToolStripMenuItem.Text = "&Map";
@@ -976,6 +978,13 @@ namespace TribalWars.Forms
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
+            // MenuMapSeeScreenshots
+            // 
+            this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
+            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(173, 22);
+            this.MenuMapSeeScreenshots.Text = "See screenshots";
+            this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1109,6 +1118,7 @@ namespace TribalWars.Forms
         private Controls.Accordeon.Details.DetailsControl detailsControl1;
         private Controls.Accordeon.Location.LocationControl locationControl1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSeeScreenshots;
     }
 }
 
