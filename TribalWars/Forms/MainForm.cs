@@ -34,6 +34,9 @@ namespace TribalWars.Forms
             _locationChanger = new ToolStripLocationChangerControl();
             ToolStrip.Items.Add(_locationChanger);
 
+            var separator = new ToolStripSeparator();
+            ToolStrip.Items.Add(separator);
+
             // Distance calc toolstrip
             //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
             //ToolStrip.Items.Add(ctl);

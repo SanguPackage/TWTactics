@@ -66,6 +66,7 @@ namespace TribalWars.Forms
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -113,7 +114,6 @@ namespace TribalWars.Forms
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -401,6 +401,13 @@ namespace TribalWars.Forms
             this.MenuMapScreenshot.Text = "Screenshot";
             this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
             // 
+            // MenuMapSeeScreenshots
+            // 
+            this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
+            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(173, 22);
+            this.MenuMapSeeScreenshots.Text = "See screenshots";
+            this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -443,7 +450,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(305, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(336, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolStripOpen
@@ -977,13 +984,6 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
-            // 
-            // MenuMapSeeScreenshots
-            // 
-            this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
-            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(173, 22);
-            this.MenuMapSeeScreenshots.Text = "See screenshots";
-            this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
             // 
             // MainForm
             // 
