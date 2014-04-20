@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
@@ -40,7 +41,7 @@ namespace TribalWars.Forms
             }
 
             // Add a new world
-            string[] worlds = World.GetAllWorlds();
+            IEnumerable<string> worlds = World.GetAllWorlds();
             AvailableWorlds.DataSource = worlds.Where(x => !_existingWorlds.Contains(x)).ToArray();
         }
 
@@ -62,7 +63,7 @@ namespace TribalWars.Forms
 
                 // save last selected world
                 TribalWars.Properties.Settings.Default.LastWorld = path;
-                TribalWars.Properties.Settings.Default.LastSettings = settings;
+                TribalWars.Properties.Settings.Default.LastSettings = settings + World.InternalStructure.SettingsExtensionString;
                 TribalWars.Properties.Settings.Default.Save();
 
                 World.Default.LoadWorld(pathData, settings);
@@ -79,7 +80,7 @@ namespace TribalWars.Forms
                 pathSettings += World.InternalStructure.DirectorySettingsString + "\\";
 
                 // add all setting files
-                foreach (string sets in Directory.GetFiles(pathSettings, World.InternalStructure.SettingsWildcardString))
+                foreach (string sets in Directory.GetFiles(pathSettings, "*" + World.InternalStructure.SettingsExtensionString))
                 {
                     string fileName = Path.GetFileNameWithoutExtension(sets);
                     var itm = new ListViewItem(fileName);
@@ -96,7 +97,6 @@ namespace TribalWars.Forms
             if (WorldSettings.SelectedIndices.Count != 0)
             {
                 ListViewItem itm = WorldSettings.SelectedItems[0];
-                //SettingsGrid.SelectedObject = World.GetSettings(new FileInfo(itm.Tag.ToString()));
             }
         }
 
@@ -104,7 +104,7 @@ namespace TribalWars.Forms
         {
             string world = AvailableWorlds.SelectedItem.ToString();
             string path = World.InternalStructure.WorldDataDirectory + world;
-            World.Default.CreateNewWorld(path);
+            World.CreateNewWorld(path);
             World.Default.LoadWorld(path);
             Close();
         }
@@ -182,6 +182,11 @@ namespace TribalWars.Forms
                         }
                     }
                 }
+            }
+
+            if (Worlds.Nodes.Count == 0)
+            {
+                btnLoad.Enabled = false;
             }
         }
         #endregion

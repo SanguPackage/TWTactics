@@ -62,7 +62,7 @@ namespace TribalWars.Data.Villages
         [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(65), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
-            get { return Player.BBCode(); }
+            get { return Player.BbCode(); }
             set { }
         }
         #endregion

@@ -16,73 +16,68 @@ namespace TribalWars.Data.Tribes
     public class ExtendedTribeDescriptor : IEnumerable<Village>
     {
         #region Constants
-        private const string PROPERTY_CATEGORY = "Tribe";
+        private const string PropertyCategory = "Tribe";
         #endregion
 
         #region Fields
-        private Tribe tribe;
-
         [Browsable(false)]
-        public Tribe Tribe
-        {
-            get { return tribe; }
-        }
+        public Tribe Tribe { get; private set; }
         #endregion
 
         #region Constructors
         public ExtendedTribeDescriptor(Tribe tribe)
         {
-            this.tribe = tribe;
+            Tribe = tribe;
         }
         #endregion
 
         #region Public Methods
         public override string ToString()
         {
-            return tribe.Tag;
+            return Tribe.Tag;
         }
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(5)]
+        [Category(PropertyCategory), Tools.PropertyOrder(5)]
         public string Tag
         {
-            get { return tribe.Tag; }
+            get { return Tribe.Tag; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(10)]
+        [Category(PropertyCategory), Tools.PropertyOrder(10)]
         public string Name
         {
-            get { return tribe.Name; }
+            get { return Tribe.Name; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(40)]
+        [Category(PropertyCategory), Tools.PropertyOrder(40)]
         public string Points
         {
-            get { return tribe.AllPoints.ToString("#,0"); }
+            get { return Tribe.AllPoints.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), TypeConverter(typeof(ExpandableObjectConverter)), Tools.PropertyOrder(45)]
+        [Category(PropertyCategory), TypeConverter(typeof(ExpandableObjectConverter)), Tools.PropertyOrder(45)]
         public PlayerCollection Players
         {
-            get { return new PlayerCollection(tribe.Players, false); }
+            get { return new PlayerCollection(Tribe.Players, false); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50)]
+        [Category(PropertyCategory), Tools.PropertyOrder(50)]
         public string Rank
         {
-            get { return tribe.Rank.ToString("#,0"); }
+            get { return Tribe.Rank.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PropertyCategory), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
-            get { return tribe.BBCode(); }
+            get { return Tribe.BbCode(); }
             set { }
         }
         #endregion

@@ -47,7 +47,7 @@ namespace TribalWars.Data.Players
         [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(55), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
-            get { return Player.BBCode(); }
+            get { return Player.BbCode(); }
             set { }
         }
 

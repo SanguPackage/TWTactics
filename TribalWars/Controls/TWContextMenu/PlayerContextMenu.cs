@@ -138,7 +138,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 try
                 {
-                    Clipboard.SetText(_player.BBCode());
+                    Clipboard.SetText(_player.BbCode());
                 }
                 catch (Exception)
                 {

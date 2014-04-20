@@ -7,6 +7,7 @@ using System.IO;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
 using TribalWars.Data;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
@@ -39,7 +40,6 @@ namespace TribalWars.Forms
             var ctl2 = new ToolStripTimeConverterCalculator();
             ToolStrip.Items.Add(ctl2);
         }
-        #endregion
 
         /// <summary>
         /// Loading the world data, initializing the map
@@ -54,6 +54,7 @@ namespace TribalWars.Forms
             World.Default.Map.EventPublisher.DisplayTypeChanged += EventPublisher_DisplayTypeChanged;
             World.Default.Map.EventPublisher.ManipulatorChanged += EventPublisher_ManipulatorChanged;
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
+            World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // Auto load world
             string lastWorld = Properties.Settings.Default.LastWorld;
@@ -69,63 +70,40 @@ namespace TribalWars.Forms
             Polygon.Initialize();
             ToolStripDefaultManipulator.CheckState = CheckState.Checked;
         }
+        #endregion
 
-        private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
+        #region Switching Location & Map Display
+        private int? _lastShapeZoom;
+        private bool _isInShapeDisplay;
+
+        private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
         {
-            Tabs.SelectedIndex = 4;
+            World.Default.Map.ChangeDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
         }
 
-        private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
+        private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            ToolStripPolygonManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Polygon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripDefaultManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Default ? CheckState.Checked : CheckState.Unchecked;
+            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon, 1);
+        }
+        
+        private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
+        {
+            if (_isInShapeDisplay)
+            {
+                _lastShapeZoom = e.NewLocation.Zoom;
+            }
         }
 
         private void EventPublisher_DisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
         {
-            ToolStripIconDisplay.CheckState = e.DisplayType == Data.Maps.Displays.DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripShapeDisplay.CheckState = e.DisplayType == Data.Maps.Displays.DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
-        }
+            ToolStripIconDisplay.CheckState = e.DisplayType == DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripShapeDisplay.CheckState = e.DisplayType == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
 
-        private void OnWorldSettingsLoaded(object sender, EventArgs e)
-        {
-            StatusSettings.Text = World.Default.SettingsName;
-            // TODO: this cannot be in the MainForm code but needs to be 
-            // in the Map class!
-            // additional maps will not work due this
-            // TODO: the CacheSpecialMarkers needs to be in the MarkerGroups
-            // so it is done only once!
-            // now we have identical "CacheSpecialMarkers" for map & minimap
-            World.Default.Map.Display.DisplayManager.CacheSpecialMarkers();
-            World.Default.MiniMap.Display.DisplayManager.CacheSpecialMarkers();
-            Map.Invalidate();
-        }
-
-        private void OnWorldLoaded(object sender, EventArgs e)
-        {
-            // Available settings for the world
-            World w = World.Default;
-            _locationChanger.LocationChanger.Initialize(w.Map);
-            if (w.SettingsName != null)
+            _isInShapeDisplay = e.DisplayType == DisplayTypes.Shape;
+            if (_isInShapeDisplay)
             {
-                StatusWorld.Text = w.Name;
-
-                // Fill settings contextmenu
-                ToolStripSettings.DropDownItems.Clear();
-                string[] settingFiles = Directory.GetFiles(w.Structure.CurrentWorldSettingsDirectory, World.InternalStructure.SettingsWildcardString);
-                foreach (string setting in settingFiles)
-                {
-                    var settingInfo = new FileInfo(setting);
-                    var itm = new ToolStripMenuItem(settingInfo.Name);
-                    ToolStripSettings.DropDownItems.Add(itm);
-                    itm.Click += Settings_Click;
-                    if (settingInfo.Name == w.SettingsName)
-                    {
-                        itm.Checked = true;
-                    }
-                }
+                //_lastShapeZoom = e.Location.Zoom;
             }
-            World.Default.Map.Manipulators.AddMouseMoved(Map_MouseMoved);
         }
 
         private void Map_MouseMoved(MouseEventArgs e, Point mapLocation, Village village, Point activeLocation, Point activeVillage)
@@ -144,6 +122,67 @@ namespace TribalWars.Forms
                 StatusVillage.Text = village.ToString();
             }
         }
+        #endregion
+
+        #region Manipulators
+        private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
+        {
+            Tabs.SelectedIndex = 4;
+        }
+
+        private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
+        {
+            ToolStripPolygonManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Polygon ? CheckState.Checked : CheckState.Unchecked;
+            ToolStripDefaultManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Default ? CheckState.Checked : CheckState.Unchecked;
+        }
+
+        private void ToolStripDefaultManipulator_Click(object sender, EventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+        }
+
+        private void ToolStripPolygonManipulator_Click(object sender, EventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+        }
+        #endregion
+
+        #region Settings Loading & Saving
+        private void OnWorldSettingsLoaded(object sender, EventArgs e)
+        {
+            StatusSettings.Text = World.Default.SettingsName;
+
+            World w = World.Default;
+            if (w.SettingsName != null)
+            {
+                StatusWorld.Text = w.Name;
+
+                // Fill settings contextmenu
+                ToolStripSettings.DropDownItems.Clear();
+                string[] settingFiles = Directory.GetFiles(w.Structure.CurrentWorldSettingsDirectory, "*" + World.InternalStructure.SettingsExtensionString);
+                foreach (string setting in settingFiles)
+                {
+                    var settingInfo = new FileInfo(setting);
+                    var itm = new ToolStripMenuItem(settingInfo.Name);
+                    ToolStripSettings.DropDownItems.Add(itm);
+                    itm.Click += Settings_Click;
+                    if (settingInfo.Name == w.SettingsName)
+                    {
+                        itm.Checked = true;
+                    }
+                }
+            }
+
+            Map.Invalidate();
+        }
+
+        private void OnWorldLoaded(object sender, EventArgs e)
+        {
+            World w = World.Default;
+            _locationChanger.LocationChanger.Initialize(w.Map);
+
+            World.Default.Map.Manipulators.AddMouseMoved(Map_MouseMoved);
+        }
 
         private void Settings_Click(object sender, EventArgs e)
         {
@@ -155,74 +194,55 @@ namespace TribalWars.Forms
                     itm.Checked = false;
                 }
                 selected.Checked = true;
-                //WorldSettings.ReadSettings(selected.Text, this.MapCon);
-
-                // Save last setting
-                Properties.Settings.Default.LastSettings = selected.Text;
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        private void SaveSettings()
-        {
-            string settings = @"\settings.txt";
-
-            DialogResult result = 
-                MessageBox.Show(
-                "Save settings?" + Environment.NewLine 
-                + "Pick Yes to save settings for this TW data." + Environment.NewLine
-                + "Pick No to save settings for all data for this world (One dictory up)" + Environment.NewLine
-                + "Pick Cancel to not save your settings"
-                , "Saving"
-                , MessageBoxButtons.YesNoCancel);
-            if (result != DialogResult.Cancel)
-            {
-                string file;
-                if (result == DialogResult.Yes) file = folderBrowserDialog1.SelectedPath + settings;
-                else
+                if (World.Default.LoadSettings(selected.Text))
                 {
-                    DirectoryInfo info = Directory.GetParent(folderBrowserDialog1.SelectedPath);
-                    file = info.FullName + settings;
+                    Properties.Settings.Default.LastSettings = selected.Text;
+                    Properties.Settings.Default.Save();
                 }
-
-                //World.WorldSettings sets = new World.WorldSettings();
-                //sets.X = txtX.Text;
-                //sets.Y = txtY.Text;
-                //sets.Zoom = txtZ.Text;
-                //sets.Width = txtWidth.Text;
-
-                //sets.HideAbandoned = chkHideAbandoned.Checked;
-                //sets.HideAllyWith = chkHideWithAlly.Checked;
-                //sets.HideAllyWithout = chkHideAllyless.Checked;
-                //sets.LinesContinent = chkContinent.Checked;
-                //sets.LinesProvince = chkProvince.Checked;
-                //sets.MeMark = chkMarkMe.Checked;
-
-                //if (Map != null)
-                //{
-                //    sets.MeAlly = Map.MeAlly;
-                //    sets.MeTribe = Map.MeTribe;
-                //    sets.MeVillage = Map.MeVillage;
-
-                //    sets.SetMarkers(Map.MarkTribe, Map.MarkAlly);
-                //}
-
-                /*using (FileStream s = new FileStream(file, FileMode.Create))
-                {
-                    BinaryFormatter b = new BinaryFormatter();
-                    b.Serialize(s, sets);
-                }*/
             }
         }
 
-        #region Timers
-        private void ServerTimeTimer_Tick(object sender, EventArgs e)
+        private void MenuFileSaveSettings_Click(object sender, EventArgs e)
         {
-            StatusServerTime.Text = World.Default.ServerTime.ToLongTimeString();
+            if (World.Default.HasLoaded)
+            {
+                World.Default.SaveSettings();
+            }
         }
-        #endregion
 
-        #region Menu
+        private void MenuFileSaveSettingsAs_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                saveFileDialog1.InitialDirectory = World.Default.Structure.CurrentWorldSettingsDirectory;
+                DialogResult result = saveFileDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string settingsName = new FileInfo(saveFileDialog1.FileName).Name;
+                    World.Default.SaveSettings(settingsName);
+                    World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
+                }
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+#if !DEBUG
+                DialogResult result = MessageBox.Show("Save settings before quitting?", "Quit?", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+                else if (result == DialogResult.Yes)
+                {
+                    World.Default.SaveSettings();
+                }
+#endif
+            }
+        }
+
         private void MenuFileNew_Click(object sender, EventArgs e)
         {
             var frm = new LoadWorldForm();
@@ -240,24 +260,12 @@ namespace TribalWars.Forms
             Close();
         }
 
-        private void MenuMapScreenshot_Click(object sender, EventArgs e)
-        {
-            int i = 0;
-            string lFile = string.Format(@"{0}\TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
-            while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
-            lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
-
-            World.Default.Map.Control.Screenshot(lFile);
-        }
-
         private void MenuFileWorldDownload_Click(object sender, EventArgs e)
         {
             World.Default.Structure.Download();
             World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
         }
-        #endregion
 
-        #region ToolStrips
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
             var x = new LoadWorldForm();
@@ -268,7 +276,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.SaveWorld();
+                World.Default.SaveSettings();
             }
         }
 
@@ -287,25 +295,22 @@ namespace TribalWars.Forms
                 World.Default.Map.GoHome();
             }
         }
+        #endregion
 
-        private void ToolStripIconDisplay_Click(object sender, EventArgs e)
+        #region Small functionality
+        private void ServerTimeTimer_Tick(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon);
+            StatusServerTime.Text = World.Default.ServerTime.ToLongTimeString();
         }
 
-        private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
+        private void MenuMapScreenshot_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Shape);
-        }
+            int i = 0;
+            string lFile = string.Format(@"{0}\TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
+            while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
+            lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
 
-        private void ToolStripDefaultManipulator_Click(object sender, EventArgs e)
-        {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
-        }
-
-        private void ToolStripPolygonManipulator_Click(object sender, EventArgs e)
-        {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+            World.Default.Map.Control.Screenshot(lFile);
         }
         #endregion
 
@@ -313,28 +318,15 @@ namespace TribalWars.Forms
         internal enum NavigationPanes
         {
             Location = 0,
-            QuickFinder,
+            Details,
             Markers,
-            Attack,
-            You,
-            YourTribe,
-            Paint
+            Attack
         }
 
         internal NavigationPanePage GetNavigationPane(NavigationPanes pane)
         {
-            return this.LeftNavigation.NavigationPages[(int)pane];
+            return LeftNavigation.NavigationPages[(int)pane];
         }
         #endregion
-
-        private void MenuFileSaveSettings_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MenuFileSaveSettingsAs_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -80,7 +80,7 @@ namespace TribalWars.Data.Tribes
         [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
-            get { return tribe.BBCode(); }
+            get { return tribe.BbCode(); }
             set { }
         }
         #endregion

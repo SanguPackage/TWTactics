@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
@@ -99,7 +100,7 @@ namespace TribalWars.Data
             get { return _culture; }
             set
             {
-                TribalWars.Translations.TWWords.Culture = value;
+                Translations.TWWords.Culture = value;
                 _culture = value;
             }
         }
@@ -140,7 +141,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Gets the TW Uris
         /// </summary>
-        public TWStatsLinks TwStats { get; private set; }
+        public TwStatsLinks TwStats { get; private set; }
 
         /// <summary>
         /// Gets the gameplay link
@@ -241,7 +242,7 @@ namespace TribalWars.Data
             _villages = new WorldVillagesCollection();
 
             Views = new Dictionary<string, ViewBase>();
-            TwStats = new TWStatsLinks();
+            TwStats = new TwStatsLinks();
         }
 
         ~World()
@@ -270,9 +271,9 @@ namespace TribalWars.Data
         /// Loads world data for the specified path
         /// </summary>
         /// <param name="dataPath">The path to the World directory</param>
-        public bool LoadWorld(string dataPath)
+        public void LoadWorld(string dataPath)
         {
-            return LoadWorld(dataPath, InternalStructure.DefaultSettingsString);
+            LoadWorld(dataPath, InternalStructure.DefaultSettingsString);
         }
 
         /// <summary>
@@ -287,17 +288,16 @@ namespace TribalWars.Data
                 return false;
 
             Structure = new InternalStructure();
-            Structure.SetPath(dataPath, settings);
+            Structure.SetPath(dataPath);
             Structure.LoadDictionaries(out _villages, out _players, out _tribes);
-
-            // Settings
-            Monitor = new TribalWars.Data.Monitoring.Monitor();
-            Data.Builder.ReadSettings(new FileInfo(Structure.CurrentWorldSettingsDirectory + settings), Map, MiniMap);
 
             if (_villageTypes != null) _villageTypes.Close();
             _villageTypes = Structure.CurrentVillageTypes;
 
-            SettingsName = settings;
+            bool settingLoadSuccess = LoadSettingsCore(settings, false);
+            if (!settingLoadSuccess)
+                return false;
+
             HasLoaded = true;
 
             EventPublisher.InformLoaded(this, EventArgs.Empty);
@@ -308,77 +308,74 @@ namespace TribalWars.Data
         }
 
         /// <summary>
-        /// Saves the user settings
+        /// Loads settings (markers, ...) for the specified path
         /// </summary>
-        public void SaveWorld()
+        /// <param name="settings">The settings filename</param>
+        public bool LoadSettings(string settings)
         {
-            FileInfo sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + SettingsName);
-            Data.Builder.WriteSettings(sets, Map);
+            return LoadSettingsCore(settings, true);
         }
 
-        ///// <summary>
-        ///// Saves the current settings
-        ///// </summary>
-        ///// <param name="name">Filename of the settings file</param>
-        //public void Save(string name)
-        //{
-        //    FileInfo file = new FileInfo(World.Default.Structure.CurrentWorldSettingsDirectory + name);
-        //    Save(file);
-        //}
+        private bool LoadSettingsCore(string settings, bool publishLoad)
+        {
+            var settingsFile = new FileInfo(Structure.CurrentWorldSettingsDirectory + settings);
+            if (!settingsFile.Exists)
+                return false;
 
-        ///// <summary>
-        ///// Saves the current settings
-        ///// </summary>
-        ///// <param name="file">FileInfo of the settings file</param>
-        //public void Save(FileInfo file)
-        //{
-        //    using (XmlTextWriter worldXml = new XmlTextWriter(System.IO.File.Open(file.FullName, FileMode.Create, FileAccess.Write), System.Text.Encoding.UTF8))
-        //    {
-        //        worldXml.Indentation = 3;
-        //        worldXml.IndentChar = ' ';
-        //        worldXml.Formatting = Formatting.Indented;
-        //        WriteXml(worldXml);
-        //    }
-        //}
+            Monitor = new Monitor();
+            Builder.ReadSettings(settingsFile, Map, MiniMap);
+            SettingsName = settings;
 
-        ///// <summary>
-        ///// Loads the specified settings
-        ///// </summary>
-        ///// <param name="name">Name of the settings file</param>
-        //public void Load(string name)
-        //{
-        //    FileInfo file = new FileInfo(World.Default.Structure.CurrentWorldSettingsDirectory + name);
-        //    Load(file);
-        //}
+            InvalidateMaps();
 
-        ///// <summary>
-        ///// Loads the specified settings
-        ///// </summary>
-        ///// <param name="file">FileInfo of the settings file</param>
-        //public void Load(FileInfo file)
-        //{
-        //    if (file != null && file.Exists)
-        //    {
-        //        using (XmlReader worldXml = XmlReader.Create(System.IO.File.Open(file.FullName, FileMode.Open, FileAccess.Read), sets))
-        //        {
-        //            ReadXml(worldXml);
-        //        }
-        //        World.Default.EventPublisher.InformSettingsLoaded(this, EventArgs.Empty);
-        //        World.Default.Map.EventPublisher.PaintMap(null);
-        //    }
-        //}
+            if (publishLoad)
+            {
+                EventPublisher.InformSettingsLoaded(this, EventArgs.Empty);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Rebuilds all markers on all maps
+        /// </summary>
+        public void InvalidateMaps()
+        {
+            Map.Display.DisplayManager.CacheSpecialMarkers();
+            MiniMap.Display.DisplayManager.CacheSpecialMarkers();
+        }
+
+        /// <summary>
+        /// Saves the user settings
+        /// </summary>
+        public void SaveSettings()
+        {
+            SaveSettings(SettingsName);
+        }
+
+        /// <summary>
+        /// Saves the user settings
+        /// </summary>
+        /// <param name="settingsName">Just the settings file name, no path information</param>
+        public void SaveSettings(string settingsName)
+        {
+            var sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + settingsName);
+            Builder.WriteSettings(sets, Map);
+
+            SettingsName = new FileInfo(settingsName).Name;
+        }
         #endregion
 
         #region New World
         /// <summary>
         /// Downloads available worlds on the server
         /// </summary>
-        public static string[] GetAllWorlds()
+        public static IEnumerable<string> GetAllWorlds()
         {
             return InternalStructure.DownloadWorlds();
         }
 
-        public void CreateNewWorld(string path)
+        public static void CreateNewWorld(string path)
         {
             InternalStructure.CreateWorld(path);
         }
@@ -412,12 +409,7 @@ namespace TribalWars.Data
         /// </summary>
         public Tribe GetTribe(int id)
         {
-            foreach (Tribe tribe in Tribes.Values)
-            {
-                if (tribe.ID == id)
-                    return tribe;
-            }
-            return null;
+            return Tribes.Values.FirstOrDefault(tribe => tribe.Id == id);
         }
 
         /// <summary>
@@ -425,12 +417,7 @@ namespace TribalWars.Data
         /// </summary>
         public Player GetPlayer(int id)
         {
-            foreach (Player player in Players.Values)
-            {
-                if (player.Id == id)
-                    return player;
-            }
-            return null;
+            return Players.Values.FirstOrDefault(player => player.Id == id);
         }
 
         /// <summary>
@@ -464,10 +451,10 @@ namespace TribalWars.Data
                 int y;
                 if (int.TryParse(match.Groups[1].Value, out x) && int.TryParse(match.Groups[2].Value, out y))
                 {
-                    Point loc = new Point(x, y);
-                    if (World.Default.Villages.ContainsKey(loc))
+                    var loc = new Point(x, y);
+                    if (Default.Villages.ContainsKey(loc))
                     {
-                        return World.Default.Villages[loc];
+                        return Default.Villages[loc];
                     }
                 }
             }
@@ -479,7 +466,7 @@ namespace TribalWars.Data
         /// </summary>
         public Village GetVillage(Point location)
         {
-            Village village = null;
+            Village village;
             Villages.TryGetValue(location, out village);
             return village;
         }
@@ -497,9 +484,9 @@ namespace TribalWars.Data
         /// </summary>
         public Player GetPlayer(string input)
         {
-            if (World.Default.Players.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
+            if (Default.Players.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
             {
-                return World.Default.Players[input.ToUpper(CultureInfo.InvariantCulture)];
+                return Default.Players[input.ToUpper(CultureInfo.InvariantCulture)];
             }
             return null;
         }
@@ -509,9 +496,9 @@ namespace TribalWars.Data
         /// </summary>
         public Tribe GetTribe(string input)
         {
-            if (World.Default.Tribes.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
+            if (Default.Tribes.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
             {
-                return World.Default.Tribes[input.ToUpper(CultureInfo.InvariantCulture)];
+                return Default.Tribes[input.ToUpper(CultureInfo.InvariantCulture)];
             }
             return null;
         }
@@ -595,93 +582,13 @@ namespace TribalWars.Data
             }
             #endregion
         }
-
-        /*public class WorldVillagesCollection
-        {
-            #region Fields
-            private System.Collections.Hashtable _v;
-            #endregion
-
-            #region Constructors
-            public WorldVillagesCollection()
-            {
-                _v = new System.Collections.Hashtable();
-            }
-
-            public WorldVillagesCollection(int x)
-            {
-                _v = new System.Collections.Hashtable(x);
-            }
-            #endregion
-
-            #region Public Methods
-            /// <summary>
-            /// Checks if there is a village
-            /// </summary>
-            public bool ContainsKey(Point p)
-            {
-                return _v.ContainsKey(c(p));
-            }
-
-            /// <summary>
-            /// Tries to get a village from the given location
-            /// </summary>
-            public bool TryGetValue(Point p, out Village value)
-            {
-                if (_v.ContainsKey(c(p)))
-                {
-                    value = (Village)_v[c(p)];
-                    return true;
-                }
-                value = null;
-                return false;
-            }
-
-            /// <summary>
-            /// Gets one village
-            /// </summary>
-            public Village this[Point p]
-            {
-                get { return (Village)_v[c(p)]; }
-            }
-
-            /// <summary>
-            /// Gets all villages
-            /// </summary>
-            public IEnumerable<Village> Values
-            {
-                get
-                {
-                    foreach (object obj in _v.Values)
-                    {
-                        yield return (Village)obj;
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Adds a village
-            /// </summary>
-            public void Add(Point p, Village v)
-            {
-                _v.Add(c(p), v);
-            }
-            #endregion
-
-            #region Private Methods
-            private int c(Point p)
-            {
-                return p.X * 1000 + p.Y;
-            }
-            #endregion
-        }*/
         #endregion
 
         #region TWStats
         /// <summary>
         /// Contains direct links to differnt TW Stats pages
         /// </summary>
-        public class TWStatsLinks
+        public class TwStatsLinks
         {
             #region Enums
             /// <summary>
@@ -700,18 +607,13 @@ namespace TribalWars.Data
             #endregion
 
             #region Fields
-            private Uri _twStats;
             #endregion
 
             #region Properties
             /// <summary>
             /// Gets the general TW Stats link
             /// </summary>
-            public Uri Default
-            {
-                get { return _twStats; }
-                set { _twStats = value; }
-            }
+            public Uri Default { get; set; }
 
             /// <summary>
             /// Gets the direct link to TW stats village overview

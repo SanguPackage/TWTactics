@@ -103,8 +103,8 @@ namespace TribalWars.Controls.Maps
         private class Ruler
         {
             #region Fields
-            private Font _rulerFont;
-            private StringFormat _rulerStringFormat;
+            private readonly Font _rulerFont;
+            private readonly StringFormat _rulerStringFormat;
 
             private Bitmap _cacheX;
             private Bitmap _cacheY;

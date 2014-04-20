@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
@@ -14,16 +15,12 @@ namespace TribalWars.Data.Tribes
     public class Tribe : IEquatable<Tribe>, IComparable<Tribe>, IEnumerable<Village>
     {
         #region Fields
-        private int _Id;
-        private string _Name;
-        private string _Tag;
-        private List<Player> _Players = new List<Player>();
-        private int _Villages;
+        private int _id;
+        private int _villages;
 
-        private int _Points;
-        private int _AllPoints;
-        private int _Rank;
-        private Tribe _previousTribeData;
+        private readonly int _points;
+        private int _allPoints;
+        private int _rank;
         #endregion
 
         #region Properties
@@ -31,55 +28,32 @@ namespace TribalWars.Data.Tribes
         /// Gets or sets the Tribal Wars Database ID
         /// </summary>
         [Browsable(false)]
-        public int ID
+        public int Id
         {
-            get { return _Id; }
-            set { _Id = value; }
+            get { return _id; }
         }
 
         /// <summary>
         /// Gets or sets the tribe name
         /// </summary>
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets or sets the tribe tag
         /// </summary>
-        public string Tag
-        {
-            get { return _Tag; }
-            set { _Tag = value; }
-        }
+        public string Tag { get; private set; }
 
         /// <summary>
         /// Gets or sets the list of players in the tribe
         /// </summary>
-        public List<Player> Players
-        {
-            get { return _Players; }
-            set { _Players = value; }
-        }
+        public List<Player> Players { get; private set; }
 
         /// <summary>
         /// Gets or sets the total amount of villages in the tribe
         /// </summary>
         public int Villages
         {
-            get { return _Villages; }
-            set { _Villages = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the points of the top 40 players in the tribe
-        /// </summary>
-        public int Points
-        {
-            get { return _Points; }
-            set { _Points = value; }
+            get { return _villages; }
         }
 
         /// <summary>
@@ -87,8 +61,7 @@ namespace TribalWars.Data.Tribes
         /// </summary>
         public int AllPoints
         {
-            get { return _AllPoints; }
-            set { _AllPoints = value; }
+            get { return _allPoints; }
         }
 
         /// <summary>
@@ -96,8 +69,7 @@ namespace TribalWars.Data.Tribes
         /// </summary>
         public int Rank
         {
-            get { return _Rank; }
-            set { _Rank = value; }
+            get { return _rank; }
         }
 
         /// <summary>
@@ -106,16 +78,13 @@ namespace TribalWars.Data.Tribes
         [Browsable(false)]
         public int AveragePointsPerTribe
         {
-            get { return (int)(AllPoints / Players.Count); }
+            get { return AllPoints / Players.Count; }
         }
 
         /// <summary>
         /// Gets the Tribe details of the previous downloaded data
         /// </summary>
-        public Tribe PreviousTribeDetails
-        {
-            get { return _previousTribeData; }
-        }
+        public Tribe PreviousTribeDetails { get; private set; }
 
         /// <summary>
         /// Gets a string describing the amount of players
@@ -128,20 +97,10 @@ namespace TribalWars.Data.Tribes
             {
                 if (PreviousTribeDetails == null) return null;
 
-                int gained = 0;
-                foreach (Player vil in Players)
-                {
-                    if (!PreviousTribeDetails.Players.Contains(vil))
-                        gained++;
-                }
-                int lost = 0;
-                foreach (Player vil in PreviousTribeDetails.Players)
-                {
-                    if (!Players.Contains(vil))
-                        lost++;
-                }
+                int gained = Players.Count(vil => !PreviousTribeDetails.Players.Contains(vil));
+                int lost = PreviousTribeDetails.Players.Count(vil => !Players.Contains(vil));
                 if (lost == 0 && gained == 0) return null;
-                return string.Format("+{0}-{1}", gained.ToString(), lost.ToString());
+                return string.Format("+{0}-{1}", gained, lost);
             }
         }
 
@@ -152,14 +111,14 @@ namespace TribalWars.Data.Tribes
         {
             get
             {
-                StringBuilder str = new StringBuilder();
-                str.AppendFormat("Name: {0}", _Name);
+                var str = new StringBuilder();
+                str.AppendFormat("Name: {0}", Name);
                 str.AppendLine();
-                str.AppendFormat("Rank: {0}", _Rank.ToString());
+                str.AppendFormat("Rank: {0}", _rank);
                 str.AppendLine();
-                str.AppendFormat("Points: {0}", _AllPoints.ToString("#,0"));
+                str.AppendFormat("Points: {0}", _allPoints.ToString("#,0"));
                 str.AppendLine();
-                str.AppendFormat("Players: {0}", _Players.Count.ToString());
+                str.AppendFormat("Players: {0}", Players.Count);
 
                 return str.ToString();
             }
@@ -169,14 +128,15 @@ namespace TribalWars.Data.Tribes
         #region Constructors
         internal Tribe(string[] pAlly)
         {
+            Players = new List<Player>();
             //$id, $name, $tag, $members, $villages, $points, $all_points, $rank
-            int.TryParse(pAlly[0], out _Id);
-            _Name = System.Web.HttpUtility.UrlDecode(pAlly[1]);
-            _Tag = System.Web.HttpUtility.UrlDecode(pAlly[2]);
-            int.TryParse(pAlly[4], out _Villages);
-            int.TryParse(pAlly[5], out _Points);
-            int.TryParse(pAlly[6], out _AllPoints);
-            int.TryParse(pAlly[7], out _Rank);
+            int.TryParse(pAlly[0], out _id);
+            Name = System.Web.HttpUtility.UrlDecode(pAlly[1]);
+            Tag = System.Web.HttpUtility.UrlDecode(pAlly[2]);
+            int.TryParse(pAlly[4], out _villages);
+            int.TryParse(pAlly[5], out _points);
+            int.TryParse(pAlly[6], out _allPoints);
+            int.TryParse(pAlly[7], out _rank);
         }
         #endregion
 
@@ -186,39 +146,39 @@ namespace TribalWars.Data.Tribes
         /// </summary>
         public void SetPreviousDetails(Tribe tribe)
         {
-            _previousTribeData = tribe;
+            PreviousTribeDetails = tribe;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}", this.Tag);
+            return string.Format("{0}", Tag);
         }
 
-        public string BBCodeSimple()
+        public string BbCodeSimple()
         {
             return string.Format("[ally]{0}[/ally]", Tag);
         }
 
-        public string BBCode()
+        public string BbCode()
         {
             return string.Format("[b]{5}[/b] [ally]{0}[/ally]{3}Points: {2:#,0}pts ({6:#,0}avg){3}Players: {1}{3}Rank: {4}", Tag, Players.Count, AllPoints, Environment.NewLine, Rank, Name, AveragePointsPerTribe);
         }
 
-        public string BBCodeExtended()
+        public string BbCodeExtended()
         {
-            return BBCodeExtended(0);
+            return BbCodeExtended(0);
         }
 
-        public string BBCodeExtended(int minFilter)
+        public string BbCodeExtended(int minFilter)
         {
-            StringBuilder str = new StringBuilder(100);
-            str.AppendLine(string.Format("{0}{1}{1}[b]Player Details[/b]", BBCode(), Environment.NewLine));
+            var str = new StringBuilder(100);
+            str.AppendLine(string.Format("{0}{1}{1}[b]Player Details[/b]", BbCode(), Environment.NewLine));
             Players.Sort();
             foreach (Player tribe in Players)
             {
-                str.Append(string.Format("{0} [quote={1}]", tribe.BBCode(), tribe.Name));
+                str.Append(string.Format("{0} [quote={1}]", tribe.BbCode(), tribe.Name));
 
-                List<Village> villages = tribe.Villages.FindAll(delegate(Village vil) { return vil.Points > minFilter; });
+                List<Village> villages = tribe.Villages.FindAll(vil => vil.Points > minFilter);
                 if (villages.Count > 0)
                 {
                     villages.Sort();
@@ -249,12 +209,12 @@ namespace TribalWars.Data.Tribes
         public bool Equals(Tribe other)
         {
             if ((object)other == null) return false;
-            return _Tag == other.Tag;
+            return Tag == other.Tag;
         }
 
         public int CompareTo(Tribe other)
         {
-            return other.AllPoints - _AllPoints;
+            return other.AllPoints - _allPoints;
         }
 
         public override int GetHashCode()
@@ -285,11 +245,7 @@ namespace TribalWars.Data.Tribes
         #region IEnumerable<Village> Members
         public IEnumerator<Village> GetEnumerator()
         {
-            foreach (Player ply in _Players)
-            {
-                foreach (Village vil in ply.Villages)
-                    yield return vil;
-            }
+            return Players.SelectMany(ply => ply.Villages).GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

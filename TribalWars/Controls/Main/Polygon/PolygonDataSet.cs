@@ -19,7 +19,7 @@ namespace TribalWars.Controls
                 if (village.HasTribe)
                 {
                     row.TRIBE = village.Player.Tribe.Name;
-                    row.TRIBEID = village.Player.Tribe.ID;
+                    row.TRIBEID = village.Player.Tribe.Id;
                 }
             }
             row.POINTS = village.Points;

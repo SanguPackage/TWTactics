@@ -33,7 +33,6 @@ namespace TribalWars.Forms
             this.IconList = new System.Windows.Forms.ImageList(this.components);
             this.btnNewWorld = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Worlds = new System.Windows.Forms.TreeView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -42,24 +41,17 @@ namespace TribalWars.Forms
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.SettingsGrid = new System.Windows.Forms.PropertyGrid();
-            this.OpenFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.AvailableWorlds = new System.Windows.Forms.ComboBox();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.OpenFolder = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // IconList
@@ -89,36 +81,17 @@ namespace TribalWars.Forms
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(5);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3);
-            this.splitContainer1.Size = new System.Drawing.Size(652, 643);
+            this.splitContainer1.Size = new System.Drawing.Size(652, 497);
             this.splitContainer1.SplitterDistance = 321;
             this.splitContainer1.TabIndex = 4;
             this.splitContainer1.TabStop = false;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer2.Size = new System.Drawing.Size(321, 643);
-            this.splitContainer2.SplitterDistance = 369;
-            this.splitContainer2.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -126,7 +99,7 @@ namespace TribalWars.Forms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 369);
+            this.groupBox1.Size = new System.Drawing.Size(321, 497);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Worlds";
@@ -139,7 +112,7 @@ namespace TribalWars.Forms
             this.Worlds.Location = new System.Drawing.Point(3, 16);
             this.Worlds.Name = "Worlds";
             this.Worlds.SelectedImageIndex = 0;
-            this.Worlds.Size = new System.Drawing.Size(315, 350);
+            this.Worlds.Size = new System.Drawing.Size(315, 478);
             this.Worlds.TabIndex = 3;
             this.Worlds.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Worlds_AfterSelect);
             // 
@@ -147,9 +120,9 @@ namespace TribalWars.Forms
             // 
             this.groupBox4.Controls.Add(this.WorldSettings);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Location = new System.Drawing.Point(3, 103);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(321, 270);
+            this.groupBox4.Size = new System.Drawing.Size(321, 391);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "World Settings";
@@ -165,7 +138,7 @@ namespace TribalWars.Forms
             this.WorldSettings.GridLines = true;
             this.WorldSettings.Location = new System.Drawing.Point(3, 16);
             this.WorldSettings.Name = "WorldSettings";
-            this.WorldSettings.Size = new System.Drawing.Size(315, 251);
+            this.WorldSettings.Size = new System.Drawing.Size(315, 372);
             this.WorldSettings.TabIndex = 0;
             this.WorldSettings.UseCompatibleStateImageBehavior = false;
             this.WorldSettings.View = System.Windows.Forms.View.Details;
@@ -185,21 +158,22 @@ namespace TribalWars.Forms
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 643);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 497);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.AvailableWorlds);
             this.groupBox2.Controls.Add(this.btnNewWorld);
+            this.groupBox2.Controls.Add(this.AvailableWorlds);
             this.groupBox2.Controls.Add(this.btnLoad);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
@@ -207,6 +181,15 @@ namespace TribalWars.Forms
             this.groupBox2.Size = new System.Drawing.Size(321, 94);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
+            // 
+            // AvailableWorlds
+            // 
+            this.AvailableWorlds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AvailableWorlds.FormattingEnabled = true;
+            this.AvailableWorlds.Location = new System.Drawing.Point(9, 67);
+            this.AvailableWorlds.Name = "AvailableWorlds";
+            this.AvailableWorlds.Size = new System.Drawing.Size(162, 21);
+            this.AvailableWorlds.TabIndex = 2;
             // 
             // btnLoad
             // 
@@ -219,42 +202,12 @@ namespace TribalWars.Forms
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.SettingsGrid);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 103);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(321, 537);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Setting details";
-            // 
-            // SettingsGrid
-            // 
-            this.SettingsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingsGrid.HelpVisible = false;
-            this.SettingsGrid.Location = new System.Drawing.Point(3, 16);
-            this.SettingsGrid.Name = "SettingsGrid";
-            this.SettingsGrid.Size = new System.Drawing.Size(315, 518);
-            this.SettingsGrid.TabIndex = 0;
-            this.SettingsGrid.ToolbarVisible = false;
-            // 
-            // AvailableWorlds
-            // 
-            this.AvailableWorlds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AvailableWorlds.FormattingEnabled = true;
-            this.AvailableWorlds.Location = new System.Drawing.Point(9, 64);
-            this.AvailableWorlds.Name = "AvailableWorlds";
-            this.AvailableWorlds.Size = new System.Drawing.Size(162, 21);
-            this.AvailableWorlds.TabIndex = 2;
-            // 
             // LoadWorldForm
             // 
             this.AcceptButton = this.btnLoad;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 643);
+            this.ClientSize = new System.Drawing.Size(652, 497);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "LoadWorldForm";
@@ -265,15 +218,10 @@ namespace TribalWars.Forms
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -284,13 +232,10 @@ namespace TribalWars.Forms
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TreeView Worlds;
         private System.Windows.Forms.ListView WorldSettings;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.PropertyGrid SettingsGrid;
         private System.Windows.Forms.FolderBrowserDialog OpenFolder;
         private System.Windows.Forms.Button btnNewWorld;
         private System.Windows.Forms.GroupBox groupBox1;

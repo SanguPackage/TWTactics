@@ -225,20 +225,12 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Changes the current view on the map
-        /// </summary>
-        public void ChangeDisplay()
-        {
-            ChangeDisplay(Display.DisplayManager.CurrentDisplayType);
-        }
-
-        /// <summary>
         /// Resets the map to allow loading of new settings
         /// </summary>
         /// <remarks>Resets the minipulators and display</remarks>
-        public void ChangeDisplay(DisplayTypes display)
+        public void ChangeDisplay(DisplayTypes display, int zoom)
         {
-            ChangeDisplay(display, Location);
+            ChangeDisplay(display, new Location(Location, zoom));
         }
 
         /// <summary>
@@ -251,10 +243,12 @@ namespace TribalWars.Data.Maps
             {
                 if (Display.DisplayManager.CurrentDisplay != null)
                     Display.DisplayManager.CurrentDisplay.Zoom.Current = location.Zoom;
-                Display.Reset(display);
-                SetCenter(this, new Location(location, Display.DisplayManager.CurrentDisplay.Zoom.Current), true);
 
-                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display, Location));
+                Display.Reset(display);
+
+                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display, location));
+
+                SetCenter(this, new Location(location), true);
             }
         }
 

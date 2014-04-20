@@ -147,7 +147,7 @@ namespace TribalWars.Data.Reporting
             }
             else
             {
-                if (Village.HasPlayer) return Village.Player.BBCode() + Environment.NewLine + Village.BBCode();
+                if (Village.HasPlayer) return Village.Player.BbCode() + Environment.NewLine + Village.BBCode();
                 return Village.BBCode();
             }
         }

@@ -26,7 +26,6 @@ namespace TribalWars.Data.Maps.Displays
         private readonly Map _map;
 
         private readonly Dictionary<DisplayTypes, DisplayBase> _displays;
-        private DisplayBase _currentDisplay;
         private DisplayTypes _currentDisplayType = DisplayTypes.None; 
 
         private SortedDictionary<int, MarkerGroup> _markTribe;
@@ -45,10 +44,7 @@ namespace TribalWars.Data.Maps.Displays
         /// <summary>
         /// Gets the current view of the map
         /// </summary>
-        public DisplayBase CurrentDisplay
-        {
-            get { return _currentDisplay; }
-        }
+        public DisplayBase CurrentDisplay { get; private set; }
         #endregion
 
         #region Constructors
@@ -84,7 +80,7 @@ namespace TribalWars.Data.Maps.Displays
             _markTribe = new SortedDictionary<int, MarkerGroup>();
             _currentDisplayType = type;
             if (type != DisplayTypes.None)
-                _currentDisplay = _displays[type];
+                CurrentDisplay = _displays[type];
         }
         #endregion
 
@@ -132,16 +128,16 @@ namespace TribalWars.Data.Maps.Displays
                     Player ply = village.Player;
                     if (!_markPlayer.TryGetValue(ply.Id, out markerGroup))
                     {
-                        if (!(ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.ID, out markerGroup)))
+                        if (!(ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out markerGroup)))
                             markerGroup = _map.MarkerManager.EnemyMarker;
                     }
                 }
 
                 DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                finalCache = _currentDisplay.CreateDrawer(mainData, markerGroup, null);
+                finalCache = CurrentDisplay.CreateDrawer(mainData, markerGroup, null);
                 finalCache.PaintVillage(g, mapX, mapY, width, height);
 
-                if (_currentDisplay.SupportDecorators)
+                if (CurrentDisplay.SupportDecorators)
                 {
                     // Allows show VillageType
                     if (village.Type != VillageType.None)
@@ -149,7 +145,7 @@ namespace TribalWars.Data.Maps.Displays
                         DrawerData data = World.Default.Views[Types.VillageType.ToString()].GetDrawer(village);
                         if (data != null)
                         {
-                            DrawerBase decoratorVillageType = _currentDisplay.CreateDrawer(data, markerGroup, mainData);
+                            DrawerBase decoratorVillageType = CurrentDisplay.CreateDrawer(data, markerGroup, mainData);
                             if (decoratorVillageType != null)
                                 decoratorVillageType.PaintVillage(g, mapX, mapY, width, height);
                         }
@@ -161,7 +157,7 @@ namespace TribalWars.Data.Maps.Displays
                         DrawerData data = World.Default.Views[markerGroup.Decorator].GetDrawer(village);
                         if (data != null)
                         {
-                            DrawerBase drawer = _currentDisplay.CreateDrawer(data, markerGroup, mainData);
+                            DrawerBase drawer = CurrentDisplay.CreateDrawer(data, markerGroup, mainData);
                             drawer.PaintVillage(g, mapX, mapY, width, height);
                         }
                     }
@@ -169,7 +165,7 @@ namespace TribalWars.Data.Maps.Displays
             }
             else //if (_currentDisplay.SupportsBackground)
             {
-                finalCache = _currentDisplay.CreateNonVillageDrawer(game);
+                finalCache = CurrentDisplay.CreateNonVillageDrawer(game);
                 if (finalCache != null)
                     finalCache.PaintVillage(g, mapX, mapY, width, height);
             }
@@ -195,8 +191,8 @@ namespace TribalWars.Data.Maps.Displays
 
                 foreach (Tribe tribe in markerGroup.Tribes)
                 {
-                    if (!_markTribe.ContainsKey(tribe.ID))
-                        _markTribe.Add(tribe.ID, markerGroup);
+                    if (!_markTribe.ContainsKey(tribe.Id))
+                        _markTribe.Add(tribe.Id, markerGroup);
                 }
             }
         }
@@ -213,18 +209,15 @@ namespace TribalWars.Data.Maps.Displays
                 Tribe youTribe = World.Default.You.Player.Tribe;
                 if (youTribe != null)
                 {
-                    _markTribe.Add(youTribe.ID, _map.MarkerManager.YourTribeMarker);
+                    _markTribe.Add(youTribe.Id, _map.MarkerManager.YourTribeMarker);
                 }
             }
         }
 
-        /// <summary>
-        /// TODO: ERROR on reading new settings, loading a new world, ..
-        /// </summary>
         public void Reset(DisplayTypes type)
         {
             _currentDisplayType = type;
-            _currentDisplay = _displays[type];
+            CurrentDisplay = _displays[type];
         }
 
         public override string ToString()

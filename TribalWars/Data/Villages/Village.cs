@@ -14,50 +14,10 @@ using TribalWars.Data.Tribes;
 
 namespace TribalWars.Data.Villages
 {
-      /*      public static bool IsClickIn(Point game, Point village, int RectangleSize)
-        {
-            // this shouldn't really be here
-            //if (game.X >= village.X && game.Y >= village.Y && game.X <= village.X + RectangleSize && game.Y <= village.Y + RectangleSize)
-            if (game.X == village.X && game.Y == village.Y)
-                return true;
-
-            return false;
-        }*/
-
-    // TODO: check this:
-    /*public class VillageDistanceComparer : IComparer<Village>
-    {
-        // I probably need to implement the IEnumerable<Village>
-        // instead and take two villages as ctor input and return all that are within the maxDistance
-        // this is to be used by the report village listing
-        private int _MaxDistance;
-
-        public int MaxDistance
-        {
-            get { return _MaxDistance; }
-            set { _MaxDistance = value; }
-        }
-
-        public VillageDistanceComparor(int maxDistance)
-        {
-            _MaxDistance = maxDistance;
-        }
-
-        #region IComparer<Village> Members
-        public int Compare(Village x, Village y)
-        {
-            if (x - y < _MaxDistance)
-                return -1;
-
-            return 1;
-        }
-        #endregion
-    }*/
-
     /// <summary>
     /// Representation of a Tribal Wars village
     /// </summary>
-    public class Village : IEnumerable<Village>, IEquatable<Village>, IComparable<Village>
+    public sealed class Village : IEnumerable<Village>, IEquatable<Village>, IComparable<Village>
     {
         #region BonusTypes
         public enum BonusType
@@ -79,11 +39,10 @@ namespace TribalWars.Data.Villages
         internal int _X;
         internal readonly int _Y;
 
-        private Player _player;
         internal readonly int PlayerId;
         internal int _Points;
         private readonly Point _location;
-        protected readonly int _Kingdom;
+        private readonly int _Kingdom;
         private VillageType _type;
         private bool _typeIsSet;
         private string _tooltip;
@@ -98,19 +57,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public string Comments
         {
-            get
-            {
-                if (_player == null)
-                    return _comments;
-
-                if (string.IsNullOrEmpty(_comments))
-                    return _player.Comments;
-
-                if (!string.IsNullOrEmpty(_player.Comments))
-                    return string.Format("{0}{1}---------------------------------------------{1}{2}", _comments, Environment.NewLine, _player.Comments);
-
-                return _comments;
-            }
+            get { return _comments; }
             set
             {
                 // TODO BUG: enter comment, then click on a village: it is not saved
@@ -158,11 +105,7 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets or sets the owner of the village
         /// </summary>
-        public Player Player
-        {
-            get { return _player; }
-            set { _player = value; }
-        }
+        public Player Player { get; set; }
 
         /// <summary>
         /// Gets the player ID of the village
@@ -303,10 +246,6 @@ namespace TribalWars.Data.Villages
             {
                 if (_tooltip == null)
                 {
-                    // TODO get tooltip will be different depending on the
-                    // "current map control"
-                    // so this will be moved away from here after all
-
                     var str = new StringBuilder();
 
                     // Calculate previous stuff
@@ -428,7 +367,7 @@ namespace TribalWars.Data.Villages
         /// Returns the BBCode with village points
         /// </summary>
         /// <returns>[village](X|Y)[/village] (pts)</returns>
-        public virtual string BBCode()
+        public string BBCode()
         {
             return string.Format("[village]({0}|{1})[/village] ({2:#,0}pts)", X, Y, Points);
         }
@@ -436,9 +375,9 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Returns the BBCode for the player
         /// </summary>
-        public virtual string BBCodeExtended()
+        public string BBCodeExtended()
         {
-            if (HasPlayer) return Player.BBCodeExtended(this);
+            if (HasPlayer) return Player.BbCodeExtended(this);
             return BBCode();
         }
         #endregion

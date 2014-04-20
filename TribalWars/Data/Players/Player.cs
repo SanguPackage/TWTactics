@@ -9,7 +9,7 @@ namespace TribalWars.Data.Players
     /// <summary>
     /// Represents a Tribal Wars player
     /// </summary>
-    public class Player : IComparable<Player>, IEquatable<Player>, IEnumerable<Village>
+    public sealed class Player : IComparable<Player>, IEquatable<Player>, IEnumerable<Village>
     {
         #region Fields
         private int _id;
@@ -22,22 +22,6 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the comments on the village
-        /// </summary>
-        public string Comments
-        {
-            get { return _comments; }
-            set
-            {
-                if (_comments != value)
-                {
-                    _comments = value;
-                    Save();
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the villages lost since the data download
         /// </summary>
@@ -215,51 +199,51 @@ namespace TribalWars.Data.Players
             return string.Format("{0} ({1:#,0}pts|{2}vils)", this.Name, this.Points, this.Villages.Count);
         }
 
-        public virtual string BBCode()
+        public string BbCode()
         {
             string str = string.Format("[player]{0}[/player]", Name);
             if (Villages.Count > 1) str += string.Format(" ({0:#,0}pts|{1}vils)", Points, Villages.Count);
             return str;
         }
 
-        public virtual string BBCodeExtended()
+        public string BbCodeExtended()
         {
-            return BBCodeExtended(0, null, true);
+            return BbCodeExtended(0, null, true);
         }
 
-        public string BBCodeExtended(bool showTribe)
+        public string BbCodeExtended(bool showTribe)
         {
-            return BBCodeExtended(0, null, showTribe);
+            return BbCodeExtended(0, null, showTribe);
         }
 
-        public string BBCodeExtended(Village selectedVillage)
+        public string BbCodeExtended(Village selectedVillage)
         {
-            return BBCodeExtended(0, selectedVillage, true);
+            return BbCodeExtended(0, selectedVillage, true);
         }
 
-        public string BBCodeExtended(int minFilter)
+        public string BbCodeExtended(int minFilter)
         {
-            return BBCodeExtended(minFilter, null, true);
+            return BbCodeExtended(minFilter, null, true);
         }
 
-        public string BBCodeExtended(int minFilter, Village selectedVillage)
+        public string BbCodeExtended(int minFilter, Village selectedVillage)
         {
-            return BBCodeExtended(minFilter, selectedVillage, true);
+            return BbCodeExtended(minFilter, selectedVillage, true);
         }
 
-        public string BBCodeExtended(int minFilter, bool showTribe)
+        public string BbCodeExtended(int minFilter, bool showTribe)
         {
-            return BBCodeExtended(minFilter, null, showTribe);
+            return BbCodeExtended(minFilter, null, showTribe);
         }
 
-        public string BBCodeExtended(int minFilter, Village selectedVillage, bool showTribe)
+        public string BbCodeExtended(int minFilter, Village selectedVillage, bool showTribe)
         {
             List<Village> villages = Villages.FindAll(vil => vil.Points > minFilter);
 
             // Build it
             var str = new StringBuilder(100);
-            str.Append(BBCode());
-            if (HasTribe && showTribe) str.Append(Environment.NewLine + string.Format("{0}", Tribe.BBCode()));
+            str.Append(BbCode());
+            if (HasTribe && showTribe) str.Append(Environment.NewLine + string.Format("{0}", Tribe.BbCode()));
             if (villages.Count > 1) str.Append(Environment.NewLine + "[b]Villages[/b][quote]");
             villages.Sort();
             bool isFirst = true;
@@ -289,11 +273,11 @@ namespace TribalWars.Data.Players
             str.Append("[b]");
             if (HasTribe)
             {
-                str.AppendFormat("[ally]{0}[/ally] Target: {1}", Tribe.Tag, BBCode());
+                str.AppendFormat("[ally]{0}[/ally] Target: {1}", Tribe.Tag, BbCode());
             }
             else
             {
-                str.Append(BBCode());
+                str.Append(BbCode());
             }
 
             //http://nl.twstats.com/image.php?type=playerssgraph&id=661959&s=nl10&graph=points
@@ -304,18 +288,18 @@ namespace TribalWars.Data.Players
             str.AppendLine();
             str.AppendLine();
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TWStatsLinks.Graphs.points);
+            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.points);
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TWStatsLinks.Graphs.rank);
+            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.rank);
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TWStatsLinks.Graphs.odd);
+            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.odd);
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TWStatsLinks.Graphs.villages);
+            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.villages);
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();
@@ -368,15 +352,6 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Saves the player to disk
-        /// </summary>
-        public void Save()
-        {
-            // TODO: not implemented
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Sets the Tribe of the player
         /// </summary>

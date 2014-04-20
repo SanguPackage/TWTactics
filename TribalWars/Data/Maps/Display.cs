@@ -1,15 +1,11 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Drawing;
-
-using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
-using TribalWars.Data.Maps.Drawers;
-using TribalWars.Data.Maps.Views;
 using System.Diagnostics;
 using TribalWars.Data.Maps.Displays;
 #endregion
@@ -22,10 +18,10 @@ namespace TribalWars.Data.Maps
     public class Display
     {
         #region Fields
-        private Map _map;
+        private readonly Map _map;
 
-        private Pen _continentPen;
-        private Pen _provincePen;
+        private readonly Pen _continentPen;
+        private readonly Pen _provincePen;
         private Rectangle? _visibleRectangle;
 
         private Brush _backgroundBrush;
@@ -114,7 +110,7 @@ namespace TribalWars.Data.Maps
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
 
-        private void EventPublisher_LocationChanged(object sender, TribalWars.Data.Events.MapLocationEventArgs e)
+        private void EventPublisher_LocationChanged(object sender, Events.MapLocationEventArgs e)
         {
             // TODO: if there is some overlap between e.NewLocation and e.OldLocation
             // redraw only the new part of the background and move the rest
@@ -168,7 +164,7 @@ namespace TribalWars.Data.Maps
             }
             else
             {
-                System.Diagnostics.Stopwatch timing = System.Diagnostics.Stopwatch.StartNew();
+                var timing = Stopwatch.StartNew();
 
                 _background = new Bitmap(_map.Control.PictureWidth, _map.Control.PictureHeight);
                 Graphics g = Graphics.FromImage(_background);
@@ -184,7 +180,6 @@ namespace TribalWars.Data.Maps
                 int zoom = _map.Location.Zoom;
                 int width = displayType.GetVillageWidthSpacing(zoom);
                 int height = displayType.GetVillageHeightSpacing(zoom);
-                int mapX = 0;
                 int mapY = 0;
 
                 int villageWidth = displayType.GetVillageWidth(zoom);
@@ -194,7 +189,7 @@ namespace TribalWars.Data.Maps
                 int looped = 0;
 
                 // Draw villages
-                mapX = fullMap.Left + xOffset;
+                int mapX = fullMap.Left + xOffset;
                 mapY = fullMap.Top + yOffset;
                 if (false)
                 {
@@ -310,8 +305,8 @@ namespace TribalWars.Data.Maps
                 }
 
                 timing.Stop();
-                Debug.WriteLine(string.Format("Painting:{0} in {1}", _map.Location.ToString(), timing.Elapsed.TotalSeconds.ToString()));
-                Debug.WriteLine("Drawed : " + villagesDrawed.ToString() + " for " + looped.ToString());
+                Debug.WriteLine("Painting:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds);
+                Debug.WriteLine("Drawed : " + villagesDrawed + " for " + looped);
 
                 g2.DrawImageUnscaled(_background, 0, 0);
             }
@@ -323,10 +318,7 @@ namespace TribalWars.Data.Maps
         public bool IsVisible(Tribe tribe)
         {
             if (!_visibleRectangle.HasValue) return false;
-            foreach (Village village in tribe)
-                if (_visibleRectangle.Value.Contains(village.Location))
-                    return true;
-            return false;
+            return tribe.Any(village => _visibleRectangle.Value.Contains(village.Location));
         }
 
         /// <summary>
@@ -335,9 +327,7 @@ namespace TribalWars.Data.Maps
         public bool IsVisible(Player player)
         {
             if (!_visibleRectangle.HasValue) return false;
-            foreach (Village village in player)
-                if (_visibleRectangle.Value.Contains(village.Location)) return true;
-            return false;
+            return player.Any(village => _visibleRectangle.Value.Contains(village.Location));
         }
 
         /// <summary>
@@ -377,9 +367,9 @@ namespace TribalWars.Data.Maps
             int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
             int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
 
-            int off = (int)((x - sets.X) * width);
+            int off = (x - sets.X) * width;
             x = off + mapWidth / 2; // +(2 * x - 1);
-            off = (int)((y - sets.Y) * height);
+            off = (y - sets.Y) * height;
             y = off + (mapHeight / 2); // +(2 * y - 1);
             return new Point(x, y);
         }
@@ -389,6 +379,7 @@ namespace TribalWars.Data.Maps
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
+        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
         public static Location GetSpan(IEnumerable<Village> vils, bool tryRespectCurrentZoom = true)
         {
             return GetSpan(vils, new Size(World.Default.Map.Control.PictureWidth, World.Default.Map.Control.PictureHeight), tryRespectCurrentZoom);
@@ -398,6 +389,8 @@ namespace TribalWars.Data.Maps
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
+        /// <param name="world"></param>
+        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
         public static Location GetSpan(IEnumerable<Village> vils, Size world, bool tryRespectCurrentZoom = true)
         {
             int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
@@ -463,8 +456,8 @@ namespace TribalWars.Data.Maps
             int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
             int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
 
-            int newx = (int)((x + sets.X * width - mapWidth / 2) / width);
-            int newy = (int)((y + sets.Y * height - mapHeight / 2) / height);
+            int newx = (x + sets.X * width - mapWidth / 2) / width;
+            int newy = (y + sets.Y * height - mapHeight / 2) / height;
             return new Point(newx, newy);
         }
 

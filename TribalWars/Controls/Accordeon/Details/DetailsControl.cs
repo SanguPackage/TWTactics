@@ -113,7 +113,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// User entered a village in the VillageTextBox
         /// </summary>
-        private void SelectedVillage_VillageSelected(object sender, TribalWars.Data.Events.VillageEventArgs e)
+        private void SelectedVillage_VillageSelected(object sender, Data.Events.VillageEventArgs e)
         {
             SetQuickFinder(new DetailsCommand(DetailsDisplayEnum.Village, e.SelectedVillage, e.Tool));
         }
@@ -121,7 +121,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// User entered a player in the VillageTextBox
         /// </summary>
-        private void SelectedVillage_PlayerSelected(object sender, TribalWars.Data.Events.PlayerEventArgs e)
+        private void SelectedVillage_PlayerSelected(object sender, Data.Events.PlayerEventArgs e)
         {
             SetQuickFinder(new DetailsCommand(DetailsDisplayEnum.Player, e.SelectedPlayer, e.Tool));
         }
@@ -129,7 +129,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// User entered a tribe in the VillageTextBox
         /// </summary>
-        private void SelectedVillage_TribeSelected(object sender, TribalWars.Data.Events.TribeEventArgs e)
+        private void SelectedVillage_TribeSelected(object sender, Data.Events.TribeEventArgs e)
         {
             SetQuickFinder(new DetailsCommand(DetailsDisplayEnum.Tribe, e.SelectedTribe, e.Tool));
         }
@@ -137,9 +137,9 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// Catch the world village selected event
         /// </summary>
-        private void EventPublisher_VillagesSelected(object sender, TribalWars.Data.Events.VillagesEventArgs e)
+        private void EventPublisher_VillagesSelected(object sender, Data.Events.VillagesEventArgs e)
         {
-            if (!object.ReferenceEquals(this, sender))
+            if (!ReferenceEquals(this, sender))
             {
                 switch (e.Tool)
                 {
@@ -154,7 +154,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// Catch the world player selected event
         /// </summary>
-        private void EventPublisher_PlayerSelected(object sender, TribalWars.Data.Events.PlayerEventArgs e)
+        private void EventPublisher_PlayerSelected(object sender, Data.Events.PlayerEventArgs e)
         {
             switch (e.Tool)
             {
@@ -168,7 +168,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// Catch the world tribe selected event
         /// </summary>
-        private void EventPublisher_TribeSelected(object sender, TribalWars.Data.Events.TribeEventArgs e)
+        private void EventPublisher_TribeSelected(object sender, Data.Events.TribeEventArgs e)
         {
             switch (e.Tool)
             {

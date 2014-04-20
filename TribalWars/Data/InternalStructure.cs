@@ -86,7 +86,10 @@ namespace TribalWars.Data
 
             public const string WorldString = "World";
             public const string DefaultSettingsString = "default.sets";
-            public const string SettingsWildcardString = "*.sets";
+            /// <summary>
+            /// With .
+            /// </summary>
+            public const string SettingsExtensionString = ".sets";
             public const string WorldXmlString = "world.xml";
             public const string VillageTypesString = "villagetypes.dat";
 
@@ -187,7 +190,7 @@ namespace TribalWars.Data
             /// Reads world.xml
             /// Downloads the data if necessary
             /// </summary>
-            public bool SetPath(string world, string settings)
+            public bool SetPath(string world)
             {
                 try
                 {
@@ -201,7 +204,7 @@ namespace TribalWars.Data
                         // general world selected
                         _currentWorld = worldPath.Name;
 
-                        ReadWorldSettings(worldPath.FullName);
+                        ReadWorldConfiguration(worldPath.FullName);
 
                         // If there is no datapath, read the last directory
                         string[] dirs = Directory.GetDirectories(CurrentWorldDataDirectory);
@@ -238,12 +241,12 @@ namespace TribalWars.Data
                             }
                         }
 
-                        ReadWorldSettings(worldPath.FullName);
+                        ReadWorldConfiguration(worldPath.FullName);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message + Environment.NewLine + "Loading world: " + world + " with settings " + settings);
+                    MessageBox.Show(ex.Message + Environment.NewLine + "Loading world: " + world);
                     throw;
                 }
 
@@ -253,7 +256,7 @@ namespace TribalWars.Data
             /// <summary>
             /// World stats (server sets, Buildings & units)
             /// </summary>
-            private void ReadWorldSettings(string worldPath)
+            private void ReadWorldConfiguration(string worldPath)
             {
                 var sets = new XmlReaderSettings
                 {
@@ -514,7 +517,7 @@ namespace TribalWars.Data
                     {
                         var tribe = new Tribe(tribeString.Split(','));
                         tribes.Add(tribe.Tag.ToUpper(), tribe);
-                        tempTribes.Add(tribe.ID, tribe.Tag.ToUpper());
+                        tempTribes.Add(tribe.Id, tribe.Tag.ToUpper());
                     }
 
                     // Load players

@@ -106,12 +106,13 @@ namespace TribalWars.Forms
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Controls.Main.Browser.BrowserControl();
             this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
-            this.Parser = new ParserControl();
+            this.Parser = new TribalWars.Controls.Main.ParserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new PolygonControl();
+            this.Polygon = new TribalWars.Controls.Main.Polygon.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -325,7 +326,6 @@ namespace TribalWars.Forms
             this.MenuFileNew.Name = "MenuFileNew";
             this.MenuFileNew.Size = new System.Drawing.Size(155, 22);
             this.MenuFileNew.Text = "&New world";
-            this.MenuFileNew.Visible = false;
             this.MenuFileNew.Click += new System.EventHandler(this.MenuFileNew_Click);
             // 
             // MenuFileLoadWorld
@@ -970,6 +970,12 @@ namespace TribalWars.Forms
             // 
             this.FormToolbarContainer.TopToolStripPanel.Controls.Add(this.ToolStrip);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "sets";
+            this.saveFileDialog1.Filter = "Settings|*.sets";
+            this.saveFileDialog1.RestoreDirectory = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -984,6 +990,7 @@ namespace TribalWars.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TW Tactics v0.2 - by Sangu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             panel1.ResumeLayout(false);
             this.Status.ResumeLayout(false);
@@ -1101,6 +1108,7 @@ namespace TribalWars.Forms
         private Ascend.Windows.Forms.NavigationPane LeftNavigation;
         private Controls.Accordeon.Details.DetailsControl detailsControl1;
         private Controls.Accordeon.Location.LocationControl locationControl1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
