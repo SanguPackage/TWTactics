@@ -225,52 +225,6 @@ namespace TribalWars.Data.Maps
                     }
                 }
 
-
-
-                //_background = new Bitmap(_map.Control.PictureWidth, _map.Control.PictureHeight);
-                //Graphics g = Graphics.FromImage(_background);
-
-                //Point gameTopLeft = GetGameLocation(fullMap.Left, fullMap.Top);
-                //Point gameBottomRight = GetGameLocation(fullMap.Right, fullMap.Bottom);
-
-                //int xOffset = GetMapLocation(gameTopLeft).X;
-                //int yOffset = GetMapLocation(gameTopLeft).Y;
-
-                //DisplayBase displayType = _viewManager.CurrentDisplay;
-                //int zoom = _map.Location.Zoom;
-                //int width = displayType.GetVillageWidthSpacing(zoom);
-                //int height = displayType.GetVillageHeightSpacing(zoom);
-                //int mapX = 0;
-                //int mapY = 0;
-
-                //int villageWidth = displayType.GetVillageWidth(zoom);
-                //int villageHeight = displayType.GetVillageHeight(zoom);
-
-                //// Draw villages
-                //mapX = fullMap.Left + xOffset;
-                //mapY = fullMap.Top + yOffset;
-                //for (int gameY = gameTopLeft.Y; gameY <= gameBottomRight.Y; gameY++)
-                //{
-                //    mapX = fullMap.Left + xOffset;
-                //    for (int gameX = gameTopLeft.X; gameX <= gameBottomRight.X; gameX++)
-                //    {
-                //        _viewManager.Paint(g, new Point(gameX, gameY), mapX, mapY, villageWidth, villageHeight);
-                //        mapX += width;
-                //    }
-                //    mapY += height;
-                //}
-
-
-
-
-
-
-
-
-
-
-
-
                 // Horizontal continent lines
                 int gridOffset = 5;
                 mapY = fullMap.Top + yOffset - (gameTopLeft.Y % gridOffset) * height;
@@ -280,7 +234,7 @@ namespace TribalWars.Data.Maps
                     {
                         if (gameY % 100 == 0)
                             g.DrawLine(_continentPen, 0, mapY, fullMap.Width, mapY);
-                        else //if (gameY % 10 == 0)
+                        else if (width > 4)
                             g.DrawLine(_provincePen, 0, mapY, fullMap.Width, mapY);
                         //else
                         //    g.DrawLine(pen, 0, mapY, fullMap.Width, mapY);
@@ -296,7 +250,7 @@ namespace TribalWars.Data.Maps
                     {
                         if (gameX % 100 == 0)
                             g.DrawLine(_continentPen, mapX, 0, mapX, fullMap.Height);
-                        else //if (gameX % 10 == 0)
+                        else if (width > 4)
                             g.DrawLine(_provincePen, mapX, 0, mapX, fullMap.Height);
                         //else
                         //    g.DrawLine(pen, mapX, 0, mapX, fullMap.Height);
