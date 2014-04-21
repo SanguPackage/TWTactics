@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.ComponentModel;
 using System.Collections;
@@ -15,6 +16,16 @@ namespace TribalWars.Tools
     /// </summary>
     public static class Common
     {
+        #region Point Methods
+        /// <summary>
+        /// Returns whether the point is inside TW boundaries
+        /// </summary>
+        public static bool IsValidGameCoordinate(this Point p)
+        {
+            return p.X > 0 && p.Y > 0 && p.X < 1000 && p.Y < 1000;
+        }
+        #endregion
+
         #region Number Methods
         /// <summary>
         /// Formats the number with an M after the million

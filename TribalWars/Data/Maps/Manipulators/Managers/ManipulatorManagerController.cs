@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TribalWars.Controls.Maps;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
+using TribalWars.Tools;
 
 #endregion
 
@@ -173,7 +174,11 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         {
             // TODO: Creating a graphics object here *every* time might not be a good idea :)
             Point game = Map.Display.GetGameLocation(e.X, e.Y);
-            //System.Diagnostics.Debug.Print(game.ToString());
+            if (!game.IsValidGameCoordinate())
+            {
+                return false;
+            }
+
             Village village = World.Default.GetVillage(game);
             Point map = Map.Display.GetMapLocation(game);
             Graphics g = mapPicture.CreateGraphics();
