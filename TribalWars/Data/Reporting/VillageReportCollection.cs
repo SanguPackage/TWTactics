@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
 
 using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
@@ -19,9 +21,6 @@ using System.Globalization;
 
 namespace TribalWars.Data.Reporting
 {
-    // + build in something that reports older then X time are deleted (+ add a marker that it is a not to be deleted report)
-
-
     /// <summary>
     /// Wrapper for a collection of Reports with the same defending village
     /// Plus a wrapper of the estimated current situation
@@ -90,7 +89,7 @@ namespace TribalWars.Data.Reporting
                 _currentSituation = new CurrentSituation(village);
                 if (System.IO.File.Exists(File))
                 {
-                    XmlReaderSettings sets = new XmlReaderSettings();
+                    var sets = new XmlReaderSettings();
                     sets.IgnoreWhitespace = true;
                     sets.CloseInput = true;
                     using (XmlReader r = XmlReader.Create(File, sets))
@@ -108,13 +107,30 @@ namespace TribalWars.Data.Reporting
         {
             if (_reportsLoaded)
             {
-                XmlWriterSettings sets = new XmlWriterSettings();
+                var sets = new XmlWriterSettings();
                 sets.Indent = true;
                 sets.IndentChars = " ";
                 using (XmlWriter w = XmlWriter.Create(File, sets))
                 {
                     WriteXml(w);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Saves only the user comments
+        /// </summary>
+        public void SaveComments()
+        {
+            if (!new FileInfo(File).Exists)
+            {
+                Save();
+            }
+            else
+            {
+                var xdoc = XDocument.Load(File);
+                xdoc.Descendants("Comments").First().Value = _currentSituation.Village.Comments;
+                xdoc.Save(File);
             }
         }
 
@@ -171,7 +187,7 @@ namespace TribalWars.Data.Reporting
             r.ReadStartElement();
             while (r.IsStartElement("Report"))
             {
-                Report report = new Report();
+                var report = new Report();
                 report.ReadXml(r);
                 Add(report);
             }

@@ -15,7 +15,7 @@ namespace TribalWars.Controls
             if (village.HasPlayer)
             {
                 row.PLAYER = village.Player.Name;
-                row.PLAYERID = village.PlayerID;
+                row.PLAYERID = village.PlayerId;
                 if (village.HasTribe)
                 {
                     row.TRIBE = village.Player.Tribe.Name;

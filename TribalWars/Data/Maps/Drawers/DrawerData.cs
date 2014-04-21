@@ -10,9 +10,6 @@ namespace TribalWars.Data.Maps.Drawers
     /// </summary>
     public class DrawerData
     {
-        #region Fields
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets or sets which shapedrawer to use

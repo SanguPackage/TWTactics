@@ -1,7 +1,6 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Resources;
@@ -19,17 +18,11 @@ namespace TribalWars.Data.Reporting
     /// <remarks>The attacker side of the 'report' is empty</remarks>
     public class CurrentSituation
     {
-        //TODO: this is not a Report.
-        // there could be some common base (for display in the grid etc)
-        // but CurrentSituation does not have an Attacker...
-        // it does have a list of villages it has support in, current attacks
-        // incomings, support from other villages etc...
-
         #region Fields
         private float _loyalty;
 
-        internal DateTime _villageDate;
-        internal DateTime _loyaltyDate;
+        private DateTime _villageDate;
+        private DateTime _loyaltyDate;
         #endregion
 
         #region Properties
@@ -74,7 +67,7 @@ namespace TribalWars.Data.Reporting
         /// <summary>
         /// Gets the last time resource levels were updated
         /// </summary>
-        public DateTime ResourcesDate { internal get; set; }
+        public DateTime ResourcesDate { private get; set; }
 
         /// <summary>
         /// Gets or sets the last known loyalty level
@@ -127,7 +120,7 @@ namespace TribalWars.Data.Reporting
 
             if (_villageDate == DateTime.MinValue)
             {
-                StringFormat format = new StringFormat();
+                var format = new StringFormat();
                 format.Alignment = StringAlignment.Center;
                 g.DrawString("No estimated situation available.", SystemFonts.DefaultFont, Brushes.Black, new RectangleF(10, 10, g.VisibleClipBounds.Width - 10, 50), format);
             }
@@ -137,46 +130,45 @@ namespace TribalWars.Data.Reporting
 
                 // resources
                 float x = 5;
-                int ResourceYOffset = 3;
-                int ResourceXOffset = 5;
-                int ImageXOffset = 20;
-                Pen borderPen = new Pen(Color.Black, 2);
-                int ImageYOffset = 20;
-                int ImageYTextOffset = 5;
+                const int resourceYOffset = 3;
+                const int resourceXOffset = 5;
+                const int imageXOffset = 20;
+                var borderPen = new Pen(Color.Black, 2);
+                const int imageYOffset = 20;
+                const int imageYTextOffset = 5;
                 if (ResourcesDate != DateTime.MinValue)
                 {
-                    g.DrawImage(TribalWars.Data.Resources.Images.wood, x, ResourceYOffset);
-                    g.DrawString(Resources.WoodString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    g.DrawImage(Data.Resources.Images.wood, x, resourceYOffset);
+                    g.DrawString(Resources.WoodString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.WoodString, SystemFonts.DefaultFont).Width;
-                    x += ImageXOffset + ResourceXOffset;
-                    g.DrawImage(TribalWars.Data.Resources.Images.clay, x, ResourceYOffset);
-                    g.DrawString(Resources.ClayString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    x += imageXOffset + resourceXOffset;
+                    g.DrawImage(Data.Resources.Images.clay, x, resourceYOffset);
+                    g.DrawString(Resources.ClayString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.ClayString, SystemFonts.DefaultFont).Width;
-                    x += ImageXOffset + ResourceXOffset;
-                    g.DrawImage(TribalWars.Data.Resources.Images.iron, x, ResourceYOffset);
-                    g.DrawString(Resources.IronString, SystemFonts.DefaultFont, Brushes.Black, x + ImageXOffset, ResourceYOffset + ImageYTextOffset);
+                    x += imageXOffset + resourceXOffset;
+                    g.DrawImage(Data.Resources.Images.iron, x, resourceYOffset);
+                    g.DrawString(Resources.IronString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.IronString, SystemFonts.DefaultFont).Width;
-                    x += ImageXOffset + ResourceXOffset;
+                    x += imageXOffset + resourceXOffset;
 
-                    g.DrawRectangle(borderPen, 0, 0, x, ResourceYOffset + ImageYOffset + 3);
+                    g.DrawRectangle(borderPen, 0, 0, x, resourceYOffset + imageYOffset + 3);
                 }
 
                 // loyalty
                 if (LoyaltyDate != DateTime.MinValue)
                 {
-                    g.DrawString(LoyaltyString, SystemFonts.DefaultFont, Brushes.Black, x + 15, ResourceYOffset + ImageYTextOffset);
+                    g.DrawString(LoyaltyString, SystemFonts.DefaultFont, Brushes.Black, x + 15, resourceYOffset + imageYTextOffset);
                     float width = g.MeasureString(LoyaltyString, SystemFonts.DefaultFont).Width;
-                    g.DrawRectangle(borderPen, x + 10, 0, width + 10, ResourceYOffset + ImageYOffset + 3);
+                    g.DrawRectangle(borderPen, x + 10, 0, width + 10, resourceYOffset + imageYOffset + 3);
                 }
 
-                g.TranslateTransform(0, ResourceYOffset + ImageYOffset + 10);
+                g.TranslateTransform(0, resourceYOffset + imageYOffset + 10);
 
-                float y = 10;
                 // buildings
-                y = 5;
+                float y = 5;
                 int column = 0;
                 int xAdd = 0;
                 if (BuildingsDate != DateTime.MinValue)
@@ -188,7 +180,7 @@ namespace TribalWars.Data.Reporting
                     {
                         column++;
                         g.DrawImage(building.Key.Image, 5 + xAdd, y);
-                        g.DrawString(building.Value.ToString(), SystemFonts.DefaultFont, Brushes.Black, 5 + ImageXOffset + xAdd, y + 5);
+                        g.DrawString(building.Value.ToString(CultureInfo.InvariantCulture), SystemFonts.DefaultFont, Brushes.Black, 5 + imageXOffset + xAdd, y + 5);
                         if (column % 2 == 0)
                         {
                             y += 20;
@@ -218,7 +210,7 @@ namespace TribalWars.Data.Reporting
                     {
                         column++;
                         g.DrawImage(WorldUnits.Default[unit.Key].Image, 5 + xAdd, y);
-                        g.DrawString(Tools.Common.GetPrettyNumber(unit.Value), SystemFonts.DefaultFont, Brushes.Black, 5 + ImageXOffset + xAdd, y + 5);
+                        g.DrawString(Tools.Common.GetPrettyNumber(unit.Value), SystemFonts.DefaultFont, Brushes.Black, 5 + imageXOffset + xAdd, y + 5);
                         if (column % 2 == 0)
                         {
                             y += 20;
@@ -360,7 +352,7 @@ namespace TribalWars.Data.Reporting
                 {
                     TimeSpan elapsed = World.Default.ServerTime - VillageDate;
                     _loyalty += World.Default.Speed * elapsed.Hours;
-                    _loyaltyDate.AddHours(elapsed.Hours);
+                    _loyaltyDate = _loyaltyDate.AddHours(elapsed.Hours);
                     if (_loyalty > 100) _loyalty = 100;
                 }
 
@@ -512,15 +504,15 @@ namespace TribalWars.Data.Reporting
         public void WriteXml(XmlWriter w)
         {
             w.WriteStartElement("Village");
-            w.WriteAttributeString("X", Village.X.ToString());
-            w.WriteAttributeString("Y", Village.Y.ToString());
+            w.WriteAttributeString("X", Village.X.ToString(CultureInfo.InvariantCulture));
+            w.WriteAttributeString("Y", Village.Y.ToString(CultureInfo.InvariantCulture));
 
             // Info
             w.WriteStartElement("Info");
             w.WriteAttributeString("Date", _villageDate.ToString(CultureInfo.InvariantCulture));
 
             w.WriteStartElement("Loyalty");
-            w.WriteAttributeString("Level", _loyalty.ToString());
+            w.WriteAttributeString("Level", _loyalty.ToString(CultureInfo.InvariantCulture));
             w.WriteAttributeString("Date", _loyaltyDate.ToString(CultureInfo.InvariantCulture));
             w.WriteEndElement();
 
@@ -531,14 +523,14 @@ namespace TribalWars.Data.Reporting
 
             w.WriteStartElement("Defense");
             if (DefenseDate != DateTime.MinValue)
-                w.WriteAttributeString("Date", DefenseDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                w.WriteAttributeString("Date", DefenseDate.ToString(CultureInfo.InvariantCulture));
             foreach (UnitTypes key in Defense)
             {
                 w.WriteStartElement("Unit");
                 w.WriteAttributeString("Type", key.ToString());
-                w.WriteAttributeString("OwnTroops", Defense.OwnTroops[key].ToString());
-                w.WriteAttributeString("OutTroops", Defense.OutTroops[key].ToString());
-                w.WriteAttributeString("OtherDefenses", Defense.OtherDefenses[key].ToString());
+                w.WriteAttributeString("OwnTroops", Defense.OwnTroops[key].ToString(CultureInfo.InvariantCulture));
+                w.WriteAttributeString("OutTroops", Defense.OutTroops[key].ToString(CultureInfo.InvariantCulture));
+                w.WriteAttributeString("OtherDefenses", Defense.OtherDefenses[key].ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
             }
             w.WriteEndElement();
@@ -546,12 +538,12 @@ namespace TribalWars.Data.Reporting
 
             w.WriteStartElement("Buildings");
             if (BuildingsDate != DateTime.MinValue)
-                w.WriteAttributeString("Date", BuildingsDate.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                w.WriteAttributeString("Date", BuildingsDate.ToString(CultureInfo.InvariantCulture));
             foreach (KeyValuePair<Building, int> build in Buildings)
             {
                 w.WriteStartElement("Building");
                 w.WriteAttributeString("Type", build.Key.Type.ToString());
-                w.WriteAttributeString("Level", build.Value.ToString());
+                w.WriteAttributeString("Level", build.Value.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
             }
             w.WriteEndElement();
@@ -568,7 +560,7 @@ namespace TribalWars.Data.Reporting
         public class VillageBuildings : IEnumerable<KeyValuePair<Building, int>>
         {
             #region Fields
-            private Dictionary<BuildingTypes, ReportBuilding> _buildings;
+            private readonly Dictionary<BuildingTypes, ReportBuilding> _buildings;
             #endregion
 
             #region Properties
@@ -695,7 +687,7 @@ namespace TribalWars.Data.Reporting
             public class Units : IEnumerable<KeyValuePair<UnitTypes, int>>
             {
                 #region Fields
-                private Dictionary<UnitTypes, int> _troops;
+                private readonly Dictionary<UnitTypes, int> _troops;
                 #endregion
 
                 #region Properties

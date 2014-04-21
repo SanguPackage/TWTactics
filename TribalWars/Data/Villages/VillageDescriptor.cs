@@ -73,7 +73,7 @@ namespace TribalWars.Data.Villages
         public string Points
         {
             // Used by the VillagePropertyDescriptor
-            get { return Village._Points.ToString("#,0"); }
+            get { return Village.Points.ToString("#,0"); }
             set { }
         }
         #endregion

@@ -38,20 +38,20 @@ namespace TribalWars.Controls.Accordeon
             hd.Width = 40;
             MarkerGroups.Columns.Add(hd);
 
+            //World.Default.Views["Points"].
 
-            // TODO: Hier de markers fixen :)
-            /*foreach (var filter in World.Default.Views)
-            {
-                hd = new ColumnHeader();
-                hd.Text = string.Format("to {0}", filter.Upper.ToString());
-                hd.Width = 80;
-                MarkerGroups.Columns.Add(hd);
-            }
+            //foreach (var filter in )
+            //{
+            //    hd = new ColumnHeader();
+            //    hd.Text = string.Format("to {0}", filter.Value..ToString());
+            //    hd.Width = 80;
+            //    MarkerGroups.Columns.Add(hd);
+            //}
 
-            foreach (MarkerGroup mg in World.Default.Map.MarkerDrawer.Markers)
-            {
-                MarkerGroups.Items.Add(new MarkerGroupListViewItem(mg));
-            }*/
+            //foreach (MarkerGroup mg in World.Default.Map.MarkerDrawer.Markers)
+            //{
+            //    MarkerGroups.Items.Add(new MarkerGroupListViewItem(mg));
+            //}
         }
 
         private void World_SettingsLoaded(object sender, EventArgs e)

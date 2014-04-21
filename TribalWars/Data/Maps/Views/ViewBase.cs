@@ -18,49 +18,34 @@ namespace TribalWars.Data.Maps.Views
     public abstract class ViewBase
     {
         #region Fields
-        private string _name;
-        private Types _type;
-        private Categories _category;
-
-        // TODO: SortedDictionary en comparer meegeven
-        protected Dictionary<ViewData, DrawerData> _drawers;
+        protected readonly Dictionary<ViewData, DrawerData> _drawers;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets or sets the name of the view
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets a value indicating what kind of
         /// display it is
         /// </summary>
-        public Types Type
-        {
-            get { return _type; }
-        }
+        public Types Type { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this
         /// is a backgrounddrawer or a decorator
         /// </summary>
-        public Categories Category
-        {
-            get { return _category; }
-        }
+        public Categories Category { get; private set; }
         #endregion
 
         #region Constructors
         protected ViewBase(string name, Types type, Categories category)
         {
-            _name = name;
-            _type = type;
-            _category = category;
+            Name = name;
+            Type = type;
+            Category = category;
             _drawers = new Dictionary<ViewData, DrawerData>();
         }
         #endregion
@@ -97,7 +82,7 @@ namespace TribalWars.Data.Maps.Views
 
         public override string ToString()
         {
-            return string.Format("{0} ({1}, {2})", _name, _type.ToString(), _category.ToString());
+            return string.Format("{0} ({1}, {2})", Name, Type.ToString(), Category.ToString());
         }
         #endregion
     }

@@ -1,5 +1,7 @@
 #region Using
-
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 
 using TribalWars.Data.Maps.Drawers;
@@ -29,14 +31,6 @@ namespace TribalWars.Data.Maps.Displays
         }
         #endregion
 
-        #region Fields
-
-        #endregion
-
-        #region Properties
-
-        #endregion
-
         #region Constructors
         public ShapeDisplay()
             : base(new ZoomInfo(1, 25, 10))
@@ -48,18 +42,27 @@ namespace TribalWars.Data.Maps.Displays
         #region Public Methods
         protected override DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            switch (GetShape(data.ShapeDrawer))
+            var shape = GetShape(data.ShapeDrawer);
+            switch (shape)
             {
                 case Shapes.RectangleDrawer:
-                    return new RectangleDrawer(colors);
+                    return new ShapeDrawer(false, colors);
+
                 case Shapes.EllipseDrawer:
-                    return new EllipseDrawer(colors);
+                    return new ShapeDrawer(true, colors);
+
                 case Shapes.XDrawer:
                     return new XDrawer(colors.Color);
+
                 case Shapes.BorderDrawer:
-                    return new BorderDrawer(XmlHelper.GetColor(data.ExtraDrawerInfo.ToString()), GetShape(mainData.ShapeDrawer));
+                    var color = (Color)data.ExtraDrawerInfo;
+                    return new BorderDrawer(color, GetShape(mainData.ShapeDrawer));
+
+                case Shapes.DummyDrawer:
+                    return DrawerBase.CreateEmptyDrawer();
             }
-            return new RectangleDrawer();
+            
+            throw new InvalidEnumArgumentException();
         }
 
         protected override Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData)
@@ -89,32 +92,42 @@ namespace TribalWars.Data.Maps.Displays
             return Shapes.DummyDrawer;
         }
 
-        public override int GetVillageHeightSpacing(int zoom)
+        private int GetVillageSize(int zoom)
         {
-            if (zoom < 5) return zoom;
-            return zoom + 1;
+            //if (zoom == 1) return 2;
+            return zoom;
         }
-
-        public override int GetVillageWidthSpacing(int zoom)
-        {
-            if (zoom < 5) return zoom;
-            return zoom + 1;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("ShapeDisplay (z{0})", World.Default.Map.Location.Zoom);
-        }
-        #endregion
 
         public override int GetVillageWidth(int zoom)
         {
-            return zoom;
+            return GetVillageSize(zoom);
         }
 
         public override int GetVillageHeight(int zoom)
         {
-            return zoom;
+            return GetVillageSize(zoom);
         }
+
+        private int GetVillageWithSpacingSize(int zoom)
+        {
+            if (zoom < 5) return zoom;
+            return zoom + 1;
+        }
+
+        public override int GetVillageHeightSpacing(int zoom)
+        {
+            return GetVillageWithSpacingSize(zoom);
+        }
+
+        public override int GetVillageWidthSpacing(int zoom)
+        {
+            return GetVillageWithSpacingSize(zoom);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("ShapeDisplay (z{0})", World.Default.Map.Location.Zoom);
+        }
+        #endregion
     }
 }

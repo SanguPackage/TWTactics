@@ -46,8 +46,8 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ContextStrip = new System.Windows.Forms.ToolStrip();
-            this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
             this.AttackFlag = new System.Windows.Forms.ToolStripButton();
+            this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
             this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
             this.NobleFlag = new System.Windows.Forms.ToolStripButton();
             this.FarmFlag = new System.Windows.Forms.ToolStripButton();
@@ -254,16 +254,6 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ContextStrip.TabIndex = 2;
             this.ContextStrip.Text = "ContextStrip";
             // 
-            // DefenseFlag
-            // 
-            this.DefenseFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DefenseFlag.Image = global::TribalWars.Properties.Resources.Defense;
-            this.DefenseFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DefenseFlag.Name = "DefenseFlag";
-            this.DefenseFlag.Size = new System.Drawing.Size(23, 22);
-            this.DefenseFlag.ToolTipText = "Mark this village as defensive";
-            this.DefenseFlag.Click += new System.EventHandler(this.DefenseFlag_Click);
-            // 
             // AttackFlag
             // 
             this.AttackFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -273,6 +263,16 @@ namespace TribalWars.Controls.Accordeon.Details
             this.AttackFlag.Size = new System.Drawing.Size(23, 22);
             this.AttackFlag.ToolTipText = "Mark this village as offensive";
             this.AttackFlag.Click += new System.EventHandler(this.AttackFlag_Click);
+            // 
+            // DefenseFlag
+            // 
+            this.DefenseFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DefenseFlag.Image = global::TribalWars.Properties.Resources.Defense;
+            this.DefenseFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DefenseFlag.Name = "DefenseFlag";
+            this.DefenseFlag.Size = new System.Drawing.Size(23, 22);
+            this.DefenseFlag.ToolTipText = "Mark this village as defensive";
+            this.DefenseFlag.Click += new System.EventHandler(this.DefenseFlag_Click);
             // 
             // ScoutFlag
             // 
@@ -380,7 +380,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.Comments.Size = new System.Drawing.Size(261, 144);
             this.Comments.TabIndex = 1;
             this.Comments.Visible = false;
-            this.Comments.Leave += new System.EventHandler(this.Comments_Leave);
+            this.Comments.TextChanged += new System.EventHandler(this.Comments_TextChanged);
             // 
             // DetailsGrid
             // 

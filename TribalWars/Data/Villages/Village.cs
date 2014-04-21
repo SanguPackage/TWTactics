@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Drawing;
-using System.ComponentModel;
-
-using System.Text.RegularExpressions;
 using TribalWars.Data.Players;
 using TribalWars.Data.Units;
 using TribalWars.Data.Reporting;
-using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Tribes;
 
 namespace TribalWars.Data.Villages
@@ -35,14 +31,14 @@ namespace TribalWars.Data.Villages
         #endregion
 
         #region Fields
-        private int _Id;
-        internal int _X;
-        internal readonly int _Y;
+        private readonly int _id;
+        private readonly int _x;
+        private readonly int _y;
 
-        internal readonly int PlayerId;
-        internal int _Points;
+        private readonly int _playerId;
+        private int _points;
         private readonly Point _location;
-        private readonly int _Kingdom;
+        private readonly int _kingdom;
         private VillageType _type;
         private bool _typeIsSet;
         private string _tooltip;
@@ -60,8 +56,6 @@ namespace TribalWars.Data.Villages
             get { return _comments; }
             set
             {
-                // TODO BUG: enter comment, then click on a village: it is not saved
-                // enter comment, click on the map on the background: it is saved
                 if (_comments != value)
                 {
                     _comments = value;
@@ -69,7 +63,8 @@ namespace TribalWars.Data.Villages
                         Type = _type & ~ VillageType.Comments;
                     else
                         Type = _type | VillageType.Comments;
-                    Reports.Save();
+
+                    Reports.SaveComments();
                 }
             }
         }
@@ -110,9 +105,9 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets the player ID of the village
         /// </summary>
-        public int PlayerID
+        public int PlayerId
         {
-            get { return PlayerId; }
+            get { return _playerId; }
         }
 
         /// <summary>
@@ -120,8 +115,8 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int Points
         {
-            get { return _Points; }
-            set { _Points = value; }
+            get { return _points; }
+            set { _points = value; }
         }
 
         /// <summary>
@@ -134,7 +129,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int Id
         {
-            get { return _Id; }
+            get { return _id; }
         }
 
         /// <summary>
@@ -142,7 +137,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int X
         {
-            get { return _X; }
+            get { return _x; }
         }
 
         /// <summary>
@@ -150,7 +145,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int Y
         {
-            get { return _Y; }
+            get { return _y; }
         }
 
         /// <summary>
@@ -159,7 +154,7 @@ namespace TribalWars.Data.Villages
         /// <example>X|Y</example>
         public string LocationString
         {
-            get { return string.Format("{0}|{1}", _X, _Y); }
+            get { return string.Format("{0}|{1}", _x, _y); }
         }
 
         /// <summary>
@@ -183,7 +178,7 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public int Kingdom
         {
-            get { return _Kingdom; }
+            get { return _kingdom; }
         }
 
         /// <summary>
@@ -333,17 +328,17 @@ namespace TribalWars.Data.Villages
         internal Village(string[] pVillage)
         {
             // $id, $name, $x, $y, $tribe, $points, $rank
-            int.TryParse(pVillage[0], out _Id);
+            int.TryParse(pVillage[0], out _id);
             Name = System.Web.HttpUtility.HtmlDecode(System.Web.HttpUtility.UrlDecode(pVillage[1]));
-            int.TryParse(pVillage[2], out _X);
-            int.TryParse(pVillage[3], out _Y);
-            int.TryParse(pVillage[5], out _Points);
-            int.TryParse(pVillage[4], out PlayerId);
+            int.TryParse(pVillage[2], out _x);
+            int.TryParse(pVillage[3], out _y);
+            int.TryParse(pVillage[5], out _points);
+            int.TryParse(pVillage[4], out _playerId);
             int bonus;
             int.TryParse(pVillage[6], out bonus);
             Bonus = (BonusType)bonus;
-            _Kingdom = (int)(Math.Floor((double)X / 100) + 10 * Math.Floor((double)Y / 100));
-            _location = new Point(_X, _Y);
+            _kingdom = (int)(Math.Floor((double)X / 100) + 10 * Math.Floor((double)Y / 100));
+            _location = new Point(_x, _y);
         }
         #endregion
 
@@ -429,9 +424,9 @@ namespace TribalWars.Data.Villages
         /// </summary>
         /// <param name="v1">Start village</param>
         /// <param name="v2">End village</param>
-        /// <param name="Unit">Unit which speed will be used</param>
+        /// <param name="unit">Unit which speed will be used</param>
         /// <returns>Required TimeSpan for a one way trip</returns>
-        public static TimeSpan TravelTime(Village v1, Village v2, Unit Unit)
+        public static TimeSpan TravelTime(Village v1, Village v2, Unit unit)
         {
             Point start = v1.Location;
             Point end = v2.Location;
@@ -440,7 +435,7 @@ namespace TribalWars.Data.Villages
             int y = start.Y - end.Y;
 
             double distance = Math.Sqrt(x * x + y * y);
-            int secs = (int)Math.Round(distance * Unit.Speed * 60);
+            var secs = (int)Math.Round(distance * unit.Speed * 60);
             return new TimeSpan(0, 0, secs);
         }
 
@@ -467,7 +462,7 @@ namespace TribalWars.Data.Villages
         public bool Equals(Village other)
         {
             if ((object)other == null) return false;
-            return (_X == other._X && _Y == other._Y);
+            return (_x == other._x && _y == other._y);
         }
 
         public override int GetHashCode()
@@ -512,7 +507,7 @@ namespace TribalWars.Data.Villages
             #region IComparer<Village> Members
             public int Compare(Village x, Village y)
             {
-                return x.Name.CompareTo(y.Name);
+                return String.Compare(x.Name, y.Name, StringComparison.Ordinal);
             }
             #endregion
         }

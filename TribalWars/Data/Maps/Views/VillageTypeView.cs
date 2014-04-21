@@ -1,9 +1,8 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-
+using System.Linq;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Villages;
 using TribalWars.Tools;
@@ -17,41 +16,36 @@ namespace TribalWars.Data.Maps.Views
     public class VillageTypeView : ViewBase
     {
         #region Fields
-        private Dictionary<VillageType, DrawerData> _cache;
-        private VillageType[] _importance;
+        private readonly Dictionary<VillageType, DrawerData> _cache;
+        private readonly VillageType[] _importance;
         #endregion
 
         #region Constructors
         public VillageTypeView(string name)
-            : base(name, Types.Points, Categories.Background)
+            : base(name, Types.VillageType, Categories.Decorator)
         {
             _cache = new Dictionary<VillageType, DrawerData>();
-            _importance = new VillageType[] {VillageType.Attack, VillageType.Defense, VillageType.Scout, VillageType.Farm };
+            _importance = new[] {VillageType.Attack, VillageType.Defense, VillageType.Scout, VillageType.Farm };
         }
         #endregion
 
         #region Public Methods
         public override DrawerData GetDrawer(Village village)
         {
-            DrawerData data = null;
+            DrawerData data;
             if (!_cache.TryGetValue(village.Type, out data))
             {
                 // When there are combined village types, we take the most important one
-                for (int i = 0; i < _importance.Length; i++)
+                data = _importance.Where(t => village.Type.HasFlag(t)).Select(t => _cache[t]).FirstOrDefault();
+                if (data != null)
                 {
-                    if ((village.Type & _importance[i]) == _importance[i])
-                    {
-                        data = _cache[_importance[i]];
-                        i = _importance.Length + 1;
-                    }
+                    data = new DrawerData(data.ShapeDrawer, data.IconDrawer, data.ExtraDrawerInfo, village.Type);
                 }
-
-                if (data == null)
+                else
                 {
-                    if ((village.Type & VillageType.Noble) == VillageType.Noble || (village.Type & VillageType.Comments) == VillageType.Comments)
+                    if (village.Type.HasFlag(VillageType.Noble) || village.Type.HasFlag(VillageType.Comments))
                         data = new DrawerData(null, null, null, village.Type);
                 }
-                else data = new DrawerData(data.ShapeDrawer, data.IconDrawer, data.ExtraDrawerInfo, village.Type);
                 _cache.Add(village.Type, data);
             }
             return data;

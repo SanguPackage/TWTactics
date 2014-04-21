@@ -60,7 +60,7 @@ namespace TribalWars.Data.Villages
         [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(12)]
         public string Points
         {
-            get { return Village._Points.ToString("#,0"); }
+            get { return Village.Points.ToString("#,0"); }
             set { }
         }
 

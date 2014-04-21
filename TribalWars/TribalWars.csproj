@@ -318,11 +318,10 @@
     <Compile Include="Data\Events\TribesEventArgs.cs" />
     <Compile Include="Data\Maps\Drawers\IDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\BorderDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\EllipseDrawer.cs" />
+    <Compile Include="Data\Maps\Drawers\VillageDrawers\ShapeDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconOrientation.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\RectangleDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\XDrawer.cs" />
     <Compile Include="Data\Maps\Icons\Background.Designer.cs">
@@ -366,7 +365,6 @@
     <Compile Include="Data\Maps\Display.cs" />
     <Compile Include="Data\Maps\Publisher.cs" />
     <Compile Include="Data\Maps\Views\Categories.cs" />
-    <Compile Include="Data\Maps\Views\DefenseView.cs" />
     <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
     <Compile Include="Data\Maps\Displays\IconDisplay.cs" />
     <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
@@ -374,7 +372,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Maps\Views\MarkView.cs" />
     <Compile Include="Data\Maps\Displays\ShapeDisplay.cs" />
     <Compile Include="Data\Maps\Views\Types.cs" />
     <Compile Include="Data\Maps\Views\ViewBase.cs" />

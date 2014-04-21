@@ -15,6 +15,18 @@ namespace TribalWars.Data.Maps.Drawers
     /// </remarks>
     public class DrawerBase : IDrawer
     {
+        #region Construction
+        private static readonly DrawerBase NullDrawer = new DrawerBase();
+
+        /// <summary>
+        /// Creates a NullObject drawer (ie doesn't do anything:)
+        /// </summary>
+        public static DrawerBase CreateEmptyDrawer()
+        {
+            return NullDrawer;
+        }
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Paints non village related stuff

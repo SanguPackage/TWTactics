@@ -1,5 +1,6 @@
 #region Using
-
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Data.Maps.Displays;
 
@@ -8,32 +9,26 @@ using TribalWars.Data.Maps.Displays;
 namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 {
     /// <summary>
-    /// Draws a border around a rectangle or
-    /// ellipse drawer
+    /// Draws a border around a ShapeDrawer
     /// </summary>
     public class BorderDrawer : DrawerBase
     {
         #region Fields
+        private static readonly Action<Graphics, Pen, int, int, int, int> EllipseDrawer = (g, pen, x, y, width, height) => g.DrawEllipse(pen, x, y, width, height);
+        private static readonly Action<Graphics, Pen, int, int, int, int> RectangleDrawer = (g, pen, x, y, width, height) => g.DrawRectangle(pen, x, y, width, height);
 
         private readonly ShapeDisplay.Shapes _shape;
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the pen the border gets drawn with
-        /// </summary>
-        public Pen Pen { get; private set; }
-
+        private readonly Pen _pen1;
+        private readonly Pen _pen3;
         #endregion
 
         #region Constructors
         public BorderDrawer(Color color, ShapeDisplay.Shapes shape)
         {
-            // TODO: borderdrawer doesn't really work does it?
-            // A border gets drawn but not as it should be
-            Pen = new Pen(color, 3);
-            Pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            _pen3 = new Pen(color, 3);
+            _pen1 = new Pen(color, 1);
+            _pen3.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            _pen1.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
             _shape = shape;
         }
         #endregion
@@ -44,10 +39,15 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
         {
-            if (_shape == ShapeDisplay.Shapes.EllipseDrawer)
-                g.DrawEllipse(Pen, x, y, width, height);
-            else
-                g.DrawRectangle(Pen, x, y, width, height);
+            if (width > ShapeDrawer.InnerShapeTreshold)
+            {
+                Pen pen;
+                if (width < 15) pen = _pen1;
+                else pen = _pen3;
+
+                var drawShape = _shape == ShapeDisplay.Shapes.EllipseDrawer ? EllipseDrawer : RectangleDrawer;
+                drawShape(g, pen, x, y, width, height);
+            }
         }
 
         /// <summary>
@@ -55,7 +55,8 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// </summary>
         public override void Dispose(bool disposing)
         {
-            Pen.Dispose();
+            _pen1.Dispose();
+            _pen3.Dispose();
         }
         #endregion
     }

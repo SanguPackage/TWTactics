@@ -251,7 +251,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// Save comments
         /// </summary>
-        private void Comments_Leave(object sender, EventArgs e)
+        private void Comments_TextChanged(object sender, EventArgs e)
         {
             _current.Village.Comments = Comments.Text;
         }

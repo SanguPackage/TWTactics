@@ -55,16 +55,10 @@
       <Drawer Type="RectangleDrawer" Icon="bbarbarian6" Value="99999" />
     </View>
     <View Category="Decorator" Type="VillageType" Name="VillageType">
-      <Drawer Type="BorderDrawer" Icon="Attack" ExtraValue="Black" Value="1" />
+      <Drawer Type="BorderDrawer" Icon="Attack" ExtraValue="Yellow" Value="1" />
       <Drawer Type="BorderDrawer" Icon="Defense" ExtraValue="White" Value="2" />
       <Drawer Type="BorderDrawer" Icon="Scout" ExtraValue="Transparant" Value="8" />
       <Drawer Type="BorderDrawer" Icon="Farm" ExtraValue="Transparant" Value="16" />
-    </View>
-    <View Category="Decorator" Type="Defense" Name="Defense">
-      <Drawer Type="BorderDrawer" Icon="defense1" Value="10000" ExtraValue="Green" />
-      <Drawer Type="BorderDrawer" Icon="defense2" Value="30000" ExtraValue="Yellow" />
-      <Drawer Type="BorderDrawer" Icon="defense3" Value="50000" ExtraValue="Orange" />
-      <Drawer Type="BorderDrawer" Icon="defense4" Value="99999" ExtraValue="Red" />
     </View>
   </Views>
 	<Buildings>

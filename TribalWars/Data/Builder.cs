@@ -253,12 +253,9 @@ namespace TribalWars.Data
                     return new PointsView(name);
                 case Types.VillageType:
                     return new VillageTypeView(name);
-                case Types.Defense:
-                    return new DefenseView(name);
-                case Types.Marked:
-                    return new MarkView(name);
             }
 
+            Debug.Assert(false);
             return null;
         }
 
@@ -372,9 +369,6 @@ namespace TribalWars.Data
             ReadView(r); // pointsbonus
             ReadView(r); // pointsabandonedbonus
             ReadView(r); // type
-            //ReadView(r); // comment
-            //ReadView(r); // noble
-            ReadView(r); // defense
             r.ReadEndElement();
 
             r.ReadStartElement();
