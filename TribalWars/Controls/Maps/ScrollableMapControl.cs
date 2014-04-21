@@ -18,14 +18,10 @@ namespace TribalWars.Controls.Maps
         #region Fields
         protected Map Map;
         private readonly ToolTip _villageToolTipControl;
+        private readonly Timer _timer;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the timercontrol for animated painting
-        /// </summary>
-        public Timer Timer { get; private set; }
-
         /// <summary>
         /// Gets the width of the canvas
         /// </summary>
@@ -41,14 +37,6 @@ namespace TribalWars.Controls.Maps
         {
             get { return ClientRectangle.Height; }
         }
-
-        /// <summary>
-        /// Gets the size of the canvas
-        /// </summary>
-        public Rectangle PictureRectangle
-        {
-            get { return ClientRectangle; }
-        }
         #endregion
 
         #region Constructors
@@ -58,14 +46,15 @@ namespace TribalWars.Controls.Maps
             _villageToolTipControl = new ToolTip();
             _villageToolTipControl.Active = true;
             _villageToolTipControl.IsBalloon = true;
+
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.UserPaint, true);
 
-            Timer = new Timer();
-            Timer.Enabled = false;
-            Timer.Interval = 10;
-            Timer.Tick += Timer_Tick;
+            _timer = new Timer();
+            _timer.Enabled = false;
+            _timer.Interval = 10;
+            _timer.Tick += Timer_Tick;
             
         }
         #endregion
@@ -99,39 +88,6 @@ namespace TribalWars.Controls.Maps
             if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down) return true;
             return base.IsInputKey(keyData);
         }
-
-        //protected override bool ProcessCmdKey(ref Message m, Keys keyData)
-        //{
-        //    bool blnProcess = false;
-
-        //    if (keyData == Keys.Right || Keys.Down)
-        //    {
-        //        // Process the keystroke
-        //        blnProcess = true;
-        //    }
-        //    else if (keyData == Keys.Left || Keys.Up)
-        //    {
-        //        // Process the keystroke
-        //        blnProcess = true;
-        //    }
-
-        //    if (blnProcess == true)
-        //        return true;
-        //    else
-        //        return base.ProcessCmdKey(ref m, keyData);
-        //}
-
-        /*protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-            Debug.Print("OnGotFocus");
-        }
-
-        protected override void OnLostFocus(EventArgs e)
-        {
-            base.OnLostFocus(e);
-            Debug.Print("OnLostFocus");
-        }*/
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -186,7 +142,7 @@ namespace TribalWars.Controls.Maps
                 Invalidate();
             }
         }
-
+       
         protected override void OnPaint(PaintEventArgs e)
         {
             if (!Visible || DesignMode || !World.Default.HasLoaded || Map == null)
@@ -245,7 +201,7 @@ namespace TribalWars.Controls.Maps
             Map = map;
             Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
-            Timer.Enabled = true;
+            _timer.Enabled = true;
         }
 
         /// <summary>

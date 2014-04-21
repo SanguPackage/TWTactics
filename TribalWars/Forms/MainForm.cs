@@ -27,10 +27,6 @@ namespace TribalWars.Forms
         {
             InitializeComponent();
 
-            //this.SetStyle(ControlStyles.DoubleBuffer, true);
-            //this.SetStyle(ControlStyles.UserPaint, true);
-            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-
             _locationChanger = new ToolStripLocationChangerControl();
             ToolStrip.Items.Add(_locationChanger);
 
