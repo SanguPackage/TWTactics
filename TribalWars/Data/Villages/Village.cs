@@ -45,6 +45,8 @@ namespace TribalWars.Data.Villages
 
         private VillageReportCollection _reports;
         private string _comments;
+        private string _name;
+        private BonusType _bonus;
         #endregion
 
         #region Properties
@@ -87,7 +89,11 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets or sets the current name of the village
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
 
         /// <summary>
         /// Gets the location of the village
@@ -122,7 +128,11 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets the bonusvillage type
         /// </summary>
-        public BonusType Bonus { get; private set; }
+        public BonusType Bonus
+        {
+            get { return _bonus; }
+            private set { _bonus = value; }
+        }
 
         /// <summary>
         /// Gets the Tribal Wars Database ID of the village
@@ -329,14 +339,12 @@ namespace TribalWars.Data.Villages
         {
             // $id, $name, $x, $y, $tribe, $points, $rank
             int.TryParse(pVillage[0], out _id);
-            Name = System.Web.HttpUtility.HtmlDecode(System.Web.HttpUtility.UrlDecode(pVillage[1]));
-            int.TryParse(pVillage[2], out _x);
-            int.TryParse(pVillage[3], out _y);
-            int.TryParse(pVillage[5], out _points);
-            int.TryParse(pVillage[4], out _playerId);
-            int bonus;
-            int.TryParse(pVillage[6], out bonus);
-            Bonus = (BonusType)bonus;
+            _name = System.Web.HttpUtility.UrlDecode(pVillage[1]);
+            _x = int.Parse(pVillage[2]);
+            _y = int.Parse(pVillage[3]);
+            _points = int.Parse(pVillage[5]);
+            _playerId = int.Parse(pVillage[4]);
+            _bonus = (BonusType)int.Parse(pVillage[6]);
             _kingdom = (int)(Math.Floor((double)X / 100) + 10 * Math.Floor((double)Y / 100));
             _location = new Point(_x, _y);
         }
