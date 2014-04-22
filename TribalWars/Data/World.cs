@@ -409,6 +409,7 @@ namespace TribalWars.Data
         {
             Map.Display.ResetCache();
             Map.Control.Invalidate();
+            //MiniMap.Display.ResetCache(); // comment out to also redraw the minimap
             MiniMap.Control.Invalidate();
         }
         #endregion
