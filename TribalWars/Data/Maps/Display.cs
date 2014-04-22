@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Drawing;
 using TribalWars.Data.Tribes;
@@ -13,10 +14,6 @@ using TribalWars.Data.Maps.Displays;
 namespace TribalWars.Data.Maps
 {
     // TODO: we zaten hier:
-    // de rec param is hier mss al wat we zoeken?
-
-    // roep functie DrawContinentLines 2x op
-    // enkel de correcte lijnen tonen
 
     // cachen van topmost, bottommost villages
     // als alle dorpen zichtbaar zijn kan alles gecached worden
@@ -113,7 +110,7 @@ namespace TribalWars.Data.Maps
         }
         #endregion
 
-        #region Public Methods
+        #region Reset Cache
         private void EventPublisher_LocationChanged(object sender, Events.MapLocationEventArgs e)
         {
             // TODO: also need to call this on resize probably?
@@ -121,10 +118,18 @@ namespace TribalWars.Data.Maps
             // TODO: if there is some overlap between e.NewLocation and e.OldLocation
             // redraw only the new part of the background and move the rest
             // keep a _drawnRectangle variable that represents the drawn part of the background
-
-
-
-            _background = null;
+            if (e.OldLocation != null)
+            {
+                Debug.Assert(e.OldLocation != e.NewLocation);
+                if (e.OldLocation.Zoom != e.NewLocation.Zoom)
+                {
+                    _background = null;
+                }
+                else
+                {
+                    _background = null;
+                }
+            }
         }
 
         /// <summary>
@@ -141,214 +146,13 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void ResetCache()
         {
+            // TODO: all calls to this one need to be evaluated
+            //       for some we can probably do a partial redraw
             _background = null;
         }
+        #endregion
 
-        private class Painter
-        {
-            private readonly Bitmap _canvas;
-            private readonly Graphics _g;
-            private readonly Location _currentLocation;
-            private readonly Location _prevLocation;
-            private readonly Rectangle _toPaint;
-            private readonly Rectangle _visibleGameRectangle;
-
-            private readonly int _villageWidth;
-            private readonly int _villageHeight;
-            private readonly int _villageWidthSpacing;
-            private readonly int _villageHeightSpacing;
-
-            private readonly Display _display;
-
-            public Painter(Display display, Rectangle mapSize, Location loc)
-            {
-                _display = display;
-                _canvas = new Bitmap(mapSize.Width, mapSize.Height);
-                _g = Graphics.FromImage(_canvas);
-                _g.FillRectangle(display._backgroundBrush, _toPaint);
-                _currentLocation = loc;
-
-                Point gameTopLeft = display.GetGameLocation(mapSize.Location);
-                Point gameBottomRight = display.GetGameLocation(mapSize.Width, mapSize.Height);
-                _visibleGameRectangle = new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
-
-                // Also draw villages that are only partially visible at left/top
-                Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
-                mapSize.Offset(mapOffset);
-                _toPaint = mapSize;
-
-                DisplayBase displayType = display.DisplayManager.CurrentDisplay;
-                int zoom = loc.Zoom;
-                _villageWidthSpacing = displayType.GetVillageWidthSpacing(zoom);
-                _villageHeightSpacing = displayType.GetVillageHeightSpacing(zoom);
-
-                _villageWidth = displayType.GetVillageWidth(zoom);
-                _villageHeight = displayType.GetVillageHeight(zoom);
-
-                DrawVillages();
-                DrawContinentLines();
-            }
-
-            private void DrawContinentLines()
-            {
-                //Horizontal
-                DrawContinentLines(_toPaint.Top, _toPaint.Width, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing, true, _toPaint.Left, _toPaint.Height, _visibleGameRectangle.X, _visibleGameRectangle.Right);
-
-                // Vertical
-                DrawContinentLines(_toPaint.Left, _toPaint.Height, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing, false, _toPaint.Top, _toPaint.Width, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom);
-            }
-
-            private void DrawContinentLines(int mapMin, int mapMax, int gameMin, int gameMax, int villageSize, bool isHorizontal, int otherMapMin, int otherMapMax, int otherGameMin, int otherGameMax)
-            {
-                const int provinceWidth = 5;
-                const int continentWidth = 100;
-
-                if (_villageWidthSpacing > 4)
-                {
-                    DrawContinentLine(_display._provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax);
-                }
-
-                DrawContinentLine(_display._continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax);
-
-                //int mapStart = mapMin - (gameMin % provinceWidth) * villageSize;
-                //int gameStart = gameMin - (gameMin % provinceWidth);
-                //for (int gameY = gameStart; gameY <= gameMax; gameY += 100)
-                //{
-                //    Debug.Assert(gameY >= 0);
-                //    Debug.Assert(gameY <= 1000);
-
-                //    if (isHorizontal) _g.DrawLine(_display._continentPen, 0, mapStart, mapMax, mapStart);
-                //    else _g.DrawLine(_display._continentPen, mapStart, 0, mapStart, mapMax);
-
-                //    mapStart += villageSize * 100;
-                //}
-
-                //int map = mapMin - (gameMin % gridOffset) * villageSize;
-                //for (int gameY = gameMin - (gameMin % gridOffset); gameY <= gameMax; gameY += gridOffset)
-                //{
-                //    Debug.Assert(gameY >= 0);
-                //    Debug.Assert(gameY <= 1000);
-
-                //    Pen pen = null;
-                //    if (gameY % 100 == 0)
-                //    {
-                //        pen = _display._continentPen;
-                //    }
-                //    else if (_villageWidthSpacing > 4)
-                //    {
-                //        pen = _display._provincePen;
-                //    }
-                //    if (pen != null)
-                //    {
-                //        if (isHorizontal) _g.DrawLine(pen, 0, map, mapMax, map);
-                //        else _g.DrawLine(pen, map, 0, map, mapMax);
-                //    }
-                //    map += villageSize * gridOffset;
-                //}
-
-                //    if (gameY >= 0 && gameY <= 1000)
-            }
-
-            private void DrawContinentLine(Pen pen, int mapMin, int mapMax, int gameMin, int gameMax, int villageSize, bool isHorizontal, int sizeBetweeLines, int otherMapMin, int otherMapMax, int otherGameMin, int otherGameMax)
-            {
-                int mapStart = mapMin - (gameMin % sizeBetweeLines) * villageSize;
-                int gameStart = gameMin - (gameMin % sizeBetweeLines);
-                if (gameStart < 0)
-                {
-                    mapStart += villageSize * gameStart * -1;
-                    gameStart = 0;
-                }
-                if (gameMax > 1000)
-                {
-                    //mapMax -= villageSize * (gameMax - 1000);
-                    //gameMax = 1000;
-                }
-
-                //mapMax = mapStart + 1000 * villageSize;
-
-                //int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
-                //int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
-                //if (otherGameStart < 0)
-                //{
-                //    otherMapStart += villageSize * otherGameStart * -1;
-                //    otherGameStart = 0;
-                //}
-                //if (otherGameMax > 1000)
-                //{
-                //    otherMapMax += villageSize * (otherGameMax - 1000);
-                //    otherGameMax = 1000;
-                //}
-
-
-                int map = mapStart;
-                for (int game = gameStart; game <= Math.Min(1000, gameMax); game += sizeBetweeLines)
-                {
-                    Debug.Assert(game >= 0);
-                    Debug.Assert(game <= 1000);
-
-                    if (isHorizontal)
-                    {
-                        int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
-                        int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
-                        if (otherGameStart < 0)
-                        {
-                            otherMapStart += villageSize * otherGameStart * -1;
-                            otherGameStart = 0;
-                        }
-                        var diff = Math.Min(1000, otherGameMax);
-                        var theEnd = otherMapStart + (villageSize * diff * villageSize);
-
-                        _g.DrawLine(pen, otherMapStart, map, theEnd, map);
-                    }
-                    else
-                    {
-                        int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
-                        int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
-                        if (otherGameStart < 0)
-                        {
-                            otherMapStart += villageSize * otherGameStart * -1;
-                            otherGameStart = 0;
-                        }
-                        var diff = Math.Min(1000, otherGameMax);
-                        var theEnd = otherMapStart + (villageSize * diff * villageSize);
-                        
-                        _g.DrawLine(pen, map, otherMapStart, map, theEnd);
-                    }
-
-                    map += villageSize * sizeBetweeLines;
-                }
-            }
-
-            private void DrawVillages()
-            {
-                int mapX = _toPaint.Left;
-                int mapY = _toPaint.Top;
-
-                int gameY = _visibleGameRectangle.Y;
-
-                for (int yMap = mapY; yMap <= _toPaint.Height; yMap += _villageHeightSpacing)
-                {
-                    int gameX = _visibleGameRectangle.X;
-                    for (int xMap = mapX; xMap <= _toPaint.Width; xMap += _villageWidthSpacing)
-                    {
-                        _display.DisplayManager.Paint(_g, new Point(gameX, gameY), xMap, yMap, _villageWidth, _villageHeight);
-                        gameX += 1;
-                    }
-                    gameY += 1;
-                }
-            }
-
-            public Rectangle GetVisibleGameRectangle()
-            {
-                return _visibleGameRectangle;
-            }
-
-            public Bitmap GetBitmap()
-            {
-                return _canvas;
-            }
-        }
-
+        #region Painting
         /// <summary>
         /// Paints the canvas
         /// </summary>
@@ -365,9 +169,36 @@ namespace TribalWars.Data.Maps
                 Debug.Assert(rec == fullMap);
                 Debug.Assert(fullMap == new Rectangle(new Point(0, 0), _map.Control.Size));
 
-                var painter = new Painter(this, fullMap, _map.Location);
+                //var mapParts = new Rectangle[2];
+                //mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
+                //mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
+
+                ////var painter1 = new Painter(this, mapParts[0], _map.Location.Zoom);
+                //var painter2 = new Painter(this, mapParts[1], _map.Location.Zoom);
+
+                //var canvas = new Bitmap(fullMap.Width, fullMap.Height);
+                //Graphics graphics = Graphics.FromImage(canvas);
+                ////graphics.DrawImageUnscaled(painter1.GetBitmap(), mapParts[0]);
+                //graphics.DrawImageUnscaled(painter2.GetBitmap(), mapParts[1]);
+
+                //_background = canvas;
+                ////_visibleRectangle = Rectangle.Union(painter1.GetVisibleGameRectangle(), painter2.GetVisibleGameRectangle());
+                //_visibleRectangle = painter2.GetVisibleGameRectangle();
+
+                // Normal way: 1sec on zoom 1
+                var painter = new Painter(this, fullMap, _map.Location.Zoom);
                 _background = painter.GetBitmap();
                 _visibleRectangle = painter.GetVisibleGameRectangle();
+
+                timing.Stop();
+                Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                
+                #region THA OLD CODE
+                //timing.Restart();
+                // x1: 0.6 secs
+
+                // THIS IS THE OLD CODE:
+                // Use it to see if we've slowed things down or not...
 
                 //_background = new Bitmap(_map.Control.PictureWidth, _map.Control.PictureHeight);
                 //Graphics g = Graphics.FromImage(_background);
@@ -388,7 +219,7 @@ namespace TribalWars.Data.Maps
                 //int villageWidth = displayType.GetVillageWidth(zoom);
                 //int villageHeight = displayType.GetVillageHeight(zoom);
 
-                // Draw villages
+                //// Draw villages
                 //int mapX = fullMap.Left + xOffset;
                 //mapY = fullMap.Top + yOffset;
                 //if (false)
@@ -419,13 +250,12 @@ namespace TribalWars.Data.Maps
                 //        {
                 //            DisplayManager.Paint(g, new Point(gameX, gameY), xMap, yMap, villageWidth, villageHeight);
                 //            gameX += 1;
-                //            villagesDrawed++;
                 //        }
                 //        gameY += 1;
                 //    }
                 //}
 
-                // Horizontal continent lines
+                ////// Horizontal continent lines
                 //int gridOffset = 5;
                 //mapY = fullMap.Top + yOffset - (gameTopLeft.Y % gridOffset) * height;
                 ////for (int gameY = _visibleRectangle.Y - (_visibleRectangle.Y % gridOffset); gameY <= _visibleRectangle.Height; gameY += gridOffset)
@@ -442,7 +272,7 @@ namespace TribalWars.Data.Maps
                 //}
 
                 //// Vertical continent lines
-                //int mapX = fullMap.Left + xOffset - (gameTopLeft.X % gridOffset) * width;
+                //mapX = fullMap.Left + xOffset - (gameTopLeft.X % gridOffset) * width;
                 //for (int gameX = gameTopLeft.X - (gameTopLeft.X % gridOffset); gameX <= gameBottomRight.X; gameX += gridOffset)
                 //{
                 //    if (gameX > 0 && gameX < 1000)
@@ -454,14 +284,177 @@ namespace TribalWars.Data.Maps
                 //    }
                 //    mapX += width * gridOffset;
                 //}
-
-                timing.Stop();
-                Debug.WriteLine("Painting:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds);
+                //timing.Stop();
+                //Debug.WriteLine("Painting OLD:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                #endregion
 
                 g2.DrawImageUnscaled(_background, 0, 0);
             }
         }
 
+        /// <summary>
+        /// Pains the villages and continent/province lines on a canvas
+        /// </summary>
+        private class Painter
+        {
+            #region Fields
+            private readonly Bitmap _canvas;
+            private readonly Graphics _g;
+            private readonly Rectangle _toPaint;
+            private readonly Rectangle _visibleGameRectangle;
+
+            private readonly int _villageWidth;
+            private readonly int _villageHeight;
+            private readonly int _villageWidthSpacing;
+            private readonly int _villageHeightSpacing;
+
+            private readonly Display _display;
+            #endregion
+
+            #region Constructor
+            public Painter(Display display, Rectangle mapSize, int zoom)
+            {
+                _display = display;
+                _canvas = new Bitmap(mapSize.Width, mapSize.Height);
+                _g = Graphics.FromImage(_canvas);
+                _g.FillRectangle(display._backgroundBrush, _toPaint);
+
+                Point gameTopLeft = display.GetGameLocation(mapSize.Location);
+                Point gameBottomRight = display.GetGameLocation(mapSize.Location.X + mapSize.Width, mapSize.Y + mapSize.Height);
+                _visibleGameRectangle = new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
+
+                // Also draw villages that are only partially visible at left/top
+                Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
+                mapSize.Offset(mapOffset);
+                _toPaint = mapSize;
+
+                DisplayBase displayType = display.DisplayManager.CurrentDisplay;
+                _villageWidthSpacing = displayType.GetVillageWidthSpacing(zoom);
+                _villageHeightSpacing = displayType.GetVillageHeightSpacing(zoom);
+
+                _villageWidth = displayType.GetVillageWidth(zoom);
+                _villageHeight = displayType.GetVillageHeight(zoom);
+
+                DrawVillages();
+                DrawContinentLines();
+            }
+            #endregion
+
+            #region Villages
+            private void DrawVillages()
+            {
+                int mapX = _toPaint.Left;
+                int mapY = _toPaint.Top;
+
+                int gameY = _visibleGameRectangle.Y;
+
+                for (int yMap = mapY; yMap <= _toPaint.Height; yMap += _villageHeightSpacing)
+                {
+                    int gameX = _visibleGameRectangle.X;
+                    for (int xMap = mapX; xMap <= _toPaint.Width; xMap += _villageWidthSpacing)
+                    {
+                        _display.DisplayManager.Paint(_g, new Point(gameX, gameY), xMap, yMap, _villageWidth, _villageHeight);
+                        gameX += 1;
+                    }
+                    gameY += 1;
+                }
+            }
+            #endregion
+
+            #region Continent Lines
+            private void DrawContinentLines()
+            {
+                //Horizontal
+                DrawContinentLines(_toPaint.Top, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing, true, _toPaint.Left, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing);
+
+                // Vertical
+                DrawContinentLines(_toPaint.Left, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing, false, _toPaint.Top, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing);
+            }
+
+            /// <summary>
+            /// Draws all horizontal or vertical continent lines (and province lines if required).
+            /// </summary>
+            /// <remarks>
+            /// For horizontal lines: map/gameXXX params are the VERTICALS coordinates. otherMap/gameXXX are then the horizontals.
+            /// For vertical lines: map/gameXXX params are the HORIZONTAL coordinates.
+            /// </remarks>
+            private void DrawContinentLines(int mapMin, int gameMin, int gameMax, int villageSize, bool isHorizontal, int otherMapMin, int otherGameMin, int otherGameMax, int otherVillageSize)
+            {
+                const int provinceWidth = 5;
+                const int continentWidth = 100;
+
+                if (_villageWidthSpacing > 4)
+                {
+                    DrawContinentLine(_display._provincePen, mapMin, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherGameMin, otherGameMax, otherVillageSize);
+                }
+
+                DrawContinentLine(_display._continentPen, mapMin, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherGameMin, otherGameMax, otherVillageSize);
+            }
+
+            private void DrawContinentLine(Pen pen, int mapMin, int gameMin, int gameMax, int villageSize, bool isHorizontal, int sizeBetweeLines, int otherMapMin, int otherGameMin, int otherGameMax, int otherVillageSize)
+            {
+                int mapStart = mapMin - (gameMin % sizeBetweeLines) * villageSize;
+                int gameStart = gameMin - (gameMin % sizeBetweeLines);
+                if (gameStart < 0)
+                {
+                    mapStart += villageSize * gameStart * -1;
+                    gameStart = 0;
+                }
+                if (gameMax > 1000)
+                {
+                    gameMax = 1000;
+                }
+
+                int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
+                int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
+                if (otherGameStart < 0)
+                {
+                    otherMapStart += villageSize * otherGameStart * -1;
+                }
+                var diff = Math.Min(1000, otherGameMax);
+                var theEnd = otherMapStart + (villageSize * diff * otherVillageSize);
+
+                int map = mapStart;
+                for (int game = gameStart; game <= gameMax; game += sizeBetweeLines)
+                {
+                    Debug.Assert(game >= 0);
+                    Debug.Assert(game <= 1000);
+
+                    if (isHorizontal)
+                    {
+                        _g.DrawLine(pen, otherMapStart, map, theEnd, map);
+                    }
+                    else
+                    {
+                        _g.DrawLine(pen, map, otherMapStart, map, theEnd);
+                    }
+
+                    map += villageSize * sizeBetweeLines;
+                }
+            }
+            #endregion
+
+            #region Public Methods
+            /// <summary>
+            /// Gets the game rectangle representing what is drawn on the map
+            /// </summary>
+            public Rectangle GetVisibleGameRectangle()
+            {
+                return _visibleGameRectangle;
+            }
+
+            /// <summary>
+            /// Gets the canvas with all villages drawn to it
+            /// </summary>
+            public Bitmap GetBitmap()
+            {
+                return _canvas;
+            }
+            #endregion
+        }
+        #endregion
+
+        #region IsVisible
         /// <summary>
         /// Gets a value indicating whether a tribe is currently visible
         /// </summary>
