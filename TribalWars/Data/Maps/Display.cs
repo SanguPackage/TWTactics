@@ -12,6 +12,21 @@ using TribalWars.Data.Maps.Displays;
 
 namespace TribalWars.Data.Maps
 {
+    // TODO: we zaten hier:
+    // de rec param is hier mss al wat we zoeken?
+
+    // roep functie DrawContinentLines 2x op
+    // enkel de correcte lijnen tonen
+
+    // cachen van topmost, bottommost villages
+    // als alle dorpen zichtbaar zijn kan alles gecached worden
+
+    // de beforeLocation vergelijken met de huidige
+    // bij overlap daarvan starten
+
+    //private Tuple<Rectangle, Bitmap>[]
+    // -> cache entire world for each zoom it's possible for
+
     /// <summary>
     /// Manages the painting of a TW map
     /// </summary>
@@ -246,7 +261,7 @@ namespace TribalWars.Data.Maps
                 if (gameMax > 1000)
                 {
                     //mapMax -= villageSize * (gameMax - 1000);
-                    gameMax = 1000;
+                    //gameMax = 1000;
                 }
 
                 //mapMax = mapStart + 1000 * villageSize;
@@ -266,20 +281,38 @@ namespace TribalWars.Data.Maps
 
 
                 int map = mapStart;
-                for (int game = gameStart; game <= gameMax; game += sizeBetweeLines)
+                for (int game = gameStart; game <= Math.Min(1000, gameMax); game += sizeBetweeLines)
                 {
                     Debug.Assert(game >= 0);
                     Debug.Assert(game <= 1000);
 
                     if (isHorizontal)
                     {
-                        //_g.DrawLine(pen, otherMapStart, map, mapMax, map);
-                        _g.DrawLine(pen, 0, map, mapMax, map);
+                        int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
+                        int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
+                        if (otherGameStart < 0)
+                        {
+                            otherMapStart += villageSize * otherGameStart * -1;
+                            otherGameStart = 0;
+                        }
+                        var diff = Math.Min(1000, otherGameMax);
+                        var theEnd = otherMapStart + (villageSize * diff * villageSize);
+
+                        _g.DrawLine(pen, otherMapStart, map, theEnd, map);
                     }
                     else
                     {
-                        //_g.DrawLine(pen, map, otherMapStart, map, mapMax);
-                        _g.DrawLine(pen, map, 0, map, mapMax);
+                        int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
+                        int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
+                        if (otherGameStart < 0)
+                        {
+                            otherMapStart += villageSize * otherGameStart * -1;
+                            otherGameStart = 0;
+                        }
+                        var diff = Math.Min(1000, otherGameMax);
+                        var theEnd = otherMapStart + (villageSize * diff * villageSize);
+                        
+                        _g.DrawLine(pen, map, otherMapStart, map, theEnd);
                     }
 
                     map += villageSize * sizeBetweeLines;
@@ -355,22 +388,42 @@ namespace TribalWars.Data.Maps
                 //int villageWidth = displayType.GetVillageWidth(zoom);
                 //int villageHeight = displayType.GetVillageHeight(zoom);
 
-                //Graphics g = painter._g;
-
-                // TODO: we zaten hier:
-                // de rec param is hier mss al wat we zoeken?
-
-                // roep functie DrawContinentLines 2x op
-                // enkel de correcte lijnen tonen
-
-                // cachen van topmost, bottommost villages
-                // als alle dorpen zichtbaar zijn kan alles gecached worden
-
-                // de beforeLocation vergelijken met de huidige
-                // bij overlap daarvan starten
-
-                //private Tuple<Rectangle, Bitmap>[]
-                // -> cache entire world for each zoom it's possible for
+                // Draw villages
+                //int mapX = fullMap.Left + xOffset;
+                //mapY = fullMap.Top + yOffset;
+                //if (false)
+                //{
+                //    // Different way to loop over the villages
+                //    // timing is pretty much the same...
+                //    /*for (int gameY = gameTopLeft.Y; gameY <= gameBottomRight.Y; gameY++)
+                //    {
+                //        mapX = fullMap.Left + xOffset;
+                //        for (int gameX = gameTopLeft.X; gameX <= gameBottomRight.X; gameX++)
+                //        {
+                //            _viewManager.Paint(g, new Point(gameX, gameY), mapX, mapY, villageWidth, villageHeight);
+                //            mapX += width;
+                //            villagesDrawed++;
+                //        }
+                //        mapY += height;
+                //    }*/
+                //}
+                //else
+                //{
+                //    int gameX = 0;
+                //    int gameY = gameTopLeft.Y;
+                //    g.FillRectangle(_backgroundBrush, fullMap);
+                //    for (int yMap = mapY; yMap <= fullMap.Bottom; yMap += height)
+                //    {
+                //        gameX = gameTopLeft.X;
+                //        for (int xMap = mapX; xMap <= fullMap.Right; xMap += width)
+                //        {
+                //            DisplayManager.Paint(g, new Point(gameX, gameY), xMap, yMap, villageWidth, villageHeight);
+                //            gameX += 1;
+                //            villagesDrawed++;
+                //        }
+                //        gameY += 1;
+                //    }
+                //}
 
                 // Horizontal continent lines
                 //int gridOffset = 5;
