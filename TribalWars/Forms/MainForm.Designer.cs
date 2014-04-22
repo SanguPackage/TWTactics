@@ -282,7 +282,7 @@ namespace TribalWars.Forms
             // ServerTimeTimer
             // 
             this.ServerTimeTimer.Enabled = true;
-            this.ServerTimeTimer.Interval = 1;
+            this.ServerTimeTimer.Interval = 1000;
             this.ServerTimeTimer.Tick += new System.EventHandler(this.ServerTimeTimer_Tick);
             // 
             // VillageTooltip
