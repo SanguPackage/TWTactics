@@ -15,7 +15,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Create and cache ShapeDrawers
     /// </summary>
-    public class ShapeDisplay : DisplayBase
+    public sealed class ShapeDisplay : DisplayBase
     {
         #region Enums
         /// <summary>

@@ -8,7 +8,7 @@ namespace TribalWars.Data.Maps.Drawers
     /// Holds the data for creating a DrawerBase
     /// for any DisplayType
     /// </summary>
-    public class DrawerData
+    public sealed class DrawerData
     {
         #region Properties
         /// <summary>

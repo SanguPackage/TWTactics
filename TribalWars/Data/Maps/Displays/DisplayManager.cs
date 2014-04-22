@@ -1,6 +1,7 @@
 #region Using
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 
 using TribalWars.Data.Maps.Drawers;
@@ -20,7 +21,7 @@ namespace TribalWars.Data.Maps.Displays
     /// Currently the <see cref="DisplayManager"/> allows us to switch between
     /// Shape and Icon displays
     /// </remarks>
-    public class DisplayManager
+    public sealed class DisplayManager
     {
         #region Fields
         private readonly Map _map;
@@ -77,6 +78,11 @@ namespace TribalWars.Data.Maps.Displays
         /// <param name="height">The height of the village</param>
         public void Paint(Graphics g, Point game, int mapX, int mapY, int width, int height)
         {
+            Debug.Assert(game.X > 0);
+            Debug.Assert(game.X < 1000);
+            Debug.Assert(game.Y > 0);
+            Debug.Assert(game.Y < 1000);
+
             /*if (game.X == 411 && game.Y == 448)
             {
                 // with decorator

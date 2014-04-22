@@ -10,7 +10,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
     /// <summary>
     /// Draws a village bitmap with
     /// </summary>
-    public class IconDrawer : DrawerBase
+    public sealed class IconDrawer : DrawerBase
     {
         #region Properties
         /// <summary>

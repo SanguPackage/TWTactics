@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
     /// Draws an extra icon (Attack, Defense, ...)
     /// on an existing village bitmap
     /// </summary>
-    public class IconDrawerDecorator : DrawerBase
+    public sealed class IconDrawerDecorator : DrawerBase
     {
         #region Fields
         private readonly Bitmap _bitmap;

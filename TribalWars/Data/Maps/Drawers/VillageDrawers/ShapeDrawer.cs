@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
     /// <summary>
     /// Draws village ellipses with optional extra marking
     /// </summary>
-    public class ShapeDrawer : DrawerBase
+    public sealed class ShapeDrawer : DrawerBase
     {
         #region Fields
         /// <summary>

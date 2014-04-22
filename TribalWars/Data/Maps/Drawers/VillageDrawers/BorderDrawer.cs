@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
     /// <summary>
     /// Draws a border around a ShapeDrawer
     /// </summary>
-    public class BorderDrawer : DrawerBase
+    public sealed class BorderDrawer : DrawerBase
     {
         #region Fields
         private static readonly Action<Graphics, Pen, int, int, int, int> EllipseDrawer = (g, pen, x, y, width, height) => g.DrawEllipse(pen, x, y, width, height);

@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps.Markers
     /// <summary>
     /// Represents a named collection of Player, Tribe and VillageMarkers
     /// </summary>
-    public class MarkerGroup : IEquatable<MarkerGroup>
+    public sealed class MarkerGroup : IEquatable<MarkerGroup>
     {
         #region Properties
         /// <summary>

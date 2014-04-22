@@ -20,7 +20,7 @@ namespace TribalWars.Data.Maps
     /// <summary>
     /// Representation of a TW map
     /// </summary>
-    public class Map
+    public sealed class Map
     {
         #region Properties
         /// <summary>

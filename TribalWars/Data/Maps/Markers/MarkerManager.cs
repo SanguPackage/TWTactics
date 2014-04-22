@@ -12,7 +12,7 @@ namespace TribalWars.Data.Maps.Markers
     /// <summary>
     /// Contains all markers on a map
     /// </summary>
-    public class MarkerManager
+    public sealed class MarkerManager
     {
         #region Properties
         /// <summary>

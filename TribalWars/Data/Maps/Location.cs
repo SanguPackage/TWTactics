@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps
     /// <summary>
     /// Represents the view on a map
     /// </summary>
-    public class Location : IEquatable<Location>
+    public sealed class Location : IEquatable<Location>
     {
         #region Events
         #endregion

@@ -469,6 +469,7 @@ namespace TribalWars.Data.Villages
 
         public bool Equals(Village other)
         {
+            //if (Object.ReferenceEquals(other, null)) return false;
             if ((object)other == null) return false;
             return (_x == other._x && _y == other._y);
         }

@@ -17,7 +17,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Create and cache IconDrawers
     /// </summary>
-    public class IconDisplay : DisplayBase
+    public sealed class IconDisplay : DisplayBase
     {
         #region Fields
         public const int StandardIconWidth = 53;

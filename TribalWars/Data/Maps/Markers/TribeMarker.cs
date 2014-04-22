@@ -12,7 +12,7 @@ namespace TribalWars.Data.Maps.Markers
     /// <summary>
     /// Defines a TW Tribe to be marked on a map
     /// </summary>
-    public class TribeMarker : MarkerBase
+    public sealed class TribeMarker : MarkerBase
     {
         #region Fields
         private Tribe _tribe;

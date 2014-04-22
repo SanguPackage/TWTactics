@@ -13,7 +13,7 @@ namespace TribalWars.Data.Maps.Views
     /// <summary>
     /// Display villages based on the amount of points
     /// </summary>
-    public class PointsView : ViewBase
+    public sealed class PointsView : ViewBase
     {
         #region Constructors
         public PointsView(string name)

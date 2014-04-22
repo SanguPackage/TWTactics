@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TribalWars.Data.Maps.Displays
 {
-    public class MiniMapDisplay : DisplayBase
+    public sealed class MiniMapDisplay : DisplayBase
     {
         #region Fields
         private const int FixedZoomLevel = 3;

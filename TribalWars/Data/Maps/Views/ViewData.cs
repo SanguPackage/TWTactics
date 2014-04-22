@@ -9,7 +9,7 @@ namespace TribalWars.Data.Maps.Views
     /// <summary>
     /// Holds the data connected to a DrawerBase
     /// </summary>
-    public class ViewData
+    public sealed class ViewData
     {
         #region Properties
         /// <summary>
