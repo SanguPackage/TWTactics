@@ -1,4 +1,5 @@
 #region Using
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -101,13 +102,13 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         public bool Add(int x, int y)
         {
             Point last = List.Last.Value;
-            int distance = (x - last.X)*(x - last.X) + (y - last.Y)*(y - last.Y);
+            Point current = GetPoint(x, y);
+            double distance = Math.Pow(current.X - last.X, 2) + Math.Pow(current.Y - last.Y, 2);
             if (distance > _minOffset)
             {
-                Point game = GetPoint(x, y);
-                if (game != last || !_differentVillage)
+                if (current != last || !_differentVillage)
                 {
-                    List.AddLast(game);
+                    List.AddLast(current);
                     return true;
                 }
             }
