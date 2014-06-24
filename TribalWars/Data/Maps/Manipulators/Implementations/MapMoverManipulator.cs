@@ -1,4 +1,6 @@
 #region Using
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
@@ -13,9 +15,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// </summary>
     internal class MapMoverManipulator : ManipulatorBase
     {
-        #region Fields
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets or sets a value whether the map can be moved
@@ -113,6 +112,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
+            // TODO: looks like this if is never true. And that this is implemented by MapDraggerManipulator
             if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && RightClickToMove) ||
                 (e.MouseEventArgs.Button == MouseButtons.Left && LeftClickToMove))
             {
