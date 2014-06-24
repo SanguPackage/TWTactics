@@ -522,11 +522,95 @@ namespace TribalWars.Data
         #endregion
 
         #region WorldVillagesCollection
+        ///// <summary>
+        ///// Contains all the villages in the world
+        ///// </summary>
+        ///// <remarks>Making an int, Village appear as a Point, Village collection for increased performance</remarks>
+        //public sealed class WorldVillagesCollection
+        //{
+        //    #region Fields
+        //    //private readonly Dictionary<int, Village> _v;
+        //    private readonly Village[] _v;
+        //    #endregion
+
+        //    #region Constructors
+        //    public WorldVillagesCollection()
+        //    {
+        //        //_v = new Dictionary<int, Village>();
+        //        _v = new Village[1000000];
+        //    }
+
+        //    public WorldVillagesCollection(int x)
+        //    {
+        //        //_v = new Dictionary<int, Village>(x);
+        //        _v = new Village[1000000];
+        //    }
+        //    #endregion
+
+        //    #region Public Methods
+        //    /// <summary>
+        //    /// Checks if there is a village
+        //    /// </summary>
+        //    public bool ContainsKey(Point p)
+        //    {
+        //        //return _v.ContainsKey(C(p));
+        //        return _v[C(p)] != null;
+        //    }
+
+        //    /// <summary>
+        //    /// Tries to get a village from the given location
+        //    /// </summary>
+        //    public bool TryGetValue(Point p, out Village value)
+        //    {
+        //        //return _v.TryGetValue(C(p), out value);
+        //        value = _v[C(p)];
+        //        return value != null;
+        //    }
+
+        //    /// <summary>
+        //    /// Gets one village
+        //    /// </summary>
+        //    public Village this[Point p]
+        //    {
+        //        get { return _v[C(p)]; }
+        //    }
+
+        //    /// <summary>
+        //    /// Gets all villages
+        //    /// </summary>
+        //    public IEnumerable<Village> Values
+        //    {
+        //        //get { return _v.Values; }
+        //        get { return _v; }
+        //    }
+
+        //    /// <summary>
+        //    /// Adds a village
+        //    /// </summary>
+        //    public void Add(Point p, Village v)
+        //    {
+        //        //_v.Add(C(p), v);
+        //        _v[C(p)] = v;
+        //    }
+        //    #endregion
+
+        //    #region Private Methods
+        //    private static int C(Point p)
+        //    {
+        //        return p.X * 1000 + p.Y;
+        //    }
+        //    private static int C(int x, int y)
+        //    {
+        //        return x * 1000 + y;
+        //    }
+        //    #endregion
+        //}
+
         /// <summary>
         /// Contains all the villages in the world
         /// </summary>
         /// <remarks>Making an int, Village appear as a Point, Village collection for increased performance</remarks>
-        public class WorldVillagesCollection
+        public sealed class WorldVillagesCollection
         {
             #region Fields
             private readonly Dictionary<int, Village> _v;
@@ -550,7 +634,7 @@ namespace TribalWars.Data
             /// </summary>
             public bool ContainsKey(Point p)
             {
-                return _v.ContainsKey(c(p));
+                return _v.ContainsKey(C(p));
             }
 
             /// <summary>
@@ -558,7 +642,7 @@ namespace TribalWars.Data
             /// </summary>
             public bool TryGetValue(Point p, out Village value)
             {
-                return _v.TryGetValue(c(p), out value);
+                return _v.TryGetValue(C(p), out value);
             }
 
             /// <summary>
@@ -566,7 +650,7 @@ namespace TribalWars.Data
             /// </summary>
             public Village this[Point p]
             {
-                get { return _v[c(p)]; }
+                get { return _v[C(p)]; }
             }
 
             /// <summary>
@@ -582,14 +666,18 @@ namespace TribalWars.Data
             /// </summary>
             public void Add(Point p, Village v)
             {
-                _v.Add(c(p), v);
+                _v.Add(C(p), v);
             }
             #endregion
 
             #region Private Methods
-            private int c(Point p)
+            private static int C(Point p)
             {
-                return p.X*1000 + p.Y;
+                return p.X * 1000 + p.Y;
+            }
+            private static int C(int x, int y)
+            {
+                return x * 1000 + y;
             }
             #endregion
         }
