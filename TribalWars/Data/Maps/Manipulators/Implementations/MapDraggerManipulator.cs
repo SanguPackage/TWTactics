@@ -1,4 +1,6 @@
 #region Using
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Managers;
@@ -39,7 +41,12 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             int x = first.X - last.X;
             int y = first.Y - last.Y;
 
-            _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
+            var game = new Location(current.X + x, current.Y + y, current.Zoom);
+            var dist = Math.Pow(game.X - _map.Location.X, 2) + Math.Pow(game.Y - _map.Location.Y, 2);
+            if (dist > 1)
+            {
+                _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
+            }
         }
 
         /// <summary>
