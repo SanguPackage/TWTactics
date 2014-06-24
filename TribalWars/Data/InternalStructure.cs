@@ -26,7 +26,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Handles the Path and files stuff for the World type
         /// </summary>
-        public class InternalStructure
+        public sealed class InternalStructure
         {
             #region Constants
 
@@ -552,7 +552,10 @@ namespace TribalWars.Data
                             players[player.Name.ToUpper()].AddVillage(village);
                         }
 
-                        villages.Add(new Point(village.X, village.Y), village);
+                        if (village.Location.IsValidGameCoordinate())
+                        {
+                            villages.Add(new Point(village.X, village.Y), village);
+                        }
                     }
                 }
                 else
@@ -664,6 +667,7 @@ namespace TribalWars.Data
 
                 invoker.EndInvoke(ar);
 
+                //MessageBox.Show("yaye");
                 World.Default.EventPublisher.InformMonitoringLoaded(null);
             }
             #endregion
