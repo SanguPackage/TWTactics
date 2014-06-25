@@ -62,6 +62,14 @@ namespace TribalWars.Data.Maps
         /// Gets the map UserControl
         /// </summary>
         public ScrollableMapControl Control { get; private set; }
+
+        /// <summary>
+        /// Only after a map was painted, start reacting to events etc
+        /// </summary>
+        public bool HasPainted
+        {
+            get { return Location != null; }
+        }
         #endregion
 
         #region Constructors

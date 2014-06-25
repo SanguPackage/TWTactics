@@ -37,6 +37,15 @@ namespace TribalWars.Controls.Maps
         {
             get { return ClientRectangle.Height; }
         }
+
+        /// <summary>
+        /// Do we need to call the manipulators on ControlEvents
+        /// or has no world been selected yet?
+        /// </summary>
+        private bool IsManipulatable
+        {
+            get { return Visible && Map.HasPainted; }
+        }
         #endregion
 
         #region Constructors
@@ -63,7 +72,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (Visible && Map != null && Map.Manipulators.KeyDown(e, this))
+            if (IsManipulatable && Map.Manipulators.KeyDown(e, this))
             {
                 Invalidate();
             }
@@ -72,7 +81,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyUp(KeyEventArgs e)
         {
             base.OnKeyUp(e);
-            if (Visible && Map != null && Map.Manipulators.KeyUp(e, this))
+            if (IsManipulatable && Map.Manipulators.KeyUp(e, this))
             {
                 Invalidate();
             }
@@ -92,10 +101,13 @@ namespace TribalWars.Controls.Maps
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (Visible && Map != null && Map.Manipulators.MouseDown(e, village, this))
+            if (IsManipulatable)
             {
-                Invalidate();
+                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                if (Map.Manipulators.MouseDown(e, village, this))
+                {
+                    Invalidate();
+                }
             }
             GiveFocus();
         }
@@ -117,7 +129,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (Visible && Map != null && Map.Manipulators.MouseMove(e, this, _villageToolTipControl))
+            if (IsManipulatable && Map.Manipulators.MouseMove(e, this, _villageToolTipControl))
             {
                 Invalidate();
             }
@@ -126,20 +138,26 @@ namespace TribalWars.Controls.Maps
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (Visible && Map != null && Map.Manipulators.MouseUp(e, village, this))
+            if (IsManipulatable)
             {
-                Invalidate();
+                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                if (Map.Manipulators.MouseUp(e, village, this))
+                {
+                    Invalidate();
+                }
             }
         }
 
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
             base.OnMouseDoubleClick(e);
-            Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
-            if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village, this))
+            if (IsManipulatable)
             {
-                Invalidate();
+                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village, this))
+                {
+                    Invalidate();
+                }
             }
         }
        
@@ -177,7 +195,6 @@ namespace TribalWars.Controls.Maps
             else
             {
                 Map.Manipulators.TimerPaint(this, ClientRectangle);
-                //this.Invalidate();
             }
         }
 
