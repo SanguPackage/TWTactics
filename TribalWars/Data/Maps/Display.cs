@@ -27,7 +27,7 @@ namespace TribalWars.Data.Maps
     /// <summary>
     /// Manages the painting of a TW map
     /// </summary>
-    public class Display
+    public sealed class Display
     {
         #region Fields
         private readonly Map _map;
@@ -160,10 +160,13 @@ namespace TribalWars.Data.Maps
         {
             if (_background != null)
             {
+                //Debug.WriteLine("passed for cache " + fullMap.ToString());
                 g2.DrawImageUnscaled(_background, 0, 0);
             }
             else
             {
+                //Debug.WriteLine("passed for Paint " + fullMap.ToString());
+
                 var timing = Stopwatch.StartNew();
 
                 Debug.Assert(rec == fullMap);
@@ -173,17 +176,20 @@ namespace TribalWars.Data.Maps
                 //mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
                 //mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
 
-                ////var painter1 = new Painter(this, mapParts[0], _map.Location.Zoom);
+                ////mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
+                ////mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
+
+                //var painter1 = new Painter(this, mapParts[0], _map.Location.Zoom);
                 //var painter2 = new Painter(this, mapParts[1], _map.Location.Zoom);
 
                 //var canvas = new Bitmap(fullMap.Width, fullMap.Height);
                 //Graphics graphics = Graphics.FromImage(canvas);
-                ////graphics.DrawImageUnscaled(painter1.GetBitmap(), mapParts[0]);
+                //graphics.DrawImageUnscaled(painter1.GetBitmap(), mapParts[0]);
                 //graphics.DrawImageUnscaled(painter2.GetBitmap(), mapParts[1]);
 
                 //_background = canvas;
-                ////_visibleRectangle = Rectangle.Union(painter1.GetVisibleGameRectangle(), painter2.GetVisibleGameRectangle());
-                //_visibleRectangle = painter2.GetVisibleGameRectangle();
+                //_visibleRectangle = Rectangle.Union(painter1.GetVisibleGameRectangle(), painter2.GetVisibleGameRectangle());
+                ////_visibleRectangle = painter2.GetVisibleGameRectangle();
 
                 // Normal way: 1sec on zoom 1
                 var painter = new Painter(this, fullMap, _map.Location.Zoom);
@@ -191,7 +197,7 @@ namespace TribalWars.Data.Maps
                 _visibleRectangle = painter.GetVisibleGameRectangle();
 
                 timing.Stop();
-                Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
                 
                 #region THA OLD CODE
                 //timing.Restart();
@@ -322,6 +328,8 @@ namespace TribalWars.Data.Maps
                 Point gameTopLeft = display.GetGameLocation(mapSize.Location);
                 Point gameBottomRight = display.GetGameLocation(mapSize.Location.X + mapSize.Width, mapSize.Y + mapSize.Height);
                 _visibleGameRectangle = new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
+                // TODO: calculate the best min/map coords here.
+                // _visibleGameRectangle is sometimes negative!!
 
                 // Also draw villages that are only partially visible at left/top
                 Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
