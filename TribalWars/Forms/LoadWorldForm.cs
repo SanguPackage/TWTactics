@@ -63,7 +63,7 @@ namespace TribalWars.Forms
 
                 // save last selected world
                 TribalWars.Properties.Settings.Default.LastWorld = path;
-                TribalWars.Properties.Settings.Default.LastSettings = settings + World.InternalStructure.SettingsExtensionString;
+                TribalWars.Properties.Settings.Default.LastSettings = settings;
                 TribalWars.Properties.Settings.Default.Save();
 
                 World.Default.LoadWorld(pathData, settings);
