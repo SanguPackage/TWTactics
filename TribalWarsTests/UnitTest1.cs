@@ -8,14 +8,12 @@ namespace TribalWarsTests
     [TestClass]
     public class UnitTest1
     {
-        private const string AvailableWorlds = "http://www.tribalwars.nl/backend/get_servers.php";
-
         [TestMethod]
-        public void TestMethod1()
+        public void DisplayManager()
         {
-            Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
-
             
         }
+
+        
     }
 }

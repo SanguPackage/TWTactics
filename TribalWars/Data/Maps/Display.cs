@@ -169,7 +169,8 @@ namespace TribalWars.Data.Maps
 
                 var timing = Stopwatch.StartNew();
 
-                Debug.Assert(rec == fullMap);
+                //Debug.Assert(rec == fullMap); // is not true on resizing
+
                 Debug.Assert(fullMap == new Rectangle(new Point(0, 0), _map.Control.Size));
 
                 //var mapParts = new Rectangle[2];
