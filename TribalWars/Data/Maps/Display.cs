@@ -374,71 +374,81 @@ namespace TribalWars.Data.Maps
             private void DrawContinentLines()
             {
                 //Horizontal
-                DrawContinentLines(_toPaint.Top, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing, true, _toPaint.Left, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing);
+                DrawContinentLines(_toPaint.Top, _toPaint.Bottom, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing, true, _toPaint.Left, _toPaint.Right, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing);
 
                 // Vertical
-                DrawContinentLines(_toPaint.Left, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing, false, _toPaint.Top, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing);
+                DrawContinentLines(_toPaint.Left, _toPaint.Right, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing, false, _toPaint.Top, _toPaint.Bottom, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing);
             }
 
             /// <summary>
             /// Draws all horizontal or vertical continent lines (and province lines if required).
             /// </summary>
             /// <remarks>
-            /// For horizontal lines: map/gameXXX params are the VERTICALS coordinates. otherMap/gameXXX are then the horizontals.
+            /// For horizontal lines: map/gameXXX params are the VERTICAL coordinates. otherMap/gameXXX are then the horizontals.
             /// For vertical lines: map/gameXXX params are the HORIZONTAL coordinates.
             /// </remarks>
-            private void DrawContinentLines(int mapMin, int gameMin, int gameMax, int villageSize, bool isHorizontal, int otherMapMin, int otherGameMin, int otherGameMax, int otherVillageSize)
+            private void DrawContinentLines(int mapMin, int mapMax, int gameMin, int gameMax, int villageSize, bool isHorizontal, int otherMapMin, int otherMapMax, int otherGameMin, int otherGameMax, int otherVillageSize)
             {
                 const int provinceWidth = 5;
                 const int continentWidth = 100;
 
                 if (_villageWidthSpacing > 4)
                 {
-                    DrawContinentLine(_display._provincePen, mapMin, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherGameMin, otherGameMax, otherVillageSize);
+                    // These are the province lines:
+                    DrawContinentLines(_display._provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
                 }
 
-                DrawContinentLine(_display._continentPen, mapMin, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherGameMin, otherGameMax, otherVillageSize);
+                DrawContinentLines(_display._continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
             }
 
-            private void DrawContinentLine(Pen pen, int mapMin, int gameMin, int gameMax, int villageSize, bool isHorizontal, int sizeBetweeLines, int otherMapMin, int otherGameMin, int otherGameMax, int otherVillageSize)
+            private void DrawContinentLines(Pen pen, int mapMin, int mapMax, int gameMin, int gameMax, int villageSize, bool isHorizontal, int sizeBetweenLines, int otherMapMin, int otherMapMax, int otherGameMin, int otherGameMax, int otherVillageSize)
             {
-                int mapStart = mapMin - (gameMin % sizeBetweeLines) * villageSize;
-                int gameStart = gameMin - (gameMin % sizeBetweeLines);
+                // Don't start the loop before the start of the world
+                int mapStart = mapMin - (gameMin % sizeBetweenLines) * villageSize;
+                int gameStart = gameMin - (gameMin % sizeBetweenLines);
                 if (gameStart < 0)
                 {
                     mapStart += villageSize * gameStart * -1;
                     gameStart = 0;
                 }
+
+                // Loop only until end of the world
                 if (gameMax > 1000)
                 {
                     gameMax = 1000;
                 }
 
-                int otherMapStart = otherMapMin - (otherGameMin % sizeBetweeLines) * villageSize;
-                int otherGameStart = otherGameMin - (otherGameMin % sizeBetweeLines);
+                // Don't draw before the start of the world
+                int otherMapStart = otherMapMin - (otherGameMin % sizeBetweenLines) * villageSize;
+                int otherGameStart = otherGameMin - (otherGameMin % sizeBetweenLines);
                 if (otherGameStart < 0)
                 {
                     otherMapStart += villageSize * otherGameStart * -1;
                 }
-                var diff = Math.Min(1000, otherGameMax);
-                var theEnd = otherMapStart + (villageSize * diff * otherVillageSize);
+
+                // Don't draw after the end of the world
+                int otherMapEnd = otherMapMax;
+                if (otherGameMax > 1000)
+                {
+                    otherMapEnd += otherVillageSize * (otherGameMax - 1000) * -1;
+                }
 
                 int map = mapStart;
-                for (int game = gameStart; game <= gameMax; game += sizeBetweeLines)
+                for (int game = gameStart; game <= gameMax; game += sizeBetweenLines)
                 {
                     Debug.Assert(game >= 0);
                     Debug.Assert(game <= 1000);
 
                     if (isHorizontal)
                     {
-                        _g.DrawLine(pen, otherMapStart, map, theEnd, map);
+                        _g.DrawLine(pen, otherMapStart, map, otherMapEnd, map);
                     }
                     else
                     {
-                        _g.DrawLine(pen, map, otherMapStart, map, theEnd);
+                        _g.DrawLine(pen, map, otherMapStart, map, otherMapEnd);
                     }
 
-                    map += villageSize * sizeBetweeLines;
+                    map += villageSize * sizeBetweenLines;
                 }
             }
             #endregion
