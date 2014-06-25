@@ -1,16 +1,21 @@
 #region Using
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Data.Events;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
+using TribalWars.Tools;
 
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
-    /// Adds some extra stuff to the minimap
+    /// Adds some extra stuff to the minimap:
+    /// - Active village(s)are X crossed
+    /// - Show rectangle visible on main map
+    /// - Draw the continent indicators
     /// </summary>
     public class MiniMapActiveVillageManipulator : ManipulatorBase
     {
@@ -47,16 +52,16 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (_mainMapSelectedVillage != null)
             {
-                TribalWars.Data.Players.Player player = _mainMapSelectedVillage.Player;
-                if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null &&
-                    _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer)
+                Players.Player player = _mainMapSelectedVillage.Player;
+                if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null && _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer)
+                {
                     player = _mainMapSelectedVillage.PreviousVillageDetails.Player;
+                }
+
                 if (player != null)
                 {
-                    int villageWidth =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
                     const int offset = 1;
 
                     foreach (Village village in player)
@@ -94,32 +99,36 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
             e.Graphics.DrawRectangle(_mainMapActiveBorderPen, _mainMapRectangle);
 
+            const int width = 40;
+            const int height = 35;
+            const int cOff = -5;
+
             // Draw the continent in the top right corner
             Point cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Right, e.FullMapRectangle.Top);
-            string continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
-
-            int width = 40;
-            int height = 35;
-            int cOff = -5;
-
-            e.Graphics.FillRectangle(Brushes.Black, e.FullMapRectangle.Right - width - cOff, -1, width, height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption,
-                                  e.FullMapRectangle.Right - width + 3, e.FullMapRectangle.Top - 2);
-
+            if (cPos.IsValidGameCoordinate())
+            {
+                string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
+                e.Graphics.FillRectangle(Brushes.Black, e.FullMapRectangle.Right - width - cOff, -1, width, height + cOff);
+                e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, e.FullMapRectangle.Right - width + 3, e.FullMapRectangle.Top - 2);
+            }
+            
             // Left top
             cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Top);
-            continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
-            e.Graphics.FillRectangle(Brushes.Black, cOff, -1, width, height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1,
-                                  cOff + 2);
+            if (cPos.IsValidGameCoordinate())
+            {
+                string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
+                e.Graphics.FillRectangle(Brushes.Black, cOff, -1, width, height + cOff);
+                e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, cOff + 2);
+            }
 
             // Left bottom
             cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Bottom);
-            continentNumber = cPos.Y.ToString().Substring(0, 1) + cPos.X.ToString().Substring(0, 1);
-            e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width,
-                                     height + cOff);
-            e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1,
-                                  e.FullMapRectangle.Bottom - height - cOff);
+            if (cPos.IsValidGameCoordinate())
+            {
+                string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
+                e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width, height + cOff);
+                e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, e.FullMapRectangle.Bottom - height - cOff);
+            }
         }
 
         /// <summary>
@@ -140,13 +149,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (sender != _map)
             {
-                CalculateActiveRectangle();
                 _mainMap.SetCenter(this, new Location(e.NewLocation, _mainMap.Location.Zoom));
                 _map.Control.Invalidate();
             }
             else
             {
-                CalculateActiveRectangle();
                 _map.Control.Invalidate();
             }
         }
@@ -165,25 +172,21 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > 100)
                 {
                     _map.SetCenter(e.NewLocation.X, e.NewLocation.Y, 1);
-                    CalculateActiveRectangle();
                     _map.Control.Invalidate();
                 }
                 else
                 {
-                    CalculateActiveRectangle();
                     _map.Control.Invalidate();
                 }
             }
             else
             {
-                CalculateActiveRectangle();
                 _map.Control.Invalidate();
             }
         }
 
         private void EventPublisher_MainMapDisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
         {
-            CalculateActiveRectangle();
             _map.Display.ResetCache();
             _map.Control.Invalidate();
         }
@@ -202,10 +205,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private int GetDistance(Location first, Location last)
         {
             return (first.X - last.X)*(first.X - last.X) + (first.Y - last.Y)*(first.Y - last.Y);
-        }
-
-        private void CalculateActiveRectangle()
-        {
         }
 
         public override void Dispose()

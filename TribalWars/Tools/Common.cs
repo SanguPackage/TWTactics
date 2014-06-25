@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.ComponentModel;
 using System.Collections;
@@ -23,6 +25,15 @@ namespace TribalWars.Tools
         public static bool IsValidGameCoordinate(this Point p)
         {
             return p.X > 0 && p.Y > 0 && p.X < 1000 && p.Y < 1000;
+        }
+
+        /// <summary>
+        /// Gets the kingdom the point is located in
+        /// </summary>
+        public static int Kingdom(this Point p)
+        {
+            Debug.Assert(p.IsValidGameCoordinate());
+            return (int) (Math.Floor((double) p.X / 100) + 10 * Math.Floor((double) p.Y / 100));
         }
         #endregion
 

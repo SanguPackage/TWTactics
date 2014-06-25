@@ -7,6 +7,7 @@ using TribalWars.Data.Players;
 using TribalWars.Data.Units;
 using TribalWars.Data.Reporting;
 using TribalWars.Data.Tribes;
+using TribalWars.Tools;
 
 namespace TribalWars.Data.Villages
 {
@@ -345,8 +346,11 @@ namespace TribalWars.Data.Villages
             _points = int.Parse(pVillage[5]);
             _playerId = int.Parse(pVillage[4]);
             _bonus = (BonusType)int.Parse(pVillage[6]);
-            _kingdom = (int)(Math.Floor((double)X / 100) + 10 * Math.Floor((double)Y / 100));
             _location = new Point(_x, _y);
+            if (_location.IsValidGameCoordinate())
+            {
+                _kingdom = _location.Kingdom();
+            }
         }
         #endregion
 
