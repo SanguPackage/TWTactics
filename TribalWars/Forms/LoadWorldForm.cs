@@ -11,6 +11,7 @@ namespace TribalWars.Forms
     {
         #region Fields
         private string[] _existingWorlds;
+        private string _lastSelectedWorld;
         #endregion
 
         #region Constants
@@ -73,13 +74,14 @@ namespace TribalWars.Forms
 
         private void Worlds_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            WorldSettings.Items.Clear();
             string pathSettings = FindSelectedWorldPath();
-            if (pathSettings.Length > 0)
+            if (pathSettings.Length > 0 && _lastSelectedWorld != pathSettings)
             {
+                _lastSelectedWorld = pathSettings;
                 pathSettings += World.InternalStructure.DirectorySettingsString + "\\";
 
                 // add all setting files
+                WorldSettings.Items.Clear();
                 foreach (string sets in Directory.GetFiles(pathSettings, "*" + World.InternalStructure.SettingsExtensionString))
                 {
                     string fileName = Path.GetFileNameWithoutExtension(sets);
@@ -92,13 +94,13 @@ namespace TribalWars.Forms
             }
         }
 
-        private void WorldSettings_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (WorldSettings.SelectedIndices.Count != 0)
-            {
-                ListViewItem itm = WorldSettings.SelectedItems[0];
-            }
-        }
+        //private void WorldSettings_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (WorldSettings.SelectedIndices.Count != 0)
+        //    {
+        //        ListViewItem itm = WorldSettings.SelectedItems[0];
+        //    }
+        //}
 
         private void btnNewWorld_Click(object sender, EventArgs e)
         {
