@@ -1,7 +1,7 @@
 <World>
 	<Server>http://www.TribalWars.nl</Server>
 	<Name>{WorldName}</Name>
-	<Offset>3600</Offset>
+	<Offset>0</Offset>
 	<Speed>{WorldSpeed}</Speed>
 	<UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
 	<Culture>nl-BE</Culture>

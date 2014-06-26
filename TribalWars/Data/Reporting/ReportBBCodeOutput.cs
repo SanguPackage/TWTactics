@@ -50,7 +50,7 @@ namespace TribalWars.Data.Reporting
             if (_report.ReportDate.HasValue)
             {
                 str.Append(Environment.NewLine);
-                TimeSpan span = DateTime.UtcNow.AddHours(1) - _report.ReportDate.Value;
+                TimeSpan span = World.Default.ServerTime - _report.ReportDate.Value;
                 if (span.TotalHours < 1) str.Append(string.Format("Date: {0}", _report.ReportDate.Value));
                 else str.Append(string.Format("Date: {0} ({1} hours ago)", _report.ReportDate.Value, Math.Round(span.TotalHours)));
             }
@@ -103,7 +103,7 @@ namespace TribalWars.Data.Reporting
             if (_report.ReportDate.HasValue)
             {
                 str.Append(Environment.NewLine);
-                TimeSpan span = DateTime.UtcNow.AddHours(1) - _report.ReportDate.Value;
+                TimeSpan span = World.Default.ServerTime - _report.ReportDate.Value;
                 if (span.TotalHours < 1) str.Append(string.Format("Date: {0}", _report.ReportDate.Value));
                 else str.Append(string.Format("Date: {0} ({1} hours ago)", _report.ReportDate.Value, Math.Round(span.TotalHours)));
             }

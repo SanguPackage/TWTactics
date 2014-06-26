@@ -7,13 +7,14 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Views;
-using TribalWars.Data.Monitoring;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
+using Monitor = TribalWars.Data.Monitoring.Monitor;
 
 #endregion
 
@@ -101,6 +102,10 @@ namespace TribalWars.Data
             set
             {
                 Translations.TWWords.Culture = value;
+
+                Thread.CurrentThread.CurrentCulture = value;
+                Thread.CurrentThread.CurrentUICulture = value;
+
                 _culture = value;
             }
         }
@@ -125,7 +130,7 @@ namespace TribalWars.Data
         /// </summary>
         public DateTime ServerTime
         {
-            get { return DateTime.UtcNow.Add(ServerOffset); }
+            get { return DateTime.Now.Add(ServerOffset); }
         }
 
         /// <summary>
