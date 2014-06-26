@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
@@ -17,7 +18,7 @@ namespace TribalWars.Forms
         #region Constants
         const int ImageWorld = 0;
         const int ImageData = 1;
-        const int ImageSettings = 2;
+        //const int ImageSettings = 2;
 
         const string PathDataWorldFormat = "yyyyMMddHH";
         const string PathDataWorldFormatShort = "yyyyMMdd";
@@ -35,9 +36,9 @@ namespace TribalWars.Forms
         {
             // Load last selected world
             FillTree();
-            if (Worlds.Nodes.ContainsKey(TribalWars.Properties.Settings.Default.LastWorld))
+            if (Worlds.Nodes.ContainsKey(Properties.Settings.Default.LastWorld))
             {
-                Worlds.SelectedNode = Worlds.Nodes[TribalWars.Properties.Settings.Default.LastWorld];
+                Worlds.SelectedNode = Worlds.Nodes[Properties.Settings.Default.LastWorld];
                 Worlds.SelectedNode.Expand();
             }
 
@@ -59,13 +60,13 @@ namespace TribalWars.Forms
                 string settings = World.InternalStructure.DefaultSettingsString;
                 if (WorldSettings.SelectedItems.Count == 1)
                 {
-                    settings = WorldSettings.SelectedItems[0].Tag.ToString() + World.InternalStructure.SettingsExtensionString;
+                    settings = WorldSettings.SelectedItems[0].Tag + World.InternalStructure.SettingsExtensionString;
                 }
 
                 // save last selected world
-                TribalWars.Properties.Settings.Default.LastWorld = path;
-                TribalWars.Properties.Settings.Default.LastSettings = settings;
-                TribalWars.Properties.Settings.Default.Save();
+                Properties.Settings.Default.LastWorld = path;
+                Properties.Settings.Default.LastSettings = settings;
+                Properties.Settings.Default.Save();
 
                 World.Default.LoadWorld(pathData, settings);
                 Close();
@@ -88,19 +89,11 @@ namespace TribalWars.Forms
                     var itm = new ListViewItem(fileName);
                     var fileInfo = new FileInfo(sets);
                     itm.Tag = fileName;
-                    itm.SubItems.Add(fileInfo.CreationTime.ToString());
+                    itm.SubItems.Add(fileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
                     WorldSettings.Items.Add(itm);
                 }
             }
         }
-
-        //private void WorldSettings_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (WorldSettings.SelectedIndices.Count != 0)
-        //    {
-        //        ListViewItem itm = WorldSettings.SelectedItems[0];
-        //    }
-        //}
 
         private void btnNewWorld_Click(object sender, EventArgs e)
         {
@@ -135,7 +128,8 @@ namespace TribalWars.Forms
             {
                 if (Worlds.SelectedNode.ImageIndex == ImageWorld)
                     return Worlds.SelectedNode.Name;
-                else if (Worlds.SelectedNode.ImageIndex == ImageData)
+
+                if (Worlds.SelectedNode.ImageIndex == ImageData)
                     return Worlds.SelectedNode.Parent.Name;
             }
 
@@ -156,29 +150,28 @@ namespace TribalWars.Forms
                 if (world.StartsWith(path, StringComparison.InvariantCultureIgnoreCase))
                 {
                     var worldInfo = new DirectoryInfo(world);
-                    TreeNode WorldNode = Worlds.Nodes.Add(world + @"\", worldInfo.Name, ImageWorld, ImageWorld);
+                    TreeNode worldNode = Worlds.Nodes.Add(world + @"\", worldInfo.Name, ImageWorld, ImageWorld);
                     if (Directory.Exists(pathData))
                     {
                         // add all data for selected world
-                        string[] worldSorted = Directory.GetDirectories(pathData);
-                        Array.Sort<string>(worldSorted, delegate(string l, string r) { return r.CompareTo(l); });
+                        IOrderedEnumerable<string> worldSorted = Directory.GetDirectories(pathData).OrderBy(x => x);
                         foreach (string dir in worldSorted)
                         {
                             if (World.InternalStructure.IsValidDataPath(dir))
                             {
                                 DateTime dirDate;
                                 var dirInfo = new DirectoryInfo(dir);
-                                if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dirDate))
+                                if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dirDate))
                                 {
-                                    WorldNode.Nodes.Add(dir + @"\", dirDate.ToString(), ImageData, ImageData);
+                                    worldNode.Nodes.Add(dir + @"\", PrintWorldDataDate(dirDate), ImageData, ImageData);
                                 }
-                                else if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormatShort, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dirDate))
+                                else if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormatShort, CultureInfo.InvariantCulture, DateTimeStyles.None, out dirDate))
                                 {
-                                    WorldNode.Nodes.Add(dir + @"\", dirDate.ToShortDateString(), ImageData, ImageData);
+                                    worldNode.Nodes.Add(dir + @"\", dirDate.ToShortDateString(), ImageData, ImageData);
                                 }
                                 else
                                 {
-                                    WorldNode.Nodes.Add(dir + @"\", dirInfo.Name, ImageData, ImageData);
+                                    worldNode.Nodes.Add(dir + @"\", dirInfo.Name, ImageData, ImageData);
                                 }
                             }
                         }
@@ -190,6 +183,11 @@ namespace TribalWars.Forms
             {
                 btnLoad.Enabled = false;
             }
+        }
+
+        private string PrintWorldDataDate(DateTime dt)
+        {
+            return string.Format("{0} at {1}h", dt.ToShortDateString(), dt.Hour);
         }
         #endregion
     }
