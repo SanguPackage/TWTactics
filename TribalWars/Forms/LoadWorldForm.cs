@@ -58,7 +58,7 @@ namespace TribalWars.Forms
                 string settings = World.InternalStructure.DefaultSettingsString;
                 if (WorldSettings.SelectedItems.Count == 1)
                 {
-                    settings = WorldSettings.SelectedItems[0].Tag.ToString();
+                    settings = WorldSettings.SelectedItems[0].Tag.ToString() + World.InternalStructure.SettingsExtensionString;
                 }
 
                 // save last selected world
