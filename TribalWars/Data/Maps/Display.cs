@@ -13,14 +13,8 @@ using TribalWars.Data.Maps.Displays;
 
 namespace TribalWars.Data.Maps
 {
-    // TODO: we zaten hier:
-
     // cachen van topmost, bottommost villages
     // als alle dorpen zichtbaar zijn kan alles gecached worden
-
-    // de beforeLocation vergelijken met de huidige
-    // bij overlap daarvan starten
-
     //private Tuple<Rectangle, Bitmap>[]
     // -> cache entire world for each zoom it's possible for
 
@@ -40,7 +34,7 @@ namespace TribalWars.Data.Maps
         private Color _backgroundColor;
 
         private Bitmap _background;
-        private Location _location;
+        private Painter _painter;
         #endregion
 
         #region Properties
@@ -170,9 +164,9 @@ namespace TribalWars.Data.Maps
                 var timing = Stopwatch.StartNew();
 
                 //Debug.Assert(rec == fullMap); // is not true on resizing
-
                 Debug.Assert(fullMap == new Rectangle(new Point(0, 0), _map.Control.Size));
 
+                #region Some attempt at concurrency
                 //var mapParts = new Rectangle[2];
                 //mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
                 //mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
@@ -191,11 +185,19 @@ namespace TribalWars.Data.Maps
                 //_background = canvas;
                 //_visibleRectangle = Rectangle.Union(painter1.GetVisibleGameRectangle(), painter2.GetVisibleGameRectangle());
                 ////_visibleRectangle = painter2.GetVisibleGameRectangle();
+                #endregion
 
                 // Normal way: 1sec on zoom 1
-                var painter = new Painter(this, fullMap, _map.Location.Zoom);
-                _background = painter.GetBitmap();
-                _visibleRectangle = painter.GetVisibleGameRectangle();
+                if (_painter == null || true)
+                {
+                    // TODO: we zaten hier:
+                    // also create new painter when the _map.Location.Zoom changes. 
+                    // also when we change DisplayType
+                    // factory method?
+                    _painter = new Painter(this, fullMap, _map.Location.Zoom);
+                }
+                _background = _painter.GetBitmap();
+                _visibleRectangle = _painter.GetVisibleGameRectangle();
 
                 timing.Stop();
                 //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
@@ -300,7 +302,7 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Pains the villages and continent/province lines on a canvas
+        /// Paints the villages and continent/province lines on a canvas
         /// </summary>
         private class Painter
         {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TribalWarsTests
@@ -10,18 +12,19 @@ namespace TribalWarsTests
     public class UnitTest1
     {
         [TestMethod]
-        public void IsInKingdom()
+        public void Display()
         {
-            IsInKingdom(1, new Point(1, 1));
-            IsInKingdom(1, new Point(560, 1));
+            DateTime standard = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Romance Standard Time");
+            DateTime summer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Romance Summer Time");
 
-            IsInKingdom(50, new Point(1, 560));
-        }
+            Console.WriteLine("DaylightName" + TimeZone.CurrentTimeZone.DaylightName); // Romance Summer Time
+            Console.WriteLine("StandardName" + TimeZone.CurrentTimeZone.StandardName); // Romance Standard Time
+            //Console.WriteLine("StandardName" + TimeZone.CurrentTimeZone.); // 
+    
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        private static void IsInKingdom(int expectedKingdom, Point gameLocation)
-        {
-            int kingdom = (int)(Math.Floor((double)gameLocation.X / 100) + 10 * Math.Floor((double)gameLocation.Y / 100));
-            Assert.AreEqual(expectedKingdom, kingdom);
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-BE");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-BE");
         }
     }
 }
