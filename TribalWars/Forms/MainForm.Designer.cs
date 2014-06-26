@@ -111,9 +111,9 @@ namespace TribalWars.Forms
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.Main.Polygon.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.monitoringControl1 = new TribalWars.Controls.Main.Monitoring.MonitoringControl();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -136,6 +136,7 @@ namespace TribalWars.Forms
             this.TabsBrowser.SuspendLayout();
             this.TabsParser.SuspendLayout();
             this.TabsPolygon.SuspendLayout();
+            this.TabsMonitoring.SuspendLayout();
             this.FormToolbarContainer.ContentPanel.SuspendLayout();
             this.FormToolbarContainer.TopToolStripPanel.SuspendLayout();
             this.FormToolbarContainer.SuspendLayout();
@@ -837,7 +838,7 @@ namespace TribalWars.Forms
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.TabsMap;
+            this.Tabs.InputFocusTab = this.TabsMonitoring;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.Size = new System.Drawing.Size(870, 609);
@@ -848,8 +849,7 @@ namespace TribalWars.Forms
             this.TabsBrowser,
             this.TabsParser,
             this.TabsPolygon,
-            this.TabsMonitoring,
-            this.uiTabPage1});
+            this.TabsMonitoring});
             // 
             // TabsMap
             // 
@@ -949,19 +949,12 @@ namespace TribalWars.Forms
             // 
             // TabsMonitoring
             // 
+            this.TabsMonitoring.Controls.Add(this.monitoringControl1);
             this.TabsMonitoring.Location = new System.Drawing.Point(1, 21);
             this.TabsMonitoring.Name = "TabsMonitoring";
             this.TabsMonitoring.Size = new System.Drawing.Size(866, 585);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
-            // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(866, 585);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "New Tab";
             // 
             // FormToolbarContainer
             // 
@@ -987,6 +980,16 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
+            // 
+            // monitoringControl1
+            // 
+            this.monitoringControl1.BackColor = System.Drawing.SystemColors.Control;
+            this.monitoringControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.monitoringControl1.Location = new System.Drawing.Point(0, 0);
+            this.monitoringControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.monitoringControl1.Name = "monitoringControl1";
+            this.monitoringControl1.Size = new System.Drawing.Size(866, 585);
+            this.monitoringControl1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -1028,6 +1031,7 @@ namespace TribalWars.Forms
             this.TabsBrowser.ResumeLayout(false);
             this.TabsParser.ResumeLayout(false);
             this.TabsPolygon.ResumeLayout(false);
+            this.TabsMonitoring.ResumeLayout(false);
             this.FormToolbarContainer.ContentPanel.ResumeLayout(false);
             this.FormToolbarContainer.TopToolStripPanel.ResumeLayout(false);
             this.FormToolbarContainer.TopToolStripPanel.PerformLayout();
@@ -1116,12 +1120,12 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripButton ToolStripPolygonManipulator;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private Ascend.Windows.Forms.NavigationPane LeftNavigation;
         private Controls.Accordeon.Details.DetailsControl detailsControl1;
         private Controls.Accordeon.Location.LocationControl locationControl1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem MenuMapSeeScreenshots;
+        private Controls.Main.Monitoring.MonitoringControl monitoringControl1;
     }
 }
 
