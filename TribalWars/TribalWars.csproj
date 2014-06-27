@@ -404,10 +404,6 @@
     <Compile Include="Data\Events\VillageEventArgs.cs" />
     <Compile Include="Data\Events\VillagesEventArgs.cs" />
     <Compile Include="Data\InternalStructure.cs" />
-    <Compile Include="Data\Monitoring\MonitorPlayer.cs" />
-    <Compile Include="Data\Monitoring\MonitorPlayerVillages.cs" />
-    <Compile Include="Data\Monitoring\MonitorVillage.cs" />
-    <Compile Include="Data\Monitoring\MonitorVillageCollection.cs" />
     <Compile Include="Data\Players\ExtendedPlayerDescriptor.cs" />
     <Compile Include="Data\Players\PlayerCollection.cs" />
     <Compile Include="Data\Players\PlayerPropertyDescriptor.cs" />

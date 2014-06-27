@@ -328,7 +328,7 @@ namespace TribalWars.Data
                 return false;
 
             Monitor = new Monitor();
-            Builder.ReadSettings(settingsFile, Map, MiniMap);
+            Builder.ReadSettings(settingsFile, Map, MiniMap, Monitor);
             SettingsName = settings;
 
             InvalidateMarkers();
@@ -365,7 +365,7 @@ namespace TribalWars.Data
         public void SaveSettings(string settingsName)
         {
             var sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + settingsName);
-            Builder.WriteSettings(sets, Map);
+            Builder.WriteSettings(sets, Map, Monitor);
 
             SettingsName = new FileInfo(settingsName).Name;
         }

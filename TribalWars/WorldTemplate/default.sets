@@ -6,7 +6,7 @@
   <MarkerGroup Name="Enemy" Enabled="True" Color="Red" ExtraColor="Transparent" View="Points" />
   <MarkerGroup Name="Abandoned" Enabled="True" Color="Olive" ExtraColor="Transparent" View="PointsAbandoned" />
  </You>
- <Monitor />
+ <Monitor X="1" Y="1" Width="1000" Height="1000" />
  <MainMap>
   <Location Display="Shape" XY="500|500" Zoom="6" />
   <Display BackgroundColor="Green">

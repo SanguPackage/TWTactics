@@ -83,7 +83,6 @@ namespace TribalWars.Controls.Main.Monitoring
         {
             if (e.Node.Tag != null)
             {
-                // Find all villages that lost points
                 FinderOptions options = CreateOption(e.Node.Tag.ToString());
                 Table.Display(options);
             }
@@ -170,7 +169,6 @@ namespace TribalWars.Controls.Main.Monitoring
         /// <summary>
         /// Sets the enablement of the previous date list
         /// </summary>
-        /// <param name="value"></param>
         private void SetPreviousDateEnablement(bool value)
         {
             if (!PreviousDateList.InvokeRequired)

@@ -10,6 +10,7 @@ using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Views;
 using TribalWars.Data.Maps.Markers;
+using TribalWars.Data.Monitoring;
 using TribalWars.Data.Players;
 using TribalWars.Data.Buildings;
 using TribalWars.Data.Units;
@@ -30,7 +31,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Builds the classes from a sets file 
         /// </summary>
-        public static void ReadSettings(FileInfo file, Map map, Map miniMap)
+        public static void ReadSettings(FileInfo file, Map map, Map miniMap, Monitor monitor)
         {
             Debug.Assert(file.Exists);
             
@@ -62,7 +63,7 @@ namespace TribalWars.Data
                 r.ReadEndElement();
 
                 // Monitor
-                r.Skip();
+                monitor.ReadXml(r);
 
                 // MainMap
                 r.ReadStartElement();
@@ -262,7 +263,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Write the settings file
         /// </summary>
-        public static void WriteSettings(FileInfo file, Map map)
+        public static void WriteSettings(FileInfo file, Map map, Monitor monitor)
         {
             var sets = new XmlWriterSettings();
             sets.Indent = true;
@@ -280,8 +281,7 @@ namespace TribalWars.Data
                 WriteMarkerGroup(w, map.MarkerManager.AbandonedMarker);
                 w.WriteEndElement();
 
-                w.WriteStartElement("Monitor");
-                w.WriteEndElement();
+                monitor.WriteXml(w);
 
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
