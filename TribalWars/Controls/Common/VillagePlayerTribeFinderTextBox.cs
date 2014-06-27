@@ -124,7 +124,6 @@ namespace TribalWars.Controls.Common
         {
             AllowVillage = true;
             Width = 50;
-            Text = string.Empty;
             _tooltip.Active = true;
             _tooltip.IsBalloon = true;
         }
@@ -198,6 +197,11 @@ namespace TribalWars.Controls.Common
                 {
                     _map.SetCenter(point.Value);
                 }
+            }
+            else
+            {
+                _tooltip.ToolTipTitle = string.Empty;
+                _tooltip.SetToolTip(this, GetEmptyTooltip());
             }
         }
         #endregion

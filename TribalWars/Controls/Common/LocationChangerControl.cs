@@ -20,9 +20,6 @@ namespace TribalWars.Controls.Common
         public LocationChangerControl()
         {
             InitializeComponent();
-            PlayerTribeFinderTextBox.AllowPlayer = true;
-            PlayerTribeFinderTextBox.AllowTribe = true;
-            PlayerTribeFinderTextBox.ShowButton = true;
         }
 
         public void Initialize(Map map)
@@ -32,10 +29,6 @@ namespace TribalWars.Controls.Common
             PlayerTribeFinderTextBox.Initialize(map);
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
-        #endregion
-
-        #region Properties
-        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox { get; private set; }
         #endregion
 
         #region Event Handlers

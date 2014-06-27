@@ -28,10 +28,12 @@ namespace TribalWars.Controls.Common
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeConverterCalculatorControl));
-            this.TimeConverter = new TimeConverterControl();
+            this.TimeConverter = new TribalWars.Controls.Common.TimeConverterControl();
             this.AddTime = new System.Windows.Forms.PictureBox();
             this.ToAdd = new System.Windows.Forms.DateTimePicker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.AddTime)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +59,7 @@ namespace TribalWars.Controls.Common
             this.AddTime.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.AddTime.TabIndex = 4;
             this.AddTime.TabStop = false;
+            this.toolTip1.SetToolTip(this.AddTime, "Add the time to the date");
             this.AddTime.Click += new System.EventHandler(this.AddTime_Click);
             // 
             // ToAdd
@@ -92,5 +95,6 @@ namespace TribalWars.Controls.Common
         private TimeConverterControl TimeConverter;
         private System.Windows.Forms.PictureBox AddTime;
         private System.Windows.Forms.DateTimePicker ToAdd;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

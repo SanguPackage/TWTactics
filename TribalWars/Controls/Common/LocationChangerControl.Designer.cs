@@ -28,15 +28,19 @@ namespace TribalWars.Controls.Common
         /// </summary>
         private void InitializeComponent()
         {
-            this.PlayerTribeFinderTextBox = new VillagePlayerTribeFinderTextBox();
+            this.components = new System.ComponentModel.Container();
+            this.PlayerTribeFinderTextBox = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
             this.ZoomControl = new Janus.Windows.GridEX.EditControls.IntegerUpDown();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // VillageTextBox
+            // PlayerTribeFinderTextBox
             // 
-            this.PlayerTribeFinderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.PlayerTribeFinderTextBox.AllowPlayer = true;
+            this.PlayerTribeFinderTextBox.AllowTribe = true;
+            this.PlayerTribeFinderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PlayerTribeFinderTextBox.BackColor = System.Drawing.Color.Red;
             this.PlayerTribeFinderTextBox.ButtonStyle = Janus.Windows.GridEX.EditControls.EditButtonStyle.TextButton;
             this.PlayerTribeFinderTextBox.ButtonText = "» OK «";
@@ -49,14 +53,15 @@ namespace TribalWars.Controls.Common
             // 
             // ZoomControl
             // 
-            this.ZoomControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZoomControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ZoomControl.Location = new System.Drawing.Point(183, 3);
             this.ZoomControl.Maximum = 50;
             this.ZoomControl.Minimum = 1;
             this.ZoomControl.Name = "ZoomControl";
             this.ZoomControl.Size = new System.Drawing.Size(36, 20);
             this.ZoomControl.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.ZoomControl, "Change map zoom level");
             this.ZoomControl.Value = 1;
             this.ZoomControl.ValueChanged += new System.EventHandler(this.ZoomControl_ValueChanged);
             // 
@@ -77,6 +82,8 @@ namespace TribalWars.Controls.Common
         #endregion
 
         private Janus.Windows.GridEX.EditControls.IntegerUpDown ZoomControl;
+        private VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox;
+        private System.Windows.Forms.ToolTip toolTip1;
 
     }
 }
