@@ -296,6 +296,17 @@ namespace TribalWars.Forms
                 World.Default.Map.GoHome();
             }
         }
+
+        private void ToolStripActiveRectangle_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                // TODO: we zaten hier
+                //World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+
+                //World.Default.Map.Manipulators.AddMouseMoved();
+            }
+        }
         #endregion
 
         #region Small functionality

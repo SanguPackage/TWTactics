@@ -23,14 +23,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region Fields
         private readonly Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> _manipulators;
 
-        // MouseMove Delegate move to the controller
-        // --> the controller makes sure only the necessary MouseMove, KeyDown etc methods are executed
-        // --> ScrollableMapControl executes the methods of the Controller
         private MouseMovedDelegate _mouseMoved;
-
-
-        // MapMoverManipulator: overrides SetFullControl for cursor
-        // BBCodeManipulator: implements stuff for contextmenu
         #endregion
 
         #region Properties
@@ -106,18 +99,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #endregion
 
         #region Public Methods
-        /*/// <summary>
-        /// Adds the delegate that will be executed when moving the mouse over the
-        /// map to all manipulatormanagers
-        /// </summary>
-        public void AddMouseMoved(DefaultManipulatorManager.MouseMovedDelegate mouseMoved)
-        {
-            foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
-            {
-                manipulator.AddMouseMoved(mouseMoved);
-            }
-        }*/
-
         /// <summary>
         /// Add a method that will be triggered each time the mouse
         /// moves over the map

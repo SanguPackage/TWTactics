@@ -19,6 +19,10 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// </summary>
     public class MiniMapActiveVillageManipulator : ManipulatorBase
     {
+        #region Constants
+        private const int CrossPaintOffset = 1;
+        #endregion
+
         #region Fields
         private readonly Map _mainMap;
         private Rectangle _mainMapRectangle;
@@ -27,7 +31,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly Pen _mainMapActiveBorderPen;
         private readonly Pen _mainMapSelectedVillagesPen;
         private readonly Font _continentFont;
+
+        private int _activeVillagePaintsCounter;
+        private Pen _activeVillageAnimationPen;
         private readonly Pen _activeVillagePen;
+        private readonly Pen _activeVillagePen2;
         #endregion
 
         #region Constructors
@@ -44,10 +52,28 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _mainMapSelectedVillagesPen = new Pen(Color.Black);
             _continentFont = new Font("Verdana", 18);
             _activeVillagePen = new Pen(Color.Black, 3);
+            _activeVillagePen2 = new Pen(Color.White, 3);
+            _activeVillageAnimationPen = _activeVillagePen;
         }
         #endregion
 
         #region Event Handlers
+        public override void TimerPaint(MapTimerPaintEventArgs e)
+        {
+            // Toggle marker of selected village
+            _activeVillagePaintsCounter++;
+            if (_mainMapSelectedVillage != null && _activeVillagePaintsCounter % 50 == 0)
+            {
+                int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+
+                Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.X, _mainMapSelectedVillage.Y);
+
+                _activeVillageAnimationPen = ReferenceEquals(_activeVillageAnimationPen, _activeVillagePen2) ? _activeVillagePen : _activeVillagePen2;
+                PaintCross(e.Graphics, _activeVillageAnimationPen, villageLocation, villageWidth, villageHeight);
+            }
+        }
+
         public override void Paint(MapPaintEventArgs e)
         {
             if (_mainMapSelectedVillage != null)
@@ -62,32 +88,18 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 {
                     int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
                     int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-                    const int offset = 1;
 
                     foreach (Village village in player)
                     {
-                        // Draw a cross for each village
                         Point villageLocation = _map.Display.GetMapLocation(village.X, village.Y);
-                        // left top to bottom right
+                        
                         Pen pen = _mainMapSelectedVillagesPen;
                         if (village == _mainMapSelectedVillage)
                         {
-                            pen = _activeVillagePen;
+                            pen = _activeVillagePen2;
                         }
 
-
-                        e.Graphics.DrawLine(pen,
-                                            villageLocation.X - offset,
-                                            villageLocation.Y - offset,
-                                            villageLocation.X + villageWidth + offset,
-                                            villageLocation.Y + villageHeight + offset);
-
-                        // top right to left bottom
-                        e.Graphics.DrawLine(pen,
-                                            villageLocation.X + villageWidth + offset,
-                                            villageLocation.Y - offset,
-                                            villageLocation.X - offset,
-                                            villageLocation.Y + villageHeight + offset);
+                        PaintCross(e.Graphics, pen, villageLocation, villageWidth, villageHeight);
                     }
                 }
             }
@@ -103,7 +115,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             const int height = 35;
             const int cOff = -5;
 
-            // Draw the continent in the top right corner
+            // Draw the continents
+            // Right Top
             Point cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Right, e.FullMapRectangle.Top);
             if (cPos.IsValidGameCoordinate())
             {
@@ -129,6 +142,26 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width, height + cOff);
                 e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, e.FullMapRectangle.Bottom - height - cOff);
             }
+        }
+
+        private static void PaintCross(Graphics g, Pen pen, Point villageLocation, int villageWidth, int villageHeight)
+        {
+            // Draw a cross for each village
+            // left top to bottom right
+            g.DrawLine(
+                pen,
+                villageLocation.X - CrossPaintOffset,
+                villageLocation.Y - CrossPaintOffset,
+                villageLocation.X + villageWidth + CrossPaintOffset,
+                villageLocation.Y + villageHeight + CrossPaintOffset);
+
+            // top right to left bottom
+            g.DrawLine(
+                pen,
+                villageLocation.X + villageWidth + CrossPaintOffset,
+                villageLocation.Y - CrossPaintOffset,
+                villageLocation.X - CrossPaintOffset,
+                villageLocation.Y + villageHeight + CrossPaintOffset);
         }
 
         /// <summary>
@@ -213,6 +246,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _mainMapActiveBorderPen.Dispose();
             _mainMapSelectedVillagesPen.Dispose();
             _activeVillagePen.Dispose();
+            _activeVillagePen2.Dispose();
         }
         #endregion
     }
