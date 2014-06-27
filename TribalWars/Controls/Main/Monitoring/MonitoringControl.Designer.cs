@@ -40,11 +40,11 @@ namespace TribalWars.Controls.Main.Monitoring
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Players", new System.Windows.Forms.TreeNode[] {
             treeNode5,
             treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("All players");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Players");
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Nobled");
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("No activity");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Lost points");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Tribe", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Your Tribe", new System.Windows.Forms.TreeNode[] {
             treeNode8,
             treeNode9,
             treeNode10,
@@ -110,7 +110,7 @@ namespace TribalWars.Controls.Main.Monitoring
             treeNode7.Text = "Players";
             treeNode8.Name = "Node2";
             treeNode8.Tag = "TribePlayers";
-            treeNode8.Text = "All players";
+            treeNode8.Text = "Players";
             treeNode8.ToolTipText = "Get a list of all players";
             treeNode9.Name = "Node1";
             treeNode9.Tag = "TribeNobled";
@@ -126,7 +126,7 @@ namespace TribalWars.Controls.Main.Monitoring
             treeNode11.ToolTipText = "See who has lost points in your tribe.";
             treeNode12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             treeNode12.Name = "Node0";
-            treeNode12.Text = "Tribe";
+            treeNode12.Text = "Your Tribe";
             this.OptionsTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4,
             treeNode7,
@@ -134,7 +134,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.OptionsTree.ShowNodeToolTips = true;
             this.OptionsTree.ShowPlusMinus = false;
             this.OptionsTree.ShowRootLines = false;
-            this.OptionsTree.Size = new System.Drawing.Size(114, 210);
+            this.OptionsTree.Size = new System.Drawing.Size(114, 222);
             this.OptionsTree.TabIndex = 1;
             this.OptionsTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OptionsTree_BeforeSelect);
             this.OptionsTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OptionsTree_NodeMouseClick);
@@ -188,7 +188,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
             this.AdditionalFiltersGroupbox.Location = new System.Drawing.Point(129, 3);
             this.AdditionalFiltersGroupbox.Name = "AdditionalFiltersGroupbox";
-            this.AdditionalFiltersGroupbox.Size = new System.Drawing.Size(285, 229);
+            this.AdditionalFiltersGroupbox.Size = new System.Drawing.Size(285, 241);
             this.AdditionalFiltersGroupbox.TabIndex = 0;
             this.AdditionalFiltersGroupbox.TabStop = false;
             this.AdditionalFiltersGroupbox.Text = "      Activate additional filters";
@@ -198,7 +198,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.ApplyAdditionalFilters.Enabled = false;
             this.ApplyAdditionalFilters.Location = new System.Drawing.Point(3, 200);
             this.ApplyAdditionalFilters.Name = "ApplyAdditionalFilters";
-            this.ApplyAdditionalFilters.Size = new System.Drawing.Size(276, 23);
+            this.ApplyAdditionalFilters.Size = new System.Drawing.Size(276, 35);
             this.ApplyAdditionalFilters.TabIndex = 2;
             this.ApplyAdditionalFilters.Text = "Apply additional filters";
             this.ApplyAdditionalFilters.UseVisualStyleBackColor = true;
@@ -251,7 +251,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox1.Controls.Add(this.OptionsTree);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(120, 229);
+            this.groupBox1.Size = new System.Drawing.Size(120, 241);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select filter";
@@ -260,9 +260,9 @@ namespace TribalWars.Controls.Main.Monitoring
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 238);
+            this.groupBox2.Location = new System.Drawing.Point(3, 250);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(120, 348);
+            this.groupBox2.Size = new System.Drawing.Size(120, 349);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select dates";
@@ -273,9 +273,9 @@ namespace TribalWars.Controls.Main.Monitoring
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.Table);
-            this.groupBox3.Location = new System.Drawing.Point(128, 238);
+            this.groupBox3.Location = new System.Drawing.Point(128, 250);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(469, 348);
+            this.groupBox3.Size = new System.Drawing.Size(469, 349);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Results";
@@ -290,7 +290,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
             this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
-            this.Table.Size = new System.Drawing.Size(463, 329);
+            this.Table.Size = new System.Drawing.Size(463, 330);
             this.Table.TabIndex = 0;
             this.Table.VisiblePlayerFields = TribalWars.Controls.Display.PlayerFields.None;
             this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
@@ -310,7 +310,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
             this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
             this.AdditionalFilters.Name = "AdditionalFilters";
-            this.AdditionalFilters.Size = new System.Drawing.Size(285, 183);
+            this.AdditionalFilters.Size = new System.Drawing.Size(285, 187);
             this.AdditionalFilters.TabIndex = 0;
             // 
             // MonitoringControl
@@ -326,7 +326,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.Controls.Add(this.groupBox2);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MonitoringControl";
-            this.Size = new System.Drawing.Size(601, 589);
+            this.Size = new System.Drawing.Size(601, 602);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.AdditionalFiltersGroupbox.ResumeLayout(false);

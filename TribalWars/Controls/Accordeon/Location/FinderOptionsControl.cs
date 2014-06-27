@@ -54,8 +54,8 @@ namespace TribalWars.Controls.Accordeon.Location
                 cmdPlayer.Visible = value;
                 cmdTribe.Visible = value;
                 cmdVillage.Visible = value;
+
                 What.Visible = !value;
-                What.SelectedIndex = 0;
             }
         }
 
@@ -96,7 +96,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private void cmdPlayer_Click(object sender, EventArgs e)
         {
-            FinderOptions options = LoadFinderOptions();
+            FinderOptions options = GetFinderOptions(SearchForEnum.Players);
             if (World.Default.HasLoaded)
             {
                 List<Player> list = options.PlayerMatches().ToList();
@@ -112,7 +112,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private void cmdTribe_Click(object sender, EventArgs e)
         {
-            FinderOptions options = LoadFinderOptions();
+            FinderOptions options = GetFinderOptions(SearchForEnum.Tribes);
             if (World.Default.HasLoaded)
             {
                 var list = options.TribeMatches().ToList();
@@ -128,7 +128,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         private void cmdVillage_Click(object sender, EventArgs e)
         {
-            FinderOptions options = LoadFinderOptions();
+            FinderOptions options = GetFinderOptions(SearchForEnum.Villages);
             if (World.Default.HasLoaded)
             {
                 // Use the VillageTextBox RegEx to match for (X|Y) village input
@@ -157,55 +157,55 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             Filter.SelectedIndex = (int) FinderOptions.FinderOptionsEnum.All;
             Location.SelectedIndex = (int) FinderOptions.FinderLocationEnum.EntireMap;
-        }
-
-        /// <summary>
-        /// Create the object that holds the different search criteria
-        /// </summary>
-        public FinderOptions LoadFinderOptions()
-        {
-            var options = new FinderOptions();
-            if (Location.SelectedIndex == -1)
-                options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-            else
-                options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
-            options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
-            options.PointsBetweenStart = (int)PointsBetweenStart.Value;
-            options.ResultLimit = (int)ResultLimit.Value;
-            if (Filter.SelectedIndex == -1)
-                options.Options = FinderOptions.FinderOptionsEnum.All;
-            else
-                options.Options = (FinderOptions.FinderOptionsEnum)Filter.SelectedIndex;
-
-            switch (What.SelectedIndex)
-            {
-                case 1:
-                    options.SearchFor = SearchForEnum.Tribes;
-                    break;
-                case 2:
-                    options.SearchFor = SearchForEnum.Villages;
-                    break;
-                default:
-                    options.SearchFor = SearchForEnum.Players;
-                    break;
-            }
-
-            options.Text = Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
-
-            if (Tribe.Tribe != null)
-            {
-                options.Tribe = Tribe.Tribe;
-            }
-
-            //if (!string.IsNullOrEmpty(Tribe.Text) && World.Default.Tribes.ContainsKey(Tribe.Text.ToUpper(CultureInfo.InvariantCulture)))
-            //    options.Tribe = World.Default.Tribes[Tribe.Text.ToUpper(CultureInfo.InvariantCulture)];
-
-            return options;
+            What.SelectedIndex = (int) SearchForEnum.Players;
         }
         #endregion
 
         #region Public Methods
-        
+        /// <summary>
+        /// Create the object that holds the different search criteria
+        /// </summary>
+        public FinderOptions GetFinderOptions(SearchForEnum search)
+        {
+            Debug.Assert(Location.SelectedIndex != -1, "Default value should be set by ctor");
+            Debug.Assert(Filter.SelectedIndex != -1);
+
+            var options = new FinderOptions(search);
+            options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
+            options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
+            options.PointsBetweenStart = (int)PointsBetweenStart.Value;
+            options.ResultLimit = (int)ResultLimit.Value;
+            options.SearchStrategy = (FinderOptions.FinderOptionsEnum)Filter.SelectedIndex;
+            options.SearchFor = (SearchForEnum) What.SelectedIndex;
+
+            options.Text = Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
+
+            //if (Tribe.Tribe != null)
+            //{
+                options.Tribe = Tribe.Tribe;
+            //}
+            
+
+            return options;
+        }
+
+        /// <summary>
+        /// Make the control reflect the parameter
+        /// </summary>
+        public void SetFilters(FinderOptions options)
+        {
+            Location.SelectedIndex = (int)options.EvaluatedArea;
+            Filter.SelectedIndex = (int)options.SearchStrategy;
+            What.SelectedIndex = (int)options.SearchFor;
+            if (options.Tribe != null)
+            {
+                Tribe.SetTribe(options.Tribe);
+            }
+            else
+            {
+                Tribe.SetTribe(null);
+            }
+        }
         #endregion
     }
 }

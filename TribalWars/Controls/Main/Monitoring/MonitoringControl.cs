@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using TribalWars.Controls.Accordeon.Location;
 using TribalWars.Controls.Display;
@@ -189,73 +190,93 @@ namespace TribalWars.Controls.Main.Monitoring
         /// <param name="tag">The search criteria to create description</param>
         private FinderOptions CreateOption(string tag)
         {
-            var options = new FinderOptions();
-            // TODO: always evaluate custom filter (and remove custom filter)
-            options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
-
+            FinderOptions options = null;
             switch (tag)
             {
                 case "VillageNewInactive":
-                    options.SearchFor = SearchForEnum.Villages;
-                    options.Options = FinderOptions.FinderOptionsEnum.NewInactives;
+                    options = new FinderOptions(SearchForEnum.Villages);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.NewInactives;
                     break;
-                case "VillageLostPoints":
-                    options.SearchFor = SearchForEnum.Villages;
-                    options.Options = FinderOptions.FinderOptionsEnum.LostPoints;
-                    break;
-                case "PlayerNobled":
-                    options.SearchFor = SearchForEnum.Villages;
-                    options.Options = FinderOptions.FinderOptionsEnum.Nobled;
-                    break;
-                case "PlayerNoActivity":
-                    options.SearchFor = SearchForEnum.Players;
-                    options.Options = FinderOptions.FinderOptionsEnum.Inactives;
-                    break;
-                case "PlayerTribeChange":
-                    options.SearchFor = SearchForEnum.Players;
-                    options.Options = FinderOptions.FinderOptionsEnum.TribeChange;
-                    break;
-                case "TribeNobled":
-                    options.SearchFor = SearchForEnum.Villages;
-                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
-                    {
-                        options.Tribe = World.Default.You.Player.Tribe;
-                    }
-                    options.Options = FinderOptions.FinderOptionsEnum.Nobled;
-                    break;
-                case "TribeNoActivity":
-                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    options.SearchFor = SearchForEnum.Players;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
-                    {
-                        options.Tribe = World.Default.You.Player.Tribe;
-                    }
-                    options.Options = FinderOptions.FinderOptionsEnum.Inactives;
-                    break;
-                case "TribeLostPoints":
-                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    options.SearchFor = SearchForEnum.Players;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
-                        options.Tribe = World.Default.You.Player.Tribe;
-                    options.Options = FinderOptions.FinderOptionsEnum.LostPoints;
-                    break;
-                case "TribePlayers":
-                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    options.SearchFor = SearchForEnum.Players;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
-                        options.Tribe = World.Default.You.Player.Tribe;
-                    options.Options = FinderOptions.FinderOptionsEnum.All;
-                    break;
-                case "Filter":
-                    // already set:
-                    // Evaluate, SearchFor, 
 
-                    options = AdditionalFilters.LoadFinderOptions();
+                case "VillageLostPoints":
+                    options = new FinderOptions(SearchForEnum.Villages);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.LostPoints;
+                    break;
+
+                case "PlayerNobled":
+                    options = new FinderOptions(SearchForEnum.Villages);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.Nobled;
+                    break;
+
+                case "PlayerNoActivity":
+                    options = new FinderOptions(SearchForEnum.Players);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.Inactives;
+                    break;
+
+                case "PlayerTribeChange":
+                    options = new FinderOptions(SearchForEnum.Players);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.TribeChange;
+                    break;
+
+                case "TribeNobled":
+                    options = new FinderOptions(SearchForEnum.Villages);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
+                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
+                        options.Tribe = World.Default.You.Player.Tribe;
+                    }
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.Nobled;
+                    break;
+
+                case "TribeNoActivity":
+                    options = new FinderOptions(SearchForEnum.Players);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
+                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
+                        options.Tribe = World.Default.You.Player.Tribe;
+                    }
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.Inactives;
+                    break;
+
+                case "TribeLostPoints":
+                    options = new FinderOptions(SearchForEnum.Players);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
+                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
+                        options.Tribe = World.Default.You.Player.Tribe;
+                    }
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.LostPoints;
+                    break;
+
+                case "TribePlayers":
+                    options = new FinderOptions(SearchForEnum.Players);
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
+                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
+                        options.Tribe = World.Default.You.Player.Tribe;
+                    }
+                    options.SearchStrategy = FinderOptions.FinderOptionsEnum.All;
+                    break;
+
+                default:
+                    Debug.Assert(false, "No other options");
                     break;
             }
 
-            return options;
+            AdditionalFilters.SetFilters(options);
+            if (ActivateAdditionalFilters.Checked)
+            {
+                return AdditionalFilters.GetFinderOptions(options.SearchFor);
+            }
+            else
+            {
+                return options;
+            }
         }
         #endregion 
     }

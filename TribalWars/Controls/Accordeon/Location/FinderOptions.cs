@@ -13,9 +13,9 @@ namespace TribalWars.Controls.Accordeon.Location
     #region Enums
     public enum SearchForEnum
     {
-        Villages,
-        Players,
-        Tribes
+        Players = 0,
+        Tribes = 1,
+        Villages = 2
     }
     #endregion
 
@@ -33,7 +33,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Gets or sets the tribe the results need to be filtered on
         /// </summary>
-        public Tribe Tribe { private get; set; }
+        public Tribe Tribe { get; set; }
 
         /// <summary>
         /// Gets or sets the search string
@@ -43,16 +43,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Gets or sets the area that needs to be evaluated
         /// </summary>
-        public FinderLocationEnum EvaluatedArea { private get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether only the currently
-        /// displayed villages should be returned
-        /// </summary>
-        public bool EvaluateScreenOnly
-        {
-            get { return EvaluatedArea == FinderLocationEnum.VisibleMap; }
-        }
+        public FinderLocationEnum EvaluatedArea { get; set; }
 
         /// <summary>
         /// Gets or sets the beginning point search range
@@ -72,7 +63,14 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Gets or sets the specific searching method
         /// </summary>
-        public FinderOptionsEnum Options { private get; set; }
+        public FinderOptionsEnum SearchStrategy { get; set; }
+        #endregion
+
+        #region Constructors
+        public FinderOptions(SearchForEnum search)
+        {
+            SearchFor = search;
+        }
         #endregion
 
         #region Match Lists
@@ -116,7 +114,7 @@ namespace TribalWars.Controls.Accordeon.Location
             var outList = new List<Player>();
             int results = 0;
 
-            if (Options == FinderOptionsEnum.Strongest)
+            if (SearchStrategy == FinderOptionsEnum.Strongest)
                 list.Sort();
 
             foreach (Player ply in list)
@@ -173,7 +171,7 @@ namespace TribalWars.Controls.Accordeon.Location
             var outList = new List<Tribe>();
             int results = 0;
 
-            if (Options == FinderOptionsEnum.Strongest)
+            if (SearchStrategy == FinderOptionsEnum.Strongest)
                 list.Sort();
 
             foreach (Tribe tribe in list)
@@ -223,7 +221,7 @@ namespace TribalWars.Controls.Accordeon.Location
             var outList = new List<Village>();
             int results = 0;
 
-            if (Options == FinderOptionsEnum.Strongest)
+            if (SearchStrategy == FinderOptionsEnum.Strongest)
                 list.Sort();
 
             foreach (Village village in list)
@@ -254,7 +252,7 @@ namespace TribalWars.Controls.Accordeon.Location
             {
                 return false;
             }
-            switch (Options)
+            switch (SearchStrategy)
             {
                 case FinderOptionsEnum.Inactives:
                     if (ply.PreviousPlayerDetails == null)
@@ -302,7 +300,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool Match(Village village)
         {
-            if (Options == FinderOptionsEnum.Nobled)
+            if (SearchStrategy == FinderOptionsEnum.Nobled)
             {
                 if (!village.HasPlayer || village.PreviousVillageDetails == null || village.Player.Equals(village.PreviousVillageDetails.Player))
                     return false;
@@ -321,7 +319,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 if (Tribe != null && (!village.HasTribe || !Tribe.Equals(village.Player.Tribe)))
                     return false;
 
-                switch (Options)
+                switch (SearchStrategy)
                 {
                     case FinderOptionsEnum.NewInactives:
                         if (village.HasPlayer || village.PreviousVillageDetails == null || !village.PreviousVillageDetails.HasPlayer)

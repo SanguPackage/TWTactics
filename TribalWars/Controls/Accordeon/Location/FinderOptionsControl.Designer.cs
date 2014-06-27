@@ -46,9 +46,9 @@ namespace TribalWars.Controls.Accordeon.Location
             this.cmdTribe = new System.Windows.Forms.Button();
             this.cmdPlayer = new System.Windows.Forms.Button();
             this.DropDown = new System.Windows.Forms.Button();
-            this.What = new System.Windows.Forms.ComboBox();
             this.Search = new TribalWars.Controls.Common.LabelTextBox();
             this.Tribe = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
+            this.What = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PointsBetweenEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResultLimit)).BeginInit();
@@ -119,7 +119,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Filter.Location = new System.Drawing.Point(96, 44);
             this.Filter.Name = "Filter";
             this.Filter.Size = new System.Drawing.Size(141, 21);
-            this.Filter.TabIndex = 5;
+            this.Filter.TabIndex = 6;
             // 
             // Location
             // 
@@ -168,7 +168,7 @@ namespace TribalWars.Controls.Accordeon.Location
             0});
             this.PointsBetweenEnd.Name = "PointsBetweenEnd";
             this.PointsBetweenEnd.Size = new System.Drawing.Size(68, 20);
-            this.PointsBetweenEnd.TabIndex = 2;
+            this.PointsBetweenEnd.TabIndex = 8;
             this.PointsBetweenEnd.ThousandsSeparator = true;
             // 
             // ResultLimit
@@ -186,7 +186,7 @@ namespace TribalWars.Controls.Accordeon.Location
             0});
             this.ResultLimit.Name = "ResultLimit";
             this.ResultLimit.Size = new System.Drawing.Size(68, 20);
-            this.ResultLimit.TabIndex = 2;
+            this.ResultLimit.TabIndex = 9;
             this.ResultLimit.Value = new decimal(new int[] {
             100,
             0,
@@ -208,7 +208,7 @@ namespace TribalWars.Controls.Accordeon.Location
             0});
             this.PointsBetweenStart.Name = "PointsBetweenStart";
             this.PointsBetweenStart.Size = new System.Drawing.Size(68, 20);
-            this.PointsBetweenStart.TabIndex = 2;
+            this.PointsBetweenStart.TabIndex = 7;
             this.PointsBetweenStart.ThousandsSeparator = true;
             // 
             // cmdVillage
@@ -217,7 +217,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.cmdVillage.Location = new System.Drawing.Point(206, 6);
             this.cmdVillage.Name = "cmdVillage";
             this.cmdVillage.Size = new System.Drawing.Size(50, 23);
-            this.cmdVillage.TabIndex = 9;
+            this.cmdVillage.TabIndex = 3;
             this.cmdVillage.Text = "Village";
             this.cmdVillage.UseVisualStyleBackColor = true;
             this.cmdVillage.Click += new System.EventHandler(this.cmdVillage_Click);
@@ -228,7 +228,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.cmdTribe.Location = new System.Drawing.Point(166, 6);
             this.cmdTribe.Name = "cmdTribe";
             this.cmdTribe.Size = new System.Drawing.Size(41, 23);
-            this.cmdTribe.TabIndex = 7;
+            this.cmdTribe.TabIndex = 2;
             this.cmdTribe.Text = "Tribe";
             this.cmdTribe.UseVisualStyleBackColor = true;
             this.cmdTribe.Click += new System.EventHandler(this.cmdTribe_Click);
@@ -239,7 +239,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.cmdPlayer.Location = new System.Drawing.Point(117, 6);
             this.cmdPlayer.Name = "cmdPlayer";
             this.cmdPlayer.Size = new System.Drawing.Size(50, 23);
-            this.cmdPlayer.TabIndex = 8;
+            this.cmdPlayer.TabIndex = 1;
             this.cmdPlayer.Text = "Player";
             this.cmdPlayer.UseVisualStyleBackColor = true;
             this.cmdPlayer.Click += new System.EventHandler(this.cmdPlayer_Click);
@@ -251,9 +251,32 @@ namespace TribalWars.Controls.Accordeon.Location
             this.DropDown.Location = new System.Drawing.Point(262, 6);
             this.DropDown.Name = "DropDown";
             this.DropDown.Size = new System.Drawing.Size(22, 23);
-            this.DropDown.TabIndex = 10;
+            this.DropDown.TabIndex = 4;
             this.DropDown.UseVisualStyleBackColor = true;
             this.DropDown.Click += new System.EventHandler(this.DropDown_Click);
+            // 
+            // Search
+            // 
+            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Search.LabelText = "Find";
+            this.Search.Location = new System.Drawing.Point(-1, 4);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(119, 25);
+            this.Search.TabIndex = 0;
+            this.Search.TextBoxWidth = 75;
+            // 
+            // Tribe
+            // 
+            this.Tribe.AllowTribe = true;
+            this.Tribe.AllowVillage = false;
+            this.Tribe.BackColor = System.Drawing.Color.Red;
+            this.Tribe.ButtonText = "» OK «";
+            this.Tribe.GameLocation = null;
+            this.Tribe.Location = new System.Drawing.Point(96, 117);
+            this.Tribe.Name = "Tribe";
+            this.Tribe.Size = new System.Drawing.Size(50, 20);
+            this.Tribe.TabIndex = 10;
             // 
             // What
             // 
@@ -269,29 +292,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.What.TabIndex = 11;
             this.What.Visible = false;
             // 
-            // Search
-            // 
-            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Search.LabelText = "Find";
-            this.Search.Location = new System.Drawing.Point(-1, 4);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(119, 25);
-            this.Search.TabIndex = 6;
-            this.Search.TextBoxWidth = 75;
-            // 
-            // Tribe
-            // 
-            this.Tribe.AllowTribe = true;
-            this.Tribe.AllowVillage = false;
-            this.Tribe.BackColor = System.Drawing.Color.Red;
-            this.Tribe.ButtonText = "» OK «";
-            this.Tribe.GameLocation = null;
-            this.Tribe.Location = new System.Drawing.Point(96, 117);
-            this.Tribe.Name = "Tribe";
-            this.Tribe.Size = new System.Drawing.Size(50, 20);
-            this.Tribe.TabIndex = 8;
-            // 
             // FinderOptionsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,7 +306,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Controls.Add(this.What);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FinderOptionsControl";
-            this.Size = new System.Drawing.Size(285, 35);
+            this.Size = new System.Drawing.Size(285, 34);
             this.Load += new System.EventHandler(this.FinderOptionsControl_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -335,7 +335,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.Button cmdTribe;
         private System.Windows.Forms.Button cmdPlayer;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox What;
         private VillagePlayerTribeFinderTextBox Tribe;
+        private System.Windows.Forms.ComboBox What;
     }
 }
