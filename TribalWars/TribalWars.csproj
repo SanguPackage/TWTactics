@@ -451,6 +451,7 @@
     <Compile Include="Tools\PropertyGrid.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tools\WinForms.cs" />
     <Compile Include="Tools\XmlHelper.cs" />
     <Compile Include="Data\Players\PlayerDescriptor.cs" />
     <Compile Include="Data\Tribes\TribeDescriptor.cs" />

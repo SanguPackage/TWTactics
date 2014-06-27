@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using TribalWars.Data;
+using TribalWars.Tools;
 
 namespace TribalWars.Forms
 {
@@ -16,12 +17,11 @@ namespace TribalWars.Forms
         #endregion
 
         #region Constants
-        const int ImageWorld = 0;
-        const int ImageData = 1;
-        //const int ImageSettings = 2;
+        private const int ImageWorld = 0;
+        private const int ImageData = 1;
+        //private const int ImageSettings = 2;
 
-        const string PathDataWorldFormat = "yyyyMMddHH";
-        const string PathDataWorldFormatShort = "yyyyMMdd";
+        private const string PathDataWorldFormat = "yyyyMMddHH";
         #endregion
 
         #region Constructors
@@ -163,11 +163,7 @@ namespace TribalWars.Forms
                                 var dirInfo = new DirectoryInfo(dir);
                                 if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dirDate))
                                 {
-                                    worldNode.Nodes.Add(dir + @"\", PrintWorldDataDate(dirDate), ImageData, ImageData);
-                                }
-                                else if (DateTime.TryParseExact(dirInfo.Name, PathDataWorldFormatShort, CultureInfo.InvariantCulture, DateTimeStyles.None, out dirDate))
-                                {
-                                    worldNode.Nodes.Add(dir + @"\", dirDate.ToShortDateString(), ImageData, ImageData);
+                                    worldNode.Nodes.Add(dir + @"\", dirDate.PrintWorldDate(), ImageData, ImageData);
                                 }
                                 else
                                 {
@@ -183,11 +179,6 @@ namespace TribalWars.Forms
             {
                 btnLoad.Enabled = false;
             }
-        }
-
-        private string PrintWorldDataDate(DateTime dt)
-        {
-            return string.Format("{0} at {1}h", dt.ToShortDateString(), dt.Hour);
         }
         #endregion
     }

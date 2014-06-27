@@ -80,6 +80,14 @@ namespace TribalWars.Tools
 
         #region Date Methods
         /// <summary>
+        /// Print for displaying WorldData dates
+        /// </summary>
+        public static string PrintWorldDate(this DateTime value)
+        {
+            return value.ToString("dd MMM yyyy HH", System.Globalization.CultureInfo.InvariantCulture) + 'h';
+        }
+
+        /// <summary>
         /// Formats a date as on the Tribal Wars server
         /// </summary>
         public static string GetPrettyDate(DateTime date)

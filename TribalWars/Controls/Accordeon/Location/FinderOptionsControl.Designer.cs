@@ -32,6 +32,7 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinderOptionsControl));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Tribe = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.DropDown = new System.Windows.Forms.Button();
             this.What = new System.Windows.Forms.ComboBox();
             this.Search = new TribalWars.Controls.Common.LabelTextBox();
-            this.Tribe = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PointsBetweenEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResultLimit)).BeginInit();
@@ -76,6 +76,18 @@ namespace TribalWars.Controls.Accordeon.Location
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Additional search criteria";
+            // 
+            // Tribe
+            // 
+            this.Tribe.AllowTribe = true;
+            this.Tribe.AllowVillage = false;
+            this.Tribe.BackColor = System.Drawing.Color.Red;
+            this.Tribe.ButtonText = "» OK «";
+            this.Tribe.GameLocation = null;
+            this.Tribe.Location = new System.Drawing.Point(96, 117);
+            this.Tribe.Name = "Tribe";
+            this.Tribe.Size = new System.Drawing.Size(50, 20);
+            this.Tribe.TabIndex = 10;
             // 
             // label5
             // 
@@ -280,18 +292,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Search.TabIndex = 0;
             this.Search.TextBoxWidth = 75;
             // 
-            // Tribe
-            // 
-            this.Tribe.AllowTribe = true;
-            this.Tribe.AllowVillage = false;
-            this.Tribe.BackColor = System.Drawing.Color.Red;
-            this.Tribe.ButtonText = "» OK «";
-            this.Tribe.GameLocation = null;
-            this.Tribe.Location = new System.Drawing.Point(96, 117);
-            this.Tribe.Name = "Tribe";
-            this.Tribe.Size = new System.Drawing.Size(50, 20);
-            this.Tribe.TabIndex = 10;
-            // 
             // FinderOptionsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,7 +306,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Controls.Add(this.What);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FinderOptionsControl";
-            this.Size = new System.Drawing.Size(285, 190);
+            this.Size = new System.Drawing.Size(285, 34);
             this.Load += new System.EventHandler(this.FinderOptionsControl_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();

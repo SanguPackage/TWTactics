@@ -1,14 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using TribalWars.Controls.Accordeon.Location;
 using TribalWars.Controls.Display;
 using TribalWars.Data;
+using TribalWars.Tools;
 using XPTable.Models;
 
 namespace TribalWars.Controls.Main.Monitoring
 {
+    /// <summary>
+    /// The complete monitoring tab, active in the MainForm
+    /// </summary>
     public partial class MonitoringControl : UserControl
     {
         #region Constructors
@@ -20,6 +28,7 @@ namespace TribalWars.Controls.Main.Monitoring
                 OptionsTree.Nodes[i].Expand();
 
             World.Default.EventPublisher.MonitorLoaded += EventPublisher_Monitor;
+            World.Default.EventPublisher.Loaded += EventPublisherOnLoaded;
         }
         #endregion
 
@@ -51,140 +60,141 @@ namespace TribalWars.Controls.Main.Monitoring
             ApplyAdditionalFilters.Enabled = ActivateAdditionalFilters.Checked;
         }
 
-        private void ApplyAdditionalFilters_Click(object sender, EventArgs e)
+        private void AppededlyAdditionalFilters_Click(object sender, EventArgs e)
         {
             FinderOptions options = AdditionalFilters.GetFinderOptions();
             Table.Display(options);
         }
 
+        
         /// <summary>
         /// Reload previous data
         /// </summary>
-        private void PreviousDateList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PreviouededsDateList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PreviousDateList.SelectedItems.Count == 1)
             {
-                string dir = PreviousDateList.SelectedItems[0].ToString();
-                DateTime test;
-                if (DateTime.TryParseExact(dir.TrimEnd('h'), "dd MMM HH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
+                var info = (WorldDataDateInfo)PreviousDateList.SelectedItems[0].Tag;
+                if (!info.IsCurrentData() && !info.IsPreviousData())
                 {
-                    dir = test.ToString("yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture);
+                    PreviousDateList.Enabled = false;
+                    World.Default.Structure.LoadPreviousDictionary(info.Directory.Name, World.Default.Villages, World.Default.Players, World.Default.Tribes);
                 }
-
-                // TODO: actual load other data
-                //World.Default.Structure.LoadPreviousDictionary(dir,
-                //    World.Default.Villages, World.Default.Players, World.Default.Tribes);
             }
         }
         #endregion
 
         #region Workers
         /// <summary>
+        /// Occurs after loading a new world or current data (through LoadWorldForm)
+        /// </summary>
+        private void EventPublisherOnLoaded(object sender, EventArgs eventArgs)
+        {
+            Debug.Assert(World.Default.CurrentData.HasValue);
+            CurrentDataDate.InvokeIfRequired(() => CurrentDataDate.Text = World.Default.CurrentData.Value.PrintWorldDate());
+
+            // Show what the current date can be compared with
+            List<WorldDataDateInfo> dirs = GetPreviousDatums();
+            WorldDataDateInfo current = dirs.Single(x => x.IsCurrentData());
+            PreviousDateList.InvokeIfRequired(() =>
+            {
+                PreviousDateList.Items.Clear();
+                foreach (WorldDataDateInfo info in dirs)
+                {
+                    var listItem = new ListViewItem(info.Text);
+                    listItem.Tag = info;
+                    
+                    if (info.IsCurrentData())
+                    {
+                        listItem.BackColor = Color.Green;
+                        listItem.Text += " (Current)";
+                    }
+                    else
+                    {
+                        listItem.ToolTipText = GetTimeDifference(current.Value - info.Value);
+                    }
+
+                    PreviousDateList.Items.Add(listItem);
+                }
+            });
+        }
+
+        /// <summary>
         /// Occurs when the previous world data loading is completed
         /// </summary>
         private void EventPublisher_Monitor(object sender, EventArgs e)
         {
-            // TODO: Use an Invoke mechanism instead of doing all the ifs...
-            ClearPreviousDateList();
-            string[] dirs = System.IO.Directory.GetDirectories(World.Default.Structure.CurrentWorldDataDirectory);
-            var dirsList = new List<string>(dirs);
-            dirsList.Reverse();
-            foreach (string dir in dirsList)
-            {
-                var info = new System.IO.DirectoryInfo(dir);
-                AddPreviousDateItem(info.Name);
-            }
-            SetPreviousDateEnablement(true);
+            List<WorldDataDateInfo> dirs = GetPreviousDatums();
+            WorldDataDateInfo previous = dirs.SingleOrDefault(x => x.IsPreviousData());
 
-            DateTime? date = World.Default.CurrentData;
-            if (date.HasValue)
-            {
-                SetCurrentDateText(date.Value.ToString("dd MMM HH", System.Globalization.CultureInfo.InvariantCulture) + 'h');
-            }
-
-            date = World.Default.PreviousData;
-            if (date.HasValue)
-            {
-                SetPreviousDateText(date.Value.ToString("dd MMM HH", System.Globalization.CultureInfo.InvariantCulture) + 'h');
-            }
-        }
-
-        // Delegates for updating the interface from another thread
-        private delegate void SetDelegate();
-        private delegate void SetStringDelegate(string value);
-        private delegate void SetBooleanDelegate(bool value);
-
-        /// <summary>
-        /// Sets the current date text
-        /// </summary>
-        private void SetCurrentDateText(string value)
-        {
-            if (!CurrentDate.InvokeRequired)
-                CurrentDate.Text = value;
-            else
-                Invoke(new SetStringDelegate(SetCurrentDateText), value);
-        }
-
-        /// <summary>
-        /// Sets the previous date text
-        /// </summary>
-        private void SetPreviousDateText(string value)
-        {
-            // TODO: restore this
-            //if (!PreviousDate.InvokeRequired)
-            //    PreviousDate.Text = value;
-            //else
-            //    Invoke(new SetStringDelegate(SetPreviousDateText), value);
-        }
-
-        /// <summary>
-        /// Sets the enablement of the previous date list
-        /// </summary>
-        private void SetPreviousDateEnablement(bool value)
-        {
-            if (!PreviousDateList.InvokeRequired)
-                PreviousDateList.Enabled = value;
-            else
-                Invoke(new SetBooleanDelegate(SetPreviousDateEnablement), value);
-        }
-
-        /// <summary>
-        /// Adds a date item to the PreviousDateList
-        /// </summary>
-        /// <param name="item">The date</param>
-        private void AddPreviousDateItem(string item)
-        {
-            if (!PreviousDateList.InvokeRequired)
-            {
-                DateTime test;
-                if (DateTime.TryParseExact(item, "yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
+            PreviousDateList.InvokeIfRequired(() =>
                 {
-                    PreviousDateList.Items.Add(test.ToString("dd MMM yyyy HH", System.Globalization.CultureInfo.InvariantCulture) + 'h');
-                }
-                else
-                {
-                    PreviousDateList.Items.Add(item);
-                }
-            }
-            else
-            {
-                Invoke(new SetStringDelegate(AddPreviousDateItem), item);
-            }
+                    foreach (ListViewItem item in PreviousDateList.Items.OfType<ListViewItem>())
+                    {
+                        var info = (WorldDataDateInfo)item.Tag;
+                        if (info.IsCurrentData())
+                        {
+                            item.BackColor = Color.Transparent;
+                        }
+                    }
+
+
+                    PreviousDateList.Enabled = true;
+                });
+
+            //if (info.IsPreviousData())
+            //{
+            //    listItem.BackColor = Color.Green;
+            //    listItem.Text += " (Previous)";
+            //}
         }
 
         /// <summary>
-        /// Clears the previous dates list
+        /// Gets all folders with data from the world
         /// </summary>
-        private void ClearPreviousDateList()
+        private List<WorldDataDateInfo> GetPreviousDatums()
         {
-            if (!InvokeRequired)
-                PreviousDateList.Items.Clear();
-            else
-                Invoke(new SetDelegate(ClearPreviousDateList));
+            return 
+               (from dir in Directory.GetDirectories(World.Default.Structure.CurrentWorldDataDirectory)
+                let info = WorldDataDateInfo.Create(dir)
+                where info != null
+                orderby dir descending
+                select info).ToList();
         }
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Transforms the parameter to {0} days, {1} hours
+        /// </summary>
+        private string GetTimeDifference(TimeSpan span)
+        {
+            //if (span < new TimeSpan(0))
+            //{
+                
+            //}
+
+            var str = new StringBuilder();
+            AppendTimeDifferenceFraction(str, span.Days, "{0} days");
+            AppendTimeDifferenceFraction(str, span.Hours, "{0} hours");
+            return str.ToString();
+        }
+
+        /// <summary>
+        /// Helper for GetTimeDifference
+        /// </summary>
+        private void AppendTimeDifferenceFraction(StringBuilder str, int amount, string format)
+        {
+            if (amount != 0)
+            {
+                if (str.Length != 0)
+                {
+                    str.Append(", ");
+                }
+                str.AppendFormat(format, Math.Abs(amount));
+            }
+        }
+
         /// <summary>
         /// Create the options for the provided keyword
         /// </summary>
@@ -280,5 +290,56 @@ namespace TribalWars.Controls.Main.Monitoring
             }
         }
         #endregion 
+
+        #region Private classes
+        /// <summary>
+        /// Helper class for the previous data selector control
+        /// </summary>
+        private class WorldDataDateInfo
+        {
+            public DirectoryInfo Directory { get; private set; }
+            public DateTime Value { get; private set; }
+            public string Text
+            {
+                get { return Value.PrintWorldDate(); }
+            }
+
+            private WorldDataDateInfo(DirectoryInfo dir, DateTime date)
+            {
+                Directory = dir;
+                Value = date;
+            }
+
+            public bool IsCurrentData()
+            {
+                Debug.Assert(World.Default.CurrentData.HasValue);
+                return Value == World.Default.CurrentData.Value;
+            }
+
+            public bool IsPreviousData()
+            {
+                Debug.Assert(World.Default.PreviousData.HasValue);
+                return Value == World.Default.PreviousData.Value;
+            }
+
+            public static WorldDataDateInfo Create(string directoryName)
+            {
+                var worldDataDirectory = new DirectoryInfo(directoryName);
+
+                DateTime test;
+                if (DateTime.TryParseExact(worldDataDirectory.Name, "yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
+                {
+                    var info = new WorldDataDateInfo(worldDataDirectory, test);
+                    return info;
+                }
+                return null;
+            }
+
+            public override string ToString()
+            {
+                return string.Format("{0}", Text);
+            }
+        }
+        #endregion
     }
 }

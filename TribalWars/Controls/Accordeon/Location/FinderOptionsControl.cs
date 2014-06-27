@@ -17,6 +17,7 @@ namespace TribalWars.Controls.Accordeon.Location
 {
     /// <summary>
     /// Collapsable pane with world search options
+    /// to find Villages, Players or Tribes
     /// </summary>
     public partial class FinderOptionsControl : UserControl
     {
@@ -212,5 +213,10 @@ namespace TribalWars.Controls.Accordeon.Location
             }
         }
         #endregion
+
+        private void Tribe_TribeSelected(object sender, TribeEventArgs e)
+        {
+
+        }
     }
 }
