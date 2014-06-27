@@ -204,19 +204,21 @@ namespace TribalWars.Data.Villages
         {
             get
             {
-                switch (Type)
-                {
-                    case VillageType.Attack:
-                        return Buildings.Images.Barracks;
-                    case VillageType.Defense:
-                        return Properties.Resources.Defense;
-                    case VillageType.Farm:
-                        return Buildings.Images.Farm;
-                    case VillageType.Scout:
-                        return Units.Images.Scout;
-                    case VillageType.Noble:
-                        return Units.Images.Noble;
-                }
+                if (Type.HasFlag(VillageType.Noble))
+                    return Units.Images.Noble;
+
+                if (Type.HasFlag(VillageType.Attack))
+                    return Units.Images.Axe;
+
+                if (Type.HasFlag(VillageType.Defense))
+                    return Properties.Resources.Defense;
+
+                if (Type.HasFlag(VillageType.Scout))
+                    return Units.Images.Scout;
+
+                if (Type.HasFlag(VillageType.Farm))
+                    return Buildings.Images.Farm;
+
                 return null;
             }
         }

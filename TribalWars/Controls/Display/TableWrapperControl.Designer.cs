@@ -40,6 +40,7 @@ namespace TribalWars.Controls.Display
             this.Table.DataMember = null;
             this.Table.DataSourceColumnBinder = dataSourceColumnBinder1;
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Table.EnableToolTips = true;
             this.Table.FullRowSelect = true;
             this.Table.GridLines = XPTable.Models.GridLines.Both;
             this.Table.GridLineStyle = XPTable.Models.GridLineStyle.Dash;
@@ -52,9 +53,10 @@ namespace TribalWars.Controls.Display
             this.Table.TabIndex = 0;
             this.Table.TableModel = this.TableRows;
             this.Table.Text = "table1";
+            this.Table.ToolTipShowAlways = true;
             this.Table.UnfocusedBorderColor = System.Drawing.Color.Black;
-            this.Table.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableControl_MouseDoubleClick);
             this.Table.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TableControl_MouseClick);
+            this.Table.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableControl_MouseDoubleClick);
             // 
             // TableWrapperControl
             // 

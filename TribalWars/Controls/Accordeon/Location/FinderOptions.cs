@@ -259,13 +259,15 @@ namespace TribalWars.Controls.Accordeon.Location
                 case FinderOptionsEnum.Inactives:
                     if (ply.PreviousPlayerDetails == null)
                         return false;
-                    if (ply.Any(village => village.Points > village.PreviousVillageDetails.Points))
+                    if (ply.Any(village => village.PreviousVillageDetails == null || village.Points > village.PreviousVillageDetails.Points))
                         return false;
                     break;
+
                 case FinderOptionsEnum.LostPoints:
                     if (ply.PreviousPlayerDetails == null || ply.Points >= ply.PreviousPlayerDetails.Points)
                         return false;
                     break;
+
                 case FinderOptionsEnum.TribeChange:
                     if (!ply.TribeChange)
                         return false;
@@ -341,49 +343,6 @@ namespace TribalWars.Controls.Accordeon.Location
                 return false;
 
             return true;
-        }
-        #endregion
-
-        #region Search Lists
-        /// <summary>
-        /// Creates the list of villages to search through
-        /// </summary>
-        private List<Village> GetVillageList()
-        {
-            var list = new List<Village>();
-            foreach (Village village in World.Default.Villages.Values)
-            {
-                switch (Evaluate)
-                {
-                    case FinderLocationEnum.ActiveRectangle:
-                        if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
-                            list.Add(village);
-                        break;
-                    case FinderLocationEnum.VisibleMap:
-
-                    default:
-                        list.Add(village);
-                        break;
-                }
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Creates the list of tribes to search through
-        /// </summary>
-        private List<Tribe> GetTribeList()
-        {
-            var list = new List<Tribe>();
-            foreach (Village village in World.Default.Villages.Values)
-            {
-                if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
-                {
-                    if (village.HasTribe && !list.Contains(village.Player.Tribe))
-                        list.Add(village.Player.Tribe);
-                }
-            }
-            return list;
         }
         #endregion
 

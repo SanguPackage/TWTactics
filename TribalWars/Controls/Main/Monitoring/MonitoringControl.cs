@@ -10,59 +10,6 @@ namespace TribalWars.Controls.Main.Monitoring
 {
     public partial class MonitoringControl : UserControl
     {
-        #region Fields
-        private ColumnModel _playerColumnModel;
-        private ColumnModel _villageColumnModel;
-        private ColumnModel _tribeColumnModel;
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets the player XPTable ColumnModel
-        /// </summary>
-        public ColumnModel PlayerColumnModel
-        {
-            get
-            {
-                if (_playerColumnModel == null)
-                {
-                    _playerColumnModel = ColumnDisplay.CreateColumnModel(PlayerFields.All);
-                }
-                return _playerColumnModel;
-            }
-        }
-
-        /// <summary>
-        /// Gets the village XPTable ColumnModel
-        /// </summary>
-        public ColumnModel VillageColumnModel
-        {
-            get
-            {
-                if (_villageColumnModel == null)
-                {
-                    _villageColumnModel = ColumnDisplay.CreateColumnModel(VillageFields.All);
-                }
-                return _villageColumnModel;
-            }
-        }
-
-        /// <summary>
-        /// Gets the tribe XPTable ColumnModel
-        /// </summary>
-        public ColumnModel TribeColumnModel
-        {
-            get
-            {
-                if (_tribeColumnModel == null)
-                {
-                    _tribeColumnModel = ColumnDisplay.CreateColumnModel(TribeFields.All);
-                }
-                return _tribeColumnModel;
-            }
-        }
-        #endregion
-
         #region Constructors
         public MonitoringControl()
         {
@@ -89,6 +36,20 @@ namespace TribalWars.Controls.Main.Monitoring
         }
 
         /// <summary>
+        /// Don't allow selection of Villages, Players, Tribes
+        /// </summary>
+        private void OptionsTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.Parent == null)
+                e.Cancel = true;
+        }
+
+        private void ApplyAdditionalFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            AdditionalFilters.Enabled = ApplyAdditionalFilters.Checked;
+        }
+
+        /// <summary>
         /// Reload previous data
         /// </summary>
         private void PreviousDateList_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,6 +63,7 @@ namespace TribalWars.Controls.Main.Monitoring
                     dir = test.ToString("yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture);
                 }
 
+                // TODO: actual load other data
                 //World.Default.Structure.LoadPreviousDictionary(dir,
                 //    World.Default.Villages, World.Default.Players, World.Default.Tribes);
             }
@@ -219,6 +181,7 @@ namespace TribalWars.Controls.Main.Monitoring
         private FinderOptions CreateOption(string tag)
         {
             var options = new FinderOptions();
+            // TODO: always evaluate custom filter (and remove custom filter)
             options.Evaluate = FinderOptions.FinderLocationEnum.ActiveRectangle;
 
             switch (tag)
@@ -247,14 +210,18 @@ namespace TribalWars.Controls.Main.Monitoring
                     options.SearchFor = SearchForEnum.Villages;
                     options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
                         options.Tribe = World.Default.You.Player.Tribe;
+                    }
                     options.Options = FinderOptions.FinderOptionsEnum.Nobled;
                     break;
                 case "TribeNoActivity":
                     options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
                     options.SearchFor = SearchForEnum.Players;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    {
                         options.Tribe = World.Default.You.Player.Tribe;
+                    }
                     options.Options = FinderOptions.FinderOptionsEnum.Inactives;
                     break;
                 case "TribeLostPoints":
@@ -272,7 +239,7 @@ namespace TribalWars.Controls.Main.Monitoring
                     options.Options = FinderOptions.FinderOptionsEnum.All;
                     break;
                 case "Filter":
-                    options = OptionsGroupBox.LoadFinderOptions();
+                    options = AdditionalFilters.LoadFinderOptions();
                     break;
             }
 

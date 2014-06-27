@@ -3,6 +3,7 @@ using XPTable.Models;
 using TribalWars.Data.Players;
 using System.Drawing;
 using TribalWars.Data.Tribes;
+using XPTable.Sorting;
 
 namespace TribalWars.Controls.Display
 {
@@ -12,9 +13,10 @@ namespace TribalWars.Controls.Display
     public static class ColumnDisplay
     {
         #region Fields
-
-        private static readonly CellStyle _friendStyle;
-        private static readonly CellStyle _differenceStyle;
+        /// <summary>
+        /// Gets the style for displaying your changes in owners, points, ...
+        /// </summary>
+        private static readonly CellStyle DifferenceStyle;
 
         private static bool _youSet;
         private static Player _you;
@@ -27,7 +29,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets you
         /// </summary>
-        public static Player You
+        private static Player You
         {
             get
             {
@@ -45,7 +47,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets your tribe
         /// </summary>
-        public static Tribe YourTribe
+        private static Tribe YourTribe
         {
             get
             {
@@ -63,28 +65,12 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets the style for displaying you
         /// </summary>
-        public static CellStyle YouStyle { get; private set; }
+        private static CellStyle YouStyle { get; set; }
 
         /// <summary>
         /// Gets the style for displaying your tribe
         /// </summary>
-        public static CellStyle TribeStyle { get; private set; }
-
-        /// <summary>
-        /// Gets the style for displaying your friends
-        /// </summary>
-        public static CellStyle FriendStyle
-        {
-            get { return _friendStyle; }
-        }
-
-        /// <summary>
-        /// Gets the style for displaying your changes in owners, points, ...
-        /// </summary>
-        public static CellStyle DifferenceStyle
-        {
-            get { return _differenceStyle; }
-        }
+        private static CellStyle TribeStyle { get; set; }
         #endregion
 
         #region Static Constructor
@@ -92,7 +78,7 @@ namespace TribalWars.Controls.Display
         {
             BoldFont = new Font(SystemFonts.DefaultFont.FontFamily, SystemFonts.DefaultFont.Size, FontStyle.Bold);
 
-            ColumnDisplay.YouStyle = new CellStyle();
+            YouStyle = new CellStyle();
             YouStyle.ForeColor = Color.Red;
             YouStyle.Font = BoldFont;
             YouStyle.BackColor = Color.Transparent;
@@ -102,14 +88,9 @@ namespace TribalWars.Controls.Display
             TribeStyle.BackColor = Color.Empty;
             TribeStyle.Font = BoldFont;
 
-            _friendStyle = new CellStyle();
-            _friendStyle.ForeColor = Color.LightBlue;
-            _friendStyle.BackColor = Color.Empty;
-            _friendStyle.Font = BoldFont;
-
-            _differenceStyle = new CellStyle();
-            _differenceStyle.ForeColor = Color.LightGray;
-            _differenceStyle.BackColor = Color.Empty;
+            DifferenceStyle = new CellStyle();
+            DifferenceStyle.ForeColor = Color.LightGray;
+            DifferenceStyle.BackColor = Color.Empty;
         }
         #endregion
 
@@ -120,24 +101,23 @@ namespace TribalWars.Controls.Display
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(VillageFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20);
-            ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20);
-            TextColumn villageCoordColumn = CreateTextColumn("XY", 50);
-            TextColumn villageNameColumn = CreateTextColumn("Name", 114);
-            NumberColumn villagePointsColumn = CreateNumberColumn("Points", 55);
-            NumberColumn villagePointsDifferenceColumn = CreateNumberColumn("Diff.", 45);
-            CheckBoxColumn villageHasReportsColumn = CreateCheckBoxColumn(string.Empty, 30);
-            TextColumn villagePlayerColumn = CreateTextColumn("New owner", 85);
-            TextColumn villagePlayerDifferenceColumn = CreateTextColumn("Player", 85);
-            NumberColumn villagePlayerPoints = CreateNumberColumn("Points", 60);
-            NumberColumn villagePlayerPointsDifference = CreateNumberColumn("Diff.", 45);
-            NumberColumn villageVillagesColumn = CreateNumberColumn("Villages", 60);
-            TextColumn villageVillagesDifferenceColumn = CreateTextColumn("Diff.", 45);
-            TextColumn villageTribeColumn = CreateTextColumn("Tribe", 50);
-            NumberColumn villageTribeRankColumn = CreateNumberColumn("Rank", 50);
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if village is currently visible on the main map.");
+            ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20, "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details')");
+            TextColumn villageCoordColumn = CreateTextColumn("XY", 50, "Coordinates of the village");
+            TextColumn villageNameColumn = CreateTextColumn("Name", 114, "Name of the village");
+            NumberColumn villagePointsColumn = CreateNumberColumn("Points", 55, "Points of the village.");
+            NumberColumn villagePointsDifferenceColumn = CreateNumberColumn("Diff.", 45, "Difference in village points since previous data");
+
+            TextColumn villagePlayerColumn = CreateTextColumn("Player", 85, "The owner of the village");
+            TextColumn villagePlayerDifferenceColumn = CreateTextColumn("Old owner", 85, "The player the village has been nobled from.");
+            NumberColumn villagePlayerPoints = CreateNumberColumn("Points", 65, "The points of the player owning the village");
+            NumberColumn villagePlayerPointsDifference = CreateNumberColumn("Diff.", 55, "The difference in player points since previous data");
+            NumberColumn villageVillagesColumn = CreateNumberColumn("Villages", 60, "The amount of villages the player has");
+            TextColumn villageVillagesDifferenceColumn = CreateTextColumn("Diff.", 45, "The villages the player gained and/or lost since previous data");
+            TextColumn villageTribeColumn = CreateTextColumn("Tribe", 50, "The tribe of the player");
+            NumberColumn villageTribeRankColumn = CreateNumberColumn("Rank", 50, "The rank of the tribe of the player");
 
             villageImageColumn.Visible = (fields & VillageFields.Type) != 0;
-            villageHasReportsColumn.Visible = (fields & VillageFields.HasReport) != 0;
             villageNameColumn.Visible = (fields & VillageFields.Name) != 0;
             villagePlayerColumn.Visible = (fields & VillageFields.Player) != 0;
             villagePlayerDifferenceColumn.Visible = (fields & VillageFields.PlayerDifference) != 0;
@@ -150,14 +130,13 @@ namespace TribalWars.Controls.Display
             villageVillagesColumn.Visible = (fields & VillageFields.PlayerVillages) != 0;
             villageVillagesDifferenceColumn.Visible = (fields & VillageFields.PlayerVillagesDifference) != 0;
 
-            return new ColumnModel(new XPTable.Models.Column[] {
+            return new ColumnModel(new Column[] {
                 visibleColumn,
                 villageImageColumn,
                 villageCoordColumn,
                 villageNameColumn,
                 villagePointsColumn,
                 villagePointsDifferenceColumn,
-                villageHasReportsColumn,
                 villagePlayerDifferenceColumn,
                 villagePlayerColumn,
                 villagePlayerPoints,
@@ -174,14 +153,14 @@ namespace TribalWars.Controls.Display
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(PlayerFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20);
-            TextColumn playerNameColumn = CreateTextColumn("Name", 85);
-            TextColumn playerTribeColumn = CreateTextColumn("New tribe", 60);
-            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 75);
-            NumberColumn playerVillagesColumn = CreateNumberColumn("Villages", 55);
-            TextColumn playerVillagesDifferenceColumn = CreateTextColumn("Diff.", 60);
-            TextColumn playerTribeDifferenceColumn = CreateTextColumn("Tribe", 60);
-            NumberColumn playerPointsDifferenceColumn = CreateNumberColumn("Diff.", 50);
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the player is currently visible on the main map.");
+            TextColumn playerNameColumn = CreateTextColumn("Name", 85, "The name of the player");
+            TextColumn playerTribeColumn = CreateTextColumn("Tribe", 60, "The tribe the player belongs to");
+            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 75, "Points of the player");
+            NumberColumn playerVillagesColumn = CreateNumberColumn("Villages", 55, "Villages of the player");
+            TextColumn playerVillagesDifferenceColumn = CreateTextColumn("Diff.", 60, "Villages gained and/or lost since previous data");
+            TextColumn playerTribeDifferenceColumn = CreateTextColumn("Old tribe", 60, "The tribe the player switched from since previous data");
+            NumberColumn playerPointsDifferenceColumn = CreateNumberColumn("Diff.", 55, "The difference in player points since previous data");
 
             playerNameColumn.Visible = (fields & PlayerFields.Name) != 0;
             playerPointsColumn.Visible = (fields & PlayerFields.Points) != 0;
@@ -191,7 +170,7 @@ namespace TribalWars.Controls.Display
             playerVillagesColumn.Visible = (fields & PlayerFields.Villages) != 0;
             playerVillagesDifferenceColumn.Visible = (fields & PlayerFields.VillagesDifference) != 0;
 
-            return new ColumnModel(new XPTable.Models.Column[] {
+            return new ColumnModel(new Column[] {
                 visibleColumn,
                 playerNameColumn,
                 playerTribeDifferenceColumn,
@@ -208,7 +187,7 @@ namespace TribalWars.Controls.Display
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(TribeFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20);
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the tribe is currently visible on the main map.");
             NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 45);
             TextColumn tribeTagColumn = CreateTextColumn("Tag", 55);
             TextColumn tribeNameColumn = CreateTextColumn("Name", 130);
@@ -229,7 +208,7 @@ namespace TribalWars.Controls.Display
             tribeVillagesColumn.Visible = (fields & TribeFields.Villages) != 0;
             tribeVillagesDifferenceColumn.Visible = (fields & TribeFields.VillagesDifference) != 0;
 
-            return new ColumnModel(new XPTable.Models.Column[] {
+            return new ColumnModel(new Column[] {
                 visibleColumn,
                 tribeRankColumn,
                 tribeTagColumn,
@@ -248,12 +227,12 @@ namespace TribalWars.Controls.Display
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(ReportFields fields)
         {
-            ImageColumn reportTypeImageColumn = CreateImageColumn(string.Empty, 20);
-            ImageColumn reportStatusImageColumn = CreateImageColumn(string.Empty, 20);
+            ImageColumn reportTypeImageColumn = CreateImageColumn(string.Empty, 20, "");
+            ImageColumn reportStatusImageColumn = CreateImageColumn(string.Empty, 20, "");
             TextColumn reportVillageColumn = CreateTextColumn("Village", 50);
             TextColumn reportPlayerColumn = CreateTextColumn("Player", 100);
             DateTimeColumn reportDateColumn = CreateDateTimeColumn("Date", 70);
-            ImageColumn reportFlagImageColumn = CreateImageColumn(string.Empty, 20);
+            ImageColumn reportFlagImageColumn = CreateImageColumn(string.Empty, 20, "");
 
             reportTypeImageColumn.Visible = (fields & ReportFields.Type) != 0;
             reportStatusImageColumn.Visible = (fields & ReportFields.Status) != 0;
@@ -276,16 +255,20 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Creates a text column
         /// </summary>
-        private static TextColumn CreateTextColumn(string header, int width)
+        private static TextColumn CreateTextColumn(string header, int width, string toolTipText = null)
         {
             var col = new TextColumn(header, width) {Editable = false};
+            if (!string.IsNullOrWhiteSpace(toolTipText))
+            {
+                col.ToolTipText = toolTipText;
+            }
             return col;
         }
 
         /// <summary>
         /// Creates a numeric column
         /// </summary>
-        private static NumberColumn CreateNumberColumn(string header, int width)
+        private static NumberColumn CreateNumberColumn(string header, int width, string toolTipText = null)
         {
             var col = new NumberColumn(header, width)
                 {
@@ -293,39 +276,22 @@ namespace TribalWars.Controls.Display
                     Alignment = ColumnAlignment.Right,
                     Format = "#,0"
                 };
-            return col;
-        }
 
-        /// <summary>
-        /// Creates a numeric column with pretty formatting
-        /// </summary>
-        /// <remarks>Currently not in use</remarks>
-        private static TextColumn CreateNumericTextColumn(string header, int width)
-        {
-            var col = new TextColumn(header, width) {Editable = false, Alignment = ColumnAlignment.Right};
-            return col;
-        }
+            if (!string.IsNullOrWhiteSpace(toolTipText))
+            {
+                col.ToolTipText = toolTipText;
+            }
 
-        /// <summary>
-        /// Creates a boolean column
-        /// </summary>
-        private static CheckBoxColumn CreateCheckBoxColumn(string header, int width)
-        {
-            var col = new CheckBoxColumn(header, width)
-                {
-                    DrawText = false,
-                    Alignment = ColumnAlignment.Center,
-                    Editable = false
-                };
             return col;
         }
 
         /// <summary>
         /// Creates an Image column
         /// </summary>
-        private static ImageColumn CreateImageColumn(string header, int width)
+        private static ImageColumn CreateImageColumn(string header, int width, string toolTipText)
         {
-            var col = new ImageColumn(header, width) {DrawText = false, Editable = false};
+            var col = new ImageColumn(header, width) {DrawText = false, Editable = false, ToolTipText = toolTipText};
+            col.Comparer = typeof(TextComparer);
             return col;
         }
 

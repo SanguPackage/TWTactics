@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Data;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace TribalWars.Controls.Accordeon.Location
 
         /// <summary>
         /// Gets or sets a value indicating wether
-        /// the search buttons are visible
+        /// the search buttons are visible.
         /// </summary>
         public bool Buttonsvisible
         {
@@ -145,7 +146,7 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void FinderOptionsControl_Load(object sender, EventArgs e)
         {
-            What.SelectedIndex = 0;
+            SearchFor(SearchForEnum.Players);
         }
 
         /// <summary>
@@ -183,6 +184,16 @@ namespace TribalWars.Controls.Accordeon.Location
             if (!string.IsNullOrEmpty(Tribe.Text) && World.Default.Tribes.ContainsKey(Tribe.Text.ToUpper(CultureInfo.InvariantCulture)))
                 options.Tribe = World.Default.Tribes[Tribe.Text.ToUpper(CultureInfo.InvariantCulture)];
             return options;
+        }
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SearchFor(SearchForEnum search)
+        {
+            Debug.Assert();
         }
         #endregion
     }

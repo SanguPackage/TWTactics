@@ -65,7 +65,7 @@ namespace TribalWars.Controls.Display
             // Village is currently visible?
             if (World.Default.Map.Display.IsVisible(village))
             {
-                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
+                Cells.Add(new Cell("0", Properties.Resources.Visible));
             }
             else
             {
@@ -92,8 +92,6 @@ namespace TribalWars.Controls.Display
             {
                 Cells.Add(new Cell());
             }
-            var checkBoxCell = new Cell(village.Reports != null && village.Reports.Count > 0);
-            Cells.Add(checkBoxCell);
 
             // village owner details
             Player owner = null; Player prevOwner = null; int points = 0; int prevPoints = 0;
