@@ -209,10 +209,10 @@ namespace TribalWars.Controls.Display
         public static ColumnModel CreateColumnModel(TribeFields fields)
         {
             ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20);
-            NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 50);
+            NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 45);
             TextColumn tribeTagColumn = CreateTextColumn("Tag", 55);
             TextColumn tribeNameColumn = CreateTextColumn("Name", 130);
-            NumberColumn tribePlayersColumn = CreateNumberColumn("Players", 45);
+            NumberColumn tribePlayersColumn = CreateNumberColumn("Players", 47);
             TextColumn tribePlayersDifferenceColumn = CreateTextColumn("Diff.", 50);
             NumberColumn tribePointsColumn = CreateNumberColumn("Points", 70);
             NumberColumn tribePointsDifferenceColumn = CreateNumberColumn("Diff.", 60);
