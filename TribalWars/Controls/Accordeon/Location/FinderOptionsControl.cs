@@ -163,28 +163,33 @@ namespace TribalWars.Controls.Accordeon.Location
 
         #region Public Methods
         /// <summary>
+        /// Set what to search for (Villages, Players or Tribes)
+        /// and then return the search criteria
+        /// </summary>
+        private FinderOptions GetFinderOptions(SearchForEnum search)
+        {
+            What.SelectedIndex = (int) search;
+            return GetFinderOptions();
+        }
+
+        /// <summary>
         /// Create the object that holds the different search criteria
         /// </summary>
-        public FinderOptions GetFinderOptions(SearchForEnum search)
+        public FinderOptions GetFinderOptions()
         {
             Debug.Assert(Location.SelectedIndex != -1, "Default value should be set by ctor");
             Debug.Assert(Filter.SelectedIndex != -1);
 
-            var options = new FinderOptions(search);
+            var options = new FinderOptions((SearchForEnum) What.SelectedIndex);
+            
             options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
             options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
             options.PointsBetweenStart = (int)PointsBetweenStart.Value;
             options.ResultLimit = (int)ResultLimit.Value;
             options.SearchStrategy = (FinderOptions.FinderOptionsEnum)Filter.SelectedIndex;
-            options.SearchFor = (SearchForEnum) What.SelectedIndex;
 
             options.Text = Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
-
-            //if (Tribe.Tribe != null)
-            //{
-                options.Tribe = Tribe.Tribe;
-            //}
-            
+            options.Tribe = Tribe.Tribe;
 
             return options;
         }

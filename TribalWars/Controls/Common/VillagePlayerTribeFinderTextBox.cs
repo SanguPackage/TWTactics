@@ -174,6 +174,10 @@ namespace TribalWars.Controls.Common
                     BackColor = Color.Red;
                     _tooltip.ToolTipTitle = string.Empty;
                     _tooltip.SetToolTip(this, GetEmptyTooltip());
+
+                    Tribe = null;
+                    Village = null;
+                    Player = null;
                 }
             }
             base.OnTextChanged(e);
@@ -323,7 +327,9 @@ namespace TribalWars.Controls.Common
                 _tooltip.ToolTipTitle = tribe.Tag;
                 _tooltip.SetToolTip(this, tribe.Tooltip);
                 if (raiseEvent && TribeSelected != null)
+                {
                     TribeSelected(this, new TribeEventArgs(tribe, VillageTools.SelectVillage));
+                }
                 else if (_showButton && _map != null)
                 {
                     _map.SetCenter(Data.Maps.Display.GetSpan(tribe));

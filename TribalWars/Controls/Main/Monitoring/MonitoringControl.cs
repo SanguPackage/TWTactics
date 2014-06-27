@@ -53,7 +53,8 @@ namespace TribalWars.Controls.Main.Monitoring
 
         private void ApplyAdditionalFilters_Click(object sender, EventArgs e)
         {
-
+            FinderOptions options = AdditionalFilters.GetFinderOptions();
+            Table.Display(options);
         }
 
         /// <summary>
@@ -271,7 +272,7 @@ namespace TribalWars.Controls.Main.Monitoring
             AdditionalFilters.SetFilters(options);
             if (ActivateAdditionalFilters.Checked)
             {
-                return AdditionalFilters.GetFinderOptions(options.SearchFor);
+                return AdditionalFilters.GetFinderOptions();
             }
             else
             {

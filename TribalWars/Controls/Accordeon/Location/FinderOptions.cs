@@ -67,6 +67,10 @@ namespace TribalWars.Controls.Accordeon.Location
         #endregion
 
         #region Constructors
+        public FinderOptions()
+        {
+        }
+
         public FinderOptions(SearchForEnum search)
         {
             SearchFor = search;
