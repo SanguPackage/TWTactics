@@ -90,6 +90,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     return PlayerMatches(new List<Player>(World.Default.Players.Values));
 
                 case FinderLocationEnum.Polygon:
+                    // TODO: Polygon not implemented here!
                     return null;
 
                 case FinderLocationEnum.ActiveRectangle:
@@ -146,6 +147,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     return TribeMatches(new List<Tribe>(World.Default.Tribes.Values));
 
                 case FinderLocationEnum.Polygon:
+                    // TODO: Polygon returns null?
                     return null;
 
                 case FinderLocationEnum.ActiveRectangle:
@@ -202,6 +204,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     return VillageMatches(new List<Village>(World.Default.Villages.Values.Where(World.Default.Map.Display.IsVisible)));
 
                 case FinderLocationEnum.Polygon:
+                    // TODO: polygon not implemented
                     return null;
 
                 case FinderLocationEnum.ActiveRectangle:
