@@ -154,7 +154,7 @@ namespace TribalWars.Forms
                     if (Directory.Exists(pathData))
                     {
                         // add all data for selected world
-                        IOrderedEnumerable<string> worldSorted = Directory.GetDirectories(pathData).OrderBy(x => x);
+                        IOrderedEnumerable<string> worldSorted = Directory.GetDirectories(pathData).OrderByDescending(x => x);
                         foreach (string dir in worldSorted)
                         {
                             if (World.InternalStructure.IsValidDataPath(dir))

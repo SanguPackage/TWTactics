@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Controls.Accordeon.Location;
-using TribalWars.Controls.Display;
 using TribalWars.Data;
 using TribalWars.Tools;
-using XPTable.Models;
 
 namespace TribalWars.Controls.Main.Monitoring
 {
@@ -19,6 +17,11 @@ namespace TribalWars.Controls.Main.Monitoring
     /// </summary>
     public partial class MonitoringControl : UserControl
     {
+        #region Constants
+        private const string CurrentDateSuffix = " (Current)";
+        private const string PreviousDateSuffix = " (Previous)";
+        #endregion
+
         #region Constructors
         public MonitoringControl()
         {
@@ -60,25 +63,36 @@ namespace TribalWars.Controls.Main.Monitoring
             ApplyAdditionalFilters.Enabled = ActivateAdditionalFilters.Checked;
         }
 
-        private void AppededlyAdditionalFilters_Click(object sender, EventArgs e)
+        private void ApplyAdditionalFilters_Click(object sender, EventArgs e)
         {
             FinderOptions options = AdditionalFilters.GetFinderOptions();
             Table.Display(options);
         }
-
         
         /// <summary>
         /// Reload previous data
         /// </summary>
-        private void PreviouededsDateList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PreviousDateList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PreviousDateList.SelectedItems.Count == 1)
             {
-                var info = (WorldDataDateInfo)PreviousDateList.SelectedItems[0].Tag;
-                if (!info.IsCurrentData() && !info.IsPreviousData())
+                var selectedDate = (WorldDataDateInfo)PreviousDateList.SelectedItems[0].Tag;
+                if (!selectedDate.IsCurrentData() && !selectedDate.IsPreviousData())
                 {
+                    // Reset current previous item
+                    foreach (ListViewItem item in PreviousDateList.Items.OfType<ListViewItem>())
+                    {
+                        var info = (WorldDataDateInfo)item.Tag;
+                        if (info.IsPreviousData())
+                        {
+                            item.BackColor = Color.Transparent;
+                            item.Text = item.Text.Replace(PreviousDateSuffix, "");
+                        }
+                    }
+
+                    // Load dictionary
                     PreviousDateList.Enabled = false;
-                    World.Default.Structure.LoadPreviousDictionary(info.Directory.Name, World.Default.Villages, World.Default.Players, World.Default.Tribes);
+                    World.Default.Structure.LoadPreviousDictionary(selectedDate.Directory.Name, World.Default.Villages, World.Default.Players, World.Default.Tribes);
                 }
             }
         }
@@ -107,7 +121,7 @@ namespace TribalWars.Controls.Main.Monitoring
                     if (info.IsCurrentData())
                     {
                         listItem.BackColor = Color.Green;
-                        listItem.Text += " (Current)";
+                        listItem.Text += CurrentDateSuffix;
                     }
                     else
                     {
@@ -124,29 +138,20 @@ namespace TribalWars.Controls.Main.Monitoring
         /// </summary>
         private void EventPublisher_Monitor(object sender, EventArgs e)
         {
-            List<WorldDataDateInfo> dirs = GetPreviousDatums();
-            WorldDataDateInfo previous = dirs.SingleOrDefault(x => x.IsPreviousData());
-
             PreviousDateList.InvokeIfRequired(() =>
                 {
                     foreach (ListViewItem item in PreviousDateList.Items.OfType<ListViewItem>())
                     {
                         var info = (WorldDataDateInfo)item.Tag;
-                        if (info.IsCurrentData())
+                        if (info.IsPreviousData())
                         {
-                            item.BackColor = Color.Transparent;
+                            item.BackColor = Color.Green;
+                            item.Text += PreviousDateSuffix;
                         }
                     }
 
-
                     PreviousDateList.Enabled = true;
                 });
-
-            //if (info.IsPreviousData())
-            //{
-            //    listItem.BackColor = Color.Green;
-            //    listItem.Text += " (Previous)";
-            //}
         }
 
         /// <summary>
@@ -169,11 +174,6 @@ namespace TribalWars.Controls.Main.Monitoring
         /// </summary>
         private string GetTimeDifference(TimeSpan span)
         {
-            //if (span < new TimeSpan(0))
-            //{
-                
-            //}
-
             var str = new StringBuilder();
             AppendTimeDifferenceFraction(str, span.Days, "{0} days");
             AppendTimeDifferenceFraction(str, span.Hours, "{0} hours");

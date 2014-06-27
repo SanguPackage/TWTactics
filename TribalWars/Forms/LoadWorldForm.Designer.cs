@@ -213,7 +213,7 @@ namespace TribalWars.Forms
             this.MaximizeBox = false;
             this.Name = "LoadWorldForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Load World";
+            this.Text = "Create or Load World";
             this.Load += new System.EventHandler(this.LoadWorldForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
