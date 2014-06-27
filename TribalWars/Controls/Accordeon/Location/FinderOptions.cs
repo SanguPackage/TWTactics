@@ -43,7 +43,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// <summary>
         /// Gets or sets the area that needs to be evaluated
         /// </summary>
-        public FinderLocationEnum Evaluate { private get; set; }
+        public FinderLocationEnum EvaluatedArea { private get; set; }
 
         /// <summary>
         /// Gets a value indicating whether only the currently
@@ -51,7 +51,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public bool EvaluateScreenOnly
         {
-            get { return Evaluate == FinderLocationEnum.VisibleMap; }
+            get { return EvaluatedArea == FinderLocationEnum.VisibleMap; }
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Player> PlayerMatches()
         {
-            switch (Evaluate)
+            switch (EvaluatedArea)
             {
                 case FinderLocationEnum.VisibleMap:
                     return PlayerMatches(new List<Player>(World.Default.Players.Values.Where(World.Default.Map.Display.IsVisible)));
@@ -138,7 +138,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Tribe> TribeMatches()
         {
-            switch (Evaluate)
+            switch (EvaluatedArea)
             {
                 case FinderLocationEnum.VisibleMap:
                     return TribeMatches(new List<Tribe>(World.Default.Tribes.Values.Where(World.Default.Map.Display.IsVisible)));
@@ -195,7 +195,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public IEnumerable<Village> VillageMatches()
         {
-            switch (Evaluate)
+            switch (EvaluatedArea)
             {
                 case FinderLocationEnum.EntireMap:
                     return VillageMatches(new List<Village>(World.Default.Villages.Values));

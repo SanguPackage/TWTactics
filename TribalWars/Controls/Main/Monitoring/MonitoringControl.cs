@@ -44,9 +44,15 @@ namespace TribalWars.Controls.Main.Monitoring
                 e.Cancel = true;
         }
 
-        private void ApplyAdditionalFilters_CheckedChanged(object sender, EventArgs e)
+        private void ActivateAdditionalFilters_CheckedChanged(object sender, EventArgs e)
         {
-            AdditionalFilters.Enabled = ApplyAdditionalFilters.Checked;
+            AdditionalFilters.Enabled = ActivateAdditionalFilters.Checked;
+            ApplyAdditionalFilters.Enabled = ActivateAdditionalFilters.Checked;
+        }
+
+        private void ApplyAdditionalFilters_Click(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -122,10 +128,11 @@ namespace TribalWars.Controls.Main.Monitoring
         /// </summary>
         private void SetPreviousDateText(string value)
         {
-            if (!PreviousDate.InvokeRequired)
-                PreviousDate.Text = value;
-            else
-                Invoke(new SetStringDelegate(SetPreviousDateText), value);
+            // TODO: restore this
+            //if (!PreviousDate.InvokeRequired)
+            //    PreviousDate.Text = value;
+            //else
+            //    Invoke(new SetStringDelegate(SetPreviousDateText), value);
         }
 
         /// <summary>
@@ -150,7 +157,7 @@ namespace TribalWars.Controls.Main.Monitoring
                 DateTime test;
                 if (DateTime.TryParseExact(item, "yyyyMMddHH", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out test))
                 {
-                    PreviousDateList.Items.Add(test.ToString("dd MMM HH", System.Globalization.CultureInfo.InvariantCulture) + 'h');
+                    PreviousDateList.Items.Add(test.ToString("dd MMM yyyy HH", System.Globalization.CultureInfo.InvariantCulture) + 'h');
                 }
                 else
                 {
@@ -158,7 +165,9 @@ namespace TribalWars.Controls.Main.Monitoring
                 }
             }
             else
+            {
                 Invoke(new SetStringDelegate(AddPreviousDateItem), item);
+            }
         }
 
         /// <summary>
@@ -182,7 +191,7 @@ namespace TribalWars.Controls.Main.Monitoring
         {
             var options = new FinderOptions();
             // TODO: always evaluate custom filter (and remove custom filter)
-            options.Evaluate = FinderOptions.FinderLocationEnum.ActiveRectangle;
+            options.EvaluatedArea = FinderOptions.FinderLocationEnum.ActiveRectangle;
 
             switch (tag)
             {
@@ -208,7 +217,7 @@ namespace TribalWars.Controls.Main.Monitoring
                     break;
                 case "TribeNobled":
                     options.SearchFor = SearchForEnum.Villages;
-                    options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
                     {
                         options.Tribe = World.Default.You.Player.Tribe;
@@ -216,7 +225,7 @@ namespace TribalWars.Controls.Main.Monitoring
                     options.Options = FinderOptions.FinderOptionsEnum.Nobled;
                     break;
                 case "TribeNoActivity":
-                    options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
                     options.SearchFor = SearchForEnum.Players;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
                     {
@@ -225,20 +234,23 @@ namespace TribalWars.Controls.Main.Monitoring
                     options.Options = FinderOptions.FinderOptionsEnum.Inactives;
                     break;
                 case "TribeLostPoints":
-                    options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
                     options.SearchFor = SearchForEnum.Players;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
                         options.Tribe = World.Default.You.Player.Tribe;
                     options.Options = FinderOptions.FinderOptionsEnum.LostPoints;
                     break;
                 case "TribePlayers":
-                    options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
+                    options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
                     options.SearchFor = SearchForEnum.Players;
                     if (World.Default.You != null && World.Default.You.Player.HasTribe)
                         options.Tribe = World.Default.You.Player.Tribe;
                     options.Options = FinderOptions.FinderOptionsEnum.All;
                     break;
                 case "Filter":
+                    // already set:
+                    // Evaluate, SearchFor, 
+
                     options = AdditionalFilters.LoadFinderOptions();
                     break;
             }

@@ -58,6 +58,15 @@ namespace TribalWars.Controls.Accordeon.Location
                 What.SelectedIndex = 0;
             }
         }
+
+        /// <summary>
+        /// Limit the results to this value
+        /// </summary>
+        public decimal LimitResultsValue
+        {
+            get { return ResultLimit.Value; }
+            set { ResultLimit.Value = value; }
+        }
         #endregion
 
         #region Events
@@ -146,7 +155,8 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void FinderOptionsControl_Load(object sender, EventArgs e)
         {
-            SearchFor(SearchForEnum.Players);
+            Filter.SelectedIndex = (int) FinderOptions.FinderOptionsEnum.All;
+            Location.SelectedIndex = (int) FinderOptions.FinderLocationEnum.EntireMap;
         }
 
         /// <summary>
@@ -156,9 +166,9 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             var options = new FinderOptions();
             if (Location.SelectedIndex == -1)
-                options.Evaluate = FinderOptions.FinderLocationEnum.EntireMap;
+                options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
             else
-                options.Evaluate = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
+                options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
             options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
             options.PointsBetweenStart = (int)PointsBetweenStart.Value;
             options.ResultLimit = (int)ResultLimit.Value;
@@ -181,20 +191,21 @@ namespace TribalWars.Controls.Accordeon.Location
             }
 
             options.Text = Search.Text.Trim().ToUpper(CultureInfo.InvariantCulture);
-            if (!string.IsNullOrEmpty(Tribe.Text) && World.Default.Tribes.ContainsKey(Tribe.Text.ToUpper(CultureInfo.InvariantCulture)))
-                options.Tribe = World.Default.Tribes[Tribe.Text.ToUpper(CultureInfo.InvariantCulture)];
+
+            if (Tribe.Tribe != null)
+            {
+                options.Tribe = Tribe.Tribe;
+            }
+
+            //if (!string.IsNullOrEmpty(Tribe.Text) && World.Default.Tribes.ContainsKey(Tribe.Text.ToUpper(CultureInfo.InvariantCulture)))
+            //    options.Tribe = World.Default.Tribes[Tribe.Text.ToUpper(CultureInfo.InvariantCulture)];
+
             return options;
         }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SearchFor(SearchForEnum search)
-        {
-            Debug.Assert();
-        }
+        
         #endregion
     }
 }

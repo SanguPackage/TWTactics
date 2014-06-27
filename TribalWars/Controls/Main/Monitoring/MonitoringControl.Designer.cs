@@ -52,23 +52,26 @@ namespace TribalWars.Controls.Main.Monitoring
             this.OptionsTree = new System.Windows.Forms.TreeView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.PreviousDate = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.CurrentDate = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.AdditionalFiltersGroupbox = new System.Windows.Forms.GroupBox();
+            this.ApplyAdditionalFilters = new System.Windows.Forms.Button();
+            this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
             this.PreviousDateList = new System.Windows.Forms.ListBox();
             this.NobledVillage = new XPTable.Models.TextColumn();
             this.NobledPlayer = new XPTable.Models.TextColumn();
             this.NobledPlayerOld = new XPTable.Models.TextColumn();
             this.NobledPoints = new XPTable.Models.NumberColumn();
             this.NobledPointsOld = new XPTable.Models.NumberColumn();
-            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
-            this.Table = new TribalWars.Controls.Display.TableWrapperControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ApplyAdditionalFilters = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Table = new TribalWars.Controls.Display.TableWrapperControl();
+            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
             this.flowLayoutPanel1.SuspendLayout();
             this.AdditionalFiltersGroupbox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // OptionsTree
@@ -131,7 +134,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.OptionsTree.ShowNodeToolTips = true;
             this.OptionsTree.ShowPlusMinus = false;
             this.OptionsTree.ShowRootLines = false;
-            this.OptionsTree.Size = new System.Drawing.Size(114, 175);
+            this.OptionsTree.Size = new System.Drawing.Size(114, 210);
             this.OptionsTree.TabIndex = 1;
             this.OptionsTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OptionsTree_BeforeSelect);
             this.OptionsTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OptionsTree_NodeMouseClick);
@@ -139,14 +142,13 @@ namespace TribalWars.Controls.Main.Monitoring
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.PreviousDate);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.CurrentDate);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(182, 301);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(442, 159);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(97, 283);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(113, 70);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -155,57 +157,70 @@ namespace TribalWars.Controls.Main.Monitoring
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Comparing";
-            // 
-            // PreviousDate
-            // 
-            this.PreviousDate.AutoSize = true;
-            this.PreviousDate.Location = new System.Drawing.Point(3, 19);
-            this.PreviousDate.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.PreviousDate.Name = "PreviousDate";
-            this.PreviousDate.Size = new System.Drawing.Size(53, 13);
-            this.PreviousDate.TabIndex = 1;
-            this.PreviousDate.Text = "Unknown";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 35);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "and";
+            this.label1.Text = "Current Data";
             // 
             // CurrentDate
             // 
             this.CurrentDate.AutoSize = true;
-            this.CurrentDate.Location = new System.Drawing.Point(3, 51);
+            this.CurrentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentDate.Location = new System.Drawing.Point(3, 19);
             this.CurrentDate.Name = "CurrentDate";
-            this.CurrentDate.Size = new System.Drawing.Size(53, 13);
+            this.CurrentDate.Size = new System.Drawing.Size(60, 13);
             this.CurrentDate.TabIndex = 3;
             this.CurrentDate.Text = "Unknown";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 32);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Previous data";
             // 
             // AdditionalFiltersGroupbox
             // 
             this.AdditionalFiltersGroupbox.Controls.Add(this.ApplyAdditionalFilters);
+            this.AdditionalFiltersGroupbox.Controls.Add(this.ActivateAdditionalFilters);
             this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
             this.AdditionalFiltersGroupbox.Location = new System.Drawing.Point(129, 3);
             this.AdditionalFiltersGroupbox.Name = "AdditionalFiltersGroupbox";
-            this.AdditionalFiltersGroupbox.Size = new System.Drawing.Size(285, 194);
+            this.AdditionalFiltersGroupbox.Size = new System.Drawing.Size(285, 229);
             this.AdditionalFiltersGroupbox.TabIndex = 0;
             this.AdditionalFiltersGroupbox.TabStop = false;
             this.AdditionalFiltersGroupbox.Text = "      Activate additional filters";
+            // 
+            // ApplyAdditionalFilters
+            // 
+            this.ApplyAdditionalFilters.Enabled = false;
+            this.ApplyAdditionalFilters.Location = new System.Drawing.Point(3, 200);
+            this.ApplyAdditionalFilters.Name = "ApplyAdditionalFilters";
+            this.ApplyAdditionalFilters.Size = new System.Drawing.Size(276, 23);
+            this.ApplyAdditionalFilters.TabIndex = 2;
+            this.ApplyAdditionalFilters.Text = "Apply additional filters";
+            this.ApplyAdditionalFilters.UseVisualStyleBackColor = true;
+            this.ApplyAdditionalFilters.Click += new System.EventHandler(this.ApplyAdditionalFilters_Click);
+            // 
+            // ActivateAdditionalFilters
+            // 
+            this.ActivateAdditionalFilters.AutoSize = true;
+            this.ActivateAdditionalFilters.Location = new System.Drawing.Point(10, 1);
+            this.ActivateAdditionalFilters.Name = "ActivateAdditionalFilters";
+            this.ActivateAdditionalFilters.Size = new System.Drawing.Size(15, 14);
+            this.ActivateAdditionalFilters.TabIndex = 1;
+            this.ActivateAdditionalFilters.UseVisualStyleBackColor = true;
+            this.ActivateAdditionalFilters.CheckedChanged += new System.EventHandler(this.ActivateAdditionalFilters_CheckedChanged);
             // 
             // PreviousDateList
             // 
             this.PreviousDateList.Enabled = false;
             this.PreviousDateList.FormattingEnabled = true;
-            this.PreviousDateList.Location = new System.Drawing.Point(106, 214);
+            this.PreviousDateList.Location = new System.Drawing.Point(442, 19);
             this.PreviousDateList.Name = "PreviousDateList";
-            this.PreviousDateList.Size = new System.Drawing.Size(116, 56);
+            this.PreviousDateList.Size = new System.Drawing.Size(108, 160);
             this.PreviousDateList.TabIndex = 5;
             this.PreviousDateList.SelectedIndexChanged += new System.EventHandler(this.PreviousDateList_SelectedIndexChanged);
             // 
@@ -231,71 +246,93 @@ namespace TribalWars.Controls.Main.Monitoring
             this.NobledPointsOld.Format = "#,0";
             this.NobledPointsOld.Text = "Difference";
             // 
-            // AdditionalFilters
+            // groupBox1
             // 
-            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
-            this.AdditionalFilters.Buttonsvisible = false;
-            this.AdditionalFilters.Enabled = false;
-            this.AdditionalFilters.Expanded = true;
-            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
-            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
-            this.AdditionalFilters.Name = "AdditionalFilters";
-            this.AdditionalFilters.Size = new System.Drawing.Size(285, 178);
-            this.AdditionalFilters.TabIndex = 0;
+            this.groupBox1.Controls.Add(this.OptionsTree);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(120, 229);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Select filter";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Location = new System.Drawing.Point(3, 238);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(120, 348);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Select dates";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.Table);
+            this.groupBox3.Location = new System.Drawing.Point(128, 238);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(469, 348);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Results";
             // 
             // Table
             // 
             this.Table.AutoSelectSingleRow = true;
             this.Table.BackColor = System.Drawing.Color.Transparent;
             this.Table.DisplayType = TribalWars.Controls.Display.TableWrapperControl.ColumnDisplayTypeEnum.All;
-            this.Table.Location = new System.Drawing.Point(279, 214);
+            this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Table.Location = new System.Drawing.Point(3, 16);
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
             this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
-            this.Table.Size = new System.Drawing.Size(453, 317);
+            this.Table.Size = new System.Drawing.Size(463, 329);
             this.Table.TabIndex = 0;
             this.Table.VisiblePlayerFields = TribalWars.Controls.Display.PlayerFields.None;
             this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
             this.Table.VisibleTribeFields = TribalWars.Controls.Display.TribeFields.None;
             // 
-            // groupBox1
+            // AdditionalFilters
             // 
-            this.groupBox1.Controls.Add(this.OptionsTree);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(120, 194);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Select filter";
-            // 
-            // ApplyAdditionalFilters
-            // 
-            this.ApplyAdditionalFilters.AutoSize = true;
-            this.ApplyAdditionalFilters.Location = new System.Drawing.Point(10, 1);
-            this.ApplyAdditionalFilters.Name = "ApplyAdditionalFilters";
-            this.ApplyAdditionalFilters.Size = new System.Drawing.Size(15, 14);
-            this.ApplyAdditionalFilters.TabIndex = 1;
-            this.ApplyAdditionalFilters.UseVisualStyleBackColor = true;
-            this.ApplyAdditionalFilters.CheckedChanged += new System.EventHandler(this.ApplyAdditionalFilters_CheckedChanged);
+            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
+            this.AdditionalFilters.Buttonsvisible = false;
+            this.AdditionalFilters.Enabled = false;
+            this.AdditionalFilters.Expanded = false;
+            this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
+            9000,
+            0,
+            0,
+            0});
+            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
+            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
+            this.AdditionalFilters.Name = "AdditionalFilters";
+            this.AdditionalFilters.Size = new System.Drawing.Size(285, 183);
+            this.AdditionalFilters.TabIndex = 0;
             // 
             // MonitoringControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.PreviousDateList);
-            this.Controls.Add(this.Table);
-            this.Controls.Add(this.AdditionalFiltersGroupbox);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.AdditionalFiltersGroupbox);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.PreviousDateList);
+            this.Controls.Add(this.groupBox2);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MonitoringControl";
-            this.Size = new System.Drawing.Size(719, 788);
+            this.Size = new System.Drawing.Size(601, 589);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.AdditionalFiltersGroupbox.ResumeLayout(false);
             this.AdditionalFiltersGroupbox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,14 +348,16 @@ namespace TribalWars.Controls.Main.Monitoring
         private System.Windows.Forms.GroupBox AdditionalFiltersGroupbox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label PreviousDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label CurrentDate;
         private TribalWars.Controls.Accordeon.Location.FinderOptionsControl AdditionalFilters;
         private System.Windows.Forms.ListBox PreviousDateList;
         private TribalWars.Controls.Display.TableWrapperControl Table;
-        private System.Windows.Forms.CheckBox ApplyAdditionalFilters;
+        private System.Windows.Forms.CheckBox ActivateAdditionalFilters;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button ApplyAdditionalFilters;
 
     }
 }
