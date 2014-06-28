@@ -47,7 +47,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.groupBox1.Size = new System.Drawing.Size(296, 180);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Find player";
+            this.groupBox1.Text = "Find players, tribes or villages";
             // 
             // MainTable
             // 
@@ -77,11 +77,16 @@ namespace TribalWars.Controls.Accordeon.Location
             // 
             // Options
             // 
-            this.Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Options.BackColor = System.Drawing.Color.Transparent;
             this.Options.Buttonsvisible = true;
             this.Options.Expanded = false;
+            this.Options.LimitResultsValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.Options.Location = new System.Drawing.Point(0, 0);
             this.Options.Margin = new System.Windows.Forms.Padding(0);
             this.Options.Name = "Options";
@@ -94,15 +99,21 @@ namespace TribalWars.Controls.Accordeon.Location
             // 
             // Table
             // 
+            this.Table.AutoSelectSingleRow = true;
             this.Table.BackColor = System.Drawing.Color.Transparent;
+            this.Table.DisplayType = TribalWars.Controls.Display.TableWrapperControl.ColumnDisplayTypeEnum.Default;
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Table.Location = new System.Drawing.Point(0, 35);
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
+            this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
             this.Table.Size = new System.Drawing.Size(290, 126);
             this.Table.TabIndex = 4;
+            this.Table.VisiblePlayerFields = TribalWars.Controls.Display.PlayerFields.None;
+            this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
+            this.Table.VisibleTribeFields = TribalWars.Controls.Display.TribeFields.None;
             // 
-            // MapFinderControl
+            // LocationFinderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

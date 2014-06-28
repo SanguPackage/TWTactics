@@ -39,7 +39,6 @@ namespace TribalWars.Controls.Accordeon.Location
             txtX.Text = World.Default.Map.Location.X.ToString(CultureInfo.InvariantCulture);
             txtY.Text = World.Default.Map.Location.Y.ToString(CultureInfo.InvariantCulture);
             txtZ.Text = World.Default.Map.Location.Zoom.ToString(CultureInfo.InvariantCulture);
-            //txtWidth.Text = World.Default.Map.Location.Width.ToString(CultureInfo.InvariantCulture);
 
             if (World.Default.PlayerSelected)
             {
@@ -74,11 +73,6 @@ namespace TribalWars.Controls.Accordeon.Location
             txtZ.SelectAll();
         }
 
-        private void txtWidth_Enter(object sender, EventArgs e)
-        {
-            txtWidth.SelectAll();
-        }
-
         private void txtX_Click(object sender, EventArgs e)
         {
             txtX.SelectAll();
@@ -93,17 +87,10 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             txtZ.SelectAll();
         }
-
-        private void txtWidth_Click(object sender, EventArgs e)
-        {
-            txtWidth.SelectAll();
-        }
         #endregion
 
         private void Location_Changed(object sender, MapLocationEventArgs e)
         {
-            LocationHistory.Add(e.NewLocation, e.NewLocation.ToString());
-
             txtX.Text = e.NewLocation.X.ToString(CultureInfo.InvariantCulture);
             txtY.Text = e.NewLocation.Y.ToString(CultureInfo.InvariantCulture);
             txtZ.Text = e.NewLocation.Zoom.ToString(CultureInfo.InvariantCulture);
