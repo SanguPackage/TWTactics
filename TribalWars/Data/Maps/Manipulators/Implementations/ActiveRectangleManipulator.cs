@@ -10,7 +10,7 @@ using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 namespace TribalWars.Data.Maps.Manipulators.Implementations
 {
     /// <summary>
-    /// 
+    /// Sets the ActiveRectangle for the Monitoring tab
     /// </summary>
     internal class ActiveRectangleManipulator : ManipulatorBase
     {
@@ -18,7 +18,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly Pen _rectanglePen;
         private Size _activeRectangleSize;
         private Rectangle _activeRectangle;
-        private bool _inflating;
         #endregion
 
         #region Constructors
@@ -47,57 +46,48 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             //Point rightBottom = _map.Display.GetMapLocation(mapGameRectangle.Right, mapGameRectangle.Bottom);
             //_mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
 
-            Debug.WriteLine("Paint: " + _activeRectangle + " Size: " + _activeRectangleSize);
             e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);
+
+            
         }
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
-            if (!_inflating)
-            {
-                // Make the ActiveRectangle move with the mouse
-                CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);
-                Debug.WriteLine("MouseMove: " + _activeRectangle + " Size: " + _activeRectangleSize);
-                return true;
-            }
-            return false;
+            // Make the ActiveRectangle move with the mouse
+            CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);
+            return true;
         }
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            // Need to check some boundaries for inflates...
-
             const int step = 5;
             const int largeStep = 20;
             switch (e.KeyEventArgs.KeyData)
             {
                 case Keys.Subtract | Keys.Control:
-                    Inflate(-largeStep);
+                    InflateActiveRectangle(-largeStep);
                     return true;
 
                 case Keys.Add | Keys.Control:
-                    Inflate(largeStep);
+                    InflateActiveRectangle(largeStep);
                     return true;
 
                 case Keys.Add:
-                    Inflate(step);
+                    InflateActiveRectangle(step);
                     return true;
 
                 case Keys.Subtract:
-                    Inflate(-step);
+                    InflateActiveRectangle(-step);
                     return true;
             }
             return false;
         }
 
-        private void Inflate(int amount)
+        private void InflateActiveRectangle(int amount)
         {
-            _inflating = true;
-            _activeRectangleSize.Width += amount;
-            _activeRectangleSize.Height += amount;
+            _activeRectangleSize.Width += amount * 2;
+            _activeRectangleSize.Height += amount * 2;
             _activeRectangle.Inflate(amount, amount);
-            Debug.WriteLine("Inflate: " + _activeRectangle + " Size: " + _activeRectangleSize);
-            _inflating = false;
         }
 
         /// <summary>
