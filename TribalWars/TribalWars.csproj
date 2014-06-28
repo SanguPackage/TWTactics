@@ -346,6 +346,7 @@
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
+    <Compile Include="Data\Maps\Manipulators\Implementations\ActiveRectangleManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\Polygon.cs" />
@@ -354,7 +355,6 @@
     <Compile Include="Data\Maps\Manipulators\Implementations\MapDraggerManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\PinPointManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MouseMoveManipulatorBase.cs" />
     <Compile Include="Data\Maps\Manipulators\ManipulatorBase.cs" />

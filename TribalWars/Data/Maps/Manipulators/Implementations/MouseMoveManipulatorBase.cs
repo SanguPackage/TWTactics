@@ -19,9 +19,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly DefaultManipulatorManager _parent;
         private int _nextId = 1;
         private Polygon _activePolygon;
-        private Polygon _currentSelectedPolygon;
+        private Polygon _currentlySelectedPolygon;
         private List<Polygon> _collection = new List<Polygon>();
-        private bool _differentVillage = false;
+        private bool _differentVillage;
         #endregion
 
         #region Properties

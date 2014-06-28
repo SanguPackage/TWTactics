@@ -44,6 +44,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             RemoveFullControlManipulator();
             _fullControllManipulator = manipulator;
             _fullControllManipulator.SetFullControlManipulatorCore();
+            _map.Control.GiveFocus();
         }
 
         /// <summary>
@@ -63,12 +64,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         public void Initialize()
         {
             _map.SetCursor();
-            InitializeCore();
             _map.Control.Invalidate();
-        }
-
-        protected internal virtual void InitializeCore()
-        {
         }
 
         /// <summary>
@@ -190,12 +186,22 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region IMapDrawer Members
         public override void Paint(MapPaintEventArgs e)
         {
+            if (_fullControllManipulator != null && !_manipulators.Contains(_fullControllManipulator))
+            {
+                _fullControllManipulator.Paint(e);
+            }
+
             foreach (ManipulatorBase manipulator in _manipulators)
                 manipulator.Paint(e);
         }
 
         public override void TimerPaint(MapTimerPaintEventArgs e)
         {
+            if (_fullControllManipulator != null && !_manipulators.Contains(_fullControllManipulator))
+            {
+                _fullControllManipulator.TimerPaint(e);
+            }
+
             foreach (ManipulatorBase manipulator in _manipulators)
                 manipulator.TimerPaint(e);
         }

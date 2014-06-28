@@ -7,7 +7,6 @@ using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations

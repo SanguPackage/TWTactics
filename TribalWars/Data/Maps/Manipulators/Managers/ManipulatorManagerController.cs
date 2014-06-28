@@ -43,32 +43,32 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// <summary>
         /// Gets the map the manipulators are active on
         /// </summary>
-        public Map Map { get; private set; }
+        private Map Map { get; set; }
 
         /// <summary>
         /// Gets the default manipulator
         /// </summary>
-        public DefaultManipulatorManager DefaultManipulator { get; private set; }
+        private DefaultManipulatorManager DefaultManipulator { get; set; }
 
         /// <summary>
         /// Gets the polygon manipulator
         /// </summary>
-        public PolygonManipulatorManager PolygonManipulator { get; private set; }
+        private PolygonManipulatorManager PolygonManipulator { get; set; }
 
         /// <summary>
         /// The last village the cursor was on or is still on
         /// </summary>
-        public Point ActiveVillage { get; protected set; }
+        private Point ActiveVillage { get; set; }
 
         /// <summary>
         /// The 2nd last village the cursors was on
         /// </summary>
-        public Point LastActiveVillage { get; protected set; }
+        private Point LastActiveVillage { get; set; }
 
         /// <summary>
         /// The location the cursors is on
         /// </summary>
-        public Point ActiveLocation { get; protected set; }
+        private Point ActiveLocation { get; set; }
         #endregion
 
         #region Constructors

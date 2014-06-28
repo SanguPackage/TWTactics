@@ -9,6 +9,7 @@ using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Displays;
+using TribalWars.Data.Maps.Manipulators.Implementations;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
@@ -301,10 +302,8 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                // TODO: we zaten hier
-                //World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-
-                //World.Default.Map.Manipulators.AddMouseMoved();
+                var setActiveRectangle = new ActiveRectangleManipulator(World.Default.Map);
+                World.Default.Map.Manipulators.CurrentManipulator.SetFullControlManipulator(setActiveRectangle);
             }
         }
         #endregion

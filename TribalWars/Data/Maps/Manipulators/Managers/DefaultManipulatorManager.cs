@@ -20,22 +20,17 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// <summary>
         /// Moves the map with the mouse
         /// </summary>
-        internal MapDraggerManipulator MapDragger { get; private set; }
+        private MapDraggerManipulator MapDragger { get; set; }
 
         /// <summary>
         /// Marks the active village
         /// </summary>
-        internal ActiveVillageManipulator ActiveVillageManipulator { get; private set; }
+        private ActiveVillageManipulator ActiveVillageManipulator { get; set; }
 
         /// <summary>
         /// Moves the map with the keyboard
         /// </summary>
         internal MapMoverManipulator MapMover { get; private set; }
-
-        /// <summary>
-        /// Marks players and tribes
-        /// </summary>
-        internal PinPointManipulator MapPinPointer { get; private set; }
         #endregion
 
         #region Constructors
@@ -46,12 +41,10 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             ActiveVillageManipulator = new ActiveVillageManipulator(map, SystemColors.HighlightText, Color.LimeGreen, Color.Red, SystemColors.HighlightText);
             MapMover = new MapMoverManipulator(map);
             MapDragger = new MapDraggerManipulator(map, this, 1);
-            MapPinPointer = new PinPointManipulator(map);
 
             _manipulators.Add(ActiveVillageManipulator);
             _manipulators.Add(MapMover);
             _manipulators.Add(MapDragger);
-            _manipulators.Add(MapPinPointer);
         }
         #endregion
 
@@ -69,14 +62,17 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region IMapManipulator Members
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
+            // TODO: fullControl check is also in the base
+            // this if used to be right before base.MouseUpCore.. should be so?
+            if (_fullControllManipulator != null)
+            {
+                return _fullControllManipulator.MouseUpCore(e);
+            }
+
             if (e.MouseEventArgs.Button == MouseButtons.Right)
             {
                 ShowVillageContext(e.MouseEventArgs.Location, e.Village);
                 return false;
-            }
-            if (_fullControllManipulator != null)
-            {
-                return _fullControllManipulator.MouseUpCore(e);
             }
 
             return base.MouseUpCore(e);
