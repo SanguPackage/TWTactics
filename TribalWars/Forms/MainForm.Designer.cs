@@ -606,7 +606,7 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator.Name = "ToolStripPolygonManipulator";
             this.ToolStripPolygonManipulator.Size = new System.Drawing.Size(23, 22);
             this.ToolStripPolygonManipulator.Text = "Polygon";
-            this.ToolStripPolygonManipulator.ToolTipText = "Draw polygons ";
+            this.ToolStripPolygonManipulator.ToolTipText = "Draw polygons (with BB code generation)";
             this.ToolStripPolygonManipulator.Click += new System.EventHandler(this.ToolStripPolygonManipulator_Click);
             // 
             // toolStripSeparator
