@@ -6,6 +6,8 @@ using TribalWars.Data;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
+using TribalWars.Tools;
+
 #endregion
 
 namespace TribalWars.Controls.Maps
@@ -17,7 +19,7 @@ namespace TribalWars.Controls.Maps
     {
         #region Fields
         protected Map Map;
-        private readonly ToolTip _villageToolTipControl;
+        private readonly ToolTip _toolTipControl;
         private readonly Timer _timer;
         #endregion
 
@@ -52,9 +54,7 @@ namespace TribalWars.Controls.Maps
         public ScrollableMapControl()
         {
             BackColor = Color.Green;
-            _villageToolTipControl = new ToolTip();
-            _villageToolTipControl.Active = true;
-            _villageToolTipControl.IsBalloon = true;
+            _toolTipControl = WinForms.CreateTooltip();
 
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -129,7 +129,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (IsManipulatable && Map.Manipulators.MouseMove(e, this, _villageToolTipControl))
+            if (IsManipulatable && Map.Manipulators.MouseMove(e, this, _toolTipControl))
             {
                 Invalidate();
             }

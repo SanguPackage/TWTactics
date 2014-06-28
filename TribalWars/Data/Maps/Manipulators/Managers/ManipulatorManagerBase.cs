@@ -10,10 +10,10 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
     /// <summary>
     /// The base class for a manipulator manager
     /// </summary>
-    public class ManipulatorManagerBase : ManipulatorBase
+    public abstract class ManipulatorManagerBase : ManipulatorBase
     {
         #region Fields
-        protected List<ManipulatorBase> _manipulators;
+        protected readonly List<ManipulatorBase> _manipulators;
         protected ManipulatorBase _fullControllManipulator;
         #endregion
 
@@ -26,7 +26,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #endregion
 
         #region Constructors
-        public ManipulatorManagerBase(Map map)
+        protected ManipulatorManagerBase(Map map)
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();

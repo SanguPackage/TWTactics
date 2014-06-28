@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Tools;
 
 #endregion
 
@@ -20,11 +21,28 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private Rectangle _activeRectangle;
         #endregion
 
+        #region Tooltip Fields
+        private bool _wasShowingTooltip;
+
+        private bool _showHelpTooltip;
+        private Point _lastTooltipLocation;
+        private readonly ToolTip _helpTooltip;
+        private const string HelpTitle = "Monitoring ActiveRectangle";
+        private const string HelpBody = 
+                @"Press + to grow the area
+Press - to shrink the area
+Left click to save the area
+Right click to cancel
+Press 's' to remove this tooltip";
+        #endregion
+
         #region Constructors
         public ActiveRectangleManipulator(Map map)
             : base(map)
         {
             _rectanglePen = new Pen(Color.Yellow, 3);
+            _helpTooltip = WinForms.CreateTooltip();
+            _showHelpTooltip = true;
 
             SetInitialActiveRectangle();
         }
@@ -38,21 +56,44 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         }
         #endregion
 
-        #region Public Methods
+        #region Methods
+        protected internal override void SetFullControlManipulatorCore()
+        {
+            _wasShowingTooltip = _map.Manipulators.CurrentManipulator.ShowTooltip;
+            _map.Manipulators.CurrentManipulator.ShowTooltip = false;
+        }
+
+        protected internal override void RemoveFullControlManipulatorCore()
+        {
+            _map.Manipulators.CurrentManipulator.ShowTooltip = _wasShowingTooltip;
+        }
+
         public override void Paint(MapPaintEventArgs e)
         {
             e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);
-
-            // Tooltip :)
         }
 
+        /// <summary>
+        /// Make the ActiveRectangle move with the mouse.
+        /// Display informative tooltip.
+        /// </summary>
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
-            // Make the ActiveRectangle move with the mouse
+            if (_showHelpTooltip && _lastTooltipLocation != e.Location)
+            {
+                _lastTooltipLocation = e.Location;
+                _helpTooltip.ToolTipTitle = HelpTitle;
+                _helpTooltip.SetToolTip(_map.Control, HelpBody);
+            }
+            
             CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);
             return true;
         }
 
+        /// <summary>
+        /// Grow or shrink the ActiveRectangle.
+        /// Stop the Tooltip.
+        /// </summary>
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
             const int step = 5;
@@ -74,19 +115,17 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 case Keys.Subtract:
                     InflateActiveRectangle(-step);
                     return true;
+
+                case Keys.S:
+                    _showHelpTooltip = false;
+                    _helpTooltip.Active = false;
+                    return true;
             }
             return false;
         }
 
-        private void InflateActiveRectangle(int amount)
-        {
-            _activeRectangleSize.Width += amount * 2;
-            _activeRectangleSize.Height += amount * 2;
-            _activeRectangle.Inflate(amount, amount);
-        }
-
         /// <summary>
-        /// Moves the center of the map
+        /// Save new Monitoring ActiveRectangle or remove FullControl
         /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
@@ -100,14 +139,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     Point gameSize = _map.Display.GetGameLocation(_activeRectangle.Right, _activeRectangle.Bottom);
 
                     var worldRectangle = new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
-
-
-                    //Rectangle mapGameRectangle = _map.Display.GetGameRectangle(_map.Control.ClientRectangle);
-                    //Point leftTop = _map.Display.GetMapLocation(mapGameRectangle.X, mapGameRectangle.Y);
-                    //Point rightBottom = _map.Display.GetMapLocation(mapGameRectangle.Right, mapGameRectangle.Bottom);
-                    //_mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
-
-
                     World.Default.Monitor.ActiveRectangle = worldRectangle;
                     World.Default.SaveSettings();
                 }
@@ -115,9 +146,22 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _map.Manipulators.CurrentManipulator.RemoveFullControlManipulator();
             return true;
         }
+        
+        public override void Dispose()
+        {
+            _rectanglePen.Dispose();
+            _helpTooltip.Dispose();
+        }
         #endregion
 
-        #region Private Methods
+        #region Private Implementation
+        private void InflateActiveRectangle(int amount)
+        {
+            _activeRectangleSize.Width += amount * 2;
+            _activeRectangleSize.Height += amount * 2;
+            _activeRectangle.Inflate(amount, amount);
+        }
+
         private void CalculateActiveRectanglePosition(int x, int y)
         {
             x -= _activeRectangleSize.Width / 2;

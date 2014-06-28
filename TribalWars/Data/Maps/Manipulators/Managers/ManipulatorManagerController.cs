@@ -153,7 +153,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture, ToolTip villageTooltip)
         {
-            // TODO: Creating a graphics object here *every* time might not be a good idea :)
             Point game = Map.Display.GetGameLocation(e.X, e.Y);
             if (!game.IsValidGameCoordinate())
             {

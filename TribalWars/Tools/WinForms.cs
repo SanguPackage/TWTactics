@@ -13,6 +13,18 @@ namespace TribalWars.Tools
     public static class WinForms
     {
         /// <summary>
+        /// Create a WinForms tooltip control with default properties set
+        /// </summary>
+        public static ToolTip CreateTooltip()
+        {
+            return new ToolTip()
+                {
+                    Active = true,
+                    IsBalloon = true
+                };
+        }
+
+        /// <summary>
         /// Update a control from different thread
         /// </summary>
         public static void InvokeIfRequired(this ISynchronizeInvoke obj, MethodInvoker action)

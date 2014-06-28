@@ -10,6 +10,8 @@ using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Data.Maps;
+using TribalWars.Tools;
+
 #endregion
 
 namespace TribalWars.Controls.Common
@@ -31,7 +33,7 @@ namespace TribalWars.Controls.Common
 
         #region Fields
         private Map _map;
-        private readonly ToolTip _tooltip = new ToolTip();
+        private readonly ToolTip _tooltip;
 
         private bool _showButton;
 
@@ -124,8 +126,7 @@ namespace TribalWars.Controls.Common
         {
             AllowVillage = true;
             Width = 50;
-            _tooltip.Active = true;
-            _tooltip.IsBalloon = true;
+            _tooltip = WinForms.CreateTooltip();
         }
 
         public void Initialize(Map map)
