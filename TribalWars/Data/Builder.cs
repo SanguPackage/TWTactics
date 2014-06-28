@@ -274,7 +274,7 @@ namespace TribalWars.Data
                 w.WriteAttributeString("Date", DateTime.Now.ToLongDateString());
 
                 w.WriteStartElement("You");
-                w.WriteAttributeString("Name", World.Default.You.Player.Name);
+                w.WriteAttributeString("Name", World.Default.You.Player != null ? World.Default.You.Player.Name : "");
                 WriteMarkerGroup(w, map.MarkerManager.YourMarker);
                 WriteMarkerGroup(w, map.MarkerManager.YourTribeMarker);
                 WriteMarkerGroup(w, map.MarkerManager.EnemyMarker);

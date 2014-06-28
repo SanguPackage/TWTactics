@@ -460,7 +460,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(357, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(388, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -542,7 +542,7 @@ namespace TribalWars.Forms
             this.ToolStripActiveRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripActiveRectangle.Name = "ToolStripActiveRectangle";
             this.ToolStripActiveRectangle.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripActiveRectangle.ToolTipText = "Set the area you want to monitor (Use + and - to resize the rectangle)";
+            this.ToolStripActiveRectangle.ToolTipText = "Select the area on the main map that you want to monitor";
             this.ToolStripActiveRectangle.Click += new System.EventHandler(this.ToolStripActiveRectangle_Click);
             // 
             // ToolStripDraw

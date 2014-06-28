@@ -41,14 +41,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #region Public Methods
         public override void Paint(MapPaintEventArgs e)
         {
-            //Rectangle mapGameRectangle = _map.Display.GetGameRectangle(_map.Control.ClientRectangle);
-            //Point leftTop = _map.Display.GetMapLocation(mapGameRectangle.X, mapGameRectangle.Y);
-            //Point rightBottom = _map.Display.GetMapLocation(mapGameRectangle.Right, mapGameRectangle.Bottom);
-            //_mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
-
             e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);
 
-            
+            // Tooltip :)
         }
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
@@ -95,15 +90,30 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
-            //// TODO: looks like this if is never true. And that this is implemented by MapDraggerManipulator
-            //if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && RightClickToMove) ||
-            //    (e.MouseEventArgs.Button == MouseButtons.Left && LeftClickToMove))
-            //{
-            //    Point game = _map.Display.GetGameLocation(e.MouseEventArgs.X, e.MouseEventArgs.Y);
-            //    _map.SetCenter(game.X, game.Y);
-            //    return true;
-            //}
-            return false;
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            {
+                string text = string.Format("Set this as the new area you want to keep updated about? (In Monitoring tab)");
+                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNo);
+                if (saveActiveRectangle == DialogResult.Yes)
+                {
+                    Point gameLocation = _map.Display.GetGameLocation(_activeRectangle.Location);
+                    Point gameSize = _map.Display.GetGameLocation(_activeRectangle.Right, _activeRectangle.Bottom);
+
+                    var worldRectangle = new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
+
+
+                    //Rectangle mapGameRectangle = _map.Display.GetGameRectangle(_map.Control.ClientRectangle);
+                    //Point leftTop = _map.Display.GetMapLocation(mapGameRectangle.X, mapGameRectangle.Y);
+                    //Point rightBottom = _map.Display.GetMapLocation(mapGameRectangle.Right, mapGameRectangle.Bottom);
+                    //_mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
+
+
+                    World.Default.Monitor.ActiveRectangle = worldRectangle;
+                    World.Default.SaveSettings();
+                }
+            }
+            _map.Manipulators.CurrentManipulator.RemoveFullControlManipulator();
+            return true;
         }
         #endregion
 
