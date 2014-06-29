@@ -1,10 +1,7 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Villages;
 
 #endregion
@@ -16,12 +13,6 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
     /// </summary>
     public class Polygon
     {
-        #region Fields
-        private readonly int _minOffset;
-
-        private readonly bool _differentVillage;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets a value indicating whether we are currently drawing
@@ -55,18 +46,15 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         #endregion
 
         #region Constructors
-        public Polygon(string name, int x, int y, int minOffset, bool differentVillage)
+        public Polygon(string name, int x, int y)
         {
-            _minOffset = minOffset;
             Name = name;
             Visible = true;
-            _differentVillage = differentVillage;
             Start(x, y);
         }
 
-        public Polygon(string name, bool visible, List<Point> points, int minOffset)
+        public Polygon(string name, bool visible, IEnumerable<Point> points)
         {
-            _minOffset = minOffset;
             Name = name;
             Visible = visible;
             List = new LinkedList<Point>(points);
@@ -91,7 +79,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Starts a new polygon
         /// </summary>
-        public void Start(int x, int y)
+        private void Start(int x, int y)
         {
             Drawing = true;
             List = new LinkedList<Point>();
@@ -101,37 +89,10 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Adds a point to the polygon
         /// </summary>
-        public bool Add(int mapCurrentX, int mapCurrentY)
+        public void Add(int mapCurrentX, int mapCurrentY)
         {
-            Point gameLast = List.Last.Value;
-
-            bool addCurrentLocation = false;
-            if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
-            {
-                var mapLast = World.Default.Map.Display.GetMapLocation(gameLast);
-                double distance = Math.Sqrt(Math.Pow(mapCurrentX - mapLast.X, 2) + Math.Pow(mapCurrentY - mapLast.Y, 2));
-                addCurrentLocation = distance > 50;
-            }
-            else
-            {
-                Debug.Assert(World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Shape);
-                var mapLast = World.Default.Map.Display.GetMapLocation(gameLast);
-                double distance = Math.Sqrt(Math.Pow(mapCurrentX - mapLast.X, 2) + Math.Pow(mapCurrentY - mapLast.Y, 2));
-                addCurrentLocation = distance > 50;
-            }
-            
-
-            
-            if (addCurrentLocation)
-            {
-                Point gameCurrent = GetPoint(mapCurrentX, mapCurrentY);
-                if (gameCurrent != gameLast || !_differentVillage)
-                {
-                    List.AddLast(gameCurrent);
-                    return true;
-                }
-            }
-            return false;
+            Point gameCurrent = GetPoint(mapCurrentX, mapCurrentY);
+            List.AddLast(gameCurrent);
         }
 
         /// <summary>
@@ -155,7 +116,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Gets the region defined by the polygon
         /// </summary>
-        public Region GetRegion()
+        private Region GetRegion()
         {
             var areaPath = new System.Drawing.Drawing2D.GraphicsPath();
             int x = -1, y = -1;

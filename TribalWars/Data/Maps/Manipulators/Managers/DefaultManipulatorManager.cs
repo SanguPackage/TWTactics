@@ -40,7 +40,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             // Active manipulators
             ActiveVillageManipulator = new ActiveVillageManipulator(map, SystemColors.HighlightText, Color.LimeGreen, Color.Red, SystemColors.HighlightText);
             MapMover = new MapMoverManipulator(map);
-            MapDragger = new MapDraggerManipulator(map, this, 1);
+            MapDragger = new MapDraggerManipulator(map, this);
 
             _manipulators.Add(ActiveVillageManipulator);
             _manipulators.Add(MapMover);

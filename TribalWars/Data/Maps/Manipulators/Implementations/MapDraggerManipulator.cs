@@ -15,8 +15,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     internal class MapDraggerManipulator : MouseMoveManipulatorBase
     {
         #region Constructors
-        public MapDraggerManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset)
-            : base(map, parentManipulatorHandler, polygonOffset, false)
+        public MapDraggerManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler)
+            : base(map, parentManipulatorHandler)
         {
         }
         #endregion
@@ -27,6 +27,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected override void Start(Polygon polygon)
         {
+        }
+
+        protected override bool AddPointPolygon(Point lastMap, Point currentMap)
+        {
+            Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
+            Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
+            return lastGame != currentGame;
         }
 
         /// <summary>
@@ -41,12 +48,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             int x = first.X - last.X;
             int y = first.Y - last.Y;
 
-            var game = new Location(current.X + x, current.Y + y, current.Zoom);
-            var dist = Math.Pow(game.X - _map.Location.X, 2) + Math.Pow(game.Y - _map.Location.Y, 2);
-            if (dist > 1)
-            {
-                _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
-            }
+            _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
         }
 
         /// <summary>

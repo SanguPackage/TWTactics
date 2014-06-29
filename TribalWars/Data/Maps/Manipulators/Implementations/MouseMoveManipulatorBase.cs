@@ -1,5 +1,7 @@
 #region Using
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
@@ -15,13 +17,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     internal abstract class MouseMoveManipulatorBase : ManipulatorBase
     {
         #region Fields
-        private readonly int _polygonOffset;
         private readonly DefaultManipulatorManager _parent;
         private int _nextId = 1;
         private Polygon _activePolygon;
-        private Polygon _currentlySelectedPolygon;
         private List<Polygon> _collection = new List<Polygon>();
-        private bool _differentVillage;
+        private Point _lastAddedMapLocation;
         #endregion
 
         #region Properties
@@ -56,32 +56,27 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        protected MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset, bool differentVillage)
+        protected MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent)
             : base(map)
         {
-            _polygonOffset = polygonOffset;
             _parent = parent;
-            _differentVillage = differentVillage;
-        }
-
-        protected MouseMoveManipulatorBase(Map map, DefaultManipulatorManager parent, int polygonOffset)
-            : this(map, parent, polygonOffset, true)
-        {
         }
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Start creation of a new polygon
+        /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
-            int x = e.MouseEventArgs.X;
-            int y = e.MouseEventArgs.Y;
-            MouseButtons button = e.MouseEventArgs.Button;
-            if (button == MouseButtons.Left)
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 if (_activePolygon == null || !_activePolygon.Drawing)
                 {
                     // Start a new polygon
-                    _activePolygon = new Polygon(_nextId.ToString(), x, y, _polygonOffset, _differentVillage);
+                    _lastAddedMapLocation = new Point(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+
+                    _activePolygon = new Polygon(_nextId.ToString(CultureInfo.InvariantCulture), _lastAddedMapLocation.X, _lastAddedMapLocation.Y);
                     _collection.Add(_activePolygon);
                     _parent.SetFullControlManipulator(this);
                     Start(_activePolygon);
@@ -91,6 +86,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             return false;
         }
 
+        /// <summary>
+        /// Return false if you don't want to add a new point to the polygon
+        /// </summary>
+        protected abstract bool AddPointPolygon(Point lastMap, Point currentMap);
+
+        /// <summary>
+        /// Stop polygon creation. Display contextmenu.
+        /// </summary>
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
             int x = e.MouseEventArgs.X;
@@ -128,20 +131,21 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             return false;
         }
 
+        /// <summary>
+        /// Add points to the polygon
+        /// </summary>
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
-            int x = e.MouseEventArgs.X;
-            int y = e.MouseEventArgs.Y;
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                if (_activePolygon != null && _activePolygon.Drawing)
+                var currentMap = new Point(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                if (_activePolygon != null && _activePolygon.Drawing && AddPointPolygon(_lastAddedMapLocation, currentMap))
                 {
                     // Add extra point to the polygon
-                    if (_activePolygon.Add(x, y))
-                    {
-                        Continue(_activePolygon);
-                        return true;
-                    }
+                    _activePolygon.Add(currentMap.X, currentMap.Y);
+                    _lastAddedMapLocation = currentMap;
+                    Continue(_activePolygon);
+                    return true;
                 }
             }
             return false;

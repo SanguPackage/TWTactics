@@ -1,8 +1,11 @@
 #region Using
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
@@ -32,8 +35,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset = MinDistanceBetweenPoints)
-            : base(map, parentManipulatorHandler, polygonOffset)
+        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler)
+            : base(map, parentManipulatorHandler)
         {
             _pen = new Pen(Color.White);
             _brush = new SolidBrush(_pen.Color);
@@ -87,6 +90,23 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         }
                     }
                 }
+            }
+        }
+
+        protected override bool AddPointPolygon(Point lastMap, Point currentMap)
+        {
+            if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
+            {
+                Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
+                Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
+                return lastGame != currentGame;
+            }
+            else
+            {
+                Debug.Assert(World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Shape);
+
+                double distance = Math.Sqrt(Math.Pow(currentMap.X - lastMap.X, 2) + Math.Pow(currentMap.Y - lastMap.Y, 2));
+                return distance > MinDistanceBetweenPoints;
             }
         }
 
@@ -163,7 +183,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         points.Add(new Point(x, y));
                         r.Read();
                     }
-                    var poly = new Polygon(id, visible, points, MinDistanceBetweenPoints);
+                    var poly = new Polygon(id, visible, points);
                     Polygons.Add(poly);
                     r.ReadEndElement();
                 }
