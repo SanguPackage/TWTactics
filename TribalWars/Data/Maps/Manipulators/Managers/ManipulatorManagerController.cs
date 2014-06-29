@@ -53,7 +53,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// <summary>
         /// Gets the polygon manipulator
         /// </summary>
-        private PolygonManipulatorManager PolygonManipulator { get; set; }
+        public PolygonManipulatorManager PolygonManipulator { get; set; }
 
         /// <summary>
         /// The last village the cursor was on or is still on

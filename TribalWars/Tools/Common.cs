@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Collections;
@@ -10,6 +11,9 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Reflection;
 using TribalWars.Data;
+using TribalWars.Data.Players;
+using TribalWars.Data.Tribes;
+using TribalWars.Data.Villages;
 
 namespace TribalWars.Tools
 {
@@ -34,6 +38,24 @@ namespace TribalWars.Tools
         {
             Debug.Assert(p.IsValidGameCoordinate());
             return (int) (Math.Floor((double) p.X / 100) + 10 * Math.Floor((double) p.Y / 100));
+        }
+        #endregion
+
+        #region Villages
+        /// <summary>
+        /// Gets all distinct players in the parameter
+        /// </summary>
+        public static IEnumerable<Player> GetPlayers(this IEnumerable<Village> villages)
+        {
+            return villages.Where(x => x.HasPlayer).Select(x => x.Player).Distinct();
+        }
+
+        /// <summary>
+        /// Gets all distinct tribes in the parameter
+        /// </summary>
+        public static IEnumerable<Tribe> GetTribes(this IEnumerable<Village> villages)
+        {
+            return villages.Where(x => x.HasTribe).Select(x => x.Player.Tribe).Distinct();
         }
         #endregion
 

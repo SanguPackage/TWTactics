@@ -7,6 +7,7 @@ using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
+using TribalWars.Tools;
 
 namespace TribalWars.Controls.Accordeon.Location
 {
@@ -92,20 +93,11 @@ namespace TribalWars.Controls.Accordeon.Location
                     return PlayerMatches(new List<Player>(World.Default.Players.Values));
 
                 case FinderLocationEnum.Polygon:
-                    // TODO: Polygon not implemented here!
-                    return null;
+                    return PlayerMatches(World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygonVillages().GetPlayers().ToList());
 
                 case FinderLocationEnum.ActiveRectangle:
-                    var list = new List<Player>();
-                    foreach (Village village in World.Default.Villages.Values)
-                    {
-                        if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
-                        {
-                            if (village.HasPlayer && !list.Contains(village.Player))
-                                list.Add(village.Player);
-                        }
-                    }
-                    return PlayerMatches(list);
+                    var villagesInActiveRectangle = World.Default.Villages.Values.Where(x => World.Default.Monitor.ActiveRectangle.Contains(x.Location));
+                    return PlayerMatches(villagesInActiveRectangle.GetPlayers().ToList());
             }
             return null;
         }
@@ -149,20 +141,11 @@ namespace TribalWars.Controls.Accordeon.Location
                     return TribeMatches(new List<Tribe>(World.Default.Tribes.Values));
 
                 case FinderLocationEnum.Polygon:
-                    // TODO: Polygon returns null?
-                    return null;
+                    return TribeMatches(World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygonVillages().GetTribes().ToList());
 
                 case FinderLocationEnum.ActiveRectangle:
-                    var list = new List<Tribe>();
-                    foreach (Village village in World.Default.Villages.Values)
-                    {
-                        if (World.Default.Monitor.ActiveRectangle.Contains(village.Location))
-                        {
-                            if (village.HasTribe && !list.Contains(village.Player.Tribe))
-                                list.Add(village.Player.Tribe);
-                        }
-                    }
-                    return TribeMatches(list);
+                    var villagesInActiveRectangle = World.Default.Villages.Values.Where(x => World.Default.Monitor.ActiveRectangle.Contains(x.Location));
+                    return TribeMatches(villagesInActiveRectangle.GetTribes().ToList());
             }
             return null;
         }
@@ -206,8 +189,7 @@ namespace TribalWars.Controls.Accordeon.Location
                     return VillageMatches(new List<Village>(World.Default.Villages.Values.Where(World.Default.Map.Display.IsVisible)));
 
                 case FinderLocationEnum.Polygon:
-                    // TODO: polygon not implemented
-                    return null;
+                    return VillageMatches(World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygonVillages().ToList());
 
                 case FinderLocationEnum.ActiveRectangle:
                     var list = World.Default.Villages.Values.Where(village => World.Default.Monitor.ActiveRectangle.Contains(village.Location)).ToList();

@@ -1,4 +1,5 @@
 #region Using
+using System.Collections.Generic;
 using System.Xml;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls.TWContextMenu;
@@ -6,7 +7,6 @@ using TribalWars.Controls;
 using TribalWars.Data.Maps.Manipulators.Implementations;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Managers
@@ -17,9 +17,8 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
     public class PolygonManipulatorManager : DefaultManipulatorManager
     {
         #region Fields
-        private BbCodeManipulator _bbCode;
-
-        private UICommand _menu;
+        private readonly BbCodeManipulator _bbCode;
+        private readonly UICommand _menu;
         #endregion
 
         #region Properties
@@ -70,9 +69,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         }
         #endregion
 
-        #region Events
-        #endregion
-
         #region Methods
         /// <summary>
         /// Loads state from stream
@@ -108,6 +104,20 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             else _contextHideAll.Text = "Show All";*/
 
             //ContextMenu.Show(_map.Control, x, y);
+        }
+
+        /// <summary>
+        /// Gets all villages that are in the polygons
+        /// </summary>
+        public IEnumerable<Village> GetAllPolygonVillages()
+        {
+            foreach (Polygon poly in _bbCode.Polygons)
+            {
+                foreach (Village village in poly.GetVillages())
+                {
+                    yield return village;
+                }
+            }
         }
 
         /// <summary>
@@ -153,7 +163,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 foreach (Polygon poly in _bbCode.Polygons)
                 {
                     foreach (Village v in poly.GetVillages())
+                    {
                         ds.AddVILLAGERow(v, poly.Name);
+                    }
                 }
             }
             World.Default.Map.EventPublisher.ActivatePolygon(this, ds);
