@@ -115,10 +115,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            if (e.KeyEventArgs.KeyCode == Keys.Delete && ActivePolygon != null)
+            if (ActivePolygon != null)
             {
-                Delete(ActivePolygon);
-                return true;
+                if (e.KeyEventArgs.KeyCode == Keys.Delete)
+                {
+                    Delete(ActivePolygon);
+                    return true;
+                }
             }
             return false;
         }

@@ -1,8 +1,11 @@
 #region Using
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
@@ -139,6 +142,15 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 var currentMap = new Point(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                if (Control.ModifierKeys.HasFlag(Keys.Control))
+                {
+                    currentMap.X = _lastAddedMapLocation.X;
+                }
+                if (Control.ModifierKeys.HasFlag(Keys.Shift))
+                {
+                    currentMap.Y = _lastAddedMapLocation.Y;
+                }
+
                 if (_activePolygon != null && _activePolygon.Drawing && AddPointPolygon(_lastAddedMapLocation, currentMap))
                 {
                     // Add extra point to the polygon
