@@ -132,8 +132,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             int x = e.MouseEventArgs.X;
             int y = e.MouseEventArgs.Y;
-            MouseButtons button = e.MouseEventArgs.Button;
-            if (button == MouseButtons.Left)
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 if (_activePolygon != null && _activePolygon.Drawing)
                 {

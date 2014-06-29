@@ -114,7 +114,7 @@ namespace TribalWars.Data.Maps
             // keep a _drawnRectangle variable that represents the drawn part of the background
             if (e.OldLocation != null)
             {
-                Debug.Assert(e.OldLocation != e.NewLocation);
+                //Debug.Assert(e.OldLocation != e.NewLocation);
                 if (e.OldLocation.Zoom != e.NewLocation.Zoom)
                 {
                     _background = null;

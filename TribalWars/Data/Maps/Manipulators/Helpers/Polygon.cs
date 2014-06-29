@@ -1,8 +1,10 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Villages;
 
 #endregion
@@ -62,9 +64,9 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
             Start(x, y);
         }
 
-        public Polygon(string name, bool visible, List<Point> points)
+        public Polygon(string name, bool visible, List<Point> points, int minOffset)
         {
-            _minOffset = 15*15;
+            _minOffset = minOffset;
             Name = name;
             Visible = visible;
             List = new LinkedList<Point>(points);
@@ -99,16 +101,33 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Adds a point to the polygon
         /// </summary>
-        public bool Add(int x, int y)
+        public bool Add(int mapCurrentX, int mapCurrentY)
         {
-            Point last = List.Last.Value;
-            Point current = GetPoint(x, y);
-            double distance = Math.Pow(current.X - last.X, 2) + Math.Pow(current.Y - last.Y, 2);
-            if (distance > _minOffset)
+            Point gameLast = List.Last.Value;
+
+            bool addCurrentLocation = false;
+            if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
             {
-                if (current != last || !_differentVillage)
+                var mapLast = World.Default.Map.Display.GetMapLocation(gameLast);
+                double distance = Math.Sqrt(Math.Pow(mapCurrentX - mapLast.X, 2) + Math.Pow(mapCurrentY - mapLast.Y, 2));
+                addCurrentLocation = distance > 50;
+            }
+            else
+            {
+                Debug.Assert(World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Shape);
+                var mapLast = World.Default.Map.Display.GetMapLocation(gameLast);
+                double distance = Math.Sqrt(Math.Pow(mapCurrentX - mapLast.X, 2) + Math.Pow(mapCurrentY - mapLast.Y, 2));
+                addCurrentLocation = distance > 50;
+            }
+            
+
+            
+            if (addCurrentLocation)
+            {
+                Point gameCurrent = GetPoint(mapCurrentX, mapCurrentY);
+                if (gameCurrent != gameLast || !_differentVillage)
                 {
-                    List.AddLast(current);
+                    List.AddLast(gameCurrent);
                     return true;
                 }
             }
@@ -138,19 +157,19 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// </summary>
         public Region GetRegion()
         {
-            var AreaPath = new System.Drawing.Drawing2D.GraphicsPath();
+            var areaPath = new System.Drawing.Drawing2D.GraphicsPath();
             int x = -1, y = -1;
             foreach (Point p in List)
             {
                 if (x > -1)
                 {
-                    AreaPath.AddLine(x, y, p.X, p.Y);
+                    areaPath.AddLine(x, y, p.X, p.Y);
                 }
                 x = p.X;
                 y = p.Y;
             }
-            AreaPath.CloseFigure();
-            return new Region(AreaPath);
+            areaPath.CloseFigure();
+            return new Region(areaPath);
         }
         #endregion
 

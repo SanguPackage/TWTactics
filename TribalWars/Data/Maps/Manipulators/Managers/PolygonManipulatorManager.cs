@@ -30,7 +30,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             : base(map)
         {
             // Active manipulators
-            _bbCode = new BbCodeManipulator(map, this, 15 * 15);
+            _bbCode = new BbCodeManipulator(map, this);
             _manipulators.Add(_bbCode);
 
             MapMover.RightClickToMove = false;

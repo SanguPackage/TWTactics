@@ -369,14 +369,14 @@ namespace TribalWars.Forms
             this.MenuFileSaveSettings.Name = "MenuFileSaveSettings";
             this.MenuFileSaveSettings.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.MenuFileSaveSettings.Size = new System.Drawing.Size(229, 22);
-            this.MenuFileSaveSettings.Text = "&Save";
+            this.MenuFileSaveSettings.Text = "&Save Settings";
             this.MenuFileSaveSettings.Click += new System.EventHandler(this.MenuFileSaveSettings_Click);
             // 
             // MenuFileSaveSettingsAs
             // 
             this.MenuFileSaveSettingsAs.Name = "MenuFileSaveSettingsAs";
             this.MenuFileSaveSettingsAs.Size = new System.Drawing.Size(229, 22);
-            this.MenuFileSaveSettingsAs.Text = "Save &As";
+            this.MenuFileSaveSettingsAs.Text = "Save Settings &As";
             this.MenuFileSaveSettingsAs.Click += new System.EventHandler(this.MenuFileSaveSettingsAs_Click);
             // 
             // toolStripSeparator2
@@ -460,7 +460,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(388, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(357, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld

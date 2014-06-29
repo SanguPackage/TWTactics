@@ -16,6 +16,10 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// </summary>
     internal class BbCodeManipulator : MouseMoveManipulatorBase
     {
+        #region Constants
+        private const int MinDistanceBetweenPoints = 50;
+        #endregion
+
         #region Fields
         private readonly Pen _pen;
         private readonly SolidBrush _brush;
@@ -28,7 +32,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset)
+        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler, int polygonOffset = MinDistanceBetweenPoints)
             : base(map, parentManipulatorHandler, polygonOffset)
         {
             _pen = new Pen(Color.White);
@@ -159,7 +163,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         points.Add(new Point(x, y));
                         r.Read();
                     }
-                    var poly = new Polygon(id, visible, points);
+                    var poly = new Polygon(id, visible, points, MinDistanceBetweenPoints);
                     Polygons.Add(poly);
                     r.ReadEndElement();
                 }
