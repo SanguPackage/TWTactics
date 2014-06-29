@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 
 #endregion
@@ -55,53 +56,27 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (ArrowsToMove)
             {
-                const int step = 5;
-                const int largeStep = 20;
-                switch (e.KeyEventArgs.KeyData)
+                Point? keyMove = new KeyboardInputToMovementConverter(e.KeyEventArgs.KeyData).GetKeyMove();
+                if (keyMove.HasValue)
                 {
-                    case Keys.Left:
-                    case Keys.NumPad4:
-                        return MoveMap(-step, 0);
+                    return MoveMap(keyMove.Value);
+                }
+                else
+                {
+                    switch (e.KeyEventArgs.KeyData)
+                    {
+                        case Keys.Home:
+                            _map.SetCenter(_map.HomeLocation);
+                            return true;
 
-                    case Keys.Right:
-                    case Keys.NumPad6:
-                        return MoveMap(step, 0);
+                        case Keys.Add:
+                            _map.SetCenter(_map.Location.Zoom + 1);
+                            return true;
 
-                    case Keys.Up:
-                    case Keys.NumPad8:
-                        return MoveMap(0, -step);
-
-                    case Keys.Down:
-                    case Keys.NumPad2:
-                        return MoveMap(0, step);
-
-                    case Keys.Left | Keys.Control:
-                    case Keys.NumPad4 | Keys.Control:
-                        return MoveMap(-largeStep, 0);
-
-                    case Keys.Right | Keys.Control:
-                    case Keys.NumPad6 | Keys.Control:
-                        return MoveMap(largeStep, 0);
-
-                    case Keys.Up | Keys.Control:
-                    case Keys.NumPad8 | Keys.Control:
-                        return MoveMap(0, -largeStep);
-
-                    case Keys.Down | Keys.Control:
-                    case Keys.NumPad2 | Keys.Control:
-                        return MoveMap(0, largeStep);
-
-                    case Keys.Home:
-                        _map.SetCenter(_map.HomeLocation);
-                        return true;
-
-                    case Keys.Add:
-                        _map.SetCenter(_map.Location.Zoom + 1);
-                        return true;
-
-                    case Keys.Subtract:
-                        _map.SetCenter(_map.Location.Zoom - 1);
-                        return true;
+                        case Keys.Subtract:
+                            _map.SetCenter(_map.Location.Zoom - 1);
+                            return true;
+                    }
                 }
             }
             return false;
@@ -128,9 +103,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// <summary>
         /// Moves the map by x and y
         /// </summary>
-        private bool MoveMap(int x, int y)
+        private bool MoveMap(Point p)
         {
-            _map.SetCenter(_map.Location.X + x, _map.Location.Y + y);
+            _map.SetCenter(_map.Location.X + p.X, _map.Location.Y + p.Y);
             return true;
         }
         #endregion

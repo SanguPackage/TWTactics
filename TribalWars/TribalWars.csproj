@@ -346,6 +346,7 @@
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
+    <Compile Include="Data\Maps\Manipulators\Helpers\KeyboardInputToMovementConverter.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\ActiveRectangleManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />

@@ -122,6 +122,16 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     Delete(ActivePolygon);
                     return true;
                 }
+
+                if (!ActivePolygon.Drawing)
+                {
+                    var polygonMove = new KeyboardInputToMovementConverter(e.KeyEventArgs.KeyData, 1, 5).GetKeyMove();
+                    if (polygonMove.HasValue)
+                    {
+                        ActivePolygon.Move(polygonMove.Value);
+                        return true;
+                    }
+                }
             }
             return false;
         }

@@ -9,7 +9,6 @@ using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
@@ -46,7 +45,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         public Polygon ActivePolygon
         {
             get { return _activePolygon; }
-            private set { _activePolygon = value; }
+            private set
+            {
+                _activePolygon = value;
+                if (value == null)
+                {
+                    _parent.RemoveFullControlManipulator();
+                }
+            }
         }
 
         /// <summary>
@@ -116,9 +122,18 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     // Too small area to be a polygon
                     // try to select an existing one instead
                     Delete(_activePolygon);
+
                     _activePolygon = Select(x, y);
+                    if (_activePolygon == null)
+                    {
+                        _parent.RemoveFullControlManipulator();
+                    }
+                    else
+                    {
+                        _parent.SetFullControlManipulator(this);
+                    }
+
                 }
-                _parent.RemoveFullControlManipulator();
                 return true;
             }
             /*else
@@ -190,7 +205,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         public void Clear()
         {
             _collection = new List<Polygon>();
-            _activePolygon = null;
+            ActivePolygon = null;
             _nextId = 1;
             _map.Control.Invalidate();
         }
@@ -241,7 +256,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             {
                 Polygons.Remove(poly);
                 if (poly == ActivePolygon)
+                {
                     ActivePolygon = null;
+                }
                 _map.Control.Invalidate();
             }
         }

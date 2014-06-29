@@ -114,6 +114,22 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         }
 
         /// <summary>
+        /// Move the entire polygon with the parameter
+        /// </summary>
+        public void Move(Point amount)
+        {
+            var newList = new LinkedList<Point>();
+            foreach (Point point in List)
+            {
+                // Create a new list because Point is a struct
+                // (the 'point' variable is not contained in List)
+                point.Offset(amount);
+                newList.AddLast(point);
+            }
+            List = newList;
+        }
+
+        /// <summary>
         /// Gets the region defined by the polygon
         /// </summary>
         private Region GetRegion()
