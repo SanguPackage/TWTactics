@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers;
@@ -265,46 +266,39 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Private Implementation
+        private Polygon _currentSelectedPolygon;
+
         /// <summary>
-        /// Returns the first polygon that contains the point
+        /// Returns the first polygon that contains the point.
+        /// Cycle when there are multiple in the location.
         /// </summary>
         private Polygon Select(int x, int y)
         {
-            foreach (Polygon poly in _collection)
-            {
-                if (poly.IsHitIn(x, y))
-                {
-                    return poly;
-                }
-            }
-            return null;
-
-
-            /*var polys = from poly in _collection
-                        where poly.IsHitIn(x, y) && poly.Visible
-                        select poly;
+            var polys = (from poly in _collection
+                         where poly.IsHitIn(x, y) && poly.Visible
+                         select poly).ToArray();
 
             if (!polys.Any())
             {
                 _currentSelectedPolygon = null;
-                return null;
             }
-
-            Polygon selectedPoly = null;
-            if (polys.Count() == 1)
-                selectedPoly = polys.Single();
-
-            else if (_currentSelectedPolygon == null || !polys.Contains(_currentSelectedPolygon) || polys.Last() == _currentSelectedPolygon)
-                selectedPoly = polys.First();
-
+            else if (polys.Count() == 1)
+            {
+                _currentSelectedPolygon = polys.Single();
+            }
             else
             {
-                polys.SkipWhile((Polygon poly) => !poly.Equals(_currentSelectedPolygon));
-                selectedPoly = polys.First();
+                if (_currentSelectedPolygon == null || !polys.Contains(_currentSelectedPolygon) || polys.Last() == _currentSelectedPolygon)
+                {
+                    _currentSelectedPolygon = polys.First();
+                }
+                else
+                {
+                    _currentSelectedPolygon = polys.SkipWhile((Polygon poly) => !poly.Equals(_currentSelectedPolygon)).Take(2).Last();
+                }
             }
 
-            _currentSelectedPolygon = selectedPoly;
-            return selectedPoly;*/
+            return _currentSelectedPolygon;
         }
 
         /// <summary>

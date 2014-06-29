@@ -55,7 +55,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 foreach (Polygon poly in Polygons)
                 {
                     bool active = poly == ActivePolygon && e.IsActiveManipulator;
-                    if (poly.Defined && poly.List.Count > 1 && poly.Visible)
+                    if (poly.List.Count > 1 && poly.Visible)
                     {
                         Point firstP = new Point();
                         Point p = new Point();
@@ -155,20 +155,17 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 w.WriteStartElement("BBCodeManipulator");
                 foreach (Polygon poly in Polygons)
                 {
-                    if (poly.Defined)
+                    w.WriteStartElement("Polygon");
+                    w.WriteAttributeString("ID", poly.Name);
+                    w.WriteAttributeString("Visible", poly.Visible.ToString());
+                    foreach (Point p in poly.List)
                     {
-                        w.WriteStartElement("Polygon");
-                        w.WriteAttributeString("ID", poly.Name);
-                        w.WriteAttributeString("Visible", poly.Visible.ToString());
-                        foreach (Point p in poly.List)
-                        {
-                            w.WriteStartElement("Point");
-                            w.WriteAttributeString("X", p.X.ToString());
-                            w.WriteAttributeString("Y", p.Y.ToString());
-                            w.WriteEndElement();
-                        }
+                        w.WriteStartElement("Point");
+                        w.WriteAttributeString("X", p.X.ToString());
+                        w.WriteAttributeString("Y", p.Y.ToString());
                         w.WriteEndElement();
                     }
+                    w.WriteEndElement();
                 }
                 w.WriteEndElement();
             }

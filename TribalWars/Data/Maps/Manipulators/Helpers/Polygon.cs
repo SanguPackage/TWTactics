@@ -26,14 +26,6 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         public LinkedList<Point> List { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether the polygon is defined
-        /// </summary>
-        public bool Defined
-        {
-            get { return List != null; }
-        }
-
-        /// <summary>
         /// Gets or sets an string id identifying the polygon
         /// </summary>
         public string Name { get; set; }
@@ -50,7 +42,9 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         {
             Name = name;
             Visible = true;
-            Start(x, y);
+            Drawing = true;
+            List = new LinkedList<Point>();
+            List.AddFirst(GetPoint(x, y));
         }
 
         public Polygon(string name, bool visible, IEnumerable<Point> points)
@@ -68,22 +62,9 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         public IEnumerable<Village> GetVillages()
         {
             var villages = new List<Village>();
-            if (Defined)
-            {
-                Region areaRegion = GetRegion();
-                villages.AddRange(World.Default.Villages.Values.Where(vil => areaRegion.IsVisible(vil.Location)));
-            }
+            Region areaRegion = GetRegion();
+            villages.AddRange(World.Default.Villages.Values.Where(vil => areaRegion.IsVisible(vil.Location)));
             return villages;
-        }
-
-        /// <summary>
-        /// Starts a new polygon
-        /// </summary>
-        private void Start(int x, int y)
-        {
-            Drawing = true;
-            List = new LinkedList<Point>();
-            List.AddFirst(GetPoint(x, y));
         }
 
         /// <summary>
@@ -157,6 +138,16 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         private Point GetPoint(int x, int y)
         {
             return World.Default.Map.Display.GetGameLocation(x, y);
+        }
+
+        public override string ToString()
+        {
+            var str = string.Format("Name={0}, Points={1}, IsDrawing={2}", Name, List.Count, Drawing);
+            if (!Visible)
+            {
+                str += " (Not Visible!)";
+            }
+            return str;
         }
         #endregion
     }
