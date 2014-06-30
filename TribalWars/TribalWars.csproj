@@ -201,6 +201,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TWContextMenu\SelectedPolygonContextMenu.cs" />
+    <Compile Include="Controls\TWContextMenu\PolygonContextMenu.cs" />
     <Compile Include="Data\Maps\Manipulators\Controls\MapPolygonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

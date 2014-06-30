@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.UI.CommandBars;
 
 namespace TribalWars.Tools
 {
@@ -38,6 +39,19 @@ namespace TribalWars.Tools
             {
                 action();
             }
+        }
+
+        public static void AddSeparator(this UIContextMenu menu)
+        {
+            var sep = new UICommand("SEP", string.Empty, CommandType.Separator);
+            menu.Commands.Add(sep);
+        }
+
+        public static void AddCommand(this UIContextMenu menu, string key, string text, CommandEventHandler handler)
+        {
+            var cmd = new UICommand(key, text, CommandType.Command);
+            cmd.Click += handler;
+            menu.Commands.Add(cmd);
         }
     }
 }

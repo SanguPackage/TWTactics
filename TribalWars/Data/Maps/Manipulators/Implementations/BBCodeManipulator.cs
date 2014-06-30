@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
@@ -17,7 +18,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// <summary>
     /// Allows the user to draw polygons on the map
     /// </summary>
-    internal class BbCodeManipulator : MouseMoveManipulatorBase
+    public class BbCodeManipulator : MouseMoveManipulatorBase
     {
         #region Constants
         private const int MinDistanceBetweenPoints = 50;
@@ -134,6 +135,12 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 }
             }
             return false;
+        }
+
+        public override IContextMenu GetContextMenu(Point location, Villages.Village village)
+        {
+            Debug.Assert(ActivePolygon != null);
+            return new SelectedPolygonContextMenu(this);
         }
 
         /// <summary>

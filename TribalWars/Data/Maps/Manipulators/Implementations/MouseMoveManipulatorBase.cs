@@ -17,7 +17,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// <summary>
     /// Base class for mousemove gestures implemantations (Drawing, ...)
     /// </summary>
-    internal abstract class MouseMoveManipulatorBase : ManipulatorBase
+    public abstract class MouseMoveManipulatorBase : ManipulatorBase
     {
         #region Fields
         private readonly DefaultManipulatorManager _parent;
@@ -138,8 +138,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
             return false;
         }
-
-        
 
         /// <summary>
         /// Add points to the polygon

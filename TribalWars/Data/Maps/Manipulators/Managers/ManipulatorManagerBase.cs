@@ -98,13 +98,24 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #endregion
 
         #region IMapManipulator Members
-        protected virtual IContextMenu GetContextMenu(Point location, Village village)
+        public bool ShowContextMenu(Point location, Village village)
         {
-            if (village != null)
+            IContextMenu contextMenu;
+            if (_fullControllManipulator != null)
             {
-                return World.Default.VillageContextMenu;
+                contextMenu = _fullControllManipulator.GetContextMenu(location, village);
             }
-            return null;
+            else
+            {
+                contextMenu = GetContextMenu(location, village);
+            }
+            
+            if (contextMenu != null)
+            {
+                contextMenu.Show(_map.Control, location, village);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -131,20 +142,12 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             {
                 return _fullControllManipulator.MouseUpCore(e);
             }
-            else if (e.MouseEventArgs.Button == MouseButtons.Right)
+            else
             {
-                IContextMenu contextMenu = GetContextMenu(e.MouseEventArgs.Location, e.Village);
-                if (contextMenu != null)
-                {
-                    contextMenu.Show(_map.Control, e.MouseEventArgs.Location, e.Village);
-                    return false;
-                }
+                bool redraw = false;
+                foreach (ManipulatorBase m in _manipulators) redraw |= m.MouseUpCore(e);
+                return redraw;
             }
-
-            bool redraw = false;
-            foreach (ManipulatorBase m in _manipulators) redraw |= m.MouseUpCore(e);
-            return redraw;
-            
         }
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)

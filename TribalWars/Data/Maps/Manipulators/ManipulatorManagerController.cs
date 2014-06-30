@@ -145,14 +145,22 @@ namespace TribalWars.Data.Maps.Manipulators
             {
                 redraw = CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
             }
-            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) || redraw;
+            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) 
+                || redraw;
         }
 
         public bool MouseUp(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            bool up = CurrentManipulator.MouseUpCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
-            return up;
+            if (e.Button == MouseButtons.Right)
+            {
+                bool isContextMenuShown = CurrentManipulator.ShowContextMenu(e.Location, village);
+                if (isContextMenuShown)
+                {
+                    return false;
+                }
+            }
+            return CurrentManipulator.MouseUpCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
         }
 
         public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture, ToolTip villageTooltip)

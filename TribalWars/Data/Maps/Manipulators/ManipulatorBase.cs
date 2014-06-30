@@ -67,6 +67,15 @@ namespace TribalWars.Data.Maps.Manipulators
             return false;
         }
 
+        public virtual IContextMenu GetContextMenu(Point location, Village village)
+        {
+            if (village != null)
+            {
+                return World.Default.VillageContextMenu;
+            }
+            return null;
+        }
+
         public virtual string VillageTooltip(Village village)
         {
             return village.Tooltip;
