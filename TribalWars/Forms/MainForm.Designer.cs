@@ -876,7 +876,7 @@ namespace TribalWars.Forms
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.TabsMap;
+            this.Tabs.InputFocusTab = this.TabsMonitoring;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.Size = new System.Drawing.Size(870, 609);
@@ -993,6 +993,7 @@ namespace TribalWars.Forms
             this.TabsMonitoring.Size = new System.Drawing.Size(866, 585);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
+            this.TabsMonitoring.ToolTipText = "Check what is happening in your monitoring area, the world or in your tribe.";
             // 
             // monitoringControl1
             // 
