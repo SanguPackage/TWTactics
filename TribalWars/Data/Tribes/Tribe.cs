@@ -78,7 +78,14 @@ namespace TribalWars.Data.Tribes
         [Browsable(false)]
         public int AveragePointsPerTribe
         {
-            get { return AllPoints / Players.Count; }
+            get
+            {
+                if (Players.Any())
+                {
+                    return AllPoints / Players.Count;
+                }
+                return 0;
+            }
         }
 
         /// <summary>
