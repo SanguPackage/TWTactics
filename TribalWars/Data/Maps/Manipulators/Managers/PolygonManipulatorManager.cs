@@ -1,6 +1,7 @@
 #region Using
 using System.Collections.Generic;
 using System.Xml;
+using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Controls;
@@ -19,9 +20,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region Fields
         private readonly BbCodeManipulator _bbCode;
         private readonly UICommand _menu;
-        #endregion
-
-        #region Properties
         #endregion
 
         #region Constructors
@@ -86,25 +84,27 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             _bbCode.WriteXmlCore(w);
         }
 
-        public override void ShowVillageContext(System.Drawing.Point location, TribalWars.Data.Villages.Village village)
-        {
+        //protected override IContextMenu GetContextMenu(System.Drawing.Point location, Village village)
+        //{
+        //    InheritableBoolean isPolygonSelected = _bbCode.ActivePolygon != null ? InheritableBoolean.True : InheritableBoolean.False;
+
+        //    _menu.Commands[ContextMenuKeys.Polygon.Delete].Enabled = isPolygonSelected;
+        //    _menu.Commands[ContextMenuKeys.Polygon.Edit].Enabled = isPolygonSelected;
 
 
-            /*_menu.Commands[ContextMenuKeys.Polygon.DELETE].Enabled = _bbCode.ActivePolygon != null;
-            _contextRename.Enabled = ActivePolygon != null;
-            _contextHide.Enabled = ActivePolygon != null;
-            if (ActivePolygon != null && ActivePolygon.Visible) _contextHide.Text = "Hide";
-            else _contextHide.Text = "Show";
+        //    _contextHide.Enabled = ActivePolygon != null;
+        //    if (ActivePolygon != null && ActivePolygon.Visible) _contextHide.Text = "Hide";
+        //    else _contextHide.Text = "Show";
 
-            bool oneVisible = false;
-            foreach (Polygon poly in Polygons)
-                if (poly.Visible) oneVisible = true;
+        //    bool oneVisible = false;
+        //    foreach (Polygon poly in Polygons)
+        //        if (poly.Visible) oneVisible = true;
 
-            if (oneVisible) _contextHideAll.Text = "Hide All";
-            else _contextHideAll.Text = "Show All";*/
+        //    if (oneVisible) _contextHideAll.Text = "Hide All";
+        //    else _contextHideAll.Text = "Show All";
 
-            //ContextMenu.Show(_map.Control, x, y);
-        }
+        //    return _menu;
+        //}
 
         /// <summary>
         /// Gets all villages that are in the polygons

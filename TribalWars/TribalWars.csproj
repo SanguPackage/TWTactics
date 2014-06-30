@@ -359,7 +359,7 @@
     <Compile Include="Data\Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MouseMoveManipulatorBase.cs" />
     <Compile Include="Data\Maps\Manipulators\ManipulatorBase.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerController.cs" />
+    <Compile Include="Data\Maps\Manipulators\ManipulatorManagerController.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\PolygonManipulatorManager.cs" />
     <Compile Include="Data\Maps\Map.cs" />

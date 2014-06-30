@@ -18,17 +18,14 @@ namespace TribalWars.Data.Maps.Manipulators
     /// Base class for a simple manipulator implementation (MapMover, ...)
     /// but also for the manipulator managers (DefaultManipulator, ...)
     /// </summary>
-    public class ManipulatorBase
+    public abstract class ManipulatorBase
     {
         #region Fields
-        protected Map _map;
-        #endregion
-
-        #region Properties
+        protected readonly Map _map;
         #endregion
 
         #region Constructors
-        public ManipulatorBase(Map map)
+        protected ManipulatorBase(Map map)
         {
             _map = map;
         }

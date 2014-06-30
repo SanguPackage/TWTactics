@@ -99,7 +99,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// <summary>
         /// Return false if you don't want to add a new point to the polygon
         /// </summary>
-        protected abstract bool AddPointPolygon(Point lastMap, Point currentMap);
+        protected abstract bool CanAddPointToPolygon(Point lastMap, Point currentMap);
 
         /// <summary>
         /// Stop polygon creation. Display contextmenu.
@@ -108,8 +108,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             int x = e.MouseEventArgs.X;
             int y = e.MouseEventArgs.Y;
-            MouseButtons button = e.MouseEventArgs.Button;
-            if (button == MouseButtons.Left && _activePolygon != null && _activePolygon.Drawing)
+            if (e.MouseEventArgs.Button == MouseButtons.Left && _activePolygon != null && _activePolygon.Drawing)
             {
                 if (_activePolygon.List.Count > 2)
                 {
@@ -137,18 +136,10 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 }
                 return true;
             }
-            /*else
-            {
-                // Select polygon & show contextmenu
-                _activePolygon = Select(x, y);
-                if (button == MouseButtons.Right && ContextMenu != null)
-                {
-                    ShowContextMenu(x, y);
-                    return true;
-                }
-            }*/
             return false;
         }
+
+        
 
         /// <summary>
         /// Add points to the polygon
@@ -167,7 +158,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     currentMap.Y = _lastAddedMapLocation.Y;
                 }
 
-                if (_activePolygon != null && _activePolygon.Drawing && AddPointPolygon(_lastAddedMapLocation, currentMap))
+                if (_activePolygon != null && _activePolygon.Drawing && CanAddPointToPolygon(_lastAddedMapLocation, currentMap))
                 {
                     // Add extra point to the polygon
                     _activePolygon.Add(currentMap.X, currentMap.Y);

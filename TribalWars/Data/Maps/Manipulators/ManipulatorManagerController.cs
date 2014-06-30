@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Controls.Maps;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Tools;
 
 #endregion
 
-namespace TribalWars.Data.Maps.Manipulators.Managers
+namespace TribalWars.Data.Maps.Manipulators
 {
     /// <summary>
     /// Manages the user interaction with a map
@@ -139,9 +140,12 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         public bool MouseDown(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
         {
             Graphics g = null;
-            bool down = false; // TODO: expression is always false
-            if (village != null && e.Button == MouseButtons.Left) down = down || CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
-            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) || down;
+            bool redraw = false;
+            if (village != null && e.Button == MouseButtons.Left)
+            {
+                redraw = CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
+            }
+            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) || redraw;
         }
 
         public bool MouseUp(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)

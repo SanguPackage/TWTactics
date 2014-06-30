@@ -1,7 +1,11 @@
 #region Using
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using System.Xml;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Villages;
 
 #endregion
 
@@ -94,6 +98,15 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #endregion
 
         #region IMapManipulator Members
+        protected virtual IContextMenu GetContextMenu(Point location, Village village)
+        {
+            if (village != null)
+            {
+                return World.Default.VillageContextMenu;
+            }
+            return null;
+        }
+
         /// <summary>
         /// Informs all the manipulators the user
         /// has clicked the map
@@ -101,7 +114,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.MouseDownCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -113,19 +128,31 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
             if (_fullControllManipulator != null)
-                return _fullControllManipulator.MouseUpCore(e);
-            else
             {
-                bool redraw = false;
-                foreach (ManipulatorBase m in _manipulators) redraw |= m.MouseUpCore(e);
-                return redraw;
+                return _fullControllManipulator.MouseUpCore(e);
             }
+            else if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                IContextMenu contextMenu = GetContextMenu(e.MouseEventArgs.Location, e.Village);
+                if (contextMenu != null)
+                {
+                    contextMenu.Show(_map.Control, e.MouseEventArgs.Location, e.Village);
+                    return false;
+                }
+            }
+
+            bool redraw = false;
+            foreach (ManipulatorBase m in _manipulators) redraw |= m.MouseUpCore(e);
+            return redraw;
+            
         }
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.MouseMoveCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -137,7 +164,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.OnVillageDoubleClickCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -149,7 +178,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.OnVillageClickCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -161,7 +192,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.OnKeyDownCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -173,7 +206,9 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         protected internal override bool OnKeyUpCore(MapKeyEventArgs e)
         {
             if (_fullControllManipulator != null)
+            {
                 return _fullControllManipulator.OnKeyUpCore(e);
+            }
             else
             {
                 bool redraw = false;
@@ -208,6 +243,8 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         public override void Dispose()
         {
+            _manipulators.ForEach(m => m.Dispose());
+            _manipulators.Clear();
         }
         #endregion
     }

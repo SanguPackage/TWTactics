@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Managers;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
@@ -29,7 +28,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
         }
 
-        protected override bool AddPointPolygon(Point lastMap, Point currentMap)
+        protected override bool CanAddPointToPolygon(Point lastMap, Point currentMap)
         {
             Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
             Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);

@@ -93,7 +93,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
         }
 
-        protected override bool AddPointPolygon(Point lastMap, Point currentMap)
+        protected override bool CanAddPointToPolygon(Point lastMap, Point currentMap)
         {
             if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
             {

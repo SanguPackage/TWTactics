@@ -13,9 +13,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
     /// </summary>
     public class DefaultManipulatorManager : ManipulatorManagerBase
     {
-        #region Fields
-        #endregion
-
         #region Properties
         /// <summary>
         /// Moves the map with the mouse
@@ -45,43 +42,6 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             _manipulators.Add(ActiveVillageManipulator);
             _manipulators.Add(MapMover);
             _manipulators.Add(MapDragger);
-        }
-        #endregion
-
-        #region Public Methods
-        public virtual void ShowVillageContext(Point location, Village village)
-        {
-            if (World.Default.VillageContextMenu != null && village != null)
-                World.Default.VillageContextMenu.Show(_map.Control, location, village);
-        }
-        #endregion
-
-        #region Event Handlers
-        #endregion
-
-        #region IMapManipulator Members
-        protected internal override bool MouseUpCore(MapMouseEventArgs e)
-        {
-            // TODO: fullControl check is also in the base
-            // this if used to be right before base.MouseUpCore.. should be so?
-            if (_fullControllManipulator != null)
-            {
-                return _fullControllManipulator.MouseUpCore(e);
-            }
-
-            if (e.MouseEventArgs.Button == MouseButtons.Right)
-            {
-                ShowVillageContext(e.MouseEventArgs.Location, e.Village);
-                return false;
-            }
-
-            return base.MouseUpCore(e);
-        }
-        #endregion
-
-        #region IMapDrawer Members
-        public override void Dispose()
-        {
         }
         #endregion
     }
