@@ -81,7 +81,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         {
                             e.Graphics.DrawLine(_pen, firstP, p);
 
-                            if (_map.Display.DisplayManager.CurrentDisplay.Zoom.Maximum > 5 && _map.Location.Zoom >= 5)
+                            if (_map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon || _map.Location.Zoom >= 5)
                             {
                                 SizeF size = e.Graphics.MeasureString(poly.Name, _font);
                                 p.Offset(5, 5);
