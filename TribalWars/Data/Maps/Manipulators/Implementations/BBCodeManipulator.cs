@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Displays;
-using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Tools;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
@@ -20,7 +20,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// <summary>
     /// Allows the user to draw polygons on the map
     /// </summary>
-    public class BbCodeManipulator : MouseMoveManipulatorBase
+    public class BbCodeManipulator : ManipulatorBase
     {
         #region Constants
         private const int MinDistanceBetweenPoints = 50;
@@ -30,19 +30,65 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly Dictionary<Color, Tuple<Pen, Brush>> _pens;
         private readonly Font _font;
 
-        private MapPolygonControl _control;
+        private readonly DefaultManipulatorManager _parent;
+        private int _nextId = 1;
+        private Polygon _activePolygon;
+        private List<Polygon> _collection = new List<Polygon>();
+        private Point _lastAddedMapLocation;
+
+        private Polygon _currentSelectedPolygon;
         #endregion
 
-        #region Constructors
-        public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler)
-            : base(map, parentManipulatorHandler)
+        #region Properties
+        ///// <summary>
+        ///// Gets the managing manipulator
+        ///// </summary>
+        ///// <remarks>
+        ///// So this manipulator can be promoted as
+        ///// the full control manipulator
+        ///// </remarks>
+        //private DefaultManipulatorManager ManipulationManager
+        //{
+        //    get { return _parent; }
+        //}
+
+        /// <summary>
+        /// Gets the currently selected polygon
+        /// </summary>
+        public Polygon ActivePolygon
         {
-            _pens = new Dictionary<Color, Tuple<Pen, Brush>>();
-            _font = new Font("Verdana", 12, FontStyle.Bold);
+            get { return _activePolygon; }
+            private set
+            {
+                _activePolygon = value;
+                if (value == null)
+                {
+                    _parent.RemoveFullControlManipulator();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all defined polygons
+        /// </summary>
+        public List<Polygon> Polygons
+        {
+            get { return _collection; }
         }
         #endregion
 
-        #region Implementation
+        #region Constructors
+        public BbCodeManipulator(Map map, DefaultManipulatorManager parent)
+            : base(map)
+        {
+            _parent = parent;
+            _pens = new Dictionary<Color, Tuple<Pen, Brush>>();
+            _font = new Font("Verdana", 12, FontStyle.Bold);
+
+        }
+        #endregion
+
+        #region Events
         /// <summary>
         /// Paints the polygons
         /// </summary>
@@ -97,21 +143,84 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
         }
 
-        protected override bool CanAddPointToPolygon(Point lastMap, Point currentMap)
+        /// <summary>
+        /// Start creation of a new polygon
+        /// </summary>
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
-            if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
-                Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
-                return lastGame != currentGame;
+                if (_activePolygon == null || !_activePolygon.Drawing)
+                {
+                    StartNewPolygon(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                    return true;
+                }
             }
-            else
-            {
-                Debug.Assert(World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Shape);
+            return false;
+        }
 
-                double distance = Math.Sqrt(Math.Pow(currentMap.X - lastMap.X, 2) + Math.Pow(currentMap.Y - lastMap.Y, 2));
-                return distance > MinDistanceBetweenPoints;
+        /// <summary>
+        /// Stop polygon creation.
+        /// </summary>
+        protected internal override bool MouseUpCore(MapMouseEventArgs e)
+        {
+            int x = e.MouseEventArgs.X;
+            int y = e.MouseEventArgs.Y;
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            {
+                if (_activePolygon != null && _activePolygon.Drawing)
+                {
+                    if (_activePolygon.List.Count > 2)
+                    {
+                        // Polygon completed
+                        _activePolygon.Stop(x, y);
+                        _nextId++;
+                        DeleteIfEmpty(_activePolygon);
+                    }
+                    else
+                    {
+                        // Too small area to be a polygon
+                        // try to select an existing one instead
+                        Delete(_activePolygon);
+                        Select(x, y);
+                    }
+                }
+                return true;
             }
+            else if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                Select(x, y);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Add points to the polygon
+        /// </summary>
+        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            {
+                var currentMap = new Point(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                if (Control.ModifierKeys.HasFlag(Keys.Control))
+                {
+                    currentMap.X = _lastAddedMapLocation.X;
+                }
+                if (Control.ModifierKeys.HasFlag(Keys.Shift))
+                {
+                    currentMap.Y = _lastAddedMapLocation.Y;
+                }
+
+                if (_activePolygon != null && _activePolygon.Drawing && CanAddPointToPolygon(_lastAddedMapLocation, currentMap))
+                {
+                    // Add extra point to the polygon
+                    _activePolygon.Add(currentMap.X, currentMap.Y);
+                    _lastAddedMapLocation = currentMap;
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -139,7 +248,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
             return false;
         }
+        #endregion
 
+        #region Public Methods
         public override IContextMenu GetContextMenu(Point location, Villages.Village village)
         {
             Debug.Assert(ActivePolygon != null);
@@ -147,14 +258,82 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         }
 
         /// <summary>
-        /// When the visibility of the polygons has changed
+        /// Deletes all polygons
         /// </summary>
-        protected override void OnVisibilityChanged(bool activeOnly, bool visible)
+        public void Clear()
         {
-            if (!visible && _control != null)
-                _map.Control.Controls.Remove(_control);
+            _collection = new List<Polygon>();
+            ActivePolygon = null;
+            _nextId = 1;
+            _map.Control.Invalidate();
         }
 
+        /// <summary>
+        /// Hides/Shows the polygons
+        /// </summary>
+        public void ToggleVisibility(bool visible)
+        {
+            if (_collection.Count > 0)
+            {
+                foreach (Polygon poly in _collection)
+                {
+                    poly.Visible = visible;
+                }
+                _map.Control.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the visibility of the active polygon
+        /// </summary>
+        public void ToggleVisibility()
+        {
+            if (ActivePolygon != null)
+            {
+                ActivePolygon.Visible = !ActivePolygon.Visible;
+                _map.Control.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Deletes the active polygon
+        /// </summary>
+        public void Delete()
+        {
+            Delete(ActivePolygon);
+        }
+
+        /// <summary>
+        /// Deletes a polygon
+        /// </summary>
+        public void Delete(Polygon poly)
+        {
+            if (poly != null)
+            {
+                Polygons.Remove(poly);
+                if (poly == ActivePolygon)
+                {
+                    ActivePolygon = null;
+                }
+                _map.Control.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Dispose resources
+        /// </summary>
+        public override void Dispose()
+        {
+            foreach (KeyValuePair<Color, Tuple<Pen, Brush>> penAndBrush in _pens)
+            {
+                penAndBrush.Value.Item1.Dispose();
+                penAndBrush.Value.Item2.Dispose();
+            }
+            _font.Dispose();
+        }
+        #endregion
+
+        #region Persistence
         /// <summary>
         /// Saves state to stream
         /// </summary>
@@ -172,8 +351,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     foreach (Point p in poly.List)
                     {
                         w.WriteStartElement("Point");
-                        w.WriteAttributeString("X", p.X.ToString());
-                        w.WriteAttributeString("Y", p.Y.ToString());
+                        w.WriteAttributeString("X", p.X.ToString(CultureInfo.InvariantCulture));
+                        w.WriteAttributeString("Y", p.Y.ToString(CultureInfo.InvariantCulture));
                         w.WriteEndElement();
                     }
                     w.WriteEndElement();
@@ -194,15 +373,15 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 while (r.IsStartElement("Polygon"))
                 {
                     string id = r.GetAttribute("ID");
-                    bool visible = System.Convert.ToBoolean(r.GetAttribute("Visible"));
+                    bool visible = Convert.ToBoolean(r.GetAttribute("Visible"));
                     Color color = XmlHelper.GetColor(r.GetAttribute("Color"), Color.White);
 
                     var points = new List<Point>();
                     r.ReadStartElement();
                     while (r.IsStartElement("Point"))
                     {
-                        int x = System.Convert.ToInt32(r.GetAttribute("X"));
-                        int y = System.Convert.ToInt32(r.GetAttribute("Y"));
+                        int x = Convert.ToInt32(r.GetAttribute("X"));
+                        int y = Convert.ToInt32(r.GetAttribute("Y"));
                         points.Add(new Point(x, y));
                         r.Read();
                     }
@@ -213,11 +392,25 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 r.ReadEndElement();
             }
         }
+        #endregion
+
+        #region Private Implementation
+        /// <summary>
+        /// Polygon started
+        /// </summary>
+        private void StartNewPolygon(int x, int y)
+        {
+            _lastAddedMapLocation = new Point(x, y);
+
+            _activePolygon = new Polygon("poly" + _nextId.ToString(CultureInfo.InvariantCulture), _lastAddedMapLocation.X, _lastAddedMapLocation.Y);
+            _collection.Add(_activePolygon);
+            _parent.SetFullControlManipulator(this);
+        }
 
         /// <summary>
         /// If the polygon has no surface, we will not add it to the collection
         /// </summary>
-        protected override void Stop(Polygon polygon)
+        private void DeleteIfEmpty(Polygon polygon)
         {
             int leftX = 1000;
             int rightX = 0;
@@ -233,24 +426,82 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
 
             if (leftX >= rightX || topY >= bottomY)
+            {
                 Delete(polygon);
+            }
         }
 
         /// <summary>
-        /// Dispose resources
+        /// Returns the first polygon that contains the point.
+        /// Cycle when there are multiple in the location.
         /// </summary>
-        public override void Dispose()
+        private Polygon GetSelectedPolygon(int x, int y)
         {
-            foreach (KeyValuePair<Color, Tuple<Pen, Brush>> penAndBrush in _pens)
+            var polys = (from poly in _collection
+                         where poly.IsHitIn(x, y) && poly.Visible
+                         select poly).ToArray();
+
+            if (!polys.Any())
             {
-                penAndBrush.Value.Item1.Dispose();
-                penAndBrush.Value.Item2.Dispose();
+                _currentSelectedPolygon = null;
             }
-            _font.Dispose();
+            else if (polys.Count() == 1)
+            {
+                _currentSelectedPolygon = polys.Single();
+            }
+            else
+            {
+                if (_currentSelectedPolygon == null || !polys.Contains(_currentSelectedPolygon) || polys.Last() == _currentSelectedPolygon)
+                {
+                    _currentSelectedPolygon = polys.First();
+                }
+                else
+                {
+                    _currentSelectedPolygon = polys.SkipWhile((Polygon poly) => !poly.Equals(_currentSelectedPolygon)).Take(2).Last();
+                }
+            }
+
+            return _currentSelectedPolygon;
+        }
+
+        /// <summary>
+        /// Set the active polygon
+        /// </summary>
+        private void Select(int x, int y)
+        {
+            _activePolygon = GetSelectedPolygon(x, y);
+            if (_activePolygon == null)
+            {
+                _parent.RemoveFullControlManipulator();
+            }
+            else
+            {
+                _parent.SetFullControlManipulator(this);
+            }
+        }
+
+        /// <summary>
+        /// Returns false if the point is not to be added to the collection
+        /// </summary>
+        private bool CanAddPointToPolygon(Point lastMap, Point currentMap)
+        {
+            if (World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon)
+            {
+                Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
+                Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
+                return lastGame != currentGame;
+            }
+            else
+            {
+                Debug.Assert(World.Default.Map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Shape);
+
+                double distance = Math.Sqrt(Math.Pow(currentMap.X - lastMap.X, 2) + Math.Pow(currentMap.Y - lastMap.Y, 2));
+                return distance > MinDistanceBetweenPoints;
+            }
         }
         #endregion
-
-        #region Private Implementation
+       
+        #region Pens & Brushes
         private Pen GetPen(Color color)
         {
             CacheIfNotExists(color);
@@ -270,25 +521,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 var pen = new Pen(color);
                 var brush = new SolidBrush(color);
                 _pens.Add(color, new Tuple<Pen, Brush>(pen, brush));
-            }
-        }
-
-        //--> TODO This stuff needs to be in the ManipulatorBase
-        //--> Adding a control to the map
-        public void AddControl()
-        {
-            RemoveControl();
-            _control = new MapPolygonControl(ActivePolygon, this, new Point(100, 100));
-            _map.Control.Controls.Add(_control);
-            _control.Focus();
-        }
-
-        public void RemoveControl()
-        {
-            if (_control != null)
-            {
-                _map.Control.Controls.Remove(_control);
-                _control.Dispose();
             }
         }
         #endregion

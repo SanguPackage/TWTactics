@@ -203,12 +203,6 @@
     </Compile>
     <Compile Include="Controls\TWContextMenu\SelectedPolygonContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\PolygonContextMenu.cs" />
-    <Compile Include="Data\Maps\Manipulators\Controls\MapPolygonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Data\Maps\Manipulators\Controls\MapPolygonControl.Designer.cs">
-      <DependentUpon>MapPolygonControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Maps\MiniMapControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -354,12 +348,11 @@
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\Polygon.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\ActiveVillageManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\BBCodeManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MapDraggerManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\MouseMoveManipulatorBase.cs" />
+    <Compile Include="Data\Maps\Manipulators\Implementations\BbCodeManipulator.cs" />
     <Compile Include="Data\Maps\Manipulators\ManipulatorBase.cs" />
     <Compile Include="Data\Maps\Manipulators\ManipulatorManagerController.cs" />
     <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
@@ -535,10 +528,6 @@
     <EmbeddedResource Include="Controls\Main\ParserControl.resx">
       <DependentUpon>ParserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Manipulators\Controls\MapPolygonControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MapPolygonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Accordeon\Location\LocationList.resx">
       <SubType>Designer</SubType>

@@ -132,5 +132,24 @@ namespace TribalWars.Data.Maps.Manipulators
             
         }
         #endregion
+
+        //--> TODO This stuff needs to be in the ManipulatorBase
+        //--> Adding a control to the map
+        //public void AddControl()
+        //{
+        //    RemoveControl();
+        //    _control = new MapPolygonControl(ActivePolygon, this, new Point(100, 100));
+        //    _map.Control.Controls.Add(_control);
+        //    _control.Focus();
+        //}
+
+        //public void RemoveControl()
+        //{
+        //    if (_control != null)
+        //    {
+        //        _map.Control.Controls.Remove(_control);
+        //        _control.Dispose();
+        //    }
+        //}
     }
 }
