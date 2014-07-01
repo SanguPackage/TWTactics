@@ -108,32 +108,30 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             int x = e.MouseEventArgs.X;
             int y = e.MouseEventArgs.Y;
-            if (e.MouseEventArgs.Button == MouseButtons.Left && _activePolygon != null && _activePolygon.Drawing)
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                if (_activePolygon.List.Count > 2)
+                if (_activePolygon != null && _activePolygon.Drawing)
                 {
-                    // Polygon completed
-                    _activePolygon.Stop(x, y);
-                    _nextId++;
-                    Stop(_activePolygon);
-                }
-                else
-                {
-                    // Too small area to be a polygon
-                    // try to select an existing one instead
-                    Delete(_activePolygon);
-
-                    _activePolygon = Select(x, y);
-                    if (_activePolygon == null)
+                    if (_activePolygon.List.Count > 2)
                     {
-                        _parent.RemoveFullControlManipulator();
+                        // Polygon completed
+                        _activePolygon.Stop(x, y);
+                        _nextId++;
+                        Stop(_activePolygon);
                     }
                     else
                     {
-                        _parent.SetFullControlManipulator(this);
+                        // Too small area to be a polygon
+                        // try to select an existing one instead
+                        Delete(_activePolygon);
+                        Select(x, y);
                     }
-
                 }
+                return true;
+            }
+            else if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                Select(x, y);
                 return true;
             }
             return false;
@@ -261,7 +259,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// Returns the first polygon that contains the point.
         /// Cycle when there are multiple in the location.
         /// </summary>
-        private Polygon Select(int x, int y)
+        private Polygon GetSelectedPolygon(int x, int y)
         {
             var polys = (from poly in _collection
                          where poly.IsHitIn(x, y) && poly.Visible
@@ -288,6 +286,22 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
 
             return _currentSelectedPolygon;
+        }
+
+        /// <summary>
+        /// Set the active polygon
+        /// </summary>
+        private void Select(int x, int y)
+        {
+            _activePolygon = GetSelectedPolygon(x, y);
+            if (_activePolygon == null)
+            {
+                _parent.RemoveFullControlManipulator();
+            }
+            else
+            {
+                _parent.SetFullControlManipulator(this);
+            }
         }
 
         /// <summary>

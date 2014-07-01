@@ -145,6 +145,11 @@ namespace TribalWars.Controls.Maps
                 {
                     Invalidate();
                 }
+
+                if (e.Button == MouseButtons.Right)
+                {
+                    Map.Manipulators.CurrentManipulator.ShowContextMenu(e.Location, village);
+                }
             }
         }
 

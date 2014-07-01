@@ -29,7 +29,8 @@ namespace TribalWars.Controls.TWContextMenu
 
             Debug.Assert(_bbCode.ActivePolygon != null);
 
-            _menu.AddCommand(ContextMenuKeys.Polygon.Generate, "Manage", OnGenerate);
+            _menu.AddCommand(ContextMenuKeys.Polygon.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
+            _menu.AddSeparator();
             _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete);
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, "Edit", OnEdit);
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);

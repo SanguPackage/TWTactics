@@ -45,10 +45,13 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// </summary>
         public void SetFullControlManipulator(ManipulatorBase manipulator)
         {
-            RemoveFullControlManipulator();
-            _fullControllManipulator = manipulator;
-            _fullControllManipulator.SetFullControlManipulatorCore();
-            _map.Control.GiveFocus();
+            if (!ReferenceEquals(_fullControllManipulator, manipulator))
+            {
+                RemoveFullControlManipulator();
+                _fullControllManipulator = manipulator;
+                _fullControllManipulator.SetFullControlManipulatorCore();
+                _map.Control.GiveFocus();
+            }
         }
 
         /// <summary>
@@ -98,7 +101,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #endregion
 
         #region IMapManipulator Members
-        public bool ShowContextMenu(Point location, Village village)
+        public void ShowContextMenu(Point location, Village village)
         {
             IContextMenu contextMenu;
             if (_fullControllManipulator != null)
@@ -113,9 +116,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             if (contextMenu != null)
             {
                 contextMenu.Show(_map.Control, location, village);
-                return true;
             }
-            return false;
         }
 
         /// <summary>
