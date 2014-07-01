@@ -321,8 +321,6 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = true;
                     ViewTribeDetails.Checked = false;
-                    SpecialPlayer.Visible = true;
-                    SpecialTribe.Visible = false;
                     SpecialVillage.Visible = false;
 
                     Table.DisplayVillages(_current.Player);
@@ -338,8 +336,6 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = true;
-                    SpecialPlayer.Visible = false;
-                    SpecialTribe.Visible = true;
                     SpecialVillage.Visible = false;
 
                     Table.DisplayPlayers(_current.Tribe.Players);
@@ -357,8 +353,6 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewVillageDetails.Checked = true;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = false;
-                    SpecialPlayer.Visible = false;
-                    SpecialTribe.Visible = false;
                     SpecialVillage.Visible = true;
 
                     SpecialVillage.SetReport(_current.Village.Reports.CurrentSituation);

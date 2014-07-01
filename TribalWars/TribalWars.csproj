@@ -88,18 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Accordeon\Details\DetailsCommand.cs" />
-    <Compile Include="Controls\Accordeon\Details\PlayerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Accordeon\Details\PlayerControl.Designer.cs">
-      <DependentUpon>PlayerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Accordeon\Details\TribeControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Accordeon\Details\TribeControl.Designer.cs">
-      <DependentUpon>TribeControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Accordeon\Details\VillageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -469,14 +457,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\Accordeon\Details\PlayerControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PlayerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Details\TribeControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TribeControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Accordeon\Details\VillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VillageControl.cs</DependentUpon>

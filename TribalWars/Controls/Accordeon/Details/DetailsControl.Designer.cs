@@ -59,8 +59,6 @@ namespace TribalWars.Controls.Accordeon.Details
             this.Comments = new System.Windows.Forms.TextBox();
             this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
             this.Table = new TribalWars.Controls.Display.TableWrapperControl();
-            this.SpecialTribe = new TribalWars.Controls.Accordeon.Details.TribeControl();
-            this.SpecialPlayer = new TribalWars.Controls.Accordeon.Details.PlayerControl();
             this.SpecialVillage = new TribalWars.Controls.Accordeon.Details.VillageControl();
             this.QuickFinderLayout.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -341,8 +339,6 @@ namespace TribalWars.Controls.Accordeon.Details
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.SpecialTribe);
-            this.splitContainer1.Panel2.Controls.Add(this.SpecialPlayer);
             this.splitContainer1.Panel2.Controls.Add(this.SpecialVillage);
             this.splitContainer1.Size = new System.Drawing.Size(261, 424);
             this.splitContainer1.SplitterDistance = 289;
@@ -426,29 +422,6 @@ namespace TribalWars.Controls.Accordeon.Details
             | TribalWars.Controls.Display.VillageFields.HasReport)));
             this.Table.RowSelected += new System.EventHandler<System.EventArgs>(this.Table_RowSelected);
             // 
-            // SpecialTribe
-            // 
-            this.SpecialTribe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SpecialTribe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpecialTribe.Location = new System.Drawing.Point(0, 0);
-            this.SpecialTribe.Margin = new System.Windows.Forms.Padding(0);
-            this.SpecialTribe.Name = "SpecialTribe";
-            this.SpecialTribe.Size = new System.Drawing.Size(261, 131);
-            this.SpecialTribe.TabIndex = 2;
-            this.SpecialTribe.Visible = false;
-            // 
-            // SpecialPlayer
-            // 
-            this.SpecialPlayer.BackColor = System.Drawing.Color.Transparent;
-            this.SpecialPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SpecialPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpecialPlayer.Location = new System.Drawing.Point(0, 0);
-            this.SpecialPlayer.Margin = new System.Windows.Forms.Padding(0);
-            this.SpecialPlayer.Name = "SpecialPlayer";
-            this.SpecialPlayer.Size = new System.Drawing.Size(261, 131);
-            this.SpecialPlayer.TabIndex = 1;
-            this.SpecialPlayer.Visible = false;
-            // 
             // SpecialVillage
             // 
             this.SpecialVillage.BackColor = System.Drawing.Color.Transparent;
@@ -521,8 +494,6 @@ namespace TribalWars.Controls.Accordeon.Details
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton CommentsView;
         private System.Windows.Forms.ToolStripButton DetailsView;
-        private TribeControl SpecialTribe;
-        private PlayerControl SpecialPlayer;
         private System.Windows.Forms.TextBox Comments;
         private System.Windows.Forms.ToolStripSeparator VillageSeperator;
         private System.Windows.Forms.ToolStripButton VillageCurrentSituation;
