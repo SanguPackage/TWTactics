@@ -44,7 +44,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ViewVillageDetails = new System.Windows.Forms.ToolStripButton();
             this.ViewPlayerDetails = new System.Windows.Forms.ToolStripButton();
             this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ContextStripPanel = new System.Windows.Forms.Panel();
             this.ContextStrip = new System.Windows.Forms.ToolStrip();
             this.AttackFlag = new System.Windows.Forms.ToolStripButton();
             this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
@@ -53,8 +53,6 @@ namespace TribalWars.Controls.Accordeon.Details
             this.FarmFlag = new System.Windows.Forms.ToolStripButton();
             this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
-            this.ContentPanel = new System.Windows.Forms.Panel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Comments = new System.Windows.Forms.TextBox();
             this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
@@ -62,13 +60,8 @@ namespace TribalWars.Controls.Accordeon.Details
             this.SpecialVillage = new TribalWars.Controls.Accordeon.Details.VillageControl();
             this.QuickFinderLayout.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.ContextStripPanel.SuspendLayout();
             this.ContextStrip.SuspendLayout();
-            this.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -79,9 +72,9 @@ namespace TribalWars.Controls.Accordeon.Details
             // 
             this.QuickFinderLayout.ColumnCount = 1;
             this.QuickFinderLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.QuickFinderLayout.Controls.Add(this.splitContainer2, 0, 2);
             this.QuickFinderLayout.Controls.Add(this.toolStrip1, 0, 0);
-            this.QuickFinderLayout.Controls.Add(this.panel1, 0, 1);
-            this.QuickFinderLayout.Controls.Add(this.ContentPanel, 0, 2);
+            this.QuickFinderLayout.Controls.Add(this.ContextStripPanel, 0, 1);
             this.QuickFinderLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QuickFinderLayout.Location = new System.Drawing.Point(0, 0);
             this.QuickFinderLayout.Margin = new System.Windows.Forms.Padding(0);
@@ -90,7 +83,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.QuickFinderLayout.Size = new System.Drawing.Size(267, 480);
+            this.QuickFinderLayout.Size = new System.Drawing.Size(267, 297);
             this.QuickFinderLayout.TabIndex = 1;
             // 
             // toolStrip1
@@ -225,15 +218,15 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ViewTribeDetails.ToolTipText = "View tribe details";
             this.ViewTribeDetails.Click += new System.EventHandler(this.ViewTribeDetails_Click);
             // 
-            // panel1
+            // ContextStripPanel
             // 
-            this.panel1.Controls.Add(this.ContextStrip);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 25);
-            this.panel1.TabIndex = 8;
+            this.ContextStripPanel.Controls.Add(this.ContextStrip);
+            this.ContextStripPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ContextStripPanel.Location = new System.Drawing.Point(0, 25);
+            this.ContextStripPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ContextStripPanel.Name = "ContextStripPanel";
+            this.ContextStripPanel.Size = new System.Drawing.Size(267, 25);
+            this.ContextStripPanel.TabIndex = 8;
             // 
             // ContextStrip
             // 
@@ -317,38 +310,11 @@ namespace TribalWars.Controls.Accordeon.Details
             this.VillageCurrentSituation.ToolTipText = "View the current estimated status";
             this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
             // 
-            // ContentPanel
-            // 
-            this.ContentPanel.Controls.Add(this.splitContainer1);
-            this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(3, 53);
-            this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(261, 424);
-            this.ContentPanel.TabIndex = 7;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.SpecialVillage);
-            this.splitContainer1.Size = new System.Drawing.Size(261, 424);
-            this.splitContainer1.SplitterDistance = 289;
-            this.splitContainer1.TabIndex = 1;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 50);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -361,8 +327,9 @@ namespace TribalWars.Controls.Accordeon.Details
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.Table);
-            this.splitContainer2.Size = new System.Drawing.Size(261, 289);
-            this.splitContainer2.SplitterDistance = 144;
+            this.splitContainer2.Panel2.Controls.Add(this.SpecialVillage);
+            this.splitContainer2.Size = new System.Drawing.Size(267, 247);
+            this.splitContainer2.SplitterDistance = 122;
             this.splitContainer2.TabIndex = 0;
             // 
             // Comments
@@ -373,7 +340,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.Comments.Multiline = true;
             this.Comments.Name = "Comments";
             this.Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Comments.Size = new System.Drawing.Size(261, 144);
+            this.Comments.Size = new System.Drawing.Size(267, 122);
             this.Comments.TabIndex = 1;
             this.Comments.Visible = false;
             this.Comments.TextChanged += new System.EventHandler(this.Comments_TextChanged);
@@ -385,7 +352,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.DetailsGrid.Location = new System.Drawing.Point(0, 0);
             this.DetailsGrid.Margin = new System.Windows.Forms.Padding(0);
             this.DetailsGrid.Name = "DetailsGrid";
-            this.DetailsGrid.Size = new System.Drawing.Size(261, 144);
+            this.DetailsGrid.Size = new System.Drawing.Size(267, 122);
             this.DetailsGrid.TabIndex = 0;
             this.DetailsGrid.ToolbarVisible = false;
             // 
@@ -399,7 +366,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
             this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
-            this.Table.Size = new System.Drawing.Size(261, 141);
+            this.Table.Size = new System.Drawing.Size(267, 121);
             this.Table.TabIndex = 0;
             this.Table.VisiblePlayerFields = ((TribalWars.Controls.Display.PlayerFields)(((((TribalWars.Controls.Display.PlayerFields.Name | TribalWars.Controls.Display.PlayerFields.Points) 
             | TribalWars.Controls.Display.PlayerFields.PointsDifference) 
@@ -430,7 +397,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.SpecialVillage.Location = new System.Drawing.Point(0, 0);
             this.SpecialVillage.Margin = new System.Windows.Forms.Padding(0);
             this.SpecialVillage.Name = "SpecialVillage";
-            this.SpecialVillage.Size = new System.Drawing.Size(261, 131);
+            this.SpecialVillage.Size = new System.Drawing.Size(267, 121);
             this.SpecialVillage.TabIndex = 0;
             this.SpecialVillage.Visible = false;
             // 
@@ -438,25 +405,21 @@ namespace TribalWars.Controls.Accordeon.Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.QuickFinderLayout);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DetailsControl";
-            this.Size = new System.Drawing.Size(267, 480);
+            this.Size = new System.Drawing.Size(267, 297);
             this.Load += new System.EventHandler(this.DetailsControl_Load);
             this.QuickFinderLayout.ResumeLayout(false);
             this.QuickFinderLayout.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.ContextStripPanel.ResumeLayout(false);
+            this.ContextStripPanel.PerformLayout();
             this.ContextStrip.ResumeLayout(false);
             this.ContextStrip.PerformLayout();
-            this.ContentPanel.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -476,13 +439,11 @@ namespace TribalWars.Controls.Accordeon.Details
         private System.Windows.Forms.ToolStripButton ViewVillageDetails;
         private ToolStripVillageTextBox SelectedVillage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Panel ContentPanel;
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private TribalWars.Controls.Display.TableWrapperControl Table;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.PropertyGrid DetailsGrid;
         private VillageControl SpecialVillage;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ContextStripPanel;
         private System.Windows.Forms.ToolStrip ContextStrip;
         private System.Windows.Forms.ToolStripButton DefenseFlag;
         private System.Windows.Forms.ToolStripButton AttackFlag;

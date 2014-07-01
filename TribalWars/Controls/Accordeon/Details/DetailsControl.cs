@@ -40,8 +40,6 @@ namespace TribalWars.Controls.Accordeon.Details
 
         #region Fields
         private readonly ToolStripItem[] _villageContext;
-        private readonly ToolStripItem[] _playerContext;
-        private readonly ToolStripItem[] _tribeContext;
 
         private readonly Stack<DetailsCommand> _undo = new Stack<DetailsCommand>();
         private Stack<DetailsCommand> _redo = new Stack<DetailsCommand>();
@@ -317,7 +315,8 @@ namespace TribalWars.Controls.Accordeon.Details
             switch (_current.Display)
             {
                 case DetailsDisplayEnum.Player:
-                    if (_playerContext != null) ContextStrip.Items.AddRange(_playerContext);
+                    ContextStrip.Items.Clear();
+
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = true;
                     ViewTribeDetails.Checked = false;
@@ -331,8 +330,10 @@ namespace TribalWars.Controls.Accordeon.Details
                     else
                         World.Default.Map.EventPublisher.SelectVillages(null, _current.Player, VillageTools.Notes);
                     break;
+
                 case DetailsDisplayEnum.Tribe:
-                    if (_tribeContext != null) ContextStrip.Items.AddRange(_tribeContext);
+                    ContextStrip.Items.Clear();
+
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = true;
@@ -348,8 +349,9 @@ namespace TribalWars.Controls.Accordeon.Details
                     else
                         World.Default.Map.EventPublisher.SelectVillages(null, _current.Tribe, VillageTools.Notes);
                     break;
+
                 case DetailsDisplayEnum.Village:
-                    if (_villageContext != null) ContextStrip.Items.AddRange(_villageContext);
+                    if (_villageContext != null && ContextStrip.Items.Count == 0) ContextStrip.Items.AddRange(_villageContext);
                     ViewVillageDetails.Checked = true;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = false;
@@ -360,8 +362,6 @@ namespace TribalWars.Controls.Accordeon.Details
                     Table.DisplayReports(_current.Village, _current.Village.Reports);
                     SetButtons(_current.Village.Type);
                     Comments.Text = _current.Village.Comments;
-                    //if (!string.IsNullOrEmpty(_current.Village.Comments))
-
 
                     World.Default.Map.EventPublisher.SelectVillages(null, _current.Village, VillageTools.Notes);
                     break;
