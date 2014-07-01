@@ -97,7 +97,7 @@ namespace TribalWars.Controls.TWContextMenu
             var ds = new PolygonDataSet();
             foreach (Village v in _bbCode.ActivePolygon.GetVillages())
             {
-                ds.AddVILLAGERow(v, _bbCode.ActivePolygon.Name);
+                ds.AddVILLAGERow(v, _bbCode.ActivePolygon);
             }
             World.Default.Map.EventPublisher.ActivatePolygon(this, ds);
         }

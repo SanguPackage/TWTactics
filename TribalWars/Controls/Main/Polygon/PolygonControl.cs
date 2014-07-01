@@ -99,7 +99,17 @@ namespace TribalWars.Controls.Main.Polygon
             {
                 e.Row.GroupCaption = string.Format("{0} ({1})", e.Row.GroupValue, e.Row.GetRecordCount());
             }
+
+            if (e.Row.RowType == RowType.Record)
+            {
+                
+            }
         }
         #endregion
+
+        private void LoadPolygonData_Click(object sender, EventArgs e)
+        {
+            World.Default.
+        }
     }
 }

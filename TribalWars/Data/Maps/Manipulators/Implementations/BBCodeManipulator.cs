@@ -348,6 +348,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     w.WriteAttributeString("ID", poly.Name);
                     w.WriteAttributeString("Visible", poly.Visible.ToString());
                     w.WriteAttributeString("Color", XmlHelper.SetColor(poly.LineColor));
+                    w.WriteAttributeString("Group", poly.Group);
                     foreach (Point p in poly.List)
                     {
                         w.WriteStartElement("Point");
@@ -375,6 +376,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     string id = r.GetAttribute("ID");
                     bool visible = Convert.ToBoolean(r.GetAttribute("Visible"));
                     Color color = XmlHelper.GetColor(r.GetAttribute("Color"), Color.White);
+                    string group = r.GetAttribute("Group");
 
                     var points = new List<Point>();
                     r.ReadStartElement();
@@ -385,7 +387,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         points.Add(new Point(x, y));
                         r.Read();
                     }
-                    var poly = new Polygon(id, visible, color, points);
+                    var poly = new Polygon(id, visible, color, group, points);
                     Polygons.Add(poly);
                     r.ReadEndElement();
                 }

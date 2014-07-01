@@ -72,7 +72,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 foreach (Village v in poly.GetVillages())
                 {
-                    ds.AddVILLAGERow(v, poly.Name);
+                    ds.AddVILLAGERow(v, poly);
                 }
             }
             World.Default.Map.EventPublisher.ActivatePolygon(this, ds);

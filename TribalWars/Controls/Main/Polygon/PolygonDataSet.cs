@@ -1,4 +1,6 @@
 ﻿#region Using
+using System.Globalization;
+using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Villages;
 #endregion
 
@@ -6,10 +8,10 @@ namespace TribalWars.Controls
 {
     partial class PolygonDataSet
     {
-        public void AddVILLAGERow(Village village, string polygonName)
+        public void AddVILLAGERow(Village village, Polygon polygon)
         {
             VILLAGERow row = VILLAGE.NewVILLAGERow();
-            row.KINGDOM = village.Kingdom.ToString();
+            row.KINGDOM = village.Kingdom.ToString(CultureInfo.InvariantCulture);
             row.LOCATION = village.LocationString;
             row.NAME = village.Name;
             if (village.HasPlayer)
@@ -18,7 +20,7 @@ namespace TribalWars.Controls
                 row.PLAYERID = village.PlayerId;
                 if (village.HasTribe)
                 {
-                    row.TRIBE = village.Player.Tribe.Name;
+                    row.TRIBE = village.Player.Tribe.Tag;
                     row.TRIBEID = village.Player.Tribe.Id;
                 }
             }
@@ -27,8 +29,12 @@ namespace TribalWars.Controls
             {
                 row.POINTSDIFF = village.Points - village.PreviousVillageDetails.Points;
             }
-            else row.POINTSDIFF = 0;
-            row.POLYGON = polygonName;
+            else
+            {
+                row.POINTSDIFF = 0;
+            }
+            row.POLYGON = polygon.Name;
+            row.POLYGONGROUP = polygon.Group;
             row.BBCODE = village.BBCode();
 
             VILLAGE.Rows.Add(row);

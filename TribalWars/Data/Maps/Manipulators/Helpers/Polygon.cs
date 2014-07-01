@@ -31,6 +31,12 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         public string Name { get; set; }
 
         /// <summary>
+        /// Group polygons together with this string.
+        /// Grouped polygons can be manipulated together.
+        /// </summary>
+        public string Group { get; set; }
+
+        /// <summary>
         /// Gets or sets the color of the polygon lines / rectangles
         /// </summary>
         public Color LineColor { get; set; }
@@ -51,14 +57,16 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
             List = new LinkedList<Point>();
             List.AddFirst(GetPoint(x, y));
             LineColor = Color.White;
+            Group = "No group";
         }
 
-        public Polygon(string name, bool visible, Color color, IEnumerable<Point> points)
+        public Polygon(string name, bool visible, Color color, string group, IEnumerable<Point> points)
         {
             Name = name;
             Visible = visible;
             List = new LinkedList<Point>(points);
             LineColor = color;
+            Group = group;
         }
         #endregion
 
