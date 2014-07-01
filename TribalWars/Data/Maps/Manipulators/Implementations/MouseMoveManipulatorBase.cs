@@ -102,7 +102,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         protected abstract bool CanAddPointToPolygon(Point lastMap, Point currentMap);
 
         /// <summary>
-        /// Stop polygon creation. Display contextmenu.
+        /// Stop polygon creation.
         /// </summary>
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {

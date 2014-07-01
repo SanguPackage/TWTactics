@@ -1,8 +1,7 @@
 #region Using
-using System;
-using System.Diagnostics;
 using System.Drawing;
-using TribalWars.Data.Maps.Manipulators.Helpers;
+using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
 #endregion
 
@@ -11,61 +10,93 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     /// <summary>
     /// Allows the user to move the map around by dragging
     /// </summary>
-    internal class MapDraggerManipulator : MouseMoveManipulatorBase
+    public class MapDraggerManipulator : ManipulatorBase
     {
+        #region Fields
+        private readonly DefaultManipulatorManager _parent;
+
+        private bool _isDragging;
+        private Point _startPosition;
+        private Point _lastPosition;
+        #endregion
+
         #region Constructors
-        public MapDraggerManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler)
-            : base(map, parentManipulatorHandler)
+        public MapDraggerManipulator(Map map, DefaultManipulatorManager parent)
+            : base(map)
         {
+            _parent = parent;
         }
         #endregion
 
-        #region Private Methods
+        #region Public Methods
         /// <summary>
-        /// Polygon started
+        /// Start dragging
         /// </summary>
-        protected override void Start(Polygon polygon)
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            {
+                _isDragging = true;
+                _startPosition = CreateGamePoint(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                _lastPosition = _startPosition;
+                _parent.SetFullControlManipulator(this);
+            }
+            return false;
         }
 
-        protected override bool CanAddPointToPolygon(Point lastMap, Point currentMap)
+        /// <summary>
+        /// Stop dragging
+        /// </summary>
+        protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
-            Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
-            Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
-            return lastGame != currentGame;
+            if (e.MouseEventArgs.Button == MouseButtons.Left && _isDragging)
+            {
+                _isDragging = false;
+                _parent.RemoveFullControlManipulator();
+            }
+            return false;
         }
 
         /// <summary>
-        /// Point added to the polygon
+        /// Add points to the polygon
         /// </summary>
-        protected override void Continue(Polygon polygon)
+        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Left && _isDragging)
+            {
+                Point currentMap = CreateGamePoint(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                if (_lastPosition != currentMap)
+                {
+                    _lastPosition = currentMap;
+                    SetMapCenter();
+                }
+            }
+            return false;
+        }
+
+        private void SetMapCenter()
         {
             Location current = _map.Location;
-            Point first = polygon.List.First.Value;
-            Point last = polygon.List.Last.Value;
 
-            int x = first.X - last.X;
-            int y = first.Y - last.Y;
+            int x = _startPosition.X - _lastPosition.X;
+            int y = _startPosition.Y - _lastPosition.Y;
 
             _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
         }
 
-        /// <summary>
-        /// Polygon finished
-        /// </summary>
-        protected override void Stop(Polygon polygon)
-        {
-            Clear();
-        }
-
         protected internal override void SetFullControlManipulatorCore()
         {
-            _map.SetCursor(System.Windows.Forms.Cursors.Hand);
+            _map.SetCursor(Cursors.Hand);
         }
 
         protected internal override void RemoveFullControlManipulatorCore()
         {
             _map.SetCursor();
+        }
+
+        private static Point CreateGamePoint(int x, int y)
+        {
+            return World.Default.Map.Display.GetGameLocation(x, y);
         }
         #endregion
     }
