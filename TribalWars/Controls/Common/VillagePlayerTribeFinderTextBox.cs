@@ -211,8 +211,14 @@ namespace TribalWars.Controls.Common
         /// <summary>
         /// Clears the input box
         /// </summary>
-        public void EmptyTextBox()
+        public void EmptyTextBox(bool raiseEvent)
         {
+            if (string.IsNullOrEmpty(Text))
+                return;
+
+            bool oldHandleText = _handleTextChanged;
+            _handleTextChanged = raiseEvent;
+
             Village = null;
             Player = null;
             Tribe = null;
@@ -220,6 +226,8 @@ namespace TribalWars.Controls.Common
             BackColor = Color.White;
             _tooltip.ToolTipTitle = string.Empty;
             _tooltip.SetToolTip(this, GetEmptyTooltip());
+
+            _handleTextChanged = oldHandleText;
         }
 
         /// <summary>
@@ -250,7 +258,9 @@ namespace TribalWars.Controls.Common
                 _tooltip.SetToolTip(this, village.Tooltip);
 
                 if (raiseEvent && VillageSelected != null)
+                {
                     VillageSelected(this, new VillageEventArgs(village, VillageTools.SelectVillage));
+                }
                 else if (_showButton && _map != null)
                 {
                     _map.SetCenter(village);
@@ -259,7 +269,7 @@ namespace TribalWars.Controls.Common
             }
             else
             {
-                EmptyTextBox();
+                EmptyTextBox(raiseEvent);
             }
         }
 
@@ -291,7 +301,9 @@ namespace TribalWars.Controls.Common
                 _tooltip.ToolTipTitle = player.Name;
                 _tooltip.SetToolTip(this, player.Tooltip);
                 if (raiseEvent && PlayerSelected != null)
+                {
                     PlayerSelected(this, new PlayerEventArgs(player, VillageTools.PinPoint));
+                }
                 else if (_showButton && _map != null)
                 {
                     _map.SetCenter(Data.Maps.Display.GetSpan(player));
@@ -300,7 +312,7 @@ namespace TribalWars.Controls.Common
             }
             else
             {
-                EmptyTextBox();
+                EmptyTextBox(raiseEvent);
             }
         }
 
@@ -343,7 +355,7 @@ namespace TribalWars.Controls.Common
             }
             else
             {
-                EmptyTextBox();
+                EmptyTextBox(raiseEvent);
             }
         }
         #endregion

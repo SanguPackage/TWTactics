@@ -182,13 +182,6 @@ namespace TribalWars.Controls.Accordeon.Details
         /// </summary>
         private void Table_RowSelected(object sender, EventArgs e)
         {
-            //var test = sender as ITWContextMenu;
-            //if (test != null)
-            //{
-            //    test.DisplayDetails();
-            //}
-
-            // TODO NEW: This can be refactored. it probably doesn't work right now
             if (sender is VillageTableRow)
             {
                 var row = (VillageTableRow)sender;
@@ -260,7 +253,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// Prepares the user control for viewing
         /// </summary>
         /// <param name="command">Encapsulates a view in the DetailsControl</param>
-        public void SetQuickFinder(DetailsCommand command)
+        private void SetQuickFinder(DetailsCommand command)
         {
             if (command.Tool == VillageTools.PinPoint)
             {
@@ -270,16 +263,15 @@ namespace TribalWars.Controls.Accordeon.Details
                 UndoButton.Enabled = true;
                 UndoButton.ToolTipText = _current.Tooltip;
             }
-            _current = command;
 
-            SetQuickFinderCore();
+            SetQuickFinderCore(command);
         }
 
         /// <summary>
         /// Prepares the user control for village details viewing
         /// </summary>
         /// <param name="village">The village we want to see the details for</param>
-        public void SetQuickFinder(Village village, VillageTools tool)
+        private void SetQuickFinder(Village village, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, village, tool));
         }
@@ -288,7 +280,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// Prepares the user control for player details viewing
         /// </summary>
         /// <param name="player">The player we want to see the details for</param>
-        public void SetQuickFinder(Player player, VillageTools tool)
+        private void SetQuickFinder(Player player, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, player, tool));
         }
@@ -297,7 +289,7 @@ namespace TribalWars.Controls.Accordeon.Details
         /// Prepares the user control for tribe details viewing
         /// </summary>
         /// <param name="tribe">The tribe we want to see the details for</param>
-        public void SetQuickFinder(Tribe tribe, VillageTools tool)
+        private void SetQuickFinder(Tribe tribe, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, tribe, tool));
         }
@@ -306,13 +298,13 @@ namespace TribalWars.Controls.Accordeon.Details
         /// Changes the display without changing the
         /// current selected village, player or tribe
         /// </summary>
-        public void SetLayout()
+        private void SetLayout(DetailsCommand command)
         {
             ContextStrip.Items.Clear();
-            ViewVillageDetails.Enabled = _current.Village != null;
-            ViewTribeDetails.Enabled = _current.Tribe != null;
-            ViewPlayerDetails.Enabled = _current.Player != null;
-            switch (_current.Display)
+            ViewVillageDetails.Enabled = command.Village != null;
+            ViewTribeDetails.Enabled = command.Tribe != null;
+            ViewPlayerDetails.Enabled = command.Player != null;
+            switch (command.Display)
             {
                 case DetailsDisplayEnum.Player:
                     ContextStrip.Items.Clear();
@@ -322,13 +314,22 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewTribeDetails.Checked = false;
                     SpecialVillage.Visible = false;
 
-                    Table.DisplayVillages(_current.Player);
-                    DetailsGrid.SelectedObject = new ExtendedPlayerDescriptor(_current.Player);
+                    if (!DetailsView.Checked)
+                    {
+                        DetailsView_Click(null, EventArgs.Empty);
+                    }
+                    CommentsView.Enabled = false;
 
-                    if (_current.Village != null)
-                        World.Default.Map.EventPublisher.SelectVillages(null, _current.Village, VillageTools.Notes);
+                    if (command.Display != _current.Display || command.Player != _current.Player)
+                    {
+                        Table.DisplayVillages(command.Player);
+                        DetailsGrid.SelectedObject = new ExtendedPlayerDescriptor(command.Player);
+                    }
+
+                    if (command.Village != null)
+                        World.Default.Map.EventPublisher.SelectVillages(null, command.Village, VillageTools.Notes);
                     else
-                        World.Default.Map.EventPublisher.SelectVillages(null, _current.Player, VillageTools.Notes);
+                        World.Default.Map.EventPublisher.SelectVillages(null, command.Player, VillageTools.Notes);
                     break;
 
                 case DetailsDisplayEnum.Tribe:
@@ -339,15 +340,24 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewTribeDetails.Checked = true;
                     SpecialVillage.Visible = false;
 
-                    Table.DisplayPlayers(_current.Tribe.Players);
-                    DetailsGrid.SelectedObject = new ExtendedTribeDescriptor(_current.Tribe);
+                    if (!DetailsView.Checked)
+                    {
+                        DetailsView_Click(null, EventArgs.Empty);
+                    }
+                    CommentsView.Enabled = false;
 
-                    if (_current.Village != null)
-                        World.Default.Map.EventPublisher.SelectVillages(null, _current.Village, VillageTools.Notes);
-                    else if (_current.Player != null)
-                        World.Default.Map.EventPublisher.SelectVillages(null, _current.Player, VillageTools.Notes);
+                    if (command.Display != _current.Display || command.Tribe != _current.Tribe)
+                    {
+                        Table.DisplayPlayers(command.Tribe.Players);
+                        DetailsGrid.SelectedObject = new ExtendedTribeDescriptor(command.Tribe);
+                    }
+
+                    if (command.Village != null)
+                        World.Default.Map.EventPublisher.SelectVillages(null, command.Village, VillageTools.Notes);
+                    else if (command.Player != null)
+                        World.Default.Map.EventPublisher.SelectVillages(null, command.Player, VillageTools.Notes);
                     else
-                        World.Default.Map.EventPublisher.SelectVillages(null, _current.Tribe, VillageTools.Notes);
+                        World.Default.Map.EventPublisher.SelectVillages(null, command.Tribe, VillageTools.Notes);
                     break;
 
                 case DetailsDisplayEnum.Village:
@@ -357,14 +367,17 @@ namespace TribalWars.Controls.Accordeon.Details
                     ViewTribeDetails.Checked = false;
                     SpecialVillage.Visible = true;
 
-                    SpecialVillage.SetReport(_current.Village.Reports.CurrentSituation);
-                    DetailsGrid.SelectedObject = new ExtendedVillageDescriptor(_current.Village);
-                    Table.DisplayReports(_current.Village, _current.Village.Reports);
-                    SetButtons(_current.Village.Type);
-                    Comments.Text = _current.Village.Comments;
+                    CommentsView.Enabled = true;
 
-                    World.Default.Map.EventPublisher.SelectVillages(null, _current.Village, VillageTools.Notes);
+                    SpecialVillage.SetReport(command.Village.Reports.CurrentSituation);
+                    DetailsGrid.SelectedObject = new ExtendedVillageDescriptor(command.Village);
+                    Table.DisplayReports(command.Village, command.Village.Reports);
+                    SetButtons(command.Village.Type);
+                    Comments.Text = command.Village.Comments;
+
+                    World.Default.Map.EventPublisher.SelectVillages(null, command.Village, VillageTools.Notes);
                     break;
+
                 default:
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
@@ -438,27 +451,28 @@ namespace TribalWars.Controls.Accordeon.Details
         /// <summary>
         /// Sets the entire control enablement etc
         /// </summary>
-        private void SetQuickFinderCore()
+        private void SetQuickFinderCore(DetailsCommand command)
         {
-            if (!_current.SubLayout)
+            if (!command.SubLayout)
             {
-                switch (_current.UnderlyingDisplay)
+                switch (command.UnderlyingDisplay)
                 {
                     case DetailsDisplayEnum.Village:
-                        SelectedVillage.Village = _current.Village;
+                        SelectedVillage.Village = command.Village;
                         break;
                     case DetailsDisplayEnum.Player:
-                        SelectedVillage.Player = _current.Player;
+                        SelectedVillage.Player = command.Player;
                         break;
                     case DetailsDisplayEnum.Tribe:
-                        SelectedVillage.Tribe = _current.Tribe;
+                        SelectedVillage.Tribe = command.Tribe;
                         break;
                     default:
                         SelectedVillage.PlayerTribeFinderTextBox.Clear();
                         break;
                 }
             }
-            SetLayout();
+            SetLayout(command);
+            _current = command;
         }
         #endregion
 
@@ -491,8 +505,7 @@ namespace TribalWars.Controls.Accordeon.Details
                 push.Push(_current);
                 pushButton.Enabled = true;
                 pushButton.ToolTipText = _current.Tooltip;
-                _current = command;
-                SetQuickFinderCore();
+                SetQuickFinderCore(command);
             }
 
             // can we undo/redo more
