@@ -11,6 +11,8 @@ using TribalWars.Data.Maps.Manipulators.Controls;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
+using TribalWars.Tools;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
@@ -25,22 +27,17 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Fields
-        private readonly Pen _pen;
-        private readonly SolidBrush _brush;
+        private readonly Dictionary<Color, Tuple<Pen, Brush>> _pens;
         private readonly Font _font;
 
         private MapPolygonControl _control;
-        #endregion
-
-        #region Properties
         #endregion
 
         #region Constructors
         public BbCodeManipulator(Map map, DefaultManipulatorManager parentManipulatorHandler)
             : base(map, parentManipulatorHandler)
         {
-            _pen = new Pen(Color.White);
-            _brush = new SolidBrush(_pen.Color);
+            _pens = new Dictionary<Color, Tuple<Pen, Brush>>();
             _font = new Font("Verdana", 12, FontStyle.Bold);
         }
         #endregion
@@ -58,20 +55,26 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     bool active = poly == ActivePolygon && e.IsActiveManipulator;
                     if (poly.List.Count > 1 && poly.Visible)
                     {
-                        Point firstP = new Point();
-                        Point p = new Point();
+                        Pen pen = GetPen(poly.LineColor);
+                        Brush brush = GetBrush(poly.LineColor);
+
+                        var firstP = new Point();
+                        var p = new Point();
                         int x = -1, y = -1;
                         foreach (Point gameP in poly.List)
                         {
                             p = World.Default.Map.Display.GetMapLocation(gameP.X, gameP.Y);
                             if (x != -1 || y != -1)
                             {
-                                e.Graphics.DrawLine(_pen, x, y, p.X, p.Y);
+                                e.Graphics.DrawLine(pen, x, y, p.X, p.Y);
                             }
-                            else firstP = p;
+                            else
+                            {
+                                firstP = p;
+                            }
                             if (active)
                             {
-                                e.Graphics.FillRectangle(_brush, new Rectangle(p.X - 3, p.Y - 3, 7, 7));
+                                e.Graphics.FillRectangle(brush, new Rectangle(p.X - 3, p.Y - 3, 7, 7));
                             }
 
                             x = p.X;
@@ -79,14 +82,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         }
                         if (!poly.Drawing)
                         {
-                            e.Graphics.DrawLine(_pen, firstP, p);
+                            e.Graphics.DrawLine(pen, firstP, p);
 
                             if (_map.Display.DisplayManager.CurrentDisplayType == DisplayTypes.Icon || _map.Location.Zoom >= 5)
                             {
                                 SizeF size = e.Graphics.MeasureString(poly.Name, _font);
                                 p.Offset(5, 5);
-                                e.Graphics.DrawEllipse(_pen, p.X, p.Y, size.Width, size.Height);
-                                e.Graphics.DrawString(poly.Name, _font, _brush, new Point(p.X, p.Y));
+                                e.Graphics.DrawEllipse(pen, p.X, p.Y, size.Width, size.Height);
+                                e.Graphics.DrawString(poly.Name, _font, brush, new Point(p.X, p.Y));
                             }
                         }
                     }
@@ -165,6 +168,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     w.WriteStartElement("Polygon");
                     w.WriteAttributeString("ID", poly.Name);
                     w.WriteAttributeString("Visible", poly.Visible.ToString());
+                    w.WriteAttributeString("Color", XmlHelper.SetColor(poly.LineColor));
                     foreach (Point p in poly.List)
                     {
                         w.WriteStartElement("Point");
@@ -191,6 +195,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 {
                     string id = r.GetAttribute("ID");
                     bool visible = System.Convert.ToBoolean(r.GetAttribute("Visible"));
+                    Color color = XmlHelper.GetColor(r.GetAttribute("Color"), Color.White);
+
                     var points = new List<Point>();
                     r.ReadStartElement();
                     while (r.IsStartElement("Point"))
@@ -200,7 +206,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         points.Add(new Point(x, y));
                         r.Read();
                     }
-                    var poly = new Polygon(id, visible, points);
+                    var poly = new Polygon(id, visible, color, points);
                     Polygons.Add(poly);
                     r.ReadEndElement();
                 }
@@ -235,13 +241,38 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         public override void Dispose()
         {
-            _pen.Dispose();
-            _brush.Dispose();
+            foreach (KeyValuePair<Color, Tuple<Pen, Brush>> penAndBrush in _pens)
+            {
+                penAndBrush.Value.Item1.Dispose();
+                penAndBrush.Value.Item2.Dispose();
+            }
             _font.Dispose();
         }
         #endregion
 
         #region Private Implementation
+        private Pen GetPen(Color color)
+        {
+            CacheIfNotExists(color);
+            return _pens[color].Item1;
+        }
+
+        private Brush GetBrush(Color color)
+        {
+            CacheIfNotExists(color);
+            return _pens[color].Item2;
+        }
+
+        private void CacheIfNotExists(Color color)
+        {
+            if (!_pens.ContainsKey(color))
+            {
+                var pen = new Pen(color);
+                var brush = new SolidBrush(color);
+                _pens.Add(color, new Tuple<Pen, Brush>(pen, brush));
+            }
+        }
+
         //--> TODO This stuff needs to be in the ManipulatorBase
         //--> Adding a control to the map
         public void AddControl()

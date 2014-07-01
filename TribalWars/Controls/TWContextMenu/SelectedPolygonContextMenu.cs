@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.EditControls;
+using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Manipulators.Helpers;
@@ -31,9 +33,23 @@ namespace TribalWars.Controls.TWContextMenu
 
             _menu.AddCommand(ContextMenuKeys.Polygon.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
-            _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete);
+            _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete, Shortcut.Del);
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, "Edit", OnEdit);
+
+            AddChangeColorCommand();
+
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+        }
+
+        private void AddChangeColorCommand()
+        {
+            var colorPicker = new UIColorPicker();
+            colorPicker.SelectedColor = _bbCode.ActivePolygon.LineColor;
+            colorPicker.SelectedColorChanged += SelectedColorChanged;
+
+            var cmd = new UICommand("ChangeColor", "Color", CommandType.ColorPickerCommand);
+            cmd.Control = colorPicker;
+            _menu.Commands.Add(cmd);
         }
 
         public void Show(Control control, Point pos, Village village)
@@ -55,6 +71,12 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnEdit(object sender, CommandEventArgs e)
         {
             _bbCode.AddControl();
+        }
+
+        private void SelectedColorChanged(object sender, EventArgs e)
+        {
+            _bbCode.ActivePolygon.LineColor = ((UIColorPicker)sender).SelectedColor;
+            World.Default.DrawMaps(false);
         }
 
         /// <summary>

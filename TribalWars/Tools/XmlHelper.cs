@@ -35,7 +35,12 @@ namespace TribalWars.Tools
 
         public static Color GetColor(string input)
         {
-            Color color = Color.Transparent;
+            return GetColor(input, Color.Transparent);
+        }
+
+        public static Color GetColor(string input, Color defaultColor)
+        {
+            Color color = defaultColor;
             if (string.IsNullOrEmpty(input)) return color;
             try
             {

@@ -31,6 +31,11 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the color of the polygon lines / rectangles
+        /// </summary>
+        public Color LineColor { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this
         /// polygon should be drawn to the map
         /// </summary>
@@ -45,13 +50,15 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
             Drawing = true;
             List = new LinkedList<Point>();
             List.AddFirst(GetPoint(x, y));
+            LineColor = Color.White;
         }
 
-        public Polygon(string name, bool visible, IEnumerable<Point> points)
+        public Polygon(string name, bool visible, Color color, IEnumerable<Point> points)
         {
             Name = name;
             Visible = visible;
             List = new LinkedList<Point>(points);
+            LineColor = color;
         }
         #endregion
 

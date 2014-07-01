@@ -410,11 +410,15 @@ namespace TribalWars.Data
         /// <summary>
         /// Force redrawing the maps
         /// </summary>
-        public void DrawMaps()
+        public void DrawMaps(bool resetBackgroundCache = true)
         {
-            Map.Display.ResetCache();
+            if (resetBackgroundCache)
+            {
+                Map.Display.ResetCache();
+                MiniMap.Display.ResetCache();
+            }
+
             Map.Control.Invalidate();
-            //MiniMap.Display.ResetCache(); // comment out to also redraw the minimap
             MiniMap.Control.Invalidate();
         }
         #endregion
