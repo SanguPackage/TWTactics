@@ -34,11 +34,22 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand(ContextMenuKeys.Polygon.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
             _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete, Shortcut.Del);
-            _menu.AddCommand(ContextMenuKeys.Polygon.Edit, "Edit", OnEdit);
 
+            AddChangeNameCommand();
             AddChangeColorCommand();
 
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+        }
+
+        private void AddChangeNameCommand()
+        {
+            var nameChanger = new TextBox();
+            nameChanger.Text = _bbCode.ActivePolygon.Name;
+            nameChanger.TextChanged += NameChanged;
+
+            var cmd = new UICommand("ChangeName", "Name", CommandType.TextBoxCommand);
+            cmd.Control = nameChanger;
+            _menu.Commands.Add(cmd);
         }
 
         private void AddChangeColorCommand()
@@ -65,12 +76,10 @@ namespace TribalWars.Controls.TWContextMenu
             _bbCode.Delete();
         }
 
-        /// <summary>
-        /// Renames a polygon
-        /// </summary>
-        private void OnEdit(object sender, CommandEventArgs e)
+        private void NameChanged(object sender, EventArgs e)
         {
-            _bbCode.AddControl();
+            var nameChanger = (TextBox)sender;
+            _bbCode.ActivePolygon.Name = nameChanger.Text;
         }
 
         private void SelectedColorChanged(object sender, EventArgs e)
