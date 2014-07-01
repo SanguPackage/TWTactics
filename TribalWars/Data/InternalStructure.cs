@@ -29,7 +29,6 @@ namespace TribalWars.Data
         public sealed class InternalStructure
         {
             #region Constants
-
             private const string AvailableWorlds = "http://www.tribalwars.nl/backend/get_servers.php";
             private const string NormalWorldPattern = @"nl(\d+)";
             private static readonly Regex NormalWorldRegex = new Regex(NormalWorldPattern);
@@ -53,6 +52,7 @@ namespace TribalWars.Data
 
             private static object DownloadWorldUnitSettings(string worldName)
             {
+                // TODO: load if Archers are present on this world!
                 var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
                 //var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 //var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
@@ -73,29 +73,26 @@ namespace TribalWars.Data
             }
             #endregion
 
-            public const string FileVillageString = @"village.txt";
-            public const string FileTribeString = @"ally.txt";
-            public const string FilePlayerString = @"tribe.txt";
+            private const string FileVillageString = @"village.txt";
+            private const string FileTribeString = @"ally.txt";
+            private const string FilePlayerString = @"tribe.txt";
 
             public const string DirectorySettingsString = "Settings";
             public const string DirectoryDataString = "Data";
-            public const string DirectoryWorldDataString = "WorldData";
-            public const string DirectoryReportsString = "Reports";
-            public const string DirectoryMonitorString = "Monitor";
-            public const string DirectoryScreenshotString = "Screenshot";
+            private const string DirectoryWorldDataString = "WorldData";
+            private const string DirectoryReportsString = "Reports";
+            private const string DirectoryScreenshotString = "Screenshot";
 
-            public const string WorldString = "World";
             public const string DefaultSettingsString = "default.sets";
             /// <summary>
             /// With .
             /// </summary>
             public const string SettingsExtensionString = ".sets";
-            public const string WorldXmlString = "world.xml";
-            public const string VillageTypesString = "villagetypes.dat";
+            private const string WorldXmlString = "world.xml";
+            private const string VillageTypesString = "villagetypes.dat";
 
-            public const int WorldVillageCount = 50000;
-            public const int WorldPlayerCount = 10000;
-            public const int WorldTribeCount = 5000;
+            private const int WorldPlayerCount = 10000;
+            private const int WorldTribeCount = 5000;
             #endregion
 
             #region Fields
@@ -212,6 +209,20 @@ namespace TribalWars.Data
                         {
                             _currentData = new DirectoryInfo(dirs[dirs.Length - 1]).Name;
                             if (dirs.Length != 1) _previousData = new DirectoryInfo(dirs[dirs.Length - 2]).Name;
+
+#if !DEBUG
+                            // Redownload after x hours
+                            TimeSpan? lastDownload = DateTime.Now - CurrentData;
+                            if (lastDownload.HasValue && lastDownload.Value.TotalHours >= 12)
+                            {
+                                string text = string.Format("It has been {0} hours since you downloaded the latest TW data.\nDownload now?", (int)lastDownload.Value.TotalHours);
+                                DialogResult doDownload = MessageBox.Show(text, "Download latest data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (doDownload == DialogResult.Yes)
+                                {
+                                    Download();
+                                }
+                            }
+#endif
                         }
                         else
                         {
@@ -274,7 +285,7 @@ namespace TribalWars.Data
             /// <summary>
             /// Gets the executable directory
             /// </summary>
-            public static string MainDirectory
+            private static string MainDirectory
             {
                 get
                 {
@@ -313,15 +324,6 @@ namespace TribalWars.Data
             }
 
             /// <summary>
-            /// Gets the directory with player monitorring data
-            /// </summary>
-            /// <remarks>\WorldData\World 1\Monitor\</remarks>
-            public string CurrentWorldMonitorDirectory
-            {
-                get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryMonitorString + "\\"); }
-            }
-
-            /// <summary>
             /// Gets the directory with user screenshots
             /// </summary>
             /// <remarks>\WorldData\World 1\Screenshot\</remarks>
@@ -352,7 +354,7 @@ namespace TribalWars.Data
             /// Gets the directory with the currently loaded TW data
             /// </summary>
             /// <remarks>\WorldData\World 1\Data\20080101\</remarks>
-            public string CurrentWorldDataDateDirectory
+            private string CurrentWorldDataDateDirectory
             {
                 get { return GetPath(MainDirectory + DirectoryWorldDataString + "\\" + _currentWorld + "\\" + DirectoryDataString + "\\" + _currentData + "\\"); }
             }
@@ -360,7 +362,7 @@ namespace TribalWars.Data
             /// <summary>
             /// Gets the directory with the previously downloaded TW data
             /// </summary>
-            public string PreviousWorldDataDateDirectory
+            private string PreviousWorldDataDateDirectory
             {
                 get
                 {
@@ -443,6 +445,7 @@ namespace TribalWars.Data
                      orderby worldNumber descending 
                      select worldNumber).First();
 
+                // So we add all worlds from 1 to the last one
                 IEnumerable<string> normalWorlds =
                     Enumerable.Range(1, lastStartedWorld)
                               .Select(x => NormalWorldPrefix + x.ToString(CultureInfo.InvariantCulture));
@@ -481,11 +484,12 @@ namespace TribalWars.Data
             {
                 using (Stream stream = client.OpenRead(urlFile))
                 {
+                    Debug.Assert(stream != null);
                     using (var unzip = new System.IO.Compression.GZipStream(stream, System.IO.Compression.CompressionMode.Decompress))
                     {
                         using (var writer = new FileStream(outputFile, FileMode.Create))
                         {
-                            byte[] block = new byte[4096];
+                            var block = new byte[4096];
                             int read;
                             while ((read = unzip.Read(block, 0, block.Length)) != 0)
                             {
@@ -498,7 +502,7 @@ namespace TribalWars.Data
             #endregion
 
             #region Dictionaries
-            public void LoadDictionary(string dataPath, out WorldVillagesCollection villages, out Dictionary<string, Player> players, out Dictionary<string, Tribe> tribes)
+            private void LoadDictionary(string dataPath, out WorldVillagesCollection villages, out Dictionary<string, Player> players, out Dictionary<string, Tribe> tribes)
             {
                 if (IsValidDataPath(dataPath))
                 {
@@ -593,7 +597,7 @@ namespace TribalWars.Data
                 }
                 if (load && PreviousWorldDataDateDirectory != null)
                 {
-                    DictionaryLoaderWrapper wrapper = new DictionaryLoaderWrapper();
+                    var wrapper = new DictionaryLoaderWrapper();
                     wrapper.Villages = villages;
                     wrapper.Tribes = tribes;
                     wrapper.Players = players;
@@ -662,12 +666,11 @@ namespace TribalWars.Data
             /// </summary>
             private void EndDictionaryAsync(IAsyncResult ar)
             {
-                System.Runtime.Remoting.Messaging.AsyncResult result = (System.Runtime.Remoting.Messaging.AsyncResult)ar;
-                DictionaryLoader invoker = (DictionaryLoader)result.AsyncDelegate;
+                var result = (System.Runtime.Remoting.Messaging.AsyncResult)ar;
+                var invoker = (DictionaryLoader)result.AsyncDelegate;
 
                 invoker.EndInvoke(ar);
 
-                //MessageBox.Show("yaye");
                 World.Default.EventPublisher.InformMonitoringLoaded(null);
             }
             #endregion
