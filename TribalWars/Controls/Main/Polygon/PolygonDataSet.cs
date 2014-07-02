@@ -1,4 +1,5 @@
 ﻿#region Using
+using System.Collections.Generic;
 using System.Globalization;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Villages;
@@ -8,7 +9,23 @@ namespace TribalWars.Controls
 {
     partial class PolygonDataSet
     {
-        public void AddVILLAGERow(Village village, Polygon polygon)
+        /// <summary>
+        /// Create a new PolygonDataSet with all villages from the polygons
+        /// </summary>
+        public static PolygonDataSet CreateDataSet(IEnumerable<Polygon> polygons)
+        {
+            var ds = new PolygonDataSet();
+            foreach (Polygon poly in polygons)
+            {
+                foreach (Village v in poly.GetVillages())
+                {
+                    ds.AddVillageRow(v, poly);
+                }
+            }
+            return ds;
+        }
+
+        private void AddVillageRow(Village village, Polygon polygon)
         {
             VILLAGERow row = VILLAGE.NewVILLAGERow();
             row.KINGDOM = village.Kingdom.ToString(CultureInfo.InvariantCulture);
@@ -35,6 +52,7 @@ namespace TribalWars.Controls
             }
             row.POLYGON = polygon.Name;
             row.POLYGONGROUP = polygon.Group;
+            row.POLYGONVISIBLE = polygon.Visible;
             row.BBCODE = village.BBCode();
 
             VILLAGE.Rows.Add(row);

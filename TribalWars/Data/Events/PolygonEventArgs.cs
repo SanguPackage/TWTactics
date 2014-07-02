@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TribalWars.Controls;
+using TribalWars.Data.Maps.Manipulators.Helpers;
+
 #endregion
 
 namespace TribalWars.Data.Events
@@ -14,15 +16,15 @@ namespace TribalWars.Data.Events
     {
         #region Properties
         /// <summary>
-        /// Gets the villages DataSet
+        /// Gets the polygons
         /// </summary>
-        public PolygonDataSet Villages { get; private set; }
+        public IEnumerable<Polygon> Polygons { get; private set; }
         #endregion
 
         #region Constructors
-        public PolygonEventArgs(PolygonDataSet ds)
+        public PolygonEventArgs(IEnumerable<Polygon> polys)
         {
-            Villages = ds;
+            Polygons = polys;
         }
         #endregion
     }

@@ -1,12 +1,14 @@
 #region Using
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
+using TribalWars.Data.Maps.Manipulators.Managers;
 
 #endregion
 
@@ -35,7 +37,7 @@ namespace TribalWars.Controls.Main.Polygon
         /// </summary>
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
-            GridExPolygon.DataSource = e.Villages;
+            GridExPolygon.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
             GridExPolygon.CheckAllRecords();
             GridExPolygon.MoveFirst();
         }
@@ -109,7 +111,8 @@ namespace TribalWars.Controls.Main.Polygon
 
         private void LoadPolygonData_Click(object sender, EventArgs e)
         {
-            World.Default.
+            var polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons();
+            World.Default.Map.EventPublisher.ActivatePolygon(this, polygons);
         }
     }
 }

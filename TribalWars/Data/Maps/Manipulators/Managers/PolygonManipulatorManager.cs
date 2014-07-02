@@ -68,6 +68,14 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 }
             }
         }
+
+        /// <summary>
+        /// Gets all defined polygons
+        /// </summary>
+        public IEnumerable<Polygon> GetAllPolygons()
+        {
+            return _bbCode.Polygons;
+        }
         #endregion
     }
 }

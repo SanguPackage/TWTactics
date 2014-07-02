@@ -3,35 +3,33 @@
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-        <Connections>
-        </Connections>
-        <Tables>
-        </Tables>
-        <Sources>
-        </Sources>
+        <Connections />
+        <Tables />
+        <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="PolygonDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="PolygonDataSet" msprop:Generator_DataSetName="PolygonDataSet">
+  <xs:element name="PolygonDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PolygonDataSet" msprop:Generator_UserDSName="PolygonDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="VILLAGE" msprop:Generator_UserTableName="VILLAGE" msprop:Generator_RowDeletedName="VILLAGERowDeleted" msprop:Generator_RowChangedName="VILLAGERowChanged" msprop:Generator_RowClassName="VILLAGERow" msprop:Generator_RowChangingName="VILLAGERowChanging" msprop:Generator_RowEvArgName="VILLAGERowChangeEvent" msprop:Generator_RowEvHandlerName="VILLAGERowChangeEventHandler" msprop:Generator_TableClassName="VILLAGEDataTable" msprop:Generator_TableVarName="tableVILLAGE" msprop:Generator_RowDeletingName="VILLAGERowDeleting" msprop:Generator_TablePropName="VILLAGE">
+        <xs:element name="VILLAGE" msprop:Generator_UserTableName="VILLAGE" msprop:Generator_RowEvArgName="VILLAGERowChangeEvent" msprop:Generator_TableVarName="tableVILLAGE" msprop:Generator_TablePropName="VILLAGE" msprop:Generator_RowDeletingName="VILLAGERowDeleting" msprop:Generator_RowChangingName="VILLAGERowChanging" msprop:Generator_RowDeletedName="VILLAGERowDeleted" msprop:Generator_RowEvHandlerName="VILLAGERowChangeEventHandler" msprop:Generator_TableClassName="VILLAGEDataTable" msprop:Generator_RowChangedName="VILLAGERowChanged" msprop:Generator_RowClassName="VILLAGERow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
-              <xs:element name="NAME" msprop:Generator_UserColumnName="NAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" type="xs:string" />
-              <xs:element name="LOCATION" msprop:Generator_UserColumnName="LOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" type="xs:string" />
-              <xs:element name="KINGDOM" msprop:Generator_UserColumnName="KINGDOM" msprop:Generator_ColumnPropNameInRow="KINGDOM" msprop:Generator_ColumnVarNameInTable="columnKINGDOM" msprop:Generator_ColumnPropNameInTable="KINGDOMColumn" type="xs:string" />
-              <xs:element name="POINTS" msprop:Generator_UserColumnName="POINTS" msprop:Generator_ColumnPropNameInRow="POINTS" msprop:Generator_ColumnVarNameInTable="columnPOINTS" msprop:Generator_ColumnPropNameInTable="POINTSColumn" type="xs:int" />
-              <xs:element name="PLAYER" msprop:Generator_UserColumnName="PLAYER" msprop:Generator_ColumnPropNameInRow="PLAYER" msprop:Generator_ColumnVarNameInTable="columnPLAYER" msprop:Generator_ColumnPropNameInTable="PLAYERColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="TRIBE" msprop:Generator_UserColumnName="TRIBE" msprop:Generator_ColumnPropNameInRow="TRIBE" msprop:Generator_ColumnVarNameInTable="columnTRIBE" msprop:Generator_ColumnPropNameInTable="TRIBEColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="POINTSDIFF" msprop:Generator_UserColumnName="POINTSDIFF" msprop:Generator_ColumnPropNameInRow="POINTSDIFF" msprop:Generator_ColumnVarNameInTable="columnPOINTSDIFF" msprop:Generator_ColumnPropNameInTable="POINTSDIFFColumn" type="xs:int" />
-              <xs:element name="TYPE" msprop:Generator_UserColumnName="TYPE" msprop:Generator_ColumnPropNameInRow="TYPE" msprop:Generator_ColumnVarNameInTable="columnTYPE" msprop:Generator_ColumnPropNameInTable="TYPEColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="POLYGON" msprop:Generator_UserColumnName="POLYGON" msprop:Generator_ColumnPropNameInRow="POLYGON" msprop:Generator_ColumnVarNameInTable="columnPOLYGON" msprop:Generator_ColumnPropNameInTable="POLYGONColumn" type="xs:string" />
-              <xs:element name="PLAYERID" msprop:Generator_UserColumnName="PLAYERID" msprop:Generator_ColumnPropNameInRow="PLAYERID" msprop:Generator_ColumnVarNameInTable="columnPLAYERID" msprop:Generator_ColumnPropNameInTable="PLAYERIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="TRIBEID" msprop:Generator_UserColumnName="TRIBEID" msprop:Generator_ColumnPropNameInRow="TRIBEID" msprop:Generator_ColumnVarNameInTable="columnTRIBEID" msprop:Generator_ColumnPropNameInTable="TRIBEIDColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="BBCODE" msprop:Generator_UserColumnName="BBCODE" msprop:Generator_ColumnVarNameInTable="columnBBCODE" msprop:Generator_ColumnPropNameInRow="BBCODE" msprop:Generator_ColumnPropNameInTable="BBCODEColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="POLYGONGROUP" msprop:Generator_UserColumnName="POLYGONGROUP" msprop:Generator_ColumnPropNameInRow="POLYGONGROUP" msprop:Generator_ColumnVarNameInTable="columnPOLYGONGROUP" msprop:Generator_ColumnPropNameInTable="POLYGONGROUPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME" type="xs:string" />
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" type="xs:string" />
+              <xs:element name="KINGDOM" msprop:Generator_ColumnVarNameInTable="columnKINGDOM" msprop:Generator_ColumnPropNameInRow="KINGDOM" msprop:Generator_ColumnPropNameInTable="KINGDOMColumn" msprop:Generator_UserColumnName="KINGDOM" type="xs:string" />
+              <xs:element name="POINTS" msprop:Generator_ColumnVarNameInTable="columnPOINTS" msprop:Generator_ColumnPropNameInRow="POINTS" msprop:Generator_ColumnPropNameInTable="POINTSColumn" msprop:Generator_UserColumnName="POINTS" type="xs:int" />
+              <xs:element name="PLAYER" msprop:Generator_ColumnVarNameInTable="columnPLAYER" msprop:Generator_ColumnPropNameInRow="PLAYER" msprop:Generator_ColumnPropNameInTable="PLAYERColumn" msprop:Generator_UserColumnName="PLAYER" type="xs:string" minOccurs="0" />
+              <xs:element name="TRIBE" msprop:Generator_ColumnVarNameInTable="columnTRIBE" msprop:Generator_ColumnPropNameInRow="TRIBE" msprop:Generator_ColumnPropNameInTable="TRIBEColumn" msprop:Generator_UserColumnName="TRIBE" type="xs:string" minOccurs="0" />
+              <xs:element name="POINTSDIFF" msprop:Generator_ColumnVarNameInTable="columnPOINTSDIFF" msprop:Generator_ColumnPropNameInRow="POINTSDIFF" msprop:Generator_ColumnPropNameInTable="POINTSDIFFColumn" msprop:Generator_UserColumnName="POINTSDIFF" type="xs:int" minOccurs="0" />
+              <xs:element name="TYPE" msprop:Generator_ColumnVarNameInTable="columnTYPE" msprop:Generator_ColumnPropNameInRow="TYPE" msprop:Generator_ColumnPropNameInTable="TYPEColumn" msprop:Generator_UserColumnName="TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="POLYGON" msprop:Generator_ColumnVarNameInTable="columnPOLYGON" msprop:Generator_ColumnPropNameInRow="POLYGON" msprop:Generator_ColumnPropNameInTable="POLYGONColumn" msprop:Generator_UserColumnName="POLYGON" type="xs:string" />
+              <xs:element name="PLAYERID" msprop:Generator_ColumnVarNameInTable="columnPLAYERID" msprop:Generator_ColumnPropNameInRow="PLAYERID" msprop:Generator_ColumnPropNameInTable="PLAYERIDColumn" msprop:Generator_UserColumnName="PLAYERID" type="xs:int" minOccurs="0" />
+              <xs:element name="TRIBEID" msprop:Generator_ColumnVarNameInTable="columnTRIBEID" msprop:Generator_ColumnPropNameInRow="TRIBEID" msprop:Generator_ColumnPropNameInTable="TRIBEIDColumn" msprop:Generator_UserColumnName="TRIBEID" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BBCODE" msprop:Generator_ColumnVarNameInTable="columnBBCODE" msprop:Generator_ColumnPropNameInRow="BBCODE" msprop:Generator_ColumnPropNameInTable="BBCODEColumn" msprop:Generator_UserColumnName="BBCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="POLYGONGROUP" msprop:Generator_ColumnVarNameInTable="columnPOLYGONGROUP" msprop:Generator_ColumnPropNameInRow="POLYGONGROUP" msprop:Generator_ColumnPropNameInTable="POLYGONGROUPColumn" msprop:Generator_UserColumnName="POLYGONGROUP" type="xs:string" minOccurs="0" />
+              <xs:element name="POLYGONVISIBLE" msprop:Generator_ColumnVarNameInTable="columnPOLYGONVISIBLE" msprop:Generator_ColumnPropNameInRow="POLYGONVISIBLE" msprop:Generator_ColumnPropNameInTable="POLYGONVISIBLEColumn" msprop:Generator_UserColumnName="POLYGONVISIBLE" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

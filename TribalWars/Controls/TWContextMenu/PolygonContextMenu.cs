@@ -67,15 +67,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnGenerate(object sender, CommandEventArgs e)
         {
-            var ds = new PolygonDataSet();
-            foreach (Polygon poly in _bbCode.Polygons)
-            {
-                foreach (Village v in poly.GetVillages())
-                {
-                    ds.AddVILLAGERow(v, poly);
-                }
-            }
-            World.Default.Map.EventPublisher.ActivatePolygon(this, ds);
+            World.Default.Map.EventPublisher.ActivatePolygon(this, _bbCode.Polygons);
         }
 
         /// <summary>

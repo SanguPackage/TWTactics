@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TribalWars.Data.Events;
+using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
@@ -190,10 +191,10 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Ship villages to the Polygon control
         /// </summary>
-        public void ActivatePolygon(object sender, TribalWars.Controls.PolygonDataSet ds)
+        public void ActivatePolygon(object sender, IEnumerable<Polygon> polygons)
         {
             if (PolygonActivated != null)
-                PolygonActivated(sender, new PolygonEventArgs(ds));
+                PolygonActivated(sender, new PolygonEventArgs(polygons));
         }
         #endregion
 
