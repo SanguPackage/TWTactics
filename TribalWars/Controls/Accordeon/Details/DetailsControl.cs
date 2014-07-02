@@ -373,6 +373,8 @@ namespace TribalWars.Controls.Accordeon.Details
                     DetailsGrid.SelectedObject = new ExtendedVillageDescriptor(command.Village);
                     Table.DisplayReports(command.Village, command.Village.Reports);
                     SetButtons(command.Village.Type);
+
+                    _current = command; // HACK: The textchanged eventhandler of comments would overwrite the old village comment with the new one
                     Comments.Text = command.Village.Comments;
 
                     World.Default.Map.EventPublisher.SelectVillages(null, command.Village, VillageTools.Notes);
