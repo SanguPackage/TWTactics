@@ -18,8 +18,6 @@ namespace TribalWars.Data.Players
 
         private int _points;
         private int _rank;
-
-        private string _comments;
         #endregion
 
         #region Properties
@@ -84,14 +82,6 @@ namespace TribalWars.Data.Players
         }
 
         /// <summary>
-        /// Gets the average points per village of the player
-        /// </summary>
-        public int AveragePointsPerVillage
-        {
-            get { return Points / Villages.Count; }
-        }
-
-        /// <summary>
         /// Gets the Player details of the previous downloaded data
         /// </summary>
         public Player PreviousPlayerDetails { get; private set; }
@@ -104,26 +94,28 @@ namespace TribalWars.Data.Players
             get
             {
                 if (PreviousPlayerDetails == null) return null;
-                if (GainedVillages == null) CalculateConquers();
-                if (LostVillages == null || GainedVillages == null) return null;
-                if (GainedVillages.Count == 0 || LostVillages.Count == 0) return null;
                 return string.Format("+{0}-{1}", GainedVillages.Count, LostVillages.Count);
             }
         }
 
-        private void CalculateConquers()
+        private void CalculateConquers(Player previous)
         {
-            GainedVillages = new List<Village>();
+            GainedVillages.Clear();
             foreach (Village vil in Villages)
             {
-                if (!PreviousPlayerDetails.Villages.Contains(vil))
+                if (!previous.Villages.Contains(vil))
+                {
                     GainedVillages.Add(vil);
+                }
             }
-            LostVillages = new List<Village>();
-            foreach (Village vil in PreviousPlayerDetails.Villages)
+
+            LostVillages.Clear();
+            foreach (Village vil in previous.Villages)
             {
                 if (!Villages.Contains(vil))
+                {
                     LostVillages.Add(vil);
+                }
             }
         }
 
@@ -170,11 +162,12 @@ namespace TribalWars.Data.Players
         public Player()
         {
             Villages = new List<Village>();
+            GainedVillages = new List<Village>();
+            LostVillages = new List<Village>();
         }
 
-        internal Player(string[] pPlayer)
+        internal Player(string[] pPlayer) : this()
         {
-            Villages = new List<Village>();
             //$id, $name, $ally, $villages, $points, $rank
             int.TryParse(pPlayer[0], out _id);
             Name = System.Web.HttpUtility.UrlDecode(pPlayer[1]);
@@ -345,8 +338,8 @@ namespace TribalWars.Data.Players
         /// </summary>
         public void SetPreviousDetails(Player player)
         {
+            CalculateConquers(player);
             PreviousPlayerDetails = player;
-            CalculateConquers();
         }
 
         /// <summary>
