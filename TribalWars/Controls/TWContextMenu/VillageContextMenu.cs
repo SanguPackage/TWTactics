@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
@@ -45,36 +46,19 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
 
-            _menu.AddSeparator();
-
             if (village.HasPlayer)
             {
+                _menu.AddSeparator();
+
                 var playerCommand = _menu.AddCommand(village.Player.Name);
+                var playerContext = new PlayerContextMenu(village.Player, false);
+                playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
 
-                //playerCommand.Commands.Add(new UICommand("", "test"));
-                //playerCommand.Commands.Add(new UICommand("", "test 2"));
-
-
+                if (village.HasTribe)
+                {
+                    var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
+                }
             }
-            //UICommand player = new UICommand(ContextMenuKeys.VillageKeys.Player, "Player", CommandType.Command);
-            ////player.Commands.AddRange(World.Default.PlayerContextMenu);
-
-            //UICommand tribe = new UICommand(ContextMenuKeys.VillageKeys.Tribe, "Tribe", CommandType.Command);
-
-
-            //if (_village.HasPlayer)
-            //{
-            //    _menu.Commands[ContextMenuKeys.VillageKeys.Player].Text = _village.Player.Name;
-            //    _menu.Commands[ContextMenuKeys.VillageKeys.Player].ToolTipText = _village.Player.Tooltip;
-            //    if (_village.HasTribe)
-            //    {
-            //        _menu.Commands[ContextMenuKeys.VillageKeys.Tribe].Text = _village.Player.Tribe.Tag;
-            //        _menu.Commands[ContextMenuKeys.VillageKeys.Tribe].ToolTipText = _village.Player.Tribe.Tooltip;
-            //    }
-            //}
-            //_menu.Commands[ContextMenuKeys.VillageKeys.Tribe].Visible = _village.HasTribe ? InheritableBoolean.True : InheritableBoolean.False;
-            //_menu.Commands[ContextMenuKeys.VillageKeys.Player].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
-            //_menu.Commands[ContextMenuKeys.VillageKeys.Playerseperator].Visible = _village.HasPlayer ? InheritableBoolean.True : InheritableBoolean.False;
         }
         #endregion
 
@@ -128,35 +112,6 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnDetails(object sender, CommandEventArgs e)
         {
             World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.SelectVillage);
-        }
-
-
-
-
-
-        /// <summary>
-        /// Puts the pinpoint on the target village
-        /// </summary>
-        private void OnPinpoint(object sender, CommandEventArgs e)
-        {
-            World.Default.Map.EventPublisher.SelectVillages(null, _village, VillageTools.PinPoint);
-        }
-
-        /// <summary>
-        /// Start a new marker for the target village
-        /// </summary>
-        private void OnMark(object sender, CommandEventArgs e)
-        {
-            //World.Default.EventPublisher.Publish(null, Village, VillageTools.Default);
-        }
-
-        /// <summary>
-        /// Puts the bullseye on the target village
-        /// </summary>
-        /// <remarks>Bullseye is used for distance calculation</remarks>
-        private void OnDistance(object sender, CommandEventArgs e)
-        {
-            World.Default.Map.EventPublisher.SelectVillages(null, _village, VillageTools.Distance);
         }
 
         private void SetClipboard(string text)

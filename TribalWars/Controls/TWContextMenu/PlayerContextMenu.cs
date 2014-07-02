@@ -1,12 +1,19 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Players;
 
 using TribalWars.Data.Maps;
+using TribalWars.Tools;
+
 #endregion
 
 namespace TribalWars.Controls.TWContextMenu
@@ -14,167 +21,114 @@ namespace TribalWars.Controls.TWContextMenu
     /// <summary>
     /// ContextMenu with general Player operations
     /// </summary>
-    public class PlayerContextMenu : ContextMenuStrip
+    public class PlayerContextMenu : IContextMenu
     {
         #region Fields
-        private Player _player;
+        private readonly Player _player;
 
-        private ToolStripSeparator _playerSeperator;
-        private ToolStripMenuItem _tribeMenu;
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets or sets the player 
-        /// </summary>
-        public Player Player
-        {
-            get { return _player; }
-            set { _player = value; }
-        }
+        private readonly UIContextMenu _menu;
         #endregion
 
         #region Constructors
-        public PlayerContextMenu()
-            : base()
+        public PlayerContextMenu(Player player, bool addTribeCommands)
         {
-            Items.Add("BBCode", null, OnBBCode);
-            //Items.Add("Pinpoint", null, OnPinpoint);
-            //Items.Add("Pinpoint && Center", null, OnCenter);
-            Items.Add("Details", null, OnDetails);
-            //Items.Add("Mark", null, OnMark);
-            Items.Add("Operation", null, OnBBCodeOperation);
-            Items.Add(new ToolStripSeparator());
-            Items.Add("TWStats", null, OnTWStats);
+            _player = player;
 
-            // Show these menus when required
-            _playerSeperator = new ToolStripSeparator();
-            _tribeMenu = new ToolStripMenuItem("Tribe");
-            Items.Add(_playerSeperator);
-            Items.Add(_tribeMenu);
+            _menu = new UIContextMenu();
+
+            _menu.AddCommand("Details", OnDetails);
+            _menu.AddCommand("Center", OnCenter, Properties.Resources.TeleportIcon);
+
+            _menu.AddSeparator();
+
+            _menu.AddCommand("TWStats", OnTwStats);
+            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
+            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+            _menu.AddCommand("Operation", OnBbCodeOperation, Properties.Resources.clipboard);
+
+            if (addTribeCommands)
+            {
+                // TODO: PlayerContextMenu to implement
+                _menu.AddSeparator();
+
+            }
         }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Shows the ContextMenuStrip
-        /// </summary>
-        public void Show(Control control, System.Drawing.Point position, Player target)
+        public IEnumerable<UICommand> GetCommands()
         {
-            _player = target;
-            if (_player.HasTribe)
-            {
-                _tribeMenu.Text = _player.Tribe.Tag;
-                //World.Default.Map.Manipulators.CurrentManipulator.TribeContextMenu.Tribe = _player.Tribe;
-                //if (_tribeMenu.DropDown.Items.Count == 0) _tribeMenu.DropDown = World.Default.Map.Manipulators.CurrentManipulator.TribeContextMenu;
-            }
-            _tribeMenu.Visible = _player.HasTribe;
-            _playerSeperator.Visible = _player.HasTribe;
-
-            Show(control, position);
+            return _menu.Commands.OfType<UICommand>();
         }
 
-        /// <summary>
-        /// Sets the player for the ContextMenu
-        /// </summary>
-        /// <param name="player">The player to show </param>
-        /// <param name="showTribeMenu">Show or hide the TribeContextMenu</param>
-        public void SetPlayer(Player player, bool showTribeMenu)
+        public void Show(Control control, Point position)
         {
-            _player = player;
-            showTribeMenu = showTribeMenu && player.HasTribe;
-            if (showTribeMenu)
-            {
-                _tribeMenu.Text = player.Tribe.Tag;
-                //_tribeMenu.DropDown = World.Default.Map.Manipulators.CurrentManipulator.TribeContextMenu;
-                //World.Default.Map.Manipulators.CurrentManipulator.TribeContextMenu.Tribe = player.Tribe;
-            }
-            _playerSeperator.Visible = showTribeMenu;
-            _tribeMenu.Visible = showTribeMenu;
+            _menu.Show(control, position);
         }
         #endregion
 
         #region EventHandlers
         /// <summary>
-        /// Puts the pinpoint on the target player
-        /// </summary>
-        private void OnPinpoint(object sender, EventArgs e)
-        {
-            if (_player != null)
-            {
-                World.Default.Map.EventPublisher.SelectVillages(null, _player, VillageTools.PinPoint);
-            }
-        }
-
-        /// <summary>
         /// Pinpoints and centers the target player
         /// </summary>
         private void OnCenter(object sender, EventArgs e)
         {
-            if (_player != null)
-            {
-                World.Default.Map.EventPublisher.SelectVillages(null, _player, VillageTools.PinPoint);
-                World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_player));
-            }
+            World.Default.Map.EventPublisher.SelectVillages(null, _player, VillageTools.PinPoint);
+            World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_player));
         }
 
         /// <summary>
-        /// Start a new marker for the target player
+        /// Put target player name on clipboard
         /// </summary>
-        private void OnMark(object sender, EventArgs e)
+        private void OnToClipboard(object sender, EventArgs e)
         {
-            if (_player != null)
+            try
             {
-                //World.Default.EventPublisher.Publish(null, _player, VillageTools.PinPoint);
+                Clipboard.SetText(_player.Name);
+            }
+            catch (Exception)
+            {
+
             }
         }
 
         /// <summary>
         /// Put target player BBCoded on clipboard
         /// </summary>
-        private void OnBBCode(object sender, EventArgs e)
+        private void OnBbCode(object sender, EventArgs e)
         {
-            if (_player != null)
+            try
             {
-                try
-                {
-                    Clipboard.SetText(_player.BbCode());
-                }
-                catch (Exception)
-                {
+                Clipboard.SetText(_player.BbCode());
+            }
+            catch (Exception)
+            {
 
-                }
             }
         }
 
         /// <summary>
         /// Put target player operation BBCoded on clipboard
         /// </summary>
-        private void OnBBCodeOperation(object sender, EventArgs e)
+        private void OnBbCodeOperation(object sender, EventArgs e)
         {
-            if (_player != null)
+            try
             {
-                try
-                {
-                    Clipboard.SetText(_player.BbCodeMatt()); 
-                }
-                catch (Exception)
-                {
-
-                }
-                
+                Clipboard.SetText(_player.BbCodeMatt());
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         /// <summary>
         /// Browse to TWStats for the target player
         /// </summary>
-        private void OnTWStats(object sender, EventArgs e)
+        private void OnTwStats(object sender, EventArgs e)
         {
-            if (_player != null)
-            {
-                World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.Id.ToString());
-            }
+            World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -182,10 +136,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnDetails(object sender, EventArgs e)
         {
-            if (_player != null)
-            {
-                World.Default.Map.EventPublisher.SelectPlayer(null, _player, VillageTools.SelectVillage);
-            }
+            World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.SelectVillage);
         }
         #endregion
     }

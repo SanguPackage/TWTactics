@@ -257,8 +257,6 @@ namespace TribalWars.Data.Players
 
         public string BbCodeMatt()
         {
-            //List<Village> villages = Villages.FindAll(delegate(Village vil) { return vil.Points > minFilter; });
-
             // Build it
             var str = new StringBuilder(100);
             str.Append("[b]");
@@ -295,8 +293,7 @@ namespace TribalWars.Data.Players
 
             str.AppendLine();
             str.AppendLine();
-            //if (HasTribe && showTribe) str.Append(Environment.NewLine + string.Format("{0}", Tribe.BBCode()));
-            //if (Villages.Count > 1) str.Append(Environment.NewLine + "[b]Villages[/b][quote]");
+
             Villages.Sort(new Village.VillageComparer());
             int cnt = 0;
             string[] players = { }; // "rogier1986;edgile;kezmania;floris 5;ruuuler;belgium4ever;hoendroe;sjarlowitsky;unusually talented".Split(';');
@@ -304,7 +301,7 @@ namespace TribalWars.Data.Players
             if (players.Length > 0)
                 seperator = Convert.ToInt32(Math.Floor((decimal)Villages.Count / players.Length));
 
-            int currentPlayer = -1;
+            int currentPlayer = 0;
             foreach (Village vil in Villages)
             {
                 if (cnt != 0 || Villages.Count == 1)
@@ -343,14 +340,6 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Sets the Tribe of the player
-        /// </summary>
-        public void SetTribe(Tribe ally)
-        {
-            Tribe = ally;
-        }
-
         /// <summary>
         /// Sets the Player with the previous downloaded data
         /// </summary>

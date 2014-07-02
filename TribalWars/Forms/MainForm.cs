@@ -59,6 +59,8 @@ namespace TribalWars.Forms
             World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             World.Default.EventPublisher.Browse += EventPublisher_Browse;
             World.Default.Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
+            World.Default.Map.EventPublisher.PlayerSelected += EventPublisher_VillagesSelected;
+            World.Default.Map.EventPublisher.TribeSelected += EventPublisher_VillagesSelected;
 
             // Auto load world
             string lastWorld = Properties.Settings.Default.LastWorld;
