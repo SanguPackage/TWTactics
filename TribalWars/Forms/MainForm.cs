@@ -129,7 +129,7 @@ namespace TribalWars.Forms
         #region Manipulators
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
-            Tabs.SelectedIndex = 4;
+            Tabs.SelectedIndex = 2;
         }
 
         private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
