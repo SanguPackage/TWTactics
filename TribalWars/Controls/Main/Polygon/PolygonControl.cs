@@ -33,7 +33,7 @@ namespace TribalWars.Controls.Main.Polygon
         public void Initialize()
         {
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
-            SetGridExPolygonTooltips();
+            SetGridExVillageTooltips();
         }
         #endregion
 
@@ -43,9 +43,8 @@ namespace TribalWars.Controls.Main.Polygon
         /// </summary>
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
-            GridExPolygon.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
-            GridExPolygon.CheckAllRecords();
-            GridExPolygon.MoveFirst();
+            GridExVillage.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
+            GridExVillage.MoveFirst();
         }
 
         /// <summary>
@@ -53,14 +52,8 @@ namespace TribalWars.Controls.Main.Polygon
         /// </summary>
         private void LoadPolygonData_Click(object sender, EventArgs e)
         {
-            GridExPolygon.RemoveFilters();
-
-            var polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
-            if (polygons.Any())
-            {
-                World.Default.Map.EventPublisher.ActivatePolygon(this, polygons);
-            }
-            else
+            Data.Maps.Manipulators.Helpers.Polygon[] polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
+            if (!polygons.Any())
             {
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
                 MessageBox.Show(@"You have not yet defined any polygons.
@@ -69,14 +62,37 @@ I have activated polygon drawing for you, you can go back to the main map and cr
 Click and hold left mouse button to start drawing!
 Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
 
+            if (ModusPolygon.Enabled)
+            {
+                // BBCode export: load villages
+                GridExVillage.RemoveFilters();
+                World.Default.Map.EventPublisher.ActivatePolygon(this, polygons);
+            }
+            else
+            {
+                // Polygon management
+                IEnumerable<string> groups = polygons.Select(x => x.Group).Distinct().OrderBy(x => x);
+                var valueList = new GridEXValueListItemCollection();
+                foreach (string group in groups)
+                {
+                    valueList.Add(group, group);
+                }
+
+                GridExPolygon.RootTable.Columns["GROUP"].EditValueList = valueList;
+
+                GridExPolygon.DataSource = polygons;
+            }
+        }
+        #endregion
+
+        #region GridExVillage
         /// <summary>
         /// The selected villages are exported to the clipboard
         /// </summary>
         private void ButtonGenerate_Click(object sender, EventArgs e)
         {
-            if (GridExPolygon.RowCount == 0)
+            if (GridExVillage.RowCount == 0)
             {
                 MessageBox.Show(string.Format("There is nothing in the grid yet. Try '{0}'?", LoadPolygonData.Text), "No data!");
                 return;
@@ -84,7 +100,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
 
             var str = new StringBuilder();
             int villagesExported = 0;
-            foreach (GridEXRow groupRow in GridExPolygon.GetRows())
+            foreach (GridEXRow groupRow in GridExVillage.GetRows())
             {
                 if (groupRow.RowType == RowType.GroupHeader)
                 {
@@ -118,26 +134,26 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             }
             catch
             {
-                
+
             }
         }
-        #endregion
 
-        #region GridExPolygon
-        private void SetGridExPolygonTooltips()
+        /// <summary>
+        /// Select the village
+        /// </summary>
+        private void GridExVillage_CurrentCellChanging(object sender, CurrentCellChangingEventArgs e)
         {
-            GridExPolygon.RootTable.Columns["NAME"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Name;
-            GridExPolygon.RootTable.Columns["LOCATION"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Location;
-            GridExPolygon.RootTable.Columns["KINGDOM"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Kingdom;
-            GridExPolygon.RootTable.Columns["POINTS"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Points;
-            GridExPolygon.RootTable.Columns["POINTSDIFF"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PointsDifference;
-            GridExPolygon.RootTable.Columns["PLAYER"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PlayerName;
-            GridExPolygon.RootTable.Columns["TRIBE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.TribeTag;
-            GridExPolygon.RootTable.Columns["TYPE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Type;
-            GridExPolygon.RootTable.Columns["ISVISIBLE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Visible;
+            if (e.Row != null && e.Row.RowType == RowType.Record)
+            {
+                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.SelectVillage);
+            }
         }
 
-        private void GridExPolygon_FormattingRow(object sender, RowLoadEventArgs e)
+        /// <summary>
+        /// Special formatting, image display, tooltips
+        /// </summary>
+        private void GridExVillage_FormattingRow(object sender, RowLoadEventArgs e)
         {
             // GroupHeaders
             UpdateGroupRecordText(e.Row);
@@ -190,36 +206,39 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             }
         }
 
-        private void GridExPolygon_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
+        /// <summary>
+        /// Update group header totals
+        /// </summary>
+        private void GridExVillage_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
         {
             GridEXRow groupToUpdate = e.Row;
-            if (e.Row.RowType == RowType.Record)
-            {
-                groupToUpdate = e.Row.Parent;
-            }
-
-            if (groupToUpdate.RowType == RowType.GroupHeader)
-            {
-                UpdateGroupRecordText(groupToUpdate);
-                if (groupToUpdate.Parent != null)
-                {
-                    UpdateGroupRecordText(groupToUpdate.Parent);
-                }
-            }
+             if (e.Row.RowType == RowType.Record)
+             {
+                 groupToUpdate = e.Row.Parent;
+             }
+ 
+             if (groupToUpdate.RowType == RowType.GroupHeader)
+             {
+                 UpdateGroupRecordText(groupToUpdate);
+                 if (groupToUpdate.Parent != null)
+                 {
+                     UpdateGroupRecordText(groupToUpdate.Parent);
+                 }
+             }
         }
 
         /// <summary>
-        /// Column chooser
+        /// Don't allow changing the default grouping
         /// </summary>
-        private void GridExPolygonShowFieldChooser_Click(object sender, EventArgs e)
+        private void GridExVillage_GroupsChanging(object sender, GroupsChangingEventArgs e)
         {
-            GridExPolygon.ShowFieldChooser();
+            e.Cancel = true;
         }
 
         /// <summary>
         /// PinPoint the village
         /// </summary>
-        private void GridExPolygon_RowDoubleClick(object sender, RowActionEventArgs e)
+        private void GridExVillage_RowDoubleClick(object sender, RowActionEventArgs e)
         {
             if (e.Row.RowType == RowType.Record)
             {
@@ -229,23 +248,26 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         }
 
         /// <summary>
-        /// Select the village
+        /// Check visible polygons by default
         /// </summary>
-        private void GridExPolygon_CurrentCellChanging(object sender, CurrentCellChangingEventArgs e)
+        private void GridExVillage_LoadingRow(object sender, RowLoadEventArgs e)
         {
-            if (e.Row != null && e.Row.RowType == RowType.Record)
+            if (e.Row.RowType == RowType.GroupHeader && e.Row.Parent != null)
             {
-                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
-                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.SelectVillage);
+                var polygon = GetVillageRow(e.Row.GetChildRecords().First()).Polygon;
+                if (polygon.Visible)
+                {
+                    e.Row.CheckState = RowCheckState.Checked;
+                }
             }
         }
 
         /// <summary>
-        /// Don't allow changing the default grouping
+        /// Column chooser
         /// </summary>
-        private void GridExPolygon_GroupsChanging(object sender, GroupsChangingEventArgs e)
+        private void GridExVillageShowFieldChooser_Click(object sender, EventArgs e)
         {
-            e.Cancel = true;
+            GridExVillage.ShowFieldChooser();
         }
 
         /// <summary>
@@ -270,6 +292,91 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 row.GroupCaption = string.Format("{0} ({1} / {2} villages)", row.GroupValue, totalChecked, totalRecords);
             }
         }
+
+        private void SetGridExVillageTooltips()
+        {
+            GridExVillage.RootTable.Columns["NAME"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Name;
+            GridExVillage.RootTable.Columns["LOCATION"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Location;
+            GridExVillage.RootTable.Columns["KINGDOM"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Kingdom;
+            GridExVillage.RootTable.Columns["POINTS"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Points;
+            GridExVillage.RootTable.Columns["POINTSDIFF"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PointsDifference;
+            GridExVillage.RootTable.Columns["PLAYER"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PlayerName;
+            GridExVillage.RootTable.Columns["TRIBE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.TribeTag;
+            GridExVillage.RootTable.Columns["TYPE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Type;
+            GridExVillage.RootTable.Columns["ISVISIBLE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Visible;
+        }
+        #endregion
+
+        #region GridExPolygon
+        private void GridExPolygon_CellEdited(object sender, ColumnActionEventArgs e)
+        {
+            var polygon = GridExPolygon.CurrentRow;
+
+            
+            
+        }
+
+        private void GridExPolygon_FormattingRow(object sender, RowLoadEventArgs e)
+        {
+
+        }
+
+        private void GridExPolygon_CellUpdated(object sender, ColumnActionEventArgs e)
+        {
+
+        }
+
+        private void GridExPolygon_CellValueChanged(object sender, ColumnActionEventArgs e)
+        {
+
+        }
+
+        private void GridExPolygon_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        {
+
+        }
+
+        private void GridExPolygon_CurrentCellChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Modus Switch
+        private void ModusVillage_Click(object sender, EventArgs e)
+        {
+            SetModus(true);
+        }
+
+        private void ModusPolygon_Click(object sender, EventArgs e)
+        {
+            SetModus(false);
+        }
+
+        /// <summary>
+        /// Change control enablement
+        /// </summary>
+        /// <param name="isVillageModus">VillageModus=Export bbcodes OR PolygonModus=Manage polygons</param>
+        private void SetModus(bool isVillageModus)
+        {
+            ModusVillage.Enabled = !isVillageModus;
+            ModusPolygon.Enabled = isVillageModus;
+
+            GridExVillage.Visible = isVillageModus;
+            GridExVillageShowFieldChooser.Visible = isVillageModus;
+            GridExPolygon.Visible = !isVillageModus;
+            ButtonGenerate.Enabled = isVillageModus;
+
+            LoadPolygonData.PerformClick();
+        }
+
         #endregion
     }
 }
+
+//ButtonEnabled property in GridEXCell allows you to enable/disable buttons in individual cells.
+//- ButtonStyle property in GridEXCell allows you to have different buttons styles in cells from the same column.
+//- CellDisplayType property in GridEXCell allows you to have different display types for cells in the same column. With this property, you now can have text, image or checkboxes cells under the same column.
+//- EditType property in GridEXCell allows you to have different edit types for cells in the same column. With this property you now can have cells that can be edited as text, combo or as a checkbox under the same column.
+//- Enabled property in GridEXCell allows you to enable/disable individual cells in the control.
+//- ValueList property in GridEXCell allows you to define a valuelist for value replacement and or as the source for the dropdown in a combo editor on each cell
