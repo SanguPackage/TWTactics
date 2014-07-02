@@ -223,6 +223,32 @@ namespace TribalWars.Data.Villages
         }
 
         /// <summary>
+        /// Gets the user defined type of the village
+        /// </summary>
+        public string TypeString
+        {
+            get
+            {
+                if (Type.HasFlag(VillageType.Noble))
+                    return "Noble";
+
+                if (Type.HasFlag(VillageType.Attack))
+                    return "Attack";
+
+                if (Type.HasFlag(VillageType.Defense))
+                    return "Defense";
+
+                if (Type.HasFlag(VillageType.Scout))
+                    return "Scout";
+
+                if (Type.HasFlag(VillageType.Farm))
+                    return "Farm";
+
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the purpose of a village
         /// </summary>
         public VillageType Type

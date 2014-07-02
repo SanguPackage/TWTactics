@@ -295,19 +295,15 @@ namespace TribalWars.Controls {
             
             private global::System.Data.DataColumn columnPOINTSDIFF;
             
-            private global::System.Data.DataColumn columnTYPE;
-            
             private global::System.Data.DataColumn columnPOLYGON;
-            
-            private global::System.Data.DataColumn columnPLAYERID;
-            
-            private global::System.Data.DataColumn columnTRIBEID;
             
             private global::System.Data.DataColumn columnBBCODE;
             
             private global::System.Data.DataColumn columnPOLYGONGROUP;
             
             private global::System.Data.DataColumn columnPOLYGONVISIBLE;
+            
+            private global::System.Data.DataColumn columnISVISIBLE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -408,33 +404,9 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TYPEColumn {
-                get {
-                    return this.columnTYPE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn POLYGONColumn {
                 get {
                     return this.columnPOLYGON;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PLAYERIDColumn {
-                get {
-                    return this.columnPLAYERID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TRIBEIDColumn {
-                get {
-                    return this.columnTRIBEID;
                 }
             }
             
@@ -459,6 +431,14 @@ namespace TribalWars.Controls {
             public global::System.Data.DataColumn POLYGONVISIBLEColumn {
                 get {
                     return this.columnPOLYGONVISIBLE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ISVISIBLEColumn {
+                get {
+                    return this.columnISVISIBLE;
                 }
             }
             
@@ -499,7 +479,7 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VILLAGERow AddVILLAGERow(string NAME, string LOCATION, string KINGDOM, int POINTS, string PLAYER, string TRIBE, int POINTSDIFF, string TYPE, string POLYGON, int PLAYERID, decimal TRIBEID, string BBCODE, string POLYGONGROUP, bool POLYGONVISIBLE) {
+            public VILLAGERow AddVILLAGERow(string NAME, string LOCATION, string KINGDOM, int POINTS, string PLAYER, string TRIBE, int POINTSDIFF, string POLYGON, string BBCODE, string POLYGONGROUP, bool POLYGONVISIBLE, bool ISVISIBLE) {
                 VILLAGERow rowVILLAGERow = ((VILLAGERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -510,13 +490,11 @@ namespace TribalWars.Controls {
                         PLAYER,
                         TRIBE,
                         POINTSDIFF,
-                        TYPE,
                         POLYGON,
-                        PLAYERID,
-                        TRIBEID,
                         BBCODE,
                         POLYGONGROUP,
-                        POLYGONVISIBLE};
+                        POLYGONVISIBLE,
+                        ISVISIBLE};
                 rowVILLAGERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVILLAGERow);
                 return rowVILLAGERow;
@@ -554,13 +532,11 @@ namespace TribalWars.Controls {
                 this.columnPLAYER = base.Columns["PLAYER"];
                 this.columnTRIBE = base.Columns["TRIBE"];
                 this.columnPOINTSDIFF = base.Columns["POINTSDIFF"];
-                this.columnTYPE = base.Columns["TYPE"];
                 this.columnPOLYGON = base.Columns["POLYGON"];
-                this.columnPLAYERID = base.Columns["PLAYERID"];
-                this.columnTRIBEID = base.Columns["TRIBEID"];
                 this.columnBBCODE = base.Columns["BBCODE"];
                 this.columnPOLYGONGROUP = base.Columns["POLYGONGROUP"];
                 this.columnPOLYGONVISIBLE = base.Columns["POLYGONVISIBLE"];
+                this.columnISVISIBLE = base.Columns["ISVISIBLE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -582,20 +558,16 @@ namespace TribalWars.Controls {
                 base.Columns.Add(this.columnTRIBE);
                 this.columnPOINTSDIFF = new global::System.Data.DataColumn("POINTSDIFF", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPOINTSDIFF);
-                this.columnTYPE = new global::System.Data.DataColumn("TYPE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTYPE);
                 this.columnPOLYGON = new global::System.Data.DataColumn("POLYGON", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPOLYGON);
-                this.columnPLAYERID = new global::System.Data.DataColumn("PLAYERID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPLAYERID);
-                this.columnTRIBEID = new global::System.Data.DataColumn("TRIBEID", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTRIBEID);
                 this.columnBBCODE = new global::System.Data.DataColumn("BBCODE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBBCODE);
                 this.columnPOLYGONGROUP = new global::System.Data.DataColumn("POLYGONGROUP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPOLYGONGROUP);
                 this.columnPOLYGONVISIBLE = new global::System.Data.DataColumn("POLYGONVISIBLE", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPOLYGONVISIBLE);
+                this.columnISVISIBLE = new global::System.Data.DataColumn("ISVISIBLE", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVISIBLE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -607,6 +579,7 @@ namespace TribalWars.Controls {
                 this.columnPOINTS.AllowDBNull = false;
                 this.columnPOLYGON.AllowDBNull = false;
                 this.columnPOLYGONVISIBLE.AllowDBNull = false;
+                this.columnISVISIBLE.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -852,60 +825,12 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TYPE {
-                get {
-                    try {
-                        return ((string)(this[this.tableVILLAGE.TYPEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TYPE\' in table \'VILLAGE\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVILLAGE.TYPEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string POLYGON {
                 get {
                     return ((string)(this[this.tableVILLAGE.POLYGONColumn]));
                 }
                 set {
                     this[this.tableVILLAGE.POLYGONColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int PLAYERID {
-                get {
-                    try {
-                        return ((int)(this[this.tableVILLAGE.PLAYERIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PLAYERID\' in table \'VILLAGE\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVILLAGE.PLAYERIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TRIBEID {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableVILLAGE.TRIBEIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TRIBEID\' in table \'VILLAGE\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVILLAGE.TRIBEIDColumn] = value;
                 }
             }
             
@@ -954,6 +879,17 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ISVISIBLE {
+                get {
+                    return ((bool)(this[this.tableVILLAGE.ISVISIBLEColumn]));
+                }
+                set {
+                    this[this.tableVILLAGE.ISVISIBLEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPLAYERNull() {
                 return this.IsNull(this.tableVILLAGE.PLAYERColumn);
             }
@@ -986,42 +922,6 @@ namespace TribalWars.Controls {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPOINTSDIFFNull() {
                 this[this.tableVILLAGE.POINTSDIFFColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTYPENull() {
-                return this.IsNull(this.tableVILLAGE.TYPEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTYPENull() {
-                this[this.tableVILLAGE.TYPEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPLAYERIDNull() {
-                return this.IsNull(this.tableVILLAGE.PLAYERIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPLAYERIDNull() {
-                this[this.tableVILLAGE.PLAYERIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTRIBEIDNull() {
-                return this.IsNull(this.tableVILLAGE.TRIBEIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTRIBEIDNull() {
-                this[this.tableVILLAGE.TRIBEIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -28,12 +28,14 @@ namespace TribalWars.Controls.Main.Polygon
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout GridExPolygon_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolygonControl));
+            Janus.Windows.GridEX.GridEXLayout GridExPolygon_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.ButtonGenerate = new Janus.Windows.EditControls.UIButton();
+            this.LoadPolygonData = new Janus.Windows.EditControls.UIButton();
+            this.VisibleImageList = new System.Windows.Forms.ImageList(this.components);
             this.GridExPolygon = new Janus.Windows.GridEX.GridEX();
             this.polygonDataSet1 = new TribalWars.Controls.PolygonDataSet();
-            this.LoadPolygonData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridExPolygon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.polygonDataSet1)).BeginInit();
             this.SuspendLayout();
@@ -41,12 +43,30 @@ namespace TribalWars.Controls.Main.Polygon
             // ButtonGenerate
             // 
             this.ButtonGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonGenerate.Location = new System.Drawing.Point(3, 315);
+            this.ButtonGenerate.Location = new System.Drawing.Point(3, 54);
             this.ButtonGenerate.Name = "ButtonGenerate";
             this.ButtonGenerate.Size = new System.Drawing.Size(85, 45);
             this.ButtonGenerate.TabIndex = 1;
             this.ButtonGenerate.Text = "&Generate BBCodes";
+            this.ButtonGenerate.ToolTipText = "Put BBCodes for all checked visible village rows to the clipboard.";
             this.ButtonGenerate.Click += new System.EventHandler(this.ButtonGenerate_Click);
+            // 
+            // LoadPolygonData
+            // 
+            this.LoadPolygonData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadPolygonData.Location = new System.Drawing.Point(3, 3);
+            this.LoadPolygonData.Name = "LoadPolygonData";
+            this.LoadPolygonData.Size = new System.Drawing.Size(85, 45);
+            this.LoadPolygonData.TabIndex = 1;
+            this.LoadPolygonData.Text = "Load Polygon Data";
+            this.LoadPolygonData.ToolTipText = "Load (or reload) all villages in your drawn polygons.";
+            this.LoadPolygonData.Click += new System.EventHandler(this.LoadPolygonData_Click);
+            // 
+            // VisibleImageList
+            // 
+            this.VisibleImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("VisibleImageList.ImageStream")));
+            this.VisibleImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.VisibleImageList.Images.SetKeyName(0, "Visible");
             // 
             // GridExPolygon
             // 
@@ -57,6 +77,9 @@ namespace TribalWars.Controls.Main.Polygon
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridExPolygon.AutoEdit = true;
+            this.GridExPolygon.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><EmptyGridInfo>Click \'" +
+    "Load Polygon Data\' to load all villages inside your polygons.</EmptyGridInfo></L" +
+    "ocalizableData>";
             this.GridExPolygon.ColumnAutoResize = true;
             this.GridExPolygon.DataMember = "VILLAGE";
             this.GridExPolygon.DataSource = this.polygonDataSet1;
@@ -68,6 +91,7 @@ namespace TribalWars.Controls.Main.Polygon
             this.GridExPolygon.FocusCellDisplayMode = Janus.Windows.GridEX.FocusCellDisplayMode.UseSelectedFormatStyle;
             this.GridExPolygon.HideColumnsWhenGrouped = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExPolygon.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.GridExPolygon.ImageList = this.VisibleImageList;
             this.GridExPolygon.Location = new System.Drawing.Point(94, 3);
             this.GridExPolygon.Name = "GridExPolygon";
             this.GridExPolygon.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
@@ -81,16 +105,6 @@ namespace TribalWars.Controls.Main.Polygon
             // 
             this.polygonDataSet1.DataSetName = "PolygonDataSet";
             this.polygonDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // LoadPolygonData
-            // 
-            this.LoadPolygonData.Location = new System.Drawing.Point(3, 0);
-            this.LoadPolygonData.Name = "LoadPolygonData";
-            this.LoadPolygonData.Size = new System.Drawing.Size(85, 53);
-            this.LoadPolygonData.TabIndex = 2;
-            this.LoadPolygonData.Text = "Load Polygon Data";
-            this.LoadPolygonData.UseVisualStyleBackColor = true;
-            this.LoadPolygonData.Click += new System.EventHandler(this.LoadPolygonData_Click);
             // 
             // PolygonControl
             // 
@@ -113,7 +127,8 @@ namespace TribalWars.Controls.Main.Polygon
         private Janus.Windows.GridEX.GridEX GridExPolygon;
         private PolygonDataSet polygonDataSet1;
         private Janus.Windows.EditControls.UIButton ButtonGenerate;
-        private System.Windows.Forms.Button LoadPolygonData;
+        private Janus.Windows.EditControls.UIButton LoadPolygonData;
+        private System.Windows.Forms.ImageList VisibleImageList;
 
     }
 }

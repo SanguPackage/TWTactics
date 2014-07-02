@@ -429,6 +429,7 @@
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Common.cs" />
+    <Compile Include="Tools\Janus.cs" />
     <Compile Include="Tools\TupleList.cs" />
     <Compile Include="Tools\Parsers\Common.cs" />
     <Compile Include="Tools\PhpDeserializer.cs" />

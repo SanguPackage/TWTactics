@@ -90,7 +90,9 @@ namespace TribalWars.Controls.TWContextMenu
         {
             const string caption = @"Click and hold the left mouse button to draw the area (=Polygon) you want to generate BB codes for.
 Use Control to force drawing vertically and Shift to force drawing horizontally. (in case you don't have a steady hand:)
-Click on a polygon to select it. Use Del to remove the selected Polygon. Use the arrow keys to move it.";
+Click on a polygon to select it. Use Del to remove the selected Polygon. Use the arrow keys to move it.
+
+Right click inside/outside a polygon for more options.";
             MessageBox.Show(caption, "Polygon Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
