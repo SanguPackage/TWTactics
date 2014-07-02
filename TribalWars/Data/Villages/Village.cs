@@ -42,7 +42,6 @@ namespace TribalWars.Data.Villages
         private readonly int _kingdom;
         private VillageType _type;
         private bool _typeIsSet;
-        private string _tooltip;
 
         private VillageReportCollection _reports;
         private string _comments;
@@ -252,87 +251,104 @@ namespace TribalWars.Data.Villages
         {
             get
             {
-                if (_tooltip == null)
+                var str = new StringBuilder();
+
+                // Calculate previous stuff
+                int prevPoints = 0;
+                Player prevPlayer = null;
+                Tribe prevTribe = null;
+                if (PreviousVillageDetails != null)
                 {
-                    var str = new StringBuilder();
-
-                    // Calculate previous stuff
-                    int prevPoints = 0;
-                    Player prevPlayer = null;
-                    Tribe prevTribe = null;
-                    if (PreviousVillageDetails != null)
+                    prevPoints = PreviousVillageDetails.Points;
+                    prevPlayer = PreviousVillageDetails.Player;
+                    if (prevPlayer != null)
                     {
-                        prevPoints = PreviousVillageDetails.Points;
-                        prevPlayer = PreviousVillageDetails.Player;
-                        if (prevPlayer != null)
-                        {
-                            if (prevPlayer.HasTribe) prevTribe = prevPlayer.Tribe;
-                        }
+                        if (prevPlayer.HasTribe) prevTribe = prevPlayer.Tribe;
                     }
+                }
 
-                    // Start output
-                    str.AppendFormat("Points: {0}", Points.ToString("#,0"));
-                    if (prevPoints != 0 && prevPoints != Points)
-                    {
-                        int dif = Points - prevPoints;
-                        if (dif < 0) str.AppendFormat(" ({0})", dif.ToString("#,0"));
-                        else str.AppendFormat(" (+{0})", dif.ToString("#,0"));
-                    }
+                // Start output
+                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(Points));
+                if (prevPoints != 0 && prevPoints != Points)
+                {
+                    int dif = Points - prevPoints;
+                    if (dif < 0) str.AppendFormat(" ({0})", Common.GetPrettyNumber(dif));
+                    else str.AppendFormat(" (+{0})", Common.GetPrettyNumber(dif));
+                }
 
-                    if (HasPlayer)
+                if (HasPlayer)
+                {
+                    str.AppendLine();
+                    //str.AppendFormat("Owner: {0} #{1} with {2} points", Player.Name, Player.Rank, Common.GetPrettyNumber(Player.Points));
+                    str.AppendFormat("Owner: {0} (#{1} | {2} points)", Player.Name, Player.Rank, Common.GetPrettyNumber(Player.Points));
+                    if (prevPlayer != null && !prevPlayer.Equals(Player))
                     {
                         str.AppendLine();
-                        str.AppendFormat("Owner: {0} ({1} points)", Player.Name, Player.Points.ToString("#,0"));
-                        if (prevPlayer != null && !prevPlayer.Equals(Player))
-                        {
-                            str.AppendLine();
-                            str.AppendFormat("Nobled from {0}", prevPlayer.Name);
-                        }
-                        else if (prevPlayer == null && PreviousVillageDetails != null)
-                        {
-                            str.AppendLine();
-                            str.Append("Nobled abandoned");
-                        }
+                        str.AppendFormat("Nobled from {0} (#{1}|{2} points)", prevPlayer.Name, prevPlayer.Rank, Common.GetPrettyNumber(prevPlayer.Points));
+                    }
+                    else if (prevPlayer == null && PreviousVillageDetails != null)
+                    {
                         str.AppendLine();
-                        string conquers = Player.ConquerString;
-                        if (string.IsNullOrEmpty(conquers))
-                        {
-                            str.AppendFormat("Villages: {0}", Player.Villages.Count.ToString("#,0"));
-                        }
-                        else
-                        {
-                            str.AppendFormat("Villages: {0} ({1})", Player.Villages.Count.ToString("#,0"), conquers);
-                        }
-                        if (HasTribe)
+                        str.Append("Nobled abandoned");
+                    }
+                    str.AppendLine();
+                    string conquers = Player.ConquerString;
+                    if (string.IsNullOrEmpty(conquers))
+                    {
+                        str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(Player.Villages.Count));
+                    }
+                    else
+                    {
+                        str.AppendFormat("Villages: {0} ({1})", Common.GetPrettyNumber(Player.Villages.Count), conquers);
+                    }
+                    if (HasTribe)
+                    {
+                        str.AppendLine();
+                        str.AppendFormat("Tribe: {0} (#{1} | {2} points)", Player.Tribe.Tag, Player.Tribe.Rank, Common.GetPrettyNumber(Player.Tribe.AllPoints));
+                        if (prevTribe != null && !prevTribe.Equals(Player.Tribe))
                         {
                             str.AppendLine();
-                            str.AppendFormat("Tribe: {0} ({1} points)", Player.Tribe.Tag, Player.Tribe.AllPoints.ToString("#,0"));
-                            if (prevTribe != null && !prevTribe.Equals(Player.Tribe))
-                            {
-                                str.AppendLine();
-                                str.AppendFormat("Changed from {0}", prevTribe.Tag);
-                            }
+                            str.AppendFormat("Changed from {0}", prevTribe.Tag);
+                        }
+                    }
+                }
+                else
+                {
+                    str.AppendLine();
+                    if (prevPlayer != null)
+                    {
+                        str.AppendFormat("Abandoned by {0} ({1})", prevPlayer.Name, Common.GetPrettyNumber(prevPlayer.Points));
+                        if (prevPlayer.Villages.Count > 1)
+                        {
+                            str.AppendLine();
+                            str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(prevPlayer.Villages.Count));
                         }
                     }
                     else
                     {
-                        str.AppendLine();
-                        if (prevPlayer != null)
-                        {
-                            str.AppendFormat("Abandoned by {0} ({1})", prevPlayer.Name, prevPlayer.Points.ToString("#,0"));
-                            str.AppendLine();
-                            str.AppendFormat("Villages: {0}", prevPlayer.Villages.Count.ToString(CultureInfo.InvariantCulture));
-                        }
-                        else
-                        {
-                            str.Append("Abandoned");
-                        }
+                        str.Append("Abandoned");
                     }
-
-                    _tooltip = str.ToString();
                 }
 
-                return _tooltip;
+                if (_type.HasFlag(VillageType.Comments))
+                {
+                    str.AppendLine();
+                    str.AppendLine();
+                    str.Append("Comments: ");
+                    if (!string.IsNullOrWhiteSpace(Comments)) str.Append(Comments);
+                    else str.Append("Loading...");
+                }
+
+                return str.ToString();
+            }
+        }
+
+        public string TooltipTitle
+        {
+            get
+            {
+                if (Player == null) return ToString();
+                return string.Format("{0} - {1}", ToString(), Player.Name);
             }
         }
         #endregion
@@ -419,7 +435,6 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Load a Village from the Tribal Wars village representation
         /// </summary>
-        /// <param name="input"></param>
         public static Village Parse(string input)
         {
             input = input.TrimStart('(').TrimEnd(')');
@@ -475,7 +490,6 @@ namespace TribalWars.Data.Villages
 
         public bool Equals(Village other)
         {
-            //if (Object.ReferenceEquals(other, null)) return false;
             if ((object)other == null) return false;
             return (_x == other._x && _y == other._y);
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Tribes;
+using TribalWars.Tools;
 
 namespace TribalWars.Data.Players
 {
@@ -149,15 +150,15 @@ namespace TribalWars.Data.Players
             get
             {
                 var str = new StringBuilder();
-                str.AppendFormat("Points: {0}", _points.ToString("#,0"));
+                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(_points));
                 str.AppendLine();
-                str.AppendFormat("Villages: {0}", Villages.Count.ToString());
+                str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(Villages.Count));
                 string conquer = ConquerString;
                 if (conquer != null) str.AppendFormat(" ({0})", conquer);
                 if (Tribe != null)
                 {
                     str.AppendLine();
-                    str.AppendFormat("Tribe: {0} (Rank: {1})", Tribe.Tag, Tribe.Rank.ToString());
+                    str.AppendFormat("Tribe: {0} (Rank: {1})", Tribe.Tag, Common.GetPrettyNumber(Tribe.Rank));
                 }
 
                 return str.ToString().Trim();

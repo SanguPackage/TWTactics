@@ -254,7 +254,7 @@ namespace TribalWars.Controls.Common
                 }
 
                 BackColor = Color.Green;
-                _tooltip.ToolTipTitle = village.ToString();
+                _tooltip.ToolTipTitle = village.TooltipTitle;
                 _tooltip.SetToolTip(this, village.Tooltip);
 
                 if (raiseEvent && VillageSelected != null)

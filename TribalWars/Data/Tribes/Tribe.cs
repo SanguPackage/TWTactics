@@ -6,6 +6,7 @@ using System.ComponentModel;
 
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
+using TribalWars.Tools;
 
 namespace TribalWars.Data.Tribes
 {
@@ -123,9 +124,9 @@ namespace TribalWars.Data.Tribes
                 str.AppendLine();
                 str.AppendFormat("Rank: {0}", _rank);
                 str.AppendLine();
-                str.AppendFormat("Points: {0}", _allPoints.ToString("#,0"));
+                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(_allPoints));
                 str.AppendLine();
-                str.AppendFormat("Players: {0}", Players.Count);
+                str.AppendFormat("Players: {0}", Common.GetPrettyNumber(Players.Count));
 
                 return str.ToString();
             }

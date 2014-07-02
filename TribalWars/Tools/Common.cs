@@ -61,42 +61,14 @@ namespace TribalWars.Tools
 
         #region Number Methods
         /// <summary>
-        /// Formats the number with an M after the million
+        /// Formats the number with optional M(illion), K(Thousand)
         /// </summary>
         public static string GetPrettyNumber(int input)
         {
-            if (input < 1000000) return input.ToString("#,0");
-            return string.Format("{0}M", (input / 1000).ToString("#,0000"));
-        }
-
-        /// <summary>
-        /// Pretty number display with proper sorting
-        /// </summary>
-        /// <remarks>Currently not in use</remarks>
-        public class PrettyNumber : IComparable, IComparable<PrettyNumber>
-        {
-            private int _number;
-            public int Number
-            {
-                get { return _number; }
-            }
-            public PrettyNumber(int number)
-            {
-                _number = number;
-            }
-            public override string ToString()
-            {
-                return Tools.Common.GetPrettyNumber(_number);
-            }
-            public int CompareTo(object obj)
-            {
-                return CompareTo(obj as PrettyNumber);
-            }
-            public int CompareTo(PrettyNumber other)
-            {
-                if (other == null) return -1;
-                return _number - other.Number;
-            }
+            if (input <= 99999) return input.ToString("#,0");
+            if (input <= 999999) return string.Format("{0}k", (input / 1000).ToString("#,0"));
+            if (input <= 99999999) return string.Format("{0}M", (input / 1000000D).ToString("0.#"));
+            return string.Format("{0}M", (input / 1000000).ToString("#,0"));
         }
         #endregion
 
