@@ -36,6 +36,7 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete, Shortcut.Del);
 
             AddChangeNameCommand();
+            _menu.AddTextBoxCommand("ChangeGroup", "Group", _bbCode.ActivePolygon.Group, GroupChanged);
             AddChangeColorCommand();
 
             _menu.AddCommand(ContextMenuKeys.Polygon.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
@@ -43,13 +44,7 @@ namespace TribalWars.Controls.TWContextMenu
 
         private void AddChangeNameCommand()
         {
-            var nameChanger = new TextBox();
-            nameChanger.Text = _bbCode.ActivePolygon.Name;
-            nameChanger.TextChanged += NameChanged;
-
-            var cmd = new UICommand("ChangeName", "Name", CommandType.TextBoxCommand);
-            cmd.Control = nameChanger;
-            _menu.Commands.Add(cmd);
+            _menu.AddTextBoxCommand("ChangeName", "Name", _bbCode.ActivePolygon.Name, NameChanged);
         }
 
         private void AddChangeColorCommand()
@@ -80,6 +75,12 @@ namespace TribalWars.Controls.TWContextMenu
         {
             var nameChanger = (TextBox)sender;
             _bbCode.ActivePolygon.Name = nameChanger.Text;
+        }
+
+        private void GroupChanged(object sender, EventArgs e)
+        {
+            var groupChanger = (TextBox)sender;
+            _bbCode.ActivePolygon.Group = groupChanger.Text;
         }
 
         private void SelectedColorChanged(object sender, EventArgs e)

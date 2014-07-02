@@ -57,7 +57,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
             List = new LinkedList<Point>();
             List.AddFirst(GetPoint(x, y));
             LineColor = Color.White;
-            Group = "No group";
+            Group = "";
         }
 
         public Polygon(string name, bool visible, Color color, string group, IEnumerable<Point> points)

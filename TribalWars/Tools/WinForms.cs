@@ -40,22 +40,5 @@ namespace TribalWars.Tools
                 action();
             }
         }
-
-        public static void AddSeparator(this UIContextMenu menu)
-        {
-            var sep = new UICommand("SEP", string.Empty, CommandType.Separator);
-            menu.Commands.Add(sep);
-        }
-
-        public static void AddCommand(this UIContextMenu menu, string key, string text, CommandEventHandler handler, Shortcut? shortcut = null)
-        {
-            var cmd = new UICommand(key, text, CommandType.Command);
-            cmd.Click += handler;
-            if (shortcut.HasValue)
-            {
-                cmd.Shortcut = shortcut.Value;
-            }
-            menu.Commands.Add(cmd);
-        }
     }
 }

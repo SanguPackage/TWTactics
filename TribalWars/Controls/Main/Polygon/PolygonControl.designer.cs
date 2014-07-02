@@ -162,7 +162,7 @@ namespace TribalWars.Controls.Main.Polygon
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(100, 124);
             this.uiGroupBox1.TabIndex = 6;
-            this.uiGroupBox1.Text = "Modus";
+            this.uiGroupBox1.Text = "Switch modus";
             // 
             // ModusVillage
             // 
@@ -206,9 +206,9 @@ namespace TribalWars.Controls.Main.Polygon
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.uiGroupBox1);
             this.Controls.Add(this.uiGroupBox3);
-            this.Controls.Add(this.GridExVillageShowFieldChooser);
             this.Controls.Add(this.GridExPolygon);
             this.Controls.Add(this.GridExVillage);
+            this.Controls.Add(this.GridExVillageShowFieldChooser);
             this.Name = "PolygonControl";
             this.Size = new System.Drawing.Size(829, 363);
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();

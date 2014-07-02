@@ -318,7 +318,10 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
 
         private void GridExPolygon_FormattingRow(object sender, RowLoadEventArgs e)
         {
-
+            //if (e.Row.RowType == RowType.Record)
+            //{
+                
+            //}
         }
 
         private void GridExPolygon_CellUpdated(object sender, ColumnActionEventArgs e)
