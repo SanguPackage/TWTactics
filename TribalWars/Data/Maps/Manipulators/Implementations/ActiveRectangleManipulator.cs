@@ -19,6 +19,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly Pen _rectanglePen;
         private Size _activeRectangleSize;
         private Rectangle _activeRectangle;
+        private readonly Action<bool> _releaseAction;
+        private bool _hasSetNew;
         #endregion
 
         #region Tooltip Fields
@@ -37,12 +39,13 @@ Press 's' to remove this tooltip";
         #endregion
 
         #region Constructors
-        public ActiveRectangleManipulator(Map map)
+        public ActiveRectangleManipulator(Map map, Action<bool> releaseAction)
             : base(map)
         {
             _rectanglePen = new Pen(Color.Yellow, 3);
             _helpTooltip = WinForms.CreateTooltip();
             _showHelpTooltip = true;
+            _releaseAction = releaseAction;
 
             SetInitialActiveRectangle();
         }
@@ -66,11 +69,40 @@ Press 's' to remove this tooltip";
         protected internal override void RemoveFullControlManipulatorCore()
         {
             _map.Manipulators.CurrentManipulator.ShowTooltip = _wasShowingTooltip;
+            _helpTooltip.Active = false;
+
+            if (_releaseAction != null)
+                _releaseAction(_hasSetNew);
         }
 
         public override void Paint(MapPaintEventArgs e)
         {
             e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);
+        }
+
+        /// <summary>
+        /// Save new Monitoring ActiveRectangle or remove FullControl
+        /// </summary>
+        protected internal override bool MouseDownCore(MapMouseEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            {
+                string text = string.Format("Set this as the new area you want to keep updated about? (In Monitoring tab)");
+                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNo);
+                if (saveActiveRectangle == DialogResult.Yes)
+                {
+                    Point gameLocation = _map.Display.GetGameLocation(_activeRectangle.Location);
+                    Point gameSize = _map.Display.GetGameLocation(_activeRectangle.Right, _activeRectangle.Bottom);
+
+                    var worldRectangle = new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
+                    World.Default.Monitor.ActiveRectangle = worldRectangle;
+                    World.Default.SaveSettings();
+
+                    _hasSetNew = true;
+                }
+            }
+            _map.Manipulators.CurrentManipulator.RemoveFullControlManipulator();
+            return true;
         }
 
         /// <summary>
@@ -122,29 +154,6 @@ Press 's' to remove this tooltip";
                     return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Save new Monitoring ActiveRectangle or remove FullControl
-        /// </summary>
-        protected internal override bool MouseDownCore(MapMouseEventArgs e)
-        {
-            if (e.MouseEventArgs.Button == MouseButtons.Left)
-            {
-                string text = string.Format("Set this as the new area you want to keep updated about? (In Monitoring tab)");
-                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNo);
-                if (saveActiveRectangle == DialogResult.Yes)
-                {
-                    Point gameLocation = _map.Display.GetGameLocation(_activeRectangle.Location);
-                    Point gameSize = _map.Display.GetGameLocation(_activeRectangle.Right, _activeRectangle.Bottom);
-
-                    var worldRectangle = new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
-                    World.Default.Monitor.ActiveRectangle = worldRectangle;
-                    World.Default.SaveSettings();
-                }
-            }
-            _map.Manipulators.CurrentManipulator.RemoveFullControlManipulator();
-            return true;
         }
         
         public override void Dispose()

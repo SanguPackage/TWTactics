@@ -19,6 +19,11 @@ namespace TribalWars.Forms
 {
     public partial class MainForm : Form
     {
+        #region Constants
+        private const int TabsPolygonIndex = 2;
+        private const int TabsMonitoringIndex = 3;
+        #endregion
+
         #region Fields
         private readonly ToolStripLocationChangerControl _locationChanger;
         #endregion
@@ -129,7 +134,7 @@ namespace TribalWars.Forms
         #region Manipulators
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
-            Tabs.SelectedIndex = 2;
+            Tabs.SelectedIndex = TabsPolygonIndex;
         }
 
         private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
@@ -302,8 +307,25 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                var setActiveRectangle = new ActiveRectangleManipulator(World.Default.Map);
-                World.Default.Map.Manipulators.CurrentManipulator.SetFullControlManipulator(setActiveRectangle);
+                if (ToolStripActiveRectangle.Checked)
+                {
+                    ToolStripActiveRectangle.Checked = false;
+                    World.Default.Map.Manipulators.CurrentManipulator.RemoveFullControlManipulator();
+                }
+                else
+                {
+                    ToolStripActiveRectangle.Checked = true;
+
+                    var setActiveRectangle = new ActiveRectangleManipulator(World.Default.Map, (bool newRectangleSet) =>
+                        {
+                            ToolStripActiveRectangle.Checked = false;
+                            if (newRectangleSet)
+                            {
+                                Tabs.SelectedIndex = TabsMonitoringIndex;
+                            }
+                        });
+                    World.Default.Map.Manipulators.CurrentManipulator.SetFullControlManipulator(setActiveRectangle);
+                }
             }
         }
         #endregion
