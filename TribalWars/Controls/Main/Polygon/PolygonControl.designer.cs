@@ -34,6 +34,7 @@ namespace TribalWars.Controls.Main.Polygon
             this.ButtonGenerate = new Janus.Windows.EditControls.UIButton();
             this.LoadPolygonData = new Janus.Windows.EditControls.UIButton();
             this.VisibleImageList = new System.Windows.Forms.ImageList(this.components);
+            this.GridExPolygonShowFieldChooser = new Janus.Windows.EditControls.UIButton();
             this.GridExPolygon = new Janus.Windows.GridEX.GridEX();
             this.polygonDataSet1 = new TribalWars.Controls.PolygonDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.GridExPolygon)).BeginInit();
@@ -68,6 +69,17 @@ namespace TribalWars.Controls.Main.Polygon
             this.VisibleImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.VisibleImageList.Images.SetKeyName(0, "Visible");
             // 
+            // GridExPolygonShowFieldChooser
+            // 
+            this.GridExPolygonShowFieldChooser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridExPolygonShowFieldChooser.Location = new System.Drawing.Point(691, 12);
+            this.GridExPolygonShowFieldChooser.Name = "GridExPolygonShowFieldChooser";
+            this.GridExPolygonShowFieldChooser.Size = new System.Drawing.Size(110, 23);
+            this.GridExPolygonShowFieldChooser.TabIndex = 2;
+            this.GridExPolygonShowFieldChooser.TabStop = false;
+            this.GridExPolygonShowFieldChooser.Text = "Show/Hide Columns";
+            this.GridExPolygonShowFieldChooser.Click += new System.EventHandler(this.GridExPolygonShowFieldChooser_Click);
+            // 
             // GridExPolygon
             // 
             this.GridExPolygon.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -99,7 +111,11 @@ namespace TribalWars.Controls.Main.Polygon
             this.GridExPolygon.TabIndex = 0;
             this.GridExPolygon.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.GridExPolygon.UseGroupRowSelector = true;
+            this.GridExPolygon.RowCheckStateChanged += new Janus.Windows.GridEX.RowCheckStateChangeEventHandler(this.GridExPolygon_RowCheckStateChanged);
+            this.GridExPolygon.RowDoubleClick += new Janus.Windows.GridEX.RowActionEventHandler(this.GridExPolygon_RowDoubleClick);
             this.GridExPolygon.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExPolygon_FormattingRow);
+            this.GridExPolygon.GroupsChanging += new Janus.Windows.GridEX.GroupsChangingEventHandler(this.GridExPolygon_GroupsChanging);
+            this.GridExPolygon.CurrentCellChanging += new Janus.Windows.GridEX.CurrentCellChangingEventHandler(this.GridExPolygon_CurrentCellChanging);
             // 
             // polygonDataSet1
             // 
@@ -111,6 +127,7 @@ namespace TribalWars.Controls.Main.Polygon
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.GridExPolygonShowFieldChooser);
             this.Controls.Add(this.LoadPolygonData);
             this.Controls.Add(this.ButtonGenerate);
             this.Controls.Add(this.GridExPolygon);
@@ -129,6 +146,7 @@ namespace TribalWars.Controls.Main.Polygon
         private Janus.Windows.EditControls.UIButton ButtonGenerate;
         private Janus.Windows.EditControls.UIButton LoadPolygonData;
         private System.Windows.Forms.ImageList VisibleImageList;
+        private Janus.Windows.EditControls.UIButton GridExPolygonShowFieldChooser;
 
     }
 }

@@ -305,6 +305,8 @@ namespace TribalWars.Controls {
             
             private global::System.Data.DataColumn columnISVISIBLE;
             
+            private global::System.Data.DataColumn columnTYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public VILLAGEDataTable() {
@@ -444,6 +446,14 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TYPEColumn {
+                get {
+                    return this.columnTYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +489,7 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VILLAGERow AddVILLAGERow(string NAME, string LOCATION, string KINGDOM, int POINTS, string PLAYER, string TRIBE, int POINTSDIFF, string POLYGON, string BBCODE, string POLYGONGROUP, bool POLYGONVISIBLE, bool ISVISIBLE) {
+            public VILLAGERow AddVILLAGERow(string NAME, string LOCATION, string KINGDOM, int POINTS, string PLAYER, string TRIBE, int POINTSDIFF, string POLYGON, string BBCODE, string POLYGONGROUP, bool POLYGONVISIBLE, bool ISVISIBLE, string TYPE) {
                 VILLAGERow rowVILLAGERow = ((VILLAGERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -494,7 +504,8 @@ namespace TribalWars.Controls {
                         BBCODE,
                         POLYGONGROUP,
                         POLYGONVISIBLE,
-                        ISVISIBLE};
+                        ISVISIBLE,
+                        TYPE};
                 rowVILLAGERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVILLAGERow);
                 return rowVILLAGERow;
@@ -537,6 +548,7 @@ namespace TribalWars.Controls {
                 this.columnPOLYGONGROUP = base.Columns["POLYGONGROUP"];
                 this.columnPOLYGONVISIBLE = base.Columns["POLYGONVISIBLE"];
                 this.columnISVISIBLE = base.Columns["ISVISIBLE"];
+                this.columnTYPE = base.Columns["TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -568,6 +580,8 @@ namespace TribalWars.Controls {
                 base.Columns.Add(this.columnPOLYGONVISIBLE);
                 this.columnISVISIBLE = new global::System.Data.DataColumn("ISVISIBLE", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnISVISIBLE);
+                this.columnTYPE = new global::System.Data.DataColumn("TYPE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTYPE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -890,6 +904,22 @@ namespace TribalWars.Controls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TYPE {
+                get {
+                    try {
+                        return ((string)(this[this.tableVILLAGE.TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TYPE\' in table \'VILLAGE\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVILLAGE.TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPLAYERNull() {
                 return this.IsNull(this.tableVILLAGE.PLAYERColumn);
             }
@@ -946,6 +976,18 @@ namespace TribalWars.Controls {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPOLYGONGROUPNull() {
                 this[this.tableVILLAGE.POLYGONGROUPColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTYPENull() {
+                return this.IsNull(this.tableVILLAGE.TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTYPENull() {
+                this[this.tableVILLAGE.TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         

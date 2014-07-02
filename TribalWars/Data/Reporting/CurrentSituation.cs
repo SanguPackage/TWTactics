@@ -443,9 +443,13 @@ namespace TribalWars.Data.Reporting
             if (r.IsStartElement("Comments"))
             {
                 if (!r.IsEmptyElement)
+                {
                     Village.SetComments(r.ReadElementString("Comments"));
+                }
                 else
+                {
                     r.Read();
+                }
             }
 
             // resources

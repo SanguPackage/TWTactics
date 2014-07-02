@@ -3,10 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Controls.Display;
 using TribalWars.Data;
 using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
@@ -31,6 +33,7 @@ namespace TribalWars.Controls.Main.Polygon
         public void Initialize()
         {
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
+            SetGridExPolygonTooltips();
         }
         #endregion
 
@@ -43,6 +46,29 @@ namespace TribalWars.Controls.Main.Polygon
             GridExPolygon.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
             GridExPolygon.CheckAllRecords();
             GridExPolygon.MoveFirst();
+        }
+
+        /// <summary>
+        /// Load all villages from all polygons
+        /// </summary>
+        private void LoadPolygonData_Click(object sender, EventArgs e)
+        {
+            GridExPolygon.RemoveFilters();
+
+            var polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
+            if (polygons.Any())
+            {
+                World.Default.Map.EventPublisher.ActivatePolygon(this, polygons);
+            }
+            else
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+                MessageBox.Show(@"You have not yet defined any polygons.
+I have activated polygon drawing for you, you can go back to the main map and create some now!
+
+Click and hold left mouse button to start drawing!
+Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -95,17 +121,31 @@ namespace TribalWars.Controls.Main.Polygon
                 
             }
         }
+        #endregion
+
+        #region GridExPolygon
+        private void SetGridExPolygonTooltips()
+        {
+            GridExPolygon.RootTable.Columns["NAME"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Name;
+            GridExPolygon.RootTable.Columns["LOCATION"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Location;
+            GridExPolygon.RootTable.Columns["KINGDOM"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Kingdom;
+            GridExPolygon.RootTable.Columns["POINTS"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Points;
+            GridExPolygon.RootTable.Columns["POINTSDIFF"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PointsDifference;
+            GridExPolygon.RootTable.Columns["PLAYER"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PlayerName;
+            GridExPolygon.RootTable.Columns["TRIBE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.TribeTag;
+            GridExPolygon.RootTable.Columns["TYPE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Type;
+            GridExPolygon.RootTable.Columns["ISVISIBLE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Visible;
+        }
 
         private void GridExPolygon_FormattingRow(object sender, RowLoadEventArgs e)
         {
-            if (e.Row.RowType == RowType.GroupHeader)
-            {
-                e.Row.GroupCaption = string.Format("{0} ({1})", e.Row.GroupValue, e.Row.GetRecordCount());
-            }
+            // GroupHeaders
+            UpdateGroupRecordText(e.Row);
 
+            // Normal Rows
             if (e.Row.RowType == RowType.Record)
             {
-                var record = (PolygonDataSet.VILLAGERow)e.Row.GetDataRow();
+                PolygonDataSet.VILLAGERow record = GetVillageRow(e.Row);
 
                 // SetVillageVisibility()
                 if (record.ISVISIBLE)
@@ -118,6 +158,14 @@ namespace TribalWars.Controls.Main.Polygon
                 if (record.Village.Type != VillageType.None)
                 {
                     e.Row.Cells["TYPE"].Image = record.Village.TypeImage;
+                    if (record.Village.Type.HasFlag(VillageType.Comments))
+                    {
+                        e.Row.Cells["TYPE"].ToolTipText = record.Village.Comments;
+                    }
+                    else
+                    {
+                        e.Row.Cells["TYPE"].ToolTipText = record.Village.TypeString;
+                    }
                 }
 
                 // Display You and your tribe in special color
@@ -141,24 +189,87 @@ namespace TribalWars.Controls.Main.Polygon
                 }
             }
         }
-        #endregion
 
-        private void LoadPolygonData_Click(object sender, EventArgs e)
+        private void GridExPolygon_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
         {
-            var polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
-            if (polygons.Any())
+            GridEXRow groupToUpdate = e.Row;
+            if (e.Row.RowType == RowType.Record)
             {
-                World.Default.Map.EventPublisher.ActivatePolygon(this, polygons);
+                groupToUpdate = e.Row.Parent;
             }
-            else
-            {
-                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
-                MessageBox.Show(@"You have not yet defined any polygons.
-I have activated polygon drawing for you, you can go back to the main map and create some now!
 
-Click and hold left mouse button to start drawing!
-Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (groupToUpdate.RowType == RowType.GroupHeader)
+            {
+                UpdateGroupRecordText(groupToUpdate);
+                if (groupToUpdate.Parent != null)
+                {
+                    UpdateGroupRecordText(groupToUpdate.Parent);
+                }
             }
         }
+
+        /// <summary>
+        /// Column chooser
+        /// </summary>
+        private void GridExPolygonShowFieldChooser_Click(object sender, EventArgs e)
+        {
+            GridExPolygon.ShowFieldChooser();
+        }
+
+        /// <summary>
+        /// PinPoint the village
+        /// </summary>
+        private void GridExPolygon_RowDoubleClick(object sender, RowActionEventArgs e)
+        {
+            if (e.Row.RowType == RowType.Record)
+            {
+                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
+            }
+        }
+
+        /// <summary>
+        /// Select the village
+        /// </summary>
+        private void GridExPolygon_CurrentCellChanging(object sender, CurrentCellChangingEventArgs e)
+        {
+            if (e.Row != null && e.Row.RowType == RowType.Record)
+            {
+                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.SelectVillage);
+            }
+        }
+
+        /// <summary>
+        /// Don't allow changing the default grouping
+        /// </summary>
+        private void GridExPolygon_GroupsChanging(object sender, GroupsChangingEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        /// Cast GridEx row to TypedDataSet row
+        /// </summary>
+        private PolygonDataSet.VILLAGERow GetVillageRow(GridEXRow row)
+        {
+            Debug.Assert(row.RowType == RowType.Record);
+            return (PolygonDataSet.VILLAGERow)row.GetDataRow();
+        }
+
+        /// <summary>
+        /// Update the group text with the amount of checked villages / total villages
+        /// </summary>
+        private void UpdateGroupRecordText(GridEXRow row)
+        {
+            if (row.RowType == RowType.GroupHeader)
+            {
+                // Set group totals
+                int totalRecords = row.GetRecordCount();
+                int totalChecked = row.GetChildRecords().Count(x => x.CheckState == RowCheckState.Checked);
+                row.GroupCaption = string.Format("{0} ({1} / {2} villages)", row.GroupValue, totalChecked, totalRecords);
+            }
+        }
+        #endregion
     }
 }

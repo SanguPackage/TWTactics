@@ -244,6 +244,14 @@ namespace TribalWars.Controls.Accordeon.Details
         /// </summary>
         private void Comments_TextChanged(object sender, EventArgs e)
         {
+            bool hadComment = _current.Village.Type.HasFlag(VillageType.Comments);
+            if ((hadComment && string.IsNullOrWhiteSpace(Comments.Text))
+                || (!hadComment && !string.IsNullOrWhiteSpace(Comments.Text)))
+            {
+                World.Default.Map.Display.Reset(Data.Maps.Displays.DisplayTypes.Icon);
+                World.Default.Map.Control.Invalidate();
+            }
+
             _current.Village.Comments = Comments.Text;
         }
         #endregion

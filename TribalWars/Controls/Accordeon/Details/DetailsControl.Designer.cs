@@ -390,6 +390,7 @@ namespace TribalWars.Controls.Accordeon.Details
             // 
             this.VillageSeperator.Name = "VillageSeperator";
             this.VillageSeperator.Size = new System.Drawing.Size(6, 25);
+            this.VillageSeperator.Visible = false;
             // 
             // VillageCurrentSituation
             // 
@@ -399,6 +400,7 @@ namespace TribalWars.Controls.Accordeon.Details
             this.VillageCurrentSituation.Name = "VillageCurrentSituation";
             this.VillageCurrentSituation.Size = new System.Drawing.Size(23, 22);
             this.VillageCurrentSituation.ToolTipText = "View the current estimated status";
+            this.VillageCurrentSituation.Visible = false;
             this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
             // 
             // DetailsControl

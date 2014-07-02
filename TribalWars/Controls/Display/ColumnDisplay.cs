@@ -96,25 +96,42 @@ namespace TribalWars.Controls.Display
 
         #region Public Methods
         /// <summary>
+        /// Tooltips are shared between XPTable and Janus.GridEX
+        /// </summary>
+        public static class VillageHeaderTooltips
+        {
+            public const string Visible = "Show image if village is currently visible on the main map";
+            public const string Type = "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details')";
+            public const string Location = "Coordinates of the village";
+            public const string Name = "Name of the village";
+            public const string Points = "Points of the village";
+            public const string PointsDifference = "Difference in village points since previous data";
+            public const string Kingdom = "The kingdom the village is located in";
+
+            public const string PlayerName = "The owner of the village";
+            public const string TribeTag = "The tribe of the player";
+        }
+
+        /// <summary>
         /// Creates a column model for a village
         /// </summary>
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(VillageFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if village is currently visible on the main map.");
-            ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20, "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details')");
-            TextColumn villageCoordColumn = CreateTextColumn("XY", 50, "Coordinates of the village");
-            TextColumn villageNameColumn = CreateTextColumn("Name", 114, "Name of the village");
-            NumberColumn villagePointsColumn = CreateNumberColumn("Points", 55, "Points of the village.");
-            NumberColumn villagePointsDifferenceColumn = CreateNumberColumn("Diff.", 45, "Difference in village points since previous data");
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, VillageHeaderTooltips.Visible);
+            ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20, VillageHeaderTooltips.Type);
+            TextColumn villageCoordColumn = CreateTextColumn("XY", 50, VillageHeaderTooltips.Location);
+            TextColumn villageNameColumn = CreateTextColumn("Name", 114, VillageHeaderTooltips.Name);
+            NumberColumn villagePointsColumn = CreateNumberColumn("Points", 55, VillageHeaderTooltips.Points);
+            NumberColumn villagePointsDifferenceColumn = CreateNumberColumn("Diff.", 45, VillageHeaderTooltips.PointsDifference);
 
-            TextColumn villagePlayerColumn = CreateTextColumn("Player", 85, "The owner of the village");
+            TextColumn villagePlayerColumn = CreateTextColumn("Player", 85, VillageHeaderTooltips.PlayerName);
             TextColumn villagePlayerDifferenceColumn = CreateTextColumn("Old owner", 85, "The player the village has been nobled from.");
             NumberColumn villagePlayerPoints = CreateNumberColumn("Points", 65, "The points of the player owning the village");
             NumberColumn villagePlayerPointsDifference = CreateNumberColumn("Diff.", 55, "The difference in player points since previous data");
             NumberColumn villageVillagesColumn = CreateNumberColumn("Villages", 60, "The amount of villages the player has");
             TextColumn villageVillagesDifferenceColumn = CreateTextColumn("Diff.", 45, "The villages the player gained and/or lost since previous data");
-            TextColumn villageTribeColumn = CreateTextColumn("Tribe", 50, "The tribe of the player");
+            TextColumn villageTribeColumn = CreateTextColumn("Tribe", 50, VillageHeaderTooltips.TribeTag);
             NumberColumn villageTribeRankColumn = CreateNumberColumn("Rank", 50, "The rank of the tribe of the player");
 
             villageImageColumn.Visible = (fields & VillageFields.Type) != 0;

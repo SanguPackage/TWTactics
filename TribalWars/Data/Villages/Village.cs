@@ -37,7 +37,6 @@ namespace TribalWars.Data.Villages
         private readonly int _y;
 
         private readonly int _playerId;
-        private int _points;
         private readonly Point _location;
         private readonly int _kingdom;
         private VillageType _type;
@@ -45,8 +44,6 @@ namespace TribalWars.Data.Villages
 
         private VillageReportCollection _reports;
         private string _comments;
-        private string _name;
-        private BonusType _bonus;
         #endregion
 
         #region Properties
@@ -55,7 +52,14 @@ namespace TribalWars.Data.Villages
         /// </summary>
         public string Comments
         {
-            get { return _comments; }
+            get
+            {
+                if (Type.HasFlag(VillageType.Comments) && string.IsNullOrWhiteSpace(_comments))
+                {
+                    LoadReports();
+                }
+                return _comments;
+            }
             set
             {
                 if (_comments != value)
@@ -80,7 +84,7 @@ namespace TribalWars.Data.Villages
             {
                 if (_reports == null)
                 {
-                    _reports = new VillageReportCollection(this);
+                    LoadReports();
                 }
                 return _reports;
             }
@@ -89,11 +93,7 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets or sets the current name of the village
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the location of the village
@@ -119,20 +119,12 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Gets or sets the points of the village
         /// </summary>
-        public int Points
-        {
-            get { return _points; }
-            set { _points = value; }
-        }
+        public int Points { get; set; }
 
         /// <summary>
         /// Gets the bonusvillage type
         /// </summary>
-        public BonusType Bonus
-        {
-            get { return _bonus; }
-            private set { _bonus = value; }
-        }
+        public BonusType Bonus { get; private set; }
 
         /// <summary>
         /// Gets the Tribal Wars Database ID of the village
@@ -218,6 +210,9 @@ namespace TribalWars.Data.Villages
                 if (Type.HasFlag(VillageType.Farm))
                     return Buildings.Images.Farm;
 
+                if (Type.HasFlag(VillageType.Comments))
+                    return Maps.Icons.Other.Note;
+
                 return null;
             }
         }
@@ -230,19 +225,22 @@ namespace TribalWars.Data.Villages
             get
             {
                 if (Type.HasFlag(VillageType.Noble))
-                    return "Noble";
+                    return "Nobles";
 
                 if (Type.HasFlag(VillageType.Attack))
-                    return "Attack";
+                    return "Offensive";
 
                 if (Type.HasFlag(VillageType.Defense))
-                    return "Defense";
+                    return "Defensive";
 
                 if (Type.HasFlag(VillageType.Scout))
-                    return "Scout";
+                    return "Scouts";
 
                 if (Type.HasFlag(VillageType.Farm))
                     return "Farm";
+
+                if (Type.HasFlag(VillageType.Comments))
+                    return "Comments";
 
                 return null;
             }
@@ -294,18 +292,28 @@ namespace TribalWars.Data.Villages
                 }
 
                 // Start output
-                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(Points));
+                string pointsPrefix;
+                if (Type != VillageType.None && Type != VillageType.Comments)
+                {
+                    pointsPrefix = TypeString;
+                }
+                else
+                {
+                    pointsPrefix = "Points";
+                }
+
+                str.AppendFormat("{0}: {1} points", pointsPrefix, Common.GetPrettyNumber(Points));
                 if (prevPoints != 0 && prevPoints != Points)
                 {
                     int dif = Points - prevPoints;
                     if (dif < 0) str.AppendFormat(" ({0})", Common.GetPrettyNumber(dif));
                     else str.AppendFormat(" (+{0})", Common.GetPrettyNumber(dif));
                 }
+                
 
                 if (HasPlayer)
                 {
                     str.AppendLine();
-                    //str.AppendFormat("Owner: {0} #{1} with {2} points", Player.Name, Player.Rank, Common.GetPrettyNumber(Player.Points));
                     str.AppendFormat("Owner: {0} (#{1} | {2} points)", Player.Name, Player.Rank, Common.GetPrettyNumber(Player.Points));
                     if (prevPlayer != null && !prevPlayer.Equals(Player))
                     {
@@ -360,9 +368,8 @@ namespace TribalWars.Data.Villages
                 {
                     str.AppendLine();
                     str.AppendLine();
-                    str.Append("Comments: ");
-                    if (!string.IsNullOrWhiteSpace(Comments)) str.Append(Comments);
-                    else str.Append("Loading...");
+                    str.AppendLine("Comments:");
+                    str.AppendLine(Comments);
                 }
 
                 return str.ToString();
@@ -384,12 +391,12 @@ namespace TribalWars.Data.Villages
         {
             // $id, $name, $x, $y, $tribe, $points, $rank
             int.TryParse(pVillage[0], out _id);
-            _name = System.Web.HttpUtility.UrlDecode(pVillage[1]);
+            Name = System.Web.HttpUtility.UrlDecode(pVillage[1]);
             _x = int.Parse(pVillage[2]);
             _y = int.Parse(pVillage[3]);
-            _points = int.Parse(pVillage[5]);
+            Points = int.Parse(pVillage[5]);
             _playerId = int.Parse(pVillage[4]);
-            _bonus = (BonusType)int.Parse(pVillage[6]);
+            Bonus = (BonusType)int.Parse(pVillage[6]);
             _location = new Point(_x, _y);
             if (_location.IsValidGameCoordinate())
             {
@@ -565,6 +572,13 @@ namespace TribalWars.Data.Villages
                 return String.Compare(x.Name, y.Name, StringComparison.Ordinal);
             }
             #endregion
+        }
+        #endregion
+
+        #region Private Implementation
+        private void LoadReports()
+        {
+            _reports = new VillageReportCollection(this);
         }
         #endregion
     }
