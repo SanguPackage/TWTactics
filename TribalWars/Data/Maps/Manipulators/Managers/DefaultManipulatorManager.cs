@@ -35,7 +35,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             : base(map)
         {
             // Active manipulators
-            ActiveVillageManipulator = new ActiveVillageManipulator(map, SystemColors.HighlightText, Color.LimeGreen, Color.Red, SystemColors.HighlightText);
+            ActiveVillageManipulator = new ActiveVillageManipulator(map);
             MapMover = new MapMoverManipulator(map);
             MapDragger = new MapDraggerManipulator(map, this);
 

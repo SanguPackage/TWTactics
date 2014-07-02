@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using System.Linq;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
 
@@ -26,8 +27,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
         private Village PinPointedVillage { get; set; }
 
-        private Pen ActiveVillagePen { get; set; }
-
         private Pen NewVillagesPen { get; set; }
 
         private Pen LostVillagesPen { get; set; }
@@ -36,18 +35,12 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        public ActiveVillageManipulator(Map map, Color activeVillage, Color newVillages, Color lostVillages, Color otherVillages)
+        public ActiveVillageManipulator(Map map)
             : base(map)
         {
-            ActiveVillagePen = new Pen(activeVillage, 2);
-            NewVillagesPen = new Pen(newVillages);
-            LostVillagesPen = new Pen(lostVillages);
-            OtherVillagesPen = new Pen(otherVillages);
-
-            ActiveVillagePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            NewVillagesPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            LostVillagesPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            OtherVillagesPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            NewVillagesPen = new Pen(Color.Chartreuse, 2);
+            LostVillagesPen = new Pen(Color.Violet, 2);
+            OtherVillagesPen = new Pen(Color.White, 2);
 
             _map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
         }
@@ -79,7 +72,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
-                Village village = PinPointedVillage == null ? SelectedVillage : PinPointedVillage;
+                Village village = PinPointedVillage ?? SelectedVillage;
                 if (village != null)
                 {
                     Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
@@ -92,7 +85,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         // other villages
                         var path = new System.Drawing.Drawing2D.GraphicsPath();
                         path.FillMode = System.Drawing.Drawing2D.FillMode.Winding;
-                        foreach (Village draw in village.Player)
+                        foreach (Village draw in village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x)))
                         {
                             if (gameSize.Contains(draw.Location))
                             {
@@ -103,44 +96,43 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                                     villageLocation.Y,
                                     villageWidth, 
                                     villageHeight);
-
-                                //path.AddEllipse(villageLocation.X - 20, villageLocation.Y - 20, villageWidth + 40, villageHeight + 40);
                             }
                         }
 
                         // Gained & lost villages:
-                        if (village.Player.GainedVillages != null)
-                            foreach (Village draw in village.Player.GainedVillages)
+                        foreach (Village draw in village.Player.GainedVillages)
+                        {
+                            if (gameSize.Contains(draw.Location))
                             {
-                                if (gameSize.Contains(draw.Location))
-                                {
-                                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                    e.Graphics.DrawEllipse(
-                                        NewVillagesPen, 
-                                        villageLocation.X, 
-                                        villageLocation.Y,
-                                        villageWidth, 
-                                        villageHeight);
-                                }
-                            }
+                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
+                                e.Graphics.DrawEllipse(
+                                    NewVillagesPen,
+                                    villageLocation.X,
+                                    villageLocation.Y,
+                                    villageWidth,
+                                    villageHeight);
 
-                        if (village.Player.LostVillages != null)
-                            foreach (Village draw in village.Player.LostVillages)
-                            {
-                                if (gameSize.Contains(draw.Location))
-                                {
-                                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                    e.Graphics.DrawEllipse(
-                                        LostVillagesPen, 
-                                        villageLocation.X, 
-                                        villageLocation.Y,
-                                        villageWidth, 
-                                        villageHeight);
-                                }
                             }
+                        }
+
+                        foreach (Village draw in village.Player.LostVillages)
+                        {
+                            if (gameSize.Contains(draw.Location))
+                            {
+                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
+                                e.Graphics.DrawEllipse(
+                                    new Pen(Color.Violet, 2),
+                                    villageLocation.X,
+                                    villageLocation.Y,
+                                    villageWidth,
+                                    villageHeight);
+
+                            }
+                        }
                     }
                     else if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.HasPlayer)
                     {
+                        // Newly barbarian
                         foreach (Village draw in village.PreviousVillageDetails.Player.Villages)
                         {
                             if (gameSize.Contains(draw.Location))
@@ -183,7 +175,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
         public override void Dispose()
         {
-            ActiveVillagePen.Dispose();
             NewVillagesPen.Dispose();
             LostVillagesPen.Dispose();
             OtherVillagesPen.Dispose();
