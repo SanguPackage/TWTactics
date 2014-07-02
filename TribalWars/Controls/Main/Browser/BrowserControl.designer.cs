@@ -152,15 +152,15 @@ namespace TribalWars.Controls.Main.Browser
             this.Browser.Name = "Browser";
             this.Browser.Size = new System.Drawing.Size(628, 486);
             this.Browser.TabIndex = 1;
-            this.Browser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Browser_Navigating);
             this.Browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.Browser_DocumentCompleted);
+            this.Browser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Browser_Navigating);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.ParseResultLabel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Url);
             this.panel1.Controls.Add(this.GoButton);
+            this.panel1.Controls.Add(this.ParseResultLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -175,15 +175,16 @@ namespace TribalWars.Controls.Main.Browser
             this.ParseResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParseResultLabel.Location = new System.Drawing.Point(3, 3);
             this.ParseResultLabel.Name = "ParseResultLabel";
-            this.ParseResultLabel.Size = new System.Drawing.Size(122, 20);
+            this.ParseResultLabel.Size = new System.Drawing.Size(118, 20);
             this.ParseResultLabel.TabIndex = 6;
             this.ParseResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ParseResultLabel.Visible = false;
             // 
             // label1
             // 
             this.label1.Enabled = false;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(127, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 23);
             this.label1.TabIndex = 3;
@@ -192,13 +193,13 @@ namespace TribalWars.Controls.Main.Browser
             // 
             // Url
             // 
-            this.Url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Url.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.Url.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.AllUrl;
-            this.Url.Location = new System.Drawing.Point(181, 3);
+            this.Url.Location = new System.Drawing.Point(57, 3);
             this.Url.Name = "Url";
-            this.Url.Size = new System.Drawing.Size(429, 20);
+            this.Url.Size = new System.Drawing.Size(553, 20);
             this.Url.TabIndex = 4;
             this.Url.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Url_KeyDown);
             // 

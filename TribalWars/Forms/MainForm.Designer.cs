@@ -106,8 +106,6 @@ namespace TribalWars.Forms
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
-            this.TabsGameBrowser = new Janus.Windows.UI.Tab.UITabPage();
-            this.Browser = new TribalWars.Controls.Main.Browser.BrowserControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Controls.Main.Browser.BrowserControl();
             this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
@@ -136,7 +134,6 @@ namespace TribalWars.Forms
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
             this.TabsMap.SuspendLayout();
-            this.TabsGameBrowser.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
             this.TabsParser.SuspendLayout();
             this.TabsPolygon.SuspendLayout();
@@ -891,7 +888,6 @@ namespace TribalWars.Forms
             this.Tabs.TabIndex = 1;
             this.Tabs.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.TabsMap,
-            this.TabsGameBrowser,
             this.TabsBrowser,
             this.TabsParser,
             this.TabsPolygon,
@@ -916,25 +912,6 @@ namespace TribalWars.Forms
             this.Map.Size = new System.Drawing.Size(866, 585);
             this.Map.TabIndex = 0;
             // 
-            // TabsGameBrowser
-            // 
-            this.TabsGameBrowser.Controls.Add(this.Browser);
-            this.TabsGameBrowser.Location = new System.Drawing.Point(1, 21);
-            this.TabsGameBrowser.Name = "TabsGameBrowser";
-            this.TabsGameBrowser.Size = new System.Drawing.Size(866, 585);
-            this.TabsGameBrowser.TabStop = true;
-            this.TabsGameBrowser.Text = "Game Browser";
-            // 
-            // Browser
-            // 
-            this.Browser.ActiveVillage = 0;
-            this.Browser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Browser.GameBrowser = true;
-            this.Browser.Location = new System.Drawing.Point(0, 0);
-            this.Browser.Name = "Browser";
-            this.Browser.Size = new System.Drawing.Size(866, 585);
-            this.Browser.TabIndex = 0;
-            // 
             // TabsBrowser
             // 
             this.TabsBrowser.Controls.Add(this.browserControl1);
@@ -942,7 +919,7 @@ namespace TribalWars.Forms
             this.TabsBrowser.Name = "TabsBrowser";
             this.TabsBrowser.Size = new System.Drawing.Size(866, 585);
             this.TabsBrowser.TabStop = true;
-            this.TabsBrowser.Text = "Browser";
+            this.TabsBrowser.Text = "TWStats";
             // 
             // browserControl1
             // 
@@ -1075,7 +1052,6 @@ namespace TribalWars.Forms
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
-            this.TabsGameBrowser.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
             this.TabsParser.ResumeLayout(false);
             this.TabsPolygon.ResumeLayout(false);
@@ -1142,7 +1118,6 @@ namespace TribalWars.Forms
         //private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
         private MarkersContainerControl markersContainerControl1;
         private TribalWars.Controls.Maps.MapControl Map;
-        private TribalWars.Controls.Main.Browser.BrowserControl Browser;
         private ParserControl Parser;
         private PolygonControl Polygon;
         //private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;
@@ -1154,7 +1129,6 @@ namespace TribalWars.Forms
         internal System.Windows.Forms.ToolStripStatusLabel StatusWorld;
         private Janus.Windows.UI.Tab.UITab Tabs;
         private Janus.Windows.UI.Tab.UITabPage TabsMap;
-        private Janus.Windows.UI.Tab.UITabPage TabsGameBrowser;
         private Janus.Windows.UI.Tab.UITabPage TabsBrowser;
         private Janus.Windows.UI.Tab.UITabPage TabsParser;
         private Janus.Windows.UI.Tab.UITabPage TabsPolygon;
