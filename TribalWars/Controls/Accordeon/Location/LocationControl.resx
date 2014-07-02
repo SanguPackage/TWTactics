@@ -124,24 +124,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdDraw.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAA/wD//wD/
-        /wD//wD//wD//wD//wD//wD//wD//wD//wD//wD//wD//wD//wD//wD/t6KTY0k1Y0k1Y0k1Y0k1Y0k1
-        Y0k1Y0k1Y0k1Y0k1Y0k1Y0k1Y0k1Y0k1Y0k1Y0k1t6KTwMDA////gACA////wMDA////wMDA////wMDA
-        ////wMDAgACAwMDA////Y0k1t6KT////wMDAgACAwMDA////wMDA////wMDA////wMDA////gACA////
-        wMDAY0k1t6KTgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAY0k1t6KT////
-        wMDAgACA////////////////////////////////gACA////wMDAY0k1uqWWwMDA////gACA////////
-        ////////////////////////gACAwMDA////Y0k1vqma////wMDAgACA////////////////////////
-        ////////gACA////wMDAY0k1w66ewMDA////gACA////////////////////////////////gACAwMDA
-        ////Y0k1yLKj////wMDAgACA////////////////////////////////gACA////wMDAY0k1vqmagACA
-        gACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAgACAY0k1w66ewMDA////gACAwMDA////
-        wMDA////wMDA////wMDA////gACA////wMDAY0k1yLKj////wMDAgACA////wMDA////wMDA////wMDA
-        ////wMDAgACAwMDA////Y0k16qqL6qqL6qqL6qqL6aWE6Z9655du5o5i5YZW431K43ZA4nI54nI54nI5
-        4nI5yGIv6qqL/8Ki/8Ki/sCf/b2a/LmW+7WQ+rCL+auE+Kd99qJ39Z1x9Zlq85Vl85VlzWUx6qqL6qqL
-        6qqL6qqL6qqL6qaG6aF/6Jt255Rs5o5i5YdY5IFO5HtG43Y+43Y+4nI5
-</value>
-  </data>
   <data name="StripHome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

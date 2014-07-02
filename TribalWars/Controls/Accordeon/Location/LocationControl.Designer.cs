@@ -38,7 +38,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._locationFinderControl1 = new TribalWars.Controls.Accordeon.Location.LocationFinderControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmdDraw = new System.Windows.Forms.Button();
             this.txtZ = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtY = new System.Windows.Forms.TextBox();
@@ -46,11 +45,12 @@ namespace TribalWars.Controls.Accordeon.Location
             this.txtX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.StripHome = new System.Windows.Forms.ToolStripButton();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.You = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
+            this.StripHome = new System.Windows.Forms.ToolStripButton();
+            this.cmdDraw = new Janus.Windows.EditControls.UIButton();
             groupBox1 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -147,17 +147,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Location";
             // 
-            // cmdDraw
-            // 
-            this.cmdDraw.Image = ((System.Drawing.Image)(resources.GetObject("cmdDraw.Image")));
-            this.cmdDraw.Location = new System.Drawing.Point(58, 20);
-            this.cmdDraw.Margin = new System.Windows.Forms.Padding(0);
-            this.cmdDraw.Name = "cmdDraw";
-            this.cmdDraw.Size = new System.Drawing.Size(48, 64);
-            this.cmdDraw.TabIndex = 4;
-            this.cmdDraw.UseVisualStyleBackColor = true;
-            this.cmdDraw.Click += new System.EventHandler(this.cmdDraw_Click);
-            // 
             // txtZ
             // 
             this.txtZ.Location = new System.Drawing.Point(23, 64);
@@ -224,16 +213,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // StripHome
-            // 
-            this.StripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.StripHome.Image = ((System.Drawing.Image)(resources.GetObject("StripHome.Image")));
-            this.StripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.StripHome.Name = "StripHome";
-            this.StripHome.Size = new System.Drawing.Size(23, 22);
-            this.StripHome.Text = "Set home location";
-            this.StripHome.Click += new System.EventHandler(this.StripHome_Click);
-            // 
             // ProgressBar
             // 
             this.ProgressBar.Name = "ProgressBar";
@@ -272,6 +251,27 @@ namespace TribalWars.Controls.Accordeon.Location
             this.You.TabIndex = 11;
             this.You.PlayerSelected += new System.EventHandler<TribalWars.Data.Events.PlayerEventArgs>(this.You_PlayerSelected);
             // 
+            // StripHome
+            // 
+            this.StripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.StripHome.Image = ((System.Drawing.Image)(resources.GetObject("StripHome.Image")));
+            this.StripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.StripHome.Name = "StripHome";
+            this.StripHome.Size = new System.Drawing.Size(23, 22);
+            this.StripHome.Text = "Set home location";
+            this.StripHome.Click += new System.EventHandler(this.StripHome_Click);
+            // 
+            // cmdDraw
+            // 
+            this.cmdDraw.Image = global::TribalWars.Properties.Resources.teleport;
+            this.cmdDraw.ImageSize = new System.Drawing.Size(35, 35);
+            this.cmdDraw.Location = new System.Drawing.Point(58, 16);
+            this.cmdDraw.Name = "cmdDraw";
+            this.cmdDraw.Size = new System.Drawing.Size(45, 69);
+            this.cmdDraw.TabIndex = 5;
+            this.cmdDraw.ToolTipText = "Jump to these coordinates.";
+            this.cmdDraw.Click += new System.EventHandler(this.cmdDraw_Click);
+            // 
             // LocationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,7 +308,6 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtX;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button cmdDraw;
         private System.Windows.Forms.Button cmdCenterKingdom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtK;
@@ -318,6 +317,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private System.Windows.Forms.ToolStripButton StripHome;
         private VillagePlayerTribeFinderTextBox You;
         private System.Windows.Forms.GroupBox groupBox4;
+        private Janus.Windows.EditControls.UIButton cmdDraw;
 
     }
 }

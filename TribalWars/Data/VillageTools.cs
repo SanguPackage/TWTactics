@@ -17,14 +17,7 @@ namespace TribalWars.Data
         ///// Add a village to attack from for the attack planner
         ///// </summary>
         //DistanceCalculation,
-        //BBCodePolygonDraw,
-        //BBCodePolygonSelect,
-        //Notes,
 
-        /// <summary>
-        /// Changes the center of the map
-        /// </summary>
-        ChangeCenter,
         /// <summary>
         /// Puts the pinpoint on village(s)
         /// </summary>
@@ -41,10 +34,6 @@ namespace TribalWars.Data
         /// Sets a village as the source for the DistanceToolStrip
         /// </summary>
         Distance,
-        /// <summary>
-        /// Plans an attack
-        /// </summary>
-        Attack,
         /// <summary>
         /// Add notes to a TW element
         /// </summary>

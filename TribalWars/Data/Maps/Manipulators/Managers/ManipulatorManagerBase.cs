@@ -115,7 +115,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             
             if (contextMenu != null)
             {
-                contextMenu.Show(_map.Control, location, village);
+                contextMenu.Show(_map.Control, location);
             }
         }
 

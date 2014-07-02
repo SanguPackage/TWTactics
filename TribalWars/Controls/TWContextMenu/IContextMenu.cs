@@ -14,6 +14,6 @@ namespace TribalWars.Controls.TWContextMenu
     /// </summary>
     public interface IContextMenu
     {
-        void Show(Control c, Point p, Village v);
+        void Show(Control c, Point p);
     }
 }

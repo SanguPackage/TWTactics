@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Implementations;
@@ -19,11 +20,6 @@ namespace TribalWars.Forms
 {
     public partial class MainForm : Form
     {
-        #region Constants
-        private const int TabsPolygonIndex = 2;
-        private const int TabsMonitoringIndex = 3;
-        #endregion
-
         #region Fields
         private readonly ToolStripLocationChangerControl _locationChanger;
         #endregion
@@ -61,6 +57,8 @@ namespace TribalWars.Forms
             World.Default.Map.EventPublisher.ManipulatorChanged += EventPublisher_ManipulatorChanged;
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
             World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+            World.Default.EventPublisher.Browse += EventPublisher_Browse;
+            World.Default.Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
 
             // Auto load world
             string lastWorld = Properties.Settings.Default.LastWorld;
@@ -134,7 +132,7 @@ namespace TribalWars.Forms
         #region Manipulators
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
-            Tabs.SelectedIndex = TabsPolygonIndex;
+            Tabs.SelectedTab = TabsPolygon;
         }
 
         private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
@@ -321,7 +319,7 @@ namespace TribalWars.Forms
                             ToolStripActiveRectangle.Checked = false;
                             if (newRectangleSet)
                             {
-                                Tabs.SelectedIndex = TabsMonitoringIndex;
+                                Tabs.SelectedTab = TabsMonitoring;
                             }
                         });
                     World.Default.Map.Manipulators.CurrentManipulator.SetFullControlManipulator(setActiveRectangle);
@@ -352,6 +350,20 @@ namespace TribalWars.Forms
         {
             Process.Start(World.Default.Structure.CurrentWorldScreenshotDirectory);
         }
+
+        private void EventPublisher_Browse(object sender, BrowserEventArgs e)
+        {
+            Tabs.SelectedTab = TabsBrowser;
+        }
+
+        private void EventPublisher_VillagesSelected(object sender, VillagesEventArgs e)
+        {
+            if (e.Tool == VillageTools.SelectVillage && sender is string && (string)sender == VillageContextMenu.OnDetailsHack)
+            {
+                var pane = GetNavigationPane(NavigationPanes.Details);
+                LeftNavigation.SelectNavigationPage(pane.Key);
+            }
+        }
         #endregion
 
         #region General Pane Stuff
@@ -363,7 +375,7 @@ namespace TribalWars.Forms
             Attack
         }
 
-        internal NavigationPanePage GetNavigationPane(NavigationPanes pane)
+        private NavigationPanePage GetNavigationPane(NavigationPanes pane)
         {
             return LeftNavigation.NavigationPages[(int)pane];
         }

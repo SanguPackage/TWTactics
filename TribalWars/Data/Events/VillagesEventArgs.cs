@@ -1,8 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
-
+using System.Linq;
 using TribalWars.Data.Villages;
 #endregion
 
@@ -13,36 +12,23 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class VillagesEventArgs : EventArgs
     {
-        // TODO: add a bool _draw to determinate if MapPicture.Invalidate is necessary
-
-        #region Fields
-        private IEnumerable<Village> _villages;
-        private VillageCommand _action;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the villages
         /// </summary>
-        public IEnumerable<Village> Villages
-        {
-            get { return _villages; }
-        }
+        public IEnumerable<Village> Villages { get; private set; }
 
         /// <summary>
         /// Gets the action requesting the event
         /// </summary>
-        public VillageCommand Action
-        {
-            get { return _action; }
-        }
+        public VillageCommand Action { get; private set; }
 
         /// <summary>
         /// Gets the tool requesting the event
         /// </summary>
         public VillageTools Tool
         {
-            get { return _action.Tool; }
+            get { return Action.Tool; }
         }
 
         /// <summary>
@@ -52,10 +38,10 @@ namespace TribalWars.Data.Events
         {
             get
             {
-                if (_villages != null)
-                    foreach (Village vil in _villages)
-                        return vil;
-
+                if (Villages != null)
+                {
+                    return Villages.FirstOrDefault();
+                }
                 return null;
             }
         }
@@ -64,14 +50,14 @@ namespace TribalWars.Data.Events
         #region Constructors
         public VillagesEventArgs(IEnumerable<Village> vil, VillageTools tool)
         {
-            _villages = vil;
-            _action = new VillageCommand(tool);
+            Villages = vil;
+            Action = new VillageCommand(tool);
         }
 
         public VillagesEventArgs(IEnumerable<Village> vil, VillageCommand action)
         {
-            _villages = vil;
-            _action = action;
+            Villages = vil;
+            Action = action;
         }
         #endregion
     }

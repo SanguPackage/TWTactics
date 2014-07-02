@@ -31,20 +31,20 @@ namespace TribalWars.Controls.TWContextMenu
 
             Debug.Assert(_bbCode.ActivePolygon != null);
 
-            _menu.AddCommand(ContextMenuKeys.Polygons.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
+            _menu.AddCommand(string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
-            _menu.AddCommand(ContextMenuKeys.Polygons.Delete, "Delete", OnDelete, Shortcut.Del);
+            _menu.AddCommand("Delete", OnDelete, Shortcut.Del);
 
             AddChangeNameCommand();
-            _menu.AddTextBoxCommand("ChangeGroup", "Group", _bbCode.ActivePolygon.Group, GroupChanged);
+            _menu.AddTextBoxCommand("Group", _bbCode.ActivePolygon.Group, GroupChanged);
             AddChangeColorCommand();
 
-            _menu.AddCommand(ContextMenuKeys.Polygons.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+            _menu.AddCommand(_bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
         }
 
         private void AddChangeNameCommand()
         {
-            _menu.AddTextBoxCommand("ChangeName", "Name", _bbCode.ActivePolygon.Name, NameChanged);
+            _menu.AddTextBoxCommand("Name", _bbCode.ActivePolygon.Name, NameChanged);
         }
 
         private void AddChangeColorCommand()
@@ -58,7 +58,7 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.Commands.Add(cmd);
         }
 
-        public void Show(Control control, Point pos, Village village)
+        public void Show(Control control, Point pos)
         {
             _menu.Show(control, pos);
         }

@@ -10,11 +10,8 @@ namespace TribalWars.Data
     /// </summary>
     public class VillageCommand
     {
-        #region Fields
-        #endregion
-
         #region Properties
-        public VillageTools Tool { get; set; }
+        public VillageTools Tool { get; private set; }
         #endregion
 
         #region Constructors
@@ -22,12 +19,6 @@ namespace TribalWars.Data
         {
             Tool = tool;
         }
-        #endregion
-
-        #region Public Methods
-        #endregion
-
-        #region Private Methods
         #endregion
     }
 }
