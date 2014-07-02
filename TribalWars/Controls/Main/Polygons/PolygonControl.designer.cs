@@ -37,19 +37,22 @@ namespace TribalWars.Controls.Main.Polygons
             this.VisibleImageList = new System.Windows.Forms.ImageList(this.components);
             this.GridExVillageShowFieldChooser = new Janus.Windows.EditControls.UIButton();
             this.GridExVillage = new Janus.Windows.GridEX.GridEX();
-            this.polygonDataSet1 = new PolygonDataSet();
+            this.polygonDataSet1 = new TribalWars.Controls.Main.Polygons.PolygonDataSet();
             this.ModusPolygon = new Janus.Windows.EditControls.UIButton();
-            this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
+            this.GeneratorActions = new Janus.Windows.EditControls.UIGroupBox();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.ModusVillage = new Janus.Windows.EditControls.UIButton();
             this.GridExPolygon = new Janus.Windows.GridEX.GridEX();
+            this.CurrentModusGroupbox = new Janus.Windows.EditControls.UIGroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.polygonDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox3)).BeginInit();
-            this.uiGroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GeneratorActions)).BeginInit();
+            this.GeneratorActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridExPolygon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentModusGroupbox)).BeginInit();
+            this.CurrentModusGroupbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonGenerate
@@ -83,7 +86,7 @@ namespace TribalWars.Controls.Main.Polygons
             // GridExVillageShowFieldChooser
             // 
             this.GridExVillageShowFieldChooser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridExVillageShowFieldChooser.Location = new System.Drawing.Point(691, 12);
+            this.GridExVillageShowFieldChooser.Location = new System.Drawing.Point(576, 27);
             this.GridExVillageShowFieldChooser.Name = "GridExVillageShowFieldChooser";
             this.GridExVillageShowFieldChooser.Size = new System.Drawing.Size(110, 23);
             this.GridExVillageShowFieldChooser.TabIndex = 2;
@@ -115,10 +118,12 @@ namespace TribalWars.Controls.Main.Polygons
             this.GridExVillage.HideColumnsWhenGrouped = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
             this.GridExVillage.ImageList = this.VisibleImageList;
-            this.GridExVillage.Location = new System.Drawing.Point(109, 3);
+            this.GridExVillage.Location = new System.Drawing.Point(6, 19);
             this.GridExVillage.Name = "GridExVillage";
+            this.GridExVillage.SaveSettings = true;
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
-            this.GridExVillage.Size = new System.Drawing.Size(717, 357);
+            this.GridExVillage.SettingsKey = "PolygonVillage";
+            this.GridExVillage.Size = new System.Drawing.Size(706, 244);
             this.GridExVillage.TabIndex = 0;
             this.GridExVillage.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.GridExVillage.UseGroupRowSelector = true;
@@ -144,15 +149,15 @@ namespace TribalWars.Controls.Main.Polygons
             this.ModusPolygon.ToolTipText = "Change polygon groups, names and colors!";
             this.ModusPolygon.Click += new System.EventHandler(this.ModusPolygon_Click);
             // 
-            // uiGroupBox3
+            // GeneratorActions
             // 
-            this.uiGroupBox3.Controls.Add(this.ButtonGenerate);
-            this.uiGroupBox3.Controls.Add(this.LoadPolygonData);
-            this.uiGroupBox3.Location = new System.Drawing.Point(3, 133);
-            this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(100, 123);
-            this.uiGroupBox3.TabIndex = 5;
-            this.uiGroupBox3.Text = "Actions";
+            this.GeneratorActions.Controls.Add(this.ButtonGenerate);
+            this.GeneratorActions.Controls.Add(this.LoadPolygonData);
+            this.GeneratorActions.Location = new System.Drawing.Point(3, 133);
+            this.GeneratorActions.Name = "GeneratorActions";
+            this.GeneratorActions.Size = new System.Drawing.Size(100, 123);
+            this.GeneratorActions.TabIndex = 5;
+            this.GeneratorActions.Text = "Actions";
             // 
             // uiGroupBox1
             // 
@@ -186,38 +191,52 @@ namespace TribalWars.Controls.Main.Polygons
             this.GridExPolygon.DesignTimeLayout = GridExPolygon_DesignTimeLayout;
             this.GridExPolygon.GroupByBoxVisible = false;
             this.GridExPolygon.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.GridExPolygon.Location = new System.Drawing.Point(109, 3);
+            this.GridExPolygon.Location = new System.Drawing.Point(6, 19);
             this.GridExPolygon.Name = "GridExPolygon";
             this.GridExPolygon.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.GridExPolygon.Size = new System.Drawing.Size(717, 357);
+            this.GridExPolygon.SaveSettings = true;
+            this.GridExPolygon.SettingsKey = "PolygonManage";
+            this.GridExPolygon.Size = new System.Drawing.Size(706, 244);
             this.GridExPolygon.TabIndex = 7;
             this.GridExPolygon.Visible = false;
-            this.GridExPolygon.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.GridExPolygon_CellValueChanged);
-            this.GridExPolygon.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExPolygon_FormattingRow);
-            this.GridExPolygon.CellEdited += new Janus.Windows.GridEX.ColumnActionEventHandler(this.GridExPolygon_CellEdited);
-            this.GridExPolygon.CellUpdated += new Janus.Windows.GridEX.ColumnActionEventHandler(this.GridExPolygon_CellUpdated);
-            this.GridExPolygon.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.GridExPolygon_ColumnButtonClick);
-            this.GridExPolygon.CurrentCellChanged += new System.EventHandler(this.GridExPolygon_CurrentCellChanged);
+            this.GridExPolygon.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.GridExPolygon_InitCustomEdit);
+            this.GridExPolygon.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.GridExPolygon_EndCustomEdit);
+            // 
+            // CurrentModusGroupbox
+            // 
+            this.CurrentModusGroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentModusGroupbox.Controls.Add(this.GridExVillageShowFieldChooser);
+            this.CurrentModusGroupbox.Controls.Add(this.GridExVillage);
+            this.CurrentModusGroupbox.Controls.Add(this.GridExPolygon);
+            this.CurrentModusGroupbox.Location = new System.Drawing.Point(109, 3);
+            this.CurrentModusGroupbox.Name = "CurrentModusGroupbox";
+            this.CurrentModusGroupbox.Size = new System.Drawing.Size(718, 269);
+            this.CurrentModusGroupbox.TabIndex = 8;
+            this.CurrentModusGroupbox.Text = "Current modus: BBCodes Generator";
             // 
             // PolygonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.CurrentModusGroupbox);
             this.Controls.Add(this.uiGroupBox1);
-            this.Controls.Add(this.uiGroupBox3);
-            this.Controls.Add(this.GridExPolygon);
-            this.Controls.Add(this.GridExVillage);
-            this.Controls.Add(this.GridExVillageShowFieldChooser);
+            this.Controls.Add(this.GeneratorActions);
             this.Name = "PolygonControl";
-            this.Size = new System.Drawing.Size(829, 363);
+            this.Size = new System.Drawing.Size(829, 278);
+            ((System.Configuration.IPersistComponentSettings)(this.GridExVillage)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.polygonDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox3)).EndInit();
-            this.uiGroupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GeneratorActions)).EndInit();
+            this.GeneratorActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
+            ((System.Configuration.IPersistComponentSettings)(this.GridExPolygon)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExPolygon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentModusGroupbox)).EndInit();
+            this.CurrentModusGroupbox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,10 +250,11 @@ namespace TribalWars.Controls.Main.Polygons
         private System.Windows.Forms.ImageList VisibleImageList;
         private Janus.Windows.EditControls.UIButton GridExVillageShowFieldChooser;
         private Janus.Windows.EditControls.UIButton ModusPolygon;
-        private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;
+        private Janus.Windows.EditControls.UIGroupBox GeneratorActions;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
         private Janus.Windows.EditControls.UIButton ModusVillage;
         private Janus.Windows.GridEX.GridEX GridExPolygon;
+        private Janus.Windows.EditControls.UIGroupBox CurrentModusGroupbox;
 
     }
 }

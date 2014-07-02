@@ -113,7 +113,7 @@ namespace TribalWars.Forms
             this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
             this.Parser = new TribalWars.Controls.Main.ParserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new PolygonControl();
+            this.Polygon = new TribalWars.Controls.Main.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.monitoringControl1 = new TribalWars.Controls.Main.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
@@ -1051,7 +1051,7 @@ namespace TribalWars.Forms
             this.MainMenuStrip = this.MenuBar;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TW Tactics v0.3 - by Sangu";
+            this.Text = "TW Tactics v0.4 - by Sangu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);

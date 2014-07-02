@@ -25,10 +25,15 @@ namespace TribalWars.Controls.Main.Polygons
     /// </summary>
     public partial class PolygonControl : UserControl
     {
+        #region Fields
+        private readonly UIColorButton _colorControl;
+        #endregion
+
         #region Constructors
         public PolygonControl()
         {
             InitializeComponent();
+            _colorControl = new UIColorButton();
         }
 
         public void Initialize()
@@ -44,6 +49,24 @@ namespace TribalWars.Controls.Main.Polygons
         /// </summary>
         private void EventPublisher_PolygonActivated(object sender, PolygonEventArgs e)
         {
+            Polygon[] polygons = e.Polygons.ToArray();
+            if (polygons.Length == 1)
+            {
+                // Polygon management grid: jump to the selected polygon row
+                foreach (GridEXRow row in GridExPolygon.GetRows())
+                {
+                    if (row.RowType == RowType.Record)
+                    {
+                        var polygon = (Polygon) row.DataRow;
+                        if (polygon.Equals(polygons[0]))
+                        {
+                            GridExPolygon.MoveTo(row);
+                            break;
+                        }
+                    }
+                }
+            }
+
             GridExVillage.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
             GridExVillage.MoveFirst();
         }
@@ -53,7 +76,7 @@ namespace TribalWars.Controls.Main.Polygons
         /// </summary>
         private void LoadPolygonData_Click(object sender, EventArgs e)
         {
-            Data.Maps.Manipulators.Helpers.Polygon[] polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
+            Polygon[] polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
             if (!polygons.Any())
             {
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
@@ -79,10 +102,10 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 {
                     valueList.Add(group, group);
                 }
-
                 GridExPolygon.RootTable.Columns["GROUP"].EditValueList = valueList;
 
                 GridExPolygon.DataSource = polygons;
+                GridExPolygon.MoveFirst();
             }
         }
         #endregion
@@ -309,59 +332,22 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         #endregion
 
         #region GridExPolygon
-        private void GridExPolygon_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        private void GridExPolygon_InitCustomEdit(object sender, InitCustomEditEventArgs e)
         {
-            return;
-
             if (e.Column.Key == "LineColor")
             {
-                var polygon = (Polygon)GridExPolygon.CurrentRow.DataRow;
-
-                var colorPicker = new UIColorPicker();
-                colorPicker.SelectedColor = polygon.LineColor;
-                colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
-                colorPicker.Visible = true;
-                colorPicker.Parent = GridExPolygon;
-                //colorPicker.Location = GridExPolygon.Point
-                
-                Controls.Add(colorPicker);
+                _colorControl.SelectedColor = (Color)e.Value;
+                e.EditControl = _colorControl;
             }
         }
 
-        private void ColorPicker_SelectedColorChanged(object sender, EventArgs eventArgs)
+        private void GridExPolygon_EndCustomEdit(object sender, EndCustomEditEventArgs e)
         {
-            
-        }
-
-        private void GridExPolygon_CellEdited(object sender, ColumnActionEventArgs e)
-        {
-            
-
-            
-            
-        }
-
-        private void GridExPolygon_FormattingRow(object sender, RowLoadEventArgs e)
-        {
-            //if (e.Row.RowType == RowType.Record)
-            //{
-                
-            //}
-        }
-
-        private void GridExPolygon_CellUpdated(object sender, ColumnActionEventArgs e)
-        {
-
-        }
-
-        private void GridExPolygon_CellValueChanged(object sender, ColumnActionEventArgs e)
-        {
-
-        }
-
-        private void GridExPolygon_CurrentCellChanged(object sender, EventArgs e)
-        {
-
+            if (e.Column.Key == "LineColor")
+            {
+                e.Value = _colorControl.SelectedColor;
+                e.DataChanged = true;
+            }
         }
         #endregion
 
@@ -385,21 +371,15 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             ModusVillage.Enabled = !isVillageModus;
             ModusPolygon.Enabled = isVillageModus;
 
+            CurrentModusGroupbox.Text = string.Format("Current modus: {0}", isVillageModus ? ModusVillage.Text : ModusPolygon.Text);
             GridExVillage.Visible = isVillageModus;
             GridExVillageShowFieldChooser.Visible = isVillageModus;
             GridExPolygon.Visible = !isVillageModus;
+
             ButtonGenerate.Enabled = isVillageModus;
 
             LoadPolygonData.PerformClick();
         }
-
         #endregion
     }
 }
-
-//ButtonEnabled property in GridEXCell allows you to enable/disable buttons in individual cells.
-//- ButtonStyle property in GridEXCell allows you to have different buttons styles in cells from the same column.
-//- CellDisplayType property in GridEXCell allows you to have different display types for cells in the same column. With this property, you now can have text, image or checkboxes cells under the same column.
-//- EditType property in GridEXCell allows you to have different edit types for cells in the same column. With this property you now can have cells that can be edited as text, combo or as a checkbox under the same column.
-//- Enabled property in GridEXCell allows you to enable/disable individual cells in the control.
-//- ValueList property in GridEXCell allows you to define a valuelist for value replacement and or as the source for the dropdown in a combo editor on each cell

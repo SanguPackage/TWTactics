@@ -1,4 +1,5 @@
 #region Using
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
     /// <summary>
     /// Encapsulates the Polygon defined by userdrawing
     /// </summary>
-    public class Polygon
+    public class Polygon : IEquatable<Polygon>
     {
         #region Properties
         /// <summary>
@@ -153,6 +154,17 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         private Point GetPoint(int x, int y)
         {
             return World.Default.Map.Display.GetGameLocation(x, y);
+        }
+
+        public bool Equals(Polygon other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return ReferenceEquals(List, other.List);
+        }
+
+        public override int GetHashCode()
+        {
+            return List.GetHashCode();
         }
 
         public override string ToString()

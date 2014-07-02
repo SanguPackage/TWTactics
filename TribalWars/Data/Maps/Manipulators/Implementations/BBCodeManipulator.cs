@@ -40,18 +40,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Properties
-        ///// <summary>
-        ///// Gets the managing manipulator
-        ///// </summary>
-        ///// <remarks>
-        ///// So this manipulator can be promoted as
-        ///// the full control manipulator
-        ///// </remarks>
-        //private DefaultManipulatorManager ManipulationManager
-        //{
-        //    get { return _parent; }
-        //}
-
         /// <summary>
         /// Gets the currently selected polygon
         /// </summary>
