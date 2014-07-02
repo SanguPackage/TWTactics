@@ -53,7 +53,6 @@ namespace TribalWars.Controls.Maps
         #region Constructors
         public ScrollableMapControl()
         {
-            BackColor = Color.Green;
             _toolTipControl = WinForms.CreateTooltip();
 
             SetStyle(ControlStyles.DoubleBuffer, true);
@@ -109,7 +108,6 @@ namespace TribalWars.Controls.Maps
                     Invalidate();
                 }
             }
-            GiveFocus();
         }
 
         /// <summary>
@@ -133,6 +131,7 @@ namespace TribalWars.Controls.Maps
             {
                 Invalidate();
             }
+            Focus();
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
