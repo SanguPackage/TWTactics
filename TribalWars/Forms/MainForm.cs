@@ -32,8 +32,7 @@ namespace TribalWars.Forms
             _locationChanger = new ToolStripLocationChangerControl();
             ToolStrip.Items.Add(_locationChanger);
 
-            var separator = new ToolStripSeparator();
-            ToolStrip.Items.Add(separator);
+            ToolStrip.Items.Add(new ToolStripSeparator());
 
             // Distance calc toolstrip
             //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
@@ -90,7 +89,7 @@ namespace TribalWars.Forms
 
         private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(Data.Maps.Displays.DisplayTypes.Icon, _lastIconZoom ?? 1);
+            World.Default.Map.ChangeDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
         }
         
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
@@ -185,8 +184,7 @@ namespace TribalWars.Forms
 
         private void OnWorldLoaded(object sender, EventArgs e)
         {
-            World w = World.Default;
-            _locationChanger.LocationChanger.Initialize(w.Map);
+            _locationChanger.LocationChanger.Initialize(World.Default.Map);
 
             World.Default.Map.Manipulators.AddMouseMoved(Map_MouseMoved);
         }
@@ -369,7 +367,7 @@ namespace TribalWars.Forms
         #endregion
 
         #region General Pane Stuff
-        internal enum NavigationPanes
+        private enum NavigationPanes
         {
             Location = 0,
             Details,

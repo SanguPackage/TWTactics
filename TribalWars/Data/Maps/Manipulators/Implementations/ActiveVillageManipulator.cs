@@ -15,25 +15,28 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     {
         #region Fields
         private Village _unpinpointedVillage;
+
+        private readonly Pen _pinpointedPen = new Pen(Color.White, 2);
+        private readonly Pen _pinpointedAnimationPen = new Pen(Color.Black, 2);
+        private int _pinpointedAnimationCounter;
         #endregion
 
         #region Properties
-        public Village SelectedVillage { get; set; }
+        private Village SelectedVillage { get; set; }
 
-        public Village PinPointedVillage { get; set; }
+        private Village PinPointedVillage { get; set; }
 
-        public Pen ActiveVillagePen { get; set; }
+        private Pen ActiveVillagePen { get; set; }
 
-        public Pen NewVillagesPen { get; set; }
+        private Pen NewVillagesPen { get; set; }
 
-        public Pen LostVillagesPen { get; set; }
+        private Pen LostVillagesPen { get; set; }
 
-        public Pen OtherVillagesPen { get; set; }
+        private Pen OtherVillagesPen { get; set; }
         #endregion
 
         #region Constructors
-        public ActiveVillageManipulator(Map map, Color activeVillage, Color newVillages, Color lostVillages,
-                                        Color otherVillages)
+        public ActiveVillageManipulator(Map map, Color activeVillage, Color newVillages, Color lostVillages, Color otherVillages)
             : base(map)
         {
             ActiveVillagePen = new Pen(activeVillage, 2);
@@ -56,7 +59,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (e.Village != null && PinPointedVillage == null && _unpinpointedVillage != e.Village)
             {
                 if (SelectedVillage != e.Village)
+                {
                     _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.SelectVillage);
+                }
 
                 SelectedVillage = e.Village;
                 _unpinpointedVillage = null;
@@ -74,43 +79,34 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
-                // Todo: adhv gameSize + villageWidth/Height uitrekenen ipv GetMapLocation
                 Village village = PinPointedVillage == null ? SelectedVillage : PinPointedVillage;
                 if (village != null)
                 {
                     Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
 
-                    int villageWidth =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-
-                    // active village -- now in the TimerPaint
-                    /*if (gameSize.Contains(village.Location))
-                    {
-                        Point mapLocation = _map.Display.GetMapLocation(village.Location);
-                        g.DrawEllipse(_activeVillagePen, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10);
-                    }*/
+                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
                     if (village.HasPlayer)
                     {
                         // other villages
-                        // TODO: code for creating a map with big blocks
-                        //System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath(); 
-                        //path.FillMode = System.Drawing.Drawing2D.FillMode.Winding;
+                        var path = new System.Drawing.Drawing2D.GraphicsPath();
+                        path.FillMode = System.Drawing.Drawing2D.FillMode.Winding;
                         foreach (Village draw in village.Player)
                         {
                             if (gameSize.Contains(draw.Location))
                             {
                                 Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(OtherVillagesPen, villageLocation.X, villageLocation.Y,
-                                                       villageWidth, villageHeight);
+                                e.Graphics.DrawEllipse(
+                                    OtherVillagesPen, 
+                                    villageLocation.X, 
+                                    villageLocation.Y,
+                                    villageWidth, 
+                                    villageHeight);
+
                                 //path.AddEllipse(villageLocation.X - 20, villageLocation.Y - 20, villageWidth + 40, villageHeight + 40);
                             }
                         }
-                        //Region region = new Region(path);
-                        //g.FillRegion(new SolidBrush(Color.White), region);
-                        //path.Dispose();
 
                         // Gained & lost villages:
                         if (village.Player.GainedVillages != null)
@@ -119,8 +115,12 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                                 if (gameSize.Contains(draw.Location))
                                 {
                                     Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                    e.Graphics.DrawEllipse(NewVillagesPen, villageLocation.X, villageLocation.Y,
-                                                           villageWidth, villageHeight);
+                                    e.Graphics.DrawEllipse(
+                                        NewVillagesPen, 
+                                        villageLocation.X, 
+                                        villageLocation.Y,
+                                        villageWidth, 
+                                        villageHeight);
                                 }
                             }
 
@@ -130,8 +130,12 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                                 if (gameSize.Contains(draw.Location))
                                 {
                                     Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                    e.Graphics.DrawEllipse(LostVillagesPen, villageLocation.X, villageLocation.Y,
-                                                           villageWidth, villageHeight);
+                                    e.Graphics.DrawEllipse(
+                                        LostVillagesPen, 
+                                        villageLocation.X, 
+                                        villageLocation.Y,
+                                        villageWidth, 
+                                        villageHeight);
                                 }
                             }
                     }
@@ -142,15 +146,16 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                             if (gameSize.Contains(draw.Location))
                             {
                                 Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(OtherVillagesPen, villageLocation.X, villageLocation.Y,
-                                                       villageWidth, villageHeight);
+                                e.Graphics.DrawEllipse(
+                                    OtherVillagesPen, 
+                                    villageLocation.X, 
+                                    villageLocation.Y,
+                                    villageWidth, 
+                                    villageHeight);
                             }
                         }
                     }
                 }
-
-                //timerCount -= 10;
-                //TimerPaint(g, fullMap, isActiveManipulator);
             }
         }
 
@@ -182,117 +187,55 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             NewVillagesPen.Dispose();
             LostVillagesPen.Dispose();
             OtherVillagesPen.Dispose();
+            _pinpointedPen.Dispose();
+            _pinpointedAnimationPen.Dispose();
         }
-
-        private int timerCount;
 
         public override void TimerPaint(MapTimerPaintEventArgs e)
         {
             if (e.IsActiveManipulator)
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                Village village = PinPointedVillage == null ? SelectedVillage : PinPointedVillage;
+                Village village = PinPointedVillage ?? SelectedVillage;
                 if (village != null)
                 {
-                    int villageHeight =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-                    int villageWidth =
-                        _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-
-                    timerCount += 5;
-                    //if (timerCount > villageHeight + villageWidth + 10 + 5) timerCount = 0;
-                    if (timerCount > 360) timerCount = 0;
-                    else if (timerCount < 0)
-                    {
-                        timerCount = 0;
-                    }
-
+                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
                     Point mapLocation = _map.Display.GetMapLocation(village.Location);
-                    //g.DrawArc(_activeVillagePen, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10, timerCount, 320);
 
+                    const int xOff = 5;
+                    const int yOff = 10;
 
-                    //Pen pen = new Pen(SystemColors.GradientActiveCaption, 2);
-                    //g.DrawArc(pen, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10, timerCount, 360);
+                    _pinpointedAnimationCounter += 5;
+                    if (_pinpointedAnimationCounter > 360) _pinpointedAnimationCounter = 0;
 
-                    //System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath(null, 
+                    e.Graphics.DrawEllipse(
+                        _pinpointedPen, 
+                        mapLocation.X - xOff, 
+                        mapLocation.Y - xOff,
+                        villageWidth + yOff, 
+                        villageHeight + yOff);
 
-                    int xOff = 5;
-                    int yOff = 10;
-
-                    int x1 = mapLocation.X - 5;
-                    int y1 = mapLocation.Y - 5;
-                    int x2 = mapLocation.X + yOff + villageWidth;
-                    int y2 = mapLocation.Y + yOff + villageHeight;
-
-                    /*if (timerCount < villageHeight + 10 + 5)
-                    {
-                        x1 += 0;
-                        y1 += timerCount;
-
-                        x2 += 0;
-                        y2 += 0 - timerCount;
-                        
-                    }
-                    else
-                    {
-                        //timerCount = 0;
-                        x1 += timerCount - villageHeight;
-                        int temp = y2;
-                        y2 = y1;
-                        y1 = temp;
-
-                        x2 += 0 - timerCount + villageHeight;
-                        //y2 = 0;
-                    }*/
-
-                    //g.DrawLine(new Pen(Color.White, 2), x1, y1, x2, y2);
-
-                    //using (Brush gradF = new System.Drawing.Drawing2D.LinearGradientBrush(new Point(0, timerCount), new Point(villageWidth, timerCount + 10 + villageHeight), Color.Black, Color.White))
-                    using (
-                        Brush grad1 = new System.Drawing.Drawing2D.LinearGradientBrush(new Point(x1, y1),
-                                                                                       new Point(x2, y2), Color.Black,
-                                                                                       Color.White))
-                        //using (Brush grad2 = new System.Drawing.Drawing2D.LinearGradientBrush(new Point(mapLocation.X - 5, mapLocation.Y - 5), new Point(mapLocation.X - 5 + villageWidth, mapLocation.Y - 5 + villageHeight), Color.White, Color.Black))
-                    {
-                        using (Pen pen1 = new Pen(grad1, 3))
-                            //using (Pen pen2 = new Pen(grad2, 2))
-                        {
-                            //Pen p = new Pen(gradF, 2);
-
-                            //g.DrawLine(new Pen(Color.White, 2), x1, y1, x2, y2);
-
-                            //g.DrawEllipse(new Pen(Color.Black, 3), mapLocation.X - xOff - 1, mapLocation.Y - xOff - 1, villageWidth + yOff + 1, villageHeight + yOff + 1);
-                            e.Graphics.DrawEllipse(new Pen(Color.White, 2), mapLocation.X - xOff, mapLocation.Y - xOff,
-                                                   villageWidth + yOff, villageHeight + yOff);
-                            e.Graphics.DrawArc(new Pen(Color.Black, 2), mapLocation.X - xOff, mapLocation.Y - xOff,
-                                               villageWidth + yOff, villageHeight + yOff, timerCount, 30);
-                            //g.FillRectangle(grad1, mapLocation.X - xOff, mapLocation.Y - xOff, villageWidth + yOff, villageHeight + yOff);
-
-                            //g.DrawArc(pen1, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10, 0, 30);
-                            //g.DrawArc(pen2, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10, 0 + 30, 30);
-
-                            //g.FillRectangle(Brushes.Black, 50, 50, 50, 50);
-                            //g.DrawString(timerCount.ToString(), new Font("Verdana", 16), Brushes.White, new Point(50, 50));
-                        }
-                    }
-
-
-                    //g.DrawEllipse(_activeVillagePen, mapLocation.X - 5, mapLocation.Y - 5, villageWidth + 10, villageHeight + 10);
+                    e.Graphics.DrawArc(
+                        _pinpointedAnimationPen, 
+                        mapLocation.X - xOff, 
+                        mapLocation.Y - xOff,
+                        villageWidth + yOff, 
+                        villageHeight + yOff,
+                        _pinpointedAnimationCounter, 
+                        30);
                 }
             }
         }
         #endregion
 
         #region Event Handlers
-        private void EventPublisher_VillagesSelected(object sender, TribalWars.Data.Events.VillagesEventArgs e)
+        private void EventPublisher_VillagesSelected(object sender, Events.VillagesEventArgs e)
         {
             if (e.Tool == VillageTools.PinPoint)
                 PinPointedVillage = e.FirstVillage;
         }
-        #endregion
-
-        #region Private Methods
         #endregion
     }
 }

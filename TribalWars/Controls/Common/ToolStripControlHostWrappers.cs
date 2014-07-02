@@ -197,9 +197,6 @@ namespace TribalWars.Controls.Common
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
     public class ToolStripLocationChangerControl : ToolStripControlHost
     {
-        #region Events
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the underlying LocationChangerControl
@@ -215,14 +212,9 @@ namespace TribalWars.Controls.Common
             : base(new LocationChangerControl())
         {
             AutoSize = false;
-            Text = string.Empty;
             ToolTipText = string.Empty;
-
             LocationChanger.Width = 200;
         }
-        #endregion
-
-        #region Overriden Methods
         #endregion
     }
 

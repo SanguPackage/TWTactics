@@ -259,12 +259,12 @@ namespace TribalWars.Controls.Common
 
                 if (raiseEvent && VillageSelected != null)
                 {
-                    VillageSelected(this, new VillageEventArgs(village, VillageTools.SelectVillage));
+                    VillageSelected(this, new VillageEventArgs(village, VillageTools.PinPoint));
                 }
                 else if (_showButton && _map != null)
                 {
                     _map.SetCenter(village);
-                    _map.EventPublisher.SelectVillages(this, village, new VillageCommand(VillageTools.SelectVillage));
+                    _map.EventPublisher.SelectVillages(this, village, new VillageCommand(VillageTools.PinPoint));
                 }
             }
             else
@@ -345,12 +345,12 @@ namespace TribalWars.Controls.Common
                 _tooltip.SetToolTip(this, tribe.Tooltip);
                 if (raiseEvent && TribeSelected != null)
                 {
-                    TribeSelected(this, new TribeEventArgs(tribe, VillageTools.SelectVillage));
+                    TribeSelected(this, new TribeEventArgs(tribe, VillageTools.PinPoint));
                 }
                 else if (_showButton && _map != null)
                 {
                     _map.SetCenter(Data.Maps.Display.GetSpan(tribe));
-                    _map.EventPublisher.SelectVillages(this, tribe, VillageTools.SelectVillage);
+                    _map.EventPublisher.SelectVillages(this, tribe, VillageTools.PinPoint);
                 }
             }
             else

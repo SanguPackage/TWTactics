@@ -1,19 +1,14 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Players;
-
-using TribalWars.Data.Maps;
 using TribalWars.Tools;
-
 #endregion
 
 namespace TribalWars.Controls.TWContextMenu
@@ -82,14 +77,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnToClipboard(object sender, EventArgs e)
         {
-            try
-            {
-                Clipboard.SetText(_player.Name);
-            }
-            catch (Exception)
-            {
-
-            }
+            SetClipboard(_player.Name);
         }
 
         /// <summary>
@@ -97,14 +85,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnBbCode(object sender, EventArgs e)
         {
-            try
-            {
-                Clipboard.SetText(_player.BbCode());
-            }
-            catch (Exception)
-            {
-
-            }
+            SetClipboard(_player.BbCode());
         }
 
         /// <summary>
@@ -112,15 +93,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnBbCodeOperation(object sender, EventArgs e)
         {
-            try
-            {
-                Clipboard.SetText(_player.BbCodeMatt());
-            }
-            catch (Exception)
-            {
-
-            }
-
+            SetClipboard(_player.BbCodeMatt());
         }
 
         /// <summary>
@@ -128,7 +101,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnTwStats(object sender, EventArgs e)
         {
-            World.Default.EventPublisher.BrowseUri(null, TribalWars.Controls.Main.Browser.DestinationEnum.TwStatsPlayer, _player.Id.ToString(CultureInfo.InvariantCulture));
+            World.Default.EventPublisher.BrowseUri(null, Main.Browser.DestinationEnum.TwStatsPlayer, _player.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -137,6 +110,18 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnDetails(object sender, EventArgs e)
         {
             World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.SelectVillage);
+        }
+
+        private void SetClipboard(string text)
+        {
+            try
+            {
+                Clipboard.SetText(text);
+            }
+            catch (Exception)
+            {
+
+            }
         }
         #endregion
     }
