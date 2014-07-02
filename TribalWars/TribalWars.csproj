@@ -365,7 +365,6 @@
     <Compile Include="Data\Maps\Markers\TribeMarker.cs" />
     <Compile Include="Data\Maps\Views\PointsView.cs" />
     <Compile Include="Data\Maps\Views\VillageTypeView.cs" />
-    <Compile Include="Data\Players\PlayerYou.cs" />
     <Compile Include="Data\Reporting\CurrentSituation.cs" />
     <Compile Include="Data\Reporting\HtmlReport.cs" />
     <Compile Include="Data\Reporting\Images.Designer.cs">

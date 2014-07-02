@@ -57,16 +57,13 @@ namespace TribalWars.Data
         /// </summary>
         public bool PlayerSelected
         {
-            get { return PlayerYou.Default.Player != null; }
+            get { return You != null; }
         }
 
         /// <summary>
         /// Gets or sets the active player
         /// </summary>
-        public PlayerYou You
-        {
-            [DebuggerStepThrough] get { return PlayerYou.Default; }
-        }
+        public Player You { get; set; }
 
         /// <summary>
         /// Gets a value indicating if world data has been loaded
@@ -195,7 +192,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Gets or sets the settings filename
         /// </summary>
-        public string SettingsName { get; set; }
+        public string SettingsName { get; private set; }
 
         /// <summary>
         /// Gets the RegEx pattern to recognize valid Village input
@@ -230,6 +227,8 @@ namespace TribalWars.Data
 
             Views = new Dictionary<string, ViewBase>();
             TwStats = new TwStatsLinks();
+
+            You = new Player();
         }
 
         ~World()
@@ -243,6 +242,7 @@ namespace TribalWars.Data
 
         #region Singleton
         private static readonly World world = new World();
+        
 
         /// <summary>
         /// Gets the currently loaded world

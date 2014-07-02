@@ -183,11 +183,11 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         private void CacheYouMarkers()
         {
-            Player you = World.Default.You.Player;
+            Player you = World.Default.You;
             if (you != null)
             {
                 _markPlayer.Add(you.Id, _map.MarkerManager.YourMarker);
-                Tribe youTribe = World.Default.You.Player.Tribe;
+                Tribe youTribe = World.Default.You.Tribe;
                 if (youTribe != null)
                 {
                     _markTribe.Add(youTribe.Id, _map.MarkerManager.YourTribeMarker);

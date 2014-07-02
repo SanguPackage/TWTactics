@@ -42,7 +42,7 @@ namespace TribalWars.Controls.Accordeon.Location
 
             if (World.Default.PlayerSelected)
             {
-                You.SetPlayer(World.Default.You.Player);
+                You.SetPlayer(World.Default.You);
             }
 
             _worldLoaded = true;
@@ -122,7 +122,7 @@ namespace TribalWars.Controls.Accordeon.Location
         {
             if (_worldLoaded)
             {
-                World.Default.You.Player = e.SelectedPlayer;
+                World.Default.You = e.SelectedPlayer;
                 World.Default.InvalidateMarkers();
                 World.Default.Map.SetCenter(e.SelectedPlayer);
             }

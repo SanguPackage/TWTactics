@@ -167,19 +167,9 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Constructors
-        public Player(Village vil)
+        public Player()
         {
             Villages = new List<Village>();
-            if (vil != null && vil.HasPlayer)
-            {
-                Player p = vil.Player;
-                _id = p.Id;
-                Name = p.Name;
-                _points = p.Points;
-                _rank = p.Rank;
-                Tribe = p.Tribe;
-                Villages = p.Villages;
-            }
         }
 
         internal Player(string[] pPlayer)

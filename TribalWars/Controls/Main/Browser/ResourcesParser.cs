@@ -55,7 +55,7 @@ namespace TribalWars.Controls.Main.Browser
             _documentRegex = new Regex(pattern, RegexOptions.Multiline);
             MatchCollection matches = _documentRegex.Matches(document, index);
 
-            var ownVillages = World.Default.You.Player.Villages.ToDictionary(vil => vil.Id);
+            var ownVillages = World.Default.You.Villages.ToDictionary(vil => vil.Id);
             if (matches.Count > 0)
             {
                 for (int i = 0; i < matches.Count; i++)
@@ -92,7 +92,7 @@ namespace TribalWars.Controls.Main.Browser
                         if (village.Id == villageId)
                         {
                             vil = village;
-                            vil.Player = World.Default.You.Player;
+                            vil.Player = World.Default.You;
                         }
                     }
                 }

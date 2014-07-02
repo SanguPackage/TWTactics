@@ -86,9 +86,9 @@ namespace TribalWars.Controls.AttackPlan
 
         private void cmdFind_Click(object sender, EventArgs e)
         {
-            if (ActivePlan != null && World.Default.HasLoaded && World.Default.You.Player != null)
+            if (ActivePlan != null && World.Default.HasLoaded && World.Default.You != null)
             {
-                foreach (Village village in World.Default.You.Player)
+                foreach (Village village in World.Default.You)
                 {
                     Unit unit = UnitInput.Unit;
                     if (unit != null)

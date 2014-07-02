@@ -35,7 +35,7 @@ namespace TribalWars.Controls.Display
             {
                 if (!_youSet && World.Default.HasLoaded)
                 {
-                    _you = World.Default.You.Player;
+                    _you = World.Default.You;
                     if (_you != null && _you.HasTribe)
                         _yourTribe = _you.Tribe;
                     _youSet = true;
@@ -53,7 +53,7 @@ namespace TribalWars.Controls.Display
             {
                 if (!_youSet && World.Default.HasLoaded)
                 {
-                    _you = World.Default.You.Player;
+                    _you = World.Default.You;
                     if (_you != null && _you.HasTribe)
                         _yourTribe = _you.Tribe;
                     _youSet = true;

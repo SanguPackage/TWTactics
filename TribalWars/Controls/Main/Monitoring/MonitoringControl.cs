@@ -237,9 +237,9 @@ namespace TribalWars.Controls.Main.Monitoring
                 case "TribeNobled":
                     options = new FinderOptions(SearchForEnum.Villages);
                     options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    if (World.Default.You != null && World.Default.You.HasTribe)
                     {
-                        options.Tribe = World.Default.You.Player.Tribe;
+                        options.Tribe = World.Default.You.Tribe;
                     }
                     options.SearchStrategy = FinderOptions.FinderOptionsEnum.Nobled;
                     break;
@@ -247,9 +247,9 @@ namespace TribalWars.Controls.Main.Monitoring
                 case "TribeNoActivity":
                     options = new FinderOptions(SearchForEnum.Players);
                     options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    if (World.Default.You != null && World.Default.You.HasTribe)
                     {
-                        options.Tribe = World.Default.You.Player.Tribe;
+                        options.Tribe = World.Default.You.Tribe;
                     }
                     options.SearchStrategy = FinderOptions.FinderOptionsEnum.Inactives;
                     break;
@@ -257,9 +257,9 @@ namespace TribalWars.Controls.Main.Monitoring
                 case "TribeLostPoints":
                     options = new FinderOptions(SearchForEnum.Players);
                     options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    if (World.Default.You != null && World.Default.You.HasTribe)
                     {
-                        options.Tribe = World.Default.You.Player.Tribe;
+                        options.Tribe = World.Default.You.Tribe;
                     }
                     options.SearchStrategy = FinderOptions.FinderOptionsEnum.LostPoints;
                     break;
@@ -267,9 +267,9 @@ namespace TribalWars.Controls.Main.Monitoring
                 case "TribePlayers":
                     options = new FinderOptions(SearchForEnum.Players);
                     options.EvaluatedArea = FinderOptions.FinderLocationEnum.EntireMap;
-                    if (World.Default.You != null && World.Default.You.Player.HasTribe)
+                    if (World.Default.You != null && World.Default.You.HasTribe)
                     {
-                        options.Tribe = World.Default.You.Player.Tribe;
+                        options.Tribe = World.Default.You.Tribe;
                     }
                     options.SearchStrategy = FinderOptions.FinderOptionsEnum.All;
                     break;

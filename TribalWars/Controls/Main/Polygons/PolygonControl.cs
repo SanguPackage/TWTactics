@@ -211,7 +211,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 // Display You and your tribe in special color
                 if (record.Village.HasPlayer)
                 {
-                    var you = World.Default.You.Player;
+                    var you = World.Default.You;
                     if (record.Village.Player == you)
                     {
                         var style = new GridEXFormatStyle();

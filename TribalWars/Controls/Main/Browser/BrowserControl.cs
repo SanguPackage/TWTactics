@@ -114,7 +114,7 @@ namespace TribalWars.Controls.Main.Browser
         {
             if (World.Default.PlayerSelected)
             {
-                _activeVillage = World.Default.You.Player.Villages[0].Id;
+                _activeVillage = World.Default.You.Villages[0].Id;
             }
             else
             {
