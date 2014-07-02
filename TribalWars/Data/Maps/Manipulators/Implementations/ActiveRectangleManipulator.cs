@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Tools;
 
@@ -31,11 +32,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         private readonly ToolTip _helpTooltip;
         private const string HelpTitle = "Monitoring ActiveRectangle";
         private const string HelpBody = 
-                @"Press + to grow the area
-Press - to shrink the area
-Left click to save the area
-Right click to cancel
-Press 's' to remove this tooltip";
+                @"Press +, - and the arrow keys to 
+grow and shrink the area.
+
+Left click to save the area.
+Right click to cancel.
+
+Press 's' to remove this tooltip.";
         #endregion
 
         #region Constructors
@@ -88,7 +91,12 @@ Press 's' to remove this tooltip";
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 string text = string.Format("Set this as the new area you want to keep updated about? (In Monitoring tab)");
-                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNo);
+                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNoCancel);
+                if (saveActiveRectangle == DialogResult.Cancel)
+                {
+                    return false;
+                }
+
                 if (saveActiveRectangle == DialogResult.Yes)
                 {
                     Point gameLocation = _map.Display.GetGameLocation(_activeRectangle.Location);
@@ -128,30 +136,42 @@ Press 's' to remove this tooltip";
         /// </summary>
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            const int step = 5;
-            const int largeStep = 20;
-            switch (e.KeyEventArgs.KeyData)
+            Point? keyMove = new KeyboardInputToMovementConverter(e.KeyEventArgs.KeyData).GetKeyMove();
+            if (keyMove.HasValue)
             {
-                case Keys.Subtract | Keys.Control:
-                    InflateActiveRectangle(-largeStep);
-                    return true;
+                _activeRectangle.Width += keyMove.Value.X;
+                _activeRectangleSize.Width += keyMove.Value.X;
+                _activeRectangleSize.Height -= keyMove.Value.Y;
+                _activeRectangle.Height -= keyMove.Value.Y;
+                return true;
+            }
+            else
+            {
+                const int step = 5;
+                const int largeStep = 20;
+                switch (e.KeyEventArgs.KeyData)
+                {
+                    case Keys.Subtract | Keys.Control:
+                        InflateActiveRectangle(-largeStep);
+                        return true;
 
-                case Keys.Add | Keys.Control:
-                    InflateActiveRectangle(largeStep);
-                    return true;
+                    case Keys.Add | Keys.Control:
+                        InflateActiveRectangle(largeStep);
+                        return true;
 
-                case Keys.Add:
-                    InflateActiveRectangle(step);
-                    return true;
+                    case Keys.Add:
+                        InflateActiveRectangle(step);
+                        return true;
 
-                case Keys.Subtract:
-                    InflateActiveRectangle(-step);
-                    return true;
+                    case Keys.Subtract:
+                        InflateActiveRectangle(-step);
+                        return true;
 
-                case Keys.S:
-                    _showHelpTooltip = false;
-                    _helpTooltip.Active = false;
-                    return true;
+                    case Keys.S:
+                        _showHelpTooltip = false;
+                        _helpTooltip.Active = false;
+                        return true;
+                }
             }
             return false;
         }
