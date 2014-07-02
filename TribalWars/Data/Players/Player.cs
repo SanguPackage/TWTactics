@@ -18,18 +18,43 @@ namespace TribalWars.Data.Players
 
         private int _points;
         private int _rank;
+
+        private List<Village> _lostVillages;
+        private readonly object _lostVillagesLock = new object();
+        private List<Village> _gainedVillages;
+        private readonly object _gainedVillagesLock = new object();
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets the villages lost since the data download
         /// </summary>
-        public List<Village> LostVillages { get; private set; }
+        public List<Village> LostVillages
+        {
+            get
+            {
+                lock (_lostVillagesLock)
+                {
+                    return _lostVillages;
+                }
+            }
+            private set { _lostVillages = value; }
+        }
 
         /// <summary>
         /// Gets the villages gained since the data download
         /// </summary>
-        public List<Village> GainedVillages { get; private set; }
+        public List<Village> GainedVillages
+        {
+            get
+            {
+                lock (_gainedVillagesLock)
+                {
+                    return _gainedVillages;
+                }
+            }
+            private set { _gainedVillages = value; }
+        }
 
         /// <summary>
         /// Gets or sets the Tribal Wars Database ID

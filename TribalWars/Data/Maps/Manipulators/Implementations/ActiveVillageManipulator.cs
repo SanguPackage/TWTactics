@@ -1,7 +1,10 @@
 #region Using
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
 
 #endregion
@@ -15,54 +18,50 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     internal class ActiveVillageManipulator : ManipulatorBase
     {
         #region Fields
+        private Village _selectedVillage;
+        private Village _pinPointedVillage;
         private Village _unpinpointedVillage;
+        private bool _lockPinpointedVillage;
 
-        private readonly Pen _pinpointedPen = new Pen(Color.White, 2);
-        private readonly Pen _pinpointedAnimationPen = new Pen(Color.Black, 2);
+        private readonly Pen _pinpointedPen;
+        private readonly Pen _pinpointedAnimationPen;
         private int _pinpointedAnimationCounter;
-        #endregion
-
-        #region Properties
-        private Village SelectedVillage { get; set; }
-
-        private Village PinPointedVillage { get; set; }
-
-        private Pen NewVillagesPen { get; set; }
-
-        private Pen LostVillagesPen { get; set; }
-
-        private Pen OtherVillagesPen { get; set; }
+        private readonly Pen _newVillagesPen;
+        private readonly Pen _lostVillagesPen;
+        private readonly Pen _otherVillagesPen;
         #endregion
 
         #region Constructors
         public ActiveVillageManipulator(Map map)
             : base(map)
         {
-            NewVillagesPen = new Pen(Color.Chartreuse, 2);
-            LostVillagesPen = new Pen(Color.Violet, 2);
-            OtherVillagesPen = new Pen(Color.White, 2);
+            _newVillagesPen = new Pen(Color.Chartreuse, 2);
+            _lostVillagesPen = new Pen(Color.Violet, 2);
+            _otherVillagesPen = new Pen(Color.White, 2);
+            _pinpointedPen = new Pen(Color.CornflowerBlue, 2);
+            _pinpointedAnimationPen = new Pen(Color.Black, 2);
 
             _map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
         }
         #endregion
 
-        #region Public Methods
+        #region Methods
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
-            if (e.Village != null && PinPointedVillage == null && _unpinpointedVillage != e.Village)
+            if (e.Village != null && _pinPointedVillage == null && _unpinpointedVillage != e.Village)
             {
-                if (SelectedVillage != e.Village)
+                if (_selectedVillage != e.Village)
                 {
                     _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.SelectVillage);
                 }
 
-                SelectedVillage = e.Village;
+                _selectedVillage = e.Village;
                 _unpinpointedVillage = null;
                 return true;
             }
-            if (e.Village == null && PinPointedVillage == null && SelectedVillage != null)
+            if (e.Village == null && _pinPointedVillage == null && _selectedVillage != null)
             {
-                SelectedVillage = null;
+                _selectedVillage = null;
                 return true;
             }
             return false;
@@ -72,7 +71,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
-                Village village = PinPointedVillage ?? SelectedVillage;
+                Village village = _pinPointedVillage ?? _selectedVillage;
                 if (village != null)
                 {
                     Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
@@ -83,103 +82,74 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     if (village.HasPlayer)
                     {
                         // other villages
-                        var path = new System.Drawing.Drawing2D.GraphicsPath();
-                        path.FillMode = System.Drawing.Drawing2D.FillMode.Winding;
-                        foreach (Village draw in village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x)))
-                        {
-                            if (gameSize.Contains(draw.Location))
-                            {
-                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(
-                                    OtherVillagesPen, 
-                                    villageLocation.X, 
-                                    villageLocation.Y,
-                                    villageWidth, 
-                                    villageHeight);
-                            }
-                        }
+                        var uneventfulVillages = village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x));
+                        DrawVillageMarkers(e.Graphics, uneventfulVillages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
 
                         // Gained & lost villages:
-                        foreach (Village draw in village.Player.GainedVillages)
-                        {
-                            if (gameSize.Contains(draw.Location))
-                            {
-                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(
-                                    NewVillagesPen,
-                                    villageLocation.X,
-                                    villageLocation.Y,
-                                    villageWidth,
-                                    villageHeight);
-
-                            }
-                        }
-
-                        foreach (Village draw in village.Player.LostVillages)
-                        {
-                            if (gameSize.Contains(draw.Location))
-                            {
-                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(
-                                    new Pen(Color.Violet, 2),
-                                    villageLocation.X,
-                                    villageLocation.Y,
-                                    villageWidth,
-                                    villageHeight);
-
-                            }
-                        }
+                        DrawVillageMarkers(e.Graphics, village.Player.GainedVillages, gameSize, _newVillagesPen, villageWidth, villageHeight);
+                        DrawVillageMarkers(e.Graphics, village.Player.LostVillages, gameSize, _lostVillagesPen, villageWidth, villageHeight);
                     }
                     else if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.HasPlayer)
                     {
                         // Newly barbarian
-                        foreach (Village draw in village.PreviousVillageDetails.Player.Villages)
-                        {
-                            if (gameSize.Contains(draw.Location))
-                            {
-                                Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                                e.Graphics.DrawEllipse(
-                                    OtherVillagesPen, 
-                                    villageLocation.X, 
-                                    villageLocation.Y,
-                                    villageWidth, 
-                                    villageHeight);
-                            }
-                        }
+                        DrawVillageMarkers(e.Graphics, village.PreviousVillageDetails.Player.Villages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
                     }
+                }
+            }
+        }
+
+        private void DrawVillageMarkers(Graphics g, IEnumerable<Village> villages, Rectangle gameSize, Pen pen, int villageWidth, int villageHeight)
+        {
+            foreach (Village draw in villages)
+            {
+                if (gameSize.Contains(draw.Location))
+                {
+                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
+                    g.DrawEllipse(
+                        pen, 
+                        villageLocation.X, 
+                        villageLocation.Y,
+                        villageWidth, 
+                        villageHeight);
                 }
             }
         }
 
         protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
         {
-            if (PinPointedVillage != null)
+            if (_pinPointedVillage != null)
             {
-                if (PinPointedVillage == e.Village)
+                if (_pinPointedVillage == e.Village)
                 {
                     _unpinpointedVillage = e.Village;
-                    PinPointedVillage = null;
-                    SelectedVillage = null;
+                    _pinPointedVillage = null;
+                    _selectedVillage = null;
+                    _lockPinpointedVillage = false;
+                    return true;
+                }
+                else if (_lockPinpointedVillage)
+                {
+                    return false;
                 }
                 else
                 {
-                    PinPointedVillage = e.Village;
+                    _pinPointedVillage = e.Village;
                     _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.PinPoint);
+                    return true;
                 }
-
-                return true;
             }
-            PinPointedVillage = e.Village;
-            return SelectedVillage != e.Village;
+
+            _pinPointedVillage = e.Village;
+            return _selectedVillage != e.Village;
         }
 
-        public override void Dispose()
+        protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            NewVillagesPen.Dispose();
-            LostVillagesPen.Dispose();
-            OtherVillagesPen.Dispose();
-            _pinpointedPen.Dispose();
-            _pinpointedAnimationPen.Dispose();
+            if (e.KeyEventArgs.KeyData == Keys.L && _pinPointedVillage != null)
+            {
+                _lockPinpointedVillage = !_lockPinpointedVillage;
+            }
+            return false;
         }
 
         public override void TimerPaint(MapTimerPaintEventArgs e)
@@ -187,7 +157,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (e.IsActiveManipulator)
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                Village village = PinPointedVillage ?? SelectedVillage;
+                Village village = _pinPointedVillage ?? _selectedVillage;
                 if (village != null)
                 {
                     int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
@@ -202,14 +172,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     if (_pinpointedAnimationCounter > 360) _pinpointedAnimationCounter = 0;
 
                     e.Graphics.DrawEllipse(
-                        _pinpointedPen, 
+                        _lockPinpointedVillage ? _pinpointedAnimationPen : _pinpointedPen, 
                         mapLocation.X - xOff, 
                         mapLocation.Y - xOff,
                         villageWidth + yOff, 
                         villageHeight + yOff);
 
                     e.Graphics.DrawArc(
-                        _pinpointedAnimationPen, 
+                        _lockPinpointedVillage ? _pinpointedPen : _pinpointedAnimationPen, 
                         mapLocation.X - xOff, 
                         mapLocation.Y - xOff,
                         villageWidth + yOff, 
@@ -219,13 +189,30 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 }
             }
         }
-        #endregion
 
-        #region Event Handlers
         private void EventPublisher_VillagesSelected(object sender, Events.VillagesEventArgs e)
         {
             if (e.Tool == VillageTools.PinPoint)
-                PinPointedVillage = e.FirstVillage;
+            {
+                var tribe = e.Villages as Tribe;
+                if (tribe != null)
+                {
+                    
+                }
+                else
+                {
+                    _pinPointedVillage = e.FirstVillage;
+                }
+            }
+        }
+
+        public override void Dispose()
+        {
+            _newVillagesPen.Dispose();
+            _lostVillagesPen.Dispose();
+            _otherVillagesPen.Dispose();
+            _pinpointedPen.Dispose();
+            _pinpointedAnimationPen.Dispose();
         }
         #endregion
     }
