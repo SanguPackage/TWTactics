@@ -180,11 +180,11 @@
     <Compile Include="Controls\Main\Monitoring\MonitoringControl.Designer.cs">
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main\Polygon\PolygonDataSet.cs">
+    <Compile Include="Controls\Main\Polygons\PolygonDataSet.cs">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Main\Polygon\PolygonDataSet.Designer.cs">
+    <Compile Include="Controls\Main\Polygons\PolygonDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
@@ -216,10 +216,10 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\Events\BrowserEventArgs.cs" />
-    <Compile Include="Controls\Main\Polygon\PolygonControl.cs">
+    <Compile Include="Controls\Main\Polygons\PolygonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Main\Polygon\PolygonControl.designer.cs">
+    <Compile Include="Controls\Main\Polygons\PolygonControl.designer.cs">
       <DependentUpon>PolygonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Main\Browser\BrowserControl.cs">
@@ -494,7 +494,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Main\Polygon\PolygonControl.resx">
+    <EmbeddedResource Include="Controls\Main\Polygons\PolygonControl.resx">
       <DependentUpon>PolygonControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -650,16 +650,15 @@
     <Content Include="WorldTemplate\world.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Controls\Main\Polygon\PolygonDataSet.xsc">
+    <None Include="Controls\Main\Polygons\PolygonDataSet.xsc">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Controls\Main\Polygon\PolygonDataSet.xsd">
+    <None Include="Controls\Main\Polygons\PolygonDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <CustomToolNamespace>TribalWars.Controls</CustomToolNamespace>
       <LastGenOutput>PolygonDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Controls\Main\Polygon\PolygonDataSet.xss">
+    <None Include="Controls\Main\Polygons\PolygonDataSet.xss">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
     <None Include="Data\Resources\WorldBackgroundData.dat">

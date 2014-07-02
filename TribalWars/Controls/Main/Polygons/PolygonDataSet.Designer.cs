@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace TribalWars.Controls {
+namespace TribalWars.Controls.Main.Polygons {
     
     
     /// <summary>

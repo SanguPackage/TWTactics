@@ -1,5 +1,4 @@
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,16 +7,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.EditControls;
 using TribalWars.Controls.Display;
 using TribalWars.Data;
 using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
+using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Tools;
 #endregion
 
-namespace TribalWars.Controls.Main.Polygon
+namespace TribalWars.Controls.Main.Polygons
 {
     /// <summary>
     /// Manages the villages inside the BBCodeArea polygons
@@ -308,9 +309,33 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         #endregion
 
         #region GridExPolygon
+        private void GridExPolygon_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        {
+            return;
+
+            if (e.Column.Key == "LineColor")
+            {
+                var polygon = (Polygon)GridExPolygon.CurrentRow.DataRow;
+
+                var colorPicker = new UIColorPicker();
+                colorPicker.SelectedColor = polygon.LineColor;
+                colorPicker.SelectedColorChanged += ColorPicker_SelectedColorChanged;
+                colorPicker.Visible = true;
+                colorPicker.Parent = GridExPolygon;
+                //colorPicker.Location = GridExPolygon.Point
+                
+                Controls.Add(colorPicker);
+            }
+        }
+
+        private void ColorPicker_SelectedColorChanged(object sender, EventArgs eventArgs)
+        {
+            
+        }
+
         private void GridExPolygon_CellEdited(object sender, ColumnActionEventArgs e)
         {
-            var polygon = GridExPolygon.CurrentRow;
+            
 
             
             
@@ -330,11 +355,6 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         }
 
         private void GridExPolygon_CellValueChanged(object sender, ColumnActionEventArgs e)
-        {
-
-        }
-
-        private void GridExPolygon_ColumnButtonClick(object sender, ColumnActionEventArgs e)
         {
 
         }

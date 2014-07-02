@@ -1,7 +1,7 @@
 using TribalWars.Controls.Accordeon;
 using TribalWars.Controls.AttackPlan;
 using TribalWars.Controls.Main;
-using TribalWars.Controls.Main.Polygon;
+using TribalWars.Controls.Main.Polygons;
 
 namespace TribalWars.Forms
 {
@@ -113,7 +113,7 @@ namespace TribalWars.Forms
             this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
             this.Parser = new TribalWars.Controls.Main.ParserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new TribalWars.Controls.Main.Polygon.PolygonControl();
+            this.Polygon = new PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.monitoringControl1 = new TribalWars.Controls.Main.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();

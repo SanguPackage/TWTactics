@@ -6,7 +6,7 @@ using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Villages;
 #endregion
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.Main.Polygons
 {
     partial class PolygonDataSet
     {

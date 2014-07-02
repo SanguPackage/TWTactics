@@ -28,19 +28,19 @@ namespace TribalWars.Controls.TWContextMenu
 
             if (_bbCode.Polygons.Count > 0)
             {
-                _menu.AddCommand(ContextMenuKeys.Polygon.Generate, "Generate all", OnGenerate);
+                _menu.AddCommand(ContextMenuKeys.Polygons.Generate, "Generate all", OnGenerate);
                 _menu.AddSeparator();
-                _menu.AddCommand(ContextMenuKeys.Polygon.Clearall, string.Format("Delete all ({0})", _bbCode.Polygons.Count), OnClearAll);
+                _menu.AddCommand(ContextMenuKeys.Polygons.Clearall, string.Format("Delete all ({0})", _bbCode.Polygons.Count), OnClearAll);
 
                 int visiblePolygons = _bbCode.Polygons.Count(x => x.Visible);
                 if (visiblePolygons > 0)
                 {
-                    _menu.AddCommand(ContextMenuKeys.Polygon.Hideall, string.Format("Hide all visible ({0})", visiblePolygons), OnHideAll);
+                    _menu.AddCommand(ContextMenuKeys.Polygons.Hideall, string.Format("Hide all visible ({0})", visiblePolygons), OnHideAll);
                 }
                 int hiddenPolygons = _bbCode.Polygons.Count(x => !x.Visible);
                 if (hiddenPolygons > 0)
                 {
-                    _menu.AddCommand(ContextMenuKeys.Polygon.Showall, string.Format("Show all hidden ({0})", hiddenPolygons), OnShowAll);
+                    _menu.AddCommand(ContextMenuKeys.Polygons.Showall, string.Format("Show all hidden ({0})", hiddenPolygons), OnShowAll);
                 }
 
                 _menu.AddSeparator();

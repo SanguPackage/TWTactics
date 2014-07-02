@@ -23,14 +23,12 @@ namespace TribalWars.Controls.TWContextMenu
             public const string Playerseperator = "PLAYERSEP";
         }
 
-        public static class Polygon
+        public static class Polygons
         {
             public const string Generate = "GENERATE";
             public const string Delete = "DELETE";
             public const string Edit = "EDIT";
-            public const string Hide = "HIDE";
             public const string Showall = "SHOWALL";
-            public const string Show = "SHOW";
             public const string Clearall = "CLEARALL";
             public const string Hideall = "HIDEALL";
         }

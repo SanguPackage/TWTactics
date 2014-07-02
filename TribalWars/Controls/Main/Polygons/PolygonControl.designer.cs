@@ -1,4 +1,4 @@
-namespace TribalWars.Controls.Main.Polygon
+namespace TribalWars.Controls.Main.Polygons
 {
     partial class PolygonControl
     {
@@ -37,7 +37,7 @@ namespace TribalWars.Controls.Main.Polygon
             this.VisibleImageList = new System.Windows.Forms.ImageList(this.components);
             this.GridExVillageShowFieldChooser = new Janus.Windows.EditControls.UIButton();
             this.GridExVillage = new Janus.Windows.GridEX.GridEX();
-            this.polygonDataSet1 = new TribalWars.Controls.PolygonDataSet();
+            this.polygonDataSet1 = new PolygonDataSet();
             this.ModusPolygon = new Janus.Windows.EditControls.UIButton();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();

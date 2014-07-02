@@ -31,15 +31,15 @@ namespace TribalWars.Controls.TWContextMenu
 
             Debug.Assert(_bbCode.ActivePolygon != null);
 
-            _menu.AddCommand(ContextMenuKeys.Polygon.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
+            _menu.AddCommand(ContextMenuKeys.Polygons.Generate, string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
-            _menu.AddCommand(ContextMenuKeys.Polygon.Delete, "Delete", OnDelete, Shortcut.Del);
+            _menu.AddCommand(ContextMenuKeys.Polygons.Delete, "Delete", OnDelete, Shortcut.Del);
 
             AddChangeNameCommand();
             _menu.AddTextBoxCommand("ChangeGroup", "Group", _bbCode.ActivePolygon.Group, GroupChanged);
             AddChangeColorCommand();
 
-            _menu.AddCommand(ContextMenuKeys.Polygon.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+            _menu.AddCommand(ContextMenuKeys.Polygons.Edit, _bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
         }
 
         private void AddChangeNameCommand()
