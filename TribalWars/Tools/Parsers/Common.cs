@@ -11,7 +11,7 @@ namespace TribalWars.Tools.Parsers
     public static class CommonParsers
     {
         #region Patterns
-        private const string ServerTimePattern = @"\<span id=""serverTime""\>(?<hour>\d{1,2}):(?<minute>\d{1,2}):(?<second>\d{1,2})\</span\>";
+        private const string ServerTimePattern = @"id=""serverTime""\>(?<hour>\d{1,2}):(?<minute>\d{1,2}):(?<second>\d{1,2})\</SPAN\>";
 
         /// <summary>
         /// Holds the data to parse 

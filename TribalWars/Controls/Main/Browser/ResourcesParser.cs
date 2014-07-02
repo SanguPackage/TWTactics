@@ -38,7 +38,7 @@ namespace TribalWars.Controls.Main.Browser
         /// <param name="url">The browser Uri</param>
         public bool Handles(string url)
         {
-            return url.IndexOf("screen=overview_villages&mode=prod") > -1;
+            return url.IndexOf("screen=overview_villages") > -1 && url.IndexOf("mode=prod") > -1;
         }
 
         /// <summary>
