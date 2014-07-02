@@ -38,21 +38,6 @@ namespace TribalWars.Data
 
         #region Properties
         /// <summary>
-        /// Gets the ContextMenu with standard village operations
-        /// </summary>
-        public VillageContextMenu VillageContextMenu { get; private set; }
-
-        /// <summary>
-        /// Gets the ContextMenu with standard player operations
-        /// </summary>
-        public PlayerContextMenu PlayerContextMenu { get; private set; }
-
-        /// <summary>
-        /// Gets the ContextMenu with standard tribe operations
-        /// </summary>
-        public TribeContextMenu TribeContextMenu { get; private set; }
-
-        /// <summary>
         /// Gets all map views
         /// </summary>
         public Dictionary<string, ViewBase> Views { get; private set; }
@@ -234,9 +219,6 @@ namespace TribalWars.Data
         private World()
         {
             UnitSpeed = 1;
-            PlayerContextMenu = new PlayerContextMenu();
-            TribeContextMenu = new TribeContextMenu();
-            VillageContextMenu = new VillageContextMenu();
 
             EventPublisher = new Publisher();
             Map = new Map();

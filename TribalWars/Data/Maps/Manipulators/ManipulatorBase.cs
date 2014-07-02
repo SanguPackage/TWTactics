@@ -71,7 +71,7 @@ namespace TribalWars.Data.Maps.Manipulators
         {
             if (village != null)
             {
-                return World.Default.VillageContextMenu;
+                return new VillageContextMenu();
             }
             return null;
         }
