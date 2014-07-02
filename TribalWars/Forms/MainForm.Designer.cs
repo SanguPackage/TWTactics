@@ -108,8 +108,6 @@ namespace TribalWars.Forms
             this.Map = new TribalWars.Controls.Maps.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Controls.Main.Browser.BrowserControl();
-            this.TabsParser = new Janus.Windows.UI.Tab.UITabPage();
-            this.Parser = new TribalWars.Controls.Main.ParserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.Main.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
@@ -135,7 +133,6 @@ namespace TribalWars.Forms
             this.Tabs.SuspendLayout();
             this.TabsMap.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
-            this.TabsParser.SuspendLayout();
             this.TabsPolygon.SuspendLayout();
             this.TabsMonitoring.SuspendLayout();
             this.FormToolbarContainer.ContentPanel.SuspendLayout();
@@ -889,7 +886,6 @@ namespace TribalWars.Forms
             this.Tabs.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.TabsMap,
             this.TabsBrowser,
-            this.TabsParser,
             this.TabsPolygon,
             this.TabsMonitoring});
             // 
@@ -930,26 +926,6 @@ namespace TribalWars.Forms
             this.browserControl1.Name = "browserControl1";
             this.browserControl1.Size = new System.Drawing.Size(866, 585);
             this.browserControl1.TabIndex = 0;
-            // 
-            // TabsParser
-            // 
-            this.TabsParser.Controls.Add(this.Parser);
-            this.TabsParser.Location = new System.Drawing.Point(1, 21);
-            this.TabsParser.Name = "TabsParser";
-            this.TabsParser.Size = new System.Drawing.Size(866, 585);
-            this.TabsParser.TabStop = true;
-            this.TabsParser.Text = "Parser";
-            // 
-            // Parser
-            // 
-            this.Parser.BackColor = System.Drawing.Color.Transparent;
-            this.Parser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Parser.Location = new System.Drawing.Point(0, 0);
-            this.Parser.Margin = new System.Windows.Forms.Padding(0);
-            this.Parser.Name = "Parser";
-            this.Parser.Size = new System.Drawing.Size(866, 602);
-            this.Parser.TabIndex = 0;
-            this.Parser.Visible = false;
             // 
             // TabsPolygon
             // 
@@ -1053,7 +1029,6 @@ namespace TribalWars.Forms
             this.Tabs.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
-            this.TabsParser.ResumeLayout(false);
             this.TabsPolygon.ResumeLayout(false);
             this.TabsMonitoring.ResumeLayout(false);
             this.FormToolbarContainer.ContentPanel.ResumeLayout(false);
@@ -1118,7 +1093,6 @@ namespace TribalWars.Forms
         //private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
         private MarkersContainerControl markersContainerControl1;
         private TribalWars.Controls.Maps.MapControl Map;
-        private ParserControl Parser;
         private PolygonControl Polygon;
         //private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;
         //private TribalWars.Controls.Main.Monitoring.MonitoringControl monitoringControl1;
@@ -1130,7 +1104,6 @@ namespace TribalWars.Forms
         private Janus.Windows.UI.Tab.UITab Tabs;
         private Janus.Windows.UI.Tab.UITabPage TabsMap;
         private Janus.Windows.UI.Tab.UITabPage TabsBrowser;
-        private Janus.Windows.UI.Tab.UITabPage TabsParser;
         private Janus.Windows.UI.Tab.UITabPage TabsPolygon;
         private Janus.Windows.UI.Tab.UITabPage TabsMonitoring;
         private System.Windows.Forms.TableLayoutPanel LeftNavigationTable;

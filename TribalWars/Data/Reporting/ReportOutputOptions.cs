@@ -9,7 +9,6 @@ namespace TribalWars.Data.Reporting
         public bool AttackingPlayer = true;
         public bool DefendingPlayer = true;
         public bool ResourceDetails;
-        public bool FarmingDetails;
         public bool AttackingTroops = true;
         public bool DefendingTroops = true;
         public bool Buildings = true;
