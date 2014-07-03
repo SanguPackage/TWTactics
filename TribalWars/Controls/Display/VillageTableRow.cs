@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
@@ -64,14 +65,10 @@ namespace TribalWars.Controls.Display
             _village = village;
 
             // Village is currently visible?
-            if (World.Default.Map.Display.IsVisible(village))
-            {
-                Cells.Add(new Cell("0", Properties.Resources.Visible));
-            }
-            else
-            {
-                Cells.Add(new Cell());
-            }
+            Cells.Add(new Cell()
+                {
+                    Image = GetVisibleImage()
+                });
 
             // General village info columns
             if (village.Reports != null && village.Type != VillageType.None)
@@ -133,7 +130,8 @@ namespace TribalWars.Controls.Display
 
         private void EventPublisher_LocationChanged(object sender, Data.Events.MapLocationEventArgs e)
         {
-
+            var image = GetVisibleImage();
+            Cells[0].Image = image;
         }
         #endregion
 
@@ -156,7 +154,17 @@ namespace TribalWars.Controls.Display
         {
             World.Default.Map.EventPublisher.SelectVillages(null, _village, VillageTools.SelectVillage);
         }
+        #endregion
 
+        #region Private
+        private Image GetVisibleImage()
+        {
+            if (World.Default.Map.Display.IsVisible(_village))
+            {
+                return Properties.Resources.Visible;
+            }
+            return null;
+        }
         #endregion
     }
 }

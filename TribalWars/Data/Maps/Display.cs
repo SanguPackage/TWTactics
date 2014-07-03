@@ -124,6 +124,9 @@ namespace TribalWars.Data.Maps
                     _background = null;
                 }
             }
+
+            // TODO: this is not ideal. VisibleRectangle is not updated for all LocationChanged handlers that have already executed
+            _visibleRectangle = GetVisibleGameRectangle(this, _map.Control.ClientRectangle);
         }
 
         /// <summary>
@@ -301,6 +304,13 @@ namespace TribalWars.Data.Maps
             }
         }
 
+        private static Rectangle GetVisibleGameRectangle(Display display, Rectangle mapSize)
+        {
+            Point gameTopLeft = display.GetGameLocation(mapSize.Location);
+            Point gameBottomRight = display.GetGameLocation(mapSize.Location.X + mapSize.Width, mapSize.Y + mapSize.Height);
+            return new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
+        }
+
         /// <summary>
         /// Paints the villages and continent/province lines on a canvas
         /// </summary>
@@ -328,9 +338,7 @@ namespace TribalWars.Data.Maps
                 _g = Graphics.FromImage(_canvas);
                 _g.FillRectangle(display._backgroundBrush, _toPaint);
 
-                Point gameTopLeft = display.GetGameLocation(mapSize.Location);
-                Point gameBottomRight = display.GetGameLocation(mapSize.Location.X + mapSize.Width, mapSize.Y + mapSize.Height);
-                _visibleGameRectangle = new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
+                _visibleGameRectangle = Display.GetVisibleGameRectangle(display, mapSize);
                 // TODO: calculate the best min/map coords here.
                 // _visibleGameRectangle is sometimes negative!!
 
