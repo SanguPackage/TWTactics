@@ -102,7 +102,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets the player XPTable ColumnModel
         /// </summary>
-        public ColumnModel PlayerColumnModel
+        private ColumnModel PlayerColumnModel
         {
             get
             {
@@ -128,7 +128,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets the village XPTable ColumnModel
         /// </summary>
-        public ColumnModel VillageColumnModel
+        private ColumnModel VillageColumnModel
         {
             get
             {
@@ -154,7 +154,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets the tribe XPTable ColumnModel
         /// </summary>
-        public ColumnModel TribeColumnModel
+        private ColumnModel TribeColumnModel
         {
             get
             {
@@ -180,7 +180,7 @@ namespace TribalWars.Controls.Display
         /// <summary>
         /// Gets the report XPTable ColumnModel
         /// </summary>
-        public ColumnModel ReportColumnModel
+        private ColumnModel ReportColumnModel
         {
             get
             {

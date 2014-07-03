@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Villages;
 
@@ -126,6 +127,13 @@ namespace TribalWars.Controls.Display
             Cells.Add(ColumnDisplay.CreateDifferenceCell(prevVillages));
             Cells.Add(new Cell(tribe));
             Cells.Add(tribeRank != 0 ? new Cell(tribeRank) : new Cell());
+
+            World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+        }
+
+        private void EventPublisher_LocationChanged(object sender, Data.Events.MapLocationEventArgs e)
+        {
+
         }
         #endregion
 
@@ -134,7 +142,8 @@ namespace TribalWars.Controls.Display
         {
             if (TableModel != null)
             {
-                World.Default.Map.Manipulators.CurrentManipulator.ShowContextMenu(TableModel.Table, p, _village);
+                var context = new VillageContextMenu(_village);
+                context.Show(TableModel.Table, p);
             }
         }
 
