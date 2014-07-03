@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Players;
@@ -30,6 +31,7 @@ namespace TribalWars.Controls.TWContextMenu
             _player = player;
 
             _menu = new UIContextMenu();
+            _menu.ShowToolTips = InheritableBoolean.True;
 
             _menu.AddCommand("Pinpoint", OnDetails);
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
@@ -46,6 +48,7 @@ namespace TribalWars.Controls.TWContextMenu
                 _menu.AddSeparator();
 
                 var tribeCommand = _menu.AddCommand(player.Tribe.Tag);
+                tribeCommand.ToolTipText = player.Tribe.Tooltip;
                 var tribeContext = new TribeContextMenu(player.Tribe);
                 tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
             }

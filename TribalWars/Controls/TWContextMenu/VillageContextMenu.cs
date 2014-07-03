@@ -42,6 +42,8 @@ namespace TribalWars.Controls.TWContextMenu
             _village = village;
 
             _menu = new UIContextMenu();
+            _menu.ShowToolTips = InheritableBoolean.True;
+
             _menu.AddCommand("Pinpoint", OnDetails);
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
@@ -54,12 +56,14 @@ namespace TribalWars.Controls.TWContextMenu
                 _menu.AddSeparator();
 
                 var playerCommand = _menu.AddCommand(village.Player.Name);
+                playerCommand.ToolTipText = village.Player.Tooltip;
                 var playerContext = new PlayerContextMenu(village.Player, false);
                 playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
 
                 if (village.HasTribe)
                 {
                     var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
+                    tribeCommand.ToolTipText = village.Player.Tribe.Tooltip;
                     var tribeContext = new TribeContextMenu(village.Player.Tribe);
                     tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
                 }
