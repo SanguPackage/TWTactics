@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
+using TribalWars.Data.Maps;
 using TribalWars.Data.Players;
 using TribalWars.Tools;
 #endregion
@@ -26,14 +27,17 @@ namespace TribalWars.Controls.TWContextMenu
         #endregion
 
         #region Constructors
-        public PlayerContextMenu(Player player, bool addTribeCommands)
+        public PlayerContextMenu(Map map, Player player, bool addTribeCommands)
         {
             _player = player;
 
             _menu = new UIContextMenu();
             _menu.ShowToolTips = InheritableBoolean.True;
 
-            _menu.AddCommand("Pinpoint", OnDetails);
+            if (map.Display.IsVisible(player))
+            {
+                _menu.AddCommand("Pinpoint", OnDetails);
+            }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
 
             _menu.AddSeparator();
@@ -49,7 +53,7 @@ namespace TribalWars.Controls.TWContextMenu
 
                 var tribeCommand = _menu.AddCommand(player.Tribe.Tag);
                 tribeCommand.ToolTipText = player.Tribe.Tooltip;
-                var tribeContext = new TribeContextMenu(player.Tribe);
+                var tribeContext = new TribeContextMenu(map, player.Tribe);
                 tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
             }
         }
@@ -73,7 +77,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnCenter(object sender, EventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(null, _player, VillageTools.PinPoint);
+            World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
             World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_player));
         }
 

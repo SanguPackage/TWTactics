@@ -37,14 +37,17 @@ namespace TribalWars.Controls.TWContextMenu
         #endregion
 
         #region Constructors
-        public VillageContextMenu(Village village)
+        public VillageContextMenu(Map map, Village village)
         {
             _village = village;
 
             _menu = new UIContextMenu();
             _menu.ShowToolTips = InheritableBoolean.True;
 
-            _menu.AddCommand("Pinpoint", OnDetails);
+            if (map.Display.IsVisible(village))
+            {
+                _menu.AddCommand("Pinpoint", OnDetails);
+            }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
             _menu.AddCommand("TWStats", OnTwStats);
@@ -57,14 +60,14 @@ namespace TribalWars.Controls.TWContextMenu
 
                 var playerCommand = _menu.AddCommand(village.Player.Name);
                 playerCommand.ToolTipText = village.Player.Tooltip;
-                var playerContext = new PlayerContextMenu(village.Player, false);
+                var playerContext = new PlayerContextMenu(map, village.Player, false);
                 playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
 
                 if (village.HasTribe)
                 {
                     var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
                     tribeCommand.ToolTipText = village.Player.Tribe.Tooltip;
-                    var tribeContext = new TribeContextMenu(village.Player.Tribe);
+                    var tribeContext = new TribeContextMenu(map, village.Player.Tribe);
                     tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
                 }
             }
@@ -87,7 +90,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnCenter(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(null, _village, VillageTools.PinPoint);
+            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
             World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_village));
         }
 

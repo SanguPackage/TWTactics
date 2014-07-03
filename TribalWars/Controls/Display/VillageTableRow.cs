@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
+using TribalWars.Data.Maps;
 using TribalWars.Data.Villages;
 
 using XPTable.Models;
@@ -43,10 +43,11 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a village row in an XPTable
     /// </summary>
-    public class VillageTableRow : Row, TWContextMenu.ITwContextMenu
+    public class VillageTableRow : Row, ITwContextMenu
     {
         #region Fields
         private readonly Village _village;
+        private readonly Map _map;
         #endregion
 
         #region Properties
@@ -60,9 +61,11 @@ namespace TribalWars.Controls.Display
         #endregion
 
         #region Constructors
-        public VillageTableRow(Village village)
+        public VillageTableRow(Map map, Village village)
         {
             _village = village;
+            _map = map;
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // Village is currently visible?
             Cells.Add(new Cell()
@@ -124,10 +127,10 @@ namespace TribalWars.Controls.Display
             Cells.Add(ColumnDisplay.CreateDifferenceCell(prevVillages));
             Cells.Add(new Cell(tribe));
             Cells.Add(tribeRank != 0 ? new Cell(tribeRank) : new Cell());
-
-            World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
+        #endregion
 
+        #region Event Handlers
         private void EventPublisher_LocationChanged(object sender, Data.Events.MapLocationEventArgs e)
         {
             var image = GetVisibleImage();
@@ -140,7 +143,7 @@ namespace TribalWars.Controls.Display
         {
             if (TableModel != null)
             {
-                var context = new VillageContextMenu(_village);
+                var context = new VillageContextMenu(_map, _village);
                 context.Show(TableModel.Table, p);
             }
         }
@@ -152,18 +155,23 @@ namespace TribalWars.Controls.Display
 
         public void DisplayDetails()
         {
-            World.Default.Map.EventPublisher.SelectVillages(null, _village, VillageTools.SelectVillage);
+            _map.EventPublisher.SelectVillages(null, _village, VillageTools.PinPoint);
         }
         #endregion
 
         #region Private
         private Image GetVisibleImage()
         {
-            if (World.Default.Map.Display.IsVisible(_village))
+            if (_map.Display.IsVisible(_village))
             {
                 return Properties.Resources.Visible;
             }
             return null;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("XPTableRow Village = {0} {1}", _village.LocationString, _village.Name);
         }
         #endregion
     }

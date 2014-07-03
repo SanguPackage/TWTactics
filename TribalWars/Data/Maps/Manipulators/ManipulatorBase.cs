@@ -71,7 +71,7 @@ namespace TribalWars.Data.Maps.Manipulators
         {
             if (village != null)
             {
-                return new VillageContextMenu(village);
+                return new VillageContextMenu(_map, village);
             }
             Point gameLocation = World.Default.Map.Display.GetGameLocation(location);
             return new DefaultMapContextMenu(gameLocation);

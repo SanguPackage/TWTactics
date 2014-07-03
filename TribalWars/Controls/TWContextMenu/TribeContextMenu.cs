@@ -25,13 +25,16 @@ namespace TribalWars.Controls.TWContextMenu
         #endregion
 
         #region Constructors
-        public TribeContextMenu(Tribe tribe)
+        public TribeContextMenu(Map map, Tribe tribe)
         {
             _tribe = tribe;
 
             _menu = new UIContextMenu();
 
-            _menu.AddCommand("Pinpoint", OnDetails);
+            if (map.Display.IsVisible(tribe))
+            {
+                _menu.AddCommand("Pinpoint", OnDetails);
+            }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
 
             _menu.AddSeparator();
@@ -71,7 +74,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnCenter(object sender, EventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(null, _tribe, VillageTools.PinPoint);
+            World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _tribe, VillageTools.PinPoint);
             World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_tribe));
         }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
+using TribalWars.Data.Maps;
 using TribalWars.Data.Tribes;
 using XPTable.Models;
 #endregion
@@ -37,6 +38,10 @@ namespace TribalWars.Controls.Display
     /// </summary>
     public class TribeTableRow : Row, ITwContextMenu
     {
+        #region Fields
+        private readonly Map _map;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Gets the tribe the row represents
@@ -45,12 +50,13 @@ namespace TribalWars.Controls.Display
         #endregion
 
         #region Constructors
-        public TribeTableRow(Tribe tribe)
+        public TribeTableRow(Map map, Tribe tribe)
         {
             Tribe = tribe;
+            _map = map;
 
             // player is currently visible?
-            if (World.Default.Map.Display.IsVisible(tribe))
+            if (map.Display.IsVisible(tribe))
             {
                 Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
             }
@@ -90,7 +96,7 @@ namespace TribalWars.Controls.Display
         {
             if (TableModel != null)
             {
-                var context = new TribeContextMenu(Tribe);
+                var context = new TribeContextMenu(_map, Tribe);
                 context.Show(TableModel.Table, p);
             }
         }
@@ -102,7 +108,14 @@ namespace TribalWars.Controls.Display
 
         public void DisplayDetails()
         {
-            World.Default.Map.EventPublisher.SelectTribe(null, Tribe, VillageTools.SelectVillage);
+            _map.EventPublisher.SelectTribe(null, Tribe, VillageTools.PinPoint);
+        }
+        #endregion
+
+        #region Private
+        public override string ToString()
+        {
+            return string.Format("XPTableRow Tribe = {0}", Tribe.Tag);
         }
         #endregion
     }

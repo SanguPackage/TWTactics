@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
+using TribalWars.Data.Maps;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
 using XPTable.Models;
@@ -36,6 +37,7 @@ namespace TribalWars.Controls.Display
     {
         #region Fields
         private readonly Player _player;
+        private readonly Map _map;
         #endregion
 
         #region Properties
@@ -49,19 +51,17 @@ namespace TribalWars.Controls.Display
         #endregion
 
         #region Constructors
-        public PlayerTableRow(Player ply)
+        public PlayerTableRow(Map map, Player ply)
         {
             _player = ply;
+            _map = map;
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // player is currently visible?
-            if (World.Default.Map.Display.IsVisible(ply))
+            Cells.Add(new Cell()
             {
-                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
-            }
-            else
-            {
-                Cells.Add(new Cell());
-            }
+                Image = GetVisibleImage()
+            });
 
             Cells.Add(ColumnDisplay.CreatePlayerCell(ply));
             string tribe = ply.HasTribe ? ply.Tribe.Tag : string.Empty;
@@ -95,12 +95,20 @@ namespace TribalWars.Controls.Display
         }
         #endregion
 
+        #region Event Handlers
+        private void EventPublisher_LocationChanged(object sender, Data.Events.MapLocationEventArgs e)
+        {
+            var image = GetVisibleImage();
+            Cells[0].Image = image;
+        }
+        #endregion
+
         #region ITWContextMenu Members
         public void ShowContext(Point p)
         {
             if (TableModel != null)
             {
-                var context = new PlayerContextMenu(_player, true);
+                var context = new PlayerContextMenu(_map, _player, true);
                 context.Show(TableModel.Table, p);
             }
         }
@@ -112,7 +120,23 @@ namespace TribalWars.Controls.Display
 
         public void DisplayDetails()
         {
-            World.Default.Map.EventPublisher.SelectPlayer(null, _player, VillageTools.SelectVillage);
+            _map.EventPublisher.SelectPlayer(null, _player, VillageTools.PinPoint);
+        }
+        #endregion
+
+        #region Private
+        private Image GetVisibleImage()
+        {
+            if (_map.Display.IsVisible(_player))
+            {
+                return Properties.Resources.Visible;
+            }
+            return null;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("XPTableRow Player = {0}", _player.Name);
         }
         #endregion
     }

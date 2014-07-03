@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Data;
+using TribalWars.Data.Maps;
 using XPTable.Models;
 
 using TribalWars.Data.Players;
@@ -48,6 +50,8 @@ namespace TribalWars.Controls.Display
         #endregion
 
         #region Fields
+        private readonly Map _map;
+
         private ColumnModel _playerColumnModel;
         private ColumnModel _villageColumnModel;
         private ColumnModel _tribeColumnModel;
@@ -211,6 +215,8 @@ namespace TribalWars.Controls.Display
             AutoSelectSingleRow = true;
             DisplayType = ColumnDisplayTypeEnum.Default;
             InitializeComponent();
+
+            _map = World.Default.Map;
         }
         #endregion
 
@@ -276,7 +282,10 @@ namespace TribalWars.Controls.Display
             if (Table.TableModel.Selections.SelectedItems.Length > 0)
             {
                 var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
-                World.Default.Map.EventPublisher.SelectVillages(null, row.GetVillages(), VillageTools.PinPoint);
+
+                Village[] villages = row.GetVillages().ToArray();
+                World.Default.Map.EventPublisher.SelectVillages(null, villages, VillageTools.PinPoint);
+                World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(villages));
             }
         }
         #endregion
@@ -295,7 +304,7 @@ namespace TribalWars.Controls.Display
                 Table.SuspendLayout();
                 foreach (Player ply in players)
                 {
-                    Table.TableModel.Rows.Add(new PlayerTableRow(ply));
+                    Table.TableModel.Rows.Add(new PlayerTableRow(_map, ply));
                 }
                 if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
@@ -319,7 +328,7 @@ namespace TribalWars.Controls.Display
                 Table.SuspendLayout();
                 foreach (Tribe tribe in tribes)
                 {
-                    Table.TableModel.Rows.Add(new TribeTableRow(tribe));
+                    Table.TableModel.Rows.Add(new TribeTableRow(_map, tribe));
                 }
                 if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
                 {
@@ -343,7 +352,7 @@ namespace TribalWars.Controls.Display
                 Table.SuspendLayout();
                 foreach (Village vil in villages)
                 {
-                    Table.TableModel.Rows.Add(new VillageTableRow(vil));
+                    Table.TableModel.Rows.Add(new VillageTableRow(_map, vil));
                 }
                 Table.ResumeLayout();
                 if (AutoSelectSingleRow && Table.TableModel.Rows.Count == 1)
@@ -396,21 +405,21 @@ namespace TribalWars.Controls.Display
                     Table.ColumnModel = TribeColumnModel;
                     foreach (Tribe vil in options.TribeMatches())
                     {
-                        Table.TableModel.Rows.Add(new TribeTableRow(vil));
+                        Table.TableModel.Rows.Add(new TribeTableRow(_map, vil));
                     }
                     break;
                 case SearchForEnum.Villages:
                     Table.ColumnModel = VillageColumnModel;
                     foreach (Village vil in options.VillageMatches())
                     {
-                        Table.TableModel.Rows.Add(new VillageTableRow(vil));
+                        Table.TableModel.Rows.Add(new VillageTableRow(_map, vil));
                     }
                     break;
                 default:
                     Table.ColumnModel = PlayerColumnModel;
                     foreach (Player vil in options.PlayerMatches())
                     {
-                        Table.TableModel.Rows.Add(new PlayerTableRow(vil));
+                        Table.TableModel.Rows.Add(new PlayerTableRow(_map, vil));
                     }
                     break;
             }

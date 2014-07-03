@@ -364,9 +364,9 @@ namespace TribalWars.Forms
                 {
                     var pane = GetNavigationPane(NavigationPanes.Details);
                     LeftNavigation.SelectNavigationPage(pane.Key);
-                }
 
-                Tabs.SelectedTab = TabsMap;
+                    Tabs.SelectedTab = TabsMap;
+                }
             }
         }
         #endregion

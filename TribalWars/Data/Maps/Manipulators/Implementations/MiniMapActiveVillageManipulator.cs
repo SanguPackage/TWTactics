@@ -44,12 +44,15 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             _mainMap = mainMap;
             mainMap.EventPublisher.VillagesSelected += EventPublisher_MainMapVillagesSelected;
+            mainMap.EventPublisher.PlayerSelected += EventPublisher_MainMapVillagesSelected;
+            mainMap.EventPublisher.TribeSelected += EventPublisher_MainMapVillagesSelected;
+
             mainMap.EventPublisher.LocationChanged += EventPublisher_MainMapLocationChanged;
             mainMap.EventPublisher.DisplayTypeChanged += EventPublisher_MainMapDisplayTypeChanged;
             map.EventPublisher.LocationChanged += EventPublisher_OwnLocationChanged;
 
             _mainMapActiveBorderPen = new Pen(Color.Yellow);
-            _mainMapSelectedVillagesPen = new Pen(Color.Black);
+            _mainMapSelectedVillagesPen = new Pen(Color.White);
             _continentFont = new Font("Verdana", 18);
             _activeVillagePen = new Pen(Color.Black, 3);
             _activeVillagePen2 = new Pen(Color.White, 3);
