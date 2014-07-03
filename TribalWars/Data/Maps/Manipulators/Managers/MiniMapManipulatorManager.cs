@@ -11,7 +11,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
     public class MiniMapManipulatorManager : ManipulatorManagerBase
     {
         #region Fields
-        private MiniMapActiveVillageManipulator _activeVillage;
+        private readonly MiniMapActiveVillageManipulator _activeVillage;
         #endregion
 
         #region Constructors
@@ -25,5 +25,10 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             ShowTooltip = false;
         }
         #endregion
+
+        public override Controls.TWContextMenu.IContextMenu GetContextMenu(System.Drawing.Point location, Villages.Village village)
+        {
+            return null;
+        }
     }
 }
