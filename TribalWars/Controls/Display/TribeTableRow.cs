@@ -1,13 +1,10 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Tribes;
-
 using XPTable.Models;
 #endregion
 
@@ -38,31 +35,24 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a tribe row in an XPTable
     /// </summary>
-    public class TribeTableRow : XPTable.Models.Row, TribalWars.Controls.TWContextMenu.ITWContextMenu
+    public class TribeTableRow : Row, ITwContextMenu
     {
-        #region Fields
-        private Tribe _tribe;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the tribe the row represents
         /// </summary>
-        public Tribe Tribe
-        {
-            get { return _tribe; }
-        }
+        public Tribe Tribe { get; private set; }
         #endregion
 
         #region Constructors
         public TribeTableRow(Tribe tribe)
         {
-            _tribe = tribe;
+            Tribe = tribe;
 
             // player is currently visible?
             if (World.Default.Map.Display.IsVisible(tribe))
             {
-                Cells.Add(new Cell(string.Empty, TribalWars.Properties.Resources.Visible));
+                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
             }
             else
             {
@@ -95,33 +85,24 @@ namespace TribalWars.Controls.Display
         }
         #endregion
 
-        #region Event Handlers
-        #endregion
-
-        #region Public Methods
-        #endregion
-
-        #region Private Implementation
-        #endregion
-
         #region ITWContextMenu Members
         public void ShowContext(Point p)
         {
             if (TableModel != null)
             {
-                var context = new TribeContextMenu(_tribe);
+                var context = new TribeContextMenu(Tribe);
                 context.Show(TableModel.Table, p);
             }
         }
 
-        public IEnumerable<TribalWars.Data.Villages.Village> GetVillages()
+        public IEnumerable<Data.Villages.Village> GetVillages()
         {
-            return _tribe;
+            return Tribe;
         }
 
         public void DisplayDetails()
         {
-            World.Default.Map.EventPublisher.SelectTribe(null, _tribe, VillageTools.SelectVillage);
+            World.Default.Map.EventPublisher.SelectTribe(null, Tribe, VillageTools.SelectVillage);
         }
         #endregion
     }

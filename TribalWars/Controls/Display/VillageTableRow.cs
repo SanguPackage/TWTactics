@@ -41,7 +41,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a village row in an XPTable
     /// </summary>
-    public class VillageTableRow : Row, TWContextMenu.ITWContextMenu
+    public class VillageTableRow : Row, TWContextMenu.ITwContextMenu
     {
         #region Fields
         private readonly Village _village;
@@ -127,15 +127,6 @@ namespace TribalWars.Controls.Display
             Cells.Add(new Cell(tribe));
             Cells.Add(tribeRank != 0 ? new Cell(tribeRank) : new Cell());
         }
-        #endregion
-
-        #region Event Handlers
-        #endregion
-
-        #region Public Methods
-        #endregion
-
-        #region Private Implementation
         #endregion
 
         #region ITWContextMenu Members

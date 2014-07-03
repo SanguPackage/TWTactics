@@ -229,7 +229,7 @@ namespace TribalWars.Controls.Display
                     var vils = new List<Village>();
                     foreach (Row row in Table.TableModel.Selections.SelectedItems)
                     {
-                        vils.AddRange(((ITWContextMenu)row).GetVillages());
+                        vils.AddRange(((ITwContextMenu)row).GetVillages());
                     }
                     menu.Show(Table, e.Location, vils);
                 }
@@ -240,7 +240,7 @@ namespace TribalWars.Controls.Display
                     Table.TableModel.Selections.SelectCells(Table.RowIndexAt(e.Location), 0, Table.RowIndexAt(e.Location), Table.ColumnModel.Columns.Count - 1);
                     if (Table.TableModel.Selections.SelectedItems.Length == 1)
                     {
-                        var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                        var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
                         row.ShowContext(e.Location);
                     }
                 }
@@ -250,7 +250,7 @@ namespace TribalWars.Controls.Display
                 // Raise the select event
                 if (Table.TableModel.Selections.SelectedItems.Length == 1)
                 {
-                    var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                    var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
                     switch (RowSelectionAction)
                     {
                         case RowSelectionActionEnum.RaiseSelectEvent:
@@ -275,7 +275,7 @@ namespace TribalWars.Controls.Display
         {
             if (Table.TableModel.Selections.SelectedItems.Length > 0)
             {
-                var row = (ITWContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
                 World.Default.Map.EventPublisher.SelectVillages(null, row.GetVillages(), VillageTools.PinPoint);
             }
         }

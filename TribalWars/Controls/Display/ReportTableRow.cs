@@ -4,7 +4,6 @@ using System.Drawing;
 using TribalWars.Data;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Reporting;
-
 using XPTable.Models;
 
 namespace TribalWars.Controls.Display
@@ -31,7 +30,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents an XPTable row for a report
     /// </summary>
-    public class ReportTableRow : Row, TWContextMenu.ITWContextMenu
+    public class ReportTableRow : Row, TWContextMenu.ITwContextMenu
     {
         #region Fields
         private readonly Report _report;
@@ -77,12 +76,6 @@ namespace TribalWars.Controls.Display
             }
             Cells.Add(new Cell(report.Date));
         }
-        #endregion
-
-        #region Event Handlers
-        #endregion
-
-        #region Public Methods
         #endregion
 
         #region Private Implementation

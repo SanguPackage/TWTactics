@@ -1,9 +1,6 @@
 #region Imports
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
 #endregion
 
 namespace TribalWars.Controls.TWContextMenu
@@ -11,7 +8,7 @@ namespace TribalWars.Controls.TWContextMenu
     /// <summary>
     /// Implement this interface to show the Village, Player or Tribe context menu
     /// </summary>
-    public interface ITWContextMenu
+    public interface ITwContextMenu
     {
         /// <summary>
         /// Shows the context menu
@@ -22,7 +19,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// <summary>
         /// Gets a list of all villages
         /// </summary>
-        IEnumerable<TribalWars.Data.Villages.Village> GetVillages();
+        IEnumerable<Data.Villages.Village> GetVillages();
 
         /// <summary>
         /// Displays the details for the context

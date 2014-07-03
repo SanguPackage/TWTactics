@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
-
 using XPTable.Models;
 
 namespace TribalWars.Controls.Display
@@ -34,7 +32,7 @@ namespace TribalWars.Controls.Display
     /// <summary>
     /// Represents a player row in an XPTable
     /// </summary>
-    public class PlayerTableRow : Row, TWContextMenu.ITWContextMenu
+    public class PlayerTableRow : Row, ITwContextMenu
     {
         #region Fields
         private readonly Player _player;
@@ -97,15 +95,6 @@ namespace TribalWars.Controls.Display
         }
         #endregion
 
-        #region Event Handlers
-        #endregion
-
-        #region Public Methods
-        #endregion
-
-        #region Private Implementation
-        #endregion
-
         #region ITWContextMenu Members
         public void ShowContext(Point p)
         {
@@ -120,6 +109,7 @@ namespace TribalWars.Controls.Display
         {
             return _player;
         }
+
         public void DisplayDetails()
         {
             World.Default.Map.EventPublisher.SelectPlayer(null, _player, VillageTools.SelectVillage);
