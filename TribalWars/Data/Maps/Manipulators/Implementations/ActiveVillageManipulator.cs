@@ -18,6 +18,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
     internal class ActiveVillageManipulator : ManipulatorBase
     {
         #region Fields
+        private Tribe _pinPointedTribe;
         private Village _selectedVillage;
         private Village _pinPointedVillage;
         private Village _unpinpointedVillage;
@@ -71,28 +72,39 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
-                Village village = _pinPointedVillage ?? _selectedVillage;
-                if (village != null)
+                if (_pinPointedTribe != null)
                 {
                     Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
 
                     int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
                     int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
-                    if (village.HasPlayer)
+                    DrawVillageMarkers(e.Graphics, _pinPointedTribe, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                }
+                else
+                {
+                    Village village = _pinPointedVillage ?? _selectedVillage;
+                    if (village != null)
                     {
-                        // other villages
-                        var uneventfulVillages = village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x));
-                        DrawVillageMarkers(e.Graphics, uneventfulVillages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                        Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
 
-                        // Gained & lost villages:
-                        DrawVillageMarkers(e.Graphics, village.Player.GainedVillages, gameSize, _newVillagesPen, villageWidth, villageHeight);
-                        DrawVillageMarkers(e.Graphics, village.Player.LostVillages, gameSize, _lostVillagesPen, villageWidth, villageHeight);
-                    }
-                    else if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.HasPlayer)
-                    {
-                        // Newly barbarian
-                        DrawVillageMarkers(e.Graphics, village.PreviousVillageDetails.Player.Villages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                        int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                        int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+
+                        if (village.HasPlayer)
+                        {
+                            var uneventfulVillages = village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x));
+                            DrawVillageMarkers(e.Graphics, uneventfulVillages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+
+                            // Gained & lost villages:
+                            DrawVillageMarkers(e.Graphics, village.Player.GainedVillages, gameSize, _newVillagesPen, villageWidth, villageHeight);
+                            DrawVillageMarkers(e.Graphics, village.Player.LostVillages, gameSize, _lostVillagesPen, villageWidth, villageHeight);
+                        }
+                        else if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.HasPlayer)
+                        {
+                            // Newly barbarian
+                            DrawVillageMarkers(e.Graphics, village.PreviousVillageDetails.Player.Villages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                        }
                     }
                 }
             }
@@ -140,6 +152,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
 
             _pinPointedVillage = e.Village;
+            if (_pinPointedTribe != null)
+            {
+                _pinPointedTribe = null;
+                _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.PinPoint);
+                return true;
+            }
+            
             return _selectedVillage != e.Village;
         }
 
@@ -197,10 +216,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 var tribe = e.Villages as Tribe;
                 if (tribe != null)
                 {
-                    
+                    _pinPointedTribe = tribe;
+                    _pinPointedVillage = null;
+                    _selectedVillage = null;
+                    _lockPinpointedVillage = false;
                 }
                 else
-                {
+                {                    
+                    _pinPointedTribe = null;
                     _pinPointedVillage = e.FirstVillage;
                 }
             }
