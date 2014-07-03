@@ -128,6 +128,19 @@ namespace TribalWars.Data.Tribes
                 str.AppendLine();
                 str.AppendFormat("Players: {0}", Common.GetPrettyNumber(Players.Count));
 
+                if (Players.Count > 0)
+                {
+                    str.AppendLine();
+                    str.AppendLine();
+                    str.AppendLine("Strongest:");
+                    string strongestPlayers = "";
+                    foreach (var player in Players.OrderByDescending(x => x.Points).Take(5))
+                    {
+                        strongestPlayers += ", " + player.Name;
+                    }
+                    str.Append(strongestPlayers.Substring(2));
+                }
+
                 return str.ToString();
             }
         }
