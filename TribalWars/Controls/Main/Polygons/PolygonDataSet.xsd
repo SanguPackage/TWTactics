@@ -28,7 +28,6 @@
               <xs:element name="POLYGONGROUP" msprop:Generator_ColumnVarNameInTable="columnPOLYGONGROUP" msprop:Generator_ColumnPropNameInRow="POLYGONGROUP" msprop:Generator_ColumnPropNameInTable="POLYGONGROUPColumn" msprop:Generator_UserColumnName="POLYGONGROUP" type="xs:string" minOccurs="0" />
               <xs:element name="POLYGONVISIBLE" msprop:Generator_ColumnVarNameInTable="columnPOLYGONVISIBLE" msprop:Generator_ColumnPropNameInRow="POLYGONVISIBLE" msprop:Generator_ColumnPropNameInTable="POLYGONVISIBLEColumn" msprop:Generator_UserColumnName="POLYGONVISIBLE" type="xs:boolean" />
               <xs:element name="ISVISIBLE" msprop:Generator_ColumnVarNameInTable="columnISVISIBLE" msprop:Generator_ColumnPropNameInRow="ISVISIBLE" msprop:Generator_ColumnPropNameInTable="ISVISIBLEColumn" msprop:Generator_UserColumnName="ISVISIBLE" type="xs:boolean" />
-              <xs:element name="TYPE" msprop:Generator_ColumnVarNameInTable="columnTYPE" msprop:Generator_ColumnPropNameInRow="TYPE" msprop:Generator_ColumnPropNameInTable="TYPEColumn" msprop:Generator_UserColumnName="TYPE" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

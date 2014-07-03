@@ -189,64 +189,6 @@ namespace TribalWars.Data.Villages
         public Village PreviousVillageDetails { get; private set; }
 
         /// <summary>
-        /// Gets the user defined type of the village
-        /// </summary>
-        public Image TypeImage
-        {
-            get
-            {
-                if (Type.HasFlag(VillageType.Noble))
-                    return Units.Images.Noble;
-
-                if (Type.HasFlag(VillageType.Attack))
-                    return Units.Images.Axe;
-
-                if (Type.HasFlag(VillageType.Defense))
-                    return Properties.Resources.Defense;
-
-                if (Type.HasFlag(VillageType.Scout))
-                    return Units.Images.Scout;
-
-                if (Type.HasFlag(VillageType.Farm))
-                    return Buildings.Images.Farm;
-
-                if (Type.HasFlag(VillageType.Comments))
-                    return Maps.Icons.Other.Note;
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the user defined type of the village
-        /// </summary>
-        public string TypeString
-        {
-            get
-            {
-                if (Type.HasFlag(VillageType.Noble))
-                    return "Nobles";
-
-                if (Type.HasFlag(VillageType.Attack))
-                    return "Offensive";
-
-                if (Type.HasFlag(VillageType.Defense))
-                    return "Defensive";
-
-                if (Type.HasFlag(VillageType.Scout))
-                    return "Scouts";
-
-                if (Type.HasFlag(VillageType.Farm))
-                    return "Farm";
-
-                if (Type.HasFlag(VillageType.Comments))
-                    return "Comments";
-
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the purpose of a village
         /// </summary>
         public VillageType Type
@@ -295,7 +237,7 @@ namespace TribalWars.Data.Villages
                 string pointsPrefix;
                 if (Type != VillageType.None && Type != VillageType.Comments)
                 {
-                    pointsPrefix = TypeString;
+                    pointsPrefix = Type.GetDescription();
                 }
                 else
                 {

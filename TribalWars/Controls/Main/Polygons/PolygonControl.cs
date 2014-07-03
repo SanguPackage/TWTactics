@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using TribalWars.Controls.Display;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
@@ -39,6 +40,7 @@ namespace TribalWars.Controls.Main.Polygons
         public void Initialize()
         {
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
+            World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             SetGridExVillageTooltips();
         }
         #endregion
@@ -69,6 +71,18 @@ namespace TribalWars.Controls.Main.Polygons
 
             GridExVillage.DataSource = PolygonDataSet.CreateDataSet(e.Polygons);
             GridExVillage.MoveFirst();
+        }
+
+        /// <summary>
+        /// Update visibility of villages after map move
+        /// </summary>
+        private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
+        {
+            var villageDs = (PolygonDataSet) GridExVillage.DataSource;
+            foreach (var record in villageDs.VILLAGE.Rows.OfType<PolygonDataSet.VILLAGERow>())
+            {
+                record.ISVISIBLE = World.Default.Map.Display.IsVisible(record.Village);
+            }
         }
 
         /// <summary>
@@ -138,9 +152,9 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                             villagesExported++;
 
                             var villageRow = (PolygonDataSet.VILLAGERow)((DataRowView)row.DataRow).Row;
-                            if (!string.IsNullOrWhiteSpace(villageRow.Village.TypeString))
+                            if (!string.IsNullOrWhiteSpace(villageRow.Village.Type.GetDescription()))
                             {
-                                str.AppendLine(villageRow.BBCODE + " (" + villageRow.Village.TypeString + ")");
+                                str.AppendLine(villageRow.BBCODE + " (" + villageRow.Village.Type.GetDescription() + ")");
                             }
                             else
                             {
@@ -170,9 +184,44 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             if (e.Row != null && e.Row.RowType == RowType.Record)
             {
                 PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
-                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.SelectVillage);
+                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
+            }
+            else
+            {
+                GridExVillage.ContextMenu = null;
             }
         }
+
+        /// <summary>
+        /// Provide right click context menu
+        /// </summary>
+        private void GridExVillage_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var row = GridExVillage.CurrentRow;
+                if (row != null && row.RowType == RowType.Record)
+                {
+                    PolygonDataSet.VILLAGERow record = GetVillageRow(row);
+
+                    var contextMenu = new VillageContextMenu(World.Default.Map, record.Village, () => GridExVillage.Refresh());
+                    contextMenu.Show(GridExVillage, e.Location);
+                }
+            }
+        }
+
+         /// <summary>
+         /// PinPoint the village
+         /// </summary>
+         private void GridExVillage_RowDoubleClick(object sender, RowActionEventArgs e)
+         {
+             if (e.Row.RowType == RowType.Record)
+             {
+                 PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                 World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
+                 World.Default.Map.SetCenter(row.Village);
+             }
+         }
 
         /// <summary>
         /// Special formatting, image display, tooltips
@@ -197,14 +246,14 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 // SetVillageType()
                 if (record.Village.Type != VillageType.None)
                 {
-                    e.Row.Cells["TYPE"].Image = record.Village.TypeImage;
+                    e.Row.Cells["TYPE"].Image = record.Village.Type.GetImage();
                     if (record.Village.Type.HasFlag(VillageType.Comments))
                     {
                         e.Row.Cells["TYPE"].ToolTipText = record.Village.Comments;
                     }
                     else
                     {
-                        e.Row.Cells["TYPE"].ToolTipText = record.Village.TypeString;
+                        e.Row.Cells["TYPE"].ToolTipText = record.Village.Type.GetDescription();
                     }
                 }
 
@@ -260,28 +309,20 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         }
 
         /// <summary>
-        /// PinPoint the village
-        /// </summary>
-        private void GridExVillage_RowDoubleClick(object sender, RowActionEventArgs e)
-        {
-            if (e.Row.RowType == RowType.Record)
-            {
-                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
-                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
-            }
-        }
-
-        /// <summary>
         /// Check visible polygons by default
         /// </summary>
         private void GridExVillage_LoadingRow(object sender, RowLoadEventArgs e)
         {
             if (e.Row.RowType == RowType.GroupHeader && e.Row.Parent != null)
             {
-                var polygon = GetVillageRow(e.Row.GetChildRecords().First()).Polygon;
-                if (polygon.Visible)
+                GridEXRow row = e.Row.GetChildRecords().FirstOrDefault();
+                if (row != null)
                 {
-                    e.Row.CheckState = RowCheckState.Checked;
+                    var polygon = GetVillageRow(row).Polygon;
+                    if (polygon.Visible)
+                    {
+                        e.Row.CheckState = RowCheckState.Checked;
+                    }
                 }
             }
         }

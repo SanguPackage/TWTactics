@@ -32,7 +32,6 @@ namespace TribalWars.Controls.Main.Polygons
             row.Village = village;
             row.Polygon = polygon;
 
-            row.TYPE = village.TypeString;
             row.KINGDOM = village.Kingdom.ToString(CultureInfo.InvariantCulture);
             row.LOCATION = village.LocationString;
             row.NAME = village.Name;

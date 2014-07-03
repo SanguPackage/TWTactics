@@ -73,6 +73,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.X, _mainMapSelectedVillage.Y);
 
                 _activeVillageAnimationPen = ReferenceEquals(_activeVillageAnimationPen, _activeVillagePen2) ? _activeVillagePen : _activeVillagePen2;
+
                 PaintCross(e.Graphics, _activeVillageAnimationPen, villageLocation, villageWidth, villageHeight);
             }
         }

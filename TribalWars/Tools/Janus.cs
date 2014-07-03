@@ -33,6 +33,13 @@ namespace TribalWars.Tools
             menu.Commands.Add(sep);
         }
 
+        public static UICommand AddCommand(this UIContextMenu menu, string text, CommandEventHandler handler, Image image)
+        {
+            var command = AddCommand(menu, text, handler);
+            command.Image = image;
+            return command;
+        }
+
         public static UICommand AddCommand(this UIContextMenu menu, string text, CommandEventHandler handler, Icon icon)
         {
             return AddCommand(menu, text, handler, null, icon);

@@ -133,6 +133,7 @@ namespace TribalWars.Controls.Main.Polygons
             this.GridExVillage.LoadingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_LoadingRow);
             this.GridExVillage.GroupsChanging += new Janus.Windows.GridEX.GroupsChangingEventHandler(this.GridExVillage_GroupsChanging);
             this.GridExVillage.CurrentCellChanging += new Janus.Windows.GridEX.CurrentCellChangingEventHandler(this.GridExVillage_CurrentCellChanging);
+            this.GridExVillage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridExVillage_MouseClick);
             // 
             // polygonDataSet1
             // 

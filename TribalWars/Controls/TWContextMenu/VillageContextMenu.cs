@@ -34,12 +34,16 @@ namespace TribalWars.Controls.TWContextMenu
         private readonly Village _village;
 
         private readonly UIContextMenu _menu;
+        private readonly Map _map;
+        private readonly Action _onVillageTypeChangeDelegate;
         #endregion
 
         #region Constructors
-        public VillageContextMenu(Map map, Village village)
+        public VillageContextMenu(Map map, Village village, Action onVillageTypeChangeDelegate = null)
         {
             _village = village;
+            _map = map;
+            _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
 
             _menu = new UIContextMenu();
             _menu.ShowToolTips = InheritableBoolean.True;
@@ -49,6 +53,15 @@ namespace TribalWars.Controls.TWContextMenu
                 _menu.AddCommand("Pinpoint", OnDetails);
             }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+            
+            _menu.AddSeparator();
+            UICommand villageTypes =_menu.AddCommand("Type", null, village.Type.GetImage());
+            AddVillageTypeCommand(villageTypes, VillageType.Attack, village.Type);
+            AddVillageTypeCommand(villageTypes, VillageType.Defense, village.Type);
+            AddVillageTypeCommand(villageTypes, VillageType.Noble, village.Type);
+            AddVillageTypeCommand(villageTypes, VillageType.Scout, village.Type);
+            AddVillageTypeCommand(villageTypes, VillageType.Farm, village.Type);
+
             _menu.AddSeparator();
             _menu.AddCommand("TWStats", OnTwStats);
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
@@ -72,6 +85,40 @@ namespace TribalWars.Controls.TWContextMenu
                 }
             }
         }
+
+        /// <summary>
+        /// Allow change between VillageTypes (Offensive, Defensive, Nobles, ...)
+        /// </summary>
+        private void AddVillageTypeCommand(UICommand menu, VillageType typeToSet, VillageType typeCurrent)
+        {
+            bool isCurrentlySet = typeCurrent.HasFlag(typeToSet);
+
+            var command = new UICommand("", typeToSet.GetDescription());
+            command.Tag = typeToSet;
+            command.Image = typeToSet.GetImage();
+            command.Checked = isCurrentlySet ? InheritableBoolean.True : InheritableBoolean.False;
+            command.Click += OnVillageTypeChange;
+            menu.Commands.Add(command);
+        }
+
+        private void OnVillageTypeChange(object sender, CommandEventArgs e)
+        {
+            var changeTo = (VillageType) e.Command.Tag;
+            if (_village.Type.HasFlag(changeTo))
+            {
+                _village.Type -= changeTo;
+            }
+            else
+            {
+                _village.Type = changeTo;
+            }
+            _map.Display.ResetCache();
+
+            if (_onVillageTypeChangeDelegate != null)
+            {
+                _onVillageTypeChangeDelegate();
+            }
+        }
         #endregion
 
         #region Public Methods
@@ -91,7 +138,7 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnCenter(object sender, CommandEventArgs e)
         {
             World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
-            World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_village));
+            World.Default.Map.SetCenter(_village);
         }
 
         /// <summary>
