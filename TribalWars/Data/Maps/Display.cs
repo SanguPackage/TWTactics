@@ -146,6 +146,7 @@ namespace TribalWars.Data.Maps
             // TODO: all calls to this one need to be evaluated
             //       for some we can probably do a partial redraw
             _background = null;
+            _map.Control.Invalidate();
         }
         #endregion
 
