@@ -358,7 +358,7 @@ namespace TribalWars.Forms
 
         private void EventPublisher_VillagesSelected(object sender, VillagesEventArgs e)
         {
-            if (e.Tool == VillageTools.SelectVillage && sender is string && (string)sender == VillageContextMenu.OnDetailsHack)
+            if (e.Tool == VillageTools.PinPoint && sender is string && (string)sender == VillageContextMenu.OnDetailsHack)
             {
                 var pane = GetNavigationPane(NavigationPanes.Details);
                 LeftNavigation.SelectNavigationPage(pane.Key);

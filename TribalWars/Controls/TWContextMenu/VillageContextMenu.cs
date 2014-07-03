@@ -39,8 +39,8 @@ namespace TribalWars.Controls.TWContextMenu
             _village = village;
 
             _menu = new UIContextMenu();
-            _menu.AddCommand("Details", OnDetails);
-            _menu.AddCommand("Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint", OnDetails);
+            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
             _menu.AddCommand("TWStats", OnTwStats);
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
@@ -57,6 +57,9 @@ namespace TribalWars.Controls.TWContextMenu
                 if (village.HasTribe)
                 {
                     var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
+                    var tribeContext = new TribeContextMenu(village.Player.Tribe);
+                    tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
+
                 }
             }
         }
@@ -111,7 +114,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnDetails(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.SelectVillage);
+            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
         }
 
         private void SetClipboard(string text)

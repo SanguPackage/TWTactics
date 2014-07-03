@@ -31,8 +31,8 @@ namespace TribalWars.Controls.TWContextMenu
 
             _menu = new UIContextMenu();
 
-            _menu.AddCommand("Details", OnDetails);
-            _menu.AddCommand("Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint", OnDetails);
+            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
 
             _menu.AddSeparator();
 
@@ -41,11 +41,13 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
             _menu.AddCommand("Operation", OnBbCodeOperation, Properties.Resources.clipboard);
 
-            if (addTribeCommands)
+            if (addTribeCommands && player.HasTribe)
             {
-                // TODO: PlayerContextMenu to implement
                 _menu.AddSeparator();
 
+                var tribeCommand = _menu.AddCommand(player.Tribe.Tag);
+                var tribeContext = new TribeContextMenu(player.Tribe);
+                tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
             }
         }
         #endregion
@@ -109,7 +111,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnDetails(object sender, EventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.SelectVillage);
+            World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
         }
 
         private void SetClipboard(string text)

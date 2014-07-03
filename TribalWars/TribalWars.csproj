@@ -280,12 +280,8 @@
     <Compile Include="Controls\Common\VillagePlayerTribeFinderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\TWContextMenu\TribeContextMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TWContextMenu\PlayerContextMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\TWContextMenu\TribeContextMenu.cs" />
+    <Compile Include="Controls\TWContextMenu\PlayerContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\ITWContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\IContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\VillageContextMenu.cs">

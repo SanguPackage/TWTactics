@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
 
@@ -43,6 +44,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _pinpointedAnimationPen = new Pen(Color.Black, 2);
 
             _map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
+            _map.EventPublisher.PlayerSelected += EventPublisher_VillagesSelected;
+            _map.EventPublisher.TribeSelected += EventPublisher_VillagesSelected;
         }
         #endregion
 
@@ -72,28 +75,34 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
+                Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
+
+                int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+
                 if (_pinPointedTribe != null)
                 {
-                    Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
+                    foreach (Player player in _pinPointedTribe.Players)
+                    {
+                        IEnumerable<Village> uneventfulVillages = GetUneventfulVillages(player);
+                        DrawVillageMarkers(e.Graphics, uneventfulVillages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                    }
 
-                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-
-                    DrawVillageMarkers(e.Graphics, _pinPointedTribe, gameSize, _otherVillagesPen, villageWidth, villageHeight);
+                    // Gained & lost villages:
+                    foreach (Player player in _pinPointedTribe.Players)
+                    {
+                        DrawVillageMarkers(e.Graphics, player.GainedVillages, gameSize, _newVillagesPen, villageWidth, villageHeight);
+                        DrawVillageMarkers(e.Graphics, player.LostVillages, gameSize, _lostVillagesPen, villageWidth, villageHeight);
+                    }
                 }
                 else
                 {
                     Village village = _pinPointedVillage ?? _selectedVillage;
                     if (village != null)
                     {
-                        Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
-
-                        int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                        int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-
                         if (village.HasPlayer)
                         {
-                            var uneventfulVillages = village.Player.Where(x => !village.Player.GainedVillages.Contains(x) && !village.Player.LostVillages.Contains(x));
+                            IEnumerable<Village> uneventfulVillages = GetUneventfulVillages(village.Player);
                             DrawVillageMarkers(e.Graphics, uneventfulVillages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
 
                             // Gained & lost villages:
@@ -106,23 +115,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                             DrawVillageMarkers(e.Graphics, village.PreviousVillageDetails.Player.Villages, gameSize, _otherVillagesPen, villageWidth, villageHeight);
                         }
                     }
-                }
-            }
-        }
-
-        private void DrawVillageMarkers(Graphics g, IEnumerable<Village> villages, Rectangle gameSize, Pen pen, int villageWidth, int villageHeight)
-        {
-            foreach (Village draw in villages)
-            {
-                if (gameSize.Contains(draw.Location))
-                {
-                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
-                    g.DrawEllipse(
-                        pen, 
-                        villageLocation.X, 
-                        villageLocation.Y,
-                        villageWidth, 
-                        villageHeight);
                 }
             }
         }
@@ -151,14 +143,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 }
             }
 
-            _pinPointedVillage = e.Village;
-            if (_pinPointedTribe != null)
-            {
-                _pinPointedTribe = null;
-                _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.PinPoint);
-                return true;
-            }
-            
+            _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.PinPoint);
             return _selectedVillage != e.Village;
         }
 
@@ -236,6 +221,30 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _otherVillagesPen.Dispose();
             _pinpointedPen.Dispose();
             _pinpointedAnimationPen.Dispose();
+        }
+        #endregion
+
+        #region Privates
+        private IEnumerable<Village> GetUneventfulVillages(Player player)
+        {
+            return player.Where(x => !player.GainedVillages.Contains(x) && !player.LostVillages.Contains(x));
+        }
+
+        private void DrawVillageMarkers(Graphics g, IEnumerable<Village> villages, Rectangle gameSize, Pen pen, int villageWidth, int villageHeight)
+        {
+            foreach (Village draw in villages)
+            {
+                if (gameSize.Contains(draw.Location))
+                {
+                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
+                    g.DrawEllipse(
+                        pen,
+                        villageLocation.X,
+                        villageLocation.Y,
+                        villageWidth,
+                        villageHeight);
+                }
+            }
         }
         #endregion
     }

@@ -1,41 +1,44 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Maps;
+using TribalWars.Tools;
 
 namespace TribalWars.Controls.TWContextMenu
 {
     /// <summary>
     /// ContextMenu with general Tribe operations
     /// </summary>
-    public class TribeContextMenu : ContextMenuStrip
+    public class TribeContextMenu : IContextMenu
     {
         #region Fields
-        private Tribe _tribe;
-        #endregion
+        private readonly Tribe _tribe;
 
-        #region Properties
-        /// <summary>
-        /// Gets or sets the tribe 
-        /// </summary>
-        public Tribe Tribe
-        {
-            get { return _tribe; }
-            set { _tribe = value; }
-        }
+        private readonly UIContextMenu _menu;
         #endregion
 
         #region Constructors
-        public TribeContextMenu()
-            : base()
+        public TribeContextMenu(Tribe tribe)
         {
-            Items.Add("Pinpoint", null, OnPinpoint);
-            Items.Add("Pinpoint && Center", null, OnCenter);
-            Items.Add("Details", null, OnDetails);
-            //Items.Add("Mark", null, OnMark);
+            _tribe = tribe;
+
+            _menu = new UIContextMenu();
+
+            _menu.AddCommand("Pinpoint", OnDetails);
+            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+
+            _menu.AddSeparator();
+
+            _menu.AddCommand("TWStats", OnTwStats);
+            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
+            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
         #endregion
 
@@ -43,53 +46,70 @@ namespace TribalWars.Controls.TWContextMenu
         /// <summary>
         /// Shows the ContextMenuStrip
         /// </summary>
-        public void Show(Control control, System.Drawing.Point position, Tribe target)
+        public void Show(Control control, Point position)
         {
-            _tribe = target;
-            Show(control, position);
+            _menu.Show(control, position);
+        }
+
+        public IEnumerable<UICommand> GetCommands()
+        {
+            return _menu.Commands.OfType<UICommand>();
         }
         #endregion
 
         #region EventHandlers
         /// <summary>
-        /// Puts the pinpoint on the target village
-        /// </summary>
-        private void OnPinpoint(object sender, EventArgs e)
-        {
-            if (_tribe != null)
-            {
-                World.Default.Map.EventPublisher.SelectVillages(null, _tribe, VillageTools.PinPoint);
-            }
-        }
-
-        /// <summary>
-        /// Pinpoints and centers the target village
-        /// </summary>
-        private void OnCenter(object sender, EventArgs e)
-        {
-            if (_tribe != null)
-            {
-                World.Default.Map.EventPublisher.SelectVillages(null, _tribe, VillageTools.PinPoint);
-                World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_tribe));
-            }
-        }
-
-        /// <summary>
-        /// Start a new marker for the owner of the target village
-        /// </summary>
-        private void OnMark(object sender, EventArgs e)
-        {
-            
-        }
-
-        /// <summary>
         /// Open quick details for the tribe
         /// </summary>
         private void OnDetails(object sender, EventArgs e)
         {
-            if (_tribe != null)
+            World.Default.Map.EventPublisher.SelectTribe(VillageContextMenu.OnDetailsHack, _tribe, VillageTools.PinPoint);
+        }
+
+        /// <summary>
+        /// Pinpoints and centers the target tribe
+        /// </summary>
+        private void OnCenter(object sender, EventArgs e)
+        {
+            World.Default.Map.EventPublisher.SelectVillages(null, _tribe, VillageTools.PinPoint);
+            World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_tribe));
+        }
+
+        /// <summary>
+        /// Browse to TWStats for the target tribe
+        /// </summary>
+        private void OnTwStats(object sender, EventArgs e)
+        {
+            World.Default.EventPublisher.BrowseUri(null, Main.Browser.DestinationEnum.TwStatsTribe, _tribe.Id.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Put target tribe tag on clipboard
+        /// </summary>
+        private void OnToClipboard(object sender, EventArgs e)
+        {
+            SetClipboard(_tribe.Tag);
+        }
+
+        /// <summary>
+        /// Put target tribe BBCoded on clipboard
+        /// </summary>
+        private void OnBbCode(object sender, EventArgs e)
+        {
+            SetClipboard(_tribe.BbCode());
+        }
+        #endregion
+
+        #region Private
+        private void SetClipboard(string text)
+        {
+            try
             {
-                World.Default.Map.EventPublisher.SelectTribe(null, _tribe, VillageTools.SelectVillage);
+                Clipboard.SetText(text);
+            }
+            catch (Exception)
+            {
+
             }
         }
         #endregion
