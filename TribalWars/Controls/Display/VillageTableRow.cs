@@ -120,12 +120,12 @@ namespace TribalWars.Controls.Display
 
             Cells.Add(ColumnDisplay.CreatePlayerCell(prevOwner, true));
             Cells.Add(ColumnDisplay.CreatePlayerCell(owner));
-            Cells.Add(new Cell(points));
+            Cells.Add(points != 0 ? new Cell(points) : new Cell());
             Cells.Add(ColumnDisplay.CreateDifferenceCell(prevPoints));
-            Cells.Add(new Cell(villages));
+            Cells.Add(villages != 0 ? new Cell(villages) : new Cell());
             Cells.Add(ColumnDisplay.CreateDifferenceCell(prevVillages));
             Cells.Add(new Cell(tribe));
-            Cells.Add(new Cell(tribeRank));
+            Cells.Add(tribeRank != 0 ? new Cell(tribeRank) : new Cell());
         }
         #endregion
 
@@ -141,8 +141,10 @@ namespace TribalWars.Controls.Display
         #region ITWContextMenu Members
         public void ShowContext(Point p)
         {
-            //if (this.TableModel != null)
-            //    World.Default.Map.Manipulators.CurrentManipulator.VillageContextMenu.Show(this.TableModel.Table, p, _village);
+            if (TableModel != null)
+            {
+                World.Default.Map.Manipulators.CurrentManipulator.ShowContextMenu(TableModel.Table, p, _village);
+            }
         }
 
         public IEnumerable<Village> GetVillages()

@@ -255,7 +255,9 @@ namespace TribalWars.Controls.Display
                     {
                         case RowSelectionActionEnum.RaiseSelectEvent:
                             if (RowSelected != null)
+                            {
                                 RowSelected(row, EventArgs.Empty);
+                            }
                             break;
 
                         case RowSelectionActionEnum.SelectVillage:

@@ -363,6 +363,9 @@ namespace TribalWars.Controls.Display
         /// </summary>
         public static Cell CreateDifferenceCell(int difference)
         {
+            if (difference == 0)
+                return new Cell();
+
             var cell = new Cell(difference);
             cell.CellStyle = DifferenceStyle;
             return cell;

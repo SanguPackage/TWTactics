@@ -119,7 +119,9 @@ namespace TribalWars.Data.Players
             get
             {
                 if (PreviousPlayerDetails == null) return null;
-                return string.Format("+{0}-{1}", GainedVillages.Count, LostVillages.Count);
+                if (GainedVillages.Count == 0 && LostVillages.Count == 0) return null;
+                if (LostVillages.Count == 0) return string.Format("+{0}", GainedVillages.Count);
+                return string.Format("+{0} -{1}", GainedVillages.Count, LostVillages.Count);
             }
         }
 

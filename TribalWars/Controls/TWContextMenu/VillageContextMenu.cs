@@ -24,6 +24,9 @@ namespace TribalWars.Controls.TWContextMenu
     public class VillageContextMenu : IContextMenu
     {
         #region Constants
+        /// <summary>
+        /// Hack for forcing the MainForm to open the details quickpane
+        /// </summary>
         public const string OnDetailsHack = "HACK_SWITCH_TO_DETAILS_PANE";
         #endregion
 
@@ -59,7 +62,6 @@ namespace TribalWars.Controls.TWContextMenu
                     var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
                     var tribeContext = new TribeContextMenu(village.Player.Tribe);
                     tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
-
                 }
             }
         }

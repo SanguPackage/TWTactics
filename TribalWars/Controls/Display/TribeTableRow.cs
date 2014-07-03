@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Drawing;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Tribes;
 
@@ -106,8 +107,11 @@ namespace TribalWars.Controls.Display
         #region ITWContextMenu Members
         public void ShowContext(Point p)
         {
-            //if (this.TableModel != null)
-            //    World.Default.Map.Manipulators.CurrentManipulator.TribeContextMenu.Show(this.TableModel.Table, p, _tribe);
+            if (TableModel != null)
+            {
+                var context = new TribeContextMenu(_tribe);
+                context.Show(TableModel.Table, p);
+            }
         }
 
         public IEnumerable<TribalWars.Data.Villages.Village> GetVillages()

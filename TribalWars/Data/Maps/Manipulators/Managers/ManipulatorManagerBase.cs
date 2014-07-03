@@ -103,6 +103,11 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region IMapManipulator Members
         public void ShowContextMenu(Point location, Village village)
         {
+            ShowContextMenu(_map.Control, location, village);
+        }
+
+        public void ShowContextMenu(Control control, Point location, Village village)
+        {
             IContextMenu contextMenu;
             if (_fullControllManipulator != null)
             {
@@ -115,7 +120,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             
             if (contextMenu != null)
             {
-                contextMenu.Show(_map.Control, location);
+                contextMenu.Show(control, location);
             }
         }
 

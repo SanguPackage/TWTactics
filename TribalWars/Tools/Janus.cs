@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
-using CommandType = System.Data.CommandType;
+using CommandType = Janus.Windows.UI.CommandBars.CommandType;
 
 namespace TribalWars.Tools
 {
@@ -17,6 +17,9 @@ namespace TribalWars.Tools
     public static class Janus
     {
         #region GridEX
+        /// <summary>
+        /// Get DataRow when bound to DataSet
+        /// </summary>
         public static DataRow GetDataRow(this GridEXRow row)
         {
             return ((DataRowView)row.DataRow).Row;
@@ -26,7 +29,7 @@ namespace TribalWars.Tools
         #region UIContextMenu
         public static void AddSeparator(this UIContextMenu menu)
         {
-            var sep = new UICommand("SEP", string.Empty, global::Janus.Windows.UI.CommandBars.CommandType.Separator);
+            var sep = new UICommand("SEP", string.Empty, CommandType.Separator);
             menu.Commands.Add(sep);
         }
 
@@ -37,7 +40,7 @@ namespace TribalWars.Tools
 
         public static UICommand AddCommand(this UIContextMenu menu, string text, CommandEventHandler handler = null, Shortcut? shortcut = null, Icon icon = null)
         {
-            var cmd = new UICommand("", text, global::Janus.Windows.UI.CommandBars.CommandType.Command);
+            var cmd = new UICommand("", text, CommandType.Command);
             cmd.Click += handler;
             if (shortcut.HasValue)
             {
@@ -56,7 +59,7 @@ namespace TribalWars.Tools
             txtBox.Text = defaultTextBoxValue;
             txtBox.TextChanged += handler;
 
-            var cmd = new UICommand("", text, global::Janus.Windows.UI.CommandBars.CommandType.TextBoxCommand);
+            var cmd = new UICommand("", text, CommandType.TextBoxCommand);
             cmd.Control = txtBox;
             menu.Commands.Add(cmd);
         }
