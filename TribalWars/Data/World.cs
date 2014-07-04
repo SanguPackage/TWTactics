@@ -323,16 +323,9 @@ namespace TribalWars.Data
 
             return true;
         }
+        #endregion
 
-        /// <summary>
-        /// Rebuilds all markers on all maps
-        /// </summary>
-        public void InvalidateMarkers()
-        {
-            Map.Display.DisplayManager.CacheSpecialMarkers();
-            MiniMap.Display.DisplayManager.CacheSpecialMarkers();
-        }
-
+        #region SaveSettings
         /// <summary>
         /// Saves the user and world.xml settings
         /// </summary>
@@ -378,6 +371,15 @@ namespace TribalWars.Data
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Rebuilds all markers on all maps
+        /// </summary>
+        public void InvalidateMarkers()
+        {
+            Map.Display.DisplayManager.CacheSpecialMarkers();
+            MiniMap.Display.DisplayManager.CacheSpecialMarkers();
+        }
+
         /// <summary>
         /// Gets the type of a certain village
         /// </summary>

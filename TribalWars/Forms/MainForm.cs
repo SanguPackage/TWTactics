@@ -277,9 +277,11 @@ namespace TribalWars.Forms
 
         private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
-            using (var timeSetter = new TimeZoneForm(World.Default))
+            using (var timeSetter = new TimeZoneForm())
             {
                 timeSetter.ShowDialog();
+                World.Default.ServerOffset = timeSetter.ServerOffset;
+                World.Default.SaveSettings();
             }
         }
 

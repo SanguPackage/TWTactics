@@ -15,6 +15,7 @@ using TribalWars.Data.Villages;
 using System.Drawing;
 using TribalWars.Data.Tribes;
 using System.Windows.Forms;
+using TribalWars.Forms;
 using TribalWars.Tools;
 
 #endregion
@@ -414,6 +415,12 @@ namespace TribalWars.Data
 
                 // world.xml
                 var worldXmlTemplate = new StringBuilder(File.ReadAllText(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString)));
+
+                using (var timeZoneSetter = new TimeZoneForm())
+                {
+                    worldXmlTemplate.Replace("{WorldOffset}", timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture));
+                }
+                
                 worldXmlTemplate.Replace("{WorldName}", worldName);
                 WorldSettings worldSettings = DownloadWorldSettings(worldName);
                 worldXmlTemplate.Replace("{WorldSpeed}", worldSettings.WorldUnitSpeed.ToString(CultureInfo.InvariantCulture));

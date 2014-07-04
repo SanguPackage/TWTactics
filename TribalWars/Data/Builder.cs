@@ -335,9 +335,10 @@ namespace TribalWars.Data
 
             r.Read();
             r.Read();
+            r.Read();
             w.Server = new Uri(r.ReadElementString("Server"));
             w.Name = r.ReadElementString("Name");
-            w.ServerOffset = new TimeSpan(0, 0, Convert.ToInt32(r.ReadElementString("Offset"))); // Offset in seconds (ex: -3600 for minus one hour)
+            w.ServerOffset = new TimeSpan(Convert.ToInt32(r.ReadElementString("Offset")), 0, 0); // Offset in hours
             w.Speed = Convert.ToSingle(r.ReadElementString("Speed"), CultureInfo.InvariantCulture);
             w.UnitSpeed = Convert.ToSingle(r.ReadElementString("UnitSpeed"), CultureInfo.InvariantCulture);
             w.Culture = new CultureInfo(r.ReadElementString("Culture"));

@@ -1,67 +1,202 @@
 <World>
-	<Server>http://www.TribalWars.nl</Server>
-	<Name>{WorldName}</Name>
-	<Offset>0</Offset>
-	<Speed>{WorldSpeed}</Speed>
-	<UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
-	<Culture>nl-BE</Culture>
-	<Data>
-		<Village>http://{WorldName}.tribalwars.nl/map/village.txt.gz</Village>
-		<Player>http://{WorldName}.tribalwars.nl/map/tribe.txt.gz</Player>
-		<Tribe>http://{WorldName}.tribalwars.nl/map/ally.txt.gz</Tribe>
-	</Data>
-	<Game>
-		<Village>http://{WorldName}.tribalwars.nl/game.php?village={0}&amp;screen={1}</Village>
-	</Game>
-	<TWStats>
-		<General>http://nl.twstats.com/{WorldName}/index.php</General>
-		<Village>http://nl.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</Village>
-		<Player>http://nl.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</Player>
-		<Tribe>http://nl.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</Tribe>
-    <PlayerGraph>http://nl.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</PlayerGraph>
-    <TribeGraph>http://nl.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TribeGraph>
-  </TWStats>
+  <Server>http://www.TribalWars.nl</Server>
+  <Name>{WorldName}</Name>
+  <Offset>0</Offset>
+  <Speed>{WorldSpeed}</Speed>
+  <UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
+  <Culture>nl-BE</Culture>
+  <DataVillage>http://{WorldName}.tribalwars.nl/map/village.txt.gz</DataVillage>
+  <DataPlayer>http://{WorldName}.tribalwars.nl/map/tribe.txt.gz</DataPlayer>
+  <DataTribe>http://{WorldName}.tribalwars.nl/map/ally.txt.gz</DataTribe>
+  <GameVillage>http://{WorldName}.tribalwars.nl/game.php?village={0}&amp;screen={1}</GameVillage>
+  <TWStatsGeneral>http://nl.twstats.com/{WorldName}/index.php</TWStatsGeneral>
+  <TWStatsVillage>http://nl.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</TWStatsVillage>
+  <TWStatsPlayer>http://nl.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</TWStatsPlayer>
+  <TWStatsTribe>http://nl.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</TWStatsTribe>
+  <TWStatsPlayerGraph>http://nl.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsPlayerGraph>
+  <TWStatsTribeGraph>http://nl.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsTribeGraph>
   <Views>
-    <View Category="Background" Type="Points" Name="Points">
-      <Drawer Type="EllipseDrawer" Icon="village1" Value="300" ExtraValue="" />
-      <Drawer Type="EllipseDrawer" Icon="village2" Value="1000" />
-      <Drawer Type="EllipseDrawer" Icon="village3" Value="3000" />
-      <Drawer Type="RectangleDrawer" Icon="village4" Value="9000" />
-      <Drawer Type="RectangleDrawer" Icon="village5" Value="12000" />
-      <Drawer Type="RectangleDrawer" Icon="village6" Value="99999" />
+    <View>
+      <Category>Background</Category>
+      <Type>Points</Type>
+      <Name>Points</Name>
+      <Drawers>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>village1</Icon>
+          <Value>300</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>village2</Icon>
+          <Value>1000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>village3</Icon>
+          <Value>3000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>village4</Icon>
+          <Value>9000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>village5</Icon>
+          <Value>12000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>village6</Icon>
+          <Value>99999</Value>
+        </Drawer>
+      </Drawers>
     </View>
-    <View Category="Background" Type="Points" Name="PointsAbandoned">
-      <Drawer Type="EllipseDrawer" Icon="barbarian1" Value="300" />
-      <Drawer Type="EllipseDrawer" Icon="barbarian2" Value="1000" />
-      <Drawer Type="EllipseDrawer" Icon="barbarian3" Value="3000" />
-      <Drawer Type="RectangleDrawer" Icon="barbarian4" Value="9000" />
-      <Drawer Type="RectangleDrawer" Icon="barbarian5" Value="12000" />
-      <Drawer Type="RectangleDrawer" Icon="barbarian6" Value="99999" />
+    <View>
+      <Category>Background</Category>
+      <Type>Points</Type>
+      <Name>PointsAbandoned</Name>
+      <Drawers>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>barbarian1</Icon>
+          <Value>300</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>barbarian2</Icon>
+          <Value>1000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>barbarian3</Icon>
+          <Value>3000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>barbarian4</Icon>
+          <Value>9000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>barbarian5</Icon>
+          <Value>12000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>barbarian6</Icon>
+          <Value>99999</Value>
+        </Drawer>
+      </Drawers>
     </View>
-    <View Category="Background" Type="Points" Name="PointsBonus">
-      <Drawer Type="EllipseDrawer" Icon="bvillage1" Value="300" />
-      <Drawer Type="EllipseDrawer" Icon="bvillage2" Value="1000" />
-      <Drawer Type="EllipseDrawer" Icon="bvillage3" Value="3000" />
-      <Drawer Type="RectangleDrawer" Icon="bvillage4" Value="9000" />
-      <Drawer Type="RectangleDrawer" Icon="bvillage5" Value="12000" />
-      <Drawer Type="RectangleDrawer" Icon="bvillage6" Value="99999" />
+    <View>
+      <Category>Background</Category>
+      <Type>Points</Type>
+      <Name>PointsBonus</Name>
+      <Drawers>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bvillage1</Icon>
+          <Value>300</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bvillage2</Icon>
+          <Value>1000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bvillage3</Icon>
+          <Value>3000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bvillage4</Icon>
+          <Value>9000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bvillage5</Icon>
+          <Value>12000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bvillage6</Icon>
+          <Value>99999</Value>
+        </Drawer>
+      </Drawers>
     </View>
-    <View Category="Background" Type="Points" Name="PointsBonusAbandoned">
-      <Drawer Type="EllipseDrawer" Icon="bbarbarian1" Value="300" />
-      <Drawer Type="EllipseDrawer" Icon="bbarbarian2" Value="1000" />
-      <Drawer Type="EllipseDrawer" Icon="bbarbarian3" Value="3000" />
-      <Drawer Type="RectangleDrawer" Icon="bbarbarian4" Value="9000" />
-      <Drawer Type="RectangleDrawer" Icon="bbarbarian5" Value="12000" />
-      <Drawer Type="RectangleDrawer" Icon="bbarbarian6" Value="99999" />
+    <View>
+      <Category>Background</Category>
+      <Type>Points</Type>
+      <Name>PointsBonusAbandoned</Name>
+      <Drawers>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bbarbarian1</Icon>
+          <Value>300</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bbarbarian2</Icon>
+          <Value>1000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>EllipseDrawer</Type>
+          <Icon>bbarbarian3</Icon>
+          <Value>3000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bbarbarian4</Icon>
+          <Value>9000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bbarbarian5</Icon>
+          <Value>12000</Value>
+        </Drawer>
+        <Drawer>
+          <Type>RectangleDrawer</Type>
+          <Icon>bbarbarian6</Icon>
+          <Value>99999</Value>
+        </Drawer>
+      </Drawers>
     </View>
-    <View Category="Decorator" Type="VillageType" Name="VillageType">
-      <Drawer Type="BorderDrawer" Icon="Attack" ExtraValue="Yellow" Value="1" />
-      <Drawer Type="BorderDrawer" Icon="Defense" ExtraValue="White" Value="2" />
-      <Drawer Type="BorderDrawer" Icon="Scout" ExtraValue="Transparant" Value="8" />
-      <Drawer Type="BorderDrawer" Icon="Farm" ExtraValue="Transparant" Value="16" />
+    <View>
+      <Category>Decorator</Category>
+      <Type>VillageType</Type>
+      <Name>VillageType</Name>
+      <Drawers>
+        <Drawer>
+          <Type>BorderDrawer</Type>
+          <Icon>Attack</Icon>
+          <ExtraValue>Yellow</ExtraValue>
+          <Value>1</Value>
+        </Drawer>
+        <Drawer>
+          <Type>BorderDrawer</Type>
+          <Icon>Defense</Icon>
+          <ExtraValue>White</ExtraValue>
+          <Value>2</Value>
+        </Drawer>
+        <Drawer>
+          <Type>BorderDrawer</Type>
+          <Icon>Scout</Icon>
+          <ExtraValue>Transparant</ExtraValue>
+          <Value>8</Value>
+        </Drawer>
+        <Drawer>
+          <Type>BorderDrawer</Type>
+          <Icon>Farm</Icon>
+          <ExtraValue>Transparant</ExtraValue>
+          <Value>16</Value>
+        </Drawer>
+      </Drawers>
     </View>
   </Views>
-	<Buildings>
+  <Buildings>
     <Building>
       <Name>Hoofdgebouw</Name>
       <Type>VillageHeadquarters</Type>
@@ -179,8 +314,8 @@
       <Production>104, 108, 112, 116, 120, 124, 129, 134, 139, 144, 149, 155, 160, 166, 172, 179, 185, 192, 199, 207</Production>
       <People>5, 6, 7, 8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72, 84, 99</People>
     </Building>
-	</Buildings>
-	<Units>
+  </Buildings>
+  <Units>
     <Unit>
       <Position>0</Position>
       <Name>Speervechter</Name>

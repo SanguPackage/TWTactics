@@ -1,51 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TribalWars.Data;
 
 namespace TribalWars.Forms
 {
     /// <summary>
-    /// 
+    /// Select the difference (in hours) between local system time
+    /// and TW server time.
     /// </summary>
     public partial class TimeZoneForm : Form
     {
-        #region Fields
-        private readonly World _world;
+        #region Properties
+        /// <summary>
+        /// Gets the selected offset between local and server
+        /// </summary>
+        public TimeSpan ServerOffset { get; private set; }
         #endregion
 
         #region Constructors
         public TimeZoneForm()
         {
             InitializeComponent();
-        }
-
-        public TimeZoneForm(World world)
-        {
-            _world = world;
-            InitializeComponent();
+            ServerOffset = new TimeSpan();
         }
         #endregion
 
         private void TimeDisplayTimer_Tick(object sender, EventArgs e)
         {
-            LocalTime.Text = DateTime.Now.ToString("MMMM dd yyyy HH:mm:ss");
-            ServerTime.Text = _world.ServerTime.ToString("MMMM dd yyyy HH:mm:ss");
+            var now = DateTime.Now;
+            LocalTime.Text = now.ToString("dd MMMM yyyy HH:mm:ss");
+            ServerTime.Text = now.Add(ServerOffset).ToString("dd MMMM yyyy HH:mm:ss");
         }
 
         private void TimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            _world.ServerOffset = new TimeSpan((int)TimeOffset.Value, 0, 0);
-        }
-
-        private void TimeZoneForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _world.SaveSettings();
+            ServerOffset = new TimeSpan((int)TimeOffset.Value, 0, 0);
         }
     }
 }

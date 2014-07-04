@@ -159,7 +159,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Synchronize Server Time";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimeZoneForm_FormClosing);
             this.gbTimeZome.ResumeLayout(false);
             this.gbTimeZome.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffset)).EndInit();

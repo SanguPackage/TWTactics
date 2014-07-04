@@ -453,7 +453,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldTemplate\WorldSettings.designer.cs" />
+    <Compile Include="WorldTemplate\WorldSettings.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorldSettings.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\Accordeon\Details\VillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VillageControl.cs</DependentUpon>
