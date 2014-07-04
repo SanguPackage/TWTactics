@@ -28,6 +28,7 @@ namespace TribalWars.Forms
         public TimeZoneForm(World world)
         {
             _world = world;
+            InitializeComponent();
         }
         #endregion
 
@@ -39,7 +40,7 @@ namespace TribalWars.Forms
 
         private void TimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            _world.ServerOffset = new TimeSpan(0, (int)TimeOffset.Value, 0);
+            _world.ServerOffset = new TimeSpan((int)TimeOffset.Value, 0, 0);
         }
 
         private void TimeZoneForm_FormClosing(object sender, FormClosingEventArgs e)

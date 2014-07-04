@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 201);
+            this.ClientSize = new System.Drawing.Size(264, 201);
             this.Controls.Add(this.gbTimeZome);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -160,7 +160,7 @@
             this.Name = "TimeZoneForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Synchronise Server Time";
+            this.Text = "Synchronize Server Time";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimeZoneForm_FormClosing);
             this.gbTimeZome.ResumeLayout(false);
             this.gbTimeZome.PerformLayout();

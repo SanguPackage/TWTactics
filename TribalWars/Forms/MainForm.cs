@@ -273,7 +273,7 @@ namespace TribalWars.Forms
             World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
         }
 
-        private void MenuFileSynchroniseTime_Click(object sender, EventArgs e)
+        private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
             using (var timeSetter = new TimeZoneForm(World.Default))
             {

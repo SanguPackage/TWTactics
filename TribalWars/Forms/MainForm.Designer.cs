@@ -63,7 +63,7 @@ namespace TribalWars.Forms
             this.MenuFileSaveSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuFileSaveSettingsAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.MenuFileSynchroniseTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuFileSynchronizeTime = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -316,7 +316,7 @@ namespace TribalWars.Forms
             this.MenuFileSaveSettings,
             this.MenuFileSaveSettingsAs,
             this.toolStripSeparator2,
-            this.MenuFileSynchroniseTime,
+            this.MenuFileSynchronizeTime,
             this.toolStripMenuItem1,
             this.MenuFileExit});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
@@ -348,6 +348,7 @@ namespace TribalWars.Forms
             // MenuFileWorldDownload
             // 
             this.MenuFileWorldDownload.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuFileWorldDownload.Image = ((System.Drawing.Image)(resources.GetObject("MenuFileWorldDownload.Image")));
             this.MenuFileWorldDownload.Name = "MenuFileWorldDownload";
             this.MenuFileWorldDownload.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.D)));
@@ -382,12 +383,12 @@ namespace TribalWars.Forms
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(303, 6);
             // 
-            // MenuFileSynchroniseTime
+            // MenuFileSynchronizeTime
             // 
-            this.MenuFileSynchroniseTime.Name = "MenuFileSynchroniseTime";
-            this.MenuFileSynchroniseTime.Size = new System.Drawing.Size(306, 22);
-            this.MenuFileSynchroniseTime.Text = "Synchronise Server Time";
-            this.MenuFileSynchroniseTime.Click += new System.EventHandler(this.MenuFileSynchroniseTime_Click);
+            this.MenuFileSynchronizeTime.Name = "MenuFileSynchronizeTime";
+            this.MenuFileSynchronizeTime.Size = new System.Drawing.Size(306, 22);
+            this.MenuFileSynchronizeTime.Text = "Synchronize Server Time";
+            this.MenuFileSynchronizeTime.Click += new System.EventHandler(this.MenuFileSynchronizeTime_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -1140,7 +1141,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton ToolStripActiveRectangle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem MenuFileSynchroniseTime;
+        private System.Windows.Forms.ToolStripMenuItem MenuFileSynchronizeTime;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }

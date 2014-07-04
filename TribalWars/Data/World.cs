@@ -338,6 +338,9 @@ namespace TribalWars.Data
         public void SaveSettings()
         {
             SaveSettings(SettingsName);
+
+            // TODO: we zaten hier
+            // wijzigingen op de world.xml lukken nog niet precies
         }
 
         /// <summary>
