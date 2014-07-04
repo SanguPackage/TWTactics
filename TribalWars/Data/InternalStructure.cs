@@ -416,6 +416,7 @@ namespace TribalWars.Data
                 worldInfo.Name = worldName;
                 using (var timeZoneSetter = new TimeZoneForm())
                 {
+                    timeZoneSetter.ShowDialog();
                     worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
                 }
                 
