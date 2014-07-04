@@ -383,8 +383,8 @@ namespace TribalWars.Data.Reporting
                         if (unit.Offense) off += value * unit.Cost.People;
                         else def += value * unit.Cost.People;
 
-                        if (unit.Type == UnitTypes.Nobleman) flagNoble = true;
-                        if (unit.Type == UnitTypes.Scout && value > 2000) flagScout = true;
+                        if (unit.Type == UnitTypes.Snob) flagNoble = true;
+                        if (unit.Type == UnitTypes.Spy && value > 2000) flagScout = true;
                     }
                 }
 

@@ -454,6 +454,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldTemplate\TacticsUnit.cs" />
     <Compile Include="WorldTemplate\WorldSettings.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -659,6 +660,9 @@
     <None Include="Resources\teleport.png" />
     <None Include="Resources\TeleportIcon.ico" />
     <None Include="Resources\clipboard.ico" />
+    <Content Include="WorldTemplate\TacticsUnits.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="WorldTemplate\WorldSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

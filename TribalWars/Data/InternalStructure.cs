@@ -11,13 +11,14 @@ using System.Xml;
 using System.IO;
 using System.Xml.Linq;
 using TribalWars.Data.Players;
+using TribalWars.Data.Units;
 using TribalWars.Data.Villages;
 using System.Drawing;
 using TribalWars.Data.Tribes;
 using System.Windows.Forms;
 using TribalWars.Forms;
 using TribalWars.Tools;
-
+using TribalWars.WorldTemplate;
 #endregion
 
 namespace TribalWars.Data
@@ -360,16 +361,6 @@ namespace TribalWars.Data
                 return new WorldSettings(worldSpeed, worldUnitSpeed);
             }
 
-            private static object DownloadWorldUnitSettings(string worldName)
-            {
-                // TODO: load if Archers are present on this world!
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
-                //var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
-                //var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
-
-                return null;
-            }
-
             private class WorldSettings
             {
                 public float Speed { get; private set; }
@@ -439,9 +430,8 @@ namespace TribalWars.Data
                 worldInfo.TWStatsTribeGraph = ReplaceServerAndWorld(worldInfo.TWStatsTribeGraph, worldName, worldServer);
                 worldInfo.TWStatsVillage = ReplaceServerAndWorld(worldInfo.TWStatsVillage, worldName, worldServer);
 
-                // Are archers present?
-
-                // TODO: also get the units so that archers are added if necessary
+                worldInfo.Units.Clear();
+                worldInfo.Units.AddRange(GetWorldUnitSettings(worldName));
                 
                 worldInfo.SaveToFile(Path.Combine(path, WorldXmlString));
 
@@ -451,6 +441,77 @@ namespace TribalWars.Data
                 
                 string targetPath = Path.Combine(path, DirectorySettingsString, DefaultSettingsString);
                 File.Copy(settingsTemplatePath, targetPath);
+            }
+
+            /// <summary>
+            /// Gets the unit information for this world
+            /// and combines it with TWTactics data
+            /// </summary>
+            private static IEnumerable<WorldUnitsUnit> GetWorldUnitSettings(string worldName)
+            {
+                List<TacticsUnit> twTacticsUnits = TacticsUnit.GetUnitsFromXml(Path.Combine(WorldTemplateDirectory, "TacticsUnit.xml"));
+                IEnumerable<TwUnit> twUnits = DownloadWorldUnitSettings(worldName);
+
+                var list = new List<WorldUnitsUnit>();
+                int position = 0;
+                foreach (TwUnit twUnit in twUnits)
+                {
+                    TacticsUnit tacticsUnit = twTacticsUnits.Single(x => x.Type == twUnit.Type);
+                    list.Add(new WorldUnitsUnit
+                        {
+                            Carry = twUnit.Carry.ToString(CultureInfo.InvariantCulture),
+                            CostClay = twUnit.Clay.ToString(CultureInfo.InvariantCulture),
+                            CostIron = twUnit.Iron.ToString(CultureInfo.InvariantCulture),
+                            CostWood = twUnit.Wood.ToString(CultureInfo.InvariantCulture),
+                            CostPeople = twUnit.Population.ToString(CultureInfo.InvariantCulture),
+                            Farmer = tacticsUnit.Farmer.ToString(),
+                            HideAttacker = tacticsUnit.HideAttacher.ToString(),
+                            Offense = tacticsUnit.Offense.ToString(),
+                            Name = tacticsUnit.Name,
+                            Short = tacticsUnit.ShortName,
+                            Speed = twUnit.Speed.ToString(CultureInfo.InvariantCulture),
+                            Type = twUnit.Type.ToString(),
+                            Position = position.ToString(CultureInfo.InvariantCulture)
+                        });
+
+                    position++;
+                }
+                return list;
+            }
+
+            private static IEnumerable<TwUnit> DownloadWorldUnitSettings(string worldName)
+            {
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
+
+                var list = new List<TwUnit>();
+                foreach (var xmlUnit in xdoc.Root.Elements())
+                {
+                    list.Add(new TwUnit
+                        {
+                            Type = (UnitTypes)Enum.Parse(typeof(UnitTypes), xmlUnit.Name.LocalName),
+                            Wood = Convert.ToInt32(xmlUnit.Element("wood").Value),
+                            Clay = Convert.ToInt32(xmlUnit.Element("stone").Value),
+                            Iron = Convert.ToInt32(xmlUnit.Element("iron").Value),
+                            Population = Convert.ToInt32(xmlUnit.Element("pop").Value),
+                            Speed = Convert.ToSingle(xmlUnit.Element("speed").Value),
+                            Carry = Convert.ToInt32(xmlUnit.Element("carry").Value)
+                        });
+                }
+                return list;
+            }
+
+            /// <summary>
+            /// Holder class with data from TW API
+            /// </summary>
+            private class TwUnit
+            {
+                public UnitTypes Type { get; set; }
+                public int Wood { get; set; }
+                public int Clay { get; set; }
+                public int Iron { get; set; }
+                public int Population { get; set; }
+                public float Speed { get; set; }
+                public int Carry { get; set; }
             }
 
             /// <summary>

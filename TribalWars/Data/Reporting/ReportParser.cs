@@ -162,7 +162,7 @@ namespace TribalWars.Data.Reporting
             bool scout = false, scout_failed = false, noble = false, noble_failed = false;
             foreach (ReportUnit unit in report.Attack.Values)
             {
-                if (unit.Unit.Type == UnitTypes.Scout)
+                if (unit.Unit.Type == UnitTypes.Spy)
                 {
                     if (unit.AmountStart > 0)
                     {
@@ -170,7 +170,7 @@ namespace TribalWars.Data.Reporting
                         if (unit.AmountEnd == 0) scout_failed = true;
                     }
                 }
-                else if (unit.Unit.Type == UnitTypes.Nobleman)
+                else if (unit.Unit.Type == UnitTypes.Snob)
                 {
                     if (unit.AmountStart > 0)
                     {

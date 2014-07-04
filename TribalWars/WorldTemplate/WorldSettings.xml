@@ -318,158 +318,167 @@
   </Buildings>
   <Units>
     <Unit>
-
-      <!--<spear>
-        <wood>50</wood>
-        <stone>30</stone>
-        <iron>10</iron>
-        <pop>1</pop>
-        <speed>17.99910004543</speed>
-        <attack>10</attack>
-        <defense>15</defense>
-        <defense_cavalry>45</defense_cavalry>
-        <defense_archer>20</defense_archer>
-        <carry>25</carry>
-        <build_time>680</build_time>
-      </spear>-->
-
-      <Position>0</Position>
-      <Name>Speervechter</Name>
-      <Short>speer</Short>
-      <Type>Spearman</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_spear.png</Image>
-      <Carry>25</Carry>
+      <Name>Spear fighter</Name>
+      <Short>spear</Short>
+      <Type>spear</Type>
+      <Carry>0</Carry>
       <Farmer>true</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>18</Speed>
+      <Speed>0</Speed>
       <Offense>false</Offense>
-      <CostWood>50</CostWood>
-      <CostClay>30</CostClay>
-      <CostIron>10</CostIron>
-      <CostPeople>1</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>1</Position>
-      <Name>Zwaardvechter</Name>
-      <Short>zwaard</Short>
-      <Type>Swordsman</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_sword.png</Image>
-      <Carry>15</Carry>
+      <Name>Swordsman</Name>
+      <Short>sword</Short>
+      <Type>sword</Type>
+      <Carry>0</Carry>
       <Farmer>true</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>22</Speed>
+      <Speed>0</Speed>
       <Offense>false</Offense>
-      <CostWood>30</CostWood>
-      <CostClay>30</CostClay>
-      <CostIron>70</CostIron>
-      <CostPeople>1</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>2</Position>
-      <Name>Bijlstrijder</Name>
-      <Short>bijl</Short>
-      <Type>Axeman</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_axe.png</Image>
-      <Carry>10</Carry>
-      <Farmer>false</Farmer>
+      <Name>Axeman</Name>
+      <Short>axe</Short>
+      <Type>axe</Type>
+      <Carry>0</Carry>
+      <Farmer>true</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>18</Speed>
+      <Speed>0</Speed>
       <Offense>true</Offense>
-      <CostWood>60</CostWood>
-      <CostClay>30</CostClay>
-      <CostIron>40</CostIron>
-      <CostPeople>1</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>3</Position>
-      <Name>Verkenner</Name>
-      <Short>verk</Short>
-      <Type>Scout</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_spy.png</Image>
+      <Name>Archer</Name>
+      <Short>archer</Short>
+      <Type>archer</Type>
+      <Carry>0</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>0</Speed>
+      <Offense>false</Offense>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
+    </Unit>
+    <Unit>
+      <Name>Scout</Name>
+      <Short>scout</Short>
+      <Type>spy</Type>
       <Carry>0</Carry>
       <Farmer>false</Farmer>
       <HideAttacker>true</HideAttacker>
-      <Speed>9</Speed>
+      <Speed>0</Speed>
       <Offense>false</Offense>
-      <CostWood>50</CostWood>
-      <CostClay>50</CostClay>
-      <CostIron>20</CostIron>
-      <CostPeople>2</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>4</Position>
-      <Name>Lichte cavalrie</Name>
+      <Name>Light cavalry</Name>
       <Short>lc</Short>
-      <Type>LightCavalry</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_light.png</Image>
-      <Carry>80</Carry>
+      <Type>light</Type>
+      <Carry>0</Carry>
       <Farmer>true</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>10</Speed>
+      <Speed>0</Speed>
       <Offense>true</Offense>
-      <CostWood>125</CostWood>
-      <CostClay>100</CostClay>
-      <CostIron>250</CostIron>
-      <CostPeople>4</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>5</Position>
-      <Name>Zware cavalrie</Name>
-      <Short>zc</Short>
-      <Type>HeavyCavalry</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_heavy.png</Image>
-      <Carry>50</Carry>
+      <Name>Mounted archer</Name>
+      <Short>ma</Short>
+      <Type>marcher</Type>
+      <Carry>0</Carry>
       <Farmer>true</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>11</Speed>
-      <Offense>false</Offense>
-      <CostWood>200</CostWood>
-      <CostClay>150</CostClay>
-      <CostIron>600</CostIron>
-      <CostPeople>6</CostPeople>
+      <Speed>0</Speed>
+      <Offense>true</Offense>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>6</Position>
+      <Name>Heavy cavalry</Name>
+      <Short>hc</Short>
+      <Type>heavy</Type>
+      <Carry>0</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>0</Speed>
+      <Offense>false</Offense>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
+    </Unit>
+    <Unit>
       <Name>Ram</Name>
       <Short>ram</Short>
-      <Type>Ram</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_ram.png</Image>
+      <Type>ram</Type>
       <Carry>0</Carry>
       <Farmer>false</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>30</Speed>
+      <Speed>0</Speed>
       <Offense>true</Offense>
-      <CostWood>300</CostWood>
-      <CostClay>200</CostClay>
-      <CostIron>200</CostIron>
-      <CostPeople>5</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>7</Position>
-      <Name>Katapult</Name>
-      <Short>kata</Short>
-      <Type>Catapult</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_catapult.png</Image>
+      <Name>Catapult</Name>
+      <Short>cata</Short>
+      <Type>catapult</Type>
       <Carry>0</Carry>
       <Farmer>false</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>30</Speed>
+      <Speed>0</Speed>
       <Offense>true</Offense>
-      <CostWood>320</CostWood>
-      <CostClay>400</CostClay>
-      <CostIron>100</CostIron>
-      <CostPeople>8</CostPeople>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
-      <Position>8</Position>
-      <Name>Edelman</Name>
-      <Short>edel</Short>
-      <Type>Nobleman</Type>
-      <Image>http://en12.tribalwars.net/graphic/unit/unit_snob.png</Image>
+      <Name>Paladin</Name>
+      <Short>paladin</Short>
+      <Type>knight</Type>
+      <Carry>0</Carry>
+      <Farmer>true</Farmer>
+      <HideAttacker>false</HideAttacker>
+      <Speed>0</Speed>
+      <Offense>true</Offense>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
+    </Unit>
+    <Unit>
+      <Name>Nobleman</Name>
+      <Short>noble</Short>
+      <Type>snob</Type>
       <Carry>0</Carry>
       <Farmer>false</Farmer>
       <HideAttacker>false</HideAttacker>
-      <Speed>35</Speed>
+      <Speed>0</Speed>
       <Offense>true</Offense>
       <CostWood>0</CostWood>
       <CostClay>0</CostClay>

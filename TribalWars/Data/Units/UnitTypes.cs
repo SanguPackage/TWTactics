@@ -10,17 +10,35 @@ namespace TribalWars.Data.Units
     public enum UnitTypes
     {
         None,
-        Spearman,
-        Swordsman,
-        Axeman,
+        Spear,
+        Sword,
+        Axe,
         Archer,
-        Scout,
-        LightCavalry,
-        MountedArcher,
-        HeavyCavalry,
+        /// <summary>
+        /// Scout
+        /// </summary>
+        Spy,
+        /// <summary>
+        /// Light cavalry
+        /// </summary>
+        Light,
+        /// <summary>
+        /// Mounted Archer
+        /// </summary>
+        MArcher,
+        /// <summary>
+        /// Heavy cavalry
+        /// </summary>
+        Heavy,
         Ram,
         Catapult,
-        Paladin,
-        Nobleman
+        /// <summary>
+        /// Paladin
+        /// </summary>
+        Knight,
+        /// <summary>
+        /// Nobleman
+        /// </summary>
+        Snob
     }
 }

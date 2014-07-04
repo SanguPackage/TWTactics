@@ -68,27 +68,27 @@ namespace TribalWars.Data.Units
                 {
                     case UnitTypes.Archer:
                         return Images.Archer;
-                    case UnitTypes.Axeman:
+                    case UnitTypes.Axe:
                         return Images.Axe;
                     case UnitTypes.Catapult:
                         return Images.Catapult;
-                    case UnitTypes.HeavyCavalry:
+                    case UnitTypes.Heavy:
                         return Images.HeavyCavalry;
-                    case UnitTypes.LightCavalry:
+                    case UnitTypes.Light:
                         return Images.LightCavalry;
-                    case UnitTypes.MountedArcher:
+                    case UnitTypes.MArcher:
                         return Images.MountedArcher;
-                    case UnitTypes.Nobleman:
+                    case UnitTypes.Snob:
                         return Images.Noble;
-                    case UnitTypes.Paladin:
+                    case UnitTypes.Knight:
                         return Images.Paladin;
                     case UnitTypes.Ram:
                         return Images.Ram;
-                    case UnitTypes.Scout:
+                    case UnitTypes.Spy:
                         return Images.Scout;
-                    case UnitTypes.Spearman:
+                    case UnitTypes.Spear:
                         return Images.Spear;
-                    case UnitTypes.Swordsman:
+                    case UnitTypes.Sword:
                         return Images.Sword;
                     default:
                         return Properties.Resources.face;

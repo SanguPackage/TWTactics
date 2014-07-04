@@ -295,7 +295,7 @@ namespace TribalWars.Data.Reporting
         {
             if (_report.LoyaltyBegin > 0)
             {
-                Unit snob = WorldUnits.Default[UnitTypes.Nobleman];
+                Unit snob = WorldUnits.Default[UnitTypes.Snob];
                 return string.Format("{0} [b]{1}[/b] to [b]{2}[/b]", snob.BbCodeImage, _report.LoyaltyBegin.ToString(CultureInfo.InvariantCulture), _report.LoyaltyEnd.ToString(CultureInfo.InvariantCulture));
             }
             if (_report.Winner == "attacker")
