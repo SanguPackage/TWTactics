@@ -339,8 +339,6 @@ namespace TribalWars.Data
 
             var worldSettings = WorldTemplate.World.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
             worldSettings.Offset = ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
-
-            // TODO: check unit costs
             worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
         }
 

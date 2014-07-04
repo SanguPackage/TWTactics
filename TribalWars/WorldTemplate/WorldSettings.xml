@@ -1,4 +1,5 @@
-<World>
+<?xml version="1.0"?>
+<World xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Server>http://www.TribalWars.nl</Server>
   <Name>{WorldName}</Name>
   <Offset>0</Offset>

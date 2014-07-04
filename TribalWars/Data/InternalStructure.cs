@@ -35,45 +35,6 @@ namespace TribalWars.Data
             private static readonly Regex NormalWorldRegex = new Regex(NormalWorldPattern);
             private const string NormalWorldPrefix = "nl";
 
-            #region TribalWars API
-            private const string ServerSettingsUrl = "http://{0}.tribalwars.nl/interface.php?func={1}";
-
-            /// <summary>
-            /// Downloads the global world settings and extracts the world speeds
-            /// </summary>
-            private static WorldSettings DownloadWorldSettings(string worldName)
-            {
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_config"));
-                Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
-                var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
-                var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
-
-                return new WorldSettings(worldSpeed, worldUnitSpeed);
-            }
-
-            private static object DownloadWorldUnitSettings(string worldName)
-            {
-                // TODO: load if Archers are present on this world!
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
-                //var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
-                //var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
-
-                return null;
-            }
-
-            private class WorldSettings
-            {
-                public decimal WorldUnitSpeed { get; private set; }
-                public decimal UnitSpeed { get; private set; }
-
-                public WorldSettings(decimal worldSpeed, decimal worldUnitSpeed)
-                {
-                    WorldUnitSpeed = worldSpeed;
-                    UnitSpeed = worldUnitSpeed;
-                }
-            }
-            #endregion
-
             private const string FileVillageString = @"village.txt";
             private const string FileTribeString = @"ally.txt";
             private const string FilePlayerString = @"tribe.txt";
@@ -379,6 +340,45 @@ namespace TribalWars.Data
             }
             #endregion
 
+            #region TribalWars API
+            private const string ServerSettingsUrl = "http://{0}.tribalwars.nl/interface.php?func={1}";
+
+            /// <summary>
+            /// Downloads the global world settings and extracts the world speeds
+            /// </summary>
+            private static WorldSettings DownloadWorldSettings(string worldName)
+            {
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_config"));
+                Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
+                var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
+                var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
+
+                return new WorldSettings(worldSpeed, worldUnitSpeed);
+            }
+
+            private static object DownloadWorldUnitSettings(string worldName)
+            {
+                // TODO: load if Archers are present on this world!
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
+                //var worldSpeed = decimal.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
+                //var worldUnitSpeed = decimal.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
+
+                return null;
+            }
+
+            private class WorldSettings
+            {
+                public float Speed { get; private set; }
+                public float UnitSpeed { get; private set; }
+
+                public WorldSettings(float worldSpeed, float worldUnitSpeed)
+                {
+                    Speed = worldSpeed;
+                    UnitSpeed = worldUnitSpeed;
+                }
+            }
+            #endregion
+
             #region Public Methods
             /// <summary>
             /// Checks if a folder contains village, tribe and ally.txt
@@ -411,26 +411,24 @@ namespace TribalWars.Data
                 File.Copy(Path.Combine(WorldTemplateDirectory, VillageTypesString), Path.Combine(path, VillageTypesString));
 
                 // world.xml
-                var worldXmlTemplate = new StringBuilder(File.ReadAllText(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString)));
-
+                var worldInfo = WorldTemplate.World.LoadFromFile(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString));
+                worldInfo.Name = worldName;
                 using (var timeZoneSetter = new TimeZoneForm())
                 {
-                    worldXmlTemplate.Replace("{WorldOffset}", timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture));
+                    worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
                 }
                 
-                worldXmlTemplate.Replace("{WorldName}", worldName);
                 WorldSettings worldSettings = DownloadWorldSettings(worldName);
-                worldXmlTemplate.Replace("{WorldSpeed}", worldSettings.WorldUnitSpeed.ToString(CultureInfo.InvariantCulture));
-                worldXmlTemplate.Replace("{WorldUnitSpeed}", worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture));
-
-                File.WriteAllText(Path.Combine(path, WorldXmlString), worldXmlTemplate.ToString());
+                worldInfo.Speed = worldSettings.Speed.ToString(CultureInfo.InvariantCulture);
+                worldInfo.UnitSpeed = worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
 
                 // TODO: also get the units so that archers are added if necessary
+
+                worldInfo.SaveToFile(Path.Combine(path, WorldXmlString));
 
                 // default.sets
                 Directory.CreateDirectory(Path.Combine(path, DirectorySettingsString));
                 var settingsTemplatePath = Path.Combine(WorldTemplateDirectory, DefaultSettingsString);
-                
 
                 string targetPath = Path.Combine(path, DirectorySettingsString, DefaultSettingsString);
                 File.Copy(settingsTemplatePath, targetPath);
