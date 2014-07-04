@@ -453,12 +453,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldTemplate\Generated\WorldSettings.cs" />
-    <Compile Include="WorldTemplate\WorldSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WorldSettings.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="WorldTemplate\WorldSettings.designer.cs" />
     <EmbeddedResource Include="Controls\Accordeon\Details\VillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VillageControl.cs</DependentUpon>
@@ -636,20 +631,13 @@
     <None Include="WorldTemplate\default.sets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="WorldTemplate\UpdateWorldXmlClass.bat" />
     <None Include="WorldTemplate\villagetypes.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldTemplate\WorldSettings.xsc">
-      <DependentUpon>WorldSettings.xsd</DependentUpon>
     </None>
     <None Include="WorldTemplate\WorldSettings.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>WorldSettings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="WorldTemplate\WorldSettings.xss">
-      <DependentUpon>WorldSettings.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

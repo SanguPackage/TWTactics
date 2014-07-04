@@ -342,13 +342,11 @@ namespace TribalWars.Data
             SaveSettings(SettingsName);
 
             // world.xml
-            var worldSettings = Structure.CurrentWorldXmlPath.Deserialize<WorldTemplate.Generated.World>();
             Debug.Assert(ServerOffset.Hours == (int)ServerOffset.TotalHours);
 
+            var worldSettings = WorldTemplate.World.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
             worldSettings.Offset = ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
-
-            string updatedWorldSettings = worldSettings.Serialize();
-            File.WriteAllText(Structure.CurrentWorldXmlPath.FullName, updatedWorldSettings);
+            worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
         }
 
         /// <summary>

@@ -56,7 +56,7 @@
             this.gbTimeZome.Controls.Add(this.label5);
             this.gbTimeZome.Location = new System.Drawing.Point(12, 12);
             this.gbTimeZome.Name = "gbTimeZome";
-            this.gbTimeZome.Size = new System.Drawing.Size(242, 179);
+            this.gbTimeZome.Size = new System.Drawing.Size(242, 234);
             this.gbTimeZome.TabIndex = 13;
             this.gbTimeZome.TabStop = false;
             // 
@@ -64,11 +64,9 @@
             // 
             this.label3.Location = new System.Drawing.Point(16, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 69);
+            this.label3.Size = new System.Drawing.Size(210, 140);
             this.label3.TabIndex = 8;
-            this.label3.Text = "This progam needs to know what time zone you are in. Look at \'server time\' and en" +
-    "sure it is the same as Tribal Wars server time. If it is not, change the \'Time A" +
-    "djustment\' value until it is.\r\n";
+            this.label3.Text = resources.GetString("label3.Text");
             // 
             // TimeOffset
             // 
@@ -152,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 201);
+            this.ClientSize = new System.Drawing.Size(264, 256);
             this.Controls.Add(this.gbTimeZome);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

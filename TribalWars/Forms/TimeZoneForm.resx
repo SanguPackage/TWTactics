@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>This progam needs to know the time difference (if any) between your time and the TW server time in order to calculate attack times correctly.
+
+If there is a difference in time zones:
+Look at 'server time' and ensure it is the same as Tribal Wars server time. If it is not, change the 'Time adjustment' value until it is.</value>
+  </data>
   <metadata name="TimeDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
