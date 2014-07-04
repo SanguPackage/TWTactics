@@ -276,10 +276,7 @@ namespace TribalWars.Data
                     IgnoreWhitespace = true,
                     CloseInput = true
                 };
-                using (XmlReader worldXml = XmlReader.Create(File.Open(Path.Combine(worldPath, WorldXmlString), FileMode.Open, FileAccess.Read), sets))
-                {
-                    Builder.ReadWorld(worldXml, Default.Map, Default.MiniMap);
-                }
+                Builder.ReadWorld(Path.Combine(worldPath, WorldXmlString));
             }
             #endregion
 

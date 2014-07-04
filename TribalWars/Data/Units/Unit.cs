@@ -1,11 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System.IO;
-using System.Xml;
-using System.Xml.XPath;
-using System.Xml.Serialization;
 using TribalWars.Data.Resources;
 
 namespace TribalWars.Data.Units
@@ -16,17 +9,9 @@ namespace TribalWars.Data.Units
     public class Unit : IEquatable<Unit>
     {
         #region Fields
-        private int _position;
-        private string _name;
-        private string _image;
-        private string _ShortName;
-        private int _carry;
-        private bool _farmer;
-        private bool _hideAttacker;
-        private Resource _cost;
-        private UnitTypes _type = UnitTypes.None;
-        private float _speed;
-        private bool _isOffense;
+        private readonly string _image;
+        private readonly UnitTypes _type;
+        private readonly float _speed;
         #endregion
 
         #region Properties
@@ -41,49 +26,33 @@ namespace TribalWars.Data.Units
         /// <summary>
         /// Gets the cost for training the unit
         /// </summary>
-        public Resource Cost
-        {
-            get { return _cost; }
-        }
+        public Resource Cost { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the unit amounts should be hidden for the attacker
         /// </summary>
-        public bool HideAttacker
-        {
-            get { return _hideAttacker; }
-            set { _hideAttacker = value; }
-        }
+        public bool HideAttacker { get; private set; }
 
         /// <summary>
         /// Gets the resource carrying capacity
         /// </summary>
-        public int Carry
-        {
-            get { return _carry; }
-        }
+        public int Carry { get; private set; }
 
         /// <summary>
         /// Gets the name of the unit
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this
         /// is an offensive unit
         /// </summary>
-        public bool Offense
-        {
-            get { return _isOffense; }
-        }
+        public bool Offense { get; private set; }
 
         /// <summary>
         /// Gets the Unit image in BBCode
         /// </summary>
-        public string BBCodeImage
+        public string BbCodeImage
         {
             get { return string.Format("[img]{0}[/img]", _image); }
         }
@@ -98,76 +67,50 @@ namespace TribalWars.Data.Units
                 switch (Type)
                 {
                     case UnitTypes.Archer:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Archer;
+                        return Images.Archer;
                     case UnitTypes.Axeman:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Axe;
+                        return Images.Axe;
                     case UnitTypes.Catapult:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Catapult;
+                        return Images.Catapult;
                     case UnitTypes.HeavyCavalry:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.HeavyCavalry;
+                        return Images.HeavyCavalry;
                     case UnitTypes.LightCavalry:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.LightCavalry;
+                        return Images.LightCavalry;
                     case UnitTypes.MountedArcher:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.MountedArcher;
+                        return Images.MountedArcher;
                     case UnitTypes.Nobleman:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Noble;
+                        return Images.Noble;
                     case UnitTypes.Paladin:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Paladin;
+                        return Images.Paladin;
                     case UnitTypes.Ram:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Ram;
+                        return Images.Ram;
                     case UnitTypes.Scout:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Scout;
+                        return Images.Scout;
                     case UnitTypes.Spearman:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Spear;
+                        return Images.Spear;
                     case UnitTypes.Swordsman:
-                        return (System.Drawing.Image)TribalWars.Data.Units.Images.Sword;
+                        return Images.Sword;
                     default:
-                        return (System.Drawing.Image)TribalWars.Properties.Resources.face;
+                        return Properties.Resources.face;
                 }
                 
             }
         }
 
         /// <summary>
-        /// Gets the Unit image
-        /// </summary>
-        public Uri ImageUri
-        {
-            get { return new Uri(_image); }
-        }
-
-        /// <summary>
         /// Gets the short name for the unit
         /// </summary>
-        public string ShortName
-        {
-            get { return _ShortName; }
-        }
+        public string ShortName { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the unit is typically used for farming
         /// </summary>
-        public bool Farmer
-        {
-            get { return _farmer; }
-            set { _farmer = value; }
-        }
+        public bool Farmer { get; private set; }
 
         /// <summary>
         /// Gets the position of the unit in a report
         /// </summary>
-        public int Position
-        {
-            get { return _position; }
-        }
-
-        /// <summary>
-        /// Gets the basic speed of the unit
-        /// </summary>
-        public float BasicSpeed
-        {
-            get { return _speed; }
-        }
+        public int Position { get; private set; }
 
         /// <summary>
         /// Gets the speed of the unit on the currently loaded world
@@ -181,46 +124,25 @@ namespace TribalWars.Data.Units
         #region Constructors
         internal Unit(int pos, string name, string shortname, string type, string image, int carry, bool farmer, bool hideAttacker, int wood, int clay, int iron, int people, float speed, bool isOff)
         {
-            _position = pos;
-            _name = name;
-            _ShortName = shortname;
+            Position = pos;
+            Name = name;
+            ShortName = shortname;
             _image = image;
-            _carry = carry;
-            _farmer = farmer;
-            _hideAttacker = hideAttacker;
-            _cost = new Resource(wood, clay, iron, people);
+            Carry = carry;
+            Farmer = farmer;
+            HideAttacker = hideAttacker;
+            Cost = new Resource(wood, clay, iron, people);
             _speed = speed;
-            _isOffense = isOff;
+            Offense = isOff;
 
             if (Enum.IsDefined(typeof(UnitTypes), type))
+            {
                 _type = (UnitTypes)Enum.Parse(typeof(UnitTypes), type, true);
+            }
             else
+            {
                 _type = UnitTypes.None;
-        }
-
-        internal Unit(Unit unit)
-        {
-            _position = unit._position;
-            _name = unit._name;
-            _ShortName = unit._ShortName;
-            _image = unit._image;
-            _hideAttacker = unit._hideAttacker;
-            _farmer = unit._farmer;
-            _carry = unit._carry;
-            _cost = unit.Cost;
-            _speed = unit.Speed;
-            _type = unit.Type;
-            _isOffense = unit.Offense;
-        }
-        #endregion
-
-        #region Static Methods
-        /// <summary>
-        /// Converts a local building name to the Type
-        /// </summary>
-        public static UnitTypes GetUnitFromName(string name)
-        {
-            return WorldUnits.Default[name].Type;
+            }
         }
         #endregion
 
@@ -239,6 +161,13 @@ namespace TribalWars.Data.Units
         public override bool Equals(object obj)
         {
             return Equals(obj as Unit);
+        }
+        #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return string.Format("{0}, Position={1}, Offense={2}, Farmer={3}, HideAtatcker={4}", Name, Position, Offense, Farmer, HideAttacker);
         }
         #endregion
     }

@@ -18,6 +18,8 @@ using TribalWars.Data.Tribes;
 using TribalWars.Tools;
 using System.Globalization;
 using TribalWars.Data.Maps.Displays;
+using TribalWars.WorldTemplate;
+
 #endregion
 
 namespace TribalWars.Data
@@ -25,13 +27,13 @@ namespace TribalWars.Data
     /// <summary>
     /// Creates a whole bunch of classes from XML files
     /// </summary>
-    public class Builder
+    public static class Builder
     {
         #region Setting Files
         /// <summary>
         /// Builds the classes from a sets file 
         /// </summary>
-        public static void ReadSettings(FileInfo file, Map map, Map miniMap, Monitor monitor)
+        public static void ReadSettings(FileInfo file, Map map, Monitor monitor)
         {
             Debug.Assert(file.Exists);
             
@@ -191,31 +193,6 @@ namespace TribalWars.Data
         }
 
         /// <summary>
-        /// Reads a view from the XML node
-        /// </summary>
-        private static void ReadView(XmlReader r)
-        {
-            //var category = (Categories)Enum.Parse(typeof(Categories), r.GetAttribute("Category"));
-            var type = (Types)Enum.Parse(typeof(Types), r.GetAttribute("Type"));
-            string name = r.GetAttribute("Name");
-            ViewBase d = CreateView(name, type);
-
-            r.ReadStartElement();
-            while (r.IsStartElement("Drawer"))
-            {
-                string drawerType = r.GetAttribute("Type");
-                string drawerIcon = r.GetAttribute("Icon");
-                string drawerValue = r.GetAttribute("Value");
-                string drawerExtraValue = r.GetAttribute("ExtraValue");
-                d.AddDrawer(drawerType, drawerIcon, Convert.ToInt32(drawerValue), drawerExtraValue);
-                r.Read();
-            }
-            r.ReadEndElement();
-
-            World.Default.Views.Add(d.Name, d);
-        }
-
-        /// <summary>
         /// Creates a MarkerGroup from the XML node
         /// </summary>
         private static void CreateMarker(MarkerGroup m, string type, string value)
@@ -241,23 +218,6 @@ namespace TribalWars.Data
                         m.Add(new TribeMarker(tribe));
                     break;
             }
-        }
-
-        /// <summary>
-        /// Creates a view from the XML node
-        /// </summary>
-        private static ViewBase CreateView(string name, Types type)
-        {
-            switch (type)
-            {
-                case Types.Points:
-                    return new PointsView(name);
-                case Types.VillageType:
-                    return new VillageTypeView(name);
-            }
-
-            Debug.Assert(false);
-            return null;
         }
 
         /// <summary>
@@ -329,118 +289,103 @@ namespace TribalWars.Data
         /// <summary>
         /// Reads the world settings
         /// </summary>
-        public static void ReadWorld(XmlReader r, Map map, Map miniMap)
+        public static void ReadWorld(string worldXmlPath)
         {
             World w = World.Default;
+            var info = WorldTemplate.World.LoadFromFile(worldXmlPath);
 
-            r.Read();
-            r.Read();
-            r.Read();
-            w.Server = new Uri(r.ReadElementString("Server"));
-            w.Name = r.ReadElementString("Name");
-            w.ServerOffset = new TimeSpan(Convert.ToInt32(r.ReadElementString("Offset")), 0, 0); // Offset in hours
-            w.Speed = Convert.ToSingle(r.ReadElementString("Speed"), CultureInfo.InvariantCulture);
-            w.UnitSpeed = Convert.ToSingle(r.ReadElementString("UnitSpeed"), CultureInfo.InvariantCulture);
-            w.Culture = new CultureInfo(r.ReadElementString("Culture"));
+            w.Server = new Uri(info.Server);
+            w.Name = info.Name;
+            w.ServerOffset = new TimeSpan(Convert.ToInt32(info.Offset), 0, 0);
+            w.Speed = Convert.ToSingle(info.Speed, CultureInfo.InvariantCulture);
+            w.UnitSpeed = Convert.ToSingle(info.UnitSpeed, CultureInfo.InvariantCulture);
+            w.Culture = new CultureInfo(info.Culture);
 
-            r.ReadStartElement();
-            w.Structure.DownloadVillage = r.ReadElementString("Village");
-            w.Structure.DownloadPlayer = r.ReadElementString("Player");
-            w.Structure.DownloadTribe = r.ReadElementString("Tribe");
-            r.ReadEndElement();
+            w.Structure.DownloadVillage = info.DataVillage;
+            w.Structure.DownloadPlayer = info.DataPlayer;
+            w.Structure.DownloadTribe = info.DataTribe;
 
-            r.ReadStartElement();
-            w.GameLink = r.ReadElementString("Village");
-            r.ReadEndElement();
+            w.GameLink = info.GameVillage;
 
-            r.ReadStartElement();
-            w.TwStats.Default = new Uri(r.ReadElementString("General"));
-            w.TwStats.Village = r.ReadElementString("Village");
-            w.TwStats.Player = r.ReadElementString("Player");
-            w.TwStats.Tribe = r.ReadElementString("Tribe");
-            w.TwStats.PlayerGraph = r.ReadElementString("PlayerGraph");
-            w.TwStats.TribeGraph = r.ReadElementString("TribeGraph");
-            r.ReadEndElement();
+            w.TwStats.Default = new Uri(info.TWStatsGeneral);
+            w.TwStats.Village = info.TWStatsVillage;
+            w.TwStats.Player = info.TWStatsPlayer;
+            w.TwStats.Tribe = info.TWStatsTribe;
+            w.TwStats.PlayerGraph = info.TWStatsPlayerGraph;
+            w.TwStats.TribeGraph = info.TWStatsTribeGraph;
 
-            // Views
-            r.Read();
             World.Default.Views.Clear();
-            ReadView(r); // points
-            ReadView(r); // pointsabandoned
-            ReadView(r); // pointsbonus
-            ReadView(r); // pointsabandonedbonus
-            ReadView(r); // type
-            r.ReadEndElement();
+            foreach (var view in info.Views)
+            {
+                ViewBase viewToAdd = CreateView(view.Name, (Types)Enum.Parse(typeof(Types), view.Type));
+                foreach (var drawer in view.Drawers)
+                {
+                    viewToAdd.AddDrawer(drawer.Type, drawer.Icon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
+                }
+                World.Default.Views.Add(viewToAdd.Name, viewToAdd);
+            }
 
-            r.ReadStartElement();
-            WorldBuildings.Default.SetBuildings(ReadWorldBuildings(r));
-            r.ReadEndElement();
+            WorldBuildings.Default.SetBuildings(ReadWorldBuildings(info.Buildings));
+            WorldUnits.Default.SetBuildings(ReadWorldUnits(info.Units));
+        }
 
-            r.ReadStartElement();
-            WorldUnits.Default.SetBuildings(ReadWorldUnits(r));
-            r.ReadEndElement();
+        /// <summary>
+        /// Creates a view from the XML node
+        /// </summary>
+        private static ViewBase CreateView(string name, Types type)
+        {
+            switch (type)
+            {
+                case Types.Points:
+                    return new PointsView(name);
+                case Types.VillageType:
+                    return new VillageTypeView(name);
+            }
+
+            Debug.Assert(false);
+            return null;
         }
 
         /// <summary>
         /// Loads the buildings from the World.xml stream
         /// </summary>
-        private static Dictionary<BuildingTypes, Building> ReadWorldBuildings(XmlReader r)
+        private static Dictionary<BuildingTypes, Building> ReadWorldBuildings(IEnumerable<WorldBuildingsBuilding> buildingsIn)
         {
-            var buildings = new Dictionary<BuildingTypes, Building>();
-            while (r.IsStartElement("Building"))
+            var buildingsOut = new Dictionary<BuildingTypes, Building>();
+            foreach (var building in buildingsIn)
             {
-                r.ReadStartElement();
-                string name = r.ReadElementString("Name");
-                string type = r.ReadElementString("Type");
-                string image = r.ReadElementString("Image");
-                string points = r.ReadElementString("Points");
-                string people = null;
-                string production = null;
-                if (r.IsStartElement("Production")) production = r.ReadElementString("Production");
-                if (r.IsStartElement("People")) people = r.ReadElementString("People");
-                var build = new Building(name, type, image, points, people);
-                if (production != null) build.Production = production;
-                r.ReadEndElement();
-
-                buildings.Add(build.Type, build);
-                
+                var build = new Building(building.Name, building.Type, building.Image, building.Points, building.People);
+                build.Production = building.Production;
+                buildingsOut.Add(build.Type, build);
             }
-            return buildings;
+            return buildingsOut;
         }
 
         /// <summary>
         /// Loads the units from the World.xml stream
         /// </summary>
-        private static Dictionary<UnitTypes, Unit> ReadWorldUnits(XmlReader r)
+        private static Dictionary<UnitTypes, Unit> ReadWorldUnits(IEnumerable<WorldUnitsUnit> unitsIn)
         {
-            var  units = new Dictionary<UnitTypes, Unit>();
-            while (r.IsStartElement("Unit"))
+            var  unitsOut = new Dictionary<UnitTypes, Unit>();
+            foreach (var unit in unitsIn)
             {
-                r.ReadStartElement();
-                int pos = Convert.ToInt32(r.ReadElementString("Position"));
-                string name = r.ReadElementString("Name");
-                string shortname = r.ReadElementString("Short");
-                string type = r.ReadElementString("Type");
-                string image = r.ReadElementString("Image");
-                int carry = Convert.ToInt32(r.ReadElementString("Carry"));
-                bool farmer = Convert.ToBoolean(r.ReadElementString("Farmer"));
-                bool hideAttacker = Convert.ToBoolean(r.ReadElementString("HideAttacker"));
-                float speed = Convert.ToSingle(r.ReadElementString("Speed"), CultureInfo.InvariantCulture);
-                bool offense = Convert.ToBoolean(r.ReadElementString("Offense"));
+                int carry = Convert.ToInt32(unit.Carry);
+                float speed = Convert.ToSingle(unit.Speed);
 
-                r.ReadStartElement();
-                int wood = Convert.ToInt32(r.ReadElementString("Wood"));
-                int clay = Convert.ToInt32(r.ReadElementString("Clay"));
-                int iron = Convert.ToInt32(r.ReadElementString("Iron"));
-                int people = Convert.ToInt32(r.ReadElementString("People"));
+                bool farmer = Convert.ToBoolean(unit.Farmer);
+                bool hideAttacker = Convert.ToBoolean(unit.HideAttacker);
+                bool offense = Convert.ToBoolean(unit.Offense);
 
-                r.ReadEndElement();
-                r.ReadEndElement();
+                int people = Convert.ToInt32(unit.CostPeople);
+                int wood = Convert.ToInt32(unit.CostWood);
+                int clay = Convert.ToInt32(unit.CostClay);
+                int iron = Convert.ToInt32(unit.CostIron);
 
-                var unit = new Unit(pos, name, shortname, type, image, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
-                units.Add(unit.Type, unit);
+                var u = new Unit(Convert.ToInt32(unit.Position), unit.Name, unit.Short, unit.Type, unit.Image, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
+
+                unitsOut.Add(u.Type, u);
             }
-            return units;
+            return unitsOut;
         }
         #endregion
     }

@@ -150,7 +150,7 @@ namespace TribalWars.Controls.AttackPlan
                 }
                 if (bbCodes)
                 {
-                    str.AppendLine(string.Format("{0} from {1}", _unit.BBCodeImage, Village.BBCode()));
+                    str.AppendLine(string.Format("{0} from {1}", _unit.BbCodeImage, Village.BBCode()));
                     str.AppendLine("Send on: [b]" + DateSend.Text + "[/b]");
                 }
                 else

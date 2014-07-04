@@ -327,12 +327,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>18</Speed>
       <Offense>false</Offense>
-      <Cost>
-        <Wood>50</Wood>
-        <Clay>30</Clay>
-        <Iron>10</Iron>
-        <People>1</People>
-      </Cost>
+      <CostWood>50</CostWood>
+      <CostClay>30</CostClay>
+      <CostIron>10</CostIron>
+      <CostPeople>1</CostPeople>
     </Unit>
     <Unit>
       <Position>1</Position>
@@ -345,12 +343,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>22</Speed>
       <Offense>false</Offense>
-      <Cost>
-        <Wood>30</Wood>
-        <Clay>30</Clay>
-        <Iron>70</Iron>
-        <People>1</People>
-      </Cost>
+      <CostWood>30</CostWood>
+      <CostClay>30</CostClay>
+      <CostIron>70</CostIron>
+      <CostPeople>1</CostPeople>
     </Unit>
     <Unit>
       <Position>2</Position>
@@ -363,12 +359,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>18</Speed>
       <Offense>true</Offense>
-      <Cost>
-        <Wood>60</Wood>
-        <Clay>30</Clay>
-        <Iron>40</Iron>
-        <People>1</People>
-      </Cost>
+      <CostWood>60</CostWood>
+      <CostClay>30</CostClay>
+      <CostIron>40</CostIron>
+      <CostPeople>1</CostPeople>
     </Unit>
     <Unit>
       <Position>3</Position>
@@ -381,12 +375,10 @@
       <HideAttacker>true</HideAttacker>
       <Speed>9</Speed>
       <Offense>false</Offense>
-      <Cost>
-        <Wood>50</Wood>
-        <Clay>50</Clay>
-        <Iron>20</Iron>
-        <People>2</People>
-      </Cost>
+      <CostWood>50</CostWood>
+      <CostClay>50</CostClay>
+      <CostIron>20</CostIron>
+      <CostPeople>2</CostPeople>
     </Unit>
     <Unit>
       <Position>4</Position>
@@ -399,12 +391,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>10</Speed>
       <Offense>true</Offense>
-      <Cost>
-        <Wood>125</Wood>
-        <Clay>100</Clay>
-        <Iron>250</Iron>
-        <People>4</People>
-      </Cost>
+      <CostWood>125</CostWood>
+      <CostClay>100</CostClay>
+      <CostIron>250</CostIron>
+      <CostPeople>4</CostPeople>
     </Unit>
     <Unit>
       <Position>5</Position>
@@ -417,12 +407,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>11</Speed>
       <Offense>false</Offense>
-      <Cost>
-        <Wood>200</Wood>
-        <Clay>150</Clay>
-        <Iron>600</Iron>
-        <People>6</People>
-      </Cost>
+      <CostWood>200</CostWood>
+      <CostClay>150</CostClay>
+      <CostIron>600</CostIron>
+      <CostPeople>6</CostPeople>
     </Unit>
     <Unit>
       <Position>6</Position>
@@ -435,12 +423,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>30</Speed>
       <Offense>true</Offense>
-      <Cost>
-        <Wood>300</Wood>
-        <Clay>200</Clay>
-        <Iron>200</Iron>
-        <People>5</People>
-      </Cost>
+      <CostWood>300</CostWood>
+      <CostClay>200</CostClay>
+      <CostIron>200</CostIron>
+      <CostPeople>5</CostPeople>
     </Unit>
     <Unit>
       <Position>7</Position>
@@ -453,12 +439,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>30</Speed>
       <Offense>true</Offense>
-      <Cost>
-        <Wood>320</Wood>
-        <Clay>400</Clay>
-        <Iron>100</Iron>
-        <People>8</People>
-      </Cost>
+      <CostWood>320</CostWood>
+      <CostClay>400</CostClay>
+      <CostIron>100</CostIron>
+      <CostPeople>8</CostPeople>
     </Unit>
     <Unit>
       <Position>8</Position>
@@ -471,12 +455,10 @@
       <HideAttacker>false</HideAttacker>
       <Speed>35</Speed>
       <Offense>true</Offense>
-      <Cost>
-        <Wood>0</Wood>
-        <Clay>0</Clay>
-        <Iron>0</Iron>
-        <People>0</People>
-      </Cost>
+      <CostWood>0</CostWood>
+      <CostClay>0</CostClay>
+      <CostIron>0</CostIron>
+      <CostPeople>0</CostPeople>
     </Unit>
   </Units>
 </World>

@@ -311,7 +311,7 @@ namespace TribalWars.Data
                 return false;
 
             Monitor = new Monitor();
-            Builder.ReadSettings(settingsFile, Map, MiniMap, Monitor);
+            Builder.ReadSettings(settingsFile, Map, Monitor);
             SettingsName = settings;
 
             InvalidateMarkers();
@@ -339,6 +339,8 @@ namespace TribalWars.Data
 
             var worldSettings = WorldTemplate.World.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
             worldSettings.Offset = ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+
+            // TODO: check unit costs
             worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
         }
 

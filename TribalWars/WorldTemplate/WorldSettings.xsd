@@ -84,16 +84,10 @@
                     <xs:element name="HideAttacker" type="xs:string" minOccurs="0" />
                     <xs:element name="Speed" type="xs:string" minOccurs="0" />
                     <xs:element name="Offense" type="xs:string" minOccurs="0" />
-                    <xs:element name="Cost" minOccurs="0" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="Wood" type="xs:string" minOccurs="0" />
-                          <xs:element name="Clay" type="xs:string" minOccurs="0" />
-                          <xs:element name="Iron" type="xs:string" minOccurs="0" />
-                          <xs:element name="People" type="xs:string" minOccurs="0" />
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
+                    <xs:element name="CostWood" type="xs:string" minOccurs="0" />
+                    <xs:element name="CostClay" type="xs:string" minOccurs="0" />
+                    <xs:element name="CostIron" type="xs:string" minOccurs="0" />
+                    <xs:element name="CostPeople" type="xs:string" minOccurs="0" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>

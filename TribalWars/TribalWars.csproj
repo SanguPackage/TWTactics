@@ -631,17 +631,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TWWords.resx</DependentUpon>
     </Compile>
-    <None Include="WorldTemplate\UpdateWorldXsd.bat" />
     <None Include="WorldTemplate\default.sets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="WorldTemplate\villagetypes.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="WorldTemplate\WorldSettings.xsc">
+      <DependentUpon>WorldSettings.xsd</DependentUpon>
+    </None>
     <None Include="WorldTemplate\WorldSettings.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>WorldSettings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="WorldTemplate\WorldSettings.xss">
+      <DependentUpon>WorldSettings.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

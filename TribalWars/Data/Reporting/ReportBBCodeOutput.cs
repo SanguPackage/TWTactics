@@ -148,7 +148,7 @@ namespace TribalWars.Data.Reporting
                     if (unit.AmountEnd > 0)
                     {
                         //str += Environment.NewLine;
-                        str += string.Format(" {0}{1}", unit.Unit.BBCodeImage, unit.AmountStart.ToString("#,0"));
+                        str += string.Format(" {0}{1}", unit.Unit.BbCodeImage, unit.AmountStart.ToString("#,0"));
                         if (unit.AmountLost > 0)
                         {
                             str += string.Format(" ([b]{0}[/b])", unit.AmountEnd.ToString("#,0"));
@@ -167,7 +167,7 @@ namespace TribalWars.Data.Reporting
                 {
                     if (unit.AmountStart > 0 && unit.AmountEnd == 0)
                     {
-                        str2 += unit.Unit.BBCodeImage;
+                        str2 += unit.Unit.BbCodeImage;
                         totalLostType += unit.AmountLost;
                     }
                     if (isAttacker && unit.AmountLost > 0)
@@ -200,7 +200,7 @@ namespace TribalWars.Data.Reporting
             {
                 if (unit.AmountOut > 0)
                 {
-                    unitOut += string.Format("{1}{0} ", unit.AmountOut.ToString("#,0"), unit.Unit.BBCodeImage);
+                    unitOut += string.Format("{1}{0} ", unit.AmountOut.ToString("#,0"), unit.Unit.BbCodeImage);
                 }
             }
             if (unitOut.Length > 0) str += Environment.NewLine + "Outside: " + unitOut;
@@ -253,7 +253,7 @@ namespace TribalWars.Data.Reporting
                 foreach (Unit unit in WorldUnits.Default)
                 {
                     if (unit.Farmer && unit.Carry > 0)
-                        farmer += string.Format(", {0}{1}", unit.BBCodeImage, Math.Ceiling((double)tot / unit.Carry).ToString("#,0"));
+                        farmer += string.Format(", {0}{1}", unit.BbCodeImage, Math.Ceiling((double)tot / unit.Carry).ToString("#,0"));
                 }
                 if (farmer.Length > 0) str += string.Format("{0}", farmer.Substring(2));
                 return str;
@@ -296,7 +296,7 @@ namespace TribalWars.Data.Reporting
             if (_report.LoyaltyBegin > 0)
             {
                 Unit snob = WorldUnits.Default[UnitTypes.Nobleman];
-                return string.Format("{0} [b]{1}[/b] to [b]{2}[/b]", snob.BBCodeImage, _report.LoyaltyBegin.ToString(CultureInfo.InvariantCulture), _report.LoyaltyEnd.ToString(CultureInfo.InvariantCulture));
+                return string.Format("{0} [b]{1}[/b] to [b]{2}[/b]", snob.BbCodeImage, _report.LoyaltyBegin.ToString(CultureInfo.InvariantCulture), _report.LoyaltyEnd.ToString(CultureInfo.InvariantCulture));
             }
             if (_report.Winner == "attacker")
                 return "[b]won[/b] against";

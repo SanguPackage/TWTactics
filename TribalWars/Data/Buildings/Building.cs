@@ -1,6 +1,8 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using TribalWars.Data.Reporting;
 #endregion
 
@@ -137,24 +139,21 @@ namespace TribalWars.Data.Buildings
         {
             get
             {
-                return string.Join(",", Array.ConvertAll<int, string>(_production,
-                    delegate(int val)
-                    {
-                        return val.ToString();
-                    }));
+                if (_production == null)
+                    return "";
+
+                return string.Join(", ", _production.Select(x => x.ToString(CultureInfo.InvariantCulture)));
             }
             set
             {
-                _production = Array.ConvertAll<string, int>(value.Split(','),
-                    delegate(string left)
-                    {
-                        int outVal;
-                        if (int.TryParse(left.Trim(), out outVal))
-                        {
-                            return outVal;
-                        }
-                        else return 0;
-                    });
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    _production = new int[] {};
+                }
+                else
+                {
+                    _production = value.Split(',').Select(x => Convert.ToInt32(x.Trim())).ToArray();
+                }
             }
         }
 
