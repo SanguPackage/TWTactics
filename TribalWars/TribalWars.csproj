@@ -409,6 +409,7 @@
     <Compile Include="Data\Villages\VillagePlayerDescriptor.cs" />
     <Compile Include="Data\Villages\VillagePointerUIEditor.cs" />
     <Compile Include="Data\Villages\VillagePropertyDescriptor.cs" />
+    <Compile Include="Data\Villages\VillageTooltip.cs" />
     <Compile Include="Data\Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
     <Compile Include="Forms\LoadWorldForm.cs">

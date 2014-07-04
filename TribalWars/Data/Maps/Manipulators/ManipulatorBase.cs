@@ -79,7 +79,7 @@ namespace TribalWars.Data.Maps.Manipulators
 
         public virtual string VillageTooltip(Village village)
         {
-            return village.Tooltip;
+            return village.Tooltip.Text;
         }
 
         /// <summary>

@@ -424,7 +424,7 @@ namespace TribalWars.Data
                 worldInfo.Speed = worldSettings.Speed.ToString(CultureInfo.InvariantCulture);
                 worldInfo.UnitSpeed = worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
 
-                // Fix URI
+                // Fix URIs
                 string worldServer = "nl";
                 worldInfo.DataVillage = ReplaceServerAndWorld(worldInfo.DataVillage, worldName, worldServer);
                 worldInfo.DataPlayer = ReplaceServerAndWorld(worldInfo.DataPlayer, worldName, worldServer);
@@ -438,6 +438,8 @@ namespace TribalWars.Data
                 worldInfo.TWStatsTribe = ReplaceServerAndWorld(worldInfo.TWStatsTribe, worldName, worldServer);
                 worldInfo.TWStatsTribeGraph = ReplaceServerAndWorld(worldInfo.TWStatsTribeGraph, worldName, worldServer);
                 worldInfo.TWStatsVillage = ReplaceServerAndWorld(worldInfo.TWStatsVillage, worldName, worldServer);
+
+                // Are archers present?
 
                 // TODO: also get the units so that archers are added if necessary
                 

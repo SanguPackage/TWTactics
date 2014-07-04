@@ -318,6 +318,21 @@
   </Buildings>
   <Units>
     <Unit>
+
+      <!--<spear>
+        <wood>50</wood>
+        <stone>30</stone>
+        <iron>10</iron>
+        <pop>1</pop>
+        <speed>17.99910004543</speed>
+        <attack>10</attack>
+        <defense>15</defense>
+        <defense_cavalry>45</defense_cavalry>
+        <defense_archer>20</defense_archer>
+        <carry>25</carry>
+        <build_time>680</build_time>
+      </spear>-->
+
       <Position>0</Position>
       <Name>Speervechter</Name>
       <Short>speer</Short>

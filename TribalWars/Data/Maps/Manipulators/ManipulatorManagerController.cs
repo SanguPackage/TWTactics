@@ -179,7 +179,7 @@ namespace TribalWars.Data.Maps.Manipulators
                     if (CurrentManipulator.ShowTooltip)
                     {
                         villageTooltip.Active = true;
-                        villageTooltip.ToolTipTitle = village.TooltipTitle;
+                        villageTooltip.ToolTipTitle = village.Tooltip.Title;
                         villageTooltip.SetToolTip(mapPicture, Map.Manipulators.CurrentManipulator.VillageTooltip(village));
                     }
                 }
