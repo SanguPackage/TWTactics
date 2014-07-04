@@ -441,24 +441,6 @@ namespace TribalWars.Data
             }
             return units;
         }
-
-        /// <summary>
-        /// Write the views to the world.xml
-        /// </summary>
-        private static void WriteView(XmlWriter w, KeyValuePair<string, ViewBase> pair)
-        {
-            ViewBase view = pair.Value;
-
-            w.WriteStartElement("View");
-            w.WriteAttributeString("Category", view.Category.ToString());
-            w.WriteAttributeString("Type", view.Type.ToString());
-            w.WriteAttributeString("Name", view.Name);
-            /*foreach (DrawerData data in view.Drawers)
-            {
-
-            }*/
-            w.WriteEndElement();
-        }
         #endregion
     }
 }

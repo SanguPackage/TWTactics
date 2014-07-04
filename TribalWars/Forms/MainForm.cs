@@ -67,8 +67,10 @@ namespace TribalWars.Forms
             if (!World.Default.LoadWorld(lastWorld, lastSettings))
             {
                 // Here begins the wizard for creating a new world...
-                var loadForm = new LoadWorldForm();
-                loadForm.ShowDialog();
+                using (var loadForm = new LoadWorldForm())
+                {
+                    loadForm.ShowDialog();
+                }
                 locationControl1.FocusYouControl();
             }
 

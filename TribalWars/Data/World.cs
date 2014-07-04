@@ -14,6 +14,7 @@ using TribalWars.Data.Maps.Views;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
+using TribalWars.Tools;
 using Monitor = TribalWars.Data.Monitoring.Monitor;
 
 #endregion
@@ -333,18 +334,25 @@ namespace TribalWars.Data
         }
 
         /// <summary>
-        /// Saves the user settings
+        /// Saves the user and world.xml settings
         /// </summary>
         public void SaveSettings()
         {
+            // .sets file
             SaveSettings(SettingsName);
 
-            // TODO: we zaten hier
-            // wijzigingen op de world.xml lukken nog niet precies
+            // world.xml
+            var worldSettings = Structure.CurrentWorldXmlPath.Deserialize<WorldTemplate.Generated.World>();
+            Debug.Assert(ServerOffset.Hours == (int)ServerOffset.TotalHours);
+
+            worldSettings.Offset = ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+
+            string updatedWorldSettings = worldSettings.Serialize();
+            File.WriteAllText(Structure.CurrentWorldXmlPath.FullName, updatedWorldSettings);
         }
 
         /// <summary>
-        /// Saves the user settings
+        /// Saves the user settings (not the world.xml)
         /// </summary>
         /// <param name="settingsName">Just the settings file name, no path information</param>
         public void SaveSettings(string settingsName)

@@ -89,6 +89,7 @@ namespace TribalWars.Data
             /// </summary>
             public const string SettingsExtensionString = ".sets";
             private const string WorldXmlString = "world.xml";
+            private const string WorldXmlTemplateString = "WorldSettings.xml";
             private const string VillageTypesString = "villagetypes.dat";
 
             private const int WorldPlayerCount = 10000;
@@ -315,6 +316,14 @@ namespace TribalWars.Data
             }
 
             /// <summary>
+            /// Gets the location of world.xml
+            /// </summary>
+            public FileInfo CurrentWorldXmlPath
+            {
+                get { return new FileInfo(CurrentWorldDirectory + WorldXmlString); }
+            }
+
+            /// <summary>
             /// Gets the reports directory
             /// </summary>
             /// <remarks>\WorldData\World 1\Reports\</remarks>
@@ -404,7 +413,7 @@ namespace TribalWars.Data
                 File.Copy(Path.Combine(WorldTemplateDirectory, VillageTypesString), Path.Combine(path, VillageTypesString));
 
                 // world.xml
-                var worldXmlTemplate = new StringBuilder(File.ReadAllText(Path.Combine(WorldTemplateDirectory, WorldXmlString)));
+                var worldXmlTemplate = new StringBuilder(File.ReadAllText(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString)));
                 worldXmlTemplate.Replace("{WorldName}", worldName);
                 WorldSettings worldSettings = DownloadWorldSettings(worldName);
                 worldXmlTemplate.Replace("{WorldSpeed}", worldSettings.WorldUnitSpeed.ToString(CultureInfo.InvariantCulture));

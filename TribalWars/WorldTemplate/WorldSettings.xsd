@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="World">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Server" type="xs:string" minOccurs="0" />
+        <xs:element name="Name" type="xs:string" minOccurs="0" />
+        <xs:element name="Offset" type="xs:string" minOccurs="0" />
+        <xs:element name="Speed" type="xs:string" minOccurs="0" />
+        <xs:element name="UnitSpeed" type="xs:string" minOccurs="0" />
+        <xs:element name="Culture" type="xs:string" minOccurs="0" />
+        <xs:element name="Data" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Village" type="xs:string" minOccurs="0" />
+              <xs:element name="Player" type="xs:string" minOccurs="0" />
+              <xs:element name="Tribe" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Game" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Village" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TWStats" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="General" type="xs:string" minOccurs="0" />
+              <xs:element name="Village" type="xs:string" minOccurs="0" />
+              <xs:element name="Player" type="xs:string" minOccurs="0" />
+              <xs:element name="Tribe" type="xs:string" minOccurs="0" />
+              <xs:element name="PlayerGraph" type="xs:string" minOccurs="0" />
+              <xs:element name="TribeGraph" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Views" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="View" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Drawer" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="Type" type="xs:string" />
+                        <xs:attribute name="Icon" type="xs:string" />
+                        <xs:attribute name="Value" type="xs:string" />
+                        <xs:attribute name="ExtraValue" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Category" type="xs:string" />
+                  <xs:attribute name="Type" type="xs:string" />
+                  <xs:attribute name="Name" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Buildings" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Building" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="xs:string" minOccurs="0" />
+                    <xs:element name="Type" type="xs:string" minOccurs="0" />
+                    <xs:element name="Image" type="xs:string" minOccurs="0" />
+                    <xs:element name="Points" type="xs:string" minOccurs="0" />
+                    <xs:element name="Production" type="xs:string" minOccurs="0" />
+                    <xs:element name="People" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Units" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Unit" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Position" type="xs:string" minOccurs="0" />
+                    <xs:element name="Name" type="xs:string" minOccurs="0" />
+                    <xs:element name="Short" type="xs:string" minOccurs="0" />
+                    <xs:element name="Type" type="xs:string" minOccurs="0" />
+                    <xs:element name="Image" type="xs:string" minOccurs="0" />
+                    <xs:element name="Carry" type="xs:string" minOccurs="0" />
+                    <xs:element name="Farmer" type="xs:string" minOccurs="0" />
+                    <xs:element name="HideAttacker" type="xs:string" minOccurs="0" />
+                    <xs:element name="Speed" type="xs:string" minOccurs="0" />
+                    <xs:element name="Offense" type="xs:string" minOccurs="0" />
+                    <xs:element name="Cost" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Wood" type="xs:string" minOccurs="0" />
+                          <xs:element name="Clay" type="xs:string" minOccurs="0" />
+                          <xs:element name="Iron" type="xs:string" minOccurs="0" />
+                          <xs:element name="People" type="xs:string" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="World" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
