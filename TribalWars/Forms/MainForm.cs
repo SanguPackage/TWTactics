@@ -247,7 +247,9 @@ namespace TribalWars.Forms
 #endif
             }
         }
+        #endregion
 
+        #region Menu & Toolstrip Handlers
         private void MenuFileNew_Click(object sender, EventArgs e)
         {
             var frm = new LoadWorldForm();
@@ -269,6 +271,14 @@ namespace TribalWars.Forms
         {
             World.Default.Structure.Download();
             World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
+        }
+
+        private void MenuFileSynchroniseTime_Click(object sender, EventArgs e)
+        {
+            using (var timeSetter = new TimeZoneForm(World.Default))
+            {
+                timeSetter.ShowDialog();
+            }
         }
 
         private void ToolStripOpen_Click(object sender, EventArgs e)

@@ -417,6 +417,12 @@
     <Compile Include="Forms\LoadWorldForm.Designer.cs">
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TimeZoneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TimeZoneForm.Designer.cs">
+      <DependentUpon>TimeZoneForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Common.cs" />
     <Compile Include="Tools\Janus.cs" />
     <Compile Include="Tools\TupleList.cs" />
@@ -574,6 +580,9 @@
     <EmbeddedResource Include="Forms\LoadWorldForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeZoneForm.resx">
+      <DependentUpon>TimeZoneForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

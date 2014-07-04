@@ -211,7 +211,9 @@ namespace TribalWars.Forms
             this.ClientSize = new System.Drawing.Size(652, 497);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LoadWorldForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create or Load World";
             this.Load += new System.EventHandler(this.LoadWorldForm_Load);
