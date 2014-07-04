@@ -101,6 +101,9 @@ namespace TribalWars.Forms
             string path = World.InternalStructure.WorldDataDirectory + world;
             World.CreateNewWorld(path);
             World.Default.LoadWorld(path);
+
+            World.Default.DrawMaps();
+
             Close();
         }
         #endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using TribalWars.Data;
@@ -112,9 +113,10 @@ namespace TribalWars.Controls.Main.Browser
 
         private void OnSettingsLoaded(object sender, EventArgs e)
         {
-            if (World.Default.PlayerSelected)
+            if (World.Default.PlayerSelected && _gameBrowser)
             {
-                _activeVillage = World.Default.You.Villages[0].Id;
+                var anyVillage = World.Default.You.Villages.FirstOrDefault();
+                _activeVillage = anyVillage == null ? 0 : anyVillage.Id;
             }
             else
             {

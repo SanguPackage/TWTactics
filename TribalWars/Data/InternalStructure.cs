@@ -52,6 +52,10 @@ namespace TribalWars.Data
             public const string SettingsExtensionString = ".sets";
             private const string WorldXmlString = "world.xml";
             private const string WorldXmlTemplateString = "WorldSettings.xml";
+            
+            /// <summary>
+            /// Contains the VillageTypes (Off, Def, ...) of all villages
+            /// </summary>
             private const string VillageTypesString = "villagetypes.dat";
 
             private const int WorldPlayerCount = 10000;
@@ -122,7 +126,7 @@ namespace TribalWars.Data
                 {
                     if (!File.Exists(CurrentWorldDirectory + VillageTypesString))
                     {
-                        using (FileStream stream = File.Create(Path.Combine(WorldTemplateDirectory, VillageTypesString)))
+                        using (FileStream stream = File.Create(Path.Combine(CurrentWorldDirectory, VillageTypesString)))
                         {
                             for (int i = 1; i <= 999999; i++)
                                 stream.WriteByte(0);
@@ -407,9 +411,6 @@ namespace TribalWars.Data
                     dir.Create();
                 }
 
-                // villagetypes.dat
-                File.Copy(Path.Combine(WorldTemplateDirectory, VillageTypesString), Path.Combine(path, VillageTypesString));
-
                 // world.xml
                 var worldInfo = WorldTemplate.World.LoadFromFile(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString));
                 worldInfo.Name = worldName;
@@ -422,16 +423,39 @@ namespace TribalWars.Data
                 worldInfo.Speed = worldSettings.Speed.ToString(CultureInfo.InvariantCulture);
                 worldInfo.UnitSpeed = worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
 
-                // TODO: also get the units so that archers are added if necessary
+                // Fix URI
+                string worldServer = "nl";
+                worldInfo.DataVillage = ReplaceServerAndWorld(worldInfo.DataVillage, worldName, worldServer);
+                worldInfo.DataPlayer = ReplaceServerAndWorld(worldInfo.DataPlayer, worldName, worldServer);
+                worldInfo.DataTribe = ReplaceServerAndWorld(worldInfo.DataTribe, worldName, worldServer);
 
+                worldInfo.GameVillage = ReplaceServerAndWorld(worldInfo.GameVillage, worldName, worldServer);
+
+                worldInfo.TWStatsGeneral = ReplaceServerAndWorld(worldInfo.TWStatsGeneral, worldName, worldServer);
+                worldInfo.TWStatsPlayer = ReplaceServerAndWorld(worldInfo.TWStatsPlayer, worldName, worldServer);
+                worldInfo.TWStatsPlayerGraph = ReplaceServerAndWorld(worldInfo.TWStatsPlayerGraph, worldName, worldServer);
+                worldInfo.TWStatsTribe = ReplaceServerAndWorld(worldInfo.TWStatsTribe, worldName, worldServer);
+                worldInfo.TWStatsTribeGraph = ReplaceServerAndWorld(worldInfo.TWStatsTribeGraph, worldName, worldServer);
+                worldInfo.TWStatsVillage = ReplaceServerAndWorld(worldInfo.TWStatsVillage, worldName, worldServer);
+
+                // TODO: also get the units so that archers are added if necessary
+                
                 worldInfo.SaveToFile(Path.Combine(path, WorldXmlString));
 
                 // default.sets
                 Directory.CreateDirectory(Path.Combine(path, DirectorySettingsString));
                 var settingsTemplatePath = Path.Combine(WorldTemplateDirectory, DefaultSettingsString);
-
+                
                 string targetPath = Path.Combine(path, DirectorySettingsString, DefaultSettingsString);
                 File.Copy(settingsTemplatePath, targetPath);
+            }
+
+            /// <summary>
+            /// Replace {WorldName} and {WorldServer} with the given values
+            /// </summary>
+            private static string ReplaceServerAndWorld(string str, string worldName, string server)
+            {
+                return str.Replace("{WorldName}", worldName).Replace("{WorldServer}", server);
             }
             #endregion
 

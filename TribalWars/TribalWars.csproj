@@ -634,9 +634,7 @@
     <None Include="WorldTemplate\default.sets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="WorldTemplate\villagetypes.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="WorldTemplate\UpdateWorldSettingsXsd.bat" />
     <None Include="WorldTemplate\WorldSettings.xsc">
       <DependentUpon>WorldSettings.xsd</DependentUpon>
     </None>
