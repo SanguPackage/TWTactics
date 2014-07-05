@@ -31,11 +31,13 @@ namespace TribalWars.Data
         public sealed class InternalStructure
         {
             #region Constants
-            private const string AvailableWorlds = "http://www.tribalwars.nl/backend/get_servers.php";
+            private const string AvailableWorlds = "http://www.{0}/backend/get_servers.php";
             private const string UnitGraphicsUrlFormat = "http://dsen.innogamescdn.com/8.24/20950/graphic/unit/unit_{0}.png";
-            private const string NormalWorldPattern = @"nl(\d+)";
-            private static readonly Regex NormalWorldRegex = new Regex(NormalWorldPattern);
-            private const string NormalWorldPrefix = "nl";
+
+            /// <summary>
+            /// Match input like nl1, de5, en9, ...
+            /// </summary>
+            private static readonly Regex WorldSplitterRegex = new Regex(@"(\D*)(\d*)");
 
             private const string FileVillageString = @"village.txt";
             private const string FileTribeString = @"ally.txt";
@@ -347,7 +349,7 @@ namespace TribalWars.Data
             #endregion
 
             #region TribalWars API
-            private const string ServerSettingsUrl = "http://{0}.tribalwars.nl/interface.php?func={1}";
+            private const string ServerSettingsUrl = "http://{0}.{1}/interface.php?func={2}";
 
             /// <summary>
             /// Get image url for a unit
@@ -360,9 +362,9 @@ namespace TribalWars.Data
             /// <summary>
             /// Downloads the global world settings and extracts the world speeds
             /// </summary>
-            private static WorldSettings DownloadWorldSettings(string worldName)
+            private static WorldSettings DownloadWorldSettings(string worldName, string worldServer)
             {
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_config"));
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
                 Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
@@ -385,6 +387,39 @@ namespace TribalWars.Data
 
             #region Public Methods
             /// <summary>
+            /// Simple holder class with server info
+            /// that runs TribalWars
+            /// </summary>
+            public class ServerInfo
+            {
+                public string ServerUrl { get; private set; }
+                public string TwStatsPrefix { get; private set; }
+
+                public ServerInfo(string url, string twStatsPrefix)
+                {
+                    ServerUrl = url;
+                    TwStatsPrefix = twStatsPrefix;
+                }
+
+                public override string ToString()
+                {
+                    return string.Format("Url={0}, TWStats={1}", ServerUrl, TwStatsPrefix);
+                }
+            }
+
+            public static IEnumerable<ServerInfo> GetAllServers()
+            {
+                var list = new List<ServerInfo>();
+
+                var xDoc = XDocument.Load(Path.Combine(WorldTemplateDirectory, "TribalWarsServers.xml"));
+                foreach (var server in xDoc.Root.Elements())
+                {
+                    list.Add(new ServerInfo(server.Element("ServerUrl").Value, server.Element("TWStatsPrefix").Value));
+                }
+                return list;
+            }
+
+            /// <summary>
             /// Checks if a folder contains village, tribe and ally.txt
             /// </summary>
             public static bool IsValidDataPath(string path)
@@ -402,7 +437,7 @@ namespace TribalWars.Data
             /// <summary>
             /// Create required infrastructure for a new world
             /// </summary>
-            public static void CreateWorld(string path)
+            public static void CreateWorld(string path, ServerInfo server)
             {
                 var dir = new DirectoryInfo(path);
                 string worldName = dir.Name;
@@ -419,28 +454,29 @@ namespace TribalWars.Data
                     timeZoneSetter.ShowDialog();
                     worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
                 }
-                
-                WorldSettings worldSettings = DownloadWorldSettings(worldName);
+
+                WorldSettings worldSettings = DownloadWorldSettings(worldName, server.ServerUrl);
                 worldInfo.Speed = worldSettings.Speed.ToString(CultureInfo.InvariantCulture);
                 worldInfo.UnitSpeed = worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
 
                 // Fix URIs
-                string worldServer = "nl";
-                worldInfo.DataVillage = ReplaceServerAndWorld(worldInfo.DataVillage, worldName, worldServer);
-                worldInfo.DataPlayer = ReplaceServerAndWorld(worldInfo.DataPlayer, worldName, worldServer);
-                worldInfo.DataTribe = ReplaceServerAndWorld(worldInfo.DataTribe, worldName, worldServer);
+                worldInfo.Server = ReplaceServerAndWorld(worldInfo.Server, worldName, server);
 
-                worldInfo.GameVillage = ReplaceServerAndWorld(worldInfo.GameVillage, worldName, worldServer);
+                worldInfo.DataVillage = ReplaceServerAndWorld(worldInfo.DataVillage, worldName, server);
+                worldInfo.DataPlayer = ReplaceServerAndWorld(worldInfo.DataPlayer, worldName, server);
+                worldInfo.DataTribe = ReplaceServerAndWorld(worldInfo.DataTribe, worldName, server);
 
-                worldInfo.TWStatsGeneral = ReplaceServerAndWorld(worldInfo.TWStatsGeneral, worldName, worldServer);
-                worldInfo.TWStatsPlayer = ReplaceServerAndWorld(worldInfo.TWStatsPlayer, worldName, worldServer);
-                worldInfo.TWStatsPlayerGraph = ReplaceServerAndWorld(worldInfo.TWStatsPlayerGraph, worldName, worldServer);
-                worldInfo.TWStatsTribe = ReplaceServerAndWorld(worldInfo.TWStatsTribe, worldName, worldServer);
-                worldInfo.TWStatsTribeGraph = ReplaceServerAndWorld(worldInfo.TWStatsTribeGraph, worldName, worldServer);
-                worldInfo.TWStatsVillage = ReplaceServerAndWorld(worldInfo.TWStatsVillage, worldName, worldServer);
+                worldInfo.GameVillage = ReplaceServerAndWorld(worldInfo.GameVillage, worldName, server);
+
+                worldInfo.TWStatsGeneral = ReplaceServerAndWorld(worldInfo.TWStatsGeneral, worldName, server);
+                worldInfo.TWStatsPlayer = ReplaceServerAndWorld(worldInfo.TWStatsPlayer, worldName, server);
+                worldInfo.TWStatsPlayerGraph = ReplaceServerAndWorld(worldInfo.TWStatsPlayerGraph, worldName, server);
+                worldInfo.TWStatsTribe = ReplaceServerAndWorld(worldInfo.TWStatsTribe, worldName, server);
+                worldInfo.TWStatsTribeGraph = ReplaceServerAndWorld(worldInfo.TWStatsTribeGraph, worldName, server);
+                worldInfo.TWStatsVillage = ReplaceServerAndWorld(worldInfo.TWStatsVillage, worldName, server);
 
                 worldInfo.Units.Clear();
-                worldInfo.Units.AddRange(GetWorldUnitSettings(worldName));
+                worldInfo.Units.AddRange(GetWorldUnitSettings(worldName, server));
                 
                 worldInfo.SaveToFile(Path.Combine(path, WorldXmlString));
 
@@ -456,10 +492,10 @@ namespace TribalWars.Data
             /// Gets the unit information for this world
             /// and combines it with TWTactics data
             /// </summary>
-            private static IEnumerable<WorldUnitsUnit> GetWorldUnitSettings(string worldName)
+            private static IEnumerable<WorldUnitsUnit> GetWorldUnitSettings(string worldName, ServerInfo server)
             {
                 List<TacticsUnit> twTacticsUnits = TacticsUnit.GetUnitsFromXml(Path.Combine(WorldTemplateDirectory, "TacticsUnits.xml"));
-                IEnumerable<TwUnit> twUnits = DownloadWorldUnitSettings(worldName);
+                IEnumerable<TwUnit> twUnits = DownloadWorldUnitSettings(worldName, server.ServerUrl);
 
                 var list = new List<WorldUnitsUnit>();
                 int position = 0;
@@ -491,9 +527,9 @@ namespace TribalWars.Data
                 return list;
             }
 
-            private static IEnumerable<TwUnit> DownloadWorldUnitSettings(string worldName)
+            private static IEnumerable<TwUnit> DownloadWorldUnitSettings(string worldName, string serverName)
             {
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, "get_unit_info"));
+                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, serverName, "get_unit_info"));
 
                 var list = new List<TwUnit>();
                 foreach (var xmlUnit in xdoc.Root.Elements())
@@ -538,9 +574,12 @@ namespace TribalWars.Data
             /// <summary>
             /// Replace {WorldName} and {WorldServer} with the given values
             /// </summary>
-            private static string ReplaceServerAndWorld(string str, string worldName, string server)
+            private static string ReplaceServerAndWorld(string str, string worldName, ServerInfo server)
             {
-                return str.Replace("{WorldName}", worldName).Replace("{WorldServer}", server);
+                return str
+                    .Replace("{WorldName}", worldName)
+                    .Replace("{ServerUrl}", server.ServerUrl)
+                    .Replace("{TWStatsPrefix}", server.TwStatsPrefix);
             }
             #endregion
 
@@ -548,29 +587,30 @@ namespace TribalWars.Data
             /// <summary>
             /// Get all available worlds on the server
             /// </summary>
-            public static string[] DownloadWorlds()
+            public static string[] DownloadWorlds(string serverName)
             {
                 var request = new System.Net.WebClient();
-                var file = request.DownloadString(AvailableWorlds);
+                var file = request.DownloadString(string.Format(AvailableWorlds, serverName));
                 var worldsObject = (Hashtable)new Serializer().Deserialize(file);
 
-                string[] worlds = worldsObject.Keys.OfType<string>().ToArray();
-                IEnumerable<string> specialWorlds = worlds.Where(x => !NormalWorldRegex.IsMatch(x));
+                string[] worldsPlayerCanStart = worldsObject.Keys.OfType<string>().ToArray();
 
-                // Only the worlds where one can still start are returned from the server (or something)
-                int lastStartedWorld = 
-                    (from world in worlds
-                     where NormalWorldRegex.IsMatch(world)
-                     let worldNumber = int.Parse(NormalWorldRegex.Match(world).Groups[1].Value)
-                     orderby worldNumber descending 
-                     select worldNumber).First();
+                var worldsPerWorldType = worldsPlayerCanStart.Select(WorldSplitter).ToLookup(x => x.Key, x => x.Value);
+                var worlds = new List<string>();
+                foreach (var worldType in worldsPerWorldType)
+                {
+                    IGrouping<string, int> fixedType = worldType;
+                    IEnumerable<string> allWorldsInType = Enumerable.Range(1, fixedType.Max()).Select(x => fixedType.Key + x);
+                    worlds.AddRange(allWorldsInType);
+                }
 
-                // So we add all worlds from 1 to the last one
-                IEnumerable<string> normalWorlds =
-                    Enumerable.Range(1, lastStartedWorld)
-                              .Select(x => NormalWorldPrefix + x.ToString(CultureInfo.InvariantCulture));
+                return worlds.ToArray();
+            }
 
-                return normalWorlds.Union(specialWorlds).ToArray();
+            private static KeyValuePair<string, int> WorldSplitter(string world)
+            {
+                Match match = WorldSplitterRegex.Match(world);
+                return new KeyValuePair<string, int>(match.Groups[1].Value, Convert.ToInt32(match.Groups[2].Value));
             }
 
             /// <summary>

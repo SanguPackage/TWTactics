@@ -359,14 +359,14 @@ namespace TribalWars.Data
         /// <summary>
         /// Downloads available worlds on the server
         /// </summary>
-        public static IEnumerable<string> GetAllWorlds()
+        public static IEnumerable<string> GetAllWorlds(string serverName)
         {
-            return InternalStructure.DownloadWorlds();
+            return InternalStructure.DownloadWorlds(serverName);
         }
 
-        public static void CreateNewWorld(string path)
+        public static void CreateNewWorld(string path, InternalStructure.ServerInfo server)
         {
-            InternalStructure.CreateWorld(path);
+            InternalStructure.CreateWorld(path, server);
         }
         #endregion
 

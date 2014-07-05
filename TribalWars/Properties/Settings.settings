@@ -11,5 +11,8 @@
     <Setting Name="DefaultLoadWorldDataPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DefaultServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tribalwars.net</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

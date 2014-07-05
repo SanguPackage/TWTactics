@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <World xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Server>http://www.TribalWars.nl</Server>
+  <Server>http://www.{ServerUrl}</Server>
   <Name>{WorldName}</Name>
   <Offset>0</Offset>
   <Speed>{WorldSpeed}</Speed>
   <UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
   <Culture>nl-BE</Culture>
-  <DataVillage>http://{WorldName}.tribalwars.nl/map/village.txt.gz</DataVillage>
-  <DataPlayer>http://{WorldName}.tribalwars.nl/map/tribe.txt.gz</DataPlayer>
-  <DataTribe>http://{WorldName}.tribalwars.nl/map/ally.txt.gz</DataTribe>
-  <GameVillage>http://{WorldName}.tribalwars.nl/game.php?village={0}&amp;screen={1}</GameVillage>
-  <TWStatsGeneral>http://nl.twstats.com/{WorldName}/index.php</TWStatsGeneral>
-  <TWStatsVillage>http://nl.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</TWStatsVillage>
-  <TWStatsPlayer>http://nl.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</TWStatsPlayer>
-  <TWStatsTribe>http://nl.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</TWStatsTribe>
-  <TWStatsPlayerGraph>http://nl.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsPlayerGraph>
-  <TWStatsTribeGraph>http://nl.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsTribeGraph>
+  <DataVillage>http://{WorldName}.{ServerUrl}/map/village.txt.gz</DataVillage>
+  <DataPlayer>http://{WorldName}.{ServerUrl}/map/tribe.txt.gz</DataPlayer>
+  <DataTribe>http://{WorldName}.{ServerUrl}/map/ally.txt.gz</DataTribe>
+  <GameVillage>http://{WorldName}.{ServerUrl}/game.php?village={0}&amp;screen={1}</GameVillage>
+  <TWStatsGeneral>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php</TWStatsGeneral>
+  <TWStatsVillage>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</TWStatsVillage>
+  <TWStatsPlayer>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</TWStatsPlayer>
+  <TWStatsTribe>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</TWStatsTribe>
+  <TWStatsPlayerGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsPlayerGraph>
+  <TWStatsTribeGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsTribeGraph>
   <Views>
     <View>
       <Category>Background</Category>

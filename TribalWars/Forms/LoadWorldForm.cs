@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml.Linq;
 using TribalWars.Data;
 using TribalWars.Tools;
 
@@ -39,12 +40,27 @@ namespace TribalWars.Forms
             if (Worlds.Nodes.ContainsKey(Properties.Settings.Default.LastWorld))
             {
                 Worlds.SelectedNode = Worlds.Nodes[Properties.Settings.Default.LastWorld];
-                Worlds.SelectedNode.Expand();
             }
 
-            // Add a new world
-            IEnumerable<string> worlds = World.GetAllWorlds();
-            AvailableWorlds.DataSource = worlds.Where(x => !_existingWorlds.Contains(x)).ToArray();
+            // Existing servers
+            World.InternalStructure.ServerInfo selectedServer = null;
+            IEnumerable<World.InternalStructure.ServerInfo> existingServers = World.InternalStructure.GetAllServers();
+            foreach (var server in existingServers)
+            {
+                Servers.Items.Add(server);
+                if (server.ServerUrl == Properties.Settings.Default.DefaultServer)
+                {
+                    selectedServer = server;
+                }
+            }
+            if (selectedServer != null)
+            {
+                Servers.SelectedItem = selectedServer;
+            }
+            else
+            {
+                Servers.SelectedIndex = 0;
+            }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -99,12 +115,24 @@ namespace TribalWars.Forms
         {
             string world = AvailableWorlds.SelectedItem.ToString();
             string path = World.InternalStructure.WorldDataDirectory + world;
-            World.CreateNewWorld(path);
+            var server = (World.InternalStructure.ServerInfo) Servers.SelectedItem;
+            World.CreateNewWorld(path, server);
             World.Default.LoadWorld(path);
 
             World.Default.DrawMaps();
 
+            Properties.Settings.Default.DefaultServer = server.ServerUrl;
+            Properties.Settings.Default.Save();
+
             Close();
+        }
+
+        private void Servers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Add a new world: show available worlds on server
+            var selectedServer = (World.InternalStructure.ServerInfo)Servers.SelectedItem;
+            IEnumerable<string> worlds = World.GetAllWorlds(selectedServer.ServerUrl);
+            AvailableWorlds.DataSource = worlds.Where(x => !_existingWorlds.Contains(x)).ToArray();
         }
         #endregion
 

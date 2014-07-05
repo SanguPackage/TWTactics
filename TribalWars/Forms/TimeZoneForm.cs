@@ -9,11 +9,24 @@ namespace TribalWars.Forms
     /// </summary>
     public partial class TimeZoneForm : Form
     {
+        private TimeSpan _serverOffset;
+
         #region Properties
         /// <summary>
         /// Gets the selected offset between local and server
         /// </summary>
-        public TimeSpan ServerOffset { get; private set; }
+        public TimeSpan ServerOffset
+        {
+            get { return _serverOffset; }
+            set
+            {
+                if (_serverOffset != value)
+                {
+                    _serverOffset = value;
+                    TimeOffset.Value = value.Hours;
+                }
+            }
+        }
         #endregion
 
         #region Constructors

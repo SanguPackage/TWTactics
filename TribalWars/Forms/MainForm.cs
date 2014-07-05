@@ -279,6 +279,7 @@ namespace TribalWars.Forms
         {
             using (var timeSetter = new TimeZoneForm())
             {
+                timeSetter.ServerOffset = World.Default.ServerOffset;
                 timeSetter.ShowDialog();
                 World.Default.ServerOffset = timeSetter.ServerOffset;
                 World.Default.SaveSettings();

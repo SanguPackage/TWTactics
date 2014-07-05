@@ -663,6 +663,9 @@
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WorldTemplate\TribalWarsServers.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="WorldTemplate\WorldSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
