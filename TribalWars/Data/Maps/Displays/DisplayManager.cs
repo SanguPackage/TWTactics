@@ -52,10 +52,16 @@ namespace TribalWars.Data.Maps.Displays
         public DisplayManager(Map map, DisplayTypes type)
         {
             _displays = new Dictionary<DisplayTypes, DisplayBase>();
-            _displays[DisplayTypes.Icon] = new IconDisplay();
-            _displays[DisplayTypes.Shape] = new ShapeDisplay();
-            _displays[DisplayTypes.MiniMap] = new MiniMapDisplay();
-
+            if (type == DisplayTypes.MiniMap)
+            {
+                _displays[DisplayTypes.MiniMap] = new MiniMapDisplay();
+            }
+            else
+            {
+                _displays[DisplayTypes.Icon] = new IconDisplay();
+                _displays[DisplayTypes.Shape] = new ShapeDisplay();
+            }
+            
             _map = map;
 
             _markPlayer = new SortedDictionary<int, MarkerGroup>();

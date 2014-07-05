@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Views;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
@@ -58,7 +59,7 @@ namespace TribalWars.Data
         /// </summary>
         public bool PlayerSelected
         {
-            get { return You != null; }
+            get { return You != null && !string.IsNullOrWhiteSpace(You.Name); }
         }
 
         /// <summary>
@@ -75,6 +76,12 @@ namespace TribalWars.Data
         /// Gets the URL of the Tribal Wars server
         /// </summary>
         public Uri Server { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating which scenery (sea, mountains, ...)
+        /// to draw when drawing TW village icons
+        /// </summary>
+        public IconDisplay.Scenery IconScenery { get; set; }
 
         /// <summary>
         /// Gets the culture of the TW server

@@ -53,6 +53,10 @@ namespace TribalWars.Data
                 {
                     World.Default.You = ply;
                 }
+                else
+                {
+                    World.Default.You = new Player();
+                }
 
                 map.MarkerManager.YourMarker = ReadMarkerGroup(r, map);
                 map.MarkerManager.YourTribeMarker = ReadMarkerGroup(r, map);
@@ -315,6 +319,8 @@ namespace TribalWars.Data
             w.TwStats.Tribe = info.TWStatsTribe;
             w.TwStats.PlayerGraph = info.TWStatsPlayerGraph;
             w.TwStats.TribeGraph = info.TWStatsTribeGraph;
+
+            w.IconScenery = (IconDisplay.Scenery)Convert.ToInt32(info.WorldDatScenery);
 
             World.Default.Views.Clear();
             foreach (var view in info.Views)

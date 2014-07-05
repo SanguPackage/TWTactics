@@ -18,6 +18,7 @@
   <TWStatsTribe>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=tribe&amp;id={0}</TWStatsTribe>
   <TWStatsPlayerGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsPlayerGraph>
   <TWStatsTribeGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsTribeGraph>
+  <WorldDatScenery>0</WorldDatScenery>
   <Views>
     <View>
       <Category>Background</Category>

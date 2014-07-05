@@ -97,6 +97,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
             return false;
         }
+
+        /// <summary>
+        /// Cleanup anything when switching worlds or settings
+        /// </summary>
+        protected internal override void CleanUp()
+        {
+        }
         #endregion
 
         #region Private Methods

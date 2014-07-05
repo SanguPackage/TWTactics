@@ -78,6 +78,10 @@ Press 's' to remove this tooltip.";
                 _releaseAction(_hasSetNew);
         }
 
+        protected internal override void CleanUp()
+        {
+        }
+
         public override void Paint(MapPaintEventArgs e)
         {
             e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);

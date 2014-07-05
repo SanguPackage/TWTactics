@@ -113,6 +113,11 @@ namespace TribalWars.Data.Maps.Manipulators
         {
 
         }
+
+        /// <summary>
+        /// Cleanup anything when switching worlds or settings
+        /// </summary>
+        protected internal abstract void CleanUp();
         #endregion
 
         #region IDrawer Members

@@ -633,6 +633,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TWWords.resx</DependentUpon>
     </Compile>
+    <None Include="Resources\WorldBackgroundData2.dat" />
     <None Include="WorldTemplate\default.sets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Players;
 using TribalWars.Data.Units;
 using TribalWars.Data.Villages;
@@ -362,25 +363,36 @@ namespace TribalWars.Data
             /// <summary>
             /// Downloads the global world settings and extracts the world speeds
             /// </summary>
-            private static WorldSettings DownloadWorldSettings(string worldName, string worldServer)
+            private static TwWorldSettings DownloadWorldSettings(string worldName, string worldServer)
             {
                 var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
                 Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
 
-                return new WorldSettings(worldSpeed, worldUnitSpeed);
+                bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "0";
+
+                return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery);
             }
 
-            private class WorldSettings
+            /// <summary>
+            /// Useful world information from the TW API
+            /// </summary>
+            private class TwWorldSettings
             {
                 public float Speed { get; private set; }
                 public float UnitSpeed { get; private set; }
 
-                public WorldSettings(float worldSpeed, float worldUnitSpeed)
+                /// <summary>
+                /// Gets a value indicating which world.dat to use
+                /// </summary>
+                public IconDisplay.Scenery MapScenery { get; private set; }
+
+                public TwWorldSettings(float worldSpeed, float worldUnitSpeed, bool isOldScenery)
                 {
                     Speed = worldSpeed;
                     UnitSpeed = worldUnitSpeed;
+                    MapScenery = isOldScenery ? IconDisplay.Scenery.Old : IconDisplay.Scenery.New;
                 }
             }
             #endregion
@@ -407,6 +419,9 @@ namespace TribalWars.Data
                 }
             }
 
+            /// <summary>
+            /// Gets all TW servers as defined in WorldTemplate
+            /// </summary>
             public static IEnumerable<ServerInfo> GetAllServers()
             {
                 var list = new List<ServerInfo>();
@@ -455,9 +470,10 @@ namespace TribalWars.Data
                     worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
                 }
 
-                WorldSettings worldSettings = DownloadWorldSettings(worldName, server.ServerUrl);
-                worldInfo.Speed = worldSettings.Speed.ToString(CultureInfo.InvariantCulture);
-                worldInfo.UnitSpeed = worldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
+                TwWorldSettings twWorldSettings = DownloadWorldSettings(worldName, server.ServerUrl);
+                worldInfo.Speed = twWorldSettings.Speed.ToString(CultureInfo.InvariantCulture);
+                worldInfo.UnitSpeed = twWorldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
+                worldInfo.WorldDatScenery = ((int) twWorldSettings.MapScenery).ToString(CultureInfo.InvariantCulture);
 
                 // Fix URIs
                 worldInfo.Server = ReplaceServerAndWorld(worldInfo.Server, worldName, server);

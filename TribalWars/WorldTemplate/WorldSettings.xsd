@@ -21,6 +21,7 @@
         <xs:element name="TWStatsTribe" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsPlayerGraph" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsTribeGraph" type="xs:string" minOccurs="0" />
+        <xs:element name="WorldDatScenery" type="xs:string" minOccurs="0" />
         <xs:element name="Views" minOccurs="0" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>

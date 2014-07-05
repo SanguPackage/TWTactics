@@ -75,6 +75,9 @@ namespace TribalWars.WorldTemplate
         private string tWStatsTribeGraphField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        private string worldDatSceneryField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private List<WorldViewsView> viewsField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -120,6 +123,8 @@ namespace TribalWars.WorldTemplate
         public string TWStatsPlayerGraph { get; set; }
 
         public string TWStatsTribeGraph { get; set; }
+
+        public string WorldDatScenery { get; set; }
 
 
         public World()

@@ -94,6 +94,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _map.SetCursor();
         }
 
+        /// <summary>
+        /// Cleanup anything when switching worlds or settings
+        /// </summary>
+        protected internal override void CleanUp()
+        {
+        }
+
         private static Point CreateGamePoint(int x, int y)
         {
             return World.Default.Map.Display.GetGameLocation(x, y);

@@ -355,7 +355,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected internal override void ReadXmlCore(XmlReader r)
         {
-            Clear();
             if (r.IsStartElement("BBCodeManipulator") && !r.IsEmptyElement)
             {
                 r.ReadStartElement();
@@ -381,6 +380,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 }
                 r.ReadEndElement();
             }
+        }
+
+        /// <summary>
+        /// Cleanup anything when switching worlds or settings
+        /// </summary>
+        protected internal override void CleanUp()
+        {
+            Clear();
         }
         #endregion
 

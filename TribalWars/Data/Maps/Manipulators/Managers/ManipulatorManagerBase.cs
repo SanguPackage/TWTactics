@@ -87,6 +87,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// </summary>
         public virtual void ReadXml(XmlReader r)
         {
+            CleanUp();
             if (r.IsEmptyElement)
             {
                 r.Read();
@@ -96,6 +97,17 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 r.ReadStartElement();
                 ReadXmlCore(r);
                 r.ReadEndElement();
+            }
+        }
+
+        /// <summary>
+        /// Cleanup before reinitializing
+        /// </summary>
+        protected internal override void CleanUp()
+        {
+            foreach (var manipulator in _manipulators)
+            {
+                manipulator.CleanUp();
             }
         }
         #endregion

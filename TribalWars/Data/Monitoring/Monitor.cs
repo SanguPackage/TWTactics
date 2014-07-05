@@ -60,5 +60,12 @@ namespace TribalWars.Data.Monitoring
             w.WriteEndElement();
         }
         #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return string.Format("ActiveRectangle={0}", _rectangle);
+        }
+        #endregion
     }
 }

@@ -19,6 +19,15 @@ namespace TribalWars.Data.Maps.Displays
     /// </summary>
     public sealed class IconDisplay : DisplayBase
     {
+        /// <summary>
+        /// Which world.dat to use for displaying seas, mountains, ...
+        /// </summary>
+        public enum Scenery
+        {
+            Old = 0,
+            New = 1
+        }
+
         #region Fields
         public const int StandardIconWidth = 53;
         public const int StandardIconHeight = 38;
@@ -49,7 +58,17 @@ namespace TribalWars.Data.Maps.Displays
         public IconDisplay()
             : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
         {
-            _background = new MemoryStream(WorldData.WorldBackgroundData);
+
+            
+
+            //if (World.Default.IconScenery == Scenery.Old)
+            //{
+                _background = new MemoryStream(WorldData.WorldBackgroundData);
+            //}
+            //else
+            //{
+            //    _background = new MemoryStream(WorldData.WorldBackgroundData2);
+            //}
 
             _backgroundCache = new Dictionary<int, DrawerBase>();
             _backgroundCache.Add(0, CreateArray(new BackgroundDrawer(Icons.Background.gras1)));

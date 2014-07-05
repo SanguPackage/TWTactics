@@ -61,6 +61,13 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Event Handlers
+        /// <summary>
+        /// Cleanup anything when switching worlds or settings
+        /// </summary>
+        protected internal override void CleanUp()
+        {
+        }
+
         public override void TimerPaint(MapTimerPaintEventArgs e)
         {
             // Toggle marker of selected village
