@@ -467,6 +467,8 @@ namespace TribalWars.Data
                 worldInfo.DataTribe = ReplaceServerAndWorld(worldInfo.DataTribe, worldName, server);
 
                 worldInfo.GameVillage = ReplaceServerAndWorld(worldInfo.GameVillage, worldName, server);
+                worldInfo.GuestPlayer = ReplaceServerAndWorld(worldInfo.GuestPlayer, worldName, server);
+                worldInfo.GuestTribe = ReplaceServerAndWorld(worldInfo.GuestTribe, worldName, server);
 
                 worldInfo.TWStatsGeneral = ReplaceServerAndWorld(worldInfo.TWStatsGeneral, worldName, server);
                 worldInfo.TWStatsPlayer = ReplaceServerAndWorld(worldInfo.TWStatsPlayer, worldName, server);

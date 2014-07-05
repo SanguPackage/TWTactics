@@ -28,6 +28,14 @@ namespace TribalWars.Controls.Main.Browser
         /// <summary>
         /// Navigates to a village overview page
         /// </summary>
-        InfoVillage
+        InfoVillage,
+        /// <summary>
+        /// Official TW guest page for player
+        /// </summary>
+        GuestPlayer,
+        /// <summary>
+        /// Official TW guest page for tribe
+        /// </summary>
+        GuestTribe
     }
 }

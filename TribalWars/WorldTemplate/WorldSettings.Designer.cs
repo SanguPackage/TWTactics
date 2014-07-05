@@ -51,6 +51,12 @@ namespace TribalWars.WorldTemplate
         private string gameVillageField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        private string guestPlayerField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private string guestTribeField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private string tWStatsGeneralField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -98,6 +104,10 @@ namespace TribalWars.WorldTemplate
         public string DataTribe { get; set; }
 
         public string GameVillage { get; set; }
+
+        public string GuestPlayer { get; set; }
+
+        public string GuestTribe { get; set; }
 
         public string TWStatsGeneral { get; set; }
 

@@ -40,6 +40,10 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddSeparator();
 
             _menu.AddCommand("TWStats", OnTwStats);
+            _menu.AddCommand("TW Guest", OnTwGuest);
+
+            _menu.AddSeparator();
+
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
@@ -84,6 +88,14 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnTwStats(object sender, EventArgs e)
         {
             World.Default.EventPublisher.BrowseUri(null, Main.Browser.DestinationEnum.TwStatsTribe, _tribe.Id.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Browse to TW guest page for the target tribe
+        /// </summary>
+        private void OnTwGuest(object sender, EventArgs e)
+        {
+            World.Default.EventPublisher.BrowseUri(null, Main.Browser.DestinationEnum.GuestTribe, _tribe.Id.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>

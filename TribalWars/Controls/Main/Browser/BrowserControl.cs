@@ -94,6 +94,14 @@ namespace TribalWars.Controls.Main.Browser
                     case DestinationEnum.TwStatsVillage:
                         WebBrowser.Navigate(string.Format(World.Default.TwStats.Village, e.Arguments[0]));
                         break;
+
+                    case DestinationEnum.GuestPlayer:
+                        WebBrowser.Navigate(string.Format(World.Default.GuestPlayerLink, e.Arguments[0]));
+                        break;
+
+                    case DestinationEnum.GuestTribe:
+                        WebBrowser.Navigate(string.Format(World.Default.GuestTribeLink, e.Arguments[0]));
+                        break;
                 }
             }
             else

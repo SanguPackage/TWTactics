@@ -10,6 +10,8 @@
   <DataPlayer>http://{WorldName}.{ServerUrl}/map/tribe.txt.gz</DataPlayer>
   <DataTribe>http://{WorldName}.{ServerUrl}/map/ally.txt.gz</DataTribe>
   <GameVillage>http://{WorldName}.{ServerUrl}/game.php?village={0}&amp;screen={1}</GameVillage>
+  <GuestPlayer>http://{WorldName}.{ServerUrl}/guest.php?screen=info_player&amp;id={0}</GuestPlayer>
+  <GuestTribe>http://{WorldName}.{ServerUrl}/guest.php?screen=info_ally&amp;id={0}</GuestTribe>
   <TWStatsGeneral>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php</TWStatsGeneral>
   <TWStatsVillage>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=village&amp;id={0}</TWStatsVillage>
   <TWStatsPlayer>http://{TWStatsPrefix}.twstats.com/{WorldName}/index.php?page=player&amp;id={0}</TWStatsPlayer>

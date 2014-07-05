@@ -13,6 +13,8 @@
         <xs:element name="DataPlayer" type="xs:string" minOccurs="0" />
         <xs:element name="DataTribe" type="xs:string" minOccurs="0" />
         <xs:element name="GameVillage" type="xs:string" minOccurs="0" />
+        <xs:element name="GuestPlayer" type="xs:string" minOccurs="0" />
+        <xs:element name="GuestTribe" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsGeneral" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsVillage" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsPlayer" type="xs:string" minOccurs="0" />

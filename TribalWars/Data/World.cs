@@ -138,6 +138,18 @@ namespace TribalWars.Data
         public string GameLink { get; set; }
 
         /// <summary>
+        /// Gets the guest account link for a player
+        /// </summary>
+        /// <remarks>Replace {0} by player id</remarks>
+        public string GuestPlayerLink { get; set; }
+
+        /// <summary>
+        /// Gets the guest account link for a tribe
+        /// </summary>
+        /// <remarks>Replace {0} by tribe id</remarks>
+        public string GuestTribeLink { get; set; }
+
+        /// <summary>
         /// Gets the dictionary with all players
         /// </summary>
         /// <remarks>Key is the name is uppercase</remarks>

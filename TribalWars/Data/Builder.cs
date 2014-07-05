@@ -306,6 +306,8 @@ namespace TribalWars.Data
             w.Structure.DownloadTribe = info.DataTribe;
 
             w.GameLink = info.GameVillage;
+            w.GuestPlayerLink = info.GuestPlayer;
+            w.GuestTribeLink = info.GuestTribe;
 
             w.TwStats.Default = new Uri(info.TWStatsGeneral);
             w.TwStats.Village = info.TWStatsVillage;
