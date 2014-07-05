@@ -32,6 +32,7 @@ namespace TribalWars.Data
         {
             #region Constants
             private const string AvailableWorlds = "http://www.tribalwars.nl/backend/get_servers.php";
+            private const string UnitGraphicsUrlFormat = "http://dsen.innogamescdn.com/8.24/20950/graphic/unit/unit_{0}.png";
             private const string NormalWorldPattern = @"nl(\d+)";
             private static readonly Regex NormalWorldRegex = new Regex(NormalWorldPattern);
             private const string NormalWorldPrefix = "nl";
@@ -349,6 +350,14 @@ namespace TribalWars.Data
             private const string ServerSettingsUrl = "http://{0}.tribalwars.nl/interface.php?func={1}";
 
             /// <summary>
+            /// Get image url for a unit
+            /// </summary>
+            public string GetUnitImageUrl(UnitTypes type)
+            {
+                return string.Format(UnitGraphicsUrlFormat, type.ToString().ToLowerInvariant());
+            }
+
+            /// <summary>
             /// Downloads the global world settings and extracts the world speeds
             /// </summary>
             private static WorldSettings DownloadWorldSettings(string worldName)
@@ -449,30 +458,33 @@ namespace TribalWars.Data
             /// </summary>
             private static IEnumerable<WorldUnitsUnit> GetWorldUnitSettings(string worldName)
             {
-                List<TacticsUnit> twTacticsUnits = TacticsUnit.GetUnitsFromXml(Path.Combine(WorldTemplateDirectory, "TacticsUnit.xml"));
+                List<TacticsUnit> twTacticsUnits = TacticsUnit.GetUnitsFromXml(Path.Combine(WorldTemplateDirectory, "TacticsUnits.xml"));
                 IEnumerable<TwUnit> twUnits = DownloadWorldUnitSettings(worldName);
 
                 var list = new List<WorldUnitsUnit>();
                 int position = 0;
                 foreach (TwUnit twUnit in twUnits)
                 {
-                    TacticsUnit tacticsUnit = twTacticsUnits.Single(x => x.Type == twUnit.Type);
-                    list.Add(new WorldUnitsUnit
-                        {
-                            Carry = twUnit.Carry.ToString(CultureInfo.InvariantCulture),
-                            CostClay = twUnit.Clay.ToString(CultureInfo.InvariantCulture),
-                            CostIron = twUnit.Iron.ToString(CultureInfo.InvariantCulture),
-                            CostWood = twUnit.Wood.ToString(CultureInfo.InvariantCulture),
-                            CostPeople = twUnit.Population.ToString(CultureInfo.InvariantCulture),
-                            Farmer = tacticsUnit.Farmer.ToString(),
-                            HideAttacker = tacticsUnit.HideAttacher.ToString(),
-                            Offense = tacticsUnit.Offense.ToString(),
-                            Name = tacticsUnit.Name,
-                            Short = tacticsUnit.ShortName,
-                            Speed = twUnit.Speed.ToString(CultureInfo.InvariantCulture),
-                            Type = twUnit.Type.ToString(),
-                            Position = position.ToString(CultureInfo.InvariantCulture)
-                        });
+                    TacticsUnit tacticsUnit = twTacticsUnits.SingleOrDefault(x => x.Type == twUnit.Type);
+                    if (tacticsUnit != null)
+                    {
+                        list.Add(new WorldUnitsUnit
+                            {
+                                Carry = twUnit.Carry.ToString(CultureInfo.InvariantCulture),
+                                CostClay = twUnit.Clay.ToString(CultureInfo.InvariantCulture),
+                                CostIron = twUnit.Iron.ToString(CultureInfo.InvariantCulture),
+                                CostWood = twUnit.Wood.ToString(CultureInfo.InvariantCulture),
+                                CostPeople = twUnit.Population.ToString(CultureInfo.InvariantCulture),
+                                Farmer = tacticsUnit.Farmer.ToString(),
+                                HideAttacker = tacticsUnit.HideAttacher.ToString(),
+                                Offense = tacticsUnit.Offense.ToString(),
+                                Name = tacticsUnit.Name,
+                                Short = tacticsUnit.ShortName,
+                                Speed = twUnit.Speed.ToString(CultureInfo.InvariantCulture),
+                                Type = twUnit.Type.ToString(),
+                                Position = position.ToString(CultureInfo.InvariantCulture)
+                            });
+                    }
 
                     position++;
                 }
@@ -486,16 +498,20 @@ namespace TribalWars.Data
                 var list = new List<TwUnit>();
                 foreach (var xmlUnit in xdoc.Root.Elements())
                 {
-                    list.Add(new TwUnit
-                        {
-                            Type = (UnitTypes)Enum.Parse(typeof(UnitTypes), xmlUnit.Name.LocalName),
-                            Wood = Convert.ToInt32(xmlUnit.Element("wood").Value),
-                            Clay = Convert.ToInt32(xmlUnit.Element("stone").Value),
-                            Iron = Convert.ToInt32(xmlUnit.Element("iron").Value),
-                            Population = Convert.ToInt32(xmlUnit.Element("pop").Value),
-                            Speed = Convert.ToSingle(xmlUnit.Element("speed").Value),
-                            Carry = Convert.ToInt32(xmlUnit.Element("carry").Value)
-                        });
+                    UnitTypes type;
+                    if (Enum.TryParse(xmlUnit.Name.LocalName, true, out type))
+                    {
+                        list.Add(new TwUnit
+                            {
+                                Type = type,
+                                Wood = Convert.ToInt32(xmlUnit.Element("wood").Value),
+                                Clay = Convert.ToInt32(xmlUnit.Element("stone").Value),
+                                Iron = Convert.ToInt32(xmlUnit.Element("iron").Value),
+                                Population = Convert.ToInt32(xmlUnit.Element("pop").Value),
+                                Speed = Convert.ToSingle(xmlUnit.Element("speed").Value, CultureInfo.InvariantCulture),
+                                Carry = Convert.ToInt32(xmlUnit.Element("carry").Value)
+                            });
+                    }
                 }
                 return list;
             }
@@ -512,6 +528,11 @@ namespace TribalWars.Data
                 public int Population { get; set; }
                 public float Speed { get; set; }
                 public int Carry { get; set; }
+
+                public override string ToString()
+                {
+                    return string.Format("Type={0}, Speed={1}, Population={2}", Type, Speed, Population);
+                }
             }
 
             /// <summary>

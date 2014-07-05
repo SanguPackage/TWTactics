@@ -35,5 +35,10 @@ namespace TribalWars.Forms
         {
             ServerOffset = new TimeSpan((int)TimeOffset.Value, 0, 0);
         }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

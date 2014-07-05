@@ -370,7 +370,7 @@ namespace TribalWars.Data
             foreach (var unit in unitsIn)
             {
                 int carry = Convert.ToInt32(unit.Carry);
-                float speed = Convert.ToSingle(unit.Speed);
+                float speed = Convert.ToSingle(unit.Speed, CultureInfo.InvariantCulture);
 
                 bool farmer = Convert.ToBoolean(unit.Farmer);
                 bool hideAttacker = Convert.ToBoolean(unit.HideAttacker);
@@ -381,7 +381,7 @@ namespace TribalWars.Data
                 int clay = Convert.ToInt32(unit.CostClay);
                 int iron = Convert.ToInt32(unit.CostIron);
 
-                var u = new Unit(Convert.ToInt32(unit.Position), unit.Name, unit.Short, unit.Type, unit.Image, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
+                var u = new Unit(Convert.ToInt32(unit.Position), unit.Name, unit.Short, unit.Type, carry, farmer, hideAttacker, wood, clay, iron, people, speed, offense);
 
                 unitsOut.Add(u.Type, u);
             }

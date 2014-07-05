@@ -40,6 +40,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.TimeDisplayTimer = new System.Windows.Forms.Timer(this.components);
+            this.CloseButton = new Janus.Windows.EditControls.UIButton();
             this.gbTimeZome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffset)).BeginInit();
             this.SuspendLayout();
@@ -146,17 +147,34 @@
             this.TimeDisplayTimer.Interval = 200;
             this.TimeDisplayTimer.Tick += new System.EventHandler(this.TimeDisplayTimer_Tick);
             // 
+            // CloseButton
+            // 
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
+            this.CloseButton.Location = new System.Drawing.Point(12, 249);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(242, 46);
+            this.CloseButton.TabIndex = 14;
+            this.CloseButton.Text = "OK";
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // TimeZoneForm
             // 
+            this.AcceptButton = this.CloseButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 256);
+            this.CancelButton = this.CloseButton;
+            this.ClientSize = new System.Drawing.Size(264, 304);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.gbTimeZome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TimeZoneForm";
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Synchronize Server Time";
             this.gbTimeZome.ResumeLayout(false);
@@ -178,5 +196,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer TimeDisplayTimer;
+        private Janus.Windows.EditControls.UIButton CloseButton;
     }
 }

@@ -318,6 +318,7 @@
   </Buildings>
   <Units>
     <Unit>
+      <Position>0</Position>
       <Name>Spear fighter</Name>
       <Short>spear</Short>
       <Type>spear</Type>
@@ -332,6 +333,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Swordsman</Name>
       <Short>sword</Short>
       <Type>sword</Type>
@@ -346,6 +348,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Axeman</Name>
       <Short>axe</Short>
       <Type>axe</Type>
@@ -360,6 +363,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Archer</Name>
       <Short>archer</Short>
       <Type>archer</Type>
@@ -374,6 +378,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Scout</Name>
       <Short>scout</Short>
       <Type>spy</Type>
@@ -388,6 +393,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Light cavalry</Name>
       <Short>lc</Short>
       <Type>light</Type>
@@ -402,6 +408,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Mounted archer</Name>
       <Short>ma</Short>
       <Type>marcher</Type>
@@ -416,6 +423,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Heavy cavalry</Name>
       <Short>hc</Short>
       <Type>heavy</Type>
@@ -430,6 +438,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Ram</Name>
       <Short>ram</Short>
       <Type>ram</Type>
@@ -444,6 +453,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Catapult</Name>
       <Short>cata</Short>
       <Type>catapult</Type>
@@ -458,6 +468,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Paladin</Name>
       <Short>paladin</Short>
       <Type>knight</Type>
@@ -472,6 +483,7 @@
       <CostPeople>0</CostPeople>
     </Unit>
     <Unit>
+      <Position>0</Position>
       <Name>Nobleman</Name>
       <Short>noble</Short>
       <Type>snob</Type>

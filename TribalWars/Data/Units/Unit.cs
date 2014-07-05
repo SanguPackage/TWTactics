@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using TribalWars.Data.Resources;
 
 namespace TribalWars.Data.Units
@@ -9,7 +10,6 @@ namespace TribalWars.Data.Units
     public class Unit : IEquatable<Unit>
     {
         #region Fields
-        private readonly string _image;
         private readonly UnitTypes _type;
         private readonly float _speed;
         #endregion
@@ -54,7 +54,7 @@ namespace TribalWars.Data.Units
         /// </summary>
         public string BbCodeImage
         {
-            get { return string.Format("[img]{0}[/img]", _image); }
+            get { return string.Format("[img]{0}[/img]", World.Default.Structure.GetUnitImageUrl(_type)); }
         }
 
         /// <summary>
@@ -117,17 +117,16 @@ namespace TribalWars.Data.Units
         /// </summary>
         public float Speed
         {
-            get { return _speed * World.Default.UnitSpeed; }
+            get { return _speed /* World.Default.UnitSpeed*/; } // TODO: World.UnitSpeed is now already calculated in the speed
         }
         #endregion
 
         #region Constructors
-        internal Unit(int pos, string name, string shortname, string type, string image, int carry, bool farmer, bool hideAttacker, int wood, int clay, int iron, int people, float speed, bool isOff)
+        internal Unit(int pos, string name, string shortname, string type, int carry, bool farmer, bool hideAttacker, int wood, int clay, int iron, int people, float speed, bool isOff)
         {
             Position = pos;
             Name = name;
             ShortName = shortname;
-            _image = image;
             Carry = carry;
             Farmer = farmer;
             HideAttacker = hideAttacker;
@@ -135,13 +134,9 @@ namespace TribalWars.Data.Units
             _speed = speed;
             Offense = isOff;
 
-            if (Enum.IsDefined(typeof(UnitTypes), type))
+            if (!Enum.TryParse(type, true, out _type) || _type == UnitTypes.None)
             {
-                _type = (UnitTypes)Enum.Parse(typeof(UnitTypes), type, true);
-            }
-            else
-            {
-                _type = UnitTypes.None;
+                Debug.Assert(false, "Unknown unit???");
             }
         }
         #endregion

@@ -435,7 +435,7 @@ namespace TribalWars.Data.Reporting
             // Info
             _villageDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
             r.ReadStartElement();
-            _loyalty = System.Convert.ToSingle(r.GetAttribute(0));
+            _loyalty = System.Convert.ToSingle(r.GetAttribute(0), CultureInfo.InvariantCulture);
             _loyaltyDate = System.Convert.ToDateTime(r.GetAttribute(1), System.Globalization.CultureInfo.InvariantCulture);
             r.ReadStartElement();
 

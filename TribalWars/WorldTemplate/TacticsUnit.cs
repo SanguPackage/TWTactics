@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using TribalWars.Data.Units;
 
@@ -13,12 +11,12 @@ namespace TribalWars.WorldTemplate
     /// </summary>
     public class TacticsUnit
     {
-        public UnitTypes Type { get; set; }
-        public string Name { get; set; }
-        public string ShortName { get; set; }
-        public bool Farmer { get; set; }
-        public bool HideAttacher { get; set; }
-        public bool Offense { get; set; }
+        public UnitTypes Type { get; private set; }
+        public string Name { get; private set; }
+        public string ShortName { get; private set; }
+        public bool Farmer { get; private set; }
+        public bool HideAttacher { get; private set; }
+        public bool Offense { get; private set; }
 
         private TacticsUnit()
         {
@@ -34,12 +32,12 @@ namespace TribalWars.WorldTemplate
             {
                 var unit = new TacticsUnit
                     {
-                        Type = (UnitTypes)Enum.Parse(typeof(UnitTypes), xmlUnit.Element("Name").Value, true),
+                        Type = (UnitTypes)Enum.Parse(typeof(UnitTypes), xmlUnit.Element("Type").Value, true),
                         Name = xmlUnit.Element("Name").Value,
                         ShortName = xmlUnit.Element("Short").Value,
 
                         Farmer = Convert.ToBoolean(xmlUnit.Element("Farmer").Value),
-                        HideAttacher = Convert.ToBoolean(xmlUnit.Element("HideAttacher").Value),
+                        HideAttacher = Convert.ToBoolean(xmlUnit.Element("HideAttacker").Value),
                         Offense = Convert.ToBoolean(xmlUnit.Element("Offense").Value)
                     };
 
@@ -47,6 +45,11 @@ namespace TribalWars.WorldTemplate
             }
 
             return units;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Type={0}, Name={1}", Type, Name);
         }
     }
 }
