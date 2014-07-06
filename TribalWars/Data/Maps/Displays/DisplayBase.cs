@@ -51,11 +51,6 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        public DrawerBase CreateDrawer(DrawerData data, MarkerGroup colors)
-        {
-            return CreateDrawer(data, colors, null);
-        }
-
         /// <summary>
         /// Create a new drawer
         /// </summary>

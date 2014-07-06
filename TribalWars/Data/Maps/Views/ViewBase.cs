@@ -59,25 +59,9 @@ namespace TribalWars.Data.Maps.Views
         /// <summary>
         /// Adds a new Drawer to the collection
         /// </summary>
-        public virtual void AddDrawer(string drawerType, string drawerIcon, int value, object extraValues)
+        public virtual void AddDrawer(string drawerType, string drawerIcon, string drawerBonusIcon, int value, object extraValues)
         {
-            _drawers.Add(new ViewData(value, extraValues), new DrawerData(drawerType, drawerIcon, extraValues));
-        }
-
-        /// <summary>
-        /// Adds a new Drawer to the collection
-        /// </summary>
-        public virtual void AddDrawer(DrawerData drawer, int value)
-        {
-            _drawers.Add(new ViewData(value), drawer);
-        }
-
-        /// <summary>
-        /// Adds a new Drawer to the collection
-        /// </summary>
-        public virtual void AddDrawer(DrawerData drawer, int value, object extraValues)
-        {
-            _drawers.Add(new ViewData(value, extraValues), drawer);
+            _drawers.Add(new ViewData(value, extraValues), new DrawerData(drawerType, drawerIcon, drawerBonusIcon, extraValues));
         }
 
         public override string ToString()

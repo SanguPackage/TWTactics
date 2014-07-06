@@ -16,24 +16,14 @@ namespace TribalWars.Data.Maps.Markers
     {
         #region Properties
         /// <summary>
-        /// Gets the map the markers are displayed on
-        /// </summary>
-        public Map Map { get; private set; }
-
-        /// <summary>
         /// Gets all specific markers 
         /// </summary>
-        public List<MarkerGroup> Markers { get; set; }
+        public List<MarkerGroup> Markers { get; private set; }
 
         /// <summary>
         /// Gets the markergroup for your own villages
         /// </summary>
         public MarkerGroup YourMarker { get; set; }
-
-        /// <summary>
-        /// Gets the markergroup for bonus villages
-        /// </summary>
-        public MarkerGroup BonusMarker { get; set; }
 
         /// <summary>
         /// Gets the markergroup for all other villages
@@ -52,9 +42,8 @@ namespace TribalWars.Data.Maps.Markers
         #endregion
 
         #region Constructors
-        public MarkerManager(Map map)
+        public MarkerManager()
         {
-            Map = map;
             Markers = new List<MarkerGroup>();
         }
         #endregion

@@ -99,7 +99,7 @@ namespace TribalWars.Data.Maps
         {
             EventPublisher = new Publisher(this);
             Display = new Display(this);
-            MarkerManager = new MarkerManager(this);
+            MarkerManager = new MarkerManager();
             Manipulators = new ManipulatorManagerController(this);
         }
 

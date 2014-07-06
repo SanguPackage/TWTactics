@@ -39,34 +39,24 @@ namespace TribalWars.Data.Maps.Views
                 data = _importance.Where(t => village.Type.HasFlag(t)).Select(t => _cache[t]).FirstOrDefault();
                 if (data != null)
                 {
-                    data = new DrawerData(data.ShapeDrawer, data.IconDrawer, data.ExtraDrawerInfo, village.Type);
+                    data = new DrawerData(data.ShapeDrawer, data.IconDrawer, data.BonusIconDrawer, data.ExtraDrawerInfo, village.Type);
                 }
                 else
                 {
                     if (village.Type.HasFlag(VillageType.Noble) || village.Type.HasFlag(VillageType.Comments))
-                        data = new DrawerData(null, null, null, village.Type);
+                        data = new DrawerData(null, null, null, null, village.Type);
                 }
                 _cache.Add(village.Type, data);
             }
             return data;
         }
 
-        public override void AddDrawer(string drawerType, string drawerIcon, int value, object extraValues)
+        public override void AddDrawer(string drawerType, string drawerIcon, string drawerBonusIcon, int value, object extraValues)
         {
             // Value=VillageType, extraValues=Color for BorderDrawer
             var type = (VillageType)value;
             Color color = XmlHelper.GetColor(extraValues.ToString());
-            _cache.Add(type, new DrawerData(drawerType, drawerIcon, color, value));
-        }
-
-        public override void AddDrawer(DrawerData drawer, int value)
-        {
-            throw new NotSupportedException();
-        }
-
-        public override void AddDrawer(DrawerData drawer, int value, object extraValues)
-        {
-            throw new NotSupportedException();
+            _cache.Add(type, new DrawerData(drawerType, drawerIcon, drawerBonusIcon, color, value));
         }
         #endregion
     }

@@ -14,12 +14,17 @@ namespace TribalWars.Data.Maps.Drawers
         /// <summary>
         /// Gets or sets which shapedrawer to use
         /// </summary>
-        public string ShapeDrawer { get; set; }
+        public string ShapeDrawer { get; private set; }
 
         /// <summary>
         /// Gets or sets which icondrawer to use
         /// </summary>
-        public string IconDrawer { get; set; }
+        public string IconDrawer { get; private set; }
+
+        /// <summary>
+        /// Gets or sets which icondrawer to use when it is a bonus village
+        /// </summary>
+        public string BonusIconDrawer { get; private set; }
 
         /// <summary>
         /// Extra info for creating the DrawerBase that
@@ -30,49 +35,37 @@ namespace TribalWars.Data.Maps.Drawers
         /// For example a color for a BorderDrawer based on the
         /// village type, ...
         /// </remarks>
-        public object ExtraDrawerInfo { get; set; }
+        public object ExtraDrawerInfo { get; private set; }
 
         /// <summary>
         /// Gets or sets the value
         /// </summary>
-        public object Value { get; set; }
+        public object Value { get; private set; }
         #endregion
 
         #region Constructors
-        public DrawerData(string shape, string icon)
+        public DrawerData(string shape, string icon, string bonusIcon, object extra)
         {
             ShapeDrawer = shape;
             IconDrawer = icon;
-        }
-
-        public DrawerData(string shape, string icon, object extra)
-        {
-            ShapeDrawer = shape;
-            IconDrawer = icon;
+            BonusIconDrawer = bonusIcon;
             ExtraDrawerInfo = extra;
         }
 
-        public DrawerData(string shape, string icon, object extra, object value)
+        public DrawerData(string shape, string icon, string bonusIcon, object extra, object value)
         {
             ShapeDrawer = shape;
             IconDrawer = icon;
+            BonusIconDrawer = bonusIcon;
             ExtraDrawerInfo = extra;
             Value = value;
-        }
-
-        public DrawerData(DrawerData data)
-        {
-            ShapeDrawer = data.ShapeDrawer;
-            IconDrawer = data.IconDrawer;
-            ExtraDrawerInfo = data.ExtraDrawerInfo;
-            Value = data.Value;
         }
         #endregion
 
         #region Public Methods
         public override string ToString()
         {
-            return string.Format("Shape:{0},Icon:{1}", ShapeDrawer, IconDrawer);
+            return string.Format("Shape:{0}, Icon:{1}", ShapeDrawer, IconDrawer);
         }
         #endregion
     }

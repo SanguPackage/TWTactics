@@ -28,26 +28,31 @@
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>village1</Icon>
+          <BonusIcon>bvillage1</BonusIcon>
           <Value>300</Value>
         </Drawer>
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>village2</Icon>
+          <BonusIcon>bvillage2</BonusIcon>
           <Value>1000</Value>
         </Drawer>
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>village3</Icon>
+          <BonusIcon>bvillage3</BonusIcon>
           <Value>3000</Value>
         </Drawer>
         <Drawer>
           <Type>RectangleDrawer</Type>
           <Icon>village4</Icon>
+          <BonusIcon>bvillage4</BonusIcon>
           <Value>9000</Value>
         </Drawer>
         <Drawer>
           <Type>RectangleDrawer</Type>
           <Icon>village5</Icon>
+          <BonusIcon>bvillage5</BonusIcon>
           <Value>12000</Value>
         </Drawer>
         <Drawer>
@@ -65,105 +70,37 @@
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>barbarian1</Icon>
+          <BonusIcon>bbarbarian1</BonusIcon>
           <Value>300</Value>
         </Drawer>
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>barbarian2</Icon>
+          <BonusIcon>bbarbarian2</BonusIcon>
           <Value>1000</Value>
         </Drawer>
         <Drawer>
           <Type>EllipseDrawer</Type>
           <Icon>barbarian3</Icon>
+          <BonusIcon>bbarbarian3</BonusIcon>
           <Value>3000</Value>
         </Drawer>
         <Drawer>
           <Type>RectangleDrawer</Type>
           <Icon>barbarian4</Icon>
+          <BonusIcon>bbarbarian4</BonusIcon>
           <Value>9000</Value>
         </Drawer>
         <Drawer>
           <Type>RectangleDrawer</Type>
           <Icon>barbarian5</Icon>
+          <BonusIcon>bbarbarian5</BonusIcon>
           <Value>12000</Value>
         </Drawer>
         <Drawer>
           <Type>RectangleDrawer</Type>
           <Icon>barbarian6</Icon>
-          <Value>99999</Value>
-        </Drawer>
-      </Drawers>
-    </View>
-    <View>
-      <Category>Background</Category>
-      <Type>Points</Type>
-      <Name>PointsBonus</Name>
-      <Drawers>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bvillage1</Icon>
-          <Value>300</Value>
-        </Drawer>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bvillage2</Icon>
-          <Value>1000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bvillage3</Icon>
-          <Value>3000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bvillage4</Icon>
-          <Value>9000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bvillage5</Icon>
-          <Value>12000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bvillage6</Icon>
-          <Value>99999</Value>
-        </Drawer>
-      </Drawers>
-    </View>
-    <View>
-      <Category>Background</Category>
-      <Type>Points</Type>
-      <Name>PointsBonusAbandoned</Name>
-      <Drawers>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bbarbarian1</Icon>
-          <Value>300</Value>
-        </Drawer>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bbarbarian2</Icon>
-          <Value>1000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>bbarbarian3</Icon>
-          <Value>3000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bbarbarian4</Icon>
-          <Value>9000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bbarbarian5</Icon>
-          <Value>12000</Value>
-        </Drawer>
-        <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>bbarbarian6</Icon>
+          <BonusIcon>bbarbarian6</BonusIcon>
           <Value>99999</Value>
         </Drawer>
       </Drawers>

@@ -19,6 +19,7 @@ namespace TribalWars.Data.Villages
         #region BonusTypes
         public enum BonusType
         {
+            // TODO: The bonustypes may not be correctly indexed?
             None = 0,
             Clay,
             Iron,

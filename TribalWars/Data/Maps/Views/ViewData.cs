@@ -26,11 +26,6 @@ namespace TribalWars.Data.Maps.Views
         #endregion
 
         #region Constructors
-        public ViewData(int value)
-        {
-            Value = value;
-        }
-
         public ViewData(int value, object extraValues)
         {
             Value = value;

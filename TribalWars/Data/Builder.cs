@@ -59,13 +59,13 @@ namespace TribalWars.Data
                 }
 
                 map.MarkerManager.YourMarker = ReadMarkerGroup(r, map);
+                Debug.Assert(map.MarkerManager.YourMarker.Name == "You");
                 map.MarkerManager.YourTribeMarker = ReadMarkerGroup(r, map);
+                Debug.Assert(map.MarkerManager.YourTribeMarker.Name == "Your Tribe");
                 map.MarkerManager.EnemyMarker = ReadMarkerGroup(r, map);
+                Debug.Assert(map.MarkerManager.EnemyMarker.Name == "Enemy");
                 map.MarkerManager.AbandonedMarker = ReadMarkerGroup(r, map);
-                //MarkerGroup enemyBonusMarker = ReadMarkerGroup(r, map);
-                //map.Display.ViewManager.MarkerManager.AbandonedBonusMarker = enemyBonusMarker;
-                //MarkerGroup abandonedBonus = ReadMarkerGroup(r, map);
-                //map.Display.ViewManager.MarkerManager.EnemyBonusMarker = abandonedBonus;
+                Debug.Assert(map.MarkerManager.AbandonedMarker.Name == "Abandoned");
                 r.ReadEndElement();
 
                 // Monitor
@@ -328,7 +328,7 @@ namespace TribalWars.Data
                 ViewBase viewToAdd = CreateView(view.Name, (Types)Enum.Parse(typeof(Types), view.Type));
                 foreach (var drawer in view.Drawers)
                 {
-                    viewToAdd.AddDrawer(drawer.Type, drawer.Icon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
+                    viewToAdd.AddDrawer(drawer.Type, drawer.Icon, drawer.BonusIcon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
                 }
                 World.Default.Views.Add(viewToAdd.Name, viewToAdd);
             }

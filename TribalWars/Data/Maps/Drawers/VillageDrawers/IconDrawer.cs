@@ -60,7 +60,6 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
                 g.FillEllipse(ColorBrush, x + 0.5f, y + 0.5f, size, size);
                 if (ExtraColorBrush != null && width > 20)
                 {
-                    // cirkel naast eerste cirkel
                     float xOffset = width > 35 ? 10f : 6f;
                     g.FillEllipse(ExtraColorBrush, x + xOffset, y + 0.5f, size, size);
                 }

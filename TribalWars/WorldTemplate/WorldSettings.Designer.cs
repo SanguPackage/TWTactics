@@ -604,6 +604,9 @@ namespace TribalWars.WorldTemplate
         private string extraValueField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        private string bonusIconField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private string valueField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
@@ -613,6 +616,8 @@ namespace TribalWars.WorldTemplate
         public string Icon { get; set; }
 
         public string ExtraValue { get; set; }
+
+        public string BonusIcon { get; set; }
 
         public string Value { get; set; }
 

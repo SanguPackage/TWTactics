@@ -94,7 +94,6 @@ namespace TribalWars.Data.Maps.Displays
 
         private int GetVillageSize(int zoom)
         {
-            //if (zoom == 1) return 2;
             return zoom;
         }
 

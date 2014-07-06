@@ -32,8 +32,6 @@ namespace TribalWars.Data.Maps.Views
             }
             return null;
         }
-
-
         #endregion
     }
 }

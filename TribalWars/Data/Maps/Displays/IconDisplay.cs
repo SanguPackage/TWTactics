@@ -1,7 +1,7 @@
 #region Using
-
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Drawers.OtherDrawers;
@@ -73,17 +73,16 @@ namespace TribalWars.Data.Maps.Displays
         public IconDisplay()
             : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
         {
-
-            
-
-            //if (World.Default.IconScenery == Scenery.Old)
-            //{
+            var scenery = Scenery.Old;
+            if (scenery == Scenery.Old)
+            {
                 _background = new MemoryStream(WorldData.WorldBackgroundData);
-            //}
-            //else
-            //{
-            //    _background = new MemoryStream(WorldData.WorldBackgroundData2);
-            //}
+            }
+            else
+            {
+                Debug.Assert(scenery == Scenery.New);
+                _background = new MemoryStream(WorldData.WorldBackgroundData2);
+            }
 
             _backgroundCache = new Dictionary<int, DrawerBase>();
             _backgroundCache.Add(0, CreateArray(new BackgroundDrawer(Icons.Background.gras1)));
@@ -146,9 +145,16 @@ namespace TribalWars.Data.Maps.Displays
             return new IconDrawerDecorator((VillageType)data.Value, icon);
         }
 
-        protected override Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override Data CreateData(/*Village.BonusType villageBonus, */DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            return new Data(data.IconDrawer, colors.Color, colors.ExtraColor, data.Value);
+            //if (villageBonus == Village.BonusType.None)
+            //{
+                return new Data(data.IconDrawer, colors.Color, colors.ExtraColor, data.Value);
+            //}
+            //else
+            //{
+            //    return new Data(data.BonusIconDrawer, colors.Color, colors.ExtraColor, data.Value);
+            //}
         }
 
         private int GetVillageWidthCore(int zoom)
