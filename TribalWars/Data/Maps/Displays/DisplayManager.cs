@@ -89,24 +89,21 @@ namespace TribalWars.Data.Maps.Displays
             {
                 MarkerGroup markerGroup = GetMarkerGroup(village);
 
+                // Paint village icon/shape
                 DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                if (mainData != null)
+                DrawerBase finalCache = CurrentDisplay.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
+                if (finalCache != null)
                 {
-                    // Paint village icon/shape
-                    DrawerBase finalCache = CurrentDisplay.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
                     finalCache.PaintVillage(g, mapVillage);
 
                     if (CurrentDisplay.SupportDecorators && village.Type != VillageType.None)
                     {
                         // Paint extra village decorators
                         DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
-                        if (data != null)
+                        DrawerBase decoratorVillageType = CurrentDisplay.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
+                        if (decoratorVillageType != null)
                         {
-                            DrawerBase decoratorVillageType = CurrentDisplay.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
-                            if (decoratorVillageType != null)
-                            {
-                                decoratorVillageType.PaintVillage(g, mapVillage);
-                            }
+                            decoratorVillageType.PaintVillage(g, mapVillage);
                         }
                     }
                 }

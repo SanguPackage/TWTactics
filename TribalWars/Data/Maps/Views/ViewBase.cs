@@ -48,14 +48,7 @@ namespace TribalWars.Data.Maps.Views
         public virtual void AddDrawer(string drawerType, string drawerIcon, string drawerBonusIcon, int value, object extraValues)
         {
             var viewData = new ViewData(value, extraValues);
-            if (string.IsNullOrWhiteSpace(drawerType) && string.IsNullOrWhiteSpace(drawerIcon))
-            {
-                _drawers.Add(viewData, null);
-            }
-            else
-            {
-                _drawers.Add(viewData, new DrawerData(drawerType, drawerIcon, drawerBonusIcon, extraValues));
-            }
+            _drawers.Add(viewData, new DrawerData(drawerType, drawerIcon, drawerBonusIcon, extraValues));
         }
 
         public override string ToString()

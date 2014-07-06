@@ -38,7 +38,7 @@ namespace TribalWars.Data.Maps.Displays
                     return new ShapeDrawer(true, colors);
 
                 default:
-                    return DrawerBase.CreateEmptyDrawer();
+                    return null;
             }
         }
 
@@ -46,16 +46,13 @@ namespace TribalWars.Data.Maps.Displays
         {
             switch (data.ShapeDrawer)
             {
-                case "XDrawer":
-                    return new XDrawer(colors.Color);
-
                 case "BorderDrawer":
                     var color = (Color)data.ExtraDrawerInfo;
                     var drawer = mainData.ShapeDrawer == "EllipseDrawer" ? BorderDrawer.EllipseDrawer : BorderDrawer.RectangleDrawer;
                     return new BorderDrawer(color, drawer);
 
                 default:
-                    return DrawerBase.CreateEmptyDrawer();
+                    return null;
             }
         }
 

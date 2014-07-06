@@ -289,7 +289,6 @@
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconOrientation.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\XDrawer.cs" />
     <Compile Include="Data\Maps\Icons\Background.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

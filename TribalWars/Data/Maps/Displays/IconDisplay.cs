@@ -115,16 +115,28 @@ namespace TribalWars.Data.Maps.Displays
         protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
         {
             string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;
+            if (string.IsNullOrEmpty(iconName))
+            {
+                return null;
+            }
+
             var icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(iconName);
-            if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", iconName));
+            Debug.Assert(icon != null);
             return new IconDrawer(icon, colors);
         }
 
+        /// <summary>
+        /// A VillageType decorator (off, def, ... icons)
+        /// </summary>
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            // A VillageType decorator (off, def, ... icons)
+            if (string.IsNullOrEmpty(data.IconDrawer))
+            {
+                return null;
+            }
+
             var icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
-            if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", data.IconDrawer));
+            Debug.Assert(icon != null);
             return new IconDrawerDecorator((VillageType)data.Value, icon);
         }
 
