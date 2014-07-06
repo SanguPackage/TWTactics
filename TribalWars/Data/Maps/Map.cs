@@ -22,6 +22,10 @@ namespace TribalWars.Data.Maps
     /// </summary>
     public sealed class Map
     {
+        #region Fields
+        private Display _display;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Gets all villages to mark
@@ -41,7 +45,18 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Gets the map visual settings
         /// </summary>
-        public Display Display { get; private set; }
+        public Display Display
+        {
+            get { return _display; }
+            private set
+            {
+                if (_display != null)
+                {
+                    _display.Dispose();
+                }
+                _display = value;
+            }
+        }
 
         /// <summary>
         /// Size of the map canvas
@@ -101,9 +116,9 @@ namespace TribalWars.Data.Maps
             Manipulators = new ManipulatorManagerController(this);
         }
 
-        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, IconDisplay.Scenery scenery)
+        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type)
         {
-            Display = new Display(settings, this, type, scenery);
+            Display = new Display(settings, this, type);
         }
 
         /// <summary>
@@ -306,10 +321,7 @@ namespace TribalWars.Data.Maps
         {
             if (forceDisplay || Display.CurrentDisplay.Type != display)
             {
-                if (Display.CurrentDisplay != null)
-                    Display.CurrentDisplay.Zoom.Current = location.Zoom;
-
-                Display.Reset(display);
+                Display = new Display(Display.Settings, this, display);
 
                 EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
 
@@ -351,5 +363,14 @@ namespace TribalWars.Data.Maps
             Control.Cursor = cursor;
         }
         #endregion
+
+        public void Invalidate(bool resetBackgroundCache = true)
+        {
+            if (resetBackgroundCache)
+            {
+                Display.ResetCache();
+            }
+            Control.Invalidate();
+        }
     }
 }

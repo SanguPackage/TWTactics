@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using TribalWars.Data.Maps.Displays;
 
 namespace TribalWars.Data.Maps
 {
@@ -37,6 +38,12 @@ namespace TribalWars.Data.Maps
         /// villages should be shown on the map
         /// </summary>
         public bool MarkedOnly { get; private set; }
+
+        /// <summary>
+        /// Which world.dat to use for displaying mountains etc.
+        /// Is specific per world and not a user setting.
+        /// </summary>
+        public IconDisplay.Scenery Scenery { get; set; }
 
         public DisplaySettings(Color backgroundColor, bool continentLines, bool provinceLines, bool hideAbandoned, bool markedOnly)
         {

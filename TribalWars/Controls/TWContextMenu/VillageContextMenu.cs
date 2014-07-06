@@ -112,7 +112,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _village.Type = changeTo;
             }
-            _map.Display.ResetCache();
+            _map.Invalidate();
 
             if (_onVillageTypeChangeDelegate != null)
             {

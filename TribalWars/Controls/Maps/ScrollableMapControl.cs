@@ -169,8 +169,7 @@ namespace TribalWars.Controls.Maps
             base.OnResize(e);
             if (Map != null && World.Default.HasLoaded)
             {
-                Map.Display.ResetCache();
-                Invalidate();
+                Map.Invalidate();
             }
         }
 

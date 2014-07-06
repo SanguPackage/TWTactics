@@ -202,9 +202,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
         private void EventPublisher_MainMapLocationChanged(object sender, MapLocationEventArgs e)
         {
-            // TODO: we might have some bubbling of events here
-            // ie MainMap.SetCenter -> MiniMap.SetCenter -> MainMap.SetCenter
-            // check this sometime
             if (sender != this)
             {
                 if (_map.Location == null)
@@ -229,8 +226,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
         private void EventPublisher_MainMapDisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
         {
-            _map.Display.ResetCache();
-            _map.Control.Invalidate();
+            _map.Invalidate();
         }
 
         private void EventPublisher_MainMapVillagesSelected(object sender, VillagesEventArgs e)

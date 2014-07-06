@@ -18,7 +18,7 @@ namespace TribalWars.Data.Maps
     /// <summary>
     /// Manages the painting of a TW map
     /// </summary>
-    public sealed class Display
+    public sealed class Display : IDisposable
     {
         #region Fields
         private readonly Map _map;
@@ -30,12 +30,12 @@ namespace TribalWars.Data.Maps
 
         private readonly Brush _backgroundBrush;
 
-        private Bitmap _background;
+        private Bitmap _background; // TODO: private PainterCache _cache?
         private Painter _painter;
 
         private DisplayBase _displayStrategy;
         private readonly DisplaySettings _settings;
-        private readonly IconDisplay.Scenery _scenery;
+        private bool _isDisposed;
         #endregion
 
         #region Properties
@@ -51,16 +51,16 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Constructors
-        public Display(DisplaySettings settings, Map map, DisplayTypes displayType, IconDisplay.Scenery scenery)
+        public Display(DisplaySettings settings, Map map, DisplayTypes displayType)
         {
             _settings = settings;
             _map = map;
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             _markers = map.MarkerManager;
-            _scenery = scenery;
 
-            _displayStrategy = DisplayBase.Create(displayType, scenery);
+            _displayStrategy = DisplayBase.Create(displayType, settings.Scenery);
 
+            // TODO: all these move to the painter
             _backgroundBrush = new SolidBrush(settings.BackgroundColor);
             if (settings.ContinentLines)
             {
@@ -78,35 +78,29 @@ namespace TribalWars.Data.Maps
         #region Reset Cache
         private void EventPublisher_LocationChanged(object sender, Events.MapLocationEventArgs e)
         {
-            // TODO: also need to call this on resize probably?
-
-            // TODO: if there is some overlap between e.NewLocation and e.OldLocation
-            // redraw only the new part of the background and move the rest
-            // keep a _drawnRectangle variable that represents the drawn part of the background
-            if (e.OldLocation != null)
+            if (!_isDisposed)
             {
-                //Debug.Assert(e.OldLocation != e.NewLocation);
-                if (e.OldLocation.Zoom != e.NewLocation.Zoom)
+                // TODO: also need to call this on resize probably?
+
+                // TODO: if there is some overlap between e.NewLocation and e.OldLocation
+                // redraw only the new part of the background and move the rest
+                // keep a _drawnRectangle variable that represents the drawn part of the background
+                if (e.OldLocation != null)
                 {
-                    _background = null;
+                    //Debug.Assert(e.OldLocation != e.NewLocation);
+                    if (e.OldLocation.Zoom != e.NewLocation.Zoom)
+                    {
+                        _background = null;
+                    }
+                    else
+                    {
+                        _background = null;
+                    }
                 }
-                else
-                {
-                    _background = null;
-                }
+
+                // TODO: this is not ideal. VisibleRectangle is not updated for all LocationChanged handlers that have already executed
+                _visibleRectangle = GetGameRectangle();
             }
-
-            // TODO: this is not ideal. VisibleRectangle is not updated for all LocationChanged handlers that have already executed
-            _visibleRectangle = GetGameRectangle();
-        }
-
-        /// <summary>
-        /// Resets the views of the Map Display
-        /// </summary>
-        public void Reset(DisplayTypes type)
-        {
-            _displayStrategy = DisplayBase.Create(type, _scenery);
-            _background = null;
         }
 
         /// <summary>
@@ -114,10 +108,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void ResetCache()
         {
-            // TODO: all calls to this one need to be evaluated
-            //       for some we can probably do a partial redraw
             _background = null;
-            _map.Control.Invalidate();
         }
         #endregion
 
@@ -224,7 +215,7 @@ namespace TribalWars.Data.Maps
                 // Normal way: 1sec on zoom 1
                 if (_painter == null || true)
                 {
-                    // TODO: we zaten hier:
+                    // we zaten hier:
                     // also create new painter when the _map.Location.Zoom changes. 
                     // also when we change DisplayType
                     // factory method?
@@ -608,6 +599,14 @@ namespace TribalWars.Data.Maps
             Point gameLocation = GetGameLocation(mapRectangle.Location);
             Point gameSize = GetGameLocation(new Point(mapRectangle.Right, mapRectangle.Bottom));
             return new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
+        }
+        #endregion
+
+        #region IDisposable
+        public void Dispose()
+        {
+            _isDisposed = true;
+            _map.EventPublisher.LocationChanged -= EventPublisher_LocationChanged;
         }
         #endregion
     }

@@ -336,8 +336,9 @@ namespace TribalWars.Data
 
             InvalidateMarkers();
 
-            Map.InitializeDisplay(displaySettings, Map.HomeDisplay, IconScenery);
-            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, IconScenery);
+            displaySettings.Scenery = IconScenery;
+            Map.InitializeDisplay(displaySettings, Map.HomeDisplay);
+            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap);
 
             Map.ChangeDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
@@ -432,14 +433,8 @@ namespace TribalWars.Data
         /// </summary>
         public void DrawMaps(bool resetBackgroundCache = true)
         {
-            if (resetBackgroundCache)
-            {
-                Map.Display.ResetCache();
-                MiniMap.Display.ResetCache();
-            }
-
-            Map.Control.Invalidate();
-            MiniMap.Control.Invalidate();
+            Map.Invalidate(resetBackgroundCache);
+            MiniMap.Invalidate(resetBackgroundCache);
         }
         #endregion
 

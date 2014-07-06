@@ -179,7 +179,6 @@ namespace TribalWars.Controls.Main.Browser
             //<img src="/graphic/lehm.png" title="Clay" alt="" />89<span class="grey">.</span>611 
             //<img src="/graphic/eisen.png" title="Iron" alt="" /><span class="warn">175<span class="grey">.</span>047</span> </td>
 
-            // TODO: Add warn stuff
             //<span id="wood" title="3600" class="warn">400000</span>&nbsp;</td>
 
             pattern.Append(@"\<td\>(?<warehouse>\d*)\</td\>\s*");

@@ -248,8 +248,7 @@ namespace TribalWars.Controls.Accordeon.Details
             if ((hadComment && string.IsNullOrWhiteSpace(Comments.Text))
                 || (!hadComment && !string.IsNullOrWhiteSpace(Comments.Text)))
             {
-                World.Default.Map.Display.Reset(Data.Maps.Displays.DisplayTypes.Icon);
-                World.Default.Map.Control.Invalidate();
+                World.Default.Map.Invalidate();
             }
 
             _current.Village.Comments = Comments.Text;

@@ -109,6 +109,7 @@ namespace TribalWars.Data.Maps.Displays
             return null;
         }
 
+        // TODO: we zaten hier:
         public class VillageDimensions
         {
             public Size Size { get; private set; }
@@ -119,7 +120,6 @@ namespace TribalWars.Data.Maps.Displays
             public Size SizeWithSpacing { get; private set; }
         }
 
-        
         public abstract int GetVillageWidthSpacing(int zoom);
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace TribalWars.Data.Maps.Displays
             /// Gets or sets the zoom level that will be used
             /// when the user switches back to this displaytype
             /// </summary>
-            public int Current { get; set; }
+            public int Current { get; private set; }
             #endregion
 
             #region Constructors

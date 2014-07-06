@@ -23,8 +23,7 @@ namespace TribalWars.Controls.Maps
         #region Event Handlers
         private void MainMap_SizeChanged(object sender, EventArgs e)
         {
-            Map.Display.ResetCache();
-            Map.Control.Invalidate();
+            Map.Invalidate();
         }
         #endregion
 

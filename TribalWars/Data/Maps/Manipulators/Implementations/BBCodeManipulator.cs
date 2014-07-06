@@ -251,7 +251,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _collection = new List<Polygon>();
             ActivePolygon = null;
             _nextId = 1;
-            _map.Control.Invalidate();
+            _map.Invalidate(false);
         }
 
         /// <summary>
