@@ -86,12 +86,12 @@ namespace TribalWars.Forms
 
         private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
+            World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
         }
 
         private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.ChangeDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
+            World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
         }
         
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)

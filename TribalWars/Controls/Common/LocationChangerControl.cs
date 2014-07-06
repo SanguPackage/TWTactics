@@ -40,7 +40,7 @@ namespace TribalWars.Controls.Common
             if (_map != null && !_updatingZoom)
             {
                 int value = ZoomControl.Value;
-                _map.SetCenter(value);
+                _map.SetZoomLevel(value);
             }
         }
 

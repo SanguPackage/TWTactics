@@ -340,7 +340,7 @@ namespace TribalWars.Data
             Map.InitializeDisplay(displaySettings, Map.HomeDisplay);
             MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap);
 
-            Map.ChangeDisplay(Map.HomeDisplay, Map.HomeLocation, true);
+            Map.SetDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
             if (publishLoad)
             {

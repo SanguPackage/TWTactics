@@ -101,7 +101,7 @@ namespace TribalWars.Controls.Accordeon.Location
             int continent;
             if (int.TryParse(txtK.Text, out continent))
             {
-                World.Default.Map.SetCenter(continent);
+                World.Default.Map.SetCenterContinent(continent);
             }
         }
 

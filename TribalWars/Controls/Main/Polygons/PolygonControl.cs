@@ -219,7 +219,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
              {
                  PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
                  World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
-                 World.Default.Map.SetCenter(row.Village);
+                 World.Default.Map.SetCenter(row.Village.Location);
              }
          }
 

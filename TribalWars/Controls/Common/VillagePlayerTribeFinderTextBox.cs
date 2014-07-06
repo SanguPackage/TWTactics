@@ -263,7 +263,7 @@ namespace TribalWars.Controls.Common
                 }
                 else if (_showButton && _map != null)
                 {
-                    _map.SetCenter(village);
+                    _map.SetCenter(village.Location);
                     _map.EventPublisher.SelectVillages(this, village, new VillageCommand(VillageTools.PinPoint));
                 }
             }

@@ -191,7 +191,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (sender != _map)
             {
-                _mainMap.SetCenter(this, new Location(e.NewLocation, _mainMap.Location.Zoom));
+                _mainMap.SetCenter(this, new Location(e.NewLocation.Point, _mainMap.Location.Zoom));
                 _map.Invalidate(false);
             }
             else
@@ -206,11 +206,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             {
                 if (_map.Location == null)
                 {
-                    _map.SetCenter(e.NewLocation, 1);
+                    _map.SetCenter(e.NewLocation.Point, 1);
                 }
                 else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > 100)
                 {
-                    _map.SetCenter(e.NewLocation, 1);
+                    _map.SetCenter(e.NewLocation.Point, 1);
                     _map.Invalidate(false);
                 }
                 else

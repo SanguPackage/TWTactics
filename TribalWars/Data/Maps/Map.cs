@@ -146,7 +146,6 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCenterContinent(int continent)
         {
-            // TODO: Unused method. But functionality exists somewhere else?
             if (continent <= 99 && continent >= 0)
             {
                 int x = continent % 10 * 100 + 50;
@@ -156,17 +155,9 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Changes the x and y coordinates
-        /// </summary>
-        public void SetCenter(Point point)
-        {
-            SetCenter(this, new Location(point.X, point.Y, Location.Zoom), false);
-        }
-
-        /// <summary>
         /// Changes the zoom level
         /// </summary>
-        public void SetCenter(int zoom)
+        public void SetZoomLevel(int zoom)
         {
             SetCenter(this, new Location(Location.X, Location.Y, zoom), false);
         }
@@ -174,9 +165,9 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Changes the x and y coordinates
         /// </summary>
-        public void SetCenter(Village village)
+        public void SetCenter(Point point)
         {
-            SetCenter(this, new Location(village.X, village.Y, Location.Zoom), false);
+            SetCenter(this, new Location(point.X, point.Y, Location.Zoom), false);
         }
 
         /// <summary>
@@ -244,14 +235,6 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Changes the x and y coordinates and the zoom level
-        /// </summary>
-        public void SetCenter(Location loc, int zoom)
-        {
-            SetCenter(this, new Location(loc, zoom), false);
-        }
-
-        /// <summary>
         /// Changes the center of the map
         /// </summary>
         public void SetCenter(Location loc)
@@ -274,19 +257,14 @@ namespace TribalWars.Data.Maps
         {
             if (value != null)
             {
-                if (Location == null)
-                {
-                    HomeLocation = new Location(value);
-                }
-
                 DisplayBase.ZoomInfo info = Display.CurrentDisplay.Zoom;
                 if (value.Zoom < info.Minimum)
                 {
-                    value = new Location(value, info.Minimum);
+                    value = new Location(value.Point, info.Minimum);
                 }
                 else if (value.Zoom > info.Maximum)
                 {
-                    value = new Location(value, info.Maximum);
+                    value = new Location(value.Point, info.Maximum);
                 }
 
                 if (!value.Equals(Location) || forceRaiseEvent)
@@ -306,16 +284,16 @@ namespace TribalWars.Data.Maps
         /// Resets the map to allow loading of new settings
         /// </summary>
         /// <remarks>Resets the minipulators and display</remarks>
-        public void ChangeDisplay(DisplayTypes display, int zoom)
+        public void SetDisplay(DisplayTypes display, int zoom)
         {
-            ChangeDisplay(display, new Location(Location, zoom));
+            SetDisplay(display, new Location(Location.Point, zoom));
         }
 
         /// <summary>
         /// Resets the map to allow loading of new settings
         /// </summary>
         /// <remarks>Resets the minipulators and display</remarks>
-        public void ChangeDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
+        public void SetDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
         {
             if (forceDisplay || Display.CurrentDisplay.Type != display)
             {
@@ -323,7 +301,7 @@ namespace TribalWars.Data.Maps
 
                 EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
 
-                SetCenter(this, new Location(location), true);
+                SetCenter(this, location, true);
             }
         }
 
@@ -334,7 +312,7 @@ namespace TribalWars.Data.Maps
         {
             if (HomeDisplay != Display.CurrentDisplay.Type)
             {
-                ChangeDisplay(HomeDisplay, HomeLocation);
+                SetDisplay(HomeDisplay, HomeLocation);
             }
             else
             {
@@ -350,13 +328,13 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCursor()
         {
-            _control.Cursor = System.Windows.Forms.Cursors.Default;
+            _control.Cursor = Cursors.Default;
         }
 
         /// <summary>
         /// Changes the cursor of the map
         /// </summary>
-        public void SetCursor(System.Windows.Forms.Cursor cursor)
+        public void SetCursor(Cursor cursor)
         {
             _control.Cursor = cursor;
         }

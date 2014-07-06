@@ -66,15 +66,15 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     switch (e.KeyEventArgs.KeyData)
                     {
                         case Keys.Home:
-                            _map.SetCenter(_map.HomeLocation);
+                            _map.GoHome();
                             return true;
 
                         case Keys.Add:
-                            _map.SetCenter(_map.Location.Zoom + 1);
+                            _map.SetZoomLevel(1);
                             return true;
 
                         case Keys.Subtract:
-                            _map.SetCenter(_map.Location.Zoom - 1);
+                            _map.SetZoomLevel(-1);
                             return true;
                     }
                 }

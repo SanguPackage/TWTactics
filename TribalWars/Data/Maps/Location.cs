@@ -14,8 +14,7 @@ namespace TribalWars.Data.Maps
     public sealed class Location : IEquatable<Location>
     {
         #region Fields
-        private readonly int _x;
-        private readonly int _y;
+        private readonly Point _point;
         private readonly int _zoom;
         #endregion
 
@@ -25,7 +24,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public int X
         {
-            get { return _x; }
+            get { return _point.X; }
         }
 
         /// <summary>
@@ -33,7 +32,15 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public int Y
         {
-            get { return _y; }
+            get { return _point.Y; }
+        }
+
+        /// <summary>
+        /// Gets the X &amp; Y coordinates
+        /// </summary>
+        public Point Point
+        {
+            get { return _point; }
         }
 
         /// <summary>
@@ -48,32 +55,13 @@ namespace TribalWars.Data.Maps
         #region Constructors
         public Location(int x, int y, int zoom)
         {
-            _x = x;
-            _y = y;
+            _point = new Point(x, y);
             _zoom = zoom;
         }
 
         public Location(Point loc, int zoom)
         {
-            _x = loc.X;
-            _y = loc.Y;
-            _zoom = zoom;
-        }
-
-        public Location(Location location)
-        {
-            _x = location.X;
-            _y = location.Y;
-            _zoom = location.Zoom;
-        }
-
-        /// <summary>
-        /// Creates a new Location with a different zoom level
-        /// </summary>
-        public Location(Location location, int zoom)
-        {
-            _x = location.X;
-            _y = location.Y;
+            _point = loc;
             _zoom = zoom;
         }
         #endregion
@@ -88,7 +76,7 @@ namespace TribalWars.Data.Maps
         #region IEquatable<MapLocation> Members
         public override int GetHashCode()
         {
-            return (_x + _y + _zoom).GetHashCode();
+            return (Point.X + Point.Y + _zoom).GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -99,7 +87,7 @@ namespace TribalWars.Data.Maps
         public bool Equals(Location obj)
         {
             if (obj == null) return false;
-            return X == obj.X && Y == obj.Y && Zoom == obj.Zoom;
+            return _point == obj.Point && Zoom == obj.Zoom;
         }
 
         public static bool operator ==(Location left, Location right)
