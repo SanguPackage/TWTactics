@@ -79,8 +79,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 Rectangle gameSize = _map.Display.GetGameRectangle();
                 Debug.Assert(new Rectangle(new Point(0, 0), _map.CanvasSize) == e.FullMapRectangle);
 
-                int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
                 if (_pinPointedTribe != null)
                 {
@@ -173,8 +173,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 Village village = _pinPointedVillage ?? _selectedVillage;
                 if (village != null)
                 {
-                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                    int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
                     Point mapLocation = _map.Display.GetMapLocation(village.Location);
 

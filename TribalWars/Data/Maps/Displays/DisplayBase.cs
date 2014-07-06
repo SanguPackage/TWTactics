@@ -35,14 +35,32 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         public virtual bool SupportDecorators
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
+
+        public abstract bool AllowText { get; }
+
+        public abstract DisplayTypes Type { get; }
         #endregion
 
         #region Constructors
+        public static DisplayBase Create(DisplayTypes displayType)
+        {
+            switch (displayType)
+            {
+                case DisplayTypes.Icon:
+                    return new IconDisplay();
+
+                case DisplayTypes.MiniMap:
+                    return new MiniMapDisplay();
+
+                case DisplayTypes.Shape:
+                    return new ShapeDisplay();
+            }
+
+            throw new Exception("oeps");
+        }
+
         protected DisplayBase(ZoomInfo zoom)
         {
             _zoom = zoom;

@@ -238,6 +238,7 @@ namespace TribalWars.Data
             UnitSpeed = 1;
 
             EventPublisher = new Publisher();
+
             Map = new Map();
             MiniMap = new Map(Map);
 
@@ -296,6 +297,7 @@ namespace TribalWars.Data
 
             Structure = new InternalStructure();
             Structure.SetPath(dataPath);
+
             Structure.LoadDictionaries(out _villages, out _players, out _tribes);
 
             if (_villageTypes != null) _villageTypes.Close();
@@ -329,10 +331,15 @@ namespace TribalWars.Data
                 return false;
 
             Monitor = new Monitor();
-            Builder.ReadSettings(settingsFile, Map, Monitor);
+            var displaySettings = Builder.ReadSettings(settingsFile, Map, Monitor);
             SettingsName = settings;
 
             InvalidateMarkers();
+
+            Map.InitializeDisplay(displaySettings, Map.HomeDisplay);
+            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap);
+
+            Map.ChangeDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
             if (publishLoad)
             {
@@ -394,8 +401,8 @@ namespace TribalWars.Data
         /// </summary>
         public void InvalidateMarkers()
         {
-            Map.Display.DisplayManager.CacheSpecialMarkers();
-            MiniMap.Display.DisplayManager.CacheSpecialMarkers();
+            Map.MarkerManager.CacheSpecialMarkers();
+            MiniMap.MarkerManager.CacheSpecialMarkers();
         }
 
         /// <summary>

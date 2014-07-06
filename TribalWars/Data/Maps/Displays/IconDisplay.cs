@@ -58,16 +58,15 @@ namespace TribalWars.Data.Maps.Displays
         public IconDisplay()
             : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
         {
-            var scenery = Scenery.Old;
-            if (scenery == Scenery.Old)
-            {
+            //if (scenery == Scenery.Old)
+            //{
                 _background = new MemoryStream(WorldData.WorldBackgroundData);
-            }
-            else
-            {
-                Debug.Assert(scenery == Scenery.New);
-                _background = new MemoryStream(WorldData.WorldBackgroundData2);
-            }
+            //}
+            //else
+            //{
+            //    Debug.Assert(scenery == Scenery.New);
+            //    _background = new MemoryStream(WorldData.WorldBackgroundData2);
+            //}
 
             _backgroundCache = new Dictionary<int, DrawerBase>();
             _backgroundCache.Add(0, CreateArray(new BackgroundDrawer(Icons.Background.gras1)));
@@ -158,6 +157,16 @@ namespace TribalWars.Data.Maps.Displays
         public override int GetVillageWidthSpacing(int zoom)
         {
             return GetVillageWidthCore(zoom);
+        }
+
+        public override bool AllowText
+        {
+            get { return true; }
+        }
+
+        public override DisplayTypes Type
+        {
+            get { return DisplayTypes.Icon; }
         }
 
         protected override DrawerBase CreateNonVillageDrawerCore(Point game, Rectangle village)

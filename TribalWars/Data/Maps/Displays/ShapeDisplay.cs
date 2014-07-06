@@ -82,6 +82,17 @@ namespace TribalWars.Data.Maps.Displays
             return GetVillageWithSpacingSize(zoom);
         }
 
+        public override bool AllowText
+        {
+            // TODO: This needs to known the village width >= 5
+            get { return true; }
+        }
+
+        public override DisplayTypes Type
+        {
+            get { return DisplayTypes.Shape; }
+        }
+
         public override int GetVillageWidthSpacing(int zoom)
         {
             return GetVillageWithSpacingSize(zoom);

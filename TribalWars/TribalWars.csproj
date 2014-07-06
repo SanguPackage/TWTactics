@@ -202,6 +202,7 @@
     <Compile Include="Data\Events\MapDisplayTypeEventArgs.cs" />
     <Compile Include="Data\Events\MapMarkerEventArgs.cs" />
     <Compile Include="Data\Events\PolygonEventArgs.cs" />
+    <Compile Include="Data\Maps\DisplaySettings.cs" />
     <Compile Include="Data\Maps\Displays\MiniMapDisplay.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
@@ -339,7 +340,6 @@
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
     <Compile Include="Data\Maps\Displays\DisplayBase.cs" />
     <Compile Include="Data\Maps\Views\ViewData.cs" />
-    <Compile Include="Data\Maps\Displays\DisplayManager.cs" />
     <Compile Include="Data\Maps\Markers\MarkerBase.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -33,7 +33,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Builds the classes from a sets file 
         /// </summary>
-        public static void ReadSettings(FileInfo file, Map map, Monitor monitor)
+        public static DisplaySettings ReadSettings(FileInfo file, Map map, Monitor monitor)
         {
             Debug.Assert(file.Exists);
             
@@ -86,20 +86,21 @@ namespace TribalWars.Data
                 int z = Convert.ToInt32(r.GetAttribute("Zoom"));
                 var displayType = (DisplayTypes)Enum.Parse(typeof(DisplayTypes), r.GetAttribute("Display"), true);
                 if (displayType == DisplayTypes.None) displayType = DisplayTypes.Icon;
-                map.ChangeDisplay(displayType, new Location(x, y, z));
+                map.HomeLocation = new Location(x, y, z);
                 map.HomeDisplay = displayType;
 
                 // MainMap: Display
                 r.ReadStartElement();
                 Color backgroundColor = XmlHelper.GetColor(r.GetAttribute("BackgroundColor"));
-                map.Display.BackgroundColor = backgroundColor;
 
                 r.ReadStartElement();
-                map.Display.ContinentLines = Convert.ToBoolean(r.ReadElementString("LinesContinent"));
-                map.Display.ProvinceLines = Convert.ToBoolean(r.ReadElementString("LinesProvince"));
-                map.Display.HideAbandoned = Convert.ToBoolean(r.ReadElementString("HideAbandoned"));
-                map.Display.MarkedOnly = Convert.ToBoolean(r.ReadElementString("MarkedOnly"));
+                bool continentLines = Convert.ToBoolean(r.ReadElementString("LinesContinent"));
+                bool provinceLines = Convert.ToBoolean(r.ReadElementString("LinesProvince"));
+                bool hideAbandoned = Convert.ToBoolean(r.ReadElementString("HideAbandoned"));
+                bool markedOnly = Convert.ToBoolean(r.ReadElementString("MarkedOnly"));
                 r.ReadEndElement();
+
+                var displaySettings = new DisplaySettings(backgroundColor, continentLines, provinceLines, hideAbandoned, markedOnly);
 
                 // MainMap: MarkerGroups
                 r.ReadStartElement();
@@ -129,6 +130,8 @@ namespace TribalWars.Data
 
                 // End Main Map
                 r.ReadEndElement();
+
+                return displaySettings;
             }
         }
 
@@ -246,17 +249,17 @@ namespace TribalWars.Data
 
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
-                w.WriteAttributeString("Display", map.Display.DisplayManager.CurrentDisplayType.ToString());
+                w.WriteAttributeString("Display", map.Display.CurrentDisplay.Type.ToString());
                 w.WriteAttributeString("XY", map.Location.X + "|" + map.Location.Y);
                 w.WriteAttributeString("Zoom", map.Location.Zoom.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
 
                 w.WriteStartElement("Display");
-                w.WriteAttributeString("BackgroundColor", XmlHelper.SetColor(map.Display.BackgroundColor));
-                w.WriteElementString("LinesContinent", map.Display.ContinentLines.ToString());
-                w.WriteElementString("LinesProvince", map.Display.ProvinceLines.ToString());
-                w.WriteElementString("HideAbandoned", map.Display.HideAbandoned.ToString());
-                w.WriteElementString("MarkedOnly", map.Display.MarkedOnly.ToString());
+                w.WriteAttributeString("BackgroundColor", XmlHelper.SetColor(map.Display.Settings.BackgroundColor));
+                w.WriteElementString("LinesContinent", map.Display.Settings.ContinentLines.ToString());
+                w.WriteElementString("LinesProvince", map.Display.Settings.ProvinceLines.ToString());
+                w.WriteElementString("HideAbandoned", map.Display.Settings.HideAbandoned.ToString());
+                w.WriteElementString("MarkedOnly", map.Display.Settings.MarkedOnly.ToString());
                 w.WriteEndElement();
 
                 w.WriteStartElement("MarkerGroups");

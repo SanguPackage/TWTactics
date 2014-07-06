@@ -93,7 +93,7 @@ namespace TribalWars.Controls.DistanceToolStrip
             BackColor = System.Drawing.Color.Transparent;
             Margin = new Padding(0);
             Padding = new Padding(0);
-            
+
 
             World.Default.EventPublisher.Loaded += World_Loaded;
             World.Default.Map.EventPublisher.VillagesSelected += World_VillagesSelected;

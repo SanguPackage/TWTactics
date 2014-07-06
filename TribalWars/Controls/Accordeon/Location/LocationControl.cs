@@ -15,7 +15,7 @@ using TribalWars.Data.Events;
 namespace TribalWars.Controls.Accordeon.Location
 {
     /// <summary>
-    /// UI control with Location, History, You (=current player) setting,
+    /// UI control with Location, You (=current player) setting,
     /// continent center and grid with search options for village, player
     /// and tribe
     /// </summary>
@@ -113,7 +113,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 if (result == DialogResult.Yes)
                 {
                     World.Default.Map.HomeLocation = World.Default.Map.Location;
-                    World.Default.Map.HomeDisplay = World.Default.Map.Display.DisplayManager.CurrentDisplayType;
+                    World.Default.Map.HomeDisplay = World.Default.Map.Display.CurrentDisplay.Type;
                 }
             }
         }

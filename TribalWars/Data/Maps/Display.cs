@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Drawing;
+using TribalWars.Data.Maps.Drawers;
+using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
@@ -13,11 +15,6 @@ using TribalWars.Data.Maps.Displays;
 
 namespace TribalWars.Data.Maps
 {
-    // cachen van topmost, bottommost villages
-    // als alle dorpen zichtbaar zijn kan alles gecached worden
-    //private Tuple<Rectangle, Bitmap>[]
-    // -> cache entire world for each zoom it's possible for
-
     /// <summary>
     /// Manages the painting of a TW map
     /// </summary>
@@ -25,82 +22,54 @@ namespace TribalWars.Data.Maps
     {
         #region Fields
         private readonly Map _map;
+        private readonly MarkerManager _markers;
 
         private readonly Pen _continentPen;
         private readonly Pen _provincePen;
         private Rectangle? _visibleRectangle;
 
         private Brush _backgroundBrush;
-        private Color _backgroundColor;
 
         private Bitmap _background;
         private Painter _painter;
+
+        private DisplayBase _displayStrategy;
+        private DisplaySettings _settings;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the manager that holds
-        /// Shape &amp; Icon displays
-        /// </summary>
-        public DisplayManager DisplayManager { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the canvas background color
-        /// </summary>
-        public Color BackgroundColor
+        public DisplayBase CurrentDisplay
         {
-            get { return _backgroundColor; }
-            set
-            {
-                _backgroundColor = value;
-                _backgroundBrush = new SolidBrush(value);
-            }
+            get { return _displayStrategy; }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether continent lines should be drawn
-        /// </summary>
-        public bool ContinentLines { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether province lines should be drawn
-        /// </summary>
-        public bool ProvinceLines { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating wether abandoned 
-        /// villages should be shown on the map
-        /// </summary>
-        public bool HideAbandoned { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating wether unmarked
-        /// villages should be shown on the map
-        /// </summary>
-        public bool MarkedOnly { get; set; }
+        public DisplaySettings Settings
+        {
+            get { return _settings; }
+        }
         #endregion
 
         #region Constructors
-        public Display(Map map)
-            : this(map, DisplayTypes.None)
+        public Display(DisplaySettings settings, Map map, DisplayTypes displayType)
         {
-
-        }
-
-        public Display(Map map, DisplayTypes displayType)
-        {
+            _settings = settings;
             _map = map;
-
-            _backgroundBrush = new SolidBrush(Color.Green);
-
-            DisplayManager = new DisplayManager(map, displayType);
-
-            _continentPen = new Pen(Color.Black, 1);
-            _continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            _provincePen = new Pen(Color.FromArgb(42, 94, 31), 1f);
-            _provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+            _markers = map.MarkerManager;
+
+            _displayStrategy = DisplayBase.Create(displayType);
+
+            _backgroundBrush = new SolidBrush(settings.BackgroundColor);
+            if (settings.ContinentLines)
+            {
+                _continentPen = new Pen(Color.Black, 1);
+                _continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            }
+            if (settings.ProvinceLines)
+            {
+                _provincePen = new Pen(Color.FromArgb(42, 94, 31), 1f);
+                _provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            }
         }
         #endregion
 
@@ -134,7 +103,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void Reset(DisplayTypes type)
         {
-            DisplayManager.Reset(type);
+            _displayStrategy = DisplayBase.Create(type);
             _background = null;
         }
 
@@ -151,6 +120,66 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Painting
+
+        // TODO: move all painting stuff to a different class PAINTER
+
+        /// <summary>
+        /// Draws a village on the map
+        /// </summary>
+        /// <param name="g">The graphics object</param>
+        /// <param name="game">The game location of the village</param>
+        /// <param name="mapVillage">Where and how big to draw the village</param>
+        private void Paint(Graphics g, Point game, Rectangle mapVillage)
+        {
+            if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
+                return;
+
+            Village village;
+            DrawerBase finalCache = null;
+            if (World.Default.Villages.TryGetValue(game, out village))
+            {
+                MarkerGroup markerGroup = _markers.GetMarkerGroup(Settings, village);
+                if (markerGroup != null)
+                {
+                    // Paint village icon/shape
+                    DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
+                    finalCache = CurrentDisplay.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
+                    if (finalCache != null)
+                    {
+                        finalCache.PaintVillage(g, mapVillage);
+
+                        if (CurrentDisplay.SupportDecorators && village.Type != VillageType.None)
+                        {
+                            // Paint extra village decorators
+                            DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
+                            DrawerBase decoratorVillageType = CurrentDisplay.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
+                            if (decoratorVillageType != null)
+                            {
+                                decoratorVillageType.PaintVillage(g, mapVillage);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (finalCache == null)
+            {
+                PaintNonVillage(g, game, mapVillage);
+            }
+        }
+
+        /// <summary>
+        /// Paint grass, mountains, ...
+        /// </summary>
+        private void PaintNonVillage(Graphics g, Point game, Rectangle mapVillage)
+        {
+            DrawerBase finalCache = CurrentDisplay.CreateNonVillageDrawer(game, mapVillage);
+            if (finalCache != null)
+            {
+                finalCache.PaintVillage(g, mapVillage);
+            }
+        }
+
         /// <summary>
         /// Paints the canvas
         /// </summary>
@@ -168,7 +197,6 @@ namespace TribalWars.Data.Maps
                 var timing = Stopwatch.StartNew();
 
                 //Debug.Assert(rec == fullMap); // is not true on resizing
-                Debug.Assert(fullMap == new Rectangle(new Point(0, 0), _map.Control.Size));
 
                 #region Some attempt at concurrency
                 //var mapParts = new Rectangle[2];
@@ -341,7 +369,7 @@ namespace TribalWars.Data.Maps
                 mapSize.Offset(mapOffset);
                 _toPaint = mapSize;
 
-                DisplayBase displayType = display.DisplayManager.CurrentDisplay;
+                DisplayBase displayType = display.CurrentDisplay;
                 _villageWidthSpacing = displayType.GetVillageWidthSpacing(zoom);
                 _villageHeightSpacing = displayType.GetVillageHeightSpacing(zoom);
 
@@ -366,7 +394,7 @@ namespace TribalWars.Data.Maps
                     int gameX = _visibleGameRectangle.X;
                     for (int xMap = mapX; xMap <= _toPaint.Width; xMap += _villageWidthSpacing)
                     {
-                        _display.DisplayManager.Paint(_g, new Point(gameX, gameY), new Rectangle(xMap, yMap, _villageWidth, _villageHeight));
+                        _display.Paint(_g, new Point(gameX, gameY), new Rectangle(xMap, yMap, _villageWidth, _villageHeight));
                         gameX += 1;
                     }
                     gameY += 1;
@@ -396,13 +424,16 @@ namespace TribalWars.Data.Maps
                 const int provinceWidth = 5;
                 const int continentWidth = 100;
 
-                if (_villageWidthSpacing > 4)
+                if (_villageWidthSpacing > 4 && _display.Settings.ProvinceLines)
                 {
                     // These are the province lines:
                     DrawContinentLines(_display._provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
                 }
 
-                DrawContinentLines(_display._continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                if (_display.Settings.ContinentLines)
+                {
+                    DrawContinentLines(_display._continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                }
             }
 
             private void DrawContinentLines(Pen pen, int mapMin, int mapMax, int gameMin, int gameMax, int villageSize, bool isHorizontal, int sizeBetweenLines, int otherMapMin, int otherMapMax, int otherGameMin, int otherGameMax, int otherVillageSize)
@@ -514,8 +545,8 @@ namespace TribalWars.Data.Maps
         public Point GetMapLocation(Point loc)
         {
             // Get location from game and convert it to location on the map
-            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+            int height = CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+            int width = CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
             int off = (loc.X - _map.Location.X) * width;
             loc.X = off + _map.CanvasSize.Width / 2;
@@ -529,8 +560,8 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Rectangle GetMapRectangle(Rectangle gameRectangle)
         {
-            Point leftTop = _map.Display.GetMapLocation(gameRectangle.Location);
-            Point rightBottom = _map.Display.GetMapLocation(new Point(gameRectangle.Right, gameRectangle.Bottom));
+            Point leftTop = GetMapLocation(gameRectangle.Location);
+            Point rightBottom = GetMapLocation(new Point(gameRectangle.Right, gameRectangle.Bottom));
             return new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
         }
 
@@ -541,8 +572,8 @@ namespace TribalWars.Data.Maps
         public Point GetGameLocation(Point loc)
         {
             // Get location from map and convert it to game location
-            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+            int height = CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+            int width = CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
             int newx = (loc.X + _map.Location.X * width - _map.CanvasSize.Width / 2) / width;
             int newy = (loc.Y + _map.Location.Y * height - _map.CanvasSize.Height / 2) / height;

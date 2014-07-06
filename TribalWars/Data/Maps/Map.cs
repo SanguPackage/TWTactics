@@ -57,7 +57,7 @@ namespace TribalWars.Data.Maps
         public Location Location { get; private set; }
 
         /// <summary>
-        /// Gets the home position of the map
+        /// Gets or sets the home position of the map
         /// </summary>
         public Location HomeLocation { get; set; }
 
@@ -87,8 +87,8 @@ namespace TribalWars.Data.Maps
         public Map(Map mainMap)
         {
             EventPublisher = new Publisher(this);
-            Display = new Display(this, DisplayTypes.MiniMap);
             MarkerManager = mainMap.MarkerManager;
+            //Display = Display.CreateMiniMap(this);
             Manipulators = new ManipulatorManagerController(this, mainMap);
         }
 
@@ -98,9 +98,14 @@ namespace TribalWars.Data.Maps
         public Map()
         {
             EventPublisher = new Publisher(this);
-            Display = new Display(this);
             MarkerManager = new MarkerManager();
+            //Display = new Display(this, DisplayTypes.None);
             Manipulators = new ManipulatorManagerController(this);
+        }
+
+        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type)
+        {
+            Display = new Display(settings, this, type);
         }
 
         /// <summary>
@@ -263,7 +268,7 @@ namespace TribalWars.Data.Maps
                     HomeLocation = new Location(value);
                 }
 
-                DisplayBase.ZoomInfo info = Display.DisplayManager.CurrentDisplay.Zoom;
+                DisplayBase.ZoomInfo info = Display.CurrentDisplay.Zoom;
                 if (value.Zoom < info.Minimum)
                 {
                     value = new Location(value, info.Minimum);
@@ -299,12 +304,12 @@ namespace TribalWars.Data.Maps
         /// Resets the map to allow loading of new settings
         /// </summary>
         /// <remarks>Resets the minipulators and display</remarks>
-        public void ChangeDisplay(DisplayTypes display, Location location)
+        public void ChangeDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
         {
-            if (Display.DisplayManager.CurrentDisplayType != display)
+            if (forceDisplay || Display.CurrentDisplay.Type != display)
             {
-                if (Display.DisplayManager.CurrentDisplay != null)
-                    Display.DisplayManager.CurrentDisplay.Zoom.Current = location.Zoom;
+                if (Display.CurrentDisplay != null)
+                    Display.CurrentDisplay.Zoom.Current = location.Zoom;
 
                 Display.Reset(display);
 
@@ -319,7 +324,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void GoHome()
         {
-            if (HomeDisplay != Display.DisplayManager.CurrentDisplayType)
+            if (HomeDisplay != Display.CurrentDisplay.Type)
             {
                 ChangeDisplay(HomeDisplay, HomeLocation);
             }

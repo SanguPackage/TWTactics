@@ -19,11 +19,18 @@ namespace TribalWars.Data.Maps.Displays
         /// Returns a value indicating whether the display supports decorating villages
         /// </summary>
         public override bool SupportDecorators
+        { 
+            get { return false; }
+        }
+
+        public override bool AllowText
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
+        }
+
+        public override DisplayTypes Type
+        {
+            get { return DisplayTypes.MiniMap; }
         }
         #endregion
 

@@ -74,8 +74,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _activeVillagePaintsCounter++;
             if (_mainMapSelectedVillage != null && _activeVillagePaintsCounter % 50 == 0)
             {
-                int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
                 Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.Location);
 
@@ -97,8 +97,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
                 if (player != null)
                 {
-                    int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+                    int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
                     foreach (Village village in player)
                     {
