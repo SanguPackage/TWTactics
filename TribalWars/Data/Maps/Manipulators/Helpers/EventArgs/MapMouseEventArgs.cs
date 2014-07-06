@@ -10,9 +10,6 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
     public class MapMouseEventArgs : MapEventArgs
     {
-        #region Fields
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the mouse event arguments

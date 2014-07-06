@@ -44,6 +44,14 @@ namespace TribalWars.Data.Maps
         public Display Display { get; private set; }
 
         /// <summary>
+        /// Size of the map canvas
+        /// </summary>
+        public Size CanvasSize
+        {
+            get { return Control.ClientRectangle.Size; }
+        }
+
+        /// <summary>
         /// Gets or sets the Map location &amp; zoom level
         /// </summary>
         public Location Location { get; private set; }
@@ -98,15 +106,6 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Sets the UserControl for the Map Class
         /// </summary>
-        public void InitializeMap(ScrollableMapControl map)
-        {
-            Control = map;
-            Control.SetMap(this);
-        }
-
-        /// <summary>
-        /// Sets the UserControl for the Map Class
-        /// </summary>
         public void InitializeMap(MapControl map)
         {
             Control = map.ScrollableMap;
@@ -131,20 +130,13 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCenterContinent(int continent)
         {
+            // TODO: Unused method. But functionality exists somewhere else?
             if (continent <= 99 && continent >= 0)
             {
                 int x = continent % 10 * 100 + 50;
                 int y = (continent - continent % 10) * 10 + 50;
                 SetCenter(this, new Location(x, y, Location.Zoom), false);
             }
-        }
-
-        /// <summary>
-        /// Changes the x and y coordinates
-        /// </summary>
-        public void SetCenter(int x, int y)
-        {
-            SetCenter(this, new Location(x, y, Location.Zoom), false);
         }
 
         /// <summary>
@@ -177,16 +169,70 @@ namespace TribalWars.Data.Maps
         public void SetCenter(IEnumerable<Village> villages)
         {
             Debug.Assert(villages != null);
-            Location location = TribalWars.Data.Maps.Display.GetSpan(villages, false);
+            Location location = GetSpan(villages, false);
             SetCenter(location);
+        }
+
+        /// <summary>
+        /// Calculates the coordinates and zoom level so all villages are visible
+        /// </summary>
+        /// <param name="vils">Villages that have to be visible</param>
+        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
+        private Location GetSpan(IEnumerable<Village> vils, bool tryRespectCurrentZoom = true)
+        {
+            int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
+            foreach (Village vil in vils)
+            {
+                if (vil.X < leftX) leftX = vil.X;
+                if (vil.X > rightX) rightX = vil.X;
+                if (vil.Y < topY) topY = vil.Y;
+                if (vil.Y > bottomY) bottomY = vil.Y;
+            }
+
+            return GetSpan(leftX, topY, rightX, bottomY, tryRespectCurrentZoom);
+        }
+
+        /// <summary>
+        /// Calculates the coordinates and zoom level so all villages are visible
+        /// </summary>
+        private Location GetSpan(int leftX, int topY, int rightX, int bottomY, bool tryRespectCurrentZoom = true)
+        {
+            // BUG: This only works for ShapeDisplay. IconDisplay zoom levels are disconnected from villageHeight/Width
+            // requiredWidth/Height think that zoom level 5 equals a villageWidth/Height of 5
+
+            int x = (leftX + rightX) / 2;
+            int y = (topY + bottomY) / 2;
+
+            int requiredWidth = CanvasSize.Width / (rightX - leftX + 5);
+            int requiredHeight = CanvasSize.Height / (bottomY - topY + 5);
+
+            // TODO: This is the calculation that we need to make a strategy for
+            int requiredMin = Math.Min(requiredWidth, requiredHeight);
+
+            if (!tryRespectCurrentZoom)
+            {
+                // use optimal zoom level for given parameters
+                return new Location(x, y, requiredMin);
+            }
+
+            // Only change zoom when villages don't fit with current zoom
+            return new Location(x, y, Math.Min(requiredMin, World.Default.Map.Location.Zoom));
         }
 
         /// <summary>
         /// Changes the x and y coordinates and the zoom level
         /// </summary>
-        public void SetCenter(int x, int y, int zoom)
+        public void SetCenter(Point loc, int zoom)
         {
-            SetCenter(this, new Location(x, y, zoom), false);
+            SetCenter(this, new Location(loc, zoom), false);
+        }
+
+        /// <summary>
+        /// Changes the x and y coordinates and the zoom level
+        /// </summary>
+        public void SetCenter(Location loc, int zoom)
+        {
+            SetCenter(this, new Location(loc, zoom), false);
         }
 
         /// <summary>
@@ -213,13 +259,19 @@ namespace TribalWars.Data.Maps
             if (value != null)
             {
                 if (Location == null)
+                {
                     HomeLocation = new Location(value);
+                }
 
                 DisplayBase.ZoomInfo info = Display.DisplayManager.CurrentDisplay.Zoom;
                 if (value.Zoom < info.Minimum)
+                {
                     value = new Location(value, info.Minimum);
+                }
                 else if (value.Zoom > info.Maximum)
+                {
                     value = new Location(value, info.Maximum);
+                }
 
                 if (!value.Equals(Location) || forceRaiseEvent)
                 {
@@ -229,7 +281,9 @@ namespace TribalWars.Data.Maps
                 }
             }
             else
+            {
                 Location = null;
+            }
         }
 
         /// <summary>

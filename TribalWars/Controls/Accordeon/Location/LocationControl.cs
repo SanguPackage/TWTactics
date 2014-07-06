@@ -53,7 +53,7 @@ namespace TribalWars.Controls.Accordeon.Location
             int x, y, z;
             if (int.TryParse(txtX.Text, out x) && int.TryParse(txtY.Text, out y) && int.TryParse(txtZ.Text, out z))
             {
-                World.Default.Map.SetCenter(x, y, z);
+                World.Default.Map.SetCenter(new Point(x, y), z);
             }
         }
 

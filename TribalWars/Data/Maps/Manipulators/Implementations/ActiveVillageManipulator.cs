@@ -1,5 +1,6 @@
 #region Using
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -75,7 +76,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.IsActiveManipulator)
             {
-                Rectangle gameSize = _map.Display.GetGameRectangle(e.FullMapRectangle);
+                Rectangle gameSize = _map.Display.GetGameRectangle();
+                Debug.Assert(new Rectangle(new Point(0, 0), _map.CanvasSize) == e.FullMapRectangle);
 
                 int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
                 int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
@@ -239,11 +241,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
         private void DrawVillageMarkers(Graphics g, IEnumerable<Village> villages, Rectangle gameSize, Pen pen, int villageWidth, int villageHeight)
         {
-            foreach (Village draw in villages)
+            foreach (Village village in villages)
             {
-                if (gameSize.Contains(draw.Location))
+                if (gameSize.Contains(village.Location))
                 {
-                    Point villageLocation = _map.Display.GetMapLocation(draw.Location);
+                    Point villageLocation = _map.Display.GetMapLocation(village.Location);
                     g.DrawEllipse(
                         pen,
                         villageLocation.X,

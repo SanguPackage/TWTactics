@@ -82,7 +82,7 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnCenter(object sender, EventArgs e)
         {
             World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
-            World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_player));
+            World.Default.Map.SetCenter(_player);
         }
 
         /// <summary>

@@ -47,6 +47,21 @@ namespace TribalWars.Data.Maps.Displays
                 {15, 11}
             };
 
+        ///// <summary>
+        ///// Width x Height on different zoom levels (index is zoom level)
+        ///// </summary>
+        //private static readonly List<Tuple<int, int>> VillageSizes = new TupleList<int, int>
+        //    {
+        //        {0, 0}, // there is no zoom 0
+        //        {15, 11},
+        //        {20, 14},
+        //        {25, 18},
+        //        {30, 22},
+        //        {35, 25},
+        //        {40, 29},
+        //        {StandardIconWidth, StandardIconHeight}
+        //    };
+
         private readonly MemoryStream _background;
         private readonly Dictionary<int, DrawerBase> _backgroundCache;
 

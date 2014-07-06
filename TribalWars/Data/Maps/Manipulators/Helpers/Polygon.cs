@@ -50,13 +50,13 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         #endregion
 
         #region Constructors
-        public Polygon(string name, int x, int y)
+        public Polygon(string name, Point loc)
         {
             Name = name;
             Visible = true;
             Drawing = true;
             List = new LinkedList<Point>();
-            List.AddFirst(GetPoint(x, y));
+            List.AddFirst(GetPoint(loc));
             LineColor = Color.White;
             Group = "";
         }
@@ -86,28 +86,28 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Adds a point to the polygon
         /// </summary>
-        public void Add(int mapCurrentX, int mapCurrentY)
+        public void Add(Point mapCurrent)
         {
-            Point gameCurrent = GetPoint(mapCurrentX, mapCurrentY);
+            Point gameCurrent = GetPoint(mapCurrent);
             List.AddLast(gameCurrent);
         }
 
         /// <summary>
         /// Stops drawing the polygon
         /// </summary>
-        public void Stop(int x, int y)
+        public void Stop(Point loc)
         {
             Drawing = false;
-            List.AddLast(GetPoint(x, y));
+            List.AddLast(GetPoint(loc));
         }
 
         /// <summary>
         /// Returns a value indicating whether a point is inside the polygon
         /// </summary>
-        public bool IsHitIn(int x, int y)
+        public bool IsHitIn(Point loc)
         {
             Region areaRegion = GetRegion();
-            return areaRegion.IsVisible(GetPoint(x, y));
+            return areaRegion.IsVisible(GetPoint(loc));
         }
 
         /// <summary>
@@ -151,9 +151,9 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers
         /// <summary>
         /// Gets the game location of the point
         /// </summary>
-        private Point GetPoint(int x, int y)
+        private Point GetPoint(Point loc)
         {
-            return World.Default.Map.Display.GetGameLocation(x, y);
+            return World.Default.Map.Display.GetGameLocation(loc);
         }
 
         public bool Equals(Polygon other)

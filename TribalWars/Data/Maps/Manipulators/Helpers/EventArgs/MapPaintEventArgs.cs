@@ -19,11 +19,6 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
         public Rectangle FullMapRectangle { get; private set; }
 
         /// <summary>
-        /// Gets the invalidated rectangle
-        /// </summary>
-        public Rectangle MapRectangle { get; private set; }
-
-        /// <summary>
         /// Gets a value indicating whether it is the active
         /// manipulator
         /// </summary>
@@ -31,11 +26,10 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
         #endregion
 
         #region Constructors
-        public MapPaintEventArgs(Graphics g, Rectangle rec, Rectangle fullRec, bool isActive)
+        public MapPaintEventArgs(Graphics g, Rectangle fullRec, bool isActive)
         {
             Graphics = g;
             FullMapRectangle = fullRec;
-            MapRectangle = rec;
             IsActiveManipulator = isActive;
         }
         #endregion

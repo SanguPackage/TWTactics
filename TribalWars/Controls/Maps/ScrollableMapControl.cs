@@ -25,22 +25,6 @@ namespace TribalWars.Controls.Maps
 
         #region Properties
         /// <summary>
-        /// Gets the width of the canvas
-        /// </summary>
-        public int PictureWidth
-        {
-            get { return ClientRectangle.Width; }
-        }
-
-        /// <summary>
-        /// Gets the height of the canvas
-        /// </summary>
-        public int PictureHeight
-        {
-            get { return ClientRectangle.Height; }
-        }
-
-        /// <summary>
         /// Do we need to call the manipulators on ControlEvents
         /// or has no world been selected yet?
         /// </summary>
@@ -102,7 +86,7 @@ namespace TribalWars.Controls.Maps
             base.OnMouseDown(e);
             if (IsManipulatable)
             {
-                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                Village village = World.Default.Map.Display.GetGameVillage(e.Location);
                 if (Map.Manipulators.MouseDown(e, village, this))
                 {
                     Invalidate();
@@ -139,7 +123,7 @@ namespace TribalWars.Controls.Maps
             base.OnMouseUp(e);
             if (IsManipulatable)
             {
-                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                Village village = World.Default.Map.Display.GetGameVillage(e.Location);
                 if (Map.Manipulators.MouseUp(e, village, this))
                 {
                     Invalidate();
@@ -157,7 +141,7 @@ namespace TribalWars.Controls.Maps
             base.OnMouseDoubleClick(e);
             if (IsManipulatable)
             {
-                Village village = World.Default.Map.Display.GetGameVillage(e.X, e.Y);
+                Village village = World.Default.Map.Display.GetGameVillage(e.Location);
                 if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village, this))
                 {
                     Invalidate();
@@ -176,7 +160,7 @@ namespace TribalWars.Controls.Maps
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 Map.Display.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
 
-                Map.Manipulators.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
+                Map.Manipulators.Paint(e.Graphics, ClientRectangle);
             }
         }
 

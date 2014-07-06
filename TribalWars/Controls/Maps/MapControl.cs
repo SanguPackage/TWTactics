@@ -25,7 +25,8 @@ namespace TribalWars.Controls.Maps
     {
         #region Fields
         private Map _map;
-        private Ruler _ruler;
+        private readonly Ruler _ruler;
+        private Point _point00 = new Point(0, 0);
         #endregion
 
         #region Properties
@@ -72,7 +73,7 @@ namespace TribalWars.Controls.Maps
             if (!DesignMode && _ruler != null && World.Default.HasLoaded)
             {
                 Location loc = _map.Location;
-                Point gameLocation = _map.Display.GetGameLocation(0, 0);
+                Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(loc.Zoom);
                 _ruler.DrawHorizontalRuler(e.Graphics, XRuler, gameLocation, mapLocation, width, loc);
@@ -88,7 +89,7 @@ namespace TribalWars.Controls.Maps
             if (!DesignMode && _ruler != null && World.Default.HasLoaded)
             {
                 Location loc = _map.Location;
-                Point gameLocation = _map.Display.GetGameLocation(0, 0);
+                Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(loc.Zoom);
                 _ruler.DrawVerticalRuler(e.Graphics, YRuler, gameLocation, mapLocation, width, loc);

@@ -7,8 +7,10 @@ using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Maps;
+using TribalWars.Properties;
 using TribalWars.Tools;
 
 namespace TribalWars.Controls.TWContextMenu
@@ -35,7 +37,8 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnDetails);
             }
-            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+
+            _menu.AddCommand("Pinpoint && Center", OnCenter, Resources.TeleportIcon);
 
             _menu.AddSeparator();
 
@@ -79,7 +82,7 @@ namespace TribalWars.Controls.TWContextMenu
         private void OnCenter(object sender, EventArgs e)
         {
             World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _tribe, VillageTools.PinPoint);
-            World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(_tribe));
+            World.Default.Map.SetCenter(_tribe);
         }
 
         /// <summary>

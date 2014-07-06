@@ -91,8 +91,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && RightClickToMove) ||
                 (e.MouseEventArgs.Button == MouseButtons.Left && LeftClickToMove))
             {
-                Point game = _map.Display.GetGameLocation(e.MouseEventArgs.X, e.MouseEventArgs.Y);
-                _map.SetCenter(game.X, game.Y);
+                Point game = _map.Display.GetGameLocation(e.MouseEventArgs.Location);
+                _map.SetCenter(game);
                 return true;
             }
             return false;
@@ -112,7 +112,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         private bool MoveMap(Point p)
         {
-            _map.SetCenter(_map.Location.X + p.X, _map.Location.Y + p.Y);
+            _map.SetCenter(new Point(_map.Location.X + p.X, _map.Location.Y + p.Y));
             return true;
         }
         #endregion

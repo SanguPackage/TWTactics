@@ -158,7 +158,7 @@ namespace TribalWars.Data.Maps.Manipulators
 
         public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture, ToolTip villageTooltip)
         {
-            Point game = Map.Display.GetGameLocation(e.X, e.Y);
+            Point game = Map.Display.GetGameLocation(e.Location);
             if (!game.IsValidGameCoordinate())
             {
                 return false;
@@ -201,10 +201,10 @@ namespace TribalWars.Data.Maps.Manipulators
             return CurrentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(CurrentManipulator, g, e, map, village, mapPicture.ClientRectangle));
         }
 
-        public void Paint(Graphics graphics, Rectangle rec, Rectangle fullMap)
+        public void Paint(Graphics graphics, Rectangle fullMap)
         {
             foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
-                manipulator.Paint(new MapPaintEventArgs(graphics, rec, fullMap, manipulator == CurrentManipulator));
+                manipulator.Paint(new MapPaintEventArgs(graphics, fullMap, manipulator == CurrentManipulator));
         }
 
         public void TimerPaint(ScrollableMapControl mapPicture, Rectangle fullMap)

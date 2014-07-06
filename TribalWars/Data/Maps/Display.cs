@@ -126,7 +126,7 @@ namespace TribalWars.Data.Maps
             }
 
             // TODO: this is not ideal. VisibleRectangle is not updated for all LocationChanged handlers that have already executed
-            _visibleRectangle = GetVisibleGameRectangle(this, _map.Control.ClientRectangle);
+            _visibleRectangle = GetGameRectangle();
         }
 
         /// <summary>
@@ -305,13 +305,6 @@ namespace TribalWars.Data.Maps
             }
         }
 
-        private static Rectangle GetVisibleGameRectangle(Display display, Rectangle mapSize)
-        {
-            Point gameTopLeft = display.GetGameLocation(mapSize.Location);
-            Point gameBottomRight = display.GetGameLocation(mapSize.Location.X + mapSize.Width, mapSize.Y + mapSize.Height);
-            return new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
-        }
-
         /// <summary>
         /// Paints the villages and continent/province lines on a canvas
         /// </summary>
@@ -339,7 +332,7 @@ namespace TribalWars.Data.Maps
                 _g = Graphics.FromImage(_canvas);
                 _g.FillRectangle(display._backgroundBrush, _toPaint);
 
-                _visibleGameRectangle = Display.GetVisibleGameRectangle(display, mapSize);
+                _visibleGameRectangle = display.GetGameRectangle();
                 // TODO: calculate the best min/map coords here.
                 // _visibleGameRectangle is sometimes negative!!
 
@@ -520,84 +513,25 @@ namespace TribalWars.Data.Maps
         /// <remarks>Assumes the location needs to be converted for the main map</remarks>
         public Point GetMapLocation(Point loc)
         {
-            return GetMapLocation(_map.Location, _map.Control.PictureWidth, _map.Control.PictureHeight, loc.X, loc.Y);
-        }
-
-        /// <summary>
-        /// Converts a game location to the map location
-        /// </summary>
-        public Point GetMapLocation(int x, int y)
-        {
-            return GetMapLocation(_map.Location, _map.Control.PictureWidth, _map.Control.PictureHeight, x, y);
-        }
-
-        /// <summary>
-        /// Converts a game location to the map location
-        /// </summary>
-        public Point GetMapLocation(Location sets, int mapWidth, int mapHeight, int x, int y)
-        {
             // Get location from game and convert it to location on the map
-            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
-            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
+            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
-            int off = (x - sets.X) * width;
-            x = off + mapWidth / 2; // +(2 * x - 1);
-            off = (y - sets.Y) * height;
-            y = off + (mapHeight / 2); // +(2 * y - 1);
-            return new Point(x, y);
-        }
-
-
-        /// <summary>
-        /// Calculates the coordinates and zoom level so all villages are visible
-        /// </summary>
-        /// <param name="vils">Villages that have to be visible</param>
-        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
-        public static Location GetSpan(IEnumerable<Village> vils, bool tryRespectCurrentZoom = true)
-        {
-            return GetSpan(vils, new Size(World.Default.Map.Control.PictureWidth, World.Default.Map.Control.PictureHeight), tryRespectCurrentZoom);
+            int off = (loc.X - _map.Location.X) * width;
+            loc.X = off + _map.CanvasSize.Width / 2;
+            off = (loc.Y - _map.Location.Y) * height;
+            loc.Y = off + (_map.CanvasSize.Height / 2);
+            return loc;
         }
 
         /// <summary>
-        /// Calculates the coordinates and zoom level so all villages are visible
+        /// 
         /// </summary>
-        /// <param name="vils">Villages that have to be visible</param>
-        /// <param name="world"></param>
-        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
-        public static Location GetSpan(IEnumerable<Village> vils, Size world, bool tryRespectCurrentZoom = true)
+        public Rectangle GetMapRectangle(Rectangle gameRectangle)
         {
-            int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
-            foreach (Village vil in vils)
-            {
-                if (vil.X < leftX) leftX = vil.X;
-                if (vil.X > rightX) rightX = vil.X;
-                if (vil.Y < topY) topY = vil.Y;
-                if (vil.Y > bottomY) bottomY = vil.Y;
-            }
-
-            return GetSpan(world, leftX, topY, rightX, bottomY, tryRespectCurrentZoom);
-        }
-
-        /// <summary>
-        /// Calculates the coordinates and zoom level so all villages are visible
-        /// </summary>
-        public static Location GetSpan(Size world, int leftX, int topY, int rightX, int bottomY, bool tryRespectCurrentZoom = true)
-        {
-            int x = (leftX + rightX) / 2;
-            int y = (topY + bottomY) / 2;
-
-            int requiredWidth = world.Width / (rightX - leftX + 5);
-            int requiredHeight = world.Height / (bottomY - topY + 5);
-            int requiredMin = Math.Min(requiredWidth, requiredHeight);
-
-            if (!tryRespectCurrentZoom)
-            {
-                // use optimal zoom level for given parameters
-                return new Location(x, y, requiredMin);
-            }
-
-            // Only change zoom when villages don't fit with current zoom
-            return new Location(x, y, Math.Min(requiredMin, World.Default.Map.Location.Zoom));
+            Point leftTop = _map.Display.GetMapLocation(gameRectangle.Location);
+            Point rightBottom = _map.Display.GetMapLocation(new Point(gameRectangle.Right, gameRectangle.Bottom));
+            return new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
         }
 
         /// <summary>
@@ -606,52 +540,41 @@ namespace TribalWars.Data.Maps
         /// <remarks>Assumes the location needs to be converted for the main map</remarks>
         public Point GetGameLocation(Point loc)
         {
-            return GetGameLocation(_map.Location, _map.Control.PictureWidth, _map.Control.PictureHeight, loc.X, loc.Y);
-        }
-
-        /// <summary>
-        /// Converts a map location to the game location
-        /// </summary>
-        /// <remarks>Assumes the location needs to be converted for the main map</remarks>
-        public Point GetGameLocation(int x, int y)
-        {
-            return GetGameLocation(_map.Location, _map.Control.PictureWidth, _map.Control.PictureHeight, x, y);
-        }
-
-        /// <summary>
-        /// Converts a game location to the map location
-        /// </summary>
-        public Point GetGameLocation(Location sets, int mapWidth, int mapHeight, int x, int y)
-        {
             // Get location from map and convert it to game location
-            //int off = (int)((x - sets.X));
+            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
 
-            int height = DisplayManager.CurrentDisplay.GetVillageHeightSpacing(sets.Zoom);
-            int width = DisplayManager.CurrentDisplay.GetVillageWidthSpacing(sets.Zoom);
-
-            int newx = (x + sets.X * width - mapWidth / 2) / width;
-            int newy = (y + sets.Y * height - mapHeight / 2) / height;
+            int newx = (loc.X + _map.Location.X * width - _map.CanvasSize.Width / 2) / width;
+            int newy = (loc.Y + _map.Location.Y * height - _map.CanvasSize.Height / 2) / height;
             return new Point(newx, newy);
         }
 
         /// <summary>
         /// Converts map to game location and return the village
         /// </summary>
-        public Village GetGameVillage(int x, int y)
+        public Village GetGameVillage(Point map)
         {
-            Point game = GetGameLocation(x, y);
+            Point game = GetGameLocation(map);
             if (World.Default.Villages.ContainsKey(game)) return World.Default.Villages[game];
             return null;
         }
 
         /// <summary>
-        /// Converts the UserControle size to the game rectangle it represents
+        /// Converts the UserControl size to the game rectangle it represents
         /// </summary>
-        public Rectangle GetGameRectangle(Rectangle fullMap)
+        public Rectangle GetGameRectangle()
         {
-            Point leftTop = GetGameLocation(fullMap.Left, fullMap.Top);
-            Point rightBottom = GetGameLocation(fullMap.Right, fullMap.Bottom);
+            var fullMap = _map.CanvasSize;
+            Point leftTop = GetGameLocation(new Point(0, 0));
+            Point rightBottom = GetGameLocation(new Point(fullMap.Width, fullMap.Height));
             return new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
+        }
+
+        public Rectangle GetGameRectangle(Rectangle mapRectangle)
+        {
+            Point gameLocation = GetGameLocation(mapRectangle.Location);
+            Point gameSize = GetGameLocation(new Point(mapRectangle.Right, mapRectangle.Bottom));
+            return new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
         }
         #endregion
     }

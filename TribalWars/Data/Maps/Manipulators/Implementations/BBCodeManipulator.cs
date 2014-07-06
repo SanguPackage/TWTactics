@@ -97,7 +97,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         int x = -1, y = -1;
                         foreach (Point gameP in poly.List)
                         {
-                            p = World.Default.Map.Display.GetMapLocation(gameP.X, gameP.Y);
+                            p = World.Default.Map.Display.GetMapLocation(gameP);
                             if (x != -1 || y != -1)
                             {
                                 e.Graphics.DrawLine(pen, x, y, p.X, p.Y);
@@ -140,7 +140,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             {
                 if (_activePolygon == null || !_activePolygon.Drawing)
                 {
-                    StartNewPolygon(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                    StartNewPolygon(e.MouseEventArgs.Location);
                     return true;
                 }
             }
@@ -152,8 +152,6 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
-            int x = e.MouseEventArgs.X;
-            int y = e.MouseEventArgs.Y;
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 if (_activePolygon != null && _activePolygon.Drawing)
@@ -161,7 +159,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                     if (_activePolygon.List.Count > 2)
                     {
                         // Polygon completed
-                        _activePolygon.Stop(x, y);
+                        _activePolygon.Stop(e.MouseEventArgs.Location);
                         _nextId++;
                         DeleteIfEmpty(_activePolygon);
                     }
@@ -170,14 +168,14 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         // Too small area to be a polygon
                         // try to select an existing one instead
                         Delete(_activePolygon);
-                        Select(x, y);
+                        Select(e.MouseEventArgs.Location);
                     }
                 }
                 return true;
             }
             else if (e.MouseEventArgs.Button == MouseButtons.Right)
             {
-                Select(x, y);
+                Select(e.MouseEventArgs.Location);
                 return true;
             }
             return false;
@@ -190,7 +188,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                var currentMap = new Point(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                Point currentMap = e.MouseEventArgs.Location;
                 if (Control.ModifierKeys.HasFlag(Keys.Control))
                 {
                     currentMap.X = _lastAddedMapLocation.X;
@@ -203,7 +201,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 if (_activePolygon != null && _activePolygon.Drawing && CanAddPointToPolygon(_lastAddedMapLocation, currentMap))
                 {
                     // Add extra point to the polygon
-                    _activePolygon.Add(currentMap.X, currentMap.Y);
+                    _activePolygon.Add(currentMap);
                     _lastAddedMapLocation = currentMap;
                     return true;
                 }
@@ -395,11 +393,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// <summary>
         /// Polygon started
         /// </summary>
-        private void StartNewPolygon(int x, int y)
+        private void StartNewPolygon(Point loc)
         {
-            _lastAddedMapLocation = new Point(x, y);
+            _lastAddedMapLocation = loc;
 
-            _activePolygon = new Polygon("poly" + _nextId.ToString(CultureInfo.InvariantCulture), _lastAddedMapLocation.X, _lastAddedMapLocation.Y);
+            _activePolygon = new Polygon("poly" + _nextId.ToString(CultureInfo.InvariantCulture), _lastAddedMapLocation);
             _collection.Add(_activePolygon);
             _parent.SetFullControlManipulator(this);
         }
@@ -432,10 +430,10 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// Returns the first polygon that contains the point.
         /// Cycle when there are multiple in the location.
         /// </summary>
-        private Polygon GetSelectedPolygon(int x, int y)
+        private Polygon GetSelectedPolygon(Point loc)
         {
             var polys = (from poly in _collection
-                         where poly.IsHitIn(x, y) && poly.Visible
+                         where poly.IsHitIn(loc) && poly.Visible
                          select poly).ToArray();
 
             if (!polys.Any())
@@ -464,9 +462,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// <summary>
         /// Set the active polygon
         /// </summary>
-        private void Select(int x, int y)
+        private void Select(Point loc)
         {
-            _activePolygon = GetSelectedPolygon(x, y);
+            _activePolygon = GetSelectedPolygon(loc);
             if (_activePolygon == null)
             {
                 _parent.RemoveFullControlManipulator();

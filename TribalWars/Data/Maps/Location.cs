@@ -13,18 +13,15 @@ namespace TribalWars.Data.Maps
     /// </summary>
     public sealed class Location : IEquatable<Location>
     {
-        #region Events
-        #endregion
-
         #region Fields
-        public int _x;
-        public int _y;
-        public int _zoom;
+        private readonly int _x;
+        private readonly int _y;
+        private readonly int _zoom;
         #endregion
 
         #region Properties
         /// <summary>
-        /// Gets or sets the X coordinate
+        /// Gets the X coordinate
         /// </summary>
         public int X
         {
@@ -32,7 +29,7 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Gets or sets the Y coordinate
+        /// Gets the Y coordinate
         /// </summary>
         public int Y
         {
@@ -40,7 +37,7 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
-        /// Gets or sets the zoom level
+        /// Gets the zoom level
         /// </summary>
         public int Zoom
         {
@@ -49,12 +46,6 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Constructors
-        public Location()
-            : this(500, 500)
-        {
-
-        }
-
         public Location(int x, int y)
         {
             _x = x;
@@ -66,6 +57,13 @@ namespace TribalWars.Data.Maps
         {
             _x = x;
             _y = y;
+            _zoom = zoom;
+        }
+
+        public Location(Point loc, int zoom)
+        {
+            _x = loc.X;
+            _y = loc.Y;
             _zoom = zoom;
         }
 

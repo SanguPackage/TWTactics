@@ -77,7 +77,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 int villageWidth = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
                 int villageHeight = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
 
-                Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.X, _mainMapSelectedVillage.Y);
+                Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.Location);
 
                 _activeVillageAnimationPen = ReferenceEquals(_activeVillageAnimationPen, _activeVillagePen2) ? _activeVillagePen : _activeVillagePen2;
 
@@ -102,7 +102,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
                     foreach (Village village in player)
                     {
-                        Point villageLocation = _map.Display.GetMapLocation(village.X, village.Y);
+                        Point villageLocation = _map.Display.GetMapLocation(village.Location);
                         
                         Pen pen = _mainMapSelectedVillagesPen;
                         if (village == _mainMapSelectedVillage)
@@ -116,10 +116,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
 
             // Draws the rectangle active on the mainmap
-            Rectangle mainMapGameRectangle = _mainMap.Display.GetGameRectangle(_mainMap.Control.ClientRectangle);
-            Point leftTop = _map.Display.GetMapLocation(mainMapGameRectangle.X, mainMapGameRectangle.Y);
-            Point rightBottom = _map.Display.GetMapLocation(mainMapGameRectangle.Right, mainMapGameRectangle.Bottom);
-            _mainMapRectangle = new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);
+            Rectangle mainMapGameRectangle = _mainMap.Display.GetGameRectangle();
+            _mainMapRectangle = _map.Display.GetMapRectangle(mainMapGameRectangle);
             e.Graphics.DrawRectangle(_mainMapActiveBorderPen, _mainMapRectangle);
 
             const int width = 40;
@@ -128,7 +126,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
             // Draw the continents
             // Right Top
-            Point cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Right, e.FullMapRectangle.Top);
+            Point cPos = _map.Display.GetGameLocation(new Point(e.FullMapRectangle.Right, e.FullMapRectangle.Top));
             if (cPos.IsValidGameCoordinate())
             {
                 string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
@@ -137,7 +135,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
             
             // Left top
-            cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Top);
+            cPos = _map.Display.GetGameLocation(new Point(e.FullMapRectangle.Left, e.FullMapRectangle.Top));
             if (cPos.IsValidGameCoordinate())
             {
                 string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
@@ -146,7 +144,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
 
             // Left bottom
-            cPos = _map.Display.GetGameLocation(e.FullMapRectangle.Left, e.FullMapRectangle.Bottom);
+            cPos = _map.Display.GetGameLocation(new Point(e.FullMapRectangle.Left, e.FullMapRectangle.Bottom));
             if (cPos.IsValidGameCoordinate())
             {
                 string continentNumber = cPos.Kingdom().ToString(CultureInfo.InvariantCulture);
@@ -182,8 +180,8 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                Point game = _map.Display.GetGameLocation(e.MouseEventArgs.X, e.MouseEventArgs.Y);
-                _mainMap.SetCenter(game.X, game.Y);
+                Point game = _map.Display.GetGameLocation(e.MouseEventArgs.Location);
+                _mainMap.SetCenter(game);
                 return true;
             }
             return false;
@@ -211,11 +209,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             {
                 if (_map.Location == null)
                 {
-                    _map.SetCenter(e.NewLocation.X, e.NewLocation.Y, 1);
+                    _map.SetCenter(e.NewLocation, 1);
                 }
                 else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > 100)
                 {
-                    _map.SetCenter(e.NewLocation.X, e.NewLocation.Y, 1);
+                    _map.SetCenter(e.NewLocation, 1);
                     _map.Control.Invalidate();
                 }
                 else

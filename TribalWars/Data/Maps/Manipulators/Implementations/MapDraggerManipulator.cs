@@ -37,7 +37,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
                 _isDragging = true;
-                _startPosition = CreateGamePoint(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                _startPosition = CreateGamePoint(e.MouseEventArgs.Location);
                 _lastPosition = _startPosition;
                 _parent.SetFullControlManipulator(this);
             }
@@ -64,7 +64,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left && _isDragging)
             {
-                Point currentMap = CreateGamePoint(e.MouseEventArgs.X, e.MouseEventArgs.Y);
+                Point currentMap = CreateGamePoint(e.MouseEventArgs.Location);
                 if (_lastPosition != currentMap)
                 {
                     _lastPosition = currentMap;
@@ -101,9 +101,9 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
         }
 
-        private static Point CreateGamePoint(int x, int y)
+        private static Point CreateGamePoint(Point loc)
         {
-            return World.Default.Map.Display.GetGameLocation(x, y);
+            return World.Default.Map.Display.GetGameLocation(loc);
         }
         #endregion
     }

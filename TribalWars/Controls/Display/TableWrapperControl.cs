@@ -285,7 +285,7 @@ namespace TribalWars.Controls.Display
 
                 Village[] villages = row.GetVillages().ToArray();
                 World.Default.Map.EventPublisher.SelectVillages(null, villages, VillageTools.PinPoint);
-                World.Default.Map.SetCenter(Data.Maps.Display.GetSpan(villages));
+                World.Default.Map.SetCenter(villages);
             }
         }
         #endregion

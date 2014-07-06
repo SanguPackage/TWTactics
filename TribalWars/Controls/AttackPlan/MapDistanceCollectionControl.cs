@@ -313,7 +313,7 @@ namespace TribalWars.Controls.AttackPlan
         {
             foreach (MapDistanceControl plan in _plans.Values)
             {
-                Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.X, plan.Target.Y);
+                Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
                 const int size = 1; // World.Default.Map.RectangleSize;
                 if (plan == _activePlan)
                 {
@@ -327,7 +327,7 @@ namespace TribalWars.Controls.AttackPlan
                     {
                         foreach (MapDistanceVillageComparor itm in list)
                         {
-                            loc = World.Default.Map.Display.GetMapLocation(itm.Village.X, itm.Village.Y);
+                            loc = World.Default.Map.Display.GetMapLocation(itm.Village.Location);
                             loc.Offset(size / 2, size / 2);
                             loc.Offset(-10, -17);
                             g.DrawImage(Properties.Resources.FlagBlue, loc);

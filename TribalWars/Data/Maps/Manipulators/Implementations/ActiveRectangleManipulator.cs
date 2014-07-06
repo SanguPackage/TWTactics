@@ -103,11 +103,8 @@ Press 's' to remove this tooltip.";
 
                 if (saveActiveRectangle == DialogResult.Yes)
                 {
-                    Point gameLocation = _map.Display.GetGameLocation(_activeRectangle.Location);
-                    Point gameSize = _map.Display.GetGameLocation(_activeRectangle.Right, _activeRectangle.Bottom);
-
-                    var worldRectangle = new Rectangle(gameLocation, new Size(gameSize.X - gameLocation.X, gameSize.Y - gameLocation.Y));
-                    World.Default.Monitor.ActiveRectangle = worldRectangle;
+                    var game = _map.Display.GetGameRectangle(_activeRectangle);
+                    World.Default.Monitor.ActiveRectangle = game;
                     World.Default.SaveSettings();
 
                     _hasSetNew = true;

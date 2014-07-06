@@ -306,7 +306,7 @@ namespace TribalWars.Controls.Common
                 }
                 else if (_showButton && _map != null)
                 {
-                    _map.SetCenter(Data.Maps.Display.GetSpan(player));
+                    _map.SetCenter(player);
                     _map.EventPublisher.SelectVillages(this, player, VillageTools.PinPoint);
                 }
             }
@@ -349,7 +349,7 @@ namespace TribalWars.Controls.Common
                 }
                 else if (_showButton && _map != null)
                 {
-                    _map.SetCenter(Data.Maps.Display.GetSpan(tribe));
+                    _map.SetCenter(tribe);
                     _map.EventPublisher.SelectVillages(this, tribe, VillageTools.PinPoint);
                 }
             }
