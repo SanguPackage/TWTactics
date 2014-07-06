@@ -88,7 +88,6 @@ namespace TribalWars.Data.Maps
         {
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
-            //Display = Display.CreateMiniMap(this);
             Manipulators = new ManipulatorManagerController(this, mainMap);
         }
 
@@ -99,13 +98,12 @@ namespace TribalWars.Data.Maps
         {
             EventPublisher = new Publisher(this);
             MarkerManager = new MarkerManager();
-            //Display = new Display(this, DisplayTypes.None);
             Manipulators = new ManipulatorManagerController(this);
         }
 
-        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type)
+        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, IconDisplay.Scenery scenery)
         {
-            Display = new Display(settings, this, type);
+            Display = new Display(settings, this, type, scenery);
         }
 
         /// <summary>

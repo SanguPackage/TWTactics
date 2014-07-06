@@ -29,8 +29,8 @@ namespace TribalWars.Data.Maps.Displays
         }
 
         #region Fields
-        public const int StandardIconWidth = 53;
-        public const int StandardIconHeight = 38;
+        private const int StandardIconWidth = 53;
+        private const int StandardIconHeight = 38;
 
         /// <summary>
         /// Width x Height on different zoom levels (index is zoom level)
@@ -47,56 +47,51 @@ namespace TribalWars.Data.Maps.Displays
                 {15, 11}
             };
 
-        private readonly MemoryStream _background;
-        private readonly Dictionary<int, DrawerBase> _backgroundCache;
+        private static readonly MemoryStream _background;
+        private static readonly MemoryStream _background2;
+        private static readonly Dictionary<int, DrawerBase> _backgroundCache;
+
+        private readonly MemoryStream _activeBackground;
 
         private const int BackgroundGrasCount = 4;
         private const int BackgroundSea = 12;
         #endregion
 
         #region Constructors
-        public IconDisplay()
-            : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
+        static IconDisplay()
         {
-            //if (scenery == Scenery.Old)
-            //{
-                _background = new MemoryStream(WorldData.WorldBackgroundData);
-            //}
-            //else
-            //{
-            //    Debug.Assert(scenery == Scenery.New);
-            //    _background = new MemoryStream(WorldData.WorldBackgroundData2);
-            //}
+            _background = new MemoryStream(WorldData.WorldBackgroundData);
+            _background2 = new MemoryStream(WorldData.WorldBackgroundData2);
 
             _backgroundCache = new Dictionary<int, DrawerBase>();
-            _backgroundCache.Add(0, CreateArray(new BackgroundDrawer(Icons.Background.gras1)));
-            _backgroundCache.Add(1, CreateArray(new BackgroundDrawer(Icons.Background.gras2)));
-            _backgroundCache.Add(2, CreateArray(new BackgroundDrawer(Icons.Background.gras3)));
-            _backgroundCache.Add(3, CreateArray(new BackgroundDrawer(Icons.Background.gras4)));
+            _backgroundCache.Add(0, new BackgroundDrawer(Icons.Background.gras1));
+            _backgroundCache.Add(1, new BackgroundDrawer(Icons.Background.gras2));
+            _backgroundCache.Add(2, new BackgroundDrawer(Icons.Background.gras3));
+            _backgroundCache.Add(3, new BackgroundDrawer(Icons.Background.gras4));
 
-            _backgroundCache.Add(8, CreateArray(new BackgroundDrawer(Icons.Background.berg1)));
-            _backgroundCache.Add(9, CreateArray(new BackgroundDrawer(Icons.Background.berg2)));
-            _backgroundCache.Add(10, CreateArray(new BackgroundDrawer(Icons.Background.berg3)));
-            _backgroundCache.Add(11, CreateArray(new BackgroundDrawer(Icons.Background.berg4)));
+            _backgroundCache.Add(8, new BackgroundDrawer(Icons.Background.berg1));
+            _backgroundCache.Add(9, new BackgroundDrawer(Icons.Background.berg2));
+            _backgroundCache.Add(10, new BackgroundDrawer(Icons.Background.berg3));
+            _backgroundCache.Add(11, new BackgroundDrawer(Icons.Background.berg4));
 
-            _backgroundCache.Add(BackgroundSea, CreateArray(new BackgroundDrawer(Icons.Background.see)));
+            _backgroundCache.Add(BackgroundSea, new BackgroundDrawer(Icons.Background.see));
 
-            _backgroundCache.Add(16, CreateArray(new BackgroundDrawer(Icons.Background.forest0000)));
-            _backgroundCache.Add(17, CreateArray(new BackgroundDrawer(Icons.Background.forest0001)));
-            _backgroundCache.Add(18, CreateArray(new BackgroundDrawer(Icons.Background.forest0010)));
-            _backgroundCache.Add(19, CreateArray(new BackgroundDrawer(Icons.Background.forest0011)));
-            _backgroundCache.Add(20, CreateArray(new BackgroundDrawer(Icons.Background.forest0100)));
-            _backgroundCache.Add(21, CreateArray(new BackgroundDrawer(Icons.Background.forest0101)));
-            _backgroundCache.Add(22, CreateArray(new BackgroundDrawer(Icons.Background.forest0110)));
-            _backgroundCache.Add(23, CreateArray(new BackgroundDrawer(Icons.Background.forest0111)));
-            _backgroundCache.Add(24, CreateArray(new BackgroundDrawer(Icons.Background.forest1000)));
-            _backgroundCache.Add(25, CreateArray(new BackgroundDrawer(Icons.Background.forest1001)));
-            _backgroundCache.Add(26, CreateArray(new BackgroundDrawer(Icons.Background.forest1010)));
-            _backgroundCache.Add(27, CreateArray(new BackgroundDrawer(Icons.Background.forest1011)));
-            _backgroundCache.Add(28, CreateArray(new BackgroundDrawer(Icons.Background.forest1100)));
-            _backgroundCache.Add(29, CreateArray(new BackgroundDrawer(Icons.Background.forest1101)));
-            _backgroundCache.Add(30, CreateArray(new BackgroundDrawer(Icons.Background.forest1110)));
-            _backgroundCache.Add(31, CreateArray(new BackgroundDrawer(Icons.Background.forest1111)));
+            _backgroundCache.Add(16, new BackgroundDrawer(Icons.Background.forest0000));
+            _backgroundCache.Add(17, new BackgroundDrawer(Icons.Background.forest0001));
+            _backgroundCache.Add(18, new BackgroundDrawer(Icons.Background.forest0010));
+            _backgroundCache.Add(19, new BackgroundDrawer(Icons.Background.forest0011));
+            _backgroundCache.Add(20, new BackgroundDrawer(Icons.Background.forest0100));
+            _backgroundCache.Add(21, new BackgroundDrawer(Icons.Background.forest0101));
+            _backgroundCache.Add(22, new BackgroundDrawer(Icons.Background.forest0110));
+            _backgroundCache.Add(23, new BackgroundDrawer(Icons.Background.forest0111));
+            _backgroundCache.Add(24, new BackgroundDrawer(Icons.Background.forest1000));
+            _backgroundCache.Add(25, new BackgroundDrawer(Icons.Background.forest1001));
+            _backgroundCache.Add(26, new BackgroundDrawer(Icons.Background.forest1010));
+            _backgroundCache.Add(27, new BackgroundDrawer(Icons.Background.forest1011));
+            _backgroundCache.Add(28, new BackgroundDrawer(Icons.Background.forest1100));
+            _backgroundCache.Add(29, new BackgroundDrawer(Icons.Background.forest1101));
+            _backgroundCache.Add(30, new BackgroundDrawer(Icons.Background.forest1110));
+            _backgroundCache.Add(31, new BackgroundDrawer(Icons.Background.forest1111));
 
             //0-3 Gras
             //8-11 Berg
@@ -104,9 +99,19 @@ namespace TribalWars.Data.Maps.Displays
             //16-31 Wald
         }
 
-        private DrawerBase CreateArray(DrawerBase backgroundDrawer)
+        public IconDisplay(Scenery scenery)
+            : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
         {
-            return backgroundDrawer;
+            if (scenery == Scenery.Old)
+            {
+                _activeBackground = _background;
+            }
+            else
+            {
+                Debug.Assert(scenery == Scenery.New);
+                _activeBackground = _background2;
+            }
+
         }
         #endregion
 
@@ -171,8 +176,8 @@ namespace TribalWars.Data.Maps.Displays
 
         protected override DrawerBase CreateNonVillageDrawerCore(Point game, Rectangle village)
         {
-            _background.Position = game.Y * 1000 + game.X;
-            int villageType = _background.ReadByte();
+            _activeBackground.Position = game.Y * 1000 + game.X;
+            int villageType = _activeBackground.ReadByte();
 
             if (village.Width < 28)
             {

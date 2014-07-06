@@ -336,8 +336,8 @@ namespace TribalWars.Data
 
             InvalidateMarkers();
 
-            Map.InitializeDisplay(displaySettings, Map.HomeDisplay);
-            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap);
+            Map.InitializeDisplay(displaySettings, Map.HomeDisplay, IconScenery);
+            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, IconScenery);
 
             Map.ChangeDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
@@ -402,7 +402,9 @@ namespace TribalWars.Data
         public void InvalidateMarkers()
         {
             Map.MarkerManager.CacheSpecialMarkers();
-            MiniMap.MarkerManager.CacheSpecialMarkers();
+
+            Debug.Assert(ReferenceEquals(Map.MarkerManager, MiniMap.MarkerManager));
+            //MiniMap.MarkerManager.CacheSpecialMarkers();
         }
 
         /// <summary>

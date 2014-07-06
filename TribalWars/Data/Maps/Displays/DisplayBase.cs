@@ -44,12 +44,12 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public static DisplayBase Create(DisplayTypes displayType)
+        public static DisplayBase Create(DisplayTypes displayType, IconDisplay.Scenery scenery)
         {
             switch (displayType)
             {
                 case DisplayTypes.Icon:
-                    return new IconDisplay();
+                    return new IconDisplay(scenery);
 
                 case DisplayTypes.MiniMap:
                     return new MiniMapDisplay();
@@ -109,9 +109,17 @@ namespace TribalWars.Data.Maps.Displays
             return null;
         }
 
-        /// <summary>
-        /// Gets the width of a village WITH the spacing to the next village
-        /// </summary>
+        public class VillageDimensions
+        {
+            public Size Size { get; private set; }
+
+            /// <summary>
+            /// Gets the width &amp; height of a village WITH the spacing to the next village
+            /// </summary>
+            public Size SizeWithSpacing { get; private set; }
+        }
+
+        
         public abstract int GetVillageWidthSpacing(int zoom);
 
         /// <summary>

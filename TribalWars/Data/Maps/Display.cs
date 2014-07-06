@@ -28,13 +28,14 @@ namespace TribalWars.Data.Maps
         private readonly Pen _provincePen;
         private Rectangle? _visibleRectangle;
 
-        private Brush _backgroundBrush;
+        private readonly Brush _backgroundBrush;
 
         private Bitmap _background;
         private Painter _painter;
 
         private DisplayBase _displayStrategy;
-        private DisplaySettings _settings;
+        private readonly DisplaySettings _settings;
+        private readonly IconDisplay.Scenery _scenery;
         #endregion
 
         #region Properties
@@ -50,14 +51,15 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Constructors
-        public Display(DisplaySettings settings, Map map, DisplayTypes displayType)
+        public Display(DisplaySettings settings, Map map, DisplayTypes displayType, IconDisplay.Scenery scenery)
         {
             _settings = settings;
             _map = map;
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             _markers = map.MarkerManager;
+            _scenery = scenery;
 
-            _displayStrategy = DisplayBase.Create(displayType);
+            _displayStrategy = DisplayBase.Create(displayType, scenery);
 
             _backgroundBrush = new SolidBrush(settings.BackgroundColor);
             if (settings.ContinentLines)
@@ -103,7 +105,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void Reset(DisplayTypes type)
         {
-            _displayStrategy = DisplayBase.Create(type);
+            _displayStrategy = DisplayBase.Create(type, _scenery);
             _background = null;
         }
 

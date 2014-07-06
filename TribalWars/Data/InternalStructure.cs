@@ -365,7 +365,7 @@ namespace TribalWars.Data
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
 
-                bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "0";
+                bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "1";
 
                 return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery);
             }

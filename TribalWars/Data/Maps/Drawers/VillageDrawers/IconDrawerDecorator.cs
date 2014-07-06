@@ -43,22 +43,19 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (village.Width == IconDisplay.StandardIconWidth)
+            if (_bitmap != null)
             {
-                if (_bitmap != null)
-                {
-                    g.DrawImage(_bitmap, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
-                }
+                g.DrawImage(_bitmap, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
+            }
 
-                if (_comments)
-                {
-                    g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
-                }
+            if (_comments)
+            {
+                g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
+            }
 
-                if (_nobles)
-                {
-                    g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
-                }
+            if (_nobles)
+            {
+                g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
             }
         }
 
