@@ -18,7 +18,7 @@ namespace TribalWars.Data.Maps
     public class Publisher
     {
         #region Fields
-        private Map _map;
+        private readonly Map _map;
         #endregion
 
         #region Properties

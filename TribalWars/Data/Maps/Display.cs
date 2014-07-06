@@ -26,7 +26,7 @@ namespace TribalWars.Data.Maps
 
         private readonly Pen _continentPen;
         private readonly Pen _provincePen;
-        private Rectangle? _visibleRectangle;
+        private Rectangle _visibleRectangle;
 
         private readonly Brush _backgroundBrush;
 
@@ -51,14 +51,13 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Constructors
-        public Display(DisplaySettings settings, Map map, DisplayTypes displayType)
+        public Display(DisplaySettings settings, Map map, DisplayTypes displayType, int zoomLevel)
         {
             _settings = settings;
             _map = map;
-            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             _markers = map.MarkerManager;
 
-            _displayStrategy = DisplayBase.Create(displayType, settings.Scenery);
+            _displayStrategy = DisplayBase.Create(displayType, zoomLevel, settings.Scenery);
 
             // TODO: all these move to the painter
             _backgroundBrush = new SolidBrush(settings.BackgroundColor);
@@ -76,31 +75,11 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Reset Cache
-        private void EventPublisher_LocationChanged(object sender, Events.MapLocationEventArgs e)
+        public void UpdateLocation(Location location)
         {
-            if (!_isDisposed)
-            {
-                // TODO: also need to call this on resize probably?
-
-                // TODO: if there is some overlap between e.NewLocation and e.OldLocation
-                // redraw only the new part of the background and move the rest
-                // keep a _drawnRectangle variable that represents the drawn part of the background
-                if (e.OldLocation != null)
-                {
-                    //Debug.Assert(e.OldLocation != e.NewLocation);
-                    if (e.OldLocation.Zoom != e.NewLocation.Zoom)
-                    {
-                        _background = null;
-                    }
-                    else
-                    {
-                        _background = null;
-                    }
-                }
-
-                // TODO: this is not ideal. VisibleRectangle is not updated for all LocationChanged handlers that have already executed
-                _visibleRectangle = GetGameRectangle();
-            }
+            ResetCache();
+            _displayStrategy = DisplayBase.Create(CurrentDisplay.Type, location.Zoom, _settings.Scenery);
+            _visibleRectangle = GetGameRectangle();
         }
 
         /// <summary>
@@ -188,29 +167,6 @@ namespace TribalWars.Data.Maps
                 //Debug.WriteLine("passed for Paint " + fullMap.ToString());
 
                 var timing = Stopwatch.StartNew();
-
-                //Debug.Assert(rec == fullMap); // is not true on resizing
-
-                #region Some attempt at concurrency
-                //var mapParts = new Rectangle[2];
-                //mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
-                //mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
-
-                ////mapParts[0] = new Rectangle(fullMap.X, fullMap.Y, fullMap.Width / 2, fullMap.Height);
-                ////mapParts[1] = new Rectangle(mapParts[0].Right + 1, mapParts[0].Bottom + 1, fullMap.Width - mapParts[0].Width, fullMap.Height);
-
-                //var painter1 = new Painter(this, mapParts[0], _map.Location.Zoom);
-                //var painter2 = new Painter(this, mapParts[1], _map.Location.Zoom);
-
-                //var canvas = new Bitmap(fullMap.Width, fullMap.Height);
-                //Graphics graphics = Graphics.FromImage(canvas);
-                //graphics.DrawImageUnscaled(painter1.GetBitmap(), mapParts[0]);
-                //graphics.DrawImageUnscaled(painter2.GetBitmap(), mapParts[1]);
-
-                //_background = canvas;
-                //_visibleRectangle = Rectangle.Union(painter1.GetVisibleGameRectangle(), painter2.GetVisibleGameRectangle());
-                ////_visibleRectangle = painter2.GetVisibleGameRectangle();
-                #endregion
 
                 // Normal way: 1sec on zoom 1
                 if (_painter == null || true)
@@ -363,11 +319,12 @@ namespace TribalWars.Data.Maps
                 _toPaint = mapSize;
 
                 DisplayBase displayType = display.CurrentDisplay;
-                _villageWidthSpacing = displayType.GetVillageWidthSpacing(zoom);
-                _villageHeightSpacing = displayType.GetVillageHeightSpacing(zoom);
+                var dimensions = displayType.Dimensions;
+                _villageWidthSpacing = dimensions.SizeWithSpacing.Width;
+                _villageHeightSpacing = dimensions.SizeWithSpacing.Height;
 
-                _villageWidth = displayType.GetVillageWidth(zoom);
-                _villageHeight = displayType.GetVillageHeight(zoom);
+                _villageWidth = dimensions.Size.Width;
+                _villageHeight = dimensions.Size.Height;
 
                 DrawVillages();
                 DrawContinentLines();
@@ -503,30 +460,11 @@ namespace TribalWars.Data.Maps
 
         #region IsVisible
         /// <summary>
-        /// Gets a value indicating whether a tribe is currently visible
+        /// Gets a value indicating whether at least one village is currently visible
         /// </summary>
-        public bool IsVisible(Tribe tribe)
+        public bool IsVisible(IEnumerable<Village> villages)
         {
-            if (!_visibleRectangle.HasValue) return false;
-            return tribe.Any(village => _visibleRectangle.Value.Contains(village.Location));
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether a player is currently visible
-        /// </summary>
-        public bool IsVisible(Player player)
-        {
-            if (!_visibleRectangle.HasValue) return false;
-            return player.Any(village => _visibleRectangle.Value.Contains(village.Location));
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether a village is currently visible
-        /// </summary>
-        public bool IsVisible(Village village)
-        {
-            if (!_visibleRectangle.HasValue) return false;
-            return _visibleRectangle.Value.Contains(village.Location);
+            return villages.Any(village => _visibleRectangle.Contains(village.Location));
         }
         #endregion
 
@@ -538,12 +476,11 @@ namespace TribalWars.Data.Maps
         public Point GetMapLocation(Point loc)
         {
             // Get location from game and convert it to location on the map
-            int height = CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-            int width = CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+            var villageSize = CurrentDisplay.Dimensions.SizeWithSpacing;
 
-            int off = (loc.X - _map.Location.X) * width;
+            int off = (loc.X - _map.Location.X) * villageSize.Width;
             loc.X = off + _map.CanvasSize.Width / 2;
-            off = (loc.Y - _map.Location.Y) * height;
+            off = (loc.Y - _map.Location.Y) * villageSize.Height;
             loc.Y = off + (_map.CanvasSize.Height / 2);
             return loc;
         }
@@ -565,11 +502,10 @@ namespace TribalWars.Data.Maps
         public Point GetGameLocation(Point loc)
         {
             // Get location from map and convert it to game location
-            int height = CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-            int width = CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
+            var villageSize = CurrentDisplay.Dimensions.SizeWithSpacing;
 
-            int newx = (loc.X + _map.Location.X * width - _map.CanvasSize.Width / 2) / width;
-            int newy = (loc.Y + _map.Location.Y * height - _map.CanvasSize.Height / 2) / height;
+            int newx = (loc.X + (_map.Location.X * villageSize.Width) - (_map.CanvasSize.Width / 2)) / villageSize.Width;
+            int newy = (loc.Y + (_map.Location.Y * villageSize.Height) - (_map.CanvasSize.Height / 2)) / villageSize.Height;
             return new Point(newx, newy);
         }
 
@@ -605,8 +541,6 @@ namespace TribalWars.Data.Maps
         #region IDisposable
         public void Dispose()
         {
-            _isDisposed = true;
-            _map.EventPublisher.LocationChanged -= EventPublisher_LocationChanged;
         }
         #endregion
     }

@@ -27,6 +27,7 @@ namespace TribalWars.Data.Maps
         #region Fields
         private Display _display;
         private ScrollableMapControl _control;
+        private Location _location;
         #endregion
 
         #region Properties
@@ -72,7 +73,18 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Gets or sets the Map location &amp; zoom level
         /// </summary>
-        public Location Location { get; private set; }
+        public Location Location
+        {
+            get { return _location; }
+            private set
+            {
+                if (_location != value)
+                {
+                    _location = value;
+                    Display.UpdateLocation(value);
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the home position of the map
@@ -114,9 +126,9 @@ namespace TribalWars.Data.Maps
             Manipulators = new ManipulatorManagerController(this);
         }
 
-        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type)
+        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, int zoomLevel)
         {
-            Display = new Display(settings, this, type);
+            Display = new Display(settings, this, type, zoomLevel);
         }
 
         /// <summary>
@@ -271,6 +283,7 @@ namespace TribalWars.Data.Maps
                 {
                     Location oldLocation = Location;
                     Location = value;
+
                     EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(value, oldLocation, info));
                 }
             }
@@ -297,7 +310,7 @@ namespace TribalWars.Data.Maps
         {
             if (forceDisplay || Display.CurrentDisplay.Type != display)
             {
-                Display = new Display(Display.Settings, this, display);
+                Display = new Display(Display.Settings, this, display, location.Zoom);
 
                 EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
 

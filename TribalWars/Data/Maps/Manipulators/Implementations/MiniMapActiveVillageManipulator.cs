@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Data.Events;
+using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
 using TribalWars.Tools;
@@ -74,14 +75,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             _activeVillagePaintsCounter++;
             if (_mainMapSelectedVillage != null && _activeVillagePaintsCounter % 50 == 0)
             {
-                int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
-
-                Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.Location);
-
                 _activeVillageAnimationPen = ReferenceEquals(_activeVillageAnimationPen, _activeVillagePen2) ? _activeVillagePen : _activeVillagePen2;
+                Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.Location);
+                VillageDimensions village = _map.Display.CurrentDisplay.Dimensions;
 
-                PaintCross(e.Graphics, _activeVillageAnimationPen, villageLocation, villageWidth, villageHeight);
+                PaintCross(e.Graphics, _activeVillageAnimationPen, villageLocation, village.SizeWithSpacing);
             }
         }
 
@@ -97,8 +95,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
                 if (player != null)
                 {
-                    int villageWidth = _map.Display.CurrentDisplay.GetVillageWidthSpacing(_map.Location.Zoom);
-                    int villageHeight = _map.Display.CurrentDisplay.GetVillageHeightSpacing(_map.Location.Zoom);
+                    var villageDimension = _map.Display.CurrentDisplay.Dimensions;
 
                     foreach (Village village in player)
                     {
@@ -110,7 +107,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                             pen = _activeVillagePen2;
                         }
 
-                        PaintCross(e.Graphics, pen, villageLocation, villageWidth, villageHeight);
+                        PaintCross(e.Graphics, pen, villageLocation, villageDimension.SizeWithSpacing);
                     }
                 }
             }
@@ -153,7 +150,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
         }
 
-        private static void PaintCross(Graphics g, Pen pen, Point villageLocation, int villageWidth, int villageHeight)
+        private static void PaintCross(Graphics g, Pen pen, Point villageLocation, Size villageSize)
         {
             // Draw a cross for each village
             // left top to bottom right
@@ -161,16 +158,16 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 pen,
                 villageLocation.X - CrossPaintOffset,
                 villageLocation.Y - CrossPaintOffset,
-                villageLocation.X + villageWidth + CrossPaintOffset,
-                villageLocation.Y + villageHeight + CrossPaintOffset);
+                villageLocation.X + villageSize.Width + CrossPaintOffset,
+                villageLocation.Y + villageSize.Height + CrossPaintOffset);
 
             // top right to left bottom
             g.DrawLine(
                 pen,
-                villageLocation.X + villageWidth + CrossPaintOffset,
+                villageLocation.X + villageSize.Width + CrossPaintOffset,
                 villageLocation.Y - CrossPaintOffset,
                 villageLocation.X - CrossPaintOffset,
-                villageLocation.Y + villageHeight + CrossPaintOffset);
+                villageLocation.Y + villageSize.Height + CrossPaintOffset);
         }
 
         /// <summary>

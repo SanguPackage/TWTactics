@@ -13,9 +13,9 @@ using TribalWars.Data.Maps.Markers;
 namespace TribalWars.Data.Maps.Displays
 {
     /// <summary>
-    /// Base class for the Shape and IconDisplays
+    /// Base class for the MiniMap, Shape and IconDisplay factories
     /// </summary>
-    public abstract class DisplayBase
+    public abstract class DisplayBase // TODO: rename to DisplayFactory
     {
         #region Fields
         private readonly ZoomInfo _zoom;
@@ -41,24 +41,37 @@ namespace TribalWars.Data.Maps.Displays
         public abstract bool AllowText { get; }
 
         public abstract DisplayTypes Type { get; }
+
+        /// <summary>
+        /// Gets the size of a village
+        /// </summary>
+        public VillageDimensions Dimensions { get; private set; }
         #endregion
 
         #region Constructors
-        public static DisplayBase Create(DisplayTypes displayType, IconDisplay.Scenery scenery)
+        public static DisplayBase Create(DisplayTypes displayType, int zoomLevel, IconDisplay.Scenery scenery)
         {
+            DisplayBase display;
             switch (displayType)
             {
                 case DisplayTypes.Icon:
-                    return new IconDisplay(scenery);
+                    display = new IconDisplay(zoomLevel, scenery);
+                    break;
 
                 case DisplayTypes.MiniMap:
-                    return new MiniMapDisplay();
+                    display = new MiniMapDisplay();
+                    break;
 
                 case DisplayTypes.Shape:
-                    return new ShapeDisplay();
+                    display = new ShapeDisplay(zoomLevel);
+                    break;
+
+                default:
+                    throw new Exception("oeps");
             }
 
-            throw new Exception("oeps");
+            display.SetVillageDimensions();
+            return display;
         }
 
         protected DisplayBase(ZoomInfo zoom)
@@ -109,33 +122,15 @@ namespace TribalWars.Data.Maps.Displays
             return null;
         }
 
-        // TODO: we zaten hier:
-        public class VillageDimensions
+        private void SetVillageDimensions()
         {
-            public Size Size { get; private set; }
-
-            /// <summary>
-            /// Gets the width &amp; height of a village WITH the spacing to the next village
-            /// </summary>
-            public Size SizeWithSpacing { get; private set; }
+            Dimensions = CalculateVillageDimensions();
         }
 
-        public abstract int GetVillageWidthSpacing(int zoom);
-
         /// <summary>
-        /// Gets the height of a village WITH the spacing to the next village
+        /// Calculates the size of a village
         /// </summary>
-        public abstract int GetVillageHeightSpacing(int zoom);
-
-        /// <summary>
-        /// Gets the width of a village
-        /// </summary>
-        public abstract int GetVillageWidth(int zoom);
-
-        /// <summary>
-        /// Gets the height of a village
-        /// </summary>
-        public abstract int GetVillageHeight(int zoom);
+        protected abstract VillageDimensions CalculateVillageDimensions();
 
         protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, MarkerGroup colors);
 
@@ -170,6 +165,9 @@ namespace TribalWars.Data.Maps.Displays
             #region Constructors
             public ZoomInfo(int min, int max, int current)
             {
+                Debug.Assert(current >= min);
+                Debug.Assert(current <= max);
+
                 Minimum = min;
                 Maximum = max;
                 Current = current;

@@ -75,7 +75,7 @@ namespace TribalWars.Controls.Maps
                 Location loc = _map.Location;
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
-                int width = _map.Display.CurrentDisplay.GetVillageWidthSpacing(loc.Zoom);
+                int width = _map.Display.CurrentDisplay.Dimensions.SizeWithSpacing.Width;
                 _ruler.DrawHorizontalRuler(e.Graphics, XRuler, gameLocation, mapLocation, width);
             }
             base.OnPaint(e);
@@ -91,7 +91,7 @@ namespace TribalWars.Controls.Maps
                 Location loc = _map.Location;
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
-                int width = _map.Display.CurrentDisplay.GetVillageHeightSpacing(loc.Zoom);
+                int width = _map.Display.CurrentDisplay.Dimensions.SizeWithSpacing.Width;
                 _ruler.DrawVerticalRuler(e.Graphics, YRuler, gameLocation, mapLocation, width);
             }
             base.OnPaint(e);

@@ -19,16 +19,7 @@ namespace TribalWars.Data.Maps.Displays
     /// </summary>
     public sealed class IconDisplay : DisplayBase
     {
-        /// <summary>
-        /// Which world.dat to use for displaying seas, mountains, ...
-        /// </summary>
-        public enum Scenery
-        {
-            Old = 0,
-            New = 1
-        }
-
-        #region Fields
+        #region Constants & Fields
         private const int StandardIconWidth = 53;
         private const int StandardIconHeight = 38;
 
@@ -55,6 +46,18 @@ namespace TribalWars.Data.Maps.Displays
 
         private const int BackgroundGrasCount = 4;
         private const int BackgroundSea = 12;
+        #endregion
+
+        #region Properties
+        public override bool AllowText
+        {
+            get { return true; }
+        }
+
+        public override DisplayTypes Type
+        {
+            get { return DisplayTypes.Icon; }
+        }
         #endregion
 
         #region Constructors
@@ -99,8 +102,8 @@ namespace TribalWars.Data.Maps.Displays
             //16-31 Wald
         }
 
-        public IconDisplay(Scenery scenery)
-            : base(new ZoomInfo(1, VillageSizes.Count - 1, 1))
+        public IconDisplay(int zoomLevel, Scenery scenery)
+            : base(new ZoomInfo(1, VillageSizes.Count - 1, zoomLevel))
         {
             if (scenery == Scenery.Old)
             {
@@ -134,7 +137,7 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            if (string.IsNullOrEmpty(data.IconDrawer))
+            if (string.IsNullOrEmpty(data.IconDrawer) || Zoom.Current != 1)
             {
                 return null;
             }
@@ -144,34 +147,12 @@ namespace TribalWars.Data.Maps.Displays
             return new IconDrawerDecorator((VillageType)data.Value, icon);
         }
 
-        private int GetVillageWidthCore(int zoom)
+        /// <summary>
+        /// Gets the size of a village
+        /// </summary>
+        protected override VillageDimensions CalculateVillageDimensions()
         {
-            return VillageSizes[zoom].Item1;
-        }
-
-        private int GetVillageHeightCore(int zoom)
-        {
-            return VillageSizes[zoom].Item2;
-        }
-
-        public override int GetVillageHeightSpacing(int zoom)
-        {
-            return GetVillageHeightCore(zoom);
-        }
-
-        public override int GetVillageWidthSpacing(int zoom)
-        {
-            return GetVillageWidthCore(zoom);
-        }
-
-        public override bool AllowText
-        {
-            get { return true; }
-        }
-
-        public override DisplayTypes Type
-        {
-            get { return DisplayTypes.Icon; }
+            return new VillageDimensions(new Size(VillageSizes[Zoom.Current].Item1, VillageSizes[Zoom.Current].Item2));
         }
 
         protected override DrawerBase CreateNonVillageDrawerCore(Point game, Rectangle village)
@@ -191,19 +172,20 @@ namespace TribalWars.Data.Maps.Displays
             return _backgroundCache[villageType];
         }
 
-        public override int GetVillageWidth(int zoom)
-        {
-            return GetVillageWidthCore(zoom);
-        }
-
-        public override int GetVillageHeight(int zoom)
-        {
-            return GetVillageHeightCore(zoom);
-        }
-
         public override string ToString()
         {
             return string.Format("IconDisplay ({0}x{1})", StandardIconWidth, StandardIconHeight);
+        }
+        #endregion
+
+        #region Scenery Enum
+        /// <summary>
+        /// Which world.dat to use for displaying seas, mountains, ...
+        /// </summary>
+        public enum Scenery
+        {
+            Old = 0,
+            New = 1
         }
         #endregion
     }

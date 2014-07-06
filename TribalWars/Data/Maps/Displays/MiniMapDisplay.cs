@@ -12,6 +12,7 @@ namespace TribalWars.Data.Maps.Displays
     {
         #region Fields
         private const int FixedZoomLevel = 3;
+        private static readonly VillageDimensions Dimensions = new VillageDimensions(FixedZoomLevel);
         #endregion
 
         #region Properties
@@ -43,6 +44,14 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Gets the size of a village
+        /// </summary>
+        protected override VillageDimensions CalculateVillageDimensions()
+        {
+            return Dimensions;
+        }
+
         protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
         {
             if (colors.ExtraColor != Color.Transparent) return new MiniMapDrawer(colors.ExtraColor);
@@ -52,26 +61,6 @@ namespace TribalWars.Data.Maps.Displays
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
             return null;
-        }
-
-        public override int GetVillageHeightSpacing(int zoom)
-        {
-            return FixedZoomLevel;
-        }
-
-        public override int GetVillageWidthSpacing(int zoom)
-        {
-            return FixedZoomLevel;
-        }
-
-        public override int GetVillageWidth(int zoom)
-        {
-            return FixedZoomLevel;
-        }
-
-        public override int GetVillageHeight(int zoom)
-        {
-            return FixedZoomLevel;
         }
 
         public override string ToString()

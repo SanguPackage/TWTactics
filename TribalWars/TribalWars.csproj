@@ -204,6 +204,7 @@
     <Compile Include="Data\Events\PolygonEventArgs.cs" />
     <Compile Include="Data\Maps\DisplaySettings.cs" />
     <Compile Include="Data\Maps\Displays\MiniMapDisplay.cs" />
+    <Compile Include="Data\Maps\Displays\VillageDimensions.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
     <Compile Include="Data\Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />

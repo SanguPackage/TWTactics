@@ -18,9 +18,21 @@ namespace TribalWars.Data.Maps.Displays
     /// </summary>
     public sealed class ShapeDisplay : DisplayBase
     {
+        #region Properties
+        public override bool AllowText
+        {
+            get { return Zoom.Current >= 5; }
+        }
+
+        public override DisplayTypes Type
+        {
+            get { return DisplayTypes.Shape; }
+        }
+        #endregion
+
         #region Constructors
-        public ShapeDisplay()
-            : base(new ZoomInfo(1, 25, 10))
+        public ShapeDisplay(int zoomLevel)
+            : base(new ZoomInfo(1, 25, zoomLevel))
         {
 
         }
@@ -56,51 +68,20 @@ namespace TribalWars.Data.Maps.Displays
             }
         }
 
-        private int GetVillageSize(int zoom)
+        /// <summary>
+        /// Gets the size of a village
+        /// </summary>
+        protected override VillageDimensions CalculateVillageDimensions()
         {
-            return zoom;
-        }
+            var villageSize = new Size(Zoom.Current, Zoom.Current);
 
-        public override int GetVillageWidth(int zoom)
-        {
-            return GetVillageSize(zoom);
-        }
-
-        public override int GetVillageHeight(int zoom)
-        {
-            return GetVillageSize(zoom);
-        }
-
-        private int GetVillageWithSpacingSize(int zoom)
-        {
-            if (zoom < 5) return zoom;
-            return zoom + 1;
-        }
-
-        public override int GetVillageHeightSpacing(int zoom)
-        {
-            return GetVillageWithSpacingSize(zoom);
-        }
-
-        public override bool AllowText
-        {
-            // TODO: This needs to known the village width >= 5
-            get { return true; }
-        }
-
-        public override DisplayTypes Type
-        {
-            get { return DisplayTypes.Shape; }
-        }
-
-        public override int GetVillageWidthSpacing(int zoom)
-        {
-            return GetVillageWithSpacingSize(zoom);
+            if (Zoom.Current < 5) return new VillageDimensions(villageSize, villageSize);
+            return new VillageDimensions(villageSize, new Size(Zoom.Current + 1, Zoom.Current + 1));
         }
 
         public override string ToString()
         {
-            return String.Format("ShapeDisplay (z{0})", World.Default.Map.Location.Zoom);
+            return String.Format("ShapeDisplay (z{0})", Zoom.Current);
         }
         #endregion
     }

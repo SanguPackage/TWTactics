@@ -337,8 +337,8 @@ namespace TribalWars.Data
             InvalidateMarkers();
 
             displaySettings.Scenery = IconScenery;
-            Map.InitializeDisplay(displaySettings, Map.HomeDisplay);
-            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap);
+            Map.InitializeDisplay(displaySettings, Map.HomeDisplay, Map.HomeLocation.Zoom);
+            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, 1);
 
             Map.SetDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
