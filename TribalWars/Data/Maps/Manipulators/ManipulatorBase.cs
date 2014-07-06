@@ -77,7 +77,7 @@ namespace TribalWars.Data.Maps.Manipulators
             return new DefaultMapContextMenu(gameLocation);
         }
 
-        public virtual string VillageTooltip(Village village)
+        public string VillageTooltip(Village village)
         {
             return village.Tooltip.Text;
         }

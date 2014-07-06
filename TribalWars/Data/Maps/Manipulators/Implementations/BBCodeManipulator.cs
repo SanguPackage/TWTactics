@@ -265,7 +265,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 {
                     poly.Visible = visible;
                 }
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
 
@@ -277,7 +277,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (ActivePolygon != null)
             {
                 ActivePolygon.Visible = !ActivePolygon.Visible;
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
 
@@ -301,7 +301,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 {
                     ActivePolygon = null;
                 }
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
 

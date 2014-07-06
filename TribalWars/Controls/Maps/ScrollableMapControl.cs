@@ -1,5 +1,6 @@
 #region Using
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Drawing;
 using TribalWars.Data;
@@ -202,28 +203,12 @@ namespace TribalWars.Controls.Maps
         /// </summary>
         public void SetMap(Map map)
         {
+            Debug.Assert(Map == null);
+
             Map = map;
             Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
             Map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
             _timer.Enabled = true;
-        }
-
-        /// <summary>
-        /// Creates a screenshot of the map
-        /// </summary>
-        public void Screenshot(string fileName)
-        {
-            Bitmap shot = null;
-            try
-            {
-                shot = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
-                DrawToBitmap(shot, ClientRectangle);
-                shot.Save(fileName);
-            }
-            finally
-            {
-                if (shot != null) shot.Dispose();
-            }
         }
         #endregion
     }

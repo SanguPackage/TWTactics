@@ -192,11 +192,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (sender != _map)
             {
                 _mainMap.SetCenter(this, new Location(e.NewLocation, _mainMap.Location.Zoom));
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
             else
             {
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
 
@@ -211,16 +211,16 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                 else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > 100)
                 {
                     _map.SetCenter(e.NewLocation, 1);
-                    _map.Control.Invalidate();
+                    _map.Invalidate(false);
                 }
                 else
                 {
-                    _map.Control.Invalidate();
+                    _map.Invalidate(false);
                 }
             }
             else
             {
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
 
@@ -234,7 +234,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             if (e.Tool == VillageTools.SelectVillage || e.Tool == VillageTools.PinPoint)
             {
                 _mainMapSelectedVillage = e.FirstVillage;
-                _map.Control.Invalidate();
+                _map.Invalidate(false);
             }
         }
         #endregion

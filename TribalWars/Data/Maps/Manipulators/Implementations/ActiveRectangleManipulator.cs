@@ -55,7 +55,7 @@ Press 's' to remove this tooltip.";
 
         private void SetInitialActiveRectangle()
         {
-            Size mapSize = _map.Control.ClientRectangle.Size;
+            Size mapSize = _map.CanvasSize;
             int width = mapSize.Width / 3;
             int height = mapSize.Height / 3;
             _activeRectangleSize = new Size(width, height);
@@ -124,7 +124,7 @@ Press 's' to remove this tooltip.";
             {
                 _lastTooltipLocation = e.Location;
                 _helpTooltip.ToolTipTitle = HelpTitle;
-                _helpTooltip.SetToolTip(_map.Control, HelpBody);
+                _map.ShowTooltip(_helpTooltip, HelpBody);
             }
             
             CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);

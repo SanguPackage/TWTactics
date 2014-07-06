@@ -20,25 +20,16 @@ namespace TribalWars.Controls.Maps
         private Map _mainMap;
         #endregion
 
-        #region Event Handlers
-        private void MainMap_SizeChanged(object sender, EventArgs e)
-        {
-            Map.Invalidate();
-        }
-        #endregion
-
         #region Public Methods
         public void SetMap(Map map, Map mainMap)
         {
             Map = map;
             _mainMap = mainMap;
-
-            mainMap.Control.SizeChanged += MainMap_SizeChanged;
         }
 
         public override void GiveFocus()
         {
-            _mainMap.Control.GiveFocus();
+            _mainMap.GiveFocus();
         }
         #endregion
     }

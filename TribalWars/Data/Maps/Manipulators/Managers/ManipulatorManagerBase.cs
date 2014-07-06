@@ -50,7 +50,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 RemoveFullControlManipulator();
                 _fullControllManipulator = manipulator;
                 _fullControllManipulator.SetFullControlManipulatorCore();
-                _map.Control.GiveFocus();
+                _map.GiveFocus();
             }
         }
 
@@ -71,13 +71,13 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         public void Initialize()
         {
             _map.SetCursor();
-            _map.Control.Invalidate();
+            _map.Invalidate();
         }
 
         /// <summary>
         /// Saves state to stream
         /// </summary>
-        public virtual void WriteXml(XmlWriter w)
+        public void WriteXml(XmlWriter w)
         {
             WriteXmlCore(w);
         }
@@ -85,7 +85,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         /// <summary>
         /// Loads state from stream
         /// </summary>
-        public virtual void ReadXml(XmlReader r)
+        public void ReadXml(XmlReader r)
         {
             CleanUp();
             if (r.IsEmptyElement)
@@ -127,7 +127,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
             
             if (contextMenu != null)
             {
-                contextMenu.Show(_map.Control, location);
+                _map.ShowContextMenu(contextMenu, location);
             }
         }
 

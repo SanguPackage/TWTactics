@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Windows.Forms;
+using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Drawers;
@@ -24,6 +26,7 @@ namespace TribalWars.Data.Maps
     {
         #region Fields
         private Display _display;
+        private ScrollableMapControl _control;
         #endregion
 
         #region Properties
@@ -63,7 +66,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Size CanvasSize
         {
-            get { return Control.ClientRectangle.Size; }
+            get { return _control.ClientRectangle.Size; }
         }
 
         /// <summary>
@@ -80,11 +83,6 @@ namespace TribalWars.Data.Maps
         /// Gets the home icon/shape display on the map
         /// </summary>
         public DisplayTypes HomeDisplay { get; set; }
-
-        /// <summary>
-        /// Gets the map UserControl
-        /// </summary>
-        public ScrollableMapControl Control { get; private set; }
 
         /// <summary>
         /// Only after a map was painted, start reacting to events etc
@@ -126,8 +124,8 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void InitializeMap(MapControl map)
         {
-            Control = map.ScrollableMap;
-            Control.SetMap(this);
+            _control = map.ScrollableMap;
+            _control.SetMap(this);
             map.SetMap(this);
         }
 
@@ -136,8 +134,8 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void InitializeMap(MiniMapControl miniMap, Map mainMap)
         {
-            Control = miniMap;
-            Control.SetMap(this);
+            _control = miniMap;
+            _control.SetMap(this);
             miniMap.SetMap(this, mainMap);
         }
         #endregion
@@ -352,7 +350,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCursor()
         {
-            Control.Cursor = System.Windows.Forms.Cursors.Default;
+            _control.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
         /// <summary>
@@ -360,17 +358,44 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void SetCursor(System.Windows.Forms.Cursor cursor)
         {
-            Control.Cursor = cursor;
+            _control.Cursor = cursor;
         }
         #endregion
 
         public void Invalidate(bool resetBackgroundCache = true)
         {
-            if (resetBackgroundCache)
+            if (resetBackgroundCache && Display != null)
             {
                 Display.ResetCache();
             }
-            Control.Invalidate();
+            _control.Invalidate();
+        }
+
+        public void GiveFocus()
+        {
+            _control.GiveFocus();
+        }
+
+        /// <summary>
+        /// Creates a screenshot of the map
+        /// </summary>
+        public void Screenshot(string fileName)
+        {
+            using (var shot = new Bitmap(CanvasSize.Width, CanvasSize.Height))
+            {
+                _control.DrawToBitmap(shot, new Rectangle(new Point(0, 0), CanvasSize));
+                shot.Save(fileName);
+            }
+        }
+
+        public void ShowContextMenu(IContextMenu menu, Point mapLocation)
+        {
+            menu.Show(_control, mapLocation);
+        }
+
+        public void ShowTooltip(ToolTip toolTip, string body)
+        {
+            toolTip.SetToolTip(_control, body);
         }
     }
 }

@@ -356,7 +356,7 @@ namespace TribalWars.Forms
             while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
             lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
 
-            World.Default.Map.Control.Screenshot(lFile);
+            World.Default.Map.Screenshot(lFile);
 
             StatusMessage.Text = "Screenshot saved as " + lFile;
         }
