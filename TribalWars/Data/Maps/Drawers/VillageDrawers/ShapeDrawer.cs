@@ -27,10 +27,10 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 
         private readonly Brush _colorBrush;
         private readonly Brush _extraColorBrush;
-        private readonly Action<Graphics, Brush, float, float, float, float> _filler;
+        private readonly Action<Graphics, Brush, Rectangle> _filler;
 
-        private static readonly Action<Graphics, Brush, float, float, float, float> EllipseFiller = (g, brush, x, y, width, height) => g.FillEllipse(brush, x, y, width, height);
-        private static readonly Action<Graphics, Brush, float, float, float, float> RectangleFiller = (g, brush, x, y, width, height) => g.FillRectangle(brush, x, y, width, height);
+        private static readonly Action<Graphics, Brush, Rectangle> EllipseFiller = (g, brush, village) => g.FillEllipse(brush, village);
+        private static readonly Action<Graphics, Brush, Rectangle> RectangleFiller = (g, brush, village) => g.FillRectangle(brush, village);
         #endregion
 
         #region Constructors
@@ -84,19 +84,20 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// <summary>
         /// Draws one village to the map
         /// </summary>
-        protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
+        protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (width > InnerShapeTreshold && _extraColorBrush != null)
+            if (village.Width > InnerShapeTreshold && _extraColorBrush != null)
             {
-                _filler(g, _colorBrush, x, y, width, height);
+                _filler(g, _colorBrush, village);
 
-                InnerShape innerShape = GetInnerShape(width);
-                _filler(g, _extraColorBrush, x + innerShape.Padding, y + innerShape.Padding, innerShape.Width, innerShape.Width);
+                InnerShape innerShape = GetInnerShape(village.Width);
+                var innerRectangle = new Rectangle(village.X + innerShape.Padding, village.Y + innerShape.Padding, innerShape.Width, innerShape.Width);
+                _filler(g, _extraColorBrush, innerRectangle);
             }
             else
             {
-                if (width < ForceRectangleTreshold) g.FillRectangle(_extraColorBrush ?? _colorBrush, x, y, width, height);
-                _filler(g, _extraColorBrush ?? _colorBrush, x, y, width, height);
+                if (village.Width < ForceRectangleTreshold) g.FillRectangle(_extraColorBrush ?? _colorBrush, village);
+                _filler(g, _extraColorBrush ?? _colorBrush, village);
             }
         }
 

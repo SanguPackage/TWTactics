@@ -17,7 +17,6 @@ namespace TribalWars.Data.Maps.Displays
     public abstract class DisplayBase
     {
         #region Fields
-        protected readonly Dictionary<Data, DrawerBase> _cache;
         private readonly ZoomInfo _zoom;
         #endregion
 
@@ -45,7 +44,6 @@ namespace TribalWars.Data.Maps.Displays
         #region Constructors
         protected DisplayBase(ZoomInfo zoom)
         {
-            _cache = new Dictionary<Data, DrawerBase>();
             _zoom = zoom;
         }
         #endregion
@@ -57,33 +55,24 @@ namespace TribalWars.Data.Maps.Displays
         /// <param name="data">The shape of the drawer</param>
         /// <param name="colors">The colors for the drawer</param>
         /// <param name="mainData">The data for the main drawer (used for BorderDrawer)</param>
-        public DrawerBase CreateDrawer(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        public DrawerBase CreateDrawer(Village.BonusType bonusType, DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            Data dataHolder = CreateData(data, colors, mainData);
-            if (_cache.ContainsKey(dataHolder)) return _cache[dataHolder];
-
-            DrawerBase drawer = CreateDrawerCore(data, colors, mainData);
-            _cache.Add(dataHolder, drawer);
+            DrawerBase drawer = CreateDrawerCore(bonusType, data, colors, mainData);
             return drawer;
-
-            // TODO: find out if the current implementation of flyweight for the drawers
-            // is actually useful because it slows the map drawing down a little...
-            // simply deleting _cache field to stop it being a flyweight
-            //return CreateDrawerCore(data, colors, mainData);
         }
 
         /// <summary>
         /// Gets drawer for a location on the map where there is no village present
         /// </summary>
-        public DrawerBase CreateNonVillageDrawer(Point game, int width)
+        public DrawerBase CreateNonVillageDrawer(Point game, Rectangle village)
         {
-            return CreateNonVillageDrawerCore(game, width);
+            return CreateNonVillageDrawerCore(game, village);
         }
 
         /// <summary>
         /// Gets drawer for a location on the map where there is no village present
         /// </summary>
-        protected virtual DrawerBase CreateNonVillageDrawerCore(Point game, int width)
+        protected virtual DrawerBase CreateNonVillageDrawerCore(Point game, Rectangle village)
         {
             return null;
         }
@@ -108,55 +97,7 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         public abstract int GetVillageHeight(int zoom);
 
-        protected abstract Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData);
-
-        protected abstract DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData);
-        #endregion
-
-        #region Data Structure
-        /// <summary>
-        /// If two Data objects are equal, a cached DrawerBase can be used
-        /// to draw the location
-        /// </summary>
-        protected struct Data : IEquatable<Data>
-        {
-            #region Fields
-            public string Type;
-            public Color Color;
-            public Color ExtraColor;
-            public object Value;
-            #endregion
-
-            #region Constructors
-            public Data(string type, Color color, Color extraColor)
-            {
-                Type = type;
-                Color = color;
-                ExtraColor = extraColor;
-                Value = null;
-            }
-
-            public Data(string type, Color color, Color extraColor, object value)
-            {
-                Type = type;
-                Color = color;
-                ExtraColor = extraColor;
-                Value = value;
-            }
-            #endregion
-
-            #region Public Methods
-            public bool Equals(Data other)
-            {
-                return Type == other.Type && Color == other.Color && ExtraColor == other.ExtraColor && Value == other.Value;
-            }
-            
-            public override string ToString()
-            {
-                return string.Format("Type:{0},Color:{1},{2} (Value: {3}", Type, Color, ExtraColor, Value);
-            }
-            #endregion
-        }
+        protected abstract DrawerBase CreateDrawerCore(Village.BonusType bonusType, DrawerData data, MarkerGroup colors, DrawerData mainData);
         #endregion
 
         #region ZoomInfo

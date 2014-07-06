@@ -47,21 +47,6 @@ namespace TribalWars.Data.Maps.Displays
                 {15, 11}
             };
 
-        ///// <summary>
-        ///// Width x Height on different zoom levels (index is zoom level)
-        ///// </summary>
-        //private static readonly List<Tuple<int, int>> VillageSizes = new TupleList<int, int>
-        //    {
-        //        {0, 0}, // there is no zoom 0
-        //        {15, 11},
-        //        {20, 14},
-        //        {25, 18},
-        //        {30, 22},
-        //        {35, 25},
-        //        {40, 29},
-        //        {StandardIconWidth, StandardIconHeight}
-        //    };
-
         private readonly MemoryStream _background;
         private readonly Dictionary<int, DrawerBase> _backgroundCache;
 
@@ -127,34 +112,24 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
+            string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;
+
             Bitmap icon = null;
             if (mainData == null)
             {
                 // No mainData means we are not talking about a decorator
-                icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(data.IconDrawer);
+                icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(iconName);
                 if (icon != null) return new IconDrawer(icon, colors);
             }
 
-            if (!string.IsNullOrEmpty(data.IconDrawer))
+            if (!string.IsNullOrEmpty(iconName))
             {
-                icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
+                icon = (Bitmap)Icons.Other.ResourceManager.GetObject(iconName);
                 if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", data.IconDrawer));
             }
             return new IconDrawerDecorator((VillageType)data.Value, icon);
-        }
-
-        protected override Data CreateData(/*Village.BonusType villageBonus, */DrawerData data, MarkerGroup colors, DrawerData mainData)
-        {
-            //if (villageBonus == Village.BonusType.None)
-            //{
-                return new Data(data.IconDrawer, colors.Color, colors.ExtraColor, data.Value);
-            //}
-            //else
-            //{
-            //    return new Data(data.BonusIconDrawer, colors.Color, colors.ExtraColor, data.Value);
-            //}
         }
 
         private int GetVillageWidthCore(int zoom)
@@ -177,12 +152,12 @@ namespace TribalWars.Data.Maps.Displays
             return GetVillageWidthCore(zoom);
         }
 
-        protected override DrawerBase CreateNonVillageDrawerCore(Point game, int width)
+        protected override DrawerBase CreateNonVillageDrawerCore(Point game, Rectangle village)
         {
             _background.Position = game.Y * 1000 + game.X;
             int villageType = _background.ReadByte();
 
-            if (width < 28)
+            if (village.Width < 28)
             {
                 // Stop displaying mountains, forests and sea
                 // BackgroundGrasCount = 0->3 = grass

@@ -25,17 +25,17 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// <summary>
         /// Draws one X marker to a village location
         /// </summary>
-        protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
+        protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (width > 5)
+            if (village.Width > 5)
             {
-                int off = width - (width/2 - 1);
-                int w = width - off;
+                int off = village.Width - (village.Width / 2 - 1);
+                int w = village.Width - off;
 
                 g.FillRectangle(
                     _brush,
-                    x + off/2,
-                    y + off/2,
+                    village.X + off/2,
+                    village.Y + off/2,
                     w,
                     w);
             }

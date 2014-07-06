@@ -7,6 +7,7 @@ using System.Drawing;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Maps.Markers;
+using TribalWars.Data.Villages;
 using TribalWars.Tools;
 #endregion
 
@@ -17,20 +18,6 @@ namespace TribalWars.Data.Maps.Displays
     /// </summary>
     public sealed class ShapeDisplay : DisplayBase
     {
-        #region Enums
-        /// <summary>
-        /// The different drawers for ShapeDisplay
-        /// </summary>
-        public enum Shapes
-        {
-            DummyDrawer,
-            RectangleDrawer,
-            EllipseDrawer,
-            XDrawer,
-            BorderDrawer
-        }
-        #endregion
-
         #region Constructors
         public ShapeDisplay()
             : base(new ZoomInfo(1, 25, 10))
@@ -40,56 +27,27 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            var shape = GetShape(data.ShapeDrawer);
-            switch (shape)
-            {
-                case Shapes.RectangleDrawer:
-                    return new ShapeDrawer(false, colors);
-
-                case Shapes.EllipseDrawer:
-                    return new ShapeDrawer(true, colors);
-
-                case Shapes.XDrawer:
-                    return new XDrawer(colors.Color);
-
-                case Shapes.BorderDrawer:
-                    var color = (Color)data.ExtraDrawerInfo;
-                    return new BorderDrawer(color, GetShape(mainData.ShapeDrawer));
-
-                case Shapes.DummyDrawer:
-                    return DrawerBase.CreateEmptyDrawer();
-            }
-            
-            throw new InvalidEnumArgumentException();
-        }
-
-        protected override Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData)
-        {
-            // BorderDrawer here created with the additional DrawerData parameter
-            // so that its Data is cached only once
-            if (GetShape(data.ShapeDrawer) == Shapes.BorderDrawer)
-            {
-                return new Data(mainData.ShapeDrawer, XmlHelper.GetColor(data.ExtraDrawerInfo.ToString()), Color.Transparent);
-            }
-            return new Data(data.ShapeDrawer, colors.Color, colors.ExtraColor);
-        }
-
-        public static Shapes GetShape(string shape)
-        {
-            switch (shape)
+            switch (data.ShapeDrawer)
             {
                 case "RectangleDrawer":
-                    return Shapes.RectangleDrawer;
+                    return new ShapeDrawer(false, colors);
+
                 case "EllipseDrawer":
-                    return Shapes.EllipseDrawer;
+                    return new ShapeDrawer(true, colors);
+
                 case "XDrawer":
-                    return Shapes.XDrawer;
+                    return new XDrawer(colors.Color);
+
                 case "BorderDrawer":
-                    return Shapes.BorderDrawer;
+                    var color = (Color)data.ExtraDrawerInfo;
+                    var drawer = mainData.ShapeDrawer == "EllipseDrawer" ? BorderDrawer.EllipseDrawer : BorderDrawer.RectangleDrawer;
+                    return new BorderDrawer(color, drawer);
+
+                default:
+                    return DrawerBase.CreateEmptyDrawer();
             }
-            return Shapes.DummyDrawer;
         }
 
         private int GetVillageSize(int zoom)

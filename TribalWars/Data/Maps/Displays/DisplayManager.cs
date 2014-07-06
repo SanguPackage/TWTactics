@@ -78,11 +78,8 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         /// <param name="g">The graphics object</param>
         /// <param name="game">The game location of the village</param>
-        /// <param name="mapX">The map X coordinate</param>
-        /// <param name="mapY">The map Y coordinate</param>
-        /// <param name="width">The width of the village</param>
-        /// <param name="height">The height of the village</param>
-        public void Paint(Graphics g, Point game, int mapX, int mapY, int width, int height)
+        /// <param name="mapVillage">Where and how big to draw the village</param>
+        public void Paint(Graphics g, Point game, Rectangle mapVillage)
         {
             if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
                 return;
@@ -109,8 +106,8 @@ namespace TribalWars.Data.Maps.Displays
                 }
 
                 DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                finalCache = CurrentDisplay.CreateDrawer(mainData, markerGroup, null);
-                finalCache.PaintVillage(g, mapX, mapY, width, height);
+                finalCache = CurrentDisplay.CreateDrawer(village.Bonus, mainData, markerGroup, null);
+                finalCache.PaintVillage(g, mapVillage);
 
                 if (CurrentDisplay.SupportDecorators)
                 {
@@ -120,32 +117,21 @@ namespace TribalWars.Data.Maps.Displays
                         DrawerData data = World.Default.Views[Types.VillageType.ToString()].GetDrawer(village);
                         if (data != null)
                         {
-                            DrawerBase decoratorVillageType = CurrentDisplay.CreateDrawer(data, markerGroup, mainData);
+                            DrawerBase decoratorVillageType = CurrentDisplay.CreateDrawer(village.Bonus, data, markerGroup, mainData);
                             if (decoratorVillageType != null)
                             {
-                                decoratorVillageType.PaintVillage(g, mapX, mapY, width, height);
+                                decoratorVillageType.PaintVillage(g, mapVillage);
                             }
-                        }
-                    }
-
-                    // Show extra decorators
-                    if (markerGroup.HasDecorator)
-                    {
-                        DrawerData data = World.Default.Views[markerGroup.Decorator].GetDrawer(village);
-                        if (data != null)
-                        {
-                            DrawerBase drawer = CurrentDisplay.CreateDrawer(data, markerGroup, mainData);
-                            drawer.PaintVillage(g, mapX, mapY, width, height);
                         }
                     }
                 }
             }
             else
             {
-                finalCache = CurrentDisplay.CreateNonVillageDrawer(game, width);
+                finalCache = CurrentDisplay.CreateNonVillageDrawer(game, mapVillage);
                 if (finalCache != null)
                 {
-                    finalCache.PaintVillage(g, mapX, mapY, width, height);
+                    finalCache.PaintVillage(g, mapVillage);
                 }
             }
         }

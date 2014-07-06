@@ -3,6 +3,7 @@ using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Drawers.VillageDrawers;
 using TribalWars.Data.Maps.Markers;
 using System.Drawing;
+using TribalWars.Data.Villages;
 #endregion
 
 namespace TribalWars.Data.Maps.Displays
@@ -35,15 +36,10 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
             if (colors.ExtraColor != Color.Transparent) return new MiniMapDrawer(colors.ExtraColor);
             return new MiniMapDrawer(colors.Color);
-        }
-
-        protected override Data CreateData(DrawerData data, MarkerGroup colors, DrawerData mainData)
-        {
-            return new Data("MiniMapDrawer", colors.Color, colors.ExtraColor);
         }
 
         public override int GetVillageHeightSpacing(int zoom)

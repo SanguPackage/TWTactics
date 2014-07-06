@@ -49,38 +49,16 @@ namespace TribalWars.Data.Maps.Markers
         /// villages on the map
         /// </summary>
         public string View { get; set; }
-
-        /// <summary>
-        /// Gets or sets how to extra decorate the marked
-        /// villages on the map
-        /// </summary>
-        public string Decorator { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether 
-        /// the markergroup has a decorator
-        /// </summary>
-        public bool HasDecorator
-        {
-            get { return Decorator != null; }
-        }
-
-        /// <summary>
-        /// Gets the marker manager this group belongs to
-        /// </summary>
-        public MarkerManager MarkerManager { get; private set; }
         #endregion
 
         #region Constructor
-        public MarkerGroup(Map map, string name, bool enabled, Color color, Color extraColor, string view, string decorator)
+        public MarkerGroup(string name, bool enabled, Color color, Color extraColor, string view)
         {
-            MarkerManager = map.MarkerManager;
             Name = name;
             Enabled = enabled;
             Color = color;
             ExtraColor = extraColor;
             View = view;
-            Decorator = decorator;
 
             Players = new List<Player>();
             Tribes = new List<Tribe>();
@@ -142,7 +120,6 @@ namespace TribalWars.Data.Maps.Markers
         {
             string views = string.Empty;
             if (View != null) views = View;
-            if (Decorator != null) views += (View == null ? "" : ", ") + Decorator;
             return string.Format("{0} ({1} - {2})", Name, views, Color.ToKnownColor()); 
         }
         #endregion
@@ -151,8 +128,9 @@ namespace TribalWars.Data.Maps.Markers
         public bool Equals(MarkerGroup other)
         {
             if (other == null) return false;
-            return View == other.View && Decorator == other.Decorator
-                && Color == other.Color && ExtraColor == other.ExtraColor;
+            return View == other.View
+                && Color == other.Color 
+                && ExtraColor == other.ExtraColor;
         }
         #endregion
     }

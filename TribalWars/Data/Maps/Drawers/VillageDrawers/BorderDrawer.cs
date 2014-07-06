@@ -14,22 +14,22 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
     public sealed class BorderDrawer : DrawerBase
     {
         #region Fields
-        private static readonly Action<Graphics, Pen, int, int, int, int> EllipseDrawer = (g, pen, x, y, width, height) => g.DrawEllipse(pen, x, y, width, height);
-        private static readonly Action<Graphics, Pen, int, int, int, int> RectangleDrawer = (g, pen, x, y, width, height) => g.DrawRectangle(pen, x, y, width, height);
+        public static readonly Action<Graphics, Pen, Rectangle> EllipseDrawer = (g, pen, village) => g.DrawEllipse(pen, village);
+        public static readonly Action<Graphics, Pen, Rectangle> RectangleDrawer = (g, pen, village) => g.DrawRectangle(pen, village);
 
-        private readonly ShapeDisplay.Shapes _shape;
+        private readonly Action<Graphics, Pen, Rectangle> _drawShape;
         private readonly Pen _pen1;
         private readonly Pen _pen3;
         #endregion
 
         #region Constructors
-        public BorderDrawer(Color color, ShapeDisplay.Shapes shape)
+        public BorderDrawer(Color color, Action<Graphics, Pen, Rectangle> drawShape)
         {
             _pen3 = new Pen(color, 3);
             _pen1 = new Pen(color, 1);
             _pen3.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
             _pen1.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            _shape = shape;
+            _drawShape = drawShape;
         }
         #endregion
 
@@ -37,16 +37,15 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// <summary>
         /// Paints one villageborder to the map
         /// </summary>
-        protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
+        protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (width > ShapeDrawer.InnerShapeTreshold)
+            if (village.Width > ShapeDrawer.InnerShapeTreshold)
             {
                 Pen pen;
-                if (width < 15) pen = _pen1;
+                if (village.Width < 15) pen = _pen1;
                 else pen = _pen3;
 
-                var drawShape = _shape == ShapeDisplay.Shapes.EllipseDrawer ? EllipseDrawer : RectangleDrawer;
-                drawShape(g, pen, x, y, width, height);
+                _drawShape(g, pen, village);
             }
         }
 

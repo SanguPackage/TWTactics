@@ -142,8 +142,7 @@ namespace TribalWars.Data
             Color color = XmlHelper.GetColor(r.GetAttribute("Color"));
             Color extraColor = XmlHelper.GetColor(r.GetAttribute("ExtraColor"));
             string view = r.GetAttribute("View");
-            string decorator = r.GetAttribute("Decorator");
-            var m = new MarkerGroup(map, name, enabled, color, extraColor, view, decorator);
+            var m = new MarkerGroup(name, enabled, color, extraColor, view);
 
             if (!r.IsEmptyElement)
             {
@@ -174,8 +173,6 @@ namespace TribalWars.Data
             w.WriteAttributeString("Color", XmlHelper.SetColor(group.Color));
             w.WriteAttributeString("ExtraColor", XmlHelper.SetColor(group.ExtraColor));
             w.WriteAttributeString("View", group.View);
-            if (group.HasDecorator)
-                w.WriteAttributeString("Decorator", group.Decorator);
 
             foreach (Player ply in group.Players)
             {

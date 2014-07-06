@@ -25,9 +25,9 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         /// <summary>
         /// Paints one village to the map
         /// </summary>
-        protected override void PaintVillageCore(Graphics g, int x, int y, int width, int height)
+        protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            g.FillRectangle(_colorBrush, x, y, width, height);
+            g.FillRectangle(_colorBrush, village);
         }
 
         /// <summary>

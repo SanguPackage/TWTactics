@@ -31,15 +31,15 @@ namespace TribalWars.Data.Maps.Drawers
         /// <summary>
         /// Paints one village on the map
         /// </summary>
-        public void PaintVillage(Graphics g, int x, int y, int width, int height)
+        public void PaintVillage(Graphics g, Rectangle village)
         {
-            PaintVillageCore(g, x, y, width, height);
+            PaintVillageCore(g, village);
         }
 
         /// <summary>
         /// Paints one village on the map
         /// </summary>
-        protected virtual void PaintVillageCore(Graphics g, int x, int y, int width, int height)
+        protected virtual void PaintVillageCore(Graphics g, Rectangle village)
         {
         }
 

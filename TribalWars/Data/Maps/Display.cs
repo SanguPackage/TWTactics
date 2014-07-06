@@ -366,7 +366,7 @@ namespace TribalWars.Data.Maps
                     int gameX = _visibleGameRectangle.X;
                     for (int xMap = mapX; xMap <= _toPaint.Width; xMap += _villageWidthSpacing)
                     {
-                        _display.DisplayManager.Paint(_g, new Point(gameX, gameY), xMap, yMap, _villageWidth, _villageHeight);
+                        _display.DisplayManager.Paint(_g, new Point(gameX, gameY), new Rectangle(xMap, yMap, _villageWidth, _villageHeight));
                         gameX += 1;
                     }
                     gameY += 1;
