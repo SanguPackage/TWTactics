@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Drawing;
 
@@ -50,15 +51,27 @@ namespace TribalWars.Data.Maps.Displays
 
         #region Public Methods
         /// <summary>
-        /// Create a new drawer
+        /// Create drawer for village background (Shape/Icon)
+        /// </summary>
+        /// <param name="bonusType">Bonus villages have a different icon</param>
+        /// <param name="data">The shape of the drawer</param>
+        /// <param name="colors">The colors for the drawer</param>
+        public DrawerBase CreateVillageDrawer(Village.BonusType bonusType, DrawerData data, MarkerGroup colors)
+        {
+            DrawerBase drawer = CreateVillageDrawerCore(bonusType, data, colors);
+            return drawer;
+        }
+
+        /// <summary>
+        /// Create drawer to further decorate a village drawn by <see cref="CreateVillageDrawer"/>
         /// </summary>
         /// <param name="data">The shape of the drawer</param>
         /// <param name="colors">The colors for the drawer</param>
         /// <param name="mainData">The data for the main drawer (used for BorderDrawer)</param>
-        /// <param name="bonusType">Bonus villages have a different icon</param>
-        public DrawerBase CreateDrawer(Village.BonusType bonusType, DrawerData data, MarkerGroup colors, DrawerData mainData)
+        public DrawerBase CreateVillageDecoratorDrawer(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            DrawerBase drawer = CreateDrawerCore(bonusType, data, colors, mainData);
+            Debug.Assert(SupportDecorators);
+            DrawerBase drawer = CreateVillageDecoratorDrawerCore(data, colors, mainData);
             return drawer;
         }
 
@@ -98,7 +111,9 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         public abstract int GetVillageHeight(int zoom);
 
-        protected abstract DrawerBase CreateDrawerCore(Village.BonusType bonusType, DrawerData data, MarkerGroup colors, DrawerData mainData);
+        protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, MarkerGroup colors);
+
+        protected abstract DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData);
         #endregion
 
         #region ZoomInfo

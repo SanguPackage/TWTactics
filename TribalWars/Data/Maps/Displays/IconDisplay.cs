@@ -112,23 +112,19 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
         {
             string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;
+            var icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(iconName);
+            if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", iconName));
+            return new IconDrawer(icon, colors);
+        }
 
-            Bitmap icon = null;
-            if (mainData == null)
-            {
-                // No mainData means we are not talking about a decorator
-                icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(iconName);
-                if (icon != null) return new IconDrawer(icon, colors);
-            }
-
-            if (!string.IsNullOrEmpty(iconName))
-            {
-                icon = (Bitmap)Icons.Other.ResourceManager.GetObject(iconName);
-                if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", data.IconDrawer));
-            }
+        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        {
+            // A VillageType decorator (off, def, ... icons)
+            var icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
+            if (icon == null) throw new ArgumentException(string.Format("Unable to find icon {0}.", data.IconDrawer));
             return new IconDrawerDecorator((VillageType)data.Value, icon);
         }
 

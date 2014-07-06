@@ -84,40 +84,25 @@ namespace TribalWars.Data.Maps.Displays
             if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
                 return;
 
-            DrawerBase finalCache;
             Village village;
             if (World.Default.Villages.TryGetValue(game, out village))
             {
-                MarkerGroup markerGroup;
-                if (!village.HasPlayer)
-                {
-                    markerGroup = _map.MarkerManager.AbandonedMarker;
-                }
-                else
-                {
-                    Player ply = village.Player;
-                    if (!_markPlayer.TryGetValue(ply.Id, out markerGroup))
-                    {
-                        if (!(ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out markerGroup)))
-                        {
-                            markerGroup = _map.MarkerManager.EnemyMarker;
-                        }
-                    }
-                }
+                MarkerGroup markerGroup = GetMarkerGroup(village);
 
                 DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                finalCache = CurrentDisplay.CreateDrawer(village.Bonus, mainData, markerGroup, null);
-                finalCache.PaintVillage(g, mapVillage);
-
-                if (CurrentDisplay.SupportDecorators)
+                if (mainData != null)
                 {
-                    // Allows show VillageType
-                    if (village.Type != VillageType.None)
+                    // Paint village icon/shape
+                    DrawerBase finalCache = CurrentDisplay.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
+                    finalCache.PaintVillage(g, mapVillage);
+
+                    if (CurrentDisplay.SupportDecorators && village.Type != VillageType.None)
                     {
+                        // Paint extra village decorators
                         DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
                         if (data != null)
                         {
-                            DrawerBase decoratorVillageType = CurrentDisplay.CreateDrawer(village.Bonus, data, markerGroup, mainData);
+                            DrawerBase decoratorVillageType = CurrentDisplay.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
                             if (decoratorVillageType != null)
                             {
                                 decoratorVillageType.PaintVillage(g, mapVillage);
@@ -125,14 +110,50 @@ namespace TribalWars.Data.Maps.Displays
                         }
                     }
                 }
+                else
+                {
+                    PaintNonVillage(g, game, mapVillage);
+                }
             }
             else
             {
-                finalCache = CurrentDisplay.CreateNonVillageDrawer(game, mapVillage);
-                if (finalCache != null)
+                PaintNonVillage(g, game, mapVillage);
+            }
+        }
+
+        /// <summary>
+        /// Paint grass, mountains, ...
+        /// </summary>
+        private void PaintNonVillage(Graphics g, Point game, Rectangle mapVillage)
+        {
+            DrawerBase finalCache = CurrentDisplay.CreateNonVillageDrawer(game, mapVillage);
+            if (finalCache != null)
+            {
+                finalCache.PaintVillage(g, mapVillage);
+            }
+        }
+
+        /// <summary>
+        /// Find out which marker to use for the village
+        /// </summary>
+        private MarkerGroup GetMarkerGroup(Village village)
+        {
+            if (!village.HasPlayer)
+            {
+                return _map.MarkerManager.AbandonedMarker;
+            }
+            else
+            {
+                MarkerGroup markerGroup;
+                Player ply = village.Player;
+                if (!_markPlayer.TryGetValue(ply.Id, out markerGroup))
                 {
-                    finalCache.PaintVillage(g, mapVillage);
+                    if (!(ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out markerGroup)))
+                    {
+                        markerGroup = _map.MarkerManager.EnemyMarker;
+                    }
                 }
+                return markerGroup;
             }
         }
 
