@@ -322,7 +322,7 @@ namespace TribalWars.Data
             World.Default.Views.Clear();
             foreach (var view in info.Views)
             {
-                ViewBase viewToAdd = CreateView(view.Name, (Types)Enum.Parse(typeof(Types), view.Type));
+                ViewBase viewToAdd = CreateView(view.Name, view.Type);
                 foreach (var drawer in view.Drawers)
                 {
                     viewToAdd.AddDrawer(drawer.Type, drawer.Icon, drawer.BonusIcon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
@@ -337,13 +337,13 @@ namespace TribalWars.Data
         /// <summary>
         /// Creates a view from the XML node
         /// </summary>
-        private static ViewBase CreateView(string name, Types type)
+        private static ViewBase CreateView(string name, string type)
         {
             switch (type)
             {
-                case Types.Points:
+                case "Points":
                     return new PointsView(name);
-                case Types.VillageType:
+                case "VillageType":
                     return new VillageTypeView(name);
             }
 

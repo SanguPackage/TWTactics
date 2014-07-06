@@ -17,7 +17,7 @@ namespace TribalWars.Data.Maps.Views
     {
         #region Constructors
         public PointsView(string name)
-            : base(name, Types.Points, Categories.Background)
+            : base(name)
         {
             
         }

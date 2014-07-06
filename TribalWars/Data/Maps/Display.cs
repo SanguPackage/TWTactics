@@ -506,7 +506,7 @@ namespace TribalWars.Data.Maps
         }
         #endregion
 
-        #region Point Converters
+        #region Game from/to Map Converters
         /// <summary>
         /// Converts a game location to the map location
         /// </summary>
@@ -564,7 +564,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public Rectangle GetGameRectangle()
         {
-            var fullMap = _map.CanvasSize;
+            Size fullMap = _map.CanvasSize;
             Point leftTop = GetGameLocation(new Point(0, 0));
             Point rightBottom = GetGameLocation(new Point(fullMap.Width, fullMap.Height));
             return new Rectangle(leftTop.X, leftTop.Y, rightBottom.X - leftTop.X, rightBottom.Y - leftTop.Y);

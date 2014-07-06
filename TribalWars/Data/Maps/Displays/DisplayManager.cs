@@ -114,7 +114,7 @@ namespace TribalWars.Data.Maps.Displays
                     // Allows show VillageType
                     if (village.Type != VillageType.None)
                     {
-                        DrawerData data = World.Default.Views[Types.VillageType.ToString()].GetDrawer(village);
+                        DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
                         if (data != null)
                         {
                             DrawerBase decoratorVillageType = CurrentDisplay.CreateDrawer(village.Bonus, data, markerGroup, mainData);

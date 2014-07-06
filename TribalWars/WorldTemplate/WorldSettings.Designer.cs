@@ -366,9 +366,6 @@ namespace TribalWars.WorldTemplate
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string categoryField;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private string typeField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -378,8 +375,6 @@ namespace TribalWars.WorldTemplate
         private List<WorldViewsViewDrawersDrawer> drawersField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
-
-        public string Category { get; set; }
 
         public string Type { get; set; }
 

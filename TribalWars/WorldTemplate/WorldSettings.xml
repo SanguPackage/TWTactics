@@ -21,7 +21,6 @@
   <WorldDatScenery>0</WorldDatScenery>
   <Views>
     <View>
-      <Category>Background</Category>
       <Type>Points</Type>
       <Name>Points</Name>
       <Drawers>
@@ -63,7 +62,6 @@
       </Drawers>
     </View>
     <View>
-      <Category>Background</Category>
       <Type>Points</Type>
       <Name>PointsAbandoned</Name>
       <Drawers>
@@ -106,7 +104,6 @@
       </Drawers>
     </View>
     <View>
-      <Category>Decorator</Category>
       <Type>VillageType</Type>
       <Name>VillageType</Name>
       <Drawers>

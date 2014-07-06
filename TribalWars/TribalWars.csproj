@@ -329,7 +329,6 @@
     <Compile Include="Data\Maps\Map.cs" />
     <Compile Include="Data\Maps\Display.cs" />
     <Compile Include="Data\Maps\Publisher.cs" />
-    <Compile Include="Data\Maps\Views\Categories.cs" />
     <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
     <Compile Include="Data\Maps\Displays\IconDisplay.cs" />
     <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
@@ -338,7 +337,6 @@
       <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\Maps\Displays\ShapeDisplay.cs" />
-    <Compile Include="Data\Maps\Views\Types.cs" />
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
     <Compile Include="Data\Maps\Displays\DisplayBase.cs" />
     <Compile Include="Data\Maps\Views\ViewData.cs" />

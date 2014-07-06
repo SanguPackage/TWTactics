@@ -55,6 +55,7 @@ namespace TribalWars.Data.Maps.Displays
         /// <param name="data">The shape of the drawer</param>
         /// <param name="colors">The colors for the drawer</param>
         /// <param name="mainData">The data for the main drawer (used for BorderDrawer)</param>
+        /// <param name="bonusType">Bonus villages have a different icon</param>
         public DrawerBase CreateDrawer(Village.BonusType bonusType, DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
             DrawerBase drawer = CreateDrawerCore(bonusType, data, colors, mainData);
