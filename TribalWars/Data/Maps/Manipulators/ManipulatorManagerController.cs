@@ -7,7 +7,6 @@ using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
 using TribalWars.Tools;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators
@@ -116,43 +115,38 @@ namespace TribalWars.Data.Maps.Manipulators
         {
             CurrentManipulator = _manipulators[manipulator];
             CurrentManipulator.Initialize();
-            Map.EventPublisher.ChangeManipulator(this, new TribalWars.Data.Events.ManipulatorEventArgs(CurrentManipulator, manipulator));
+            Map.EventPublisher.ChangeManipulator(this, new Events.ManipulatorEventArgs(manipulator));
         }
 
-        public bool KeyDown(KeyEventArgs e, ScrollableMapControl mapPicture)
+        public bool KeyDown(KeyEventArgs e)
         {
-            Graphics g = null;
-            return CurrentManipulator.OnKeyDownCore(new MapKeyEventArgs(CurrentManipulator, g, e, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnKeyDownCore(new MapKeyEventArgs(e));
         }
 
-        public bool KeyUp(KeyEventArgs e, ScrollableMapControl mapPicture)
+        public bool KeyUp(KeyEventArgs e)
         {
-            Graphics g = null;
-            return CurrentManipulator.OnKeyUpCore(new MapKeyEventArgs(CurrentManipulator, g, e, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnKeyUpCore(new MapKeyEventArgs(e));
         }
 
-        public bool OnVillageDoubleClick(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
+        public bool OnVillageDoubleClick(MouseEventArgs e, Village village)
         {
-            Graphics g = null;
-            return CurrentManipulator.OnVillageDoubleClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
+            return CurrentManipulator.OnVillageDoubleClickCore(new MapVillageEventArgs(e, village));
         }
 
-        public bool MouseDown(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
+        public bool MouseDown(MouseEventArgs e, Village village)
         {
-            Graphics g = null;
             bool redraw = false;
             if (village != null && e.Button == MouseButtons.Left)
             {
-                redraw = CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
+                redraw = CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(e, village));
             }
-            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle)) 
+            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(e, village)) 
                 || redraw;
         }
 
-        public bool MouseUp(MouseEventArgs e, Village village, ScrollableMapControl mapPicture)
+        public bool MouseUp(MouseEventArgs e, Village village)
         {
-            Graphics g = null;
-            bool redraw = CurrentManipulator.MouseUpCore(new MapMouseEventArgs(CurrentManipulator, g, e, village, mapPicture.ClientRectangle));
+            bool redraw = CurrentManipulator.MouseUpCore(new MapMouseEventArgs(e, village));
             return redraw;
         }
 
@@ -166,7 +160,6 @@ namespace TribalWars.Data.Maps.Manipulators
 
             Village village = World.Default.GetVillage(game);
             Point map = Map.Display.GetMapLocation(game);
-            Graphics g = mapPicture.CreateGraphics();
 
             // Display village tooltip
             if (village != null)
@@ -198,7 +191,7 @@ namespace TribalWars.Data.Maps.Manipulators
             }
 
             // TODO: also only call this one if _activeLocation != game?
-            return CurrentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(CurrentManipulator, g, e, map, village, mapPicture.ClientRectangle));
+            return CurrentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(e, map, village));
         }
 
         public void Paint(Graphics graphics, Rectangle fullMap)

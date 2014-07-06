@@ -55,7 +55,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (IsManipulatable && Map.Manipulators.KeyDown(e, this))
+            if (IsManipulatable && Map.Manipulators.KeyDown(e))
             {
                 Invalidate();
             }
@@ -64,7 +64,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnKeyUp(KeyEventArgs e)
         {
             base.OnKeyUp(e);
-            if (IsManipulatable && Map.Manipulators.KeyUp(e, this))
+            if (IsManipulatable && Map.Manipulators.KeyUp(e))
             {
                 Invalidate();
             }
@@ -87,7 +87,7 @@ namespace TribalWars.Controls.Maps
             if (IsManipulatable)
             {
                 Village village = World.Default.Map.Display.GetGameVillage(e.Location);
-                if (Map.Manipulators.MouseDown(e, village, this))
+                if (Map.Manipulators.MouseDown(e, village))
                 {
                     Invalidate();
                 }
@@ -124,7 +124,7 @@ namespace TribalWars.Controls.Maps
             if (IsManipulatable)
             {
                 Village village = World.Default.Map.Display.GetGameVillage(e.Location);
-                if (Map.Manipulators.MouseUp(e, village, this))
+                if (Map.Manipulators.MouseUp(e, village))
                 {
                     Invalidate();
                 }
@@ -142,7 +142,7 @@ namespace TribalWars.Controls.Maps
             if (IsManipulatable)
             {
                 Village village = World.Default.Map.Display.GetGameVillage(e.Location);
-                if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village, this))
+                if (Visible && Map != null && Map.Manipulators.OnVillageDoubleClick(e, village))
                 {
                     Invalidate();
                 }
@@ -158,7 +158,7 @@ namespace TribalWars.Controls.Maps
             else
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                Map.Display.Paint(e.Graphics, e.ClipRectangle, ClientRectangle);
+                Map.Display.Paint(e.Graphics, ClientRectangle);
 
                 Map.Manipulators.Paint(e.Graphics, ClientRectangle);
             }

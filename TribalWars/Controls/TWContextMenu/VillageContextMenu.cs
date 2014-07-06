@@ -154,7 +154,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnBbCode(object sender, CommandEventArgs e)
         {
-            SetClipboard(_village.BBCode());
+            SetClipboard(_village.BbCode());
         }
 
         /// <summary>

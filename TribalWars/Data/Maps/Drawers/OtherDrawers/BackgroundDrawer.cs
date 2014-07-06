@@ -15,16 +15,6 @@ namespace TribalWars.Data.Maps.Drawers.OtherDrawers
         private readonly Bitmap _bitmap;
         #endregion
 
-        #region Properties
-        /// <summary>
-        /// Gets the bitmap that will be drawn to the map
-        /// </summary>
-        public Bitmap Bitmap
-        {
-            get { return _bitmap; }
-        }
-        #endregion
-
         #region Constructors
         public BackgroundDrawer(Bitmap icon)
         {

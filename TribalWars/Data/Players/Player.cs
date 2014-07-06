@@ -207,7 +207,7 @@ namespace TribalWars.Data.Players
         #region BBCode
         public override string ToString()
         {
-            return string.Format("{0} ({1:#,0}pts|{2}vils)", this.Name, this.Points, this.Villages.Count);
+            return string.Format("{0} ({1:#,0}pts|{2}vils)", Name, Points, Villages.Count);
         }
 
         public string BbCode()
@@ -264,11 +264,11 @@ namespace TribalWars.Data.Players
                 else isFirst = false;
                 if (selectedVillage != null && vil == selectedVillage)
                 {
-                    str.AppendFormat("---> {0} <---", vil.BBCode());
+                    str.AppendFormat("---> {0} <---", vil.BbCode());
                 }
                 else
                 {
-                    str.Append(vil.BBCode());
+                    str.Append(vil.BbCode());
                 }
             }
             if (villages.Count > 1) str.Append("[/quote]");
@@ -337,7 +337,7 @@ namespace TribalWars.Data.Players
                 }
                 
                 cnt++;
-                str.AppendFormat("{0} {1}: ", cnt, vil.BBCode());
+                str.AppendFormat("{0} {1}: ", cnt, vil.BbCode());
 
                 if (cnt % 240 == 0)
                 {

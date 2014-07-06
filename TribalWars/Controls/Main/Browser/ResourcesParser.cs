@@ -48,7 +48,7 @@ namespace TribalWars.Controls.Main.Browser
         /// <param name="serverTime">Time the page was generated</param>
         public bool Handle(string document, DateTime serverTime)
         {
-            int index = document.IndexOf(string.Format("<tr><th>{0}</th><th>{1}</th><th>{2}</th><th>{3}</th><th>{4}</th>", Translations.TWWords.Village, Translations.TWWords.Points, Translations.TWWords.Resources, Translations.TWWords.Warehouse, Translations.TWWords.Farm));
+            int index = document.IndexOf(string.Format("<tr><th>{0}</th><th>{1}</th><th>{2}</th><th>{3}</th><th>{4}</th>", TWWords.Village, TWWords.Points, TWWords.Resources, TWWords.Warehouse, TWWords.Farm));
             if (index == -1) return false;
 
             string pattern = GetDocumentPattern();

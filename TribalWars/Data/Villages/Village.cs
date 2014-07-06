@@ -242,15 +242,14 @@ namespace TribalWars.Data.Villages
         #region BBCode
         public override string ToString()
         {
-            return string.Format("{0} ({1}|{2}) K{3}", Name, X.ToString(), Y.ToString(), Kingdom.ToString());
-            //return string.Format("{0} ({1}|{2})", Name, X.ToString(), Y.ToString());
+            return string.Format("{0} ({1}|{2}) K{3}", Name, X, Y, Kingdom);
         }
 
         /// <summary>
         /// Returns the standard BBCode
         /// </summary>
         /// <returns>[village](X|Y)[/village]</returns>
-        public string BBCodeSimple()
+        public string BbCodeSimple()
         {
             return string.Format("[village]({0}|{1})[/village]", X, Y);
         }
@@ -259,7 +258,7 @@ namespace TribalWars.Data.Villages
         /// Returns the BBCode with village points
         /// </summary>
         /// <returns>[village](X|Y)[/village] (pts)</returns>
-        public string BBCode()
+        public string BbCode()
         {
             return string.Format("[village]({0}|{1})[/village] ({2:#,0}pts)", X, Y, Points);
         }
@@ -267,22 +266,14 @@ namespace TribalWars.Data.Villages
         /// <summary>
         /// Returns the BBCode for the player
         /// </summary>
-        public string BBCodeExtended()
+        public string BbCodeExtended()
         {
             if (HasPlayer) return Player.BbCodeExtended(this);
-            return BBCode();
+            return BbCode();
         }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Sets the players for the village
-        /// </summary>
-        public void SetPlayer(Player player)
-        {
-            Player = player;
-        }
-
         /// <summary>
         /// Sets the Village with the previous downloaded data
         /// </summary>

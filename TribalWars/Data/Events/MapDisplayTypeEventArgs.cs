@@ -13,7 +13,6 @@ namespace TribalWars.Data.Events
     {
         #region Fields
         private readonly DisplayTypes _display;
-        private readonly Location _loc;
         #endregion
 
         #region Properties
@@ -24,27 +23,18 @@ namespace TribalWars.Data.Events
         {
             get { return _display; }
         }
-
-        /// <summary>
-        /// Gets the location on the displaytype
-        /// </summary>
-        public Location Location
-        {
-            get { return _loc; }
-        }
         #endregion
 
         #region Constructors
-        public MapDisplayTypeEventArgs(DisplayTypes display, Location loc)
+        public MapDisplayTypeEventArgs(DisplayTypes display)
         {
             _display = display;
-            _loc = loc;
         }
         #endregion
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", DisplayType, Location);
+            return string.Format("{0}", DisplayType);
         }
     }
 }

@@ -39,8 +39,6 @@ namespace TribalWars.Data.Maps
 
         public event EventHandler<PolygonEventArgs> PolygonActivated;
 
-        public event EventHandler<MapDrawingEventArgs> Paint;
-
         public event EventHandler<MapLocationEventArgs> LocationChanged;
         public event EventHandler<MapMarkerEventArgs> MarkersChanged;
         public event EventHandler<MapDisplayTypeEventArgs> DisplayTypeChanged;
@@ -131,7 +129,7 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Publishes an event for a report
         /// </summary>
-        public void SelectReport(object sender, TribalWars.Data.Reporting.Report report)
+        public void SelectReport(object sender, Reporting.Report report)
         {
             if (ReportSelected != null)
             {
@@ -141,24 +139,6 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Action Events
-        /// <summary>
-        /// Publishes a complete map painting event
-        /// </summary>
-        public void PaintMap(object sender)
-        {
-            PaintMap(sender, true);
-        }
-
-        /// <summary>
-        /// Publishes a map painting event
-        /// </summary>
-        /// <param name="backgroundPaint">A value indicating whether to redraw the entire map or not</param>
-        public void PaintMap(object sender, bool backgroundPaint)
-        {
-            if (Paint != null)
-                Paint(sender, new MapDrawingEventArgs(backgroundPaint));
-        }
-
         /// <summary>
         /// Publishes a map location change
         /// </summary>

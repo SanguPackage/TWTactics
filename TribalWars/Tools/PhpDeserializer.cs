@@ -26,8 +26,8 @@ namespace TribalWars.Tools
         // d = double
         // a = array (hashtable)
 
-        private Dictionary<Hashtable, bool> _seenHashtables; //for serialize (to infinte prevent loops)
-        private Dictionary<ArrayList, bool> _seenArrayLists; //for serialize (to infinte prevent loops) lol
+        //private Dictionary<Hashtable, bool> _seenHashtables; //for serialize (to infinte prevent loops)
+        //private Dictionary<ArrayList, bool> _seenArrayLists; //for serialize (to infinte prevent loops) lol
 
         private int _pos; //for unserialize
 

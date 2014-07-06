@@ -171,7 +171,7 @@ namespace TribalWars.Controls.AttackPlan
                 }
             }
 
-            World.Default.Map.EventPublisher.PaintMap(false);
+            //World.Default.Map.EventPublisher.PaintMap(false);
         }
 
         private void SelectPlan(object sender, EventArgs e)
@@ -192,7 +192,7 @@ namespace TribalWars.Controls.AttackPlan
             {
                 ActivePlan = null;
             }
-            World.Default.Map.EventPublisher.PaintMap(false);
+            //World.Default.Map.EventPublisher.PaintMap(false);
         }
 
         public void SetPlan(IEnumerable<Village> villages)

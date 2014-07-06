@@ -76,7 +76,7 @@ namespace TribalWars.Controls.Maps
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.DisplayManager.CurrentDisplay.GetVillageWidthSpacing(loc.Zoom);
-                _ruler.DrawHorizontalRuler(e.Graphics, XRuler, gameLocation, mapLocation, width, loc);
+                _ruler.DrawHorizontalRuler(e.Graphics, XRuler, gameLocation, mapLocation, width);
             }
             base.OnPaint(e);
         }
@@ -92,7 +92,7 @@ namespace TribalWars.Controls.Maps
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.DisplayManager.CurrentDisplay.GetVillageHeightSpacing(loc.Zoom);
-                _ruler.DrawVerticalRuler(e.Graphics, YRuler, gameLocation, mapLocation, width, loc);
+                _ruler.DrawVerticalRuler(e.Graphics, YRuler, gameLocation, mapLocation, width);
             }
             base.OnPaint(e);
         }
@@ -123,7 +123,7 @@ namespace TribalWars.Controls.Maps
             /// <summary>
             /// Draws the horizontal ruler
             /// </summary>
-            public void DrawHorizontalRuler(Graphics g, Panel panel, Point gameLeftTop, Point mapLeftTop, int villageWidth, Location location)
+            public void DrawHorizontalRuler(Graphics g, Panel panel, Point gameLeftTop, Point mapLeftTop, int villageWidth)
             {
                 if (_cacheX != null)
                 {
@@ -134,7 +134,6 @@ namespace TribalWars.Controls.Maps
                     _cacheX = new Bitmap(panel.ClientRectangle.Width, panel.ClientRectangle.Height);
                     Graphics g2 = Graphics.FromImage(_cacheX);
 
-                    int beginOffset = gameLeftTop.X % 5;
                     int mapOffset = villageWidth;
                     int gameOffset = 1;
                     if (mapOffset < 53)
@@ -166,7 +165,7 @@ namespace TribalWars.Controls.Maps
             /// <summary>
             /// Draws the vertical ruler
             /// </summary>
-            public void DrawVerticalRuler(Graphics g, Panel panel, Point gameLeftTop, Point mapLeftTop, int villageHeight, Location location)
+            public void DrawVerticalRuler(Graphics g, Panel panel, Point gameLeftTop, Point mapLeftTop, int villageHeight)
             {
                 if (_cacheY != null)
                 {

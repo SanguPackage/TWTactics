@@ -42,22 +42,6 @@ namespace TribalWars.Data.Units
 
         #region Indexer
         /// <summary>
-        /// Gets the unit from its name
-        /// </summary>
-        public Unit this[string name]
-        {
-            get
-            {
-                foreach (Unit u in _units.Values)
-                {
-                    if (u.Name == name)
-                        return u;
-                }
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Gets the unit from its position in a report
         /// </summary>
         public Unit this[int position]

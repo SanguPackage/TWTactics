@@ -309,7 +309,6 @@ namespace TribalWars.Data
 
             EventPublisher.InformLoaded(this, EventArgs.Empty);
             EventPublisher.InformSettingsLoaded(this, EventArgs.Empty);
-            Map.EventPublisher.PaintMap(this);
 
             return true;
         }
@@ -437,22 +436,6 @@ namespace TribalWars.Data
 
         #region Finders
         /// <summary>
-        /// Finds a tribe based on tw id
-        /// </summary>
-        public Tribe GetTribe(int id)
-        {
-            return Tribes.Values.FirstOrDefault(tribe => tribe.Id == id);
-        }
-
-        /// <summary>
-        /// Finds a player based on tw id
-        /// </summary>
-        public Player GetPlayer(int id)
-        {
-            return Players.Values.FirstOrDefault(player => player.Id == id);
-        }
-
-        /// <summary>
         /// Checks if the input string is a TW coordinate
         /// </summary>
         public Point? GetCoordinates(string input)
@@ -501,14 +484,6 @@ namespace TribalWars.Data
             Village village;
             Villages.TryGetValue(location, out village);
             return village;
-        }
-
-        /// <summary>
-        /// Gets the village at the specified location
-        /// </summary>
-        public Village GetVillage(int x, int y)
-        {
-            return GetVillage(new Point(x, y));
         }
 
         /// <summary>
@@ -695,10 +670,6 @@ namespace TribalWars.Data
             private static int C(Point p)
             {
                 return p.X * 1000 + p.Y;
-            }
-            private static int C(int x, int y)
-            {
-                return x * 1000 + y;
             }
             #endregion
         }

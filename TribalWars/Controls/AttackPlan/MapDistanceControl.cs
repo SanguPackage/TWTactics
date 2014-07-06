@@ -171,7 +171,7 @@ namespace TribalWars.Controls.AttackPlan
                 if (standAlone)
                 {
                     str.AppendLine("*** Attack Plan ***");
-                    str.AppendLine(!bbCodes ? _target.ToString() : _target.BBCode());
+                    str.AppendLine(!bbCodes ? _target.ToString() : _target.BbCode());
                     str.AppendLine();
 
                     str.AppendLine("Arrival time: " + Date.Value.ToString(Date.CustomFormat));

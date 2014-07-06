@@ -23,7 +23,7 @@ namespace TribalWars.Data.Reporting
         /// <param name="options">The BBCode output options</param>
         public static Report ParseText(string input, ReportOutputOptions options)
         {
-            Regex x = new Regex(ReportParser.Pattern);
+            var x = new Regex(Pattern);
             if (input.IndexOf("Block sender") > -1) input = input.Substring(input.IndexOf("Block sender"));
             Match match = x.Match(input + "\r\n");
             if (match.Success)
@@ -258,7 +258,7 @@ namespace TribalWars.Data.Reporting
         private static void UpdateBuildings(Dictionary<BuildingTypes, ReportBuilding> buildings, string target, Group beforeLevel, Group afterLevel)
         {
             // update buildings with cata/ram data
-            int before = 0, after = 0;
+            int before, after;
             if (target.Length > 0 && int.TryParse(beforeLevel.Value, out before) && int.TryParse(afterLevel.Value, out after))
             {
                 BuildingTypes build = Building.GetBuildingFromName(target);
@@ -294,13 +294,13 @@ namespace TribalWars.Data.Reporting
         /// <param name="groupOut">The RegEx group with the out troops</param>
         private static Dictionary<UnitTypes, ReportUnit> GetTroops(Group groupAmount, Group groupLost, Group groupOut)
         {
-            Dictionary<UnitTypes, ReportUnit> troops = new Dictionary<UnitTypes, ReportUnit>();
+            var troops = new Dictionary<UnitTypes, ReportUnit>();
             for (int i = 0; i < groupAmount.Captures.Count; i++)
             {
                 if (WorldUnits.Default[i] != null)
                 {
-                    ReportUnit unit = new ReportUnit(WorldUnits.Default[i]);
-                    int val = 0;
+                    var unit = new ReportUnit(WorldUnits.Default[i]);
+                    int val;
                     if (GetTroopCount(groupAmount.Captures[i].Value, out val))
                     {
                         unit.AmountStart = val;
@@ -351,12 +351,12 @@ namespace TribalWars.Data.Reporting
         /// <remarks>If there are only two resources, the method will always assume it is wood and clay</remarks>
         private static Resource GetResources(Group group)
         {
-            Resource res = new Resource();
+            var res = new Resource();
             if (group.Captures.Count > 3)
             {
                 for (int i = 0; i < group.Captures.Count; i += 2)
                 {
-                    int got = 0;
+                    int got;
                     if (int.TryParse(group.Captures[i + 1].Value.Trim().Replace(".", ""), out got))
                     switch (group.Captures[i].Value)
                     {
@@ -376,7 +376,7 @@ namespace TribalWars.Data.Reporting
             {
                 for (int i = 0; i < group.Captures.Count; i++)
                 {
-                    int got = 0;
+                    int got;
                     if (group.Captures[i].Value.IndexOf("<img") > -1)
                     {
                         //<img src="/graphic/holz.png" title="Wood" alt="" />16<span class="grey">.</span>910 

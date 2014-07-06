@@ -213,10 +213,5 @@ namespace TribalWars.Controls.Accordeon.Location
             }
         }
         #endregion
-
-        private void Tribe_TribeSelected(object sender, TribeEventArgs e)
-        {
-
-        }
     }
 }

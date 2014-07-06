@@ -61,7 +61,7 @@ namespace TribalWars.Controls.TWContextMenu
                 var str = new StringBuilder();
                 foreach (Village village in Villages)
                 {
-                    str.AppendFormat("{0}{1}", village.BBCode(), Environment.NewLine);
+                    str.AppendFormat("{0}{1}", village.BbCode(), Environment.NewLine);
                 }
 
                 try

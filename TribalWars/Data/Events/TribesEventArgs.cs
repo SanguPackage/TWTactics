@@ -22,21 +22,6 @@ namespace TribalWars.Data.Events
         /// Gets the tool requesting the event
         /// </summary>
         public VillageTools Tool { get; private set; }
-
-        /// <summary>
-        /// Gets the first player in the list
-        /// </summary>
-        public virtual Tribe FirstTribe
-        {
-            get
-            {
-                if (Tribes != null)
-                    foreach (Tribe tribe in Tribes)
-                        return tribe;
-
-                return null;
-            }
-        }
         #endregion
 
         #region Constructors

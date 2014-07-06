@@ -58,7 +58,7 @@ namespace TribalWars.Controls.Display
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // player is currently visible?
-            Cells.Add(new Cell()
+            Cells.Add(new Cell
             {
                 Image = GetVisibleImage()
             });

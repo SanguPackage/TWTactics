@@ -146,11 +146,11 @@ namespace TribalWars.Controls.AttackPlan
                 if (target != null)
                 {
                     if (!bbCodes) str.AppendLine("Attack " + target);
-                    else str.AppendLine("Attack " + target.BBCode());
+                    else str.AppendLine("Attack " + target.BbCode());
                 }
                 if (bbCodes)
                 {
-                    str.AppendLine(string.Format("{0} from {1}", _unit.BbCodeImage, Village.BBCode()));
+                    str.AppendLine(string.Format("{0} from {1}", _unit.BbCodeImage, Village.BbCode()));
                     str.AppendLine("Send on: [b]" + DateSend.Text + "[/b]");
                 }
                 else

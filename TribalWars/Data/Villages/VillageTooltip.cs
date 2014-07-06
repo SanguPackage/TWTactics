@@ -134,7 +134,7 @@ namespace TribalWars.Data.Villages
             get
             {
                 if (_village.Player == null) return _village.ToString();
-                return string.Format("{0} - {1}", _village.ToString(), _village.Player.Name);
+                return string.Format("{0} - {1}", _village, _village.Player.Name);
             }
         }
     }

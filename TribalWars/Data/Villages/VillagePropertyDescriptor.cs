@@ -11,7 +11,7 @@ namespace TribalWars.Data.Villages
     public class VillagePropertyDescriptor : PropertyDescriptor
     {
         #region Fields
-        private VillageDescriptor village = null;
+        private readonly VillageDescriptor village;
         #endregion
 
         #region Properties

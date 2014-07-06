@@ -100,7 +100,7 @@ namespace TribalWars.Data.Villages
         [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
-            get { return Village.BBCode(); }
+            get { return Village.BbCode(); }
             set { }
         }
         #endregion

@@ -1,9 +1,7 @@
 #region Using
 using System.Drawing;
 using System.Windows.Forms;
-using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Data.Villages;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
@@ -18,9 +16,8 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
         #endregion
 
         #region Constructors
-        public MapMouseMoveEventArgs(ManipulatorManagerBase p, Graphics g, MouseEventArgs e, Point loc, Village vil,
-                                     Rectangle rec)
-            : base(p, g, e, vil, rec)
+        public MapMouseMoveEventArgs(MouseEventArgs e, Point loc, Village vil)
+            : base(e, vil)
         {
             Location = loc;
         }

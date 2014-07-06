@@ -58,15 +58,6 @@ namespace TribalWars.Data.Maps.Markers
 
         /// <summary>
         /// Gets a value indicating whether 
-        /// the markergroup has specified a view
-        /// </summary>
-        public bool HasView
-        {
-            get { return View != null; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether 
         /// the markergroup has a decorator
         /// </summary>
         public bool HasDecorator
@@ -81,18 +72,6 @@ namespace TribalWars.Data.Maps.Markers
         #endregion
 
         #region Constructor
-        public MarkerGroup()
-            : this(World.Default.Map, "New Marker", true, Color.Transparent, Color.Transparent, null, null)
-        {
-
-        }
-
-        public MarkerGroup(Map map, string name)
-            : this(map, name, true, Color.Transparent, Color.Transparent, null, null)
-        {
-            
-        }
-
         public MarkerGroup(Map map, string name, bool enabled, Color color, Color extraColor, string view, string decorator)
         {
             MarkerManager = map.MarkerManager;

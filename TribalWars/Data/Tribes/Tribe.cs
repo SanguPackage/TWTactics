@@ -205,7 +205,7 @@ namespace TribalWars.Data.Tribes
                     villages.Sort();
                     foreach (Village vil in villages)
                     {
-                        str.AppendLine(vil.BBCode());
+                        str.AppendLine(vil.BbCode());
                     }
                 }
                 else

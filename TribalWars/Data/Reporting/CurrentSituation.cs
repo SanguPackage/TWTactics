@@ -433,10 +433,10 @@ namespace TribalWars.Data.Reporting
             r.ReadStartElement();
 
             // Info
-            _villageDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+            _villageDate = Convert.ToDateTime(r.GetAttribute(0), CultureInfo.InvariantCulture);
             r.ReadStartElement();
-            _loyalty = System.Convert.ToSingle(r.GetAttribute(0), CultureInfo.InvariantCulture);
-            _loyaltyDate = System.Convert.ToDateTime(r.GetAttribute(1), System.Globalization.CultureInfo.InvariantCulture);
+            _loyalty = Convert.ToSingle(r.GetAttribute(0), CultureInfo.InvariantCulture);
+            _loyaltyDate = Convert.ToDateTime(r.GetAttribute(1), CultureInfo.InvariantCulture);
             r.ReadStartElement();
 
             // Comments
@@ -459,7 +459,7 @@ namespace TribalWars.Data.Reporting
 
             // defense
             if (r.HasAttributes)
-                DefenseDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+                DefenseDate = Convert.ToDateTime(r.GetAttribute(0), CultureInfo.InvariantCulture);
 
             r.Read();
             if (r.IsStartElement("Unit"))
@@ -469,10 +469,10 @@ namespace TribalWars.Data.Reporting
                     string typeDesc = r.GetAttribute(0);
                     if (Enum.IsDefined(typeof(UnitTypes), typeDesc))
                     {
-                        UnitTypes type = (UnitTypes)Enum.Parse(typeof(UnitTypes), typeDesc);
-                        Defense.OwnTroops[type] = System.Convert.ToInt32(r.GetAttribute("OwnTroops"));
-                        Defense.OutTroops[type] = System.Convert.ToInt32(r.GetAttribute("OutTroops"));
-                        Defense.OtherDefenses[type] = System.Convert.ToInt32(r.GetAttribute("OtherDefenses"));
+                        var type = (UnitTypes)Enum.Parse(typeof(UnitTypes), typeDesc);
+                        Defense.OwnTroops[type] = Convert.ToInt32(r.GetAttribute("OwnTroops"));
+                        Defense.OutTroops[type] = Convert.ToInt32(r.GetAttribute("OutTroops"));
+                        Defense.OtherDefenses[type] = Convert.ToInt32(r.GetAttribute("OtherDefenses"));
                     }
                     r.Read();
                 }
@@ -482,7 +482,7 @@ namespace TribalWars.Data.Reporting
             // buildings
             Buildings.Clear();
             if (r.HasAttributes)
-                BuildingsDate = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+                BuildingsDate = Convert.ToDateTime(r.GetAttribute(0), CultureInfo.InvariantCulture);
 
             r.Read();
             if (r.IsStartElement("Building"))
@@ -492,8 +492,8 @@ namespace TribalWars.Data.Reporting
                     string typeDesc = r.GetAttribute(0);
                     if (Enum.IsDefined(typeof(BuildingTypes), typeDesc))
                     {
-                        BuildingTypes type = (BuildingTypes)Enum.Parse(typeof(BuildingTypes), typeDesc);
-                        int level = System.Convert.ToInt32(r.GetAttribute(1));
+                        var type = (BuildingTypes)Enum.Parse(typeof(BuildingTypes), typeDesc);
+                        int level = Convert.ToInt32(r.GetAttribute(1));
                         Buildings[type] = level;
                     }
                     r.Read();

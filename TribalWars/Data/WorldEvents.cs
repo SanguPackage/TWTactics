@@ -31,7 +31,7 @@ namespace TribalWars.Data
             /// <summary>
             /// Publishes an event to browse to an URI
             /// </summary>
-            public void BrowseUri(object sender, TribalWars.Controls.Main.Browser.DestinationEnum dest, params string[] args)
+            public void BrowseUri(object sender, Controls.Main.Browser.DestinationEnum dest, params string[] args)
             {
                 if (Browse != null)
                 {

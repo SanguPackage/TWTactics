@@ -1,13 +1,10 @@
 #region Using
-using System.Drawing;
 using System.Windows.Forms;
-using TribalWars.Data.Maps.Manipulators.Managers;
-
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
-    public class MapKeyEventArgs : MapEventArgs
+    public class MapKeyEventArgs : System.EventArgs
     {
         #region Properties
         /// <summary>
@@ -17,8 +14,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
         #endregion
 
         #region Constructors
-        public MapKeyEventArgs(ManipulatorManagerBase p, Graphics g, KeyEventArgs e, Rectangle rec)
-            : base(p, g, rec)
+        public MapKeyEventArgs(KeyEventArgs e)
         {
             KeyEventArgs = e;
         }

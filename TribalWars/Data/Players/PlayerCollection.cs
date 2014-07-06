@@ -29,12 +29,6 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Constructors
-        public PlayerCollection(List<Player> players)
-            : this(players, true)
-        {
-
-        }
-
         public PlayerCollection(List<Player> players, bool showExtended)
         {
             list = players;

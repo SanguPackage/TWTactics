@@ -13,19 +13,10 @@ namespace TribalWars.Data.Events
     public class ManipulatorEventArgs : EventArgs
     {
         #region Fields
-        private readonly ManipulatorManagerBase _manipulator;
         private readonly ManipulatorManagerTypes _type;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the active manipulator
-        /// </summary>
-        public ManipulatorManagerBase Manipulator
-        {
-            get { return _manipulator; }
-        }
-
         /// <summary>
         /// Gets the active manipulator type
         /// </summary>
@@ -36,9 +27,8 @@ namespace TribalWars.Data.Events
         #endregion
 
         #region Constructors
-        public ManipulatorEventArgs(ManipulatorManagerBase manipulator, ManipulatorManagerTypes type)
+        public ManipulatorEventArgs(ManipulatorManagerTypes type)
         {
-            _manipulator = manipulator;
             _type = type;
         }
         #endregion

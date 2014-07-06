@@ -14,16 +14,6 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         private readonly Brush _colorBrush;
         #endregion
 
-        #region Properties
-        /// <summary>
-        /// Gets the brush the rectangle is drawn with
-        /// </summary>
-        public Brush Brush
-        {
-            get { return _colorBrush; }
-        }
-        #endregion
-
         #region Constructors
         public MiniMapDrawer(Color color)
         {

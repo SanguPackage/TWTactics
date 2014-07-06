@@ -78,7 +78,7 @@ namespace TribalWars.Tools
         /// </summary>
         public static string PrintWorldDate(this DateTime value)
         {
-            return value.ToString("dd MMM yyyy HH", System.Globalization.CultureInfo.InvariantCulture) + 'h';
+            return value.ToString("dd MMM yyyy HH", CultureInfo.InvariantCulture) + 'h';
         }
 
         /// <summary>
@@ -117,7 +117,6 @@ namespace TribalWars.Tools
         /// </summary>
         public static string GetShortPrettyDate(DateTime date)
         {
-            DateTime serverTime = World.Default.ServerTime;
             return string.Format("{0} {1}", date.ToString("dd.MM."), date.ToLongTimeString());
         }
         #endregion

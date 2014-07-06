@@ -308,7 +308,7 @@ namespace TribalWars.Data.Maps
 
                 Display.Reset(display);
 
-                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display, location));
+                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
 
                 SetCenter(this, new Location(location), true);
             }

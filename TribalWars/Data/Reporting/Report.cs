@@ -367,16 +367,18 @@ namespace TribalWars.Data.Reporting
             switch (report.ReportStatus)
             {
                 case ReportStatusses.Failure:
-                    return TribalWars.Data.Reporting.Images.ReportRed;
+                    return Images.ReportRed;
                 case ReportStatusses.Success:
                     if (report.ReportType == ReportTypes.Scout)
-                        return TribalWars.Data.Reporting.Images.ReportBlue;
+                    {
+                        return Images.ReportBlue;
+                    }
                     else
                     {
-                        return TribalWars.Data.Reporting.Images.ReportGreen;
+                        return Images.ReportGreen;
                     }
                 case ReportStatusses.HalfSuccess:
-                    return TribalWars.Data.Reporting.Images.ReportYellow;
+                    return Images.ReportYellow;
             }
             return null;
         }
@@ -389,15 +391,15 @@ namespace TribalWars.Data.Reporting
             switch (report.ReportType)
             {
                 case ReportTypes.Attack:
-                    return TribalWars.Data.Buildings.Images.Barracks;
+                    return Data.Buildings.Images.Barracks;
                 case ReportTypes.Fake:
-                    return TribalWars.Data.Reporting.Images.Fake;
+                    return Images.Fake;
                 case ReportTypes.Farm:
-                    return TribalWars.Data.Buildings.Images.Farm;
+                    return Data.Buildings.Images.Farm;
                 case ReportTypes.Noble:
-                    return TribalWars.Data.Units.Images.Noble;
+                    return Units.Images.Noble;
                 case ReportTypes.Scout:
-                    return TribalWars.Data.Units.Images.Scout;
+                    return Units.Images.Scout;
             }
             return null;
         }
@@ -450,23 +452,23 @@ namespace TribalWars.Data.Reporting
             return null;
         }
 
-        public virtual void ReadXml(System.Xml.XmlReader r)
+        public virtual void ReadXml(XmlReader r)
         {
             r.MoveToContent();
             string reportDate = r.GetAttribute(0);
             DateTime reportDateTest;
             if (DateTime.TryParse(reportDate, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out reportDateTest))
                 _dateReport = reportDateTest;
-            _dateCopied = System.Convert.ToDateTime(r.GetAttribute(1), System.Globalization.CultureInfo.InvariantCulture);
+            _dateCopied = Convert.ToDateTime(r.GetAttribute(1), System.Globalization.CultureInfo.InvariantCulture);
 
             r.Read();
-            _reportType = (ReportTypes)System.Convert.ToInt32(r.ReadElementString("Type"));
-            _reportStatus = (ReportStatusses)System.Convert.ToInt32(r.ReadElementString("Status"));
-            _reportFlag = (ReportFlags)System.Convert.ToInt32(r.ReadElementString("Flags"));
+            _reportType = (ReportTypes)Convert.ToInt32(r.ReadElementString("Type"));
+            _reportStatus = (ReportStatusses)Convert.ToInt32(r.ReadElementString("Status"));
+            _reportFlag = (ReportFlags)Convert.ToInt32(r.ReadElementString("Flags"));
 
             r.MoveToContent();
-            _loyaltyBegin = System.Convert.ToInt32(r.GetAttribute(0));
-            _loyaltyEnd = System.Convert.ToInt32(r.GetAttribute(1));
+            _loyaltyBegin = Convert.ToInt32(r.GetAttribute(0));
+            _loyaltyEnd = Convert.ToInt32(r.GetAttribute(1));
             r.Read();
             r.MoveToContent();
 
@@ -486,7 +488,7 @@ namespace TribalWars.Data.Reporting
             r.Read();
             _resourcesHaul.ReadXml(r);
             //r.ReadEndElement();
-            _resourceHaulMax = System.Convert.ToInt32(r.ReadElementString("Max"));
+            _resourceHaulMax = Convert.ToInt32(r.ReadElementString("Max"));
             r.Read();
             r.Read();
 
@@ -505,7 +507,7 @@ namespace TribalWars.Data.Reporting
             r.Read();
         }
 
-        public virtual void WriteXml(System.Xml.XmlWriter w)
+        public virtual void WriteXml(XmlWriter w)
         {
             w.WriteStartElement("Report");
             if (_dateReport.HasValue)

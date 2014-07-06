@@ -103,7 +103,7 @@ namespace TribalWars.Tools.Parsers
             Match match = patternMatcher.Match(input);
             if (match.Success)
             {
-                string date = string.Empty;
+                string date;
                 string datePart = match.Groups["date"].Value;
                 if (datePart == patternMatcher.Today)
                 {
@@ -118,7 +118,7 @@ namespace TribalWars.Tools.Parsers
                     if (match.Groups["dateMonth"].Success)
                     {
                         // on 12.04. at 03:05
-                        string tempDate = string.Format("{0}{1}{2}", World.Default.ServerTime.Year.ToString(), match.Groups["dateMonth"].Value, match.Groups["dateDay"].Value);
+                        string tempDate = string.Format("{0}{1}{2}", World.Default.ServerTime.Year, match.Groups["dateMonth"].Value, match.Groups["dateDay"].Value);
                         DateTime tempRealDate;
                         if (!DateTime.TryParseExact(tempDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempRealDate))
                             return false;

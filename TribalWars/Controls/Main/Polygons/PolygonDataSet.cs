@@ -60,7 +60,7 @@ namespace TribalWars.Controls.Main.Polygons
             row.POLYGON = polygon.Name;
             row.POLYGONGROUP = polygon.Group;
             row.POLYGONVISIBLE = polygon.Visible;
-            row.BBCODE = village.BBCode();
+            row.BBCODE = village.BbCode();
 
             VILLAGE.Rows.Add(row);
         }

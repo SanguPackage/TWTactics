@@ -47,8 +47,8 @@ namespace TribalWars.Controls.TWContextMenu
 
             _menu.AddSeparator();
 
-            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+            _menu.AddCommand("To clipboard", OnToClipboard, Resources.clipboard);
+            _menu.AddCommand("BBCode", OnBbCode, Resources.clipboard);
         }
         #endregion
 

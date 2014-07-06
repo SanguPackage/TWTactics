@@ -20,14 +20,6 @@ namespace TribalWars.Controls.Common
             InitializeComponent();
             _TextBox.AutoCompleteCustomSource = AutoCompleteList;
         }
-
-        public LabelTextBox(string description, int widthTextbox)
-        {
-            InitializeComponent();
-            _Label.Text = description;
-            _TextBox.Width = widthTextbox;
-            _TextBox.AutoCompleteCustomSource = AutoCompleteList;
-        }
         #endregion
 
         #region Properties

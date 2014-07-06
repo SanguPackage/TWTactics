@@ -76,7 +76,7 @@ namespace TribalWars.Controls.Main.Browser
         /// <param name="serverTime">Time the page was generated</param>
         public bool Handle(string document, DateTime serverTime)
         {
-            int index = document.IndexOf(string.Format("<th width=\"140\">{0}</th>", Translations.TWWords.ReportSubject));
+            int index = document.IndexOf(string.Format("<th width=\"140\">{0}</th>", TWWords.ReportSubject));
             if (index == -1) return false;
             document = document.Substring(index);
 

@@ -1,6 +1,7 @@
 #region Imports
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 #endregion
 
@@ -53,8 +54,8 @@ namespace TribalWars.Data.Maps.Views
 
         public override string ToString()
         {
-            if (ExtraValues == null) return string.Format("ViewData: {0}", Value.ToString());
-            return string.Format("ViewData: {0} ({1})", Value.ToString(), ExtraValues.ToString());
+            if (ExtraValues == null) return string.Format("ViewData: {0}", Value);
+            return string.Format("ViewData: {0} ({1})", Value, ExtraValues);
         }
         #endregion
     }

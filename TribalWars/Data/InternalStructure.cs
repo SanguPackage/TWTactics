@@ -241,11 +241,6 @@ namespace TribalWars.Data
             /// </summary>
             private void ReadWorldConfiguration(string worldPath)
             {
-                var sets = new XmlReaderSettings
-                {
-                    IgnoreWhitespace = true,
-                    CloseInput = true
-                };
                 Builder.ReadWorld(Path.Combine(worldPath, WorldXmlString));
             }
             #endregion
@@ -849,7 +844,7 @@ namespace TribalWars.Data
 
                 invoker.EndInvoke(ar);
 
-                World.Default.EventPublisher.InformMonitoringLoaded(null);
+                Default.EventPublisher.InformMonitoringLoaded(null);
             }
             #endregion
 

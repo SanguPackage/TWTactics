@@ -18,7 +18,7 @@ namespace TribalWars.Tools
         /// </summary>
         public static ToolTip CreateTooltip()
         {
-            return new ToolTip()
+            return new ToolTip
                 {
                     Active = true,
                     IsBalloon = true

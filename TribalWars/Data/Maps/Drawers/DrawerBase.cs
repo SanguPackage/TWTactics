@@ -13,7 +13,7 @@ namespace TribalWars.Data.Maps.Drawers
     /// We cannot make this class a decorator because
     /// it is a flyweight
     /// </remarks>
-    public class DrawerBase : IDrawer
+    public class DrawerBase
     {
         #region Construction
         private static readonly DrawerBase NullDrawer = new DrawerBase();
@@ -29,27 +29,11 @@ namespace TribalWars.Data.Maps.Drawers
 
         #region Public Methods
         /// <summary>
-        /// Paints non village related stuff
-        /// </summary>
-        public void Paint(Graphics g, Rectangle rec, Rectangle fullMap)
-        {
-            PaintCore(g);
-        }
-
-        /// <summary>
         /// Paints one village on the map
         /// </summary>
         public void PaintVillage(Graphics g, int x, int y, int width, int height)
         {
             PaintVillageCore(g, x, y, width, height);
-        }
-
-        /// <summary>
-        /// Paints non village related stuff
-        /// </summary>
-        protected virtual void PaintCore(Graphics g)
-        {
-            // TODO: is this even used anymore?
         }
 
         /// <summary>

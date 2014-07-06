@@ -12,14 +12,11 @@ namespace TribalWars.Data.Events
     /// </summary>
     public class ReportEventArgs : EventArgs
     {
-        #region Fields
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the report
         /// </summary>
-        public Report SelectedTribe { get; set; }
+        public Report SelectedTribe { get; private set; }
         #endregion
 
         #region Constructors

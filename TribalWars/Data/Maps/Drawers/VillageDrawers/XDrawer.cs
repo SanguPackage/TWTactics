@@ -14,16 +14,6 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         private readonly Brush _brush;
         #endregion
 
-        #region Properties
-        /// <summary>
-        /// Gets the brush the X is drawn with
-        /// </summary>
-        public Brush Brush
-        {
-            get { return _brush; }
-        }
-        #endregion
-
         #region Constructors
         public XDrawer(Color color)
         {

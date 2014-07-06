@@ -8,7 +8,7 @@ using TribalWars.Data.Villages;
 
 namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
 {
-    public class MapVillageEventArgs : MapEventArgs
+    public class MapVillageEventArgs : System.EventArgs
     {
         #region Fields
         #endregion
@@ -26,8 +26,7 @@ namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs
         #endregion
 
         #region Constructors
-        public MapVillageEventArgs(ManipulatorManagerBase p, Graphics g, MouseEventArgs e, Village vil, Rectangle rec)
-            : base(p, g, rec)
+        public MapVillageEventArgs(MouseEventArgs e, Village vil)
         {
             MouseEventArgs = e;
             Village = vil;

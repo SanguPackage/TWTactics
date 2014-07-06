@@ -115,11 +115,6 @@ namespace TribalWars.Data.Reporting
 
             return str.ToString();
         }
-
-        public static string BuildReport(Report report)
-        {
-            return null;
-        }
         #endregion
 
         #region Private Implementation

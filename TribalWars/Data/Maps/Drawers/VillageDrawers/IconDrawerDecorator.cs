@@ -18,18 +18,8 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         private readonly bool _comments;
         private readonly bool _nobles;
 
-        private static readonly Bitmap _commentsBitmap;
-        private static readonly Bitmap _noblesBitmap;
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets the village decorator bitmap
-        /// </summary>
-        public Bitmap Bitmap
-        {
-            get { return _bitmap; }
-        }
+        private static readonly Bitmap CommentsBitmap;
+        private static readonly Bitmap NoblesBitmap;
         #endregion
 
         #region Constructors
@@ -42,8 +32,8 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
 
         static IconDrawerDecorator()
         {
-            _commentsBitmap = Icons.Other.Note;
-            _noblesBitmap = Icons.Other.Noble;
+            CommentsBitmap = Icons.Other.Note;
+            NoblesBitmap = Icons.Other.Noble;
         }
         #endregion
 
@@ -56,13 +46,19 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
             if (width == IconDisplay.StandardIconWidth)
             {
                 if (_bitmap != null)
+                {
                     g.DrawImage(_bitmap, new Point(x + 35, y)); // 16x16 (farm) and 18x18
+                }
 
                 if (_comments)
-                    g.DrawImage(_commentsBitmap, new Point(x + 9, y + 20)); // 15x15
+                {
+                    g.DrawImage(CommentsBitmap, new Point(x + 9, y + 20)); // 15x15
+                }
 
                 if (_nobles)
-                    g.DrawImage(_noblesBitmap, new Point(x + 35, y + 19)); //18x18
+                {
+                    g.DrawImage(NoblesBitmap, new Point(x + 35, y + 19)); //18x18
+                }
             }
         }
 
@@ -72,7 +68,9 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         public override void Dispose(bool disposing)
         {
             if (_bitmap != null)
+            {
                 _bitmap.Dispose();
+            }
         }
         #endregion
     }

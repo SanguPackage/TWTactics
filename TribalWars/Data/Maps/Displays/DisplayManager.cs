@@ -205,7 +205,7 @@ namespace TribalWars.Data.Maps.Displays
 
         public override string ToString()
         {
-            return string.Format("DisplayManager: {0}", CurrentDisplayType.ToString());
+            return string.Format("DisplayManager: {0}", CurrentDisplayType);
         }
         #endregion
     }

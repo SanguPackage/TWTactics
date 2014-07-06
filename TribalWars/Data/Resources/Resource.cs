@@ -207,13 +207,13 @@ namespace TribalWars.Data.Resources
             switch (type)
             {
                 case ResourceTypes.Clay:
-                    return (System.Drawing.Image)Images.clay;
+                    return Images.clay;
                 case ResourceTypes.Face:
-                    return (System.Drawing.Image)Images.Face;
+                    return Images.Face;
                 case ResourceTypes.Iron:
-                    return (System.Drawing.Image)Images.iron;
+                    return Images.iron;
                 case ResourceTypes.Wood:
-                    return (System.Drawing.Image)Images.wood;
+                    return Images.wood;
             }
             return null;
         }
@@ -244,14 +244,14 @@ namespace TribalWars.Data.Resources
         {
             r.MoveToContent();
             if (r.HasAttributes)
-                date = System.Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
+                date = Convert.ToDateTime(r.GetAttribute(0), System.Globalization.CultureInfo.InvariantCulture);
             else
                 date = null;
             r.Read();
             r.MoveToContent();
-            Wood = System.Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Wood"));
-            Clay = System.Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Clay"));
-            Iron = System.Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Iron"));
+            Wood = Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Wood"));
+            Clay = Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Clay"));
+            Iron = Convert.ToInt32(Tools.XmlHelper.ReadXmlElement(r, "Iron"));
             r.Read();
         }
 

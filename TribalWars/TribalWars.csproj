@@ -204,7 +204,6 @@
     <Compile Include="Data\Events\PolygonEventArgs.cs" />
     <Compile Include="Data\Maps\Displays\MiniMapDisplay.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
-    <Compile Include="Data\Maps\Drawers\IAnimatedDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
     <Compile Include="Data\Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
     <Compile Include="Controls\TWContextMenu\VillagesContextMenu.cs">
@@ -234,12 +233,6 @@
     </Compile>
     <Compile Include="Controls\Maps\MapControl.designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationList.Designer.cs">
-      <DependentUpon>LocationList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AttackPlan\MapDistanceControl.cs">
       <SubType>UserControl</SubType>
@@ -290,7 +283,6 @@
     <Compile Include="Data\Events\PlayersEventArgs.cs" />
     <Compile Include="Data\Events\ReportEventArgs.cs" />
     <Compile Include="Data\Events\TribesEventArgs.cs" />
-    <Compile Include="Data\Maps\Drawers\IDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\BorderDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\ShapeDrawer.cs" />
     <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawer.cs" />
@@ -313,7 +305,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Villages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapKeyEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapMouseEventArgs.cs" />
     <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapMouseMoveEventArgs.cs" />
@@ -371,7 +362,6 @@
     <Compile Include="Data\Reporting\ReportBBCodeOutput.cs" />
     <Compile Include="Data\Reporting\ReportBuilding.cs" />
     <Compile Include="Data\Descriptors\ClipboardCopierUIEditor.cs" />
-    <Compile Include="Data\Events\MapDrawingEventArgs.cs" />
     <Compile Include="Data\Events\PlayerEventArgs.cs" />
     <Compile Include="Data\Events\TribeEventArgs.cs" />
     <Compile Include="Data\Events\VillageEventArgs.cs" />
@@ -446,12 +436,6 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ParseForm.Designer.cs">
-      <DependentUpon>ParseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorldTemplate\TacticsUnit.cs" />
@@ -507,10 +491,6 @@
     <EmbeddedResource Include="Controls\Maps\MapControl.resx">
       <DependentUpon>MapControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Location\LocationList.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>LocationList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AttackPlan\MapDistanceControl.resx">
       <SubType>Designer</SubType>
@@ -579,10 +559,6 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ParseForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ParseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoadWorldForm.resx">
       <SubType>Designer</SubType>

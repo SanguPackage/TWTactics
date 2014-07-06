@@ -111,24 +111,21 @@ namespace TribalWars.Data.Buildings
         {
             get
             {
-                return string.Join(",", Array.ConvertAll<int, string>(_points,
-                    delegate(int val)
-                    {
-                        return val.ToString();
-                    }));
+                if (_points == null)
+                    return "";
+
+                return string.Join(",", _points.Select(x => x.ToString(CultureInfo.InvariantCulture)));
             }
             set
             {
-                _points = Array.ConvertAll<string, int>(value.Split(','),
-                    delegate(string left)
-                    {
-                        int outVal;
-                        if (int.TryParse(left.Trim(), out outVal))
-                        {
-                            return outVal;
-                        }
-                        else return 0;
-                    });
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    _points = new int[] { };
+                }
+                else
+                {
+                    _points = value.Split(',').Select(x => Convert.ToInt32(x.Trim())).ToArray();
+                }
             }
         }
 
@@ -164,24 +161,21 @@ namespace TribalWars.Data.Buildings
         {
             get
             {
-                return string.Join(",", Array.ConvertAll<int, string>(_people,
-                    delegate(int val)
-                    {
-                        return val.ToString();
-                    }));
+                if (_people == null)
+                    return "";
+
+                return string.Join(", ", _people.Select(x => x.ToString(CultureInfo.InvariantCulture)));
             }
             set
             {
-                _people = Array.ConvertAll<string, int>(value.Split(','),
-                    delegate(string left)
-                    {
-                        int outVal;
-                        if (int.TryParse(left.Trim(), out outVal))
-                        {
-                            return outVal;
-                        }
-                        else return 0;
-                    });
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    _people = new int[] { };
+                }
+                else
+                {
+                    _people = value.Split(',').Select(x => Convert.ToInt32(x.Trim())).ToArray();
+                }
             }
         }
         #endregion

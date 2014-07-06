@@ -66,7 +66,7 @@ namespace TribalWars.Data.Maps.Views
 
         public override string ToString()
         {
-            return string.Format("{0} ({1}, {2})", Name, Type.ToString(), Category.ToString());
+            return string.Format("{0} ({1}, {2})", Name, Type, Category);
         }
         #endregion
     }

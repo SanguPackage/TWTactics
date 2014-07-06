@@ -147,15 +147,15 @@ namespace TribalWars.Data.Reporting
             }
             else
             {
-                if (Village.HasPlayer) return Village.Player.BbCode() + Environment.NewLine + Village.BBCode();
-                return Village.BBCode();
+                if (Village.HasPlayer) return Village.Player.BbCode() + Environment.NewLine + Village.BbCode();
+                return Village.BbCode();
             }
         }
 
         public string BBCodeExtended()
         {
             if (Village == null) return ToString() + Environment.NewLine;
-            return Village.BBCodeExtended();
+            return Village.BbCodeExtended();
         }
         #endregion
 

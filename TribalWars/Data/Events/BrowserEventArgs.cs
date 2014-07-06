@@ -48,7 +48,6 @@ namespace TribalWars.Data.Events
 
         #region Constructors
         public BrowserEventArgs(DestinationEnum dest, string[] args)
-            : base()
         {
             switch (dest)
             {

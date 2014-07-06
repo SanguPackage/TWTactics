@@ -154,7 +154,7 @@ namespace TribalWars.Data.Maps
         /// <summary>
         /// Paints the canvas
         /// </summary>
-        public void Paint(Graphics g2, Rectangle rec, Rectangle fullMap)
+        public void Paint(Graphics g2, Rectangle fullMap)
         {
             if (_background != null)
             {

@@ -14,30 +14,14 @@ namespace TribalWars.Data.Maps.Markers
     /// </summary>
     public sealed class PlayerMarker : MarkerBase
     {
-        #region Fields
-        private Player _player;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets or sets the player to mark
         /// </summary>
-        public Player Player
-        {
-            get { return _player; }
-            set
-            {
-                _player = value;
-            }
-        }
+        public Player Player { get; private set; }
         #endregion
 
         #region Constructors
-        public PlayerMarker()
-        {
-
-        }
-
         public PlayerMarker(Player ply)
         {
             Player = ply;
@@ -47,15 +31,15 @@ namespace TribalWars.Data.Maps.Markers
         #region BBCode
         public override string ToString()
         {
-            if (_player == null) return base.ToString();
-            return _player.ToString();
+            if (Player == null) return base.ToString();
+            return Player.ToString();
         }
         #endregion
 
         #region IEnumerable<Village> Members
         public override IEnumerator<Village> GetEnumerator()
         {
-            return _player.GetEnumerator();
+            return Player.GetEnumerator();
         }
         #endregion
     }

@@ -46,13 +46,6 @@ namespace TribalWars.Data.Maps
         #endregion
 
         #region Constructors
-        public Location(int x, int y)
-        {
-            _x = x;
-            _y = y;
-            _zoom = 1;
-        }
-
         public Location(int x, int y, int zoom)
         {
             _x = x;
