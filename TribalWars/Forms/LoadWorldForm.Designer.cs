@@ -31,11 +31,11 @@ namespace TribalWars.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadWorldForm));
             this.IconList = new System.Windows.Forms.ImageList(this.components);
-            this.btnNewWorld = new System.Windows.Forms.Button();
+            this.btnNewWorld = new Janus.Windows.EditControls.UIButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Worlds = new System.Windows.Forms.TreeView();
-            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnLoad = new Janus.Windows.EditControls.UIButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.WorldSettings = new System.Windows.Forms.ListView();
@@ -67,13 +67,12 @@ namespace TribalWars.Forms
             // 
             // btnNewWorld
             // 
-            this.btnNewWorld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewWorld.Location = new System.Drawing.Point(3, 72);
+            this.btnNewWorld.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnNewWorld.Location = new System.Drawing.Point(237, 16);
             this.btnNewWorld.Name = "btnNewWorld";
-            this.btnNewWorld.Size = new System.Drawing.Size(315, 46);
+            this.btnNewWorld.Size = new System.Drawing.Size(81, 51);
             this.btnNewWorld.TabIndex = 1;
             this.btnNewWorld.Text = "&Create New World";
-            this.btnNewWorld.UseVisualStyleBackColor = true;
             this.btnNewWorld.Click += new System.EventHandler(this.btnNewWorld_Click);
             // 
             // splitContainer1
@@ -110,7 +109,7 @@ namespace TribalWars.Forms
             this.groupBox1.Size = new System.Drawing.Size(312, 491);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Worlds you have already created";
+            this.groupBox1.Text = "Load a world you have already created";
             // 
             // Worlds
             // 
@@ -120,7 +119,7 @@ namespace TribalWars.Forms
             this.Worlds.Location = new System.Drawing.Point(3, 16);
             this.Worlds.Name = "Worlds";
             this.Worlds.SelectedImageIndex = 0;
-            this.Worlds.Size = new System.Drawing.Size(303, 414);
+            this.Worlds.Size = new System.Drawing.Size(303, 397);
             this.Worlds.TabIndex = 3;
             this.Worlds.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Worlds_AfterSelect);
             // 
@@ -129,12 +128,11 @@ namespace TribalWars.Forms
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(3, 437);
+            this.btnLoad.Location = new System.Drawing.Point(3, 419);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(303, 49);
+            this.btnLoad.Size = new System.Drawing.Size(303, 67);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "&Load Selected World";
-            this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // tableLayoutPanel1
@@ -148,7 +146,7 @@ namespace TribalWars.Forms
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 497);
             this.tableLayoutPanel1.TabIndex = 5;
@@ -159,9 +157,9 @@ namespace TribalWars.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.WorldSettings);
-            this.groupBox4.Location = new System.Drawing.Point(3, 133);
+            this.groupBox4.Location = new System.Drawing.Point(3, 83);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(321, 361);
+            this.groupBox4.Size = new System.Drawing.Size(321, 411);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Your available settings on selected world";
@@ -178,7 +176,7 @@ namespace TribalWars.Forms
             this.WorldSettings.HideSelection = false;
             this.WorldSettings.Location = new System.Drawing.Point(3, 16);
             this.WorldSettings.Name = "WorldSettings";
-            this.WorldSettings.Size = new System.Drawing.Size(315, 342);
+            this.WorldSettings.Size = new System.Drawing.Size(315, 392);
             this.WorldSettings.TabIndex = 0;
             this.WorldSettings.UseCompatibleStateImageBehavior = false;
             this.WorldSettings.View = System.Windows.Forms.View.Details;
@@ -203,7 +201,7 @@ namespace TribalWars.Forms
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(321, 124);
+            this.groupBox2.Size = new System.Drawing.Size(321, 74);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Create a new world";
@@ -235,7 +233,7 @@ namespace TribalWars.Forms
             this.Servers.FormattingEnabled = true;
             this.Servers.Location = new System.Drawing.Point(54, 19);
             this.Servers.Name = "Servers";
-            this.Servers.Size = new System.Drawing.Size(264, 21);
+            this.Servers.Size = new System.Drawing.Size(177, 21);
             this.Servers.TabIndex = 2;
             this.Servers.SelectedIndexChanged += new System.EventHandler(this.Servers_SelectedIndexChanged);
             // 
@@ -245,7 +243,7 @@ namespace TribalWars.Forms
             this.AvailableWorlds.FormattingEnabled = true;
             this.AvailableWorlds.Location = new System.Drawing.Point(54, 46);
             this.AvailableWorlds.Name = "AvailableWorlds";
-            this.AvailableWorlds.Size = new System.Drawing.Size(264, 21);
+            this.AvailableWorlds.Size = new System.Drawing.Size(177, 21);
             this.AvailableWorlds.TabIndex = 2;
             // 
             // LoadWorldForm
@@ -280,13 +278,13 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ImageList IconList;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnLoad;
+        private Janus.Windows.EditControls.UIButton btnLoad;
         private System.Windows.Forms.TreeView Worlds;
         private System.Windows.Forms.ListView WorldSettings;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.FolderBrowserDialog OpenFolder;
-        private System.Windows.Forms.Button btnNewWorld;
+        private Janus.Windows.EditControls.UIButton btnNewWorld;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
