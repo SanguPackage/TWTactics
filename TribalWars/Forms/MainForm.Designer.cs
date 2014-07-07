@@ -474,7 +474,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(386, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(417, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -506,6 +506,7 @@ namespace TribalWars.Forms
             this.ToolStripProgramSettings.Name = "ToolStripProgramSettings";
             this.ToolStripProgramSettings.Size = new System.Drawing.Size(23, 22);
             this.ToolStripProgramSettings.ToolTipText = "Change program settings";
+            this.ToolStripProgramSettings.Visible = false;
             this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
             // 
             // toolStripSeparator7
@@ -961,9 +962,9 @@ namespace TribalWars.Forms
             // 
             this.TabsPolygon.Controls.Add(this.Polygon);
             this.TabsPolygon.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsPolygon.Icon")));
-            this.TabsPolygon.Location = new System.Drawing.Point(1, 21);
+            this.TabsPolygon.Location = new System.Drawing.Point(1, 23);
             this.TabsPolygon.Name = "TabsPolygon";
-            this.TabsPolygon.Size = new System.Drawing.Size(866, 585);
+            this.TabsPolygon.Size = new System.Drawing.Size(866, 583);
             this.TabsPolygon.TabStop = true;
             this.TabsPolygon.Text = "Polygon";
             this.TabsPolygon.ToolTipText = "Generate BBCodes from polygon areas you have drawn on the map.";
@@ -975,16 +976,16 @@ namespace TribalWars.Forms
             this.Polygon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Polygon.Location = new System.Drawing.Point(0, 0);
             this.Polygon.Name = "Polygon";
-            this.Polygon.Size = new System.Drawing.Size(866, 585);
+            this.Polygon.Size = new System.Drawing.Size(866, 583);
             this.Polygon.TabIndex = 0;
             // 
             // TabsMonitoring
             // 
             this.TabsMonitoring.Controls.Add(this.monitoringControl1);
             this.TabsMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("TabsMonitoring.Image")));
-            this.TabsMonitoring.Location = new System.Drawing.Point(1, 21);
+            this.TabsMonitoring.Location = new System.Drawing.Point(1, 23);
             this.TabsMonitoring.Name = "TabsMonitoring";
-            this.TabsMonitoring.Size = new System.Drawing.Size(866, 585);
+            this.TabsMonitoring.Size = new System.Drawing.Size(866, 583);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             this.TabsMonitoring.ToolTipText = "Check what is happening in your monitoring area, the world or in your tribe.";
@@ -996,7 +997,7 @@ namespace TribalWars.Forms
             this.monitoringControl1.Location = new System.Drawing.Point(0, 0);
             this.monitoringControl1.Margin = new System.Windows.Forms.Padding(0);
             this.monitoringControl1.Name = "monitoringControl1";
-            this.monitoringControl1.Size = new System.Drawing.Size(866, 585);
+            this.monitoringControl1.Size = new System.Drawing.Size(866, 583);
             this.monitoringControl1.TabIndex = 0;
             // 
             // FormToolbarContainer

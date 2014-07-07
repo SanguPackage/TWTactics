@@ -15,5 +15,26 @@ namespace TribalWars.Forms
         {
             InitializeComponent();
         }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            Close();
+        }
+
+        private void ConnectedDirect_CheckedChanged(object sender, EventArgs e)
+        {
+            ConnectedProxyGroupbox.Enabled = false;
+        }
+
+        private void ConnectedProxy_CheckedChanged(object sender, EventArgs e)
+        {
+            ConnectedProxyGroupbox.Enabled = true;
+        }
     }
 }

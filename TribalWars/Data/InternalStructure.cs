@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -360,7 +361,7 @@ namespace TribalWars.Data
             /// </summary>
             private static TwWorldSettings DownloadWorldSettings(string worldName, string worldServer)
             {
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
+                var xdoc = Network.DownloadXml(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
                 Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
@@ -542,7 +543,7 @@ namespace TribalWars.Data
 
             private static IEnumerable<TwUnit> DownloadWorldUnitSettings(string worldName, string serverName)
             {
-                var xdoc = XDocument.Load(string.Format(ServerSettingsUrl, worldName, serverName, "get_unit_info"));
+                var xdoc = Network.DownloadXml(string.Format(ServerSettingsUrl, worldName, serverName, "get_unit_info"));
 
                 var list = new List<TwUnit>();
                 foreach (var xmlUnit in xdoc.Root.Elements())
@@ -602,8 +603,7 @@ namespace TribalWars.Data
             /// </summary>
             public static string[] DownloadWorlds(string serverName)
             {
-                var request = new System.Net.WebClient();
-                var file = request.DownloadString(string.Format(AvailableWorlds, serverName));
+                var file = Network.GetWebRequest(string.Format(AvailableWorlds, serverName));
                 var worldsObject = (Hashtable)new Serializer().Deserialize(file);
 
                 string[] worldsPlayerCanStart = worldsObject.Keys.OfType<string>().ToArray();
@@ -642,21 +642,22 @@ namespace TribalWars.Data
                 {
                     // Download data
                     Directory.CreateDirectory(dirName);
-                    var client = new System.Net.WebClient();
 
-                    DownloadFile(client, DownloadVillage, dirName + "\\" + FileVillageString);
-                    DownloadFile(client, DownloadTribe, dirName + "\\" + FileTribeString);
-                    DownloadFile(client, DownloadPlayer, dirName + "\\" + FilePlayerString);
+                    DownloadFile(DownloadVillage, dirName + "\\" + FileVillageString);
+                    DownloadFile(DownloadTribe, dirName + "\\" + FileTribeString);
+                    DownloadFile(DownloadPlayer, dirName + "\\" + FilePlayerString);
                 }
             }
 
             /// <summary>
             /// Downloads one TW file
             /// </summary>
-            private void DownloadFile(System.Net.WebClient client, string urlFile, string outputFile)
+            private void DownloadFile(string urlFile, string outputFile)
             {
-                using (Stream stream = client.OpenRead(urlFile))
+                var client = Network.CreateWebRequest(urlFile);
+                using (var response = client.GetResponse())
                 {
+                    var stream = response.GetResponseStream();
                     Debug.Assert(stream != null);
                     using (var unzip = new System.IO.Compression.GZipStream(stream, System.IO.Compression.CompressionMode.Decompress))
                     {

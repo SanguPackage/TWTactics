@@ -23,11 +23,11 @@ namespace TribalWars.WorldTemplate
             
         }
 
-        public static List<TacticsUnit> GetUnitsFromXml(string xmlUri)
+        public static List<TacticsUnit> GetUnitsFromXml(string xmlPath)
         {
             var units = new List<TacticsUnit>();
 
-            var xml = XDocument.Load(xmlUri);
+            var xml = XDocument.Load(xmlPath);
             foreach (var xmlUnit in xml.Root.Elements())
             {
                 var unit = new TacticsUnit
