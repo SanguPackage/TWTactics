@@ -72,9 +72,11 @@ namespace TribalWars.Controls.Accordeon.Location
             this.groupBox4.Controls.Add(this.PointsBetweenEnd);
             this.groupBox4.Controls.Add(this.ResultLimit);
             this.groupBox4.Controls.Add(this.PointsBetweenStart);
-            this.groupBox4.Location = new System.Drawing.Point(3, 34);
+            this.groupBox4.Location = new System.Drawing.Point(0, 34);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(278, 142);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.groupBox4.Size = new System.Drawing.Size(285, 142);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Additional search criteria";
@@ -88,6 +90,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Tribe.GameLocation = null;
             this.Tribe.Location = new System.Drawing.Point(96, 117);
             this.Tribe.Name = "Tribe";
+            this.Tribe.PlaceHolderText = null;
             this.Tribe.Size = new System.Drawing.Size(50, 20);
             this.Tribe.TabIndex = 10;
             // 

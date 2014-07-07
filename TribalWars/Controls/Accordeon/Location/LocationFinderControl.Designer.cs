@@ -44,7 +44,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 180);
+            this.groupBox1.Size = new System.Drawing.Size(296, 263);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find players, tribes or villages";
@@ -60,9 +60,9 @@ namespace TribalWars.Controls.Accordeon.Location
             this.MainTable.Margin = new System.Windows.Forms.Padding(0);
             this.MainTable.Name = "MainTable";
             this.MainTable.RowCount = 2;
-            this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainTable.Size = new System.Drawing.Size(290, 161);
+            this.MainTable.Size = new System.Drawing.Size(290, 244);
             this.MainTable.TabIndex = 3;
             // 
             // SearchPanel
@@ -72,7 +72,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.SearchPanel.Location = new System.Drawing.Point(0, 0);
             this.SearchPanel.Margin = new System.Windows.Forms.Padding(0);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(290, 35);
+            this.SearchPanel.Size = new System.Drawing.Size(290, 178);
             this.SearchPanel.TabIndex = 3;
             // 
             // Options
@@ -81,7 +81,7 @@ namespace TribalWars.Controls.Accordeon.Location
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Options.BackColor = System.Drawing.Color.Transparent;
             this.Options.Buttonsvisible = true;
-            this.Options.Expanded = false;
+            this.Options.Expanded = true;
             this.Options.LimitResultsValue = new decimal(new int[] {
             100,
             0,
@@ -90,7 +90,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Options.Location = new System.Drawing.Point(0, 0);
             this.Options.Margin = new System.Windows.Forms.Padding(0);
             this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(285, 35);
+            this.Options.Size = new System.Drawing.Size(290, 178);
             this.Options.TabIndex = 0;
             this.Options.PlayersFound += new System.EventHandler<TribalWars.Data.Events.PlayersEventArgs>(this.Options_PlayersFound);
             this.Options.VillagesFound += new System.EventHandler<TribalWars.Data.Events.VillagesEventArgs>(this.Options_VillagesFound);
@@ -103,11 +103,11 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Table.BackColor = System.Drawing.Color.Transparent;
             this.Table.DisplayType = TribalWars.Controls.Display.TableWrapperControl.ColumnDisplayTypeEnum.Default;
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Table.Location = new System.Drawing.Point(0, 35);
+            this.Table.Location = new System.Drawing.Point(0, 178);
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
             this.Table.RowSelectionAction = TribalWars.Controls.Display.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
-            this.Table.Size = new System.Drawing.Size(290, 126);
+            this.Table.Size = new System.Drawing.Size(290, 66);
             this.Table.TabIndex = 4;
             this.Table.VisiblePlayerFields = TribalWars.Controls.Display.PlayerFields.None;
             this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
@@ -119,7 +119,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "LocationFinderControl";
-            this.Size = new System.Drawing.Size(296, 180);
+            this.Size = new System.Drawing.Size(296, 263);
             this.groupBox1.ResumeLayout(false);
             this.MainTable.ResumeLayout(false);
             this.SearchPanel.ResumeLayout(false);

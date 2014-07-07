@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms.Design;
 using System.Windows.Forms;
 using TribalWars.Data;
@@ -197,6 +198,8 @@ namespace TribalWars.Controls.Common
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
     public class ToolStripLocationChangerControl : ToolStripControlHost
     {
+        private const string DefaultPlaceHolderText = "Search village, player, tribe...";
+
         #region Properties
         /// <summary>
         /// Gets the underlying LocationChangerControl
@@ -213,7 +216,27 @@ namespace TribalWars.Controls.Common
         {
             AutoSize = false;
             ToolTipText = string.Empty;
-            LocationChanger.Width = 200;
+            LocationChanger.Width = 235;
+
+            LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText = DefaultPlaceHolderText;
+            LocationChanger.PlayerTribeFinderTextBox.LostFocus += PlayerTribeFinderTextBoxOnLostFocus;
+            LocationChanger.PlayerTribeFinderTextBox.GotFocus += PlayerTribeFinderTextBoxOnGotFocus;
+        }
+
+        private void PlayerTribeFinderTextBoxOnGotFocus(object sender, EventArgs e)
+        {
+            if (LocationChanger.PlayerTribeFinderTextBox.Text == LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText)
+            {
+                LocationChanger.PlayerTribeFinderTextBox.Text = "";
+            }
+        }
+
+        private void PlayerTribeFinderTextBoxOnLostFocus(object sender, EventArgs e)
+        {
+            if (LocationChanger.PlayerTribeFinderTextBox.Text == "")
+            {
+                LocationChanger.PlayerTribeFinderTextBox.Text = LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText;
+            }
         }
         #endregion
     }

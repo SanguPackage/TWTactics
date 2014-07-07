@@ -82,8 +82,8 @@ namespace TribalWars.Controls.Common
         #endregion
 
         private Janus.Windows.GridEX.EditControls.IntegerUpDown ZoomControl;
-        private VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox;
         private System.Windows.Forms.ToolTip toolTip1;
+        public VillagePlayerTribeFinderTextBox PlayerTribeFinderTextBox;
 
     }
 }

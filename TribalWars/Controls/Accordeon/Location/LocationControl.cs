@@ -31,69 +31,16 @@ namespace TribalWars.Controls.Accordeon.Location
         private void LocationControl_Load(object sender, EventArgs e)
         {
             World.Default.EventPublisher.SettingsLoaded += World_SettingsLoaded;
-            World.Default.Map.EventPublisher.LocationChanged += Location_Changed;
         }
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            txtX.Text = World.Default.Map.Location.X.ToString(CultureInfo.InvariantCulture);
-            txtY.Text = World.Default.Map.Location.Y.ToString(CultureInfo.InvariantCulture);
-            txtZ.Text = World.Default.Map.Location.Zoom.ToString(CultureInfo.InvariantCulture);
-
             if (World.Default.PlayerSelected)
             {
                 You.SetPlayer(World.Default.You);
             }
 
             _worldLoaded = true;
-        }
-
-        private void cmdDraw_Click(object sender, EventArgs e)
-        {
-            int x, y, z;
-            if (int.TryParse(txtX.Text, out x) && int.TryParse(txtY.Text, out y) && int.TryParse(txtZ.Text, out z))
-            {
-                World.Default.Map.SetCenter(new Point(x, y), z);
-            }
-        }
-
-        #region Focusselect
-        private void txtX_Enter(object sender, EventArgs e)
-        {
-            txtX.SelectAll();
-        }
-
-        private void txtY_Enter(object sender, EventArgs e)
-        {
-            txtY.SelectAll();
-        }
-
-        private void txtZ_Enter(object sender, EventArgs e)
-        {
-            txtZ.SelectAll();
-        }
-
-        private void txtX_Click(object sender, EventArgs e)
-        {
-            txtX.SelectAll();
-        }
-
-        private void txtY_Click(object sender, EventArgs e)
-        {
-            txtY.SelectAll();
-        }
-
-        private void txtZ_Click(object sender, EventArgs e)
-        {
-            txtZ.SelectAll();
-        }
-        #endregion
-
-        private void Location_Changed(object sender, MapLocationEventArgs e)
-        {
-            txtX.Text = e.NewLocation.X.ToString(CultureInfo.InvariantCulture);
-            txtY.Text = e.NewLocation.Y.ToString(CultureInfo.InvariantCulture);
-            txtZ.Text = e.NewLocation.Zoom.ToString(CultureInfo.InvariantCulture);
         }
 
         private void cmdCenterKingdom_Click(object sender, EventArgs e)
@@ -105,7 +52,7 @@ namespace TribalWars.Controls.Accordeon.Location
             }
         }
 
-        private void StripHome_Click(object sender, EventArgs e)
+        private void GoHome_Click(object sender, EventArgs e)
         {
             if (World.Default.HasLoaded)
             {

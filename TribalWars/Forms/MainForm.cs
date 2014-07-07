@@ -276,13 +276,17 @@ namespace TribalWars.Forms
 
         private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
-            using (var timeSetter = new TimeZoneForm())
-            {
-                timeSetter.ServerOffset = World.Default.ServerOffset;
-                timeSetter.ShowDialog();
-                World.Default.ServerOffset = timeSetter.ServerOffset;
-                World.Default.SaveSettings();
-            }
+            var player = new ActivePlayerForm();
+            player.Show();
+            
+
+            //using (var timeSetter = new TimeZoneForm())
+            //{
+            //    timeSetter.ServerOffset = World.Default.ServerOffset;
+            //    timeSetter.ShowDialog();
+            //    World.Default.ServerOffset = timeSetter.ServerOffset;
+            //    World.Default.SaveSettings();
+            //}
         }
 
         private void ToolStripOpen_Click(object sender, EventArgs e)
