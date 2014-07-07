@@ -90,7 +90,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Tribe.GameLocation = null;
             this.Tribe.Location = new System.Drawing.Point(96, 117);
             this.Tribe.Name = "Tribe";
-            this.Tribe.PlaceHolderText = null;
             this.Tribe.Size = new System.Drawing.Size(50, 20);
             this.Tribe.TabIndex = 10;
             // 

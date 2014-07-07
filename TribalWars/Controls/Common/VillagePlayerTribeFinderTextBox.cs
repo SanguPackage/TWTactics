@@ -39,26 +39,9 @@ namespace TribalWars.Controls.Common
         private bool _showButton;
 
         private bool _handleTextChanged = true;
-        private string _placeHolderText;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Text to display when there is no text
-        /// </summary>
-        public string PlaceHolderText
-        {
-            get
-            {
-                return _placeHolderText;
-            }
-            set
-            {
-                _placeHolderText = value;
-                Text = value;
-            }
-        }
-
         /// <summary>
         /// Gets the game location if coordinates are filled in
         /// </summary>

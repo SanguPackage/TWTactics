@@ -218,14 +218,14 @@ namespace TribalWars.Controls.Common
             ToolTipText = string.Empty;
             LocationChanger.Width = 235;
 
-            LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText = DefaultPlaceHolderText;
+            LocationChanger.PlayerTribeFinderTextBox.Text = DefaultPlaceHolderText;
             LocationChanger.PlayerTribeFinderTextBox.LostFocus += PlayerTribeFinderTextBoxOnLostFocus;
             LocationChanger.PlayerTribeFinderTextBox.GotFocus += PlayerTribeFinderTextBoxOnGotFocus;
         }
 
         private void PlayerTribeFinderTextBoxOnGotFocus(object sender, EventArgs e)
         {
-            if (LocationChanger.PlayerTribeFinderTextBox.Text == LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText)
+            if (LocationChanger.PlayerTribeFinderTextBox.Text == DefaultPlaceHolderText)
             {
                 LocationChanger.PlayerTribeFinderTextBox.Text = "";
             }
@@ -235,7 +235,7 @@ namespace TribalWars.Controls.Common
         {
             if (LocationChanger.PlayerTribeFinderTextBox.Text == "")
             {
-                LocationChanger.PlayerTribeFinderTextBox.Text = LocationChanger.PlayerTribeFinderTextBox.PlaceHolderText;
+                LocationChanger.PlayerTribeFinderTextBox.Text = DefaultPlaceHolderText;
             }
         }
         #endregion

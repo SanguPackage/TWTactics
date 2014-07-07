@@ -156,7 +156,6 @@ namespace TribalWars.Controls.Accordeon.Location
             this.You.GameLocation = null;
             this.You.Location = new System.Drawing.Point(6, 16);
             this.You.Name = "You";
-            this.You.PlaceHolderText = null;
             this.You.Size = new System.Drawing.Size(102, 20);
             this.You.TabIndex = 11;
             this.You.PlayerSelected += new System.EventHandler<TribalWars.Data.Events.PlayerEventArgs>(this.You_PlayerSelected);
