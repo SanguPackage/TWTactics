@@ -196,7 +196,7 @@ namespace TribalWars.Data.Maps
         public void SetCenter(IEnumerable<Village> villages)
         {
             Debug.Assert(villages != null);
-            Location location = GetSpan(villages, false);
+            Location location = GetSpan(villages);
             SetCenter(location);
         }
 
@@ -205,7 +205,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
         /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
-        private Location GetSpan(IEnumerable<Village> vils, bool tryRespectCurrentZoom = true)
+        private Location GetSpan(IEnumerable<Village> vils)
         {
             int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
             foreach (Village vil in vils)
@@ -216,34 +216,26 @@ namespace TribalWars.Data.Maps
                 if (vil.Y > bottomY) bottomY = vil.Y;
             }
 
-            return GetSpan(leftX, topY, rightX, bottomY, tryRespectCurrentZoom);
+            return GetSpan(new Rectangle(leftX, topY, rightX - leftX, bottomY - topY));
         }
 
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
-        private Location GetSpan(int leftX, int topY, int rightX, int bottomY, bool tryRespectCurrentZoom = true)
+        private Location GetSpan(Rectangle span)
         {
-            // BUG: This only works for ShapeDisplay. IconDisplay zoom levels are disconnected from villageHeight/Width
-            // requiredWidth/Height think that zoom level 5 equals a villageWidth/Height of 5
+            const int villagesExtraVisible = 5;
 
-            int x = (leftX + rightX) / 2;
-            int y = (topY + bottomY) / 2;
+            var middle = new Point(
+                (span.Left + span.Right) / 2, 
+                (span.Top + span.Bottom) / 2);
 
-            int requiredWidth = CanvasSize.Width / (rightX - leftX + 5);
-            int requiredHeight = CanvasSize.Height / (bottomY - topY + 5);
+            var maxVillageSize = new Size(
+                CanvasSize.Width / (span.Width + villagesExtraVisible), 
+                CanvasSize.Height / (span.Height + villagesExtraVisible));
 
-            // TODO: This is the calculation that we need to make a strategy for
-            int requiredMin = Math.Min(requiredWidth, requiredHeight);
-
-            if (!tryRespectCurrentZoom)
-            {
-                // use optimal zoom level for given parameters
-                return new Location(x, y, requiredMin);
-            }
-
-            // Only change zoom when villages don't fit with current zoom
-            return new Location(x, y, Math.Min(requiredMin, World.Default.Map.Location.Zoom));
+            int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize);
+            return new Location(middle, newZoomLevel);
         }
 
         /// <summary>

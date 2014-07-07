@@ -81,6 +81,12 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
+        public virtual int GetMinimumZoomLevel(Size maxVillageSize)
+        {
+            var newZoom = Math.Min(maxVillageSize.Width, maxVillageSize.Height);
+            return Math.Min(newZoom, Zoom.Current);
+        }
+
         /// <summary>
         /// Create drawer for village background (Shape/Icon)
         /// </summary>

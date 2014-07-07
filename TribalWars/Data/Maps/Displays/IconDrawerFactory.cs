@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Drawers.OtherDrawers;
 using TribalWars.Data.Maps.Drawers.VillageDrawers;
@@ -114,11 +115,33 @@ namespace TribalWars.Data.Maps.Displays
                 Debug.Assert(scenery == Scenery.New);
                 _activeBackground = _background2;
             }
-
         }
         #endregion
 
         #region Public Methods
+        public override int GetMinimumZoomLevel(Size maxVillageSize)
+        {
+            int newZoom = 0;
+
+            // Start at 1: index 0 is empty
+            for (int i = 1; i < VillageSizes.Count; i++)
+            {
+                var current = VillageSizes.ElementAt(i);
+                if (current.Item1 <= maxVillageSize.Width && current.Item2 <= maxVillageSize.Height)
+                {
+                    newZoom = i;
+                    break;
+                }
+            }
+
+            if (newZoom == 0)
+            {
+                return VillageSizes.Count - 1;
+            }
+
+            return Math.Max(newZoom, Zoom.Current);
+        }
+
         protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
         {
             string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;

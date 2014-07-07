@@ -482,6 +482,15 @@ namespace TribalWars.Data.Maps
 
         #region Game from/to Map Converters
         /// <summary>
+        /// Gets the minimum zoom level that can display villages as big as the parameter.
+        /// But only change zoom when villages don't fit with current zoom.
+        /// </summary>
+        public int GetMinimumZoomLevel(Size maxVillageSize)
+        {
+            return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize);
+        }
+
+        /// <summary>
         /// Converts a game location to the map location
         /// </summary>
         /// <remarks>Assumes the location needs to be converted for the main map</remarks>
