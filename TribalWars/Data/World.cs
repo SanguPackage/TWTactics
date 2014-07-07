@@ -82,7 +82,7 @@ namespace TribalWars.Data
         /// Gets a value indicating which scenery (sea, mountains, ...)
         /// to draw when drawing TW village icons
         /// </summary>
-        internal IconDrawerFactory.Scenery IconScenery { get; set; }
+        internal IconDrawerFactory.Scenery IconScenery { private get; set; }
 
         /// <summary>
         /// Gets the name of the World
@@ -201,7 +201,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Gets the RegEx pattern to recognize valid Village input
         /// </summary>
-        public static Regex VillagePattern
+        private static Regex VillagePattern
         {
             get
             {

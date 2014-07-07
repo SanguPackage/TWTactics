@@ -112,8 +112,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 DialogResult result = MessageBox.Show("Use the current position as your home?", "Set Homepage", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    World.Default.Map.HomeLocation = World.Default.Map.Location;
-                    World.Default.Map.HomeDisplay = World.Default.Map.Display.CurrentDrawerFactory.Type;
+                    World.Default.Map.SaveHome();
                 }
             }
         }

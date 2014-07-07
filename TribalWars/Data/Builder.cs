@@ -249,7 +249,7 @@ namespace TribalWars.Data
 
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
-                w.WriteAttributeString("Display", map.Display.CurrentDrawerFactory.Type.ToString());
+                w.WriteAttributeString("Display", map.Display.Type.ToString());
                 w.WriteAttributeString("XY", map.Location.X + "|" + map.Location.Y);
                 w.WriteAttributeString("Zoom", map.Location.Zoom.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
