@@ -24,12 +24,12 @@ namespace TribalWars.Data.Events
         /// Gets data for the zoom level of the
         /// new location
         /// </summary>
-        public DisplayBase.ZoomInfo ZoomInfo { get; private set; }
+        public DrawerFactoryBase.ZoomInfo ZoomInfo { get; private set; }
 
         #endregion
 
         #region Constructors
-        public MapLocationEventArgs(Location newLocation, Location oldLocation, DisplayBase.ZoomInfo zoom)
+        public MapLocationEventArgs(Location newLocation, Location oldLocation, DrawerFactoryBase.ZoomInfo zoom)
         {
             NewLocation = newLocation;
             OldLocation = oldLocation;

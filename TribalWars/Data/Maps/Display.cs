@@ -33,15 +33,15 @@ namespace TribalWars.Data.Maps
         private Bitmap _background; // TODO: private PainterCache _cache?
         private Painter _painter;
 
-        private DisplayBase _displayStrategy;
+        private DrawerFactoryBase _drawerFactoryStrategy;
         private readonly DisplaySettings _settings;
         private bool _isDisposed;
         #endregion
 
         #region Properties
-        public DisplayBase CurrentDisplay
+        public DrawerFactoryBase CurrentDrawerFactory
         {
-            get { return _displayStrategy; }
+            get { return _drawerFactoryStrategy; }
         }
 
         public DisplaySettings Settings
@@ -57,7 +57,7 @@ namespace TribalWars.Data.Maps
             _map = map;
             _markers = map.MarkerManager;
 
-            _displayStrategy = DisplayBase.Create(displayType, zoomLevel, settings.Scenery);
+            _drawerFactoryStrategy = DrawerFactoryBase.Create(displayType, zoomLevel, settings.Scenery);
 
             // TODO: all these move to the painter
             _backgroundBrush = new SolidBrush(settings.BackgroundColor);
@@ -78,7 +78,7 @@ namespace TribalWars.Data.Maps
         public void UpdateLocation(Location location)
         {
             ResetCache();
-            _displayStrategy = DisplayBase.Create(CurrentDisplay.Type, location.Zoom, _settings.Scenery);
+            _drawerFactoryStrategy = DrawerFactoryBase.Create(CurrentDrawerFactory.Type, location.Zoom, _settings.Scenery);
             _visibleRectangle = GetGameRectangle();
         }
 
@@ -115,16 +115,16 @@ namespace TribalWars.Data.Maps
                 {
                     // Paint village icon/shape
                     DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                    finalCache = CurrentDisplay.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
+                    finalCache = CurrentDrawerFactory.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
                     if (finalCache != null)
                     {
                         finalCache.PaintVillage(g, mapVillage);
 
-                        if (CurrentDisplay.SupportDecorators && village.Type != VillageType.None)
+                        if (CurrentDrawerFactory.SupportDecorators && village.Type != VillageType.None)
                         {
                             // Paint extra village decorators
                             DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
-                            DrawerBase decoratorVillageType = CurrentDisplay.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
+                            DrawerBase decoratorVillageType = CurrentDrawerFactory.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
                             if (decoratorVillageType != null)
                             {
                                 decoratorVillageType.PaintVillage(g, mapVillage);
@@ -145,7 +145,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         private void PaintNonVillage(Graphics g, Point game, Rectangle mapVillage)
         {
-            DrawerBase finalCache = CurrentDisplay.CreateNonVillageDrawer(game, mapVillage);
+            DrawerBase finalCache = CurrentDrawerFactory.CreateNonVillageDrawer(game, mapVillage);
             if (finalCache != null)
             {
                 finalCache.PaintVillage(g, mapVillage);
@@ -318,8 +318,8 @@ namespace TribalWars.Data.Maps
                 mapSize.Offset(mapOffset);
                 _toPaint = mapSize;
 
-                DisplayBase displayType = display.CurrentDisplay;
-                var dimensions = displayType.Dimensions;
+                DrawerFactoryBase drawerFactoryType = display.CurrentDrawerFactory;
+                var dimensions = drawerFactoryType.Dimensions;
                 _villageWidthSpacing = dimensions.SizeWithSpacing.Width;
                 _villageHeightSpacing = dimensions.SizeWithSpacing.Height;
 
@@ -476,7 +476,7 @@ namespace TribalWars.Data.Maps
         public Point GetMapLocation(Point loc)
         {
             // Get location from game and convert it to location on the map
-            var villageSize = CurrentDisplay.Dimensions.SizeWithSpacing;
+            var villageSize = CurrentDrawerFactory.Dimensions.SizeWithSpacing;
 
             int off = (loc.X - _map.Location.X) * villageSize.Width;
             loc.X = off + _map.CanvasSize.Width / 2;
@@ -502,7 +502,7 @@ namespace TribalWars.Data.Maps
         public Point GetGameLocation(Point loc)
         {
             // Get location from map and convert it to game location
-            var villageSize = CurrentDisplay.Dimensions.SizeWithSpacing;
+            var villageSize = CurrentDrawerFactory.Dimensions.SizeWithSpacing;
 
             int newx = (loc.X + (_map.Location.X * villageSize.Width) - (_map.CanvasSize.Width / 2)) / villageSize.Width;
             int newy = (loc.Y + (_map.Location.Y * villageSize.Height) - (_map.CanvasSize.Height / 2)) / villageSize.Height;

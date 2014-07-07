@@ -113,7 +113,7 @@ namespace TribalWars.Controls.Accordeon.Location
                 if (result == DialogResult.Yes)
                 {
                     World.Default.Map.HomeLocation = World.Default.Map.Location;
-                    World.Default.Map.HomeDisplay = World.Default.Map.Display.CurrentDisplay.Type;
+                    World.Default.Map.HomeDisplay = World.Default.Map.Display.CurrentDrawerFactory.Type;
                 }
             }
         }

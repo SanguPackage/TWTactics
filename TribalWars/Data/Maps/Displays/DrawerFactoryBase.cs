@@ -15,7 +15,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Base class for the MiniMap, Shape and IconDisplay factories
     /// </summary>
-    public abstract class DisplayBase
+    public abstract class DrawerFactoryBase
     {
         #region Fields
         private readonly ZoomInfo _zoom;
@@ -49,32 +49,32 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public static DisplayBase Create(DisplayTypes displayType, int zoomLevel, IconDisplay.Scenery scenery)
+        public static DrawerFactoryBase Create(DisplayTypes displayType, int zoomLevel, IconDrawerFactory.Scenery scenery)
         {
-            DisplayBase display;
+            DrawerFactoryBase drawerFactory;
             switch (displayType)
             {
                 case DisplayTypes.Icon:
-                    display = new IconDisplay(zoomLevel, scenery);
+                    drawerFactory = new IconDrawerFactory(zoomLevel, scenery);
                     break;
 
                 case DisplayTypes.MiniMap:
-                    display = new MiniMapDisplay();
+                    drawerFactory = new MiniMapDrawerFactory();
                     break;
 
                 case DisplayTypes.Shape:
-                    display = new ShapeDisplay(zoomLevel);
+                    drawerFactory = new ShapeDrawerFactory(zoomLevel);
                     break;
 
                 default:
                     throw new Exception("oeps");
             }
 
-            display.SetVillageDimensions();
-            return display;
+            drawerFactory.SetVillageDimensions();
+            return drawerFactory;
         }
 
-        protected DisplayBase(ZoomInfo zoom)
+        protected DrawerFactoryBase(ZoomInfo zoom)
         {
             _zoom = zoom;
         }

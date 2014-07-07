@@ -118,7 +118,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                         {
                             e.Graphics.DrawLine(pen, firstP, p);
 
-                            if (_map.Display.CurrentDisplay.AllowText)
+                            if (_map.Display.CurrentDrawerFactory.AllowText)
                             {
                                 SizeF size = e.Graphics.MeasureString(poly.Name, _font);
                                 p.Offset(5, 5);
@@ -480,7 +480,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         /// </summary>
         private bool CanAddPointToPolygon(Point lastMap, Point currentMap)
         {
-            if (World.Default.Map.Display.CurrentDisplay.Type == DisplayTypes.Icon)
+            if (World.Default.Map.Display.CurrentDrawerFactory.Type == DisplayTypes.Icon)
             {
                 Point lastGame = World.Default.Map.Display.GetGameLocation(lastMap);
                 Point currentGame = World.Default.Map.Display.GetGameLocation(currentMap);
@@ -488,7 +488,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             }
             else
             {
-                Debug.Assert(World.Default.Map.Display.CurrentDisplay.Type == DisplayTypes.Shape);
+                Debug.Assert(World.Default.Map.Display.CurrentDrawerFactory.Type == DisplayTypes.Shape);
 
                 double distance = Math.Sqrt(Math.Pow(currentMap.X - lastMap.X, 2) + Math.Pow(currentMap.Y - lastMap.Y, 2));
                 return distance > MinDistanceBetweenPoints;

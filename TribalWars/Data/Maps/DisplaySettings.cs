@@ -43,7 +43,7 @@ namespace TribalWars.Data.Maps
         /// Which world.dat to use for displaying mountains etc.
         /// Is specific per world and not a user setting.
         /// </summary>
-        public IconDisplay.Scenery Scenery { get; set; }
+        public IconDrawerFactory.Scenery Scenery { get; set; }
 
         public DisplaySettings(Color backgroundColor, bool continentLines, bool provinceLines, bool hideAbandoned, bool markedOnly)
         {

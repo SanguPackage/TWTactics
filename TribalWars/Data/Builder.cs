@@ -249,7 +249,7 @@ namespace TribalWars.Data
 
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
-                w.WriteAttributeString("Display", map.Display.CurrentDisplay.Type.ToString());
+                w.WriteAttributeString("Display", map.Display.CurrentDrawerFactory.Type.ToString());
                 w.WriteAttributeString("XY", map.Location.X + "|" + map.Location.Y);
                 w.WriteAttributeString("Zoom", map.Location.Zoom.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();
@@ -319,7 +319,7 @@ namespace TribalWars.Data
             w.TwStats.PlayerGraph = info.TWStatsPlayerGraph;
             w.TwStats.TribeGraph = info.TWStatsTribeGraph;
 
-            w.IconScenery = (IconDisplay.Scenery)Convert.ToInt32(info.WorldDatScenery);
+            w.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
 
             World.Default.Views.Clear();
             foreach (var view in info.Views)

@@ -8,7 +8,7 @@ using TribalWars.Data.Villages;
 
 namespace TribalWars.Data.Maps.Displays
 {
-    public sealed class MiniMapDisplay : DisplayBase
+    public sealed class MiniMapDrawerFactory : DrawerFactoryBase
     {
         #region Fields
         private const int FixedZoomLevel = 3;
@@ -36,7 +36,7 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public MiniMapDisplay()
+        public MiniMapDrawerFactory()
             : base(new ZoomInfo(1, 1, 1))
         {
 

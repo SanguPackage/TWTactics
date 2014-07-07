@@ -17,7 +17,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Create and cache IconDrawers
     /// </summary>
-    public sealed class IconDisplay : DisplayBase
+    public sealed class IconDrawerFactory : DrawerFactoryBase
     {
         #region Constants & Fields
         private const int StandardIconWidth = 53;
@@ -61,7 +61,7 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        static IconDisplay()
+        static IconDrawerFactory()
         {
             _background = new MemoryStream(WorldData.WorldBackgroundData);
             _background2 = new MemoryStream(WorldData.WorldBackgroundData2);
@@ -102,7 +102,7 @@ namespace TribalWars.Data.Maps.Displays
             //16-31 Wald
         }
 
-        public IconDisplay(int zoomLevel, Scenery scenery)
+        public IconDrawerFactory(int zoomLevel, Scenery scenery)
             : base(new ZoomInfo(1, VillageSizes.Count - 1, zoomLevel))
         {
             if (scenery == Scenery.Old)

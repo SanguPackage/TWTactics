@@ -77,7 +77,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
             {
                 _activeVillageAnimationPen = ReferenceEquals(_activeVillageAnimationPen, _activeVillagePen2) ? _activeVillagePen : _activeVillagePen2;
                 Point villageLocation = _map.Display.GetMapLocation(_mainMapSelectedVillage.Location);
-                VillageDimensions village = _map.Display.CurrentDisplay.Dimensions;
+                VillageDimensions village = _map.Display.CurrentDrawerFactory.Dimensions;
 
                 PaintCross(e.Graphics, _activeVillageAnimationPen, villageLocation, village.SizeWithSpacing);
             }
@@ -95,7 +95,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
 
                 if (player != null)
                 {
-                    var villageDimension = _map.Display.CurrentDisplay.Dimensions;
+                    var villageDimension = _map.Display.CurrentDrawerFactory.Dimensions;
 
                     foreach (Village village in player)
                     {

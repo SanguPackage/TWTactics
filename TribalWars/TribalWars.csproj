@@ -189,7 +189,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TWContextMenu\DefaultMapContextMenu.cs" />
+    <Compile Include="Controls\TWContextMenu\NoVillageMapContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\SelectedPolygonContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\PolygonContextMenu.cs" />
     <Compile Include="Controls\Maps\MiniMapControl.cs">
@@ -203,7 +203,7 @@
     <Compile Include="Data\Events\MapMarkerEventArgs.cs" />
     <Compile Include="Data\Events\PolygonEventArgs.cs" />
     <Compile Include="Data\Maps\DisplaySettings.cs" />
-    <Compile Include="Data\Maps\Displays\MiniMapDisplay.cs" />
+    <Compile Include="Data\Maps\Displays\MiniMapDrawerFactory.cs" />
     <Compile Include="Data\Maps\Displays\VillageDimensions.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
@@ -331,15 +331,15 @@
     <Compile Include="Data\Maps\Display.cs" />
     <Compile Include="Data\Maps\Publisher.cs" />
     <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
-    <Compile Include="Data\Maps\Displays\IconDisplay.cs" />
+    <Compile Include="Data\Maps\Displays\IconDrawerFactory.cs" />
     <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Maps\Displays\ShapeDisplay.cs" />
+    <Compile Include="Data\Maps\Displays\ShapeDrawerFactory.cs" />
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
-    <Compile Include="Data\Maps\Displays\DisplayBase.cs" />
+    <Compile Include="Data\Maps\Displays\DrawerFactoryBase.cs" />
     <Compile Include="Data\Maps\Views\ViewData.cs" />
     <Compile Include="Data\Maps\Markers\MarkerBase.cs">
       <SubType>Code</SubType>

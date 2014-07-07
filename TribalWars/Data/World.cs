@@ -82,7 +82,7 @@ namespace TribalWars.Data
         /// Gets a value indicating which scenery (sea, mountains, ...)
         /// to draw when drawing TW village icons
         /// </summary>
-        internal IconDisplay.Scenery IconScenery { get; set; }
+        internal IconDrawerFactory.Scenery IconScenery { get; set; }
 
         /// <summary>
         /// Gets the name of the World

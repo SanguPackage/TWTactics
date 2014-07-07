@@ -16,7 +16,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Create and cache ShapeDrawers
     /// </summary>
-    public sealed class ShapeDisplay : DisplayBase
+    public sealed class ShapeDrawerFactory : DrawerFactoryBase
     {
         #region Properties
         public override bool AllowText
@@ -31,7 +31,7 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Constructors
-        public ShapeDisplay(int zoomLevel)
+        public ShapeDrawerFactory(int zoomLevel)
             : base(new ZoomInfo(1, 25, zoomLevel))
         {
 

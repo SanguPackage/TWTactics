@@ -269,7 +269,7 @@ namespace TribalWars.Data.Maps
         {
             if (value != null)
             {
-                DisplayBase.ZoomInfo info = Display.CurrentDisplay.Zoom;
+                DrawerFactoryBase.ZoomInfo info = Display.CurrentDrawerFactory.Zoom;
                 if (value.Zoom < info.Minimum)
                 {
                     value = new Location(value.Point, info.Minimum);
@@ -308,7 +308,7 @@ namespace TribalWars.Data.Maps
         /// <remarks>Resets the minipulators and display</remarks>
         public void SetDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
         {
-            if (forceDisplay || Display.CurrentDisplay.Type != display)
+            if (forceDisplay || Display.CurrentDrawerFactory.Type != display)
             {
                 Display = new Display(Display.Settings, this, display, location.Zoom);
 
@@ -323,7 +323,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void GoHome()
         {
-            if (HomeDisplay != Display.CurrentDisplay.Type)
+            if (HomeDisplay != Display.CurrentDrawerFactory.Type)
             {
                 SetDisplay(HomeDisplay, HomeLocation);
             }

@@ -381,13 +381,13 @@ namespace TribalWars.Data
                 /// <summary>
                 /// Gets a value indicating which world.dat to use
                 /// </summary>
-                public IconDisplay.Scenery MapScenery { get; private set; }
+                public IconDrawerFactory.Scenery MapScenery { get; private set; }
 
                 public TwWorldSettings(float worldSpeed, float worldUnitSpeed, bool isOldScenery)
                 {
                     Speed = worldSpeed;
                     UnitSpeed = worldUnitSpeed;
-                    MapScenery = isOldScenery ? IconDisplay.Scenery.Old : IconDisplay.Scenery.New;
+                    MapScenery = isOldScenery ? IconDrawerFactory.Scenery.Old : IconDrawerFactory.Scenery.New;
                 }
             }
             #endregion
