@@ -189,9 +189,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TWContextMenu\MarkerContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\NoVillageMapContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\SelectedPolygonContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\PolygonContextMenu.cs" />
+    <Compile Include="Controls\TWContextMenu\NoPolygonContextMenu.cs" />
     <Compile Include="Controls\Maps\MiniMapControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -200,7 +201,6 @@
     </Compile>
     <Compile Include="Data\Events\ManipulatorEventArgs.cs" />
     <Compile Include="Data\Events\MapDisplayTypeEventArgs.cs" />
-    <Compile Include="Data\Events\MapMarkerEventArgs.cs" />
     <Compile Include="Data\Events\PolygonEventArgs.cs" />
     <Compile Include="Data\Maps\DisplaySettings.cs" />
     <Compile Include="Data\Maps\Displays\MiniMapDrawerFactory.cs" />
@@ -341,13 +341,8 @@
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
     <Compile Include="Data\Maps\Displays\DrawerFactoryBase.cs" />
     <Compile Include="Data\Maps\Views\ViewData.cs" />
-    <Compile Include="Data\Maps\Markers\MarkerBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Data\Maps\Markers\MarkerGroup.cs" />
     <Compile Include="Data\Maps\Markers\MarkerManager.cs" />
-    <Compile Include="Data\Maps\Markers\PlayerMarker.cs" />
-    <Compile Include="Data\Maps\Markers\TribeMarker.cs" />
     <Compile Include="Data\Maps\Views\PointsView.cs" />
     <Compile Include="Data\Maps\Views\VillageTypeView.cs" />
     <Compile Include="Data\Reporting\CurrentSituation.cs" />

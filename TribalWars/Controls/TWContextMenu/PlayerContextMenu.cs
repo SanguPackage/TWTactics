@@ -34,6 +34,10 @@ namespace TribalWars.Controls.TWContextMenu
             _menu = new UIContextMenu();
             _menu.ShowToolTips = InheritableBoolean.True;
 
+            var markerContext = new MarkerContextMenu(map, player);
+            _menu.Commands.AddRange(markerContext.GetCommands().ToArray());
+            _menu.AddSeparator();
+
             if (map.Display.IsVisible(player))
             {
                 _menu.AddCommand("Pinpoint", OnDetails);

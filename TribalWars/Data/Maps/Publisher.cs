@@ -40,7 +40,6 @@ namespace TribalWars.Data.Maps
         public event EventHandler<PolygonEventArgs> PolygonActivated;
 
         public event EventHandler<MapLocationEventArgs> LocationChanged;
-        public event EventHandler<MapMarkerEventArgs> MarkersChanged;
         public event EventHandler<MapDisplayTypeEventArgs> DisplayTypeChanged;
         public event EventHandler<ManipulatorEventArgs> ManipulatorChanged;
         #endregion
@@ -175,17 +174,6 @@ namespace TribalWars.Data.Maps
         {
             if (PolygonActivated != null)
                 PolygonActivated(sender, new PolygonEventArgs(polygons));
-        }
-        #endregion
-
-        #region Informative Events
-        /// <summary>
-        /// Publishes an event indicating the map markers have changed
-        /// </summary>
-        public void InformMarkersChanged(object sender, MapMarkerEventArgs e)
-        {
-            if (MarkersChanged != null)
-                MarkersChanged(sender, e);
         }
         #endregion
         #endregion

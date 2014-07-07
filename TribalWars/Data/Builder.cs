@@ -109,7 +109,7 @@ namespace TribalWars.Data
                 {
                     markers.Add(ReadMarkerGroup(r, map));
                 }
-                map.MarkerManager.AddMarker(markers.ToArray());
+                map.MarkerManager.AddMarkers(markers);
 
                 // MainMap: Manipulators
                 r.ReadToFollowing("Manipulator");
@@ -203,23 +203,20 @@ namespace TribalWars.Data
         {
             switch (type)
             {
-                /*case "Village":
-                    Village village = World.Default.GetVillage(value);
-                    if (village != null)
-                        new VillageMarker(village);
-                    break;*/
-
                 case "Player":
                     Player ply = World.Default.GetPlayer(value);
                     if (ply != null)
-                        m.Add(new PlayerMarker(ply));
+                    {
+                        m.Add(ply);
+                    }
                     break;
 
                 case "Tribe":
                     Tribe tribe = World.Default.GetTribe(value);
                     if (tribe != null)
-                        //return new TribeMarker(tribe);
-                        m.Add(new TribeMarker(tribe));
+                    {
+                        m.Add(tribe);
+                    }
                     break;
             }
         }

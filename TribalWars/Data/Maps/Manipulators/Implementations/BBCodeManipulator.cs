@@ -240,7 +240,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         public override IContextMenu GetContextMenu(Point location, Villages.Village village)
         {
             Debug.Assert(ActivePolygon != null);
-            return new SelectedPolygonContextMenu(this);
+            return new PolygonContextMenu(this);
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
 using CommandType = Janus.Windows.UI.CommandBars.CommandType;
@@ -58,6 +59,17 @@ namespace TribalWars.Tools
             menu.Commands.Add(cmd);
 
             return cmd;
+        }
+
+        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, EventHandler handler)
+        {
+            var colorPicker = new UIColorPicker();
+            colorPicker.SelectedColor = defaultSelectedColor;
+            colorPicker.SelectedColorChanged += handler;
+
+            var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
+            cmd.Control = colorPicker;
+            menu.Commands.Add(cmd);
         }
 
         public static void AddTextBoxCommand(this UIContextMenu menu, string text, string defaultTextBoxValue, EventHandler handler)

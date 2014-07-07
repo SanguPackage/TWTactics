@@ -1,6 +1,9 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
@@ -15,15 +18,20 @@ namespace TribalWars.Data.Maps.Markers
     public sealed class MarkerManager
     {
         #region Fields
-        private SortedDictionary<int, MarkerGroup> _markTribe;
-        private SortedDictionary<int, MarkerGroup> _markPlayer;
+        private Dictionary<int, MarkerGroup> _markTribe;
+        private Dictionary<int, MarkerGroup> _markPlayer;
+
+        private readonly List<MarkerGroup> _markers;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets all specific markers 
         /// </summary>
-        public List<MarkerGroup> Markers { get; private set; }
+        public IEnumerable<MarkerGroup> Markers
+        {
+            get { return _markers; }
+        }
 
         /// <summary>
         /// Gets the markergroup for your own villages
@@ -49,38 +57,48 @@ namespace TribalWars.Data.Maps.Markers
         #region Constructors
         public MarkerManager()
         {
-            Markers = new List<MarkerGroup>();
-            _markPlayer = new SortedDictionary<int, MarkerGroup>();
-            _markTribe = new SortedDictionary<int, MarkerGroup>();
+            _markers = new List<MarkerGroup>();
+            _markPlayer = new Dictionary<int, MarkerGroup>();
+            _markTribe = new Dictionary<int, MarkerGroup>();
         }
         #endregion
 
         #region Public Methods
+        public MarkerGroup GetMarker(Player player)
+        {
+            Debug.Assert(player != null);
+            MarkerGroup found;
+            if (_markPlayer.TryGetValue(player.Id, out found))
+            {
+                return found;
+            }
+            Debug.Assert(!_markers.Any(x => x.Players.Contains(player)));
+            return MarkerGroup.CreateEmpty();
+        }
+
+        public MarkerGroup GetMarker(Tribe tribe)
+        {
+            Debug.Assert(tribe != null);
+            MarkerGroup found;
+            if (_markTribe.TryGetValue(tribe.Id, out found))
+            {
+                return found;
+            }
+            Debug.Assert(!_markers.Any(x => x.Tribes.Contains(tribe)));
+            return MarkerGroup.CreateEmpty();
+        }
+
         /// <summary>
         /// Adds MarkerGroups to the Manager
         /// </summary>
-        public void AddMarker(MarkerGroup[] groups)
+        public void AddMarkers(IEnumerable<MarkerGroup> groups)
         {
-            var tribes = new List<Tribe>();
-            var players = new List<Player>();
             foreach (MarkerGroup group in groups)
             {
-                bool add = true;
-                foreach (Tribe p in group.Tribes)
+                if (!group.Empty)
                 {
-                    if (tribes.Contains(p)) 
-                        add = false;
-                    else tribes.Add(p);
+                    _markers.Add(group);
                 }
-                foreach (Player p in group.Players)
-                {
-                    if (players.Contains(p)) 
-                        add = false;
-                    else players.Add(p);
-                }
-                if (group.Players.Count == 0 && group.Tribes.Count == 0) add = false;
-
-                if (add) Markers.Add(group);
             }
         }
 
@@ -125,8 +143,8 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public void CacheSpecialMarkers()
         {
-            _markPlayer = new SortedDictionary<int, MarkerGroup>();
-            _markTribe = new SortedDictionary<int, MarkerGroup>();
+            _markPlayer = new Dictionary<int, MarkerGroup>();
+            _markTribe = new Dictionary<int, MarkerGroup>();
 
             CacheYouMarkers();
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 #endregion
@@ -9,21 +10,19 @@ using TribalWars.Data.Players;
 namespace TribalWars.Data.Maps.Markers
 {
     /// <summary>
-    /// Represents a named collection of Player and TribeMarkers
+    /// Represents a named collection of Player and Tribe Markers
     /// </summary>
     public sealed class MarkerGroup : IEquatable<MarkerGroup>
     {
+        #region Fields
+        private readonly List<Tribe> _tribes;
+        private readonly List<Player> _players;
+        //private bool _active;
+        #endregion
+
         #region Properties
-        /// <summary>
-        /// Gets the tribes marked by the group
-        /// </summary>
-        public List<Tribe> Tribes { get; private set; }
-
-        /// <summary>
-        /// Gets the players marked by the group
-        /// </summary>
-        public List<Player> Players { get; private set; }
-
+        
+        //public class MarkerSettings
         /// <summary>
         /// Gets or sets the description
         /// </summary>
@@ -49,6 +48,31 @@ namespace TribalWars.Data.Maps.Markers
         /// villages on the map
         /// </summary>
         public string View { get; private set; }
+
+        /// <summary>
+        /// Returns true when there are no tribes
+        /// or players actually being marked
+        /// </summary>
+        public bool Empty
+        {
+            get { return !_players.Any() && !_tribes.Any(); }
+        }
+
+        /// <summary>
+        /// Gets the tribes marked by the group
+        /// </summary>
+        public IEnumerable<Tribe> Tribes
+        {
+            get { return _tribes; }
+        }
+
+        /// <summary>
+        /// Gets the players marked by the group
+        /// </summary>
+        public IEnumerable<Player> Players
+        {
+            get { return _players; }
+        }
         #endregion
 
         #region Constructor
@@ -60,8 +84,13 @@ namespace TribalWars.Data.Maps.Markers
             ExtraColor = extraColor;
             View = view;
 
-            Players = new List<Player>();
-            Tribes = new List<Tribe>();
+            _players = new List<Player>();
+            _tribes = new List<Tribe>();
+        }
+        
+        public static MarkerGroup CreateEmpty()
+        {
+            return new MarkerGroup("", false, Color.Transparent, Color.Transparent, "Points");
         }
         #endregion
 
@@ -69,48 +98,48 @@ namespace TribalWars.Data.Maps.Markers
         /// <summary>
         /// Adds a PlayerMarker to the collection
         /// </summary>
-        public void Add(PlayerMarker itm)
+        public void Add(Player player)
         {
-            if (itm != null && itm.Player != null)
+            if (player != null)
             {
-                if (!Players.Contains(itm.Player))
-                    Players.Add(itm.Player);
+                if (!_players.Contains(player))
+                    _players.Add(player);
             }
         }
 
         /// <summary>
         /// Adds a TribeMarker to the collection
         /// </summary>
-        public void Add(TribeMarker itm)
+        public void Add(Tribe tribe)
         {
-            if (itm != null && itm.Tribe != null)
+            if (tribe != null)
             {
-                if (!Tribes.Contains(itm.Tribe))
-                    Tribes.Add(itm.Tribe);
+                if (!_tribes.Contains(tribe))
+                    _tribes.Add(tribe);
             }
         }
 
         /// <summary>
         /// Removes a PlayerMarker from the collection
         /// </summary>
-        public void Remove(PlayerMarker itm)
+        public void Remove(Player player)
         {
-            if (itm != null && itm.Player != null)
+            if (player != null)
             {
-                if (Players.Contains(itm.Player))
-                    Players.Remove(itm.Player);
+                if (_players.Contains(player))
+                    _players.Remove(player);
             }
         }
 
         /// <summary>
         /// Removes a TribeMarker from the collection
         /// </summary>
-        public void Remove(TribeMarker itm)
+        public void Remove(Tribe tribe)
         {
-            if (itm != null && itm.Tribe != null)
+            if (tribe != null)
             {
-                if (Tribes.Contains(itm.Tribe))
-                    Tribes.Remove(itm.Tribe);
+                if (_tribes.Contains(tribe))
+                    _tribes.Remove(tribe);
             }
         }
         #endregion

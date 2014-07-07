@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.EditControls;
+using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Manipulators.Helpers;
@@ -14,7 +17,7 @@ using TribalWars.Tools;
 namespace TribalWars.Controls.TWContextMenu
 {
     /// <summary>
-    /// Right mouse click functionality for polygons when no polygon is selected
+    /// Right mouse click functionality for polygons when a polygon is selected
     /// </summary>
     public class PolygonContextMenu : IContextMenu
     {
@@ -26,27 +29,17 @@ namespace TribalWars.Controls.TWContextMenu
             _bbCode = bbCode;
             _menu = new UIContextMenu();
 
-            if (_bbCode.Polygons.Count > 0)
-            {
-                _menu.AddCommand("Generate all", OnGenerate);
-                _menu.AddSeparator();
-                _menu.AddCommand(string.Format("Delete all ({0})", _bbCode.Polygons.Count), OnClearAll);
+            Debug.Assert(_bbCode.ActivePolygon != null);
 
-                int visiblePolygons = _bbCode.Polygons.Count(x => x.Visible);
-                if (visiblePolygons > 0)
-                {
-                    _menu.AddCommand(string.Format("Hide all visible ({0})", visiblePolygons), OnHideAll);
-                }
-                int hiddenPolygons = _bbCode.Polygons.Count(x => !x.Visible);
-                if (hiddenPolygons > 0)
-                {
-                    _menu.AddCommand(string.Format("Show all hidden ({0})", hiddenPolygons), OnShowAll);
-                }
+            _menu.AddCommand(string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
+            _menu.AddSeparator();
 
-                _menu.AddSeparator();
-            }
+            _menu.AddCommand("Delete", OnDelete, Shortcut.Del);
+            _menu.AddTextBoxCommand("Name", _bbCode.ActivePolygon.Name, NameChanged);
+            _menu.AddTextBoxCommand("Group", _bbCode.ActivePolygon.Group, GroupChanged);
+            _menu.AddChangeColorCommand("Color", _bbCode.ActivePolygon.LineColor, SelectedColorChanged);
 
-            _menu.AddCommand("Help", OnHelp);
+            _menu.AddCommand(_bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
         }
 
         public void Show(Control control, Point pos)
@@ -55,45 +48,46 @@ namespace TribalWars.Controls.TWContextMenu
         }
 
         /// <summary>
-        /// Clears all the polygons
+        /// Deletes a polygon
         /// </summary>
-        private void OnClearAll(object sender, CommandEventArgs e)
+        private void OnDelete(object sender, CommandEventArgs e)
         {
-            _bbCode.Clear();
+            _bbCode.Delete();
+        }
+
+        private void NameChanged(object sender, EventArgs e)
+        {
+            var nameChanger = (TextBox)sender;
+            _bbCode.ActivePolygon.Name = nameChanger.Text;
+        }
+
+        private void GroupChanged(object sender, EventArgs e)
+        {
+            var groupChanger = (TextBox)sender;
+            _bbCode.ActivePolygon.Group = groupChanger.Text;
+        }
+
+        private void SelectedColorChanged(object sender, EventArgs e)
+        {
+            _bbCode.ActivePolygon.LineColor = ((UIColorPicker)sender).SelectedColor;
+            World.Default.DrawMaps(false);
         }
 
         /// <summary>
-        /// Raise the polygon event for the villages inside the polygons
+        /// Raise the polygon event for the villages inside
+        /// the selected polygon
         /// </summary>
         private void OnGenerate(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.ActivatePolygon(this, _bbCode.Polygons);
+            World.Default.Map.EventPublisher.ActivatePolygon(this, Enumerable.Repeat(_bbCode.ActivePolygon, 1));
         }
 
         /// <summary>
-        /// Hides the polygons
+        /// Hides/Shows one polygon
         /// </summary>
-        private void OnHideAll(object sender, CommandEventArgs e)
+        private void ToggleVisibility(object sender, CommandEventArgs e)
         {
-            _bbCode.ToggleVisibility(false);
-        }
-
-        /// <summary>
-        /// Shows the polygons
-        /// </summary>
-        private void OnShowAll(object sender, CommandEventArgs e)
-        {
-            _bbCode.ToggleVisibility(true);
-        }
-
-        private void OnHelp(object sender, CommandEventArgs e)
-        {
-            const string caption = @"Click and hold the left mouse button to draw the area (=Polygon) you want to generate BB codes for.
-Use Control to force drawing vertically and Shift to force drawing horizontally. (in case you don't have a steady hand:)
-Click on a polygon to select it. Use Del to remove the selected Polygon. Use the arrow keys to move it.
-
-Right click inside/outside a polygon for more options.";
-            MessageBox.Show(caption, "Polygon Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            _bbCode.ToggleVisibility();
         }
     }
 }

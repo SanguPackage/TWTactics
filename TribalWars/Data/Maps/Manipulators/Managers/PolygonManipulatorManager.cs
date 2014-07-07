@@ -52,7 +52,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         public override IContextMenu GetContextMenu(System.Drawing.Point location, Village village)
         {
-            return new PolygonContextMenu(_bbCode);
+            return new NoPolygonContextMenu(_bbCode);
         }
 
         /// <summary>

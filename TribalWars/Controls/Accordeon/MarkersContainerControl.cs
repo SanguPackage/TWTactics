@@ -20,10 +20,10 @@ namespace TribalWars.Controls.Accordeon
         private void MarkersContainerControl_Load(object sender, EventArgs e)
         {
             World.Default.EventPublisher.SettingsLoaded += World_SettingsLoaded;
-            World.Default.Map.EventPublisher.MarkersChanged += World_MarkersChanged;
+            //World.Default.Map.EventPublisher.MarkersChanged += World_MarkersChanged;
         }
 
-        void World_MarkersChanged(object sender, MapMarkerEventArgs e)
+        /*void World_MarkersChanged(object sender, MapMarkerEventArgs e)
         {
             MarkerGroups.Items.Clear();
             Markers.Items.Clear();
@@ -52,7 +52,7 @@ namespace TribalWars.Controls.Accordeon
             //{
             //    MarkerGroups.Items.Add(new MarkerGroupListViewItem(mg));
             //}
-        }
+        }*/
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
