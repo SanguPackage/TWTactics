@@ -70,11 +70,11 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
                             return true;
 
                         case Keys.Add:
-                            _map.SetZoomLevel(1);
+                            _map.IncreaseZoomLevel(1);
                             return true;
 
                         case Keys.Subtract:
-                            _map.SetZoomLevel(-1);
+                            _map.IncreaseZoomLevel(-1);
                             return true;
                     }
                 }

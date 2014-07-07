@@ -1,5 +1,6 @@
 #region Using
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -223,6 +224,12 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 foreach (ManipulatorBase m in _manipulators) redraw |= m.OnVillageClickCore(e);
                 return redraw;
             }
+        }
+
+        public bool MouseWheel(MouseEventArgs e)
+        {
+            _map.IncreaseZoomLevel(e.Delta > 0 ? 1 : -1);
+            return true;
         }
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)

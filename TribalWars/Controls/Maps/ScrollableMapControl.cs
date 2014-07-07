@@ -68,6 +68,15 @@ namespace TribalWars.Controls.Maps
             }
         }
 
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
+            if (IsManipulatable && Map.Manipulators.MouseWheel(e))
+            {
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// We want our map to also react to keys that are not normally
         /// triggered by the KeyDown event of the control

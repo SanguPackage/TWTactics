@@ -175,6 +175,14 @@ namespace TribalWars.Data.Maps
         }
 
         /// <summary>
+        /// Changes the zoom level
+        /// </summary>
+        public void IncreaseZoomLevel(int amount)
+        {
+            SetCenter(this, new Location(Location.X, Location.Y, Location.Zoom + amount), false);
+        }
+
+        /// <summary>
         /// Changes the x and y coordinates
         /// </summary>
         public void SetCenter(Point point)

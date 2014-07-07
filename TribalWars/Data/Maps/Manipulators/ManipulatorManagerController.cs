@@ -183,8 +183,12 @@ namespace TribalWars.Data.Maps.Manipulators
                 _mouseMoved(e, map, village, ActiveLocation, ActiveVillage);
             }
 
-            // TODO: also only call this one if _activeLocation != game?
             return CurrentManipulator.MouseMoveCore(new MapMouseMoveEventArgs(e, map, village));
+        }
+
+        public bool MouseWheel(MouseEventArgs e)
+        {
+            return CurrentManipulator.MouseWheel(e);
         }
 
         public void Paint(Graphics graphics, Rectangle fullMap)
