@@ -107,12 +107,12 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
             this.MapDistance = new TribalWars.Controls.AttackPlan.MapDistanceCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
+            this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
+            this.Polygon = new TribalWars.Controls.Main.Polygons.PolygonControl();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Controls.Maps.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Controls.Main.Browser.BrowserControl();
-            this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new TribalWars.Controls.Main.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.monitoringControl1 = new TribalWars.Controls.Main.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
@@ -134,9 +134,9 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
+            this.TabsPolygon.SuspendLayout();
             this.TabsMap.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
-            this.TabsPolygon.SuspendLayout();
             this.TabsMonitoring.SuspendLayout();
             this.FormToolbarContainer.ContentPanel.SuspendLayout();
             this.FormToolbarContainer.TopToolStripPanel.SuspendLayout();
@@ -150,7 +150,7 @@ namespace TribalWars.Forms
             panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             panel1.Location = new System.Drawing.Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(313, 229);
+            panel1.Size = new System.Drawing.Size(331, 229);
             panel1.TabIndex = 1;
             // 
             // MiniMap
@@ -159,7 +159,7 @@ namespace TribalWars.Forms
             this.MiniMap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MiniMap.Location = new System.Drawing.Point(0, 0);
             this.MiniMap.Name = "MiniMap";
-            this.MiniMap.Size = new System.Drawing.Size(311, 227);
+            this.MiniMap.Size = new System.Drawing.Size(329, 227);
             this.MiniMap.TabIndex = 1;
             this.MiniMap.Text = "miniMapControl1";
             // 
@@ -474,7 +474,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(417, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(363, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -685,7 +685,7 @@ namespace TribalWars.Forms
             this.FormSplitter.Panel2.Controls.Add(this.Tabs);
             this.FormSplitter.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.FormSplitter.Size = new System.Drawing.Size(1199, 612);
-            this.FormSplitter.SplitterDistance = 322;
+            this.FormSplitter.SplitterDistance = 340;
             this.FormSplitter.TabIndex = 0;
             // 
             // LeftNavigationTable
@@ -701,7 +701,7 @@ namespace TribalWars.Forms
             this.LeftNavigationTable.RowCount = 2;
             this.LeftNavigationTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 235F));
             this.LeftNavigationTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.LeftNavigationTable.Size = new System.Drawing.Size(319, 606);
+            this.LeftNavigationTable.Size = new System.Drawing.Size(337, 606);
             this.LeftNavigationTable.TabIndex = 1;
             // 
             // LeftNavigation
@@ -738,7 +738,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind,
             this.LeftNavigation_Markers,
             this.LeftNavigation_Distance});
-            this.LeftNavigation.Size = new System.Drawing.Size(313, 367);
+            this.LeftNavigation.Size = new System.Drawing.Size(331, 367);
             this.LeftNavigation.TabIndex = 0;
             this.LeftNavigation.VisibleButtonCount = 4;
             // 
@@ -766,7 +766,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Location.Key = "LeftNavigation_Location";
             this.LeftNavigation_Location.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Location.Name = "LeftNavigation_Location";
-            this.LeftNavigation_Location.Size = new System.Drawing.Size(311, 174);
+            this.LeftNavigation_Location.Size = new System.Drawing.Size(329, 174);
             this.LeftNavigation_Location.TabIndex = 1;
             this.LeftNavigation_Location.Text = "Location Options";
             this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -779,7 +779,7 @@ namespace TribalWars.Forms
             this.locationControl1.Location = new System.Drawing.Point(0, 0);
             this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
             this.locationControl1.Name = "locationControl1";
-            this.locationControl1.Size = new System.Drawing.Size(311, 174);
+            this.locationControl1.Size = new System.Drawing.Size(329, 174);
             this.locationControl1.TabIndex = 0;
             // 
             // LeftNavigation_QuickFind
@@ -806,7 +806,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
             this.LeftNavigation_QuickFind.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
-            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(311, 174);
+            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(329, 174);
             this.LeftNavigation_QuickFind.TabIndex = 4;
             this.LeftNavigation_QuickFind.Text = "Quick Details";
             this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -820,7 +820,7 @@ namespace TribalWars.Forms
             this.detailsControl1.Location = new System.Drawing.Point(0, 0);
             this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
             this.detailsControl1.Name = "detailsControl1";
-            this.detailsControl1.Size = new System.Drawing.Size(311, 174);
+            this.detailsControl1.Size = new System.Drawing.Size(329, 174);
             this.detailsControl1.TabIndex = 1;
             // 
             // LeftNavigation_Markers
@@ -847,7 +847,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
             this.LeftNavigation_Markers.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
-            this.LeftNavigation_Markers.Size = new System.Drawing.Size(311, 174);
+            this.LeftNavigation_Markers.Size = new System.Drawing.Size(329, 174);
             this.LeftNavigation_Markers.TabIndex = 3;
             this.LeftNavigation_Markers.Text = "Map Markers";
             this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -860,7 +860,7 @@ namespace TribalWars.Forms
             this.markersContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.markersContainerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.markersContainerControl1.Name = "markersContainerControl1";
-            this.markersContainerControl1.Size = new System.Drawing.Size(311, 174);
+            this.markersContainerControl1.Size = new System.Drawing.Size(329, 174);
             this.markersContainerControl1.TabIndex = 1;
             // 
             // LeftNavigation_Distance
@@ -887,7 +887,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
             this.LeftNavigation_Distance.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
-            this.LeftNavigation_Distance.Size = new System.Drawing.Size(311, 174);
+            this.LeftNavigation_Distance.Size = new System.Drawing.Size(329, 174);
             this.LeftNavigation_Distance.TabIndex = 6;
             this.LeftNavigation_Distance.Text = "Plan Attacks";
             this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -900,17 +900,17 @@ namespace TribalWars.Forms
             this.MapDistance.Location = new System.Drawing.Point(0, 0);
             this.MapDistance.Margin = new System.Windows.Forms.Padding(0);
             this.MapDistance.Name = "MapDistance";
-            this.MapDistance.Size = new System.Drawing.Size(311, 174);
+            this.MapDistance.Size = new System.Drawing.Size(329, 174);
             this.MapDistance.Sound = false;
             this.MapDistance.TabIndex = 0;
             // 
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.TabsMap;
+            this.Tabs.InputFocusTab = this.TabsPolygon;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
-            this.Tabs.Size = new System.Drawing.Size(870, 609);
+            this.Tabs.Size = new System.Drawing.Size(852, 609);
             this.Tabs.TabIndex = 1;
             this.Tabs.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.TabsMap,
@@ -918,13 +918,35 @@ namespace TribalWars.Forms
             this.TabsPolygon,
             this.TabsMonitoring});
             // 
+            // TabsPolygon
+            // 
+            this.TabsPolygon.Controls.Add(this.Polygon);
+            this.TabsPolygon.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsPolygon.Icon")));
+            this.TabsPolygon.Key = "Polygon";
+            this.TabsPolygon.Location = new System.Drawing.Point(1, 23);
+            this.TabsPolygon.Name = "TabsPolygon";
+            this.TabsPolygon.Size = new System.Drawing.Size(848, 583);
+            this.TabsPolygon.TabStop = true;
+            this.TabsPolygon.Text = "Polygon";
+            this.TabsPolygon.ToolTipText = "Generate BBCodes from polygon areas you have drawn on the map.";
+            // 
+            // Polygon
+            // 
+            this.Polygon.BackColor = System.Drawing.SystemColors.Control;
+            this.Polygon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Polygon.Location = new System.Drawing.Point(0, 0);
+            this.Polygon.Name = "Polygon";
+            this.Polygon.Size = new System.Drawing.Size(848, 583);
+            this.Polygon.TabIndex = 0;
+            // 
             // TabsMap
             // 
             this.TabsMap.Controls.Add(this.Map);
             this.TabsMap.Image = ((System.Drawing.Image)(resources.GetObject("TabsMap.Image")));
+            this.TabsMap.Key = "Map";
             this.TabsMap.Location = new System.Drawing.Point(1, 23);
             this.TabsMap.Name = "TabsMap";
-            this.TabsMap.Size = new System.Drawing.Size(866, 583);
+            this.TabsMap.Size = new System.Drawing.Size(848, 583);
             this.TabsMap.TabStop = true;
             this.TabsMap.Text = "Map";
             // 
@@ -935,13 +957,14 @@ namespace TribalWars.Forms
             this.Map.Location = new System.Drawing.Point(0, 0);
             this.Map.Margin = new System.Windows.Forms.Padding(0);
             this.Map.Name = "Map";
-            this.Map.Size = new System.Drawing.Size(866, 583);
+            this.Map.Size = new System.Drawing.Size(848, 583);
             this.Map.TabIndex = 0;
             // 
             // TabsBrowser
             // 
             this.TabsBrowser.Controls.Add(this.browserControl1);
             this.TabsBrowser.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsBrowser.Icon")));
+            this.TabsBrowser.Key = "TWStats";
             this.TabsBrowser.Location = new System.Drawing.Point(1, 23);
             this.TabsBrowser.Name = "TabsBrowser";
             this.TabsBrowser.Size = new System.Drawing.Size(866, 583);
@@ -958,34 +981,14 @@ namespace TribalWars.Forms
             this.browserControl1.Size = new System.Drawing.Size(866, 583);
             this.browserControl1.TabIndex = 0;
             // 
-            // TabsPolygon
-            // 
-            this.TabsPolygon.Controls.Add(this.Polygon);
-            this.TabsPolygon.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsPolygon.Icon")));
-            this.TabsPolygon.Location = new System.Drawing.Point(1, 23);
-            this.TabsPolygon.Name = "TabsPolygon";
-            this.TabsPolygon.Size = new System.Drawing.Size(866, 583);
-            this.TabsPolygon.TabStop = true;
-            this.TabsPolygon.Text = "Polygon";
-            this.TabsPolygon.ToolTipText = "Generate BBCodes from polygon areas you have drawn on the map.";
-            // 
-            // Polygon
-            // 
-            this.Polygon.BackColor = System.Drawing.Color.Transparent;
-            this.Polygon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Polygon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Polygon.Location = new System.Drawing.Point(0, 0);
-            this.Polygon.Name = "Polygon";
-            this.Polygon.Size = new System.Drawing.Size(866, 583);
-            this.Polygon.TabIndex = 0;
-            // 
             // TabsMonitoring
             // 
             this.TabsMonitoring.Controls.Add(this.monitoringControl1);
             this.TabsMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("TabsMonitoring.Image")));
+            this.TabsMonitoring.Key = "Monitoring";
             this.TabsMonitoring.Location = new System.Drawing.Point(1, 23);
             this.TabsMonitoring.Name = "TabsMonitoring";
-            this.TabsMonitoring.Size = new System.Drawing.Size(866, 583);
+            this.TabsMonitoring.Size = new System.Drawing.Size(848, 583);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             this.TabsMonitoring.ToolTipText = "Check what is happening in your monitoring area, the world or in your tribe.";
@@ -997,7 +1000,7 @@ namespace TribalWars.Forms
             this.monitoringControl1.Location = new System.Drawing.Point(0, 0);
             this.monitoringControl1.Margin = new System.Windows.Forms.Padding(0);
             this.monitoringControl1.Name = "monitoringControl1";
-            this.monitoringControl1.Size = new System.Drawing.Size(866, 583);
+            this.monitoringControl1.Size = new System.Drawing.Size(848, 583);
             this.monitoringControl1.TabIndex = 0;
             // 
             // FormToolbarContainer
@@ -1060,9 +1063,9 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
+            this.TabsPolygon.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
-            this.TabsPolygon.ResumeLayout(false);
             this.TabsMonitoring.ResumeLayout(false);
             this.FormToolbarContainer.ContentPanel.ResumeLayout(false);
             this.FormToolbarContainer.TopToolStripPanel.ResumeLayout(false);

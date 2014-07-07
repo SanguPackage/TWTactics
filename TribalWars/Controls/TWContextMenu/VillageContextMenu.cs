@@ -62,11 +62,6 @@ namespace TribalWars.Controls.TWContextMenu
             AddVillageTypeCommand(villageTypes, VillageType.Scout, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Farm, village.Type);
 
-            _menu.AddSeparator();
-            _menu.AddCommand("TWStats", OnTwStats);
-            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
-
             if (village.HasPlayer)
             {
                 _menu.AddSeparator();
@@ -84,6 +79,11 @@ namespace TribalWars.Controls.TWContextMenu
                     tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
                 }
             }
+
+            _menu.AddSeparator();
+            _menu.AddCommand("TWStats", OnTwStats);
+            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
+            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
 
         /// <summary>

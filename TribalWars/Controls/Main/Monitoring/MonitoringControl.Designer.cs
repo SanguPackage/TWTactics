@@ -28,53 +28,59 @@ namespace TribalWars.Controls.Main.Monitoring
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("New inactive");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Lost points");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Nobled");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Villages", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("No activity");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Tribe change");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Players", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Players");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Nobled");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("No activity");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Lost points");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Your Tribe", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("New inactive");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Lost points");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Nobled");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Villages", new System.Windows.Forms.TreeNode[] {
+            treeNode25,
+            treeNode26,
+            treeNode27});
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("No activity");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Tribe change");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Players", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Players");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Nobled");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("No activity");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Lost points");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Your Tribe", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33,
+            treeNode34,
+            treeNode35});
             this.OptionsTree = new System.Windows.Forms.TreeView();
-            this.AdditionalFiltersGroupbox = new System.Windows.Forms.GroupBox();
+            this.AdditionalFiltersGroupbox = new Janus.Windows.EditControls.UIGroupBox();
             this.ApplyAdditionalFilters = new System.Windows.Forms.Button();
-            this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
-            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
             this.NobledVillage = new XPTable.Models.TextColumn();
             this.NobledPlayer = new XPTable.Models.TextColumn();
             this.NobledPlayerOld = new XPTable.Models.TextColumn();
             this.NobledPoints = new XPTable.Models.NumberColumn();
             this.NobledPointsOld = new XPTable.Models.NumberColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.FiltersPremadeGroupbox = new Janus.Windows.EditControls.UIGroupBox();
+            this.groupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new Janus.Windows.EditControls.UIGroupBox();
             this.PreviousDateList = new System.Windows.Forms.ListView();
             this.TextPrevious = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new Janus.Windows.EditControls.UIGroupBox();
             this.CurrentDataDate = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.Table = new TribalWars.Controls.Display.TableWrapperControl();
+            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
+            this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.AdditionalFiltersGroupbox)).BeginInit();
             this.AdditionalFiltersGroupbox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FiltersPremadeGroupbox)).BeginInit();
+            this.FiltersPremadeGroupbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox5)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox4)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,55 +92,55 @@ namespace TribalWars.Controls.Main.Monitoring
             this.OptionsTree.Location = new System.Drawing.Point(3, 16);
             this.OptionsTree.Margin = new System.Windows.Forms.Padding(0);
             this.OptionsTree.Name = "OptionsTree";
-            treeNode1.Name = "Node2";
-            treeNode1.Tag = "VillageNewInactive";
-            treeNode1.Text = "New inactive";
-            treeNode1.ToolTipText = "Villages that have become abandoned";
-            treeNode2.Name = "Node3";
-            treeNode2.Tag = "VillageLostPoints";
-            treeNode2.Text = "Lost points";
-            treeNode2.ToolTipText = "Villages that lost points";
-            treeNode3.Name = "Node8";
-            treeNode3.Tag = "PlayerNobled";
-            treeNode3.Text = "Nobled";
-            treeNode3.ToolTipText = "Villages that have been nobled";
-            treeNode4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Villages";
-            treeNode5.Name = "Node7";
-            treeNode5.Tag = "PlayerNoActivity";
-            treeNode5.Text = "No activity";
-            treeNode5.ToolTipText = "Players that have not increased in points";
-            treeNode6.Name = "Node10";
-            treeNode6.Tag = "PlayerTribeChange";
-            treeNode6.Text = "Tribe change";
-            treeNode6.ToolTipText = "Players that have changed tribes";
-            treeNode7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            treeNode7.Name = "Node6";
-            treeNode7.Text = "Players";
-            treeNode8.Name = "Node2";
-            treeNode8.Tag = "TribePlayers";
-            treeNode8.Text = "Players";
-            treeNode8.ToolTipText = "Get a list of all players";
-            treeNode9.Name = "Node1";
-            treeNode9.Tag = "TribeNobled";
-            treeNode9.Text = "Nobled";
-            treeNode9.ToolTipText = "See who has nobled or was nobled in your tribe";
-            treeNode10.Name = "Node2";
-            treeNode10.Tag = "TribeNoActivity";
-            treeNode10.Text = "No activity";
-            treeNode10.ToolTipText = "See who has not grown in your tribe.";
-            treeNode11.Name = "Node3";
-            treeNode11.Tag = "TribeLostPoints";
-            treeNode11.Text = "Lost points";
-            treeNode11.ToolTipText = "See who has lost points in your tribe.";
-            treeNode12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Your Tribe";
+            treeNode25.Name = "Node2";
+            treeNode25.Tag = "VillageNewInactive";
+            treeNode25.Text = "New inactive";
+            treeNode25.ToolTipText = "Villages that have become abandoned";
+            treeNode26.Name = "Node3";
+            treeNode26.Tag = "VillageLostPoints";
+            treeNode26.Text = "Lost points";
+            treeNode26.ToolTipText = "Villages that lost points";
+            treeNode27.Name = "Node8";
+            treeNode27.Tag = "PlayerNobled";
+            treeNode27.Text = "Nobled";
+            treeNode27.ToolTipText = "Villages that have been nobled";
+            treeNode28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            treeNode28.Name = "Node0";
+            treeNode28.Text = "Villages";
+            treeNode29.Name = "Node7";
+            treeNode29.Tag = "PlayerNoActivity";
+            treeNode29.Text = "No activity";
+            treeNode29.ToolTipText = "Players that have not increased in points";
+            treeNode30.Name = "Node10";
+            treeNode30.Tag = "PlayerTribeChange";
+            treeNode30.Text = "Tribe change";
+            treeNode30.ToolTipText = "Players that have changed tribes";
+            treeNode31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            treeNode31.Name = "Node6";
+            treeNode31.Text = "Players";
+            treeNode32.Name = "Node2";
+            treeNode32.Tag = "TribePlayers";
+            treeNode32.Text = "Players";
+            treeNode32.ToolTipText = "Get a list of all players";
+            treeNode33.Name = "Node1";
+            treeNode33.Tag = "TribeNobled";
+            treeNode33.Text = "Nobled";
+            treeNode33.ToolTipText = "See who has nobled or was nobled in your tribe";
+            treeNode34.Name = "Node2";
+            treeNode34.Tag = "TribeNoActivity";
+            treeNode34.Text = "No activity";
+            treeNode34.ToolTipText = "See who has not grown in your tribe.";
+            treeNode35.Name = "Node3";
+            treeNode35.Tag = "TribeLostPoints";
+            treeNode35.Text = "Lost points";
+            treeNode35.ToolTipText = "See who has lost points in your tribe.";
+            treeNode36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Your Tribe";
             this.OptionsTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode7,
-            treeNode12});
+            treeNode28,
+            treeNode31,
+            treeNode36});
             this.OptionsTree.ShowNodeToolTips = true;
             this.OptionsTree.ShowPlusMinus = false;
             this.OptionsTree.ShowRootLines = false;
@@ -145,15 +151,14 @@ namespace TribalWars.Controls.Main.Monitoring
             // 
             // AdditionalFiltersGroupbox
             // 
-            this.AdditionalFiltersGroupbox.Controls.Add(this.ApplyAdditionalFilters);
             this.AdditionalFiltersGroupbox.Controls.Add(this.ActivateAdditionalFilters);
+            this.AdditionalFiltersGroupbox.Controls.Add(this.ApplyAdditionalFilters);
             this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
             this.AdditionalFiltersGroupbox.Location = new System.Drawing.Point(156, 3);
             this.AdditionalFiltersGroupbox.Name = "AdditionalFiltersGroupbox";
             this.AdditionalFiltersGroupbox.Size = new System.Drawing.Size(286, 241);
             this.AdditionalFiltersGroupbox.TabIndex = 0;
-            this.AdditionalFiltersGroupbox.TabStop = false;
-            this.AdditionalFiltersGroupbox.Text = "      Activate additional filters";
+            this.AdditionalFiltersGroupbox.Text = "      Custom filter";
             // 
             // ApplyAdditionalFilters
             // 
@@ -166,33 +171,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.ApplyAdditionalFilters.Text = "Apply additional filters";
             this.ApplyAdditionalFilters.UseVisualStyleBackColor = true;
             this.ApplyAdditionalFilters.Click += new System.EventHandler(this.ApplyAdditionalFilters_Click);
-            // 
-            // ActivateAdditionalFilters
-            // 
-            this.ActivateAdditionalFilters.AutoSize = true;
-            this.ActivateAdditionalFilters.Location = new System.Drawing.Point(10, 1);
-            this.ActivateAdditionalFilters.Name = "ActivateAdditionalFilters";
-            this.ActivateAdditionalFilters.Size = new System.Drawing.Size(15, 14);
-            this.ActivateAdditionalFilters.TabIndex = 1;
-            this.ActivateAdditionalFilters.UseVisualStyleBackColor = true;
-            this.ActivateAdditionalFilters.CheckedChanged += new System.EventHandler(this.ActivateAdditionalFilters_CheckedChanged);
-            // 
-            // AdditionalFilters
-            // 
-            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
-            this.AdditionalFilters.Buttonsvisible = false;
-            this.AdditionalFilters.Enabled = false;
-            this.AdditionalFilters.Expanded = false;
-            this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
-            9000,
-            0,
-            0,
-            0});
-            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
-            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
-            this.AdditionalFilters.Name = "AdditionalFilters";
-            this.AdditionalFilters.Size = new System.Drawing.Size(285, 187);
-            this.AdditionalFilters.TabIndex = 0;
             // 
             // NobledVillage
             // 
@@ -216,15 +194,14 @@ namespace TribalWars.Controls.Main.Monitoring
             this.NobledPointsOld.Format = "#,0";
             this.NobledPointsOld.Text = "Difference";
             // 
-            // groupBox1
+            // FiltersPremadeGroupbox
             // 
-            this.groupBox1.Controls.Add(this.OptionsTree);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(147, 241);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Select filter";
+            this.FiltersPremadeGroupbox.Controls.Add(this.OptionsTree);
+            this.FiltersPremadeGroupbox.Location = new System.Drawing.Point(3, 3);
+            this.FiltersPremadeGroupbox.Name = "FiltersPremadeGroupbox";
+            this.FiltersPremadeGroupbox.Size = new System.Drawing.Size(147, 241);
+            this.FiltersPremadeGroupbox.TabIndex = 1;
+            this.FiltersPremadeGroupbox.Text = "Premade filters";
             // 
             // groupBox2
             // 
@@ -235,7 +212,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(147, 349);
             this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select dates";
             // 
             // tableLayoutPanel1
@@ -261,7 +237,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(135, 274);
             this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
             this.groupBox5.Text = "with \"previous\"";
             // 
             // PreviousDateList
@@ -295,7 +270,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(135, 44);
             this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Comparing \"current\"";
             // 
             // CurrentDataDate
@@ -318,7 +292,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(442, 349);
             this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Results";
             // 
             // Table
@@ -337,26 +310,59 @@ namespace TribalWars.Controls.Main.Monitoring
             this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
             this.Table.VisibleTribeFields = TribalWars.Controls.Display.TribeFields.None;
             // 
+            // AdditionalFilters
+            // 
+            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
+            this.AdditionalFilters.Buttonsvisible = false;
+            this.AdditionalFilters.Enabled = false;
+            this.AdditionalFilters.Expanded = false;
+            this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
+            9000,
+            0,
+            0,
+            0});
+            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
+            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
+            this.AdditionalFilters.Name = "AdditionalFilters";
+            this.AdditionalFilters.Size = new System.Drawing.Size(285, 187);
+            this.AdditionalFilters.TabIndex = 0;
+            // 
+            // ActivateAdditionalFilters
+            // 
+            this.ActivateAdditionalFilters.AutoSize = true;
+            this.ActivateAdditionalFilters.Location = new System.Drawing.Point(12, 0);
+            this.ActivateAdditionalFilters.Name = "ActivateAdditionalFilters";
+            this.ActivateAdditionalFilters.Size = new System.Drawing.Size(15, 14);
+            this.ActivateAdditionalFilters.TabIndex = 8;
+            this.ActivateAdditionalFilters.UseVisualStyleBackColor = true;
+            this.ActivateAdditionalFilters.CheckedChanged += new System.EventHandler(this.ActivateAdditionalFilters_CheckedChanged);
+            // 
             // MonitoringControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.AdditionalFiltersGroupbox);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.FiltersPremadeGroupbox);
             this.Controls.Add(this.groupBox2);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MonitoringControl";
             this.Size = new System.Drawing.Size(601, 602);
+            ((System.ComponentModel.ISupportInitialize)(this.AdditionalFiltersGroupbox)).EndInit();
             this.AdditionalFiltersGroupbox.ResumeLayout(false);
             this.AdditionalFiltersGroupbox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FiltersPremadeGroupbox)).EndInit();
+            this.FiltersPremadeGroupbox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox5)).EndInit();
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox4)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBox3)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -370,20 +376,20 @@ namespace TribalWars.Controls.Main.Monitoring
         private XPTable.Models.NumberColumn NobledPoints;
         private XPTable.Models.NumberColumn NobledPointsOld;
         private System.Windows.Forms.TreeView OptionsTree;
-        private System.Windows.Forms.GroupBox AdditionalFiltersGroupbox;
+        private Janus.Windows.EditControls.UIGroupBox AdditionalFiltersGroupbox;
         private TribalWars.Controls.Accordeon.Location.FinderOptionsControl AdditionalFilters;
         private TribalWars.Controls.Display.TableWrapperControl Table;
-        private System.Windows.Forms.CheckBox ActivateAdditionalFilters;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private Janus.Windows.EditControls.UIGroupBox FiltersPremadeGroupbox;
+        private Janus.Windows.EditControls.UIGroupBox groupBox2;
+        private Janus.Windows.EditControls.UIGroupBox groupBox3;
         private System.Windows.Forms.Button ApplyAdditionalFilters;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private Janus.Windows.EditControls.UIGroupBox groupBox5;
+        private Janus.Windows.EditControls.UIGroupBox groupBox4;
         private System.Windows.Forms.Label CurrentDataDate;
         private System.Windows.Forms.ListView PreviousDateList;
         private System.Windows.Forms.ColumnHeader TextPrevious;
+        private System.Windows.Forms.CheckBox ActivateAdditionalFilters;
 
     }
 }

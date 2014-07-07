@@ -11,7 +11,7 @@
   <Location Display="Shape" XY="500|500" Zoom="6" />
   <Display BackgroundColor="Green">
    <LinesContinent>True</LinesContinent>
-   <LinesProvince>False</LinesProvince>
+   <LinesProvince>True</LinesProvince>
    <HideAbandoned>False</HideAbandoned>
    <MarkedOnly>False</MarkedOnly>
   </Display>

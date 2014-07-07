@@ -173,7 +173,7 @@ namespace TribalWars.Controls.Display
             ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the player is currently visible on the main map.");
             TextColumn playerNameColumn = CreateTextColumn("Name", 85, "The name of the player");
             TextColumn playerTribeColumn = CreateTextColumn("Tribe", 60, "The tribe the player belongs to");
-            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 75, "Points of the player");
+            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 72, "Points of the player");
             NumberColumn playerVillagesColumn = CreateNumberColumn("Villages", 60, "Villages of the player");
             TextColumn playerVillagesDifferenceColumn = CreateTextColumn("Diff.", 60, "Villages gained and/or lost since previous data");
             TextColumn playerTribeDifferenceColumn = CreateTextColumn("Old tribe", 65, "The tribe the player switched from since previous data");
@@ -205,15 +205,15 @@ namespace TribalWars.Controls.Display
         public static ColumnModel CreateColumnModel(TribeFields fields)
         {
             ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the tribe is currently visible on the main map.");
-            NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 50, "World rank of the tribe");
-            TextColumn tribeTagColumn = CreateTextColumn("Tag", 55, "Tribe tag");
-            TextColumn tribeNameColumn = CreateTextColumn("Name", 130, "Tribe name");
+            NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 40, "World rank of the tribe");
+            TextColumn tribeTagColumn = CreateTextColumn("Tag", 50, "Tribe tag");
             NumberColumn tribePlayersColumn = CreateNumberColumn("Players", 55, "Amount of players in the tribe");
             TextColumn tribePlayersDifferenceColumn = CreateTextColumn("Diff.", 50, "The difference in players since previous data");
             NumberColumn tribePointsColumn = CreateNumberColumn("Points", 75, "Total points of the tribe");
             NumberColumn tribePointsDifferenceColumn = CreateNumberColumn("Diff.", 70, "The difference in total tribe points since previous data");
             NumberColumn tribeVillagesColumn = CreateNumberColumn("Villages", 55, "The total amount of villages in the tribe");
             NumberColumn tribeVillagesDifferenceColumn = CreateNumberColumn("Diff.", 55, "The difference in villages since previous data");
+            TextColumn tribeNameColumn = CreateTextColumn("Name", 130, "Tribe name");
 
             tribeRankColumn.Visible = (fields & TribeFields.Rank) != 0;
             tribeTagColumn.Visible = (fields & TribeFields.Tag) != 0;
@@ -229,13 +229,13 @@ namespace TribalWars.Controls.Display
                 visibleColumn,
                 tribeRankColumn,
                 tribeTagColumn,
-                tribeNameColumn,
                 tribePlayersColumn,
                 tribePlayersDifferenceColumn,
                 tribePointsColumn,
                 tribePointsDifferenceColumn,
                 tribeVillagesColumn,
-                tribeVillagesDifferenceColumn});
+                tribeVillagesDifferenceColumn,
+                tribeNameColumn});
         }
 
         /// <summary>

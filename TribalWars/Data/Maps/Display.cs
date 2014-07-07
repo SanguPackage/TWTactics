@@ -321,8 +321,7 @@ namespace TribalWars.Data.Maps
                 _display = display;
                 _canvas = new Bitmap(mapSize.Width, mapSize.Height);
                 _g = Graphics.FromImage(_canvas);
-                _g.FillRectangle(display._backgroundBrush, _toPaint);
-
+               
                 _visibleGameRectangle = display.GetGameRectangle();
                 // _visibleGameRectangle is sometimes negative!!
 
@@ -330,6 +329,8 @@ namespace TribalWars.Data.Maps
                 Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
                 mapSize.Offset(mapOffset);
                 _toPaint = mapSize;
+
+                _g.FillRectangle(display._backgroundBrush, _toPaint);
 
                 var dimensions = display.Dimensions;
                 _villageWidthSpacing = dimensions.SizeWithSpacing.Width;

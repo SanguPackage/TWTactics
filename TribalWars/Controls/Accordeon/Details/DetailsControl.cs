@@ -52,7 +52,7 @@ namespace TribalWars.Controls.Accordeon.Details
             InitializeComponent();
 
             ContextStrip.Items.Clear();
-            _villageContext = new ToolStripItem[] { DefenseFlag, AttackFlag, FarmFlag, NobleFlag, ScoutFlag, VillageSeperator, VillageCurrentSituation };
+            _villageContext = new ToolStripItem[] { AttackFlag, DefenseFlag, NobleFlag, ScoutFlag, FarmFlag, VillageSeperator, VillageCurrentSituation };
 
             World.Default.Map.EventPublisher.TribeSelected += EventPublisher_TribeSelected;
             World.Default.Map.EventPublisher.PlayerSelected += EventPublisher_PlayerSelected;

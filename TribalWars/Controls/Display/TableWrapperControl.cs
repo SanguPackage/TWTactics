@@ -429,11 +429,6 @@ namespace TribalWars.Controls.Display
             {
                 Table.Sort(Table.SortingColumn, Table.ColumnModel.Columns[Table.SortingColumn].SortOrder);
             }
-            else if (Table.ColumnModel.Columns.Count > 4)
-            {
-                // TODO: somehow we sort on column 4 by default?
-                Table.Sort(4, SortOrder.Descending);
-            }
             Table.EndUpdate();
         }
 

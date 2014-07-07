@@ -325,8 +325,8 @@ namespace TribalWars.Controls.Accordeon.Details
             this.ContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AttackFlag,
             this.DefenseFlag,
-            this.ScoutFlag,
             this.NobleFlag,
+            this.ScoutFlag,
             this.FarmFlag,
             this.VillageSeperator,
             this.VillageCurrentSituation});

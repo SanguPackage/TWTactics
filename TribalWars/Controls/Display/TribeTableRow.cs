@@ -67,7 +67,7 @@ namespace TribalWars.Controls.Display
 
             Cells.Add(new Cell(tribe.Rank));
             Cells.Add(new Cell(tribe.Tag));
-            Cells.Add(new Cell(tribe.Name));
+            
             Cells.Add(new Cell(tribe.Players.Count));
             Cells.Add(new Cell(tribe.PlayerDifferenceString));
             Cells.Add(new Cell(tribe.AllPoints));
@@ -88,6 +88,8 @@ namespace TribalWars.Controls.Display
             {
                 Cells.Add(new Cell());
             }
+
+            Cells.Add(new Cell(tribe.Name));
         }
         #endregion
 
