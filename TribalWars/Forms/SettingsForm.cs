@@ -9,6 +9,14 @@ using System.Windows.Forms;
 
 namespace TribalWars.Forms
 {
+    /// <summary>
+    /// CURRENTLY NOT IN USE
+    /// 
+    /// Change settings for the program
+    /// 
+    /// There is some layout for changing proxy
+    /// but not implemented (uses built in .NET method)
+    /// </summary>
     public partial class SettingsForm : Form
     {
         public SettingsForm()

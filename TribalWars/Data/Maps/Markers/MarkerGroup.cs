@@ -9,7 +9,7 @@ using TribalWars.Data.Players;
 namespace TribalWars.Data.Maps.Markers
 {
     /// <summary>
-    /// Represents a named collection of Player, Tribe and VillageMarkers
+    /// Represents a named collection of Player and TribeMarkers
     /// </summary>
     public sealed class MarkerGroup : IEquatable<MarkerGroup>
     {
@@ -32,23 +32,23 @@ namespace TribalWars.Data.Maps.Markers
         /// <summary>
         /// Gets or sets a value indicating the markers are to be drawn
         /// </summary>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; private set; }
 
         /// <summary>
         /// Gets or sets the secundary color for the marker
         /// </summary>
-        public Color ExtraColor { get; set; }
+        public Color ExtraColor { get; private set; }
 
         /// <summary>
         /// Gets or sets the primary color for the marker
         /// </summary>
-        public Color Color { get; set; }
+        public Color Color { get; private set; }
 
         /// <summary>
         /// Gets or sets how to represent the marked
         /// villages on the map
         /// </summary>
-        public string View { get; set; }
+        public string View { get; private set; }
         #endregion
 
         #region Constructor

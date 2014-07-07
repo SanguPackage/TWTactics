@@ -117,6 +117,7 @@ namespace TribalWars.Forms
             this.monitoringControl1 = new TribalWars.Controls.Main.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -907,7 +908,7 @@ namespace TribalWars.Forms
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.TabsPolygon;
+            this.Tabs.InputFocusTab = this.uiTabPage1;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.Size = new System.Drawing.Size(852, 609);
@@ -916,7 +917,8 @@ namespace TribalWars.Forms
             this.TabsMap,
             this.TabsBrowser,
             this.TabsPolygon,
-            this.TabsMonitoring});
+            this.TabsMonitoring,
+            this.uiTabPage1});
             // 
             // TabsPolygon
             // 
@@ -1027,6 +1029,14 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
+            // 
+            // uiTabPage1
+            // 
+            this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPage1.Name = "uiTabPage1";
+            this.uiTabPage1.Size = new System.Drawing.Size(848, 583);
+            this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.Text = "Testing";
             // 
             // MainForm
             // 
@@ -1164,6 +1174,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuFileSynchronizeTime;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton ToolStripProgramSettings;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
     }
 }
 
