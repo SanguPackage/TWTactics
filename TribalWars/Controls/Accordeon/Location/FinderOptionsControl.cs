@@ -157,7 +157,7 @@ namespace TribalWars.Controls.Accordeon.Location
         private void FinderOptionsControl_Load(object sender, EventArgs e)
         {
             Filter.SelectedIndex = (int) FinderOptions.FinderOptionsEnum.All;
-            Location.SelectedIndex = (int) FinderOptions.FinderLocationEnum.EntireMap;
+            Area.SelectedIndex = (int) FinderOptions.FinderLocationEnum.EntireMap;
             What.SelectedIndex = (int) SearchForEnum.Players;
         }
         #endregion
@@ -178,12 +178,12 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public FinderOptions GetFinderOptions()
         {
-            Debug.Assert(Location.SelectedIndex != -1, "Default value should be set by ctor");
+            Debug.Assert(Area.SelectedIndex != -1, "Default value should be set by ctor");
             Debug.Assert(Filter.SelectedIndex != -1);
 
             var options = new FinderOptions((SearchForEnum) What.SelectedIndex);
             
-            options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Location.SelectedIndex;
+            options.EvaluatedArea = (FinderOptions.FinderLocationEnum)Area.SelectedIndex;
             options.PointsBetweenEnd = (int)PointsBetweenEnd.Value;
             options.PointsBetweenStart = (int)PointsBetweenStart.Value;
             options.ResultLimit = (int)ResultLimit.Value;
@@ -200,7 +200,7 @@ namespace TribalWars.Controls.Accordeon.Location
         /// </summary>
         public void SetFilters(FinderOptions options)
         {
-            Location.SelectedIndex = (int)options.EvaluatedArea;
+            Area.SelectedIndex = (int)options.EvaluatedArea;
             Filter.SelectedIndex = (int)options.SearchStrategy;
             What.SelectedIndex = (int)options.SearchFor;
             if (options.Tribe != null)

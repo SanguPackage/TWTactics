@@ -53,6 +53,7 @@ namespace TribalWars.Controls.Main.Monitoring
             this.AdditionalFiltersGroupbox = new System.Windows.Forms.GroupBox();
             this.ApplyAdditionalFilters = new System.Windows.Forms.Button();
             this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
+            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
             this.NobledVillage = new XPTable.Models.TextColumn();
             this.NobledPlayer = new XPTable.Models.TextColumn();
             this.NobledPlayerOld = new XPTable.Models.TextColumn();
@@ -62,13 +63,12 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.PreviousDateList = new System.Windows.Forms.ListView();
+            this.TextPrevious = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.CurrentDataDate = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.PreviousDateList = new System.Windows.Forms.ListView();
-            this.Text = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Table = new TribalWars.Controls.Display.TableWrapperControl();
-            this.AdditionalFilters = new TribalWars.Controls.Accordeon.Location.FinderOptionsControl();
             this.AdditionalFiltersGroupbox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -177,6 +177,23 @@ namespace TribalWars.Controls.Main.Monitoring
             this.ActivateAdditionalFilters.UseVisualStyleBackColor = true;
             this.ActivateAdditionalFilters.CheckedChanged += new System.EventHandler(this.ActivateAdditionalFilters_CheckedChanged);
             // 
+            // AdditionalFilters
+            // 
+            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
+            this.AdditionalFilters.Buttonsvisible = false;
+            this.AdditionalFilters.Enabled = false;
+            this.AdditionalFilters.Expanded = false;
+            this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
+            9000,
+            0,
+            0,
+            0});
+            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
+            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
+            this.AdditionalFilters.Name = "AdditionalFilters";
+            this.AdditionalFilters.Size = new System.Drawing.Size(285, 187);
+            this.AdditionalFilters.TabIndex = 0;
+            // 
             // NobledVillage
             // 
             this.NobledVillage.Text = "Village";
@@ -247,6 +264,30 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "with \"previous\"";
             // 
+            // PreviousDateList
+            // 
+            this.PreviousDateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TextPrevious});
+            this.PreviousDateList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviousDateList.Enabled = false;
+            this.PreviousDateList.FullRowSelect = true;
+            this.PreviousDateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.PreviousDateList.HideSelection = false;
+            this.PreviousDateList.Location = new System.Drawing.Point(3, 16);
+            this.PreviousDateList.MultiSelect = false;
+            this.PreviousDateList.Name = "PreviousDateList";
+            this.PreviousDateList.ShowItemToolTips = true;
+            this.PreviousDateList.Size = new System.Drawing.Size(129, 255);
+            this.PreviousDateList.TabIndex = 0;
+            this.PreviousDateList.UseCompatibleStateImageBehavior = false;
+            this.PreviousDateList.View = System.Windows.Forms.View.List;
+            this.PreviousDateList.SelectedIndexChanged += new System.EventHandler(this.PreviousDateList_SelectedIndexChanged);
+            // 
+            // TextPrevious
+            // 
+            this.TextPrevious.Text = "";
+            this.TextPrevious.Width = 200;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.CurrentDataDate);
@@ -280,30 +321,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Results";
             // 
-            // PreviousDateList
-            // 
-            this.PreviousDateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Text});
-            this.PreviousDateList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PreviousDateList.Enabled = false;
-            this.PreviousDateList.FullRowSelect = true;
-            this.PreviousDateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.PreviousDateList.HideSelection = false;
-            this.PreviousDateList.Location = new System.Drawing.Point(3, 16);
-            this.PreviousDateList.MultiSelect = false;
-            this.PreviousDateList.Name = "PreviousDateList";
-            this.PreviousDateList.ShowItemToolTips = true;
-            this.PreviousDateList.Size = new System.Drawing.Size(129, 255);
-            this.PreviousDateList.TabIndex = 0;
-            this.PreviousDateList.UseCompatibleStateImageBehavior = false;
-            this.PreviousDateList.View = System.Windows.Forms.View.List;
-            this.PreviousDateList.SelectedIndexChanged += new System.EventHandler(this.PreviousDateList_SelectedIndexChanged);
-            // 
-            // Text
-            // 
-            this.Text.Text = "";
-            this.Text.Width = 200;
-            // 
             // Table
             // 
             this.Table.AutoSelectSingleRow = true;
@@ -319,23 +336,6 @@ namespace TribalWars.Controls.Main.Monitoring
             this.Table.VisiblePlayerFields = TribalWars.Controls.Display.PlayerFields.None;
             this.Table.VisibleReportFields = TribalWars.Controls.Display.ReportFields.None;
             this.Table.VisibleTribeFields = TribalWars.Controls.Display.TribeFields.None;
-            // 
-            // AdditionalFilters
-            // 
-            this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
-            this.AdditionalFilters.Buttonsvisible = false;
-            this.AdditionalFilters.Enabled = false;
-            this.AdditionalFilters.Expanded = false;
-            this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
-            9000,
-            0,
-            0,
-            0});
-            this.AdditionalFilters.Location = new System.Drawing.Point(-1, 14);
-            this.AdditionalFilters.Margin = new System.Windows.Forms.Padding(0);
-            this.AdditionalFilters.Name = "AdditionalFilters";
-            this.AdditionalFilters.Size = new System.Drawing.Size(285, 187);
-            this.AdditionalFilters.TabIndex = 0;
             // 
             // MonitoringControl
             // 
@@ -383,7 +383,7 @@ namespace TribalWars.Controls.Main.Monitoring
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label CurrentDataDate;
         private System.Windows.Forms.ListView PreviousDateList;
-        private System.Windows.Forms.ColumnHeader Text;
+        private System.Windows.Forms.ColumnHeader TextPrevious;
 
     }
 }

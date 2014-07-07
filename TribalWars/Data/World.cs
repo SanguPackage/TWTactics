@@ -29,8 +29,6 @@ namespace TribalWars.Data
     public partial class World : IDisposable
     {
         #region Fields
-        private CultureInfo _culture;
-
         private Dictionary<string, Player> _players;
         private WorldVillagesCollection _villages;
         private Dictionary<string, Tribe> _tribes;

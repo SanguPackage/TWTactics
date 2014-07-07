@@ -12,7 +12,7 @@ namespace TribalWars.Data.Maps.Displays
     {
         #region Fields
         private const int FixedZoomLevel = 3;
-        private static readonly VillageDimensions Dimensions = new VillageDimensions(FixedZoomLevel);
+        private static readonly VillageDimensions FixedDimension = new VillageDimensions(FixedZoomLevel);
         #endregion
 
         #region Properties
@@ -49,7 +49,7 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         protected override VillageDimensions CalculateVillageDimensions()
         {
-            return Dimensions;
+            return FixedDimension;
         }
 
         protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)

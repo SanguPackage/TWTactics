@@ -324,7 +324,6 @@ namespace TribalWars.Data.Maps
                 _g.FillRectangle(display._backgroundBrush, _toPaint);
 
                 _visibleGameRectangle = display.GetGameRectangle();
-                // TODO: calculate the best min/map coords here.
                 // _visibleGameRectangle is sometimes negative!!
 
                 // Also draw villages that are only partially visible at left/top
