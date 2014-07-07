@@ -52,13 +52,13 @@ namespace TribalWars.Data.Maps.Displays
             return FixedDimension;
         }
 
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker colors)
         {
             if (colors.ExtraColor != Color.Transparent) return new MiniMapDrawer(colors.ExtraColor);
             return new MiniMapDrawer(colors.Color);
         }
 
-        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData)
         {
             return null;
         }

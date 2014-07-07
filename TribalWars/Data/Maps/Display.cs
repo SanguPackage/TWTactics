@@ -124,12 +124,12 @@ namespace TribalWars.Data.Maps
             DrawerBase finalCache = null;
             if (World.Default.Villages.TryGetValue(game, out village))
             {
-                MarkerGroup markerGroup = _markers.GetMarkerGroup(Settings, village);
-                if (markerGroup != null)
+                Marker marker = _markers.GetMarker(Settings, village);
+                if (marker != null)
                 {
                     // Paint village icon/shape
-                    DrawerData mainData = World.Default.Views[markerGroup.View].GetDrawer(village);
-                    finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, markerGroup);
+                    DrawerData mainData = World.Default.Views[marker.View].GetDrawer(village);
+                    finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
                     if (finalCache != null)
                     {
                         finalCache.PaintVillage(g, mapVillage);
@@ -138,7 +138,7 @@ namespace TribalWars.Data.Maps
                         {
                             // Paint extra village decorators
                             DrawerData data = World.Default.Views["VillageType"].GetDrawer(village);
-                            DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, markerGroup, mainData);
+                            DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
                             if (decoratorVillageType != null)
                             {
                                 decoratorVillageType.PaintVillage(g, mapVillage);

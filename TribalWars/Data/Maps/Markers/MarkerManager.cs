@@ -18,94 +18,86 @@ namespace TribalWars.Data.Maps.Markers
     public sealed class MarkerManager
     {
         #region Fields
-        private Dictionary<int, MarkerGroup> _markTribe;
-        private Dictionary<int, MarkerGroup> _markPlayer;
+        private Dictionary<int, Marker> _markTribe;
+        private Dictionary<int, Marker> _markPlayer;
 
-        private readonly List<MarkerGroup> _markers;
+        private readonly List<Marker> _markers;
         #endregion
 
         #region Properties
         /// <summary>
         /// Gets all specific markers 
         /// </summary>
-        public IEnumerable<MarkerGroup> Markers
+        public IEnumerable<Marker> Markers
         {
             get { return _markers; }
         }
 
         /// <summary>
-        /// Gets the markergroup for your own villages
+        /// Gets the marker for your own villages
         /// </summary>
-        public MarkerGroup YourMarker { get; set; }
+        public Marker YourMarker { get; set; }
 
         /// <summary>
-        /// Gets the markergroup for all other villages
+        /// Gets the marker for all other villages
         /// </summary>
-        public MarkerGroup EnemyMarker { get; set; }
+        public Marker EnemyMarker { get; set; }
 
         /// <summary>
-        /// Gets the markergroup for villages within your tribe
+        /// Gets the marker for villages within your tribe
         /// </summary>
-        public MarkerGroup YourTribeMarker { get; set; }
+        public Marker YourTribeMarker { get; set; }
 
         /// <summary>
-        /// Gets the markergroup for abandoned villages
+        /// Gets the marker for abandoned villages
         /// </summary>
-        public MarkerGroup AbandonedMarker { get; set; }
+        public Marker AbandonedMarker { get; set; }
         #endregion
 
         #region Constructors
         public MarkerManager()
         {
-            _markers = new List<MarkerGroup>();
-            _markPlayer = new Dictionary<int, MarkerGroup>();
-            _markTribe = new Dictionary<int, MarkerGroup>();
+            _markers = new List<Marker>();
+            _markPlayer = new Dictionary<int, Marker>();
+            _markTribe = new Dictionary<int, Marker>();
         }
         #endregion
 
         #region Public Methods
-        public MarkerGroup GetMarker(Player player)
+        /// <summary>
+        /// Gets the marker for the player or
+        /// return a new one
+        /// </summary>
+        public Marker GetMarker(Player player)
         {
             Debug.Assert(player != null);
-            MarkerGroup found;
+            Marker found;
             if (_markPlayer.TryGetValue(player.Id, out found))
             {
                 return found;
             }
-            Debug.Assert(!_markers.Any(x => x.Players.Contains(player)));
-            return MarkerGroup.CreateEmpty();
+            return Marker.CreateEmpty();
         }
 
-        public MarkerGroup GetMarker(Tribe tribe)
+        /// <summary>
+        /// Gets the marker for the tribe or
+        /// return a new one
+        /// </summary>
+        public Marker GetMarker(Tribe tribe)
         {
             Debug.Assert(tribe != null);
-            MarkerGroup found;
+            Marker found;
             if (_markTribe.TryGetValue(tribe.Id, out found))
             {
                 return found;
             }
-            Debug.Assert(!_markers.Any(x => x.Tribes.Contains(tribe)));
-            return MarkerGroup.CreateEmpty();
-        }
-
-        /// <summary>
-        /// Adds MarkerGroups to the Manager
-        /// </summary>
-        public void AddMarkers(IEnumerable<MarkerGroup> groups)
-        {
-            foreach (MarkerGroup group in groups)
-            {
-                if (!group.Empty)
-                {
-                    _markers.Add(group);
-                }
-            }
+            return Marker.CreateEmpty();
         }
 
         /// <summary>
         /// Find out which marker to use for the village
         /// </summary>
-        public MarkerGroup GetMarkerGroup(DisplaySettings settings, Village village)
+        public Marker GetMarker(DisplaySettings settings, Village village)
         {
             if (!village.HasPlayer)
             {
@@ -117,16 +109,16 @@ namespace TribalWars.Data.Maps.Markers
             }
             else
             {
-                MarkerGroup markerGroup;
+                Marker marker;
                 Player ply = village.Player;
-                if (_markPlayer.TryGetValue(ply.Id, out markerGroup))
+                if (_markPlayer.TryGetValue(ply.Id, out marker))
                 {
-                    return markerGroup;
+                    return marker;
                 }
 
-                if (ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out markerGroup))
+                if (ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out marker))
                 {
-                    return markerGroup;
+                    return marker;
                 }
 
                 if (settings.MarkedOnly)
@@ -143,27 +135,34 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public void CacheSpecialMarkers()
         {
-            _markPlayer = new Dictionary<int, MarkerGroup>();
-            _markTribe = new Dictionary<int, MarkerGroup>();
+            _markPlayer = new Dictionary<int, Marker>();
+            _markTribe = new Dictionary<int, Marker>();
 
             CacheYouMarkers();
 
-            foreach (MarkerGroup markerGroup in Markers)
+            foreach (Marker marker in _markers)
             {
-                foreach (Player player in markerGroup.Players)
+                if (marker.Player != null && !_markPlayer.ContainsKey(marker.Player.Id))
                 {
-                    if (!_markPlayer.ContainsKey(player.Id))
-                    {
-                        _markPlayer.Add(player.Id, markerGroup);
-                    }
+                    _markPlayer.Add(marker.Player.Id, marker);
                 }
-
-                foreach (Tribe tribe in markerGroup.Tribes)
+                if (marker.Tribe != null && _markTribe.ContainsKey(marker.Tribe.Id))
                 {
-                    if (!_markTribe.ContainsKey(tribe.Id))
-                    {
-                        _markTribe.Add(tribe.Id, markerGroup);
-                    }
+                    _markTribe.Add(marker.Tribe.Id, marker);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds Marker to the Manager
+        /// </summary>
+        public void AddMarkers(IEnumerable<Marker> markers)
+        {
+            foreach (Marker marker in markers)
+            {
+                if (!marker.Empty)
+                {
+                    _markers.Add(marker);
                 }
             }
         }

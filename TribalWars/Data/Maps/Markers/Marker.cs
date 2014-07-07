@@ -1,8 +1,10 @@
 #region Imports
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Xml;
 using TribalWars.Data.Tribes;
 using TribalWars.Data.Players;
 #endregion
@@ -12,17 +14,9 @@ namespace TribalWars.Data.Maps.Markers
     /// <summary>
     /// Represents a named collection of Player and Tribe Markers
     /// </summary>
-    public sealed class MarkerGroup : IEquatable<MarkerGroup>
+    public sealed class Marker : IEquatable<Marker>
     {
-        #region Fields
-        private readonly List<Tribe> _tribes;
-        private readonly List<Player> _players;
-        //private bool _active;
-        #endregion
-
         #region Properties
-        
-        //public class MarkerSettings
         /// <summary>
         /// Gets or sets the description
         /// </summary>
@@ -55,91 +49,66 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public bool Empty
         {
-            get { return !_players.Any() && !_tribes.Any(); }
+            get { return Player == null && Player == null; }
         }
 
         /// <summary>
         /// Gets the tribes marked by the group
         /// </summary>
-        public IEnumerable<Tribe> Tribes
-        {
-            get { return _tribes; }
-        }
+        public Tribe Tribe { get; set; }
 
         /// <summary>
         /// Gets the players marked by the group
         /// </summary>
-        public IEnumerable<Player> Players
-        {
-            get { return _players; }
-        }
+        public Player Player { get; set; }
         #endregion
 
         #region Constructor
-        public MarkerGroup(string name, bool enabled, Color color, Color extraColor, string view)
+        public Marker(Player player, string name, bool enabled, Color color, Color extraColor, string view)
+            : this(name, enabled, color, extraColor, view)
+        {
+            Player = player;
+        }
+
+        public Marker(Tribe tribe, string name, bool enabled, Color color, Color extraColor, string view)
+            : this(name, enabled, color, extraColor, view)
+        {
+            Tribe = tribe;
+        }
+
+        public Marker(string name, bool enabled, Color color, Color extraColor, string view)
         {
             Name = name;
             Enabled = enabled;
             Color = color;
             ExtraColor = extraColor;
             View = view;
-
-            _players = new List<Player>();
-            _tribes = new List<Tribe>();
         }
-        
-        public static MarkerGroup CreateEmpty()
+
+        public static Marker CreateEmpty()
         {
-            return new MarkerGroup("", false, Color.Transparent, Color.Transparent, "Points");
+            return new Marker("", false, Color.Transparent, Color.Transparent, "Points");
         }
         #endregion
 
-        #region Public Methods
-        /// <summary>
-        /// Adds a PlayerMarker to the collection
-        /// </summary>
-        public void Add(Player player)
+        #region Persistence
+        public void WriteXml(XmlWriter w)
         {
-            if (player != null)
+            if (Player != null)
             {
-                if (!_players.Contains(player))
-                    _players.Add(player);
+                w.WriteStartElement("Marker");
+                w.WriteAttributeString("Type", "Player");
+                w.WriteAttributeString("Name", Player.Name);
+                w.WriteEndElement();
             }
-        }
 
-        /// <summary>
-        /// Adds a TribeMarker to the collection
-        /// </summary>
-        public void Add(Tribe tribe)
-        {
-            if (tribe != null)
+            if (Tribe != null)
             {
-                if (!_tribes.Contains(tribe))
-                    _tribes.Add(tribe);
-            }
-        }
-
-        /// <summary>
-        /// Removes a PlayerMarker from the collection
-        /// </summary>
-        public void Remove(Player player)
-        {
-            if (player != null)
-            {
-                if (_players.Contains(player))
-                    _players.Remove(player);
-            }
-        }
-
-        /// <summary>
-        /// Removes a TribeMarker from the collection
-        /// </summary>
-        public void Remove(Tribe tribe)
-        {
-            if (tribe != null)
-            {
-                if (_tribes.Contains(tribe))
-                    _tribes.Remove(tribe);
+                Debug.Assert(Player == null);
+                w.WriteStartElement("Marker");
+                w.WriteAttributeString("Type", "Tribe");
+                w.WriteAttributeString("Name", Tribe.Tag);
+                w.WriteEndElement();
             }
         }
         #endregion
@@ -153,8 +122,8 @@ namespace TribalWars.Data.Maps.Markers
         }
         #endregion
 
-        #region IEquatable<MarkerGroup> Members
-        public bool Equals(MarkerGroup other)
+        #region IEquatable<Marker> Members
+        public bool Equals(Marker other)
         {
             if (other == null) return false;
             return View == other.View

@@ -28,8 +28,8 @@ namespace TribalWars.Data.Maps.Drawers
 
         /// <summary>
         /// Extra info for creating the DrawerBase that
-        /// is not present in the MarkerGroup.
-        /// When it is the same colors for every MarkerGroup.
+        /// is not present in the Marker.
+        /// When it is the same colors for every Marker.
         /// </summary>
         /// <remarks>
         /// For example a color for a BorderDrawer based on the

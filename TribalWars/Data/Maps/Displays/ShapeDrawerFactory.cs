@@ -39,7 +39,7 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, MarkerGroup colors)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker colors)
         {
             switch (data.ShapeDrawer)
             {
@@ -54,7 +54,7 @@ namespace TribalWars.Data.Maps.Displays
             }
         }
 
-        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
+        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData)
         {
             switch (data.ShapeDrawer)
             {

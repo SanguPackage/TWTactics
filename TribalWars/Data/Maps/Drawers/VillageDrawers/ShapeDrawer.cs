@@ -34,7 +34,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         #endregion
 
         #region Constructors
-        public ShapeDrawer(bool isEllipse, MarkerGroup colors)
+        public ShapeDrawer(bool isEllipse, Marker colors)
         {
             _filler = isEllipse ? EllipseFiller : RectangleFiller;
 

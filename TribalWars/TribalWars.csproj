@@ -341,7 +341,7 @@
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
     <Compile Include="Data\Maps\Displays\DrawerFactoryBase.cs" />
     <Compile Include="Data\Maps\Views\ViewData.cs" />
-    <Compile Include="Data\Maps\Markers\MarkerGroup.cs" />
+    <Compile Include="Data\Maps\Markers\Marker.cs" />
     <Compile Include="Data\Maps\Markers\MarkerManager.cs" />
     <Compile Include="Data\Maps\Views\PointsView.cs" />
     <Compile Include="Data\Maps\Views\VillageTypeView.cs" />

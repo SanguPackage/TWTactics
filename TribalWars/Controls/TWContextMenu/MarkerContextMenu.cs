@@ -26,7 +26,7 @@ namespace TribalWars.Controls.TWContextMenu
         #region Fields
         private readonly Player _player;
         private readonly Tribe _tribe;
-        private readonly MarkerGroup _marker;
+        private readonly Marker _marker;
 
         private readonly UIContextMenu _menu;
         #endregion
