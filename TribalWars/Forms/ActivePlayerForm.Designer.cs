@@ -28,53 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Janus.Windows.GridEX.GridEXLayout multiColumnCombo1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivePlayerForm));
             this.gbTimeZome = new System.Windows.Forms.GroupBox();
-            this.You = new TribalWars.Controls.Common.VillagePlayerTribeFinderTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
+            this.multiColumnCombo1 = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
+            this.SearchTypeImageList = new System.Windows.Forms.ImageList(this.components);
             this.gbTimeZome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbTimeZome
             // 
-            this.gbTimeZome.Controls.Add(this.You);
-            this.gbTimeZome.Controls.Add(this.label3);
+            this.gbTimeZome.Controls.Add(this.multiColumnCombo1);
             this.gbTimeZome.Location = new System.Drawing.Point(12, 12);
             this.gbTimeZome.Name = "gbTimeZome";
-            this.gbTimeZome.Size = new System.Drawing.Size(242, 234);
+            this.gbTimeZome.Size = new System.Drawing.Size(242, 130);
             this.gbTimeZome.TabIndex = 13;
             this.gbTimeZome.TabStop = false;
-            // 
-            // You
-            // 
-            this.You.AllowPlayer = true;
-            this.You.AllowVillage = false;
-            this.You.BackColor = System.Drawing.Color.Red;
-            this.You.GameLocation = null;
-            this.You.Location = new System.Drawing.Point(19, 20);
-            this.You.Name = "You";
-            this.You.Size = new System.Drawing.Size(207, 20);
-            this.You.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(16, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 140);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "\r\n";
             // 
             // CloseButton
             // 
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
-            this.CloseButton.Location = new System.Drawing.Point(12, 249);
+            this.CloseButton.Location = new System.Drawing.Point(12, 171);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(242, 46);
             this.CloseButton.TabIndex = 14;
             this.CloseButton.Text = "OK";
+            // 
+            // multiColumnCombo1
+            // 
+            multiColumnCombo1_DesignTimeLayout.LayoutString = resources.GetString("multiColumnCombo1_DesignTimeLayout.LayoutString");
+            this.multiColumnCombo1.DesignTimeLayout = multiColumnCombo1_DesignTimeLayout;
+            this.multiColumnCombo1.DisplayMember = "Text";
+            this.multiColumnCombo1.ImageList = this.SearchTypeImageList;
+            this.multiColumnCombo1.Location = new System.Drawing.Point(6, 45);
+            this.multiColumnCombo1.Name = "multiColumnCombo1";
+            this.multiColumnCombo1.SelectedIndex = -1;
+            this.multiColumnCombo1.SelectedItem = null;
+            this.multiColumnCombo1.Size = new System.Drawing.Size(230, 20);
+            this.multiColumnCombo1.TabIndex = 11;
+            this.multiColumnCombo1.ValueMember = "Value";
+            // 
+            // SearchTypeImageList
+            // 
+            this.SearchTypeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("SearchTypeImageList.ImageStream")));
+            this.SearchTypeImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.SearchTypeImageList.Images.SetKeyName(0, "Village.jpg");
+            this.SearchTypeImageList.Images.SetKeyName(1, "Player.jpg");
+            this.SearchTypeImageList.Images.SetKeyName(2, "Tribe.jpg");
             // 
             // ActivePlayerForm
             // 
@@ -82,19 +87,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
-            this.ClientSize = new System.Drawing.Size(264, 304);
+            this.ClientSize = new System.Drawing.Size(264, 229);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.gbTimeZome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ActivePlayerForm";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Your Player Name";
+            this.Text = "TEST FORM";
+            this.Load += new System.EventHandler(this.ActivePlayerForm_Load);
             this.gbTimeZome.ResumeLayout(false);
             this.gbTimeZome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -102,8 +107,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbTimeZome;
-        private System.Windows.Forms.Label label3;
         private Janus.Windows.EditControls.UIButton CloseButton;
-        private Controls.Common.VillagePlayerTribeFinderTextBox You;
+        private Janus.Windows.GridEX.EditControls.MultiColumnCombo multiColumnCombo1;
+        private System.Windows.Forms.ImageList SearchTypeImageList;
     }
 }

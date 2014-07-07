@@ -276,8 +276,9 @@ namespace TribalWars.Forms
 
         private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
+            // TODO: TEST CODE!!!!
             var player = new ActivePlayerForm();
-            player.Show();
+            player.ShowDialog();
             
 
             //using (var timeSetter = new TimeZoneForm())

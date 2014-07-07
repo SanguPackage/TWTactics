@@ -117,6 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="multiColumnCombo1_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="Image"&gt;&lt;Caption&gt;Image&lt;/Caption&gt;&lt;ColumnType&gt;Image&lt;/ColumnType&gt;&lt;DataMember&gt;Image&lt;/DataMember&gt;&lt;Key&gt;Image&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;20&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="Value"&gt;&lt;ButtonText&gt;OK&lt;/ButtonText&gt;&lt;ButtonStyle&gt;TextButton&lt;/ButtonStyle&gt;&lt;DataMember&gt;Value&lt;/DataMember&gt;&lt;Key&gt;Value&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;50&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="Text"&gt;&lt;Caption&gt;Text&lt;/Caption&gt;&lt;DataMember&gt;Text&lt;/DataMember&gt;&lt;Key&gt;Text&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;RowWithErrorsFormatStyle&gt;&lt;PredefinedStyle&gt;RowWithErrorsFormatStyle&lt;/PredefinedStyle&gt;&lt;/RowWithErrorsFormatStyle&gt;&lt;LinkFormatStyle&gt;&lt;PredefinedStyle&gt;LinkFormatStyle&lt;/PredefinedStyle&gt;&lt;/LinkFormatStyle&gt;&lt;CardCaptionFormatStyle&gt;&lt;PredefinedStyle&gt;CardCaptionFormatStyle&lt;/PredefinedStyle&gt;&lt;/CardCaptionFormatStyle&gt;&lt;GroupByBoxFormatStyle&gt;&lt;PredefinedStyle&gt;GroupByBoxFormatStyle&lt;/PredefinedStyle&gt;&lt;/GroupByBoxFormatStyle&gt;&lt;GroupByBoxInfoFormatStyle&gt;&lt;PredefinedStyle&gt;GroupByBoxInfoFormatStyle&lt;/PredefinedStyle&gt;&lt;/GroupByBoxInfoFormatStyle&gt;&lt;GroupRowFormatStyle&gt;&lt;PredefinedStyle&gt;GroupRowFormatStyle&lt;/PredefinedStyle&gt;&lt;/GroupRowFormatStyle&gt;&lt;HeaderFormatStyle&gt;&lt;PredefinedStyle&gt;HeaderFormatStyle&lt;/PredefinedStyle&gt;&lt;/HeaderFormatStyle&gt;&lt;PreviewRowFormatStyle&gt;&lt;PredefinedStyle&gt;PreviewRowFormatStyle&lt;/PredefinedStyle&gt;&lt;/PreviewRowFormatStyle&gt;&lt;RowFormatStyle&gt;&lt;PredefinedStyle&gt;RowFormatStyle&lt;/PredefinedStyle&gt;&lt;/RowFormatStyle&gt;&lt;SelectedFormatStyle&gt;&lt;PredefinedStyle&gt;SelectedFormatStyle&lt;/PredefinedStyle&gt;&lt;/SelectedFormatStyle&gt;&lt;SelectedInactiveFormatStyle&gt;&lt;PredefinedStyle&gt;SelectedInactiveFormatStyle&lt;/PredefinedStyle&gt;&lt;/SelectedInactiveFormatStyle&gt;&lt;WatermarkImage /&gt;&lt;AlternatingColors&gt;True&lt;/AlternatingColors&gt;&lt;VisualStyle&gt;Office2007&lt;/VisualStyle&gt;&lt;AllowEdit&gt;False&lt;/AllowEdit&gt;&lt;ColumnAutoResize&gt;True&lt;/ColumnAutoResize&gt;&lt;ColumnHeaders&gt;False&lt;/ColumnHeaders&gt;&lt;ExpandableGroups&gt;False&lt;/ExpandableGroups&gt;&lt;GroupByBoxVisible&gt;False&lt;/GroupByBoxVisible&gt;&lt;HideSelection&gt;Highlight&lt;/HideSelection&gt;&lt;FilterRowButtonStyle&gt;ConditionOperatorDropDown&lt;/FilterRowButtonStyle&gt;&lt;Key&gt;Value&lt;/Key&gt;&lt;DisplayMember&gt;Text&lt;/DisplayMember&gt;&lt;ValueMember&gt;Value&lt;/ValueMember&gt;&lt;ImageColumnIndex&gt;0&lt;/ImageColumnIndex&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <metadata name="SearchTypeImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="SearchTypeImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADY
+        CgAAAk1TRnQBSQFMAgEBAwEAAQgBAAEIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAARwEmQUcBZkCHASZ
+        ARwJmQIcApkBHAF0AksBdAFSAUsBIwFKAnQCHBAAApkBHAJ0BEsBcwF0ARwImQEcBXQBHAaZARwBcwJ0
+        AksBdAFSAUsBIwFLAXMCSwFKEAABmQF0A0sBUQF0AVIBdANLAXMBHAWZARwCSwF0BEsBcwWZAksBUQFS
+        AksCdAFKASMBSwFSAksBIxAAARwBSgFLAXQBkwSZAZMBdAFLAUQBbgEcBJkBcwFKAUsBdAFMAUsBSgEj
+        AUsFmQFKAUQBSwFSBEsCRAFuAXQCSwEjEAACbgFLAXMCHAFzAW4BmQF0AVIBSwFEAUoBcwSZAXQCSwF0
+        AUwBSwFKAUQBcwWZAUsBRAFLAVIBSwFKAkQBIwFKAUsBdAFLAUoBIhAAAXMBdAJLAXMCSwFKAW4DSwFK
+        AXMBSgEcA5kBdAJLAXQBUgFLAkQBHAWZAXMCSwF0AUsBSgJLAkoBSwF0AUsCRBAAAZMBSwFSBEsBSgEi
+        A0sBcwEcAnMEmQFRAUsCdAFLASMBSgaZAXQCSwF0AksCdAFKASMBSwF0AUsBIwFzEAABkwFzAVEBSwF0
+        AUsBKwFKASMCcwEcApkBHAFzBJkBdAFLAnQBSwEjARwHmQJLAnQBSwNEAUoBSwF0AUsBRAEcEAAB7AEc
+        AXQBHAF0AUsBKwFKAUQBmQEcBJkBcwSZAXQBSwFzAVIBSwFKCJkBcwFLAXQDSwFEAUoBcwFKAUsBIwFL
+        AZkQAAFKARwBmQEcBEsBSgFuAksCmQJ0ApkBCAHuAZkDSwEjAXMBBwHuBpkBcwFEAUsBIwFLA5kBbgFK
+        AUsBIwFuAZkQAAEcAUoBHAF0AUoBIwJLAW4BSwJKAXMBdAFzApkBGgEIARoBHANLASMBcwIaApkBGgGZ
+        ARoBmQFzAUoBSwFEAW4BmQEaAZkCSwF0AUsBSgEcEAABmQFzAUoBbgFLASMBUQF0ApkBSwEjAUQBSwEc
+        AZkDGgGZAXQBSwJSAUsBSgGZBBoBmQEaAZkCSwF0AUsBSgEcARoBmQFzA0sBSgEcEAABmQEaARwBbgFL
+        AUQBbgGZARwBcwFKAUQBSwF0BRoCmQFRAksBRAFLAZkBGgGZAxoCmQFzAksCSgGZARoCmQFuAkQBcwGZ
+        EAABGgGZARoBmQEcAnMCHAJzARwCmQUaApkBdAFLASMBSgEcBhoDmQFuAkQBcwHuAbwCGgGZAhwBmQEa
+        EAAB7gQaBZkCGgGZCRoDmQcaAZkCGgOZAQgBGgEIARoBmQUaEAABGgGZAhoDmQIaAZkCGgGZAhoCmQQa
+        Ae4CGgEIAbwB7gEaAZkCGgKZAQgBvAEIAhoBCASZARoCmQEaAZkQAAFCAU0BPgcAAT4DAAEoAwABQAMA
+        ARADAAEBAQABAQUAAYAXAAP/gQAL
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="CloseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

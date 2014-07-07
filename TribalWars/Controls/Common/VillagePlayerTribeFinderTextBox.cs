@@ -20,7 +20,7 @@ namespace TribalWars.Controls.Common
     /// <summary>
     /// Extended TextBox that accepts Village coordinates, player names and tribe tags
     /// </summary>
-    public class VillagePlayerTribeFinderTextBox : MaskedEditBox
+    public class VillagePlayerTribeFinderTextBox : EditBox
     {
         #region Constants
         private const string PropertyGridCategory = "Tribal Wars";

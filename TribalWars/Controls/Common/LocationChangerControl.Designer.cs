@@ -1,3 +1,6 @@
+using Janus.Windows.GridEX;
+using Janus.Windows.GridEX.EditControls;
+
 namespace TribalWars.Controls.Common
 {
     partial class LocationChangerControl
@@ -42,7 +45,7 @@ namespace TribalWars.Controls.Common
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PlayerTribeFinderTextBox.BackColor = System.Drawing.Color.Red;
-            this.PlayerTribeFinderTextBox.ButtonStyle = Janus.Windows.GridEX.EditControls.EditButtonStyle.TextButton;
+            this.PlayerTribeFinderTextBox.ButtonStyle = EditButtonStyle.TextButton;
             this.PlayerTribeFinderTextBox.ButtonText = "» OK «";
             this.PlayerTribeFinderTextBox.GameLocation = null;
             this.PlayerTribeFinderTextBox.Location = new System.Drawing.Point(3, 3);
