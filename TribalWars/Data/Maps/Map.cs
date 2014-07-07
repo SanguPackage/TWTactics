@@ -179,6 +179,7 @@ namespace TribalWars.Data.Maps
         /// </summary>
         public void IncreaseZoomLevel(int amount)
         {
+            if (Display.Type == DisplayTypes.Icon) amount *= -1;
             SetCenter(this, new Location(Location.X, Location.Y, Location.Zoom + amount), false);
         }
 
