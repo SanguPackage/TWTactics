@@ -32,9 +32,9 @@
             Janus.Windows.GridEX.GridEXLayout multiColumnCombo1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivePlayerForm));
             this.gbTimeZome = new System.Windows.Forms.GroupBox();
-            this.CloseButton = new Janus.Windows.EditControls.UIButton();
             this.multiColumnCombo1 = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
             this.SearchTypeImageList = new System.Windows.Forms.ImageList(this.components);
+            this.CloseButton = new Janus.Windows.EditControls.UIButton();
             this.gbTimeZome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).BeginInit();
             this.SuspendLayout();
@@ -47,17 +47,6 @@
             this.gbTimeZome.Size = new System.Drawing.Size(242, 130);
             this.gbTimeZome.TabIndex = 13;
             this.gbTimeZome.TabStop = false;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
-            this.CloseButton.Location = new System.Drawing.Point(12, 171);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(242, 46);
-            this.CloseButton.TabIndex = 14;
-            this.CloseButton.Text = "OK";
             // 
             // multiColumnCombo1
             // 
@@ -80,6 +69,16 @@
             this.SearchTypeImageList.Images.SetKeyName(0, "Village.jpg");
             this.SearchTypeImageList.Images.SetKeyName(1, "Player.jpg");
             this.SearchTypeImageList.Images.SetKeyName(2, "Tribe.jpg");
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.Location = new System.Drawing.Point(12, 171);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(242, 46);
+            this.CloseButton.TabIndex = 14;
+            this.CloseButton.Text = "OK";
             // 
             // ActivePlayerForm
             // 

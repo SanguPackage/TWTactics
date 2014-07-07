@@ -75,6 +75,7 @@ namespace TribalWars.Forms
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
             this.ToolstripButtonCreateWorld = new System.Windows.Forms.ToolStripButton();
             this.ToolStripOpen = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripProgramSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripDownload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -454,6 +455,7 @@ namespace TribalWars.Forms
             this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolstripButtonCreateWorld,
             this.ToolStripOpen,
+            this.ToolStripProgramSettings,
             this.toolStripSeparator7,
             this.ToolStripDownload,
             this.toolStripSeparator6,
@@ -472,7 +474,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(363, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(386, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -495,6 +497,16 @@ namespace TribalWars.Forms
             this.ToolStripOpen.Text = "&Open";
             this.ToolStripOpen.ToolTipText = "Load a different world or select a different TW snapshot";
             this.ToolStripOpen.Click += new System.EventHandler(this.ToolStripOpen_Click);
+            // 
+            // ToolStripProgramSettings
+            // 
+            this.ToolStripProgramSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripProgramSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripProgramSettings.Image")));
+            this.ToolStripProgramSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripProgramSettings.Name = "ToolStripProgramSettings";
+            this.ToolStripProgramSettings.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripProgramSettings.ToolTipText = "Change program settings";
+            this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
             // 
             // toolStripSeparator7
             // 
@@ -908,9 +920,10 @@ namespace TribalWars.Forms
             // TabsMap
             // 
             this.TabsMap.Controls.Add(this.Map);
-            this.TabsMap.Location = new System.Drawing.Point(1, 21);
+            this.TabsMap.Image = ((System.Drawing.Image)(resources.GetObject("TabsMap.Image")));
+            this.TabsMap.Location = new System.Drawing.Point(1, 23);
             this.TabsMap.Name = "TabsMap";
-            this.TabsMap.Size = new System.Drawing.Size(866, 585);
+            this.TabsMap.Size = new System.Drawing.Size(866, 583);
             this.TabsMap.TabStop = true;
             this.TabsMap.Text = "Map";
             // 
@@ -921,15 +934,16 @@ namespace TribalWars.Forms
             this.Map.Location = new System.Drawing.Point(0, 0);
             this.Map.Margin = new System.Windows.Forms.Padding(0);
             this.Map.Name = "Map";
-            this.Map.Size = new System.Drawing.Size(866, 585);
+            this.Map.Size = new System.Drawing.Size(866, 583);
             this.Map.TabIndex = 0;
             // 
             // TabsBrowser
             // 
             this.TabsBrowser.Controls.Add(this.browserControl1);
-            this.TabsBrowser.Location = new System.Drawing.Point(1, 21);
+            this.TabsBrowser.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsBrowser.Icon")));
+            this.TabsBrowser.Location = new System.Drawing.Point(1, 23);
             this.TabsBrowser.Name = "TabsBrowser";
-            this.TabsBrowser.Size = new System.Drawing.Size(866, 585);
+            this.TabsBrowser.Size = new System.Drawing.Size(866, 583);
             this.TabsBrowser.TabStop = true;
             this.TabsBrowser.Text = "TWStats";
             // 
@@ -940,12 +954,13 @@ namespace TribalWars.Forms
             this.browserControl1.GameBrowser = false;
             this.browserControl1.Location = new System.Drawing.Point(0, 0);
             this.browserControl1.Name = "browserControl1";
-            this.browserControl1.Size = new System.Drawing.Size(866, 585);
+            this.browserControl1.Size = new System.Drawing.Size(866, 583);
             this.browserControl1.TabIndex = 0;
             // 
             // TabsPolygon
             // 
             this.TabsPolygon.Controls.Add(this.Polygon);
+            this.TabsPolygon.Icon = ((System.Drawing.Icon)(resources.GetObject("TabsPolygon.Icon")));
             this.TabsPolygon.Location = new System.Drawing.Point(1, 21);
             this.TabsPolygon.Name = "TabsPolygon";
             this.TabsPolygon.Size = new System.Drawing.Size(866, 585);
@@ -966,6 +981,7 @@ namespace TribalWars.Forms
             // TabsMonitoring
             // 
             this.TabsMonitoring.Controls.Add(this.monitoringControl1);
+            this.TabsMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("TabsMonitoring.Image")));
             this.TabsMonitoring.Location = new System.Drawing.Point(1, 21);
             this.TabsMonitoring.Name = "TabsMonitoring";
             this.TabsMonitoring.Size = new System.Drawing.Size(866, 585);
@@ -1143,6 +1159,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem MenuFileSynchronizeTime;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripButton ToolStripProgramSettings;
     }
 }
 

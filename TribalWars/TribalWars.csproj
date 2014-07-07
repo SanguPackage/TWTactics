@@ -400,17 +400,23 @@
     <Compile Include="Data\Villages\VillageTooltip.cs" />
     <Compile Include="Data\Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
-    <Compile Include="Forms\ActivePlayerForm.cs">
+    <Compile Include="Forms\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ActivePlayerForm.Designer.cs">
-      <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    <Compile Include="Forms\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoadWorldForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LoadWorldForm.Designer.cs">
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TimeZoneForm.cs">
       <SubType>Form</SubType>
@@ -560,8 +566,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ActivePlayerForm.resx">
-      <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <SubType>Designer</SubType>

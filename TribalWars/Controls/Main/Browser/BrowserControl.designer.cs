@@ -39,10 +39,10 @@ namespace TribalWars.Controls.Main.Browser
             this.HomeStatsButton = new System.Windows.Forms.ToolStripButton();
             this.Browser = new System.Windows.Forms.WebBrowser();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ParseResultLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Url = new System.Windows.Forms.TextBox();
             this.GoButton = new System.Windows.Forms.Button();
+            this.ParseResultLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -168,18 +168,6 @@ namespace TribalWars.Controls.Main.Browser
             this.panel1.Size = new System.Drawing.Size(634, 25);
             this.panel1.TabIndex = 2;
             // 
-            // ParseResultLabel
-            // 
-            this.ParseResultLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ParseResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ParseResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParseResultLabel.Location = new System.Drawing.Point(3, 3);
-            this.ParseResultLabel.Name = "ParseResultLabel";
-            this.ParseResultLabel.Size = new System.Drawing.Size(118, 20);
-            this.ParseResultLabel.TabIndex = 6;
-            this.ParseResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ParseResultLabel.Visible = false;
-            // 
             // label1
             // 
             this.label1.Enabled = false;
@@ -215,6 +203,18 @@ namespace TribalWars.Controls.Main.Browser
             this.GoButton.TabIndex = 5;
             this.GoButton.UseVisualStyleBackColor = true;
             this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
+            // 
+            // ParseResultLabel
+            // 
+            this.ParseResultLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ParseResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ParseResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParseResultLabel.Location = new System.Drawing.Point(3, 3);
+            this.ParseResultLabel.Name = "ParseResultLabel";
+            this.ParseResultLabel.Size = new System.Drawing.Size(118, 20);
+            this.ParseResultLabel.TabIndex = 6;
+            this.ParseResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ParseResultLabel.Visible = false;
             // 
             // BrowserControl
             // 

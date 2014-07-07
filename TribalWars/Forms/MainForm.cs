@@ -276,24 +276,21 @@ namespace TribalWars.Forms
 
         private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
-            // TODO: TEST CODE!!!!
-            var player = new ActivePlayerForm();
-            player.ShowDialog();
-            
-
-            //using (var timeSetter = new TimeZoneForm())
-            //{
-            //    timeSetter.ServerOffset = World.Default.ServerOffset;
-            //    timeSetter.ShowDialog();
-            //    World.Default.ServerOffset = timeSetter.ServerOffset;
-            //    World.Default.SaveSettings();
-            //}
+            using (var timeSetter = new TimeZoneForm())
+            {
+                timeSetter.ServerOffset = World.Default.ServerOffset;
+                timeSetter.ShowDialog();
+                World.Default.ServerOffset = timeSetter.ServerOffset;
+                World.Default.SaveSettings();
+            }
         }
 
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
-            var x = new LoadWorldForm();
-            x.ShowDialog();
+            using (var frm = new LoadWorldForm())
+            {
+                frm.ShowDialog();
+            }
         }
 
         private void ToolStripSave_Click(object sender, EventArgs e)
@@ -302,6 +299,12 @@ namespace TribalWars.Forms
             {
                 World.Default.SaveSettings();
             }
+        }
+
+        private void ToolStripProgramSettings_Click(object sender, EventArgs e)
+        {
+            var settings = new SettingsForm();
+            settings.Show();
         }
 
         private void ToolStripDraw_Click(object sender, EventArgs e)
