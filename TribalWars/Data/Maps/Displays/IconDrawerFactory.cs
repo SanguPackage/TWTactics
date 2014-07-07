@@ -160,13 +160,16 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, MarkerGroup colors, DrawerData mainData)
         {
-            if (string.IsNullOrEmpty(data.IconDrawer) || Zoom.Current != 1)
+            if ((VillageType)data.Value == VillageType.None || Zoom.Current != 1)
             {
                 return null;
             }
 
-            var icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
-            Debug.Assert(icon != null);
+            Bitmap icon = null;
+            if (!string.IsNullOrEmpty(data.IconDrawer))
+            {
+                icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
+            }
             return new IconDrawerDecorator((VillageType)data.Value, icon);
         }
 

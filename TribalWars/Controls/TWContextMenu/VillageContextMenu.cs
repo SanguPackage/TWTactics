@@ -110,7 +110,7 @@ namespace TribalWars.Controls.TWContextMenu
             }
             else
             {
-                _village.Type = changeTo;
+                _village.Type |= changeTo;
             }
             _map.Invalidate();
 
