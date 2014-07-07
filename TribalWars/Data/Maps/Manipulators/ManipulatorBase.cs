@@ -74,12 +74,7 @@ namespace TribalWars.Data.Maps.Manipulators
                 return new VillageContextMenu(_map, village);
             }
             Point gameLocation = World.Default.Map.Display.GetGameLocation(location);
-            return new DefaultMapContextMenu(gameLocation);
-        }
-
-        public string VillageTooltip(Village village)
-        {
-            return village.Tooltip.Text;
+            return new NoVillageMapContextMenu(gameLocation);
         }
 
         /// <summary>

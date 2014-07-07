@@ -15,7 +15,7 @@ namespace TribalWars.Data.Maps.Displays
     /// <summary>
     /// Base class for the MiniMap, Shape and IconDisplay factories
     /// </summary>
-    public abstract class DisplayBase // TODO: rename to DisplayFactory
+    public abstract class DisplayBase
     {
         #region Fields
         private readonly ZoomInfo _zoom;

@@ -150,7 +150,7 @@ namespace TribalWars.Data.Maps.Manipulators
             return redraw;
         }
 
-        public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture, ToolTip villageTooltip)
+        public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture)
         {
             Point game = Map.Display.GetGameLocation(e.Location);
             if (!game.IsValidGameCoordinate())
@@ -164,23 +164,16 @@ namespace TribalWars.Data.Maps.Manipulators
             // Display village tooltip
             if (village != null)
             {
-                if (ActiveVillage != village.Location || !villageTooltip.Active)
+                if (ActiveVillage != village.Location)
                 {
                     LastActiveVillage = ActiveVillage;
                     ActiveVillage = village.Location;
-
-                    if (CurrentManipulator.ShowTooltip)
-                    {
-                        villageTooltip.Active = true;
-                        villageTooltip.ToolTipTitle = village.Tooltip.Title;
-                        villageTooltip.SetToolTip(mapPicture, Map.Manipulators.CurrentManipulator.VillageTooltip(village));
-                    }
+                    CurrentManipulator.ShowTooltip(mapPicture, village);
                 }
             }
             else
             {
-                if (CurrentManipulator.ShowTooltip)
-                    villageTooltip.Active = false;
+                CurrentManipulator.StopTooltip();
             }
 
             // Invoke the MouseMoved delegate each time the current mouse location is different from the last location

@@ -303,7 +303,6 @@ namespace TribalWars.Data
             w.ServerOffset = new TimeSpan(Convert.ToInt32(info.Offset), 0, 0);
             w.Speed = Convert.ToSingle(info.Speed, CultureInfo.InvariantCulture);
             w.UnitSpeed = Convert.ToSingle(info.UnitSpeed, CultureInfo.InvariantCulture);
-            w.Culture = new CultureInfo(info.Culture);
 
             w.Structure.DownloadVillage = info.DataVillage;
             w.Structure.DownloadPlayer = info.DataPlayer;

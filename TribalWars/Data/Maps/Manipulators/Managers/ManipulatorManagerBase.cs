@@ -6,6 +6,7 @@ using System.Xml;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Villages;
+using TribalWars.Tools;
 
 #endregion
 
@@ -19,22 +20,25 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         #region Fields
         protected readonly List<ManipulatorBase> _manipulators;
         protected ManipulatorBase _fullControllManipulator;
+
+        private readonly ToolTip _toolTipControl;
         #endregion
 
         #region Properties
         /// <summary>
-        /// Gets a value indicating whether a tooltip should
+        /// Gets or sets a value indicating whether a tooltip should
         /// show up when hovering over a village
         /// </summary>
-        public bool ShowTooltip { get; set; }
+        public bool TooltipActive { get; set; }
         #endregion
 
         #region Constructors
-        protected ManipulatorManagerBase(Map map)
+        protected ManipulatorManagerBase(Map map, bool showTooltip)
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();
-            ShowTooltip = true;
+            _toolTipControl = WinForms.CreateTooltip();
+            TooltipActive = showTooltip;
         }
         #endregion
 
@@ -64,6 +68,22 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
                 _fullControllManipulator.RemoveFullControlManipulatorCore();
                 _fullControllManipulator = null;
             }
+        }
+
+        public void ShowTooltip(Control map, Village village)
+        {
+            if (TooltipActive)
+            {
+                _toolTipControl.Active = true;
+                _toolTipControl.ToolTipTitle = village.Tooltip.Title;
+                _toolTipControl.SetToolTip(map, village.Tooltip.Text);
+            }
+
+        }
+
+        public void StopTooltip()
+        {
+            _toolTipControl.Active = false;
         }
         #endregion
 
@@ -207,6 +227,12 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
+            if (e.KeyEventArgs.KeyCode == Keys.T)
+            {
+                TooltipActive = !TooltipActive;
+                return false;
+            }
+
             if (_fullControllManipulator != null)
             {
                 return _fullControllManipulator.OnKeyDownCore(e);

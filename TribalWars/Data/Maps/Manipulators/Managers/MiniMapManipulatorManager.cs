@@ -16,13 +16,10 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         #region Constructors
         public MiniMapManipulatorManager(Map map, Map mainMap)
-            : base(map)
+            : base(map, false)
         {
-            // Active manipulators
             _activeVillage = new MiniMapActiveVillageManipulator(map, mainMap);
             _manipulators.Add(_activeVillage);
-
-            ShowTooltip = false;
         }
         #endregion
 

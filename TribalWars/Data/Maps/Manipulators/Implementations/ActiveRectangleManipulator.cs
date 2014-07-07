@@ -65,13 +65,13 @@ Press 's' to remove this tooltip.";
         #region Methods
         protected internal override void SetFullControlManipulatorCore()
         {
-            _wasShowingTooltip = _map.Manipulators.CurrentManipulator.ShowTooltip;
-            _map.Manipulators.CurrentManipulator.ShowTooltip = false;
+            _wasShowingTooltip = _map.Manipulators.CurrentManipulator.TooltipActive;
+            _map.Manipulators.CurrentManipulator.TooltipActive = false;
         }
 
         protected internal override void RemoveFullControlManipulatorCore()
         {
-            _map.Manipulators.CurrentManipulator.ShowTooltip = _wasShowingTooltip;
+            _map.Manipulators.CurrentManipulator.TooltipActive = _wasShowingTooltip;
             _helpTooltip.Active = false;
 
             if (_releaseAction != null)

@@ -20,7 +20,6 @@ namespace TribalWars.Controls.Maps
     {
         #region Fields
         protected Map Map;
-        private readonly ToolTip _toolTipControl;
         private readonly Timer _timer;
         #endregion
 
@@ -38,8 +37,6 @@ namespace TribalWars.Controls.Maps
         #region Constructors
         public ScrollableMapControl()
         {
-            _toolTipControl = WinForms.CreateTooltip();
-
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -112,7 +109,7 @@ namespace TribalWars.Controls.Maps
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (IsManipulatable && Map.Manipulators.MouseMove(e, this, _toolTipControl))
+            if (IsManipulatable && Map.Manipulators.MouseMove(e, this))
             {
                 Invalidate();
             }

@@ -8,7 +8,6 @@
         <xs:element name="Offset" type="xs:string" minOccurs="0" />
         <xs:element name="Speed" type="xs:string" minOccurs="0" />
         <xs:element name="UnitSpeed" type="xs:string" minOccurs="0" />
-        <xs:element name="Culture" type="xs:string" minOccurs="0" />
         <xs:element name="DataVillage" type="xs:string" minOccurs="0" />
         <xs:element name="DataPlayer" type="xs:string" minOccurs="0" />
         <xs:element name="DataTribe" type="xs:string" minOccurs="0" />

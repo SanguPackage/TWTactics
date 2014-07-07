@@ -47,8 +47,7 @@ namespace TribalWars.Forms
         /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
-            World.Default.Map.InitializeMap(Map);
-            World.Default.MiniMap.InitializeMap(MiniMap, World.Default.Map);
+            World.Default.InitializeMaps(Map, MiniMap);
 
             World.Default.EventPublisher.Loaded += OnWorldLoaded;
             World.Default.EventPublisher.SettingsLoaded += OnWorldSettingsLoaded;

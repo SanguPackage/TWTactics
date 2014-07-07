@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using TribalWars.Controls.Maps;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Displays;
@@ -52,7 +53,7 @@ namespace TribalWars.Data
         /// <summary>
         /// Gets the main WorldMiniMap
         /// </summary>
-        public Map MiniMap { get; private set; }
+        private Map MiniMap { get; set; }
 
         /// <summary>
         /// Gets a value indicating if there is an active player
@@ -81,24 +82,7 @@ namespace TribalWars.Data
         /// Gets a value indicating which scenery (sea, mountains, ...)
         /// to draw when drawing TW village icons
         /// </summary>
-        public IconDisplay.Scenery IconScenery { get; set; }
-
-        /// <summary>
-        /// Gets the culture of the TW server
-        /// </summary>
-        public CultureInfo Culture
-        {
-            get { return _culture; }
-            set
-            {
-                Translations.TWWords.Culture = value;
-
-                Thread.CurrentThread.CurrentCulture = value;
-                Thread.CurrentThread.CurrentUICulture = value;
-
-                _culture = value;
-            }
-        }
+        internal IconDisplay.Scenery IconScenery { get; set; }
 
         /// <summary>
         /// Gets the name of the World
@@ -742,5 +726,11 @@ namespace TribalWars.Data
             #endregion
         }
         #endregion
+
+        public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)
+        {
+            Map.InitializeMap(mapControl);
+            MiniMap.InitializeMap(miniMapControl, Map);
+        }
     }
 }

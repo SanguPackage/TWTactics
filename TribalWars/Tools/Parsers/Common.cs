@@ -45,12 +45,11 @@ namespace TribalWars.Tools.Parsers
                 return _pattern.Match(input);
             }
 
-            public static DatePatternInfo GetInfo(CultureInfo culture)
+            public static DatePatternInfo GetInfo(string serverHost)
             {
-                switch (culture.Name)
+                switch (serverHost.ToLowerInvariant())
                 {
-                    case "nl-BE":
-                    case "nl-NL":
+                    case "www.tribalwars.nl":
                         return new DatePatternInfo(DatePattern, DutchDatePatternToday, DutchDatePatternTomorrow, DutchDatePatternAtTime);
 
                     default:
@@ -99,7 +98,7 @@ namespace TribalWars.Tools.Parsers
         public static bool Date(string input, out DateTime value)
         {
             value = DateTime.MinValue;
-            var patternMatcher = DatePatternInfo.GetInfo(World.Default.Culture);
+            var patternMatcher = DatePatternInfo.GetInfo(World.Default.Server.Host);
             Match match = patternMatcher.Match(input);
             if (match.Success)
             {

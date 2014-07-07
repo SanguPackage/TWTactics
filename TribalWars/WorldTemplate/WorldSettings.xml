@@ -5,7 +5,6 @@
   <Offset>0</Offset>
   <Speed>{WorldSpeed}</Speed>
   <UnitSpeed>{WorldUnitSpeed}</UnitSpeed>
-  <Culture>nl-BE</Culture>
   <DataVillage>http://{WorldName}.{ServerUrl}/map/village.txt.gz</DataVillage>
   <DataPlayer>http://{WorldName}.{ServerUrl}/map/tribe.txt.gz</DataPlayer>
   <DataTribe>http://{WorldName}.{ServerUrl}/map/ally.txt.gz</DataTribe>

@@ -36,9 +36,6 @@ namespace TribalWars.WorldTemplate
         private string unitSpeedField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string cultureField;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private string dataVillageField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -97,8 +94,6 @@ namespace TribalWars.WorldTemplate
         public string Speed { get; set; }
 
         public string UnitSpeed { get; set; }
-
-        public string Culture { get; set; }
 
         public string DataVillage { get; set; }
 

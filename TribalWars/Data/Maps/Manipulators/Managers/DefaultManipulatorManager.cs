@@ -32,7 +32,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
 
         #region Constructors
         public DefaultManipulatorManager(Map map)
-            : base(map)
+            : base(map, true)
         {
             // Active manipulators
             ActiveVillageManipulator = new ActiveVillageManipulator(map);
