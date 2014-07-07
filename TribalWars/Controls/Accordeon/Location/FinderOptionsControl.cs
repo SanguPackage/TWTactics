@@ -156,8 +156,8 @@ namespace TribalWars.Controls.Accordeon.Location
 
         private void FinderOptionsControl_Load(object sender, EventArgs e)
         {
-            Filter.SelectedIndex = (int) FinderOptions.FinderOptionsEnum.All;
-            Area.SelectedIndex = (int) FinderOptions.FinderLocationEnum.EntireMap;
+            Filter.SelectedIndex = (int) FinderOptions.FinderOptionsEnum.Strongest;
+            Area.SelectedIndex = (int) FinderOptions.FinderLocationEnum.VisibleMap;
             What.SelectedIndex = (int) SearchForEnum.Players;
         }
         #endregion

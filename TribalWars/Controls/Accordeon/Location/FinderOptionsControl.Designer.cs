@@ -312,7 +312,7 @@ namespace TribalWars.Controls.Accordeon.Location
             this.Controls.Add(this.What);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FinderOptionsControl";
-            this.Size = new System.Drawing.Size(285, 34);
+            this.Size = new System.Drawing.Size(285, 35);
             this.Load += new System.EventHandler(this.FinderOptionsControl_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
