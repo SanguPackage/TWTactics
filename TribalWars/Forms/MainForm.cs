@@ -199,6 +199,8 @@ namespace TribalWars.Forms
             var selected = sender as ToolStripMenuItem;
             if (selected != null)
             {
+                World.Default.SaveSettings();
+
                 foreach (ToolStripMenuItem itm in ToolStripSettings.DropDownItems)
                 {
                     itm.Checked = false;
@@ -239,17 +241,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-#if !DEBUG
-                DialogResult result = MessageBox.Show("Save settings before quitting?", "Quit?", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
-                else if (result == DialogResult.Yes)
-                {
-                    World.Default.SaveSettings();
-                }
-#endif
+                World.Default.SaveSettings();
             }
         }
         #endregion
@@ -257,12 +249,16 @@ namespace TribalWars.Forms
         #region Menu & Toolstrip Handlers
         private void MenuFileNew_Click(object sender, EventArgs e)
         {
+            World.Default.SaveSettings();
+
             var frm = new LoadWorldForm();
             frm.ShowDialog();
         }
 
         private void MenuFileLoadWorld_Click(object sender, EventArgs e)
         {
+            World.Default.SaveSettings();
+
             var frm = new LoadWorldForm();
             frm.ShowDialog();
         }
@@ -291,6 +287,8 @@ namespace TribalWars.Forms
 
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
+            World.Default.SaveSettings();
+
             using (var frm = new LoadWorldForm())
             {
                 frm.ShowDialog();
