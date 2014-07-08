@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Descriptors;
+using TribalWars.Data.Villages;
+using TribalWars.Tools.PropertyGrid.Tribes;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Villages
 {
     /// <summary>
     /// Village descriptor for a PropertyGrid
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter))]
+    [TypeConverter(typeof(PropertySorter))]
     public class ExtendedVillageDescriptor
     {
         #region Constants
@@ -50,28 +45,28 @@ namespace TribalWars.Data.Villages
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(10)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(10)]
         public string Name
         {
             get { return Village.Name; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(12)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(12)]
         public string Points
         {
             get { return Village.Points.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(15), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(15), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string Location
         {
             get { return Village.LocationString; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(20)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(20)]
         public VillagePlayerDescriptor Player
         {
             get
@@ -84,7 +79,7 @@ namespace TribalWars.Data.Villages
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(25)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(25)]
         public TribeDescriptor Tribe
         {
             get
@@ -97,7 +92,7 @@ namespace TribalWars.Data.Villages
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Village.BbCode(); }

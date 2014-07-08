@@ -205,6 +205,11 @@
     <Compile Include="Data\Maps\DisplaySettings.cs" />
     <Compile Include="Data\Maps\Displays\MiniMapDrawerFactory.cs" />
     <Compile Include="Data\Maps\Displays\VillageDimensions.cs" />
+    <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorldData.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
     <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
     <Compile Include="Data\Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
@@ -333,11 +338,6 @@
     <Compile Include="Data\Maps\Publisher.cs" />
     <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
     <Compile Include="Data\Maps\Displays\IconDrawerFactory.cs" />
-    <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WorldData.resx</DependentUpon>
-    </Compile>
     <Compile Include="Data\Maps\Displays\ShapeDrawerFactory.cs" />
     <Compile Include="Data\Maps\Views\ViewBase.cs" />
     <Compile Include="Data\Maps\Displays\DrawerFactoryBase.cs" />
@@ -355,15 +355,15 @@
     </Compile>
     <Compile Include="Data\Reporting\ReportBBCodeOutput.cs" />
     <Compile Include="Data\Reporting\ReportBuilding.cs" />
-    <Compile Include="Data\Descriptors\ClipboardCopierUIEditor.cs" />
+    <Compile Include="Tools\PropertyGrid\ClipboardCopierUIEditor.cs" />
     <Compile Include="Data\Events\PlayerEventArgs.cs" />
     <Compile Include="Data\Events\TribeEventArgs.cs" />
     <Compile Include="Data\Events\VillageEventArgs.cs" />
     <Compile Include="Data\Events\VillagesEventArgs.cs" />
     <Compile Include="Data\InternalStructure.cs" />
-    <Compile Include="Data\Players\ExtendedPlayerDescriptor.cs" />
-    <Compile Include="Data\Players\PlayerCollection.cs" />
-    <Compile Include="Data\Players\PlayerPropertyDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Players\ExtendedPlayerDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Players\PlayerCollection.cs" />
+    <Compile Include="Tools\PropertyGrid\Players\PlayerPropertyDescriptor.cs" />
     <Compile Include="Data\Maps\Location.cs" />
     <Compile Include="Data\Events\MapLocationEventArgs.cs" />
     <Compile Include="Data\Reporting\Report.cs" />
@@ -378,7 +378,7 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\Resources\ResourceTypes.cs" />
-    <Compile Include="Data\Tribes\ExtendedTribeDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Tribes\ExtendedTribeDescriptor.cs" />
     <Compile Include="Data\Units\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -388,11 +388,11 @@
     <Compile Include="Data\Units\UnitTypes.cs" />
     <Compile Include="Data\Reporting\ReportUnit.cs" />
     <Compile Include="Data\VillageCommand.cs" />
-    <Compile Include="Data\Villages\ExtendedVillageDescriptor.cs" />
-    <Compile Include="Data\Villages\VillageCollection.cs" />
-    <Compile Include="Data\Villages\VillagePlayerDescriptor.cs" />
-    <Compile Include="Data\Villages\VillagePointerUIEditor.cs" />
-    <Compile Include="Data\Villages\VillagePropertyDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\ExtendedVillageDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\VillageCollection.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\VillagePlayerDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\VillagePointerUIEditor.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\VillagePropertyDescriptor.cs" />
     <Compile Include="Data\Villages\VillageTooltip.cs" />
     <Compile Include="Data\Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
@@ -426,14 +426,14 @@
     <Compile Include="Tools\TupleList.cs" />
     <Compile Include="Tools\Parsers\Common.cs" />
     <Compile Include="Tools\PhpDeserializer.cs" />
-    <Compile Include="Tools\PropertyGrid.cs">
+    <Compile Include="Tools\PropertyGrid\PropertyGrid.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tools\WinForms.cs" />
     <Compile Include="Tools\XmlHelper.cs" />
-    <Compile Include="Data\Players\PlayerDescriptor.cs" />
-    <Compile Include="Data\Tribes\TribeDescriptor.cs" />
-    <Compile Include="Data\Villages\VillageDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Players\PlayerDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Tribes\TribeDescriptor.cs" />
+    <Compile Include="Tools\PropertyGrid\Villages\VillageDescriptor.cs" />
     <Compile Include="Data\Monitoring\Monitor.cs" />
     <Compile Include="Data\Tribes\Tribe.cs" />
     <Compile Include="Data\Buildings\Building.cs" />
@@ -528,6 +528,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\Maps\Displays\WorldData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorldData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Data\Maps\Icons\Background.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -542,11 +546,6 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Villages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Displays\WorldData.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WorldData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Reporting\Images.resx">
       <SubType>Designer</SubType>
@@ -669,9 +668,6 @@
     </None>
     <None Include="Controls\Main\Polygons\PolygonDataSet.xss">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\Resources\WorldBackgroundData.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\pin.gif" />
     <None Include="Resources\pinpoint_blue.gif" />
@@ -807,7 +803,7 @@
     <None Include="Resources\Sword.png" />
     <None Include="Resources\PolyHandle.cur" />
     <None Include="Resources\Pencil.cur" />
-    <None Include="Resources\World.dat" />
+    <None Include="Resources\WorldBackgroundData.dat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XPTable\XPTable.csproj">

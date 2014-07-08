@@ -122,9 +122,9 @@ namespace TribalWars.Tools
         #endregion
 
         #region Change Width PropertyGrid
-        public static void MoveSplitter(PropertyGrid propertyGrid, int width)
+        public static void MoveSplitter(System.Windows.Forms.PropertyGrid propertyGrid, int width)
         {
-            object propertyGridView = typeof(PropertyGrid).InvokeMember("gridView", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance, null, propertyGrid, null);
+            object propertyGridView = typeof(System.Windows.Forms.PropertyGrid).InvokeMember("gridView", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance, null, propertyGrid, null);
             propertyGridView.GetType().InvokeMember("MoveSplitterTo", BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance, null, propertyGridView, new object[] { width });
         }
         #endregion

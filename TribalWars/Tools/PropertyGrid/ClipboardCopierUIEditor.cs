@@ -1,12 +1,11 @@
 #region Using
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.ComponentModel;
+
 #endregion
 
-namespace TribalWars.Data.Descriptors
+namespace TribalWars.Tools.PropertyGrid
 {
     /// <summary>
     /// UI Editor to copy the value to the clipboard

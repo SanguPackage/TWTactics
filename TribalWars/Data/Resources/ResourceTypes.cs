@@ -11,8 +11,14 @@ namespace TribalWars.Data.Resources
     {
         NotSet = -1,
         Wood,
+        /// <summary>
+        /// This used to be 'stone'
+        /// </summary>
         Clay,
         Iron,
+        /// <summary>
+        /// People
+        /// </summary>
         Face,
         All
     }

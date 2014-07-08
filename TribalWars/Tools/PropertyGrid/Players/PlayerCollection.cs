@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
+using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
+using TribalWars.Tools.PropertyGrid.Villages;
 
-namespace TribalWars.Data.Players
+namespace TribalWars.Tools.PropertyGrid.Players
 {
     /// <summary>
     /// Collection of players used in ExtendedTribeDescriptor

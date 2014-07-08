@@ -1,20 +1,19 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
+using TribalWars.Data.Players;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Tribes;
-using TribalWars.Data.Descriptors;
+using TribalWars.Tools.PropertyGrid.Tribes;
+using TribalWars.Tools.PropertyGrid.Villages;
+
 #endregion
 
-namespace TribalWars.Data.Players
+namespace TribalWars.Tools.PropertyGrid.Players
 {
     /// <summary>
     /// Stand alone player descriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), DefaultProperty("Villages")]
+    [TypeConverter(typeof(PropertySorter)), DefaultProperty("Villages")]
     public class ExtendedPlayerDescriptor
     {
         #region Constants
@@ -40,20 +39,20 @@ namespace TribalWars.Data.Players
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(10)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(10)]
         public string Name
         {
             get { return Player.Name; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), TypeConverter(typeof(ExpandableObjectConverter)), Tools.PropertyOrder(15)]
+        [Category(PROPERTY_CATEGORY), TypeConverter(typeof(ExpandableObjectConverter)), PropertyOrder(15)]
         public VillageCollection Villages
         {
             get { return new VillageCollection(Player.Villages); }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(20)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(20)]
         public TribeDescriptor Tribe
         {
             get
@@ -64,21 +63,21 @@ namespace TribalWars.Data.Players
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(40)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Points
         {
             get { return Player.Points.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(50)]
         public string Rank
         {
             get { return Player.Rank.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(55), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(55), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Player.BbCode(); }

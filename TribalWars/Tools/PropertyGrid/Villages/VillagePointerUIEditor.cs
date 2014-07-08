@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
 using System.Drawing;
+using TribalWars.Data;
+using TribalWars.Data.Villages;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Villages
 {
     /// <summary>
     /// UI Editor for showing pinpoint markers from a PropertyGrid

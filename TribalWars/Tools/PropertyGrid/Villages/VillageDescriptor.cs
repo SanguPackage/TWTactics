@@ -1,16 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
-using TribalWars.Data.Descriptors;
+using TribalWars.Data.Villages;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Villages
 {
     /// <summary>
     /// Village descriptor for a PropertyGrid
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class VillageDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -48,21 +45,21 @@ namespace TribalWars.Data.Villages
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(30)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(30)]
         public string Location
         {
             get { return Village.LocationString; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(40)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Kingdom
         {
             get { return "K" + Village.Kingdom; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(50), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Village.BbCode(); }

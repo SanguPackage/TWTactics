@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
 using System.Collections;
 
-using System.Windows.Forms;
-using System.Reflection;
-
-namespace TribalWars.Tools
+namespace TribalWars.Tools.PropertyGrid
 {
     #region Property Sorting
     public class PropertySorter : ExpandableObjectConverter

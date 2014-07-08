@@ -1,17 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
 using TribalWars.Data.Players;
-using TribalWars.Data.Descriptors;
+using TribalWars.Data.Villages;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Villages
 {
     /// <summary>
     /// Descriptor used from the ExtendedVillageDescriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class VillagePlayerDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -38,28 +35,28 @@ namespace TribalWars.Data.Villages
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(40)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Points
         {
             get { return Player.Points.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(50)]
         public string Rank
         {
             get { return Player.Rank.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(60)]
         public string Villages
         {
             get { return Player.Villages.Count.ToString(); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(65), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(65), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Player.BbCode(); }

@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
-using TribalWars.Tools;
+using TribalWars.Data.Villages;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Villages
 {
     /// <summary>
     /// Represents a list of villages in a PropertyGrid

@@ -12,6 +12,10 @@ using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Controls.Display;
+using TribalWars.Tools.PropertyGrid.Players;
+using TribalWars.Tools.PropertyGrid.Tribes;
+using TribalWars.Tools.PropertyGrid.Villages;
+
 #endregion
 
 namespace TribalWars.Controls.Accordeon.Details

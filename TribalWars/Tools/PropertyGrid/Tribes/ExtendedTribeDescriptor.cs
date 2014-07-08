@@ -1,18 +1,16 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
+using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
-using TribalWars.Data.Descriptors;
+using TribalWars.Tools.PropertyGrid.Players;
 
-namespace TribalWars.Data.Tribes
+namespace TribalWars.Tools.PropertyGrid.Tribes
 {
     /// <summary>
     /// Stand alone descriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter))]
+    [TypeConverter(typeof(PropertySorter))]
     public class ExtendedTribeDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -39,42 +37,42 @@ namespace TribalWars.Data.Tribes
         #endregion
 
         #region Properties
-        [Category(PropertyCategory), Tools.PropertyOrder(5)]
+        [Category(PropertyCategory), PropertyOrder(5)]
         public string Tag
         {
             get { return Tribe.Tag; }
             set { }
         }
 
-        [Category(PropertyCategory), Tools.PropertyOrder(10)]
+        [Category(PropertyCategory), PropertyOrder(10)]
         public string Name
         {
             get { return Tribe.Name; }
             set { }
         }
 
-        [Category(PropertyCategory), Tools.PropertyOrder(40)]
+        [Category(PropertyCategory), PropertyOrder(40)]
         public string Points
         {
             get { return Tribe.AllPoints.ToString("#,0"); }
             set { }
         }
 
-        [Category(PropertyCategory), TypeConverter(typeof(ExpandableObjectConverter)), Tools.PropertyOrder(45)]
+        [Category(PropertyCategory), TypeConverter(typeof(ExpandableObjectConverter)), PropertyOrder(45)]
         public PlayerCollection Players
         {
             get { return new PlayerCollection(Tribe.Players, false); }
             set { }
         }
 
-        [Category(PropertyCategory), Tools.PropertyOrder(50)]
+        [Category(PropertyCategory), PropertyOrder(50)]
         public string Rank
         {
             get { return Tribe.Rank.ToString("#,0"); }
             set { }
         }
 
-        [Category(PropertyCategory), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PropertyCategory), PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return Tribe.BbCode(); }

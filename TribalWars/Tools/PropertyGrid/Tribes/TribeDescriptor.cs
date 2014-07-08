@@ -1,18 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
-using TribalWars;
+using TribalWars.Data.Tribes;
 using TribalWars.Data.Villages;
-using TribalWars.Data.Descriptors;
+using TribalWars.Tools.PropertyGrid.Villages;
 
-namespace TribalWars.Data.Tribes
+namespace TribalWars.Tools.PropertyGrid.Tribes
 {
     /// <summary>
     /// Descriptor used in ExtendedPlayerDescriptor and ExtendedVillageDescriptor
     /// </summary>
-    [TypeConverter(typeof(Tools.PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertySorter)), Editor(typeof(VillagePointerUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public class TribeDescriptor : IEnumerable<Village>
     {
         #region Constants
@@ -49,35 +46,35 @@ namespace TribalWars.Data.Tribes
         #endregion
 
         #region Properties
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(10)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(10)]
         public string Name
         {
             get { return tribe.Name; }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(40)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Points
         {
             get { return tribe.AllPoints.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(50)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(50)]
         public string Rank
         {
             get { return tribe.Rank.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(55)]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(55)]
         public string Players
         {
             get { return tribe.Players.Count.ToString("#,0"); }
             set { }
         }
 
-        [Category(PROPERTY_CATEGORY), Tools.PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Category(PROPERTY_CATEGORY), PropertyOrder(60), Editor(typeof(ClipboardCopierUiEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string BBCode
         {
             get { return tribe.BbCode(); }

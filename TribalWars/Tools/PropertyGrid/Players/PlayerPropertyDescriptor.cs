@@ -1,38 +1,37 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.ComponentModel;
 using TribalWars.Data.Players;
+using TribalWars.Data.Tribes;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Tools.PropertyGrid.Players
 {
-    [TypeConverter(typeof(Tools.PropertySorter))]
-    public class VillagePropertyDescriptor : PropertyDescriptor
+    /// <summary>
+    /// Used in the PlayerCollection
+    /// </summary>
+    [TypeConverter(typeof(PropertySorter))]
+    public class PlayerPropertyDescriptor : PropertyDescriptor
     {
         #region Fields
-        private readonly VillageDescriptor village;
+        private readonly bool _showExtended;
         #endregion
 
         #region Properties
-        public Village Village
-        {
-            get { return village.Village; }
-        }
+        public Player Player { get; private set; }
         #endregion
 
         #region Constructors
-        public VillagePropertyDescriptor(Village vil)
-            : base(vil.Name, null)
+        public PlayerPropertyDescriptor(Player ply, bool showExtended)
+            : base(ply.Name, null)
         {
-            village = new VillageDescriptor(vil);
+            Player = ply;
+            _showExtended = showExtended;
         }
         #endregion
 
         #region Public Methods
         public override string ToString()
         {
-            return village.Points;
+            return Player.Points.ToString("#,0") + " points";
         }
         #endregion
 
@@ -44,12 +43,13 @@ namespace TribalWars.Data.Villages
 
         public override Type ComponentType
         {
-            get { return typeof(Player); }
+            get { return typeof(Tribe); }
         }
 
         public override object GetValue(object component)
         {
-            return village;
+            if (_showExtended) return new ExtendedPlayerDescriptor(Player);
+            return new PlayerDescriptor(Player);
         }
 
         public override bool IsReadOnly
@@ -59,7 +59,11 @@ namespace TribalWars.Data.Villages
 
         public override Type PropertyType
         {
-            get { return village.GetType(); }
+            get
+            {
+                if (_showExtended) return typeof(ExtendedPlayerDescriptor);
+                return typeof(PlayerDescriptor);
+            }
         }
 
         public override void ResetValue(object component)
