@@ -80,7 +80,7 @@ namespace TribalWars.Browsers.Reporting
             set
             {
                 _loyalty = value;
-                _loyaltyDate = World.Default.ServerTime;
+                _loyaltyDate = World.Default.Settings.ServerTime;
             }
         }
 
@@ -333,12 +333,12 @@ namespace TribalWars.Browsers.Reporting
         /// </summary>
         public void Update()
         {
-            if (VillageDate != DateTime.MinValue && VillageDate < World.Default.ServerTime.AddMinutes(-30))
+            if (VillageDate != DateTime.MinValue && VillageDate < World.Default.Settings.ServerTime.AddMinutes(-30))
             {
                 if (Building.HasResourceInfo(Buildings))
                 {
                     // Update resources
-                    TimeSpan elapsed = World.Default.ServerTime - VillageDate;
+                    TimeSpan elapsed = World.Default.Settings.ServerTime - VillageDate;
                     //TimeSpan elapsed = new DateTime( 2008, 9, 7, 15, 29, 0) - VillageDate;
                     Resources.Wood += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.TimberCamp].GetTotalProduction(Buildings[BuildingTypes.TimberCamp]) / 3600);
                     Resources.Clay += (int)Math.Floor(elapsed.TotalSeconds * WorldBuildings.Default[BuildingTypes.ClayPit].GetTotalProduction(Buildings[BuildingTypes.ClayPit]) / 3600);
@@ -352,13 +352,13 @@ namespace TribalWars.Browsers.Reporting
                 // Update loyalty
                 if (_loyaltyDate != DateTime.MinValue && _loyalty < 100)
                 {
-                    TimeSpan elapsed = World.Default.ServerTime - VillageDate;
-                    _loyalty += World.Default.Speed * elapsed.Hours;
+                    TimeSpan elapsed = World.Default.Settings.ServerTime - VillageDate;
+                    _loyalty += World.Default.Settings.Speed * elapsed.Hours;
                     _loyaltyDate = _loyaltyDate.AddHours(elapsed.Hours);
                     if (_loyalty > 100) _loyalty = 100;
                 }
 
-                _villageDate = World.Default.ServerTime;
+                _villageDate = World.Default.Settings.ServerTime;
             }
         }
 
@@ -422,7 +422,7 @@ namespace TribalWars.Browsers.Reporting
                 Defense.OutTroops[key] = awayForce[key] + movingForce[key];
             }
 
-            _villageDate = World.Default.ServerTime;
+            _villageDate = World.Default.Settings.ServerTime;
             DefenseDate = _villageDate;
             GuessVillageType();
         }

@@ -94,7 +94,7 @@ namespace TribalWars.Tools
         /// <param name="shortFormat">Removes 'on'</param>
         public static string GetPrettyDate(DateTime date, bool shortFormat)
         {
-            DateTime serverTime = World.Default.ServerTime;
+            DateTime serverTime = World.Default.Settings.ServerTime;
             if (date.DayOfYear == serverTime.DayOfYear)
             {
                 if (shortFormat)

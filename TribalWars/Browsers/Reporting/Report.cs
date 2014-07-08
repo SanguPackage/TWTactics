@@ -236,7 +236,7 @@ namespace TribalWars.Browsers.Reporting
         #region Constructors
         public Report()
         {
-            _dateCopied = World.Default.ServerTime;
+            _dateCopied = World.Default.Settings.ServerTime;
             _resourcesHaul = new Resource();
             _resourcesLeft = new Resource();
             _defense = new Dictionary<UnitTypes, ReportUnit>();

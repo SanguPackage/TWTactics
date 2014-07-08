@@ -290,24 +290,24 @@ namespace TribalWars.Villages
 
             //http://nl.twstats.com/image.php?type=playerssgraph&id=661959&s=nl10&graph=points
             str.AppendLine();
-            string link = string.Format(World.Default.TwStats.Player, Id);
+            string link = string.Format(World.Default.Settings.TwStats.Player, Id);
             str.AppendFormat("[url={0}]TWStats Link[/url]", link);
 
             str.AppendLine();
             str.AppendLine();
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.points);
+            link = string.Format(World.Default.Settings.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.points);
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.rank);
+            link = string.Format(World.Default.Settings.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.rank);
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.odd);
+            link = string.Format(World.Default.Settings.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.odd);
             str.AppendFormat("[img]{0}[/img]", link);
 
-            link = string.Format(World.Default.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.villages);
+            link = string.Format(World.Default.Settings.TwStats.PlayerGraph, Id, World.TwStatsLinks.Graphs.villages);
             str.AppendFormat("[img]{0}[/img]", link);
 
             str.AppendLine();

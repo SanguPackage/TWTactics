@@ -80,7 +80,7 @@ namespace TribalWars.Controls.AttackPlan
         {
             if (_unit != null)
             {
-                DateTime serverTime = World.Default.ServerTime;
+                DateTime serverTime = World.Default.Settings.ServerTime;
                 DateSend.Text = Tools.Common.GetPrettyDate(TargetControl.AttackDate - _travelTime);
 
                 DateNow.Text = Tools.Common.GetPrettyDate(serverTime + _travelTime);
@@ -142,7 +142,7 @@ namespace TribalWars.Controls.AttackPlan
             var str = new StringBuilder();
             if (Village != null)
             {
-                DateTime serverTime = World.Default.ServerTime;
+                DateTime serverTime = World.Default.Settings.ServerTime;
 
                 if (target != null)
                 {

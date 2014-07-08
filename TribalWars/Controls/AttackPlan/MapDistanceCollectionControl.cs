@@ -94,7 +94,7 @@ namespace TribalWars.Controls.AttackPlan
                     if (unit != null)
                     {
                         TimeSpan travelTime = Village.TravelTime(ActivePlan.Target, village, unit);
-                        TimeSpan left = ActivePlan.AttackDate - World.Default.ServerTime.Add(travelTime);
+                        TimeSpan left = ActivePlan.AttackDate - World.Default.Settings.ServerTime.Add(travelTime);
                         if (left.TotalSeconds > 0 && left.TotalHours < 3)
                         {
                             MapDistanceVillageControl ctl = ActivePlan.AddVillage(village);

@@ -86,21 +86,21 @@ namespace TribalWars.Browsers.Control
                 switch (e.Destination)
                 {
                     case DestinationEnum.TwStatsPlayer:
-                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Player, e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.TwStats.Player, e.Arguments[0]));
                         break;
                     case DestinationEnum.TwStatsTribe:
-                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Tribe, e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.TwStats.Tribe, e.Arguments[0]));
                         break;
                     case DestinationEnum.TwStatsVillage:
-                        WebBrowser.Navigate(string.Format(World.Default.TwStats.Village, e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.TwStats.Village, e.Arguments[0]));
                         break;
 
                     case DestinationEnum.GuestPlayer:
-                        WebBrowser.Navigate(string.Format(World.Default.GuestPlayerLink, e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.GuestPlayerLink, e.Arguments[0]));
                         break;
 
                     case DestinationEnum.GuestTribe:
-                        WebBrowser.Navigate(string.Format(World.Default.GuestTribeLink, e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.GuestTribeLink, e.Arguments[0]));
                         break;
                 }
             }
@@ -110,10 +110,10 @@ namespace TribalWars.Browsers.Control
                 switch (e.Destination)
                 {
                     case DestinationEnum.Overview:
-                        WebBrowser.Navigate(string.Format(World.Default.GameLink, e.Arguments[0], "overview"));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.GameLink, e.Arguments[0], "overview"));
                         break;
                     case DestinationEnum.InfoVillage:
-                        WebBrowser.Navigate(string.Format(World.Default.GameLink, _activeVillage.ToString(CultureInfo.InvariantCulture), "info_village&id=" + e.Arguments[0]));
+                        WebBrowser.Navigate(string.Format(World.Default.Settings.GameLink, _activeVillage.ToString(CultureInfo.InvariantCulture), "info_village&id=" + e.Arguments[0]));
                         break;
                 }
             }
@@ -133,7 +133,7 @@ namespace TribalWars.Browsers.Control
             if (_gameBrowser)
             {
                 // state pattern :p
-                Browser.Navigate(World.Default.Server);
+                Browser.Navigate(World.Default.Settings.Server);
                 _parsers = new List<IBrowserParser>();
                 _parsers.Add(new HtmlReportParser());
                 _parsers.Add(new ResourcesParser());
@@ -143,7 +143,7 @@ namespace TribalWars.Browsers.Control
             }
             else
             {
-                Browser.Navigate(World.Default.TwStats.Default);
+                Browser.Navigate(World.Default.Settings.TwStats.Default);
             }
         }
         #endregion
@@ -172,14 +172,14 @@ namespace TribalWars.Browsers.Control
         private void HomeButton_Click(object sender, EventArgs e)
         {
             if (World.Default.HasLoaded)
-                Browser.Navigate(World.Default.Server);
+                Browser.Navigate(World.Default.Settings.Server);
         }
 
         private void HomeStatsButton_Click(object sender, EventArgs e)
         {
             if (World.Default.HasLoaded)
             {
-                Browser.Navigate(World.Default.TwStats.Default);
+                Browser.Navigate(World.Default.Settings.TwStats.Default);
             }
         }
 

@@ -54,7 +54,7 @@ namespace TribalWars.Controls.AttackPlan
 
             _parent = parent;
             _unitImageList = imageList;
-            Date.Value = World.Default.ServerTime.AddHours(8);
+            Date.Value = World.Default.Settings.ServerTime.AddHours(8);
         }
         #endregion
 
@@ -176,7 +176,7 @@ namespace TribalWars.Controls.AttackPlan
                     str.AppendLine();
 
                     str.AppendLine("Arrival time: " + Date.Value.ToString(Date.CustomFormat));
-                    str.AppendLine("Current time: " + World.Default.ServerTime.ToString(Date.CustomFormat));
+                    str.AppendLine("Current time: " + World.Default.Settings.ServerTime.ToString(Date.CustomFormat));
                     str.AppendLine();
                 }
                 for (int i = 0; i < DistanceContainer.RowCount - 1; i++)

@@ -67,10 +67,10 @@ namespace TribalWars.Controls.Distance
                 switch (speed)
                 {
                     case ShowDistanceEnum.ArrivalTime:
-                        Text = Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time));
+                        Text = Tools.Common.GetShortPrettyDate(World.Default.Settings.ServerTime.Add(time));
                         break;
                     case ShowDistanceEnum.ReturnTime:
-                        Text = Tools.Common.GetShortPrettyDate(World.Default.ServerTime.Add(time + time));
+                        Text = Tools.Common.GetShortPrettyDate(World.Default.Settings.ServerTime.Add(time + time));
                         break;
                     case ShowDistanceEnum.TravelTime:
                         Text = time.ToString();

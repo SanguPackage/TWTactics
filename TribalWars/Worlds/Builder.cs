@@ -190,28 +190,28 @@ namespace TribalWars.Worlds
             World w = World.Default;
             var info = WorldTemplate.World.LoadFromFile(worldXmlPath);
 
-            w.Server = new Uri(info.Server);
-            w.Name = info.Name;
-            w.ServerOffset = new TimeSpan(Convert.ToInt32(info.Offset), 0, 0);
-            w.Speed = Convert.ToSingle(info.Speed, CultureInfo.InvariantCulture);
-            w.UnitSpeed = Convert.ToSingle(info.UnitSpeed, CultureInfo.InvariantCulture);
+            w.Settings.Server = new Uri(info.Server);
+            w.Settings.Name = info.Name;
+            w.Settings.ServerOffset = new TimeSpan(Convert.ToInt32(info.Offset), 0, 0);
+            w.Settings.Speed = Convert.ToSingle(info.Speed, CultureInfo.InvariantCulture);
+            w.Settings.UnitSpeed = Convert.ToSingle(info.UnitSpeed, CultureInfo.InvariantCulture);
 
             w.Structure.DownloadVillage = info.DataVillage;
             w.Structure.DownloadPlayer = info.DataPlayer;
             w.Structure.DownloadTribe = info.DataTribe;
 
-            w.GameLink = info.GameVillage;
-            w.GuestPlayerLink = info.GuestPlayer;
-            w.GuestTribeLink = info.GuestTribe;
+            w.Settings.GameLink = info.GameVillage;
+            w.Settings.GuestPlayerLink = info.GuestPlayer;
+            w.Settings.GuestTribeLink = info.GuestTribe;
 
-            w.TwStats.Default = new Uri(info.TWStatsGeneral);
-            w.TwStats.Village = info.TWStatsVillage;
-            w.TwStats.Player = info.TWStatsPlayer;
-            w.TwStats.Tribe = info.TWStatsTribe;
-            w.TwStats.PlayerGraph = info.TWStatsPlayerGraph;
-            w.TwStats.TribeGraph = info.TWStatsTribeGraph;
+            w.Settings.TwStats.Default = new Uri(info.TWStatsGeneral);
+            w.Settings.TwStats.Village = info.TWStatsVillage;
+            w.Settings.TwStats.Player = info.TWStatsPlayer;
+            w.Settings.TwStats.Tribe = info.TWStatsTribe;
+            w.Settings.TwStats.PlayerGraph = info.TWStatsPlayerGraph;
+            w.Settings.TwStats.TribeGraph = info.TWStatsTribeGraph;
 
-            w.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
+            w.Settings.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
 
             World.Default.Views.Clear();
             foreach (var view in info.Views)

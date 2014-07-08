@@ -169,7 +169,7 @@ namespace TribalWars.Forms
             World w = World.Default;
             if (w.SettingsName != null)
             {
-                StatusWorld.Text = w.Name;
+                StatusWorld.Text = w.Settings.Name;
 
                 // Fill settings contextmenu
                 ToolStripSettings.DropDownItems.Clear();
@@ -281,9 +281,9 @@ namespace TribalWars.Forms
         {
             using (var timeSetter = new TimeZoneForm())
             {
-                timeSetter.ServerOffset = World.Default.ServerOffset;
+                timeSetter.ServerOffset = World.Default.Settings.ServerOffset;
                 timeSetter.ShowDialog();
-                World.Default.ServerOffset = timeSetter.ServerOffset;
+                World.Default.Settings.ServerOffset = timeSetter.ServerOffset;
                 World.Default.SaveSettings();
             }
         }
@@ -361,7 +361,7 @@ namespace TribalWars.Forms
         #region Small functionality
         private void ServerTimeTimer_Tick(object sender, EventArgs e)
         {
-            StatusServerTime.Text = World.Default.ServerTime.ToLongTimeString();
+            StatusServerTime.Text = World.Default.Settings.ServerTime.ToLongTimeString();
         }
 
         private void MenuMapScreenshot_Click(object sender, EventArgs e)

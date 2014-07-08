@@ -20,13 +20,15 @@ namespace TribalWars.Worlds
     /// <summary>
     /// Defines a TW world
     /// </summary>
-    public partial class World : IDisposable
+    public partial class World
     {
         #region Fields
         private Dictionary<string, Player> _players;
         private WorldVillagesCollection _villages;
         private Dictionary<string, Tribe> _tribes;
         private FileStream _villageTypes;
+
+        private readonly Map _miniMap;
 
         private static Regex _villagePattern;
         #endregion
@@ -41,11 +43,6 @@ namespace TribalWars.Worlds
         /// Gets the main WorldMap
         /// </summary>
         public Map Map { get; private set; }
-
-        /// <summary>
-        /// Gets the main WorldMiniMap
-        /// </summary>
-        private Map MiniMap { get; set; }
 
         /// <summary>
         /// Gets a value indicating if there is an active player
@@ -66,71 +63,14 @@ namespace TribalWars.Worlds
         public bool HasLoaded { get; private set; }
 
         /// <summary>
-        /// Gets the URL of the Tribal Wars server
-        /// </summary>
-        public Uri Server { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating which scenery (sea, mountains, ...)
-        /// to draw when drawing TW village icons
-        /// </summary>
-        internal IconDrawerFactory.Scenery IconScenery { private get; set; }
-
-        /// <summary>
-        /// Gets the name of the World
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets the internal directory structure wrapper
         /// </summary>
         internal InternalStructure Structure { get; private set; }
 
         /// <summary>
-        /// Gets or sets the time difference between local and server
+        /// Configuration, settings, URIs and links for the world
         /// </summary>
-        public TimeSpan ServerOffset { get; set; }
-
-        /// <summary>
-        /// Gets the current Tribal Wars server time
-        /// </summary>
-        public DateTime ServerTime
-        {
-            get { return DateTime.Now.Add(ServerOffset); }
-        }
-
-        /// <summary>
-        /// Gets the world speed
-        /// </summary>
-        public float Speed { get; set; }
-
-        /// <summary>
-        /// Gets the world unit speed
-        /// </summary>
-        public float UnitSpeed { get; set; }
-
-        /// <summary>
-        /// Gets the TW Uris
-        /// </summary>
-        public TwStatsLinks TwStats { get; private set; }
-
-        /// <summary>
-        /// Gets the gameplay link
-        /// </summary>
-        /// <remarks>Replace {0} by village id, {1} by the screen</remarks>
-        public string GameLink { get; set; }
-
-        /// <summary>
-        /// Gets the guest account link for a player
-        /// </summary>
-        /// <remarks>Replace {0} by player id</remarks>
-        public string GuestPlayerLink { get; set; }
-
-        /// <summary>
-        /// Gets the guest account link for a tribe
-        /// </summary>
-        /// <remarks>Replace {0} by tribe id</remarks>
-        public string GuestTribeLink { get; set; }
+        public WorldSettings Settings { get; private set; } 
 
         /// <summary>
         /// Gets the dictionary with all players
@@ -211,19 +151,17 @@ namespace TribalWars.Worlds
         #region Constructors
         private World()
         {
-            UnitSpeed = 1;
-
+            Settings = new WorldSettings();
             EventPublisher = new Publisher();
 
             Map = new Map();
-            MiniMap = new Map(Map);
+            _miniMap = new Map(Map);
 
             _players = new Dictionary<string, Player>();
             _tribes = new Dictionary<string, Tribe>();
             _villages = new WorldVillagesCollection();
 
             Views = new Dictionary<string, ViewBase>();
-            TwStats = new TwStatsLinks();
 
             You = new Player();
         }
@@ -312,9 +250,9 @@ namespace TribalWars.Worlds
 
             InvalidateMarkers();
 
-            displaySettings.Scenery = IconScenery;
+            displaySettings.Scenery = Settings.IconScenery;
             Map.InitializeDisplay(displaySettings, Map.HomeDisplay, Map.HomeLocation.Zoom);
-            MiniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, 1);
+            _miniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, 1);
 
             Map.SetDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 
@@ -337,10 +275,10 @@ namespace TribalWars.Worlds
             SaveSettings(SettingsName);
 
             // world.xml
-            Debug.Assert(ServerOffset.Hours == (int)ServerOffset.TotalHours);
+            Debug.Assert(Settings.ServerOffset.Hours == (int)Settings.ServerOffset.TotalHours);
 
             var worldSettings = WorldTemplate.World.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
-            worldSettings.Offset = ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+            worldSettings.Offset = Settings.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
             worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
         }
 
@@ -380,8 +318,8 @@ namespace TribalWars.Worlds
         {
             Map.MarkerManager.InvalidateMarkers();
 
-            Debug.Assert(ReferenceEquals(Map.MarkerManager, MiniMap.MarkerManager));
-            //MiniMap.MarkerManager.CacheSpecialMarkers();
+            Debug.Assert(ReferenceEquals(Map.MarkerManager, _miniMap.MarkerManager));
+            //_miniMap.MarkerManager.CacheSpecialMarkers();
         }
 
         /// <summary>
@@ -407,7 +345,7 @@ namespace TribalWars.Worlds
         public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)
         {
             Map.InitializeMap(mapControl);
-            MiniMap.InitializeMap(miniMapControl, Map);
+            _miniMap.InitializeMap(miniMapControl, Map);
         }
 
         /// <summary>
@@ -416,7 +354,7 @@ namespace TribalWars.Worlds
         public void DrawMaps(bool resetBackgroundCache = true)
         {
             Map.Invalidate(resetBackgroundCache);
-            MiniMap.Invalidate(resetBackgroundCache);
+            _miniMap.Invalidate(resetBackgroundCache);
         }
         #endregion
 
@@ -494,12 +432,6 @@ namespace TribalWars.Worlds
                 return Default.Tribes[input.ToUpper(CultureInfo.InvariantCulture)];
             }
             return null;
-        }
-        #endregion
-
-        #region IDisposable Members
-        public void Dispose()
-        {
         }
         #endregion
 
@@ -661,7 +593,78 @@ namespace TribalWars.Worlds
         }
         #endregion
 
-        #region TWStats
+        #region ServerSettings
+        public class WorldSettings
+        {
+            /// <summary>
+            /// Gets the URL of the Tribal Wars server
+            /// </summary>
+            public Uri Server { get; set; }
+
+            /// <summary>
+            /// Gets a value indicating which scenery (sea, mountains, ...)
+            /// to draw when drawing TW village icons
+            /// </summary>
+            public IconDrawerFactory.Scenery IconScenery { get; set; }
+
+            /// <summary>
+            /// Gets the name of the World
+            /// </summary>
+            public string Name { get; set; }
+
+            /// <summary>
+            /// Gets or sets the time difference between local and server
+            /// </summary>
+            public TimeSpan ServerOffset { get; set; }
+
+            /// <summary>
+            /// Gets the current Tribal Wars server time
+            /// </summary>
+            public DateTime ServerTime
+            {
+                get { return DateTime.Now.Add(ServerOffset); }
+            }
+
+            /// <summary>
+            /// Gets the world speed
+            /// </summary>
+            public float Speed { get; set; }
+
+            /// <summary>
+            /// Gets the world unit speed
+            /// </summary>
+            public float UnitSpeed { get; set; }
+
+            /// <summary>
+            /// Gets the TW Uris
+            /// </summary>
+            public TwStatsLinks TwStats { get; private set; }
+
+            /// <summary>
+            /// Gets the gameplay link
+            /// </summary>
+            /// <remarks>Replace {0} by village id, {1} by the screen</remarks>
+            public string GameLink { get; set; }
+
+            /// <summary>
+            /// Gets the guest account link for a player
+            /// </summary>
+            /// <remarks>Replace {0} by player id</remarks>
+            public string GuestPlayerLink { get; set; }
+
+            /// <summary>
+            /// Gets the guest account link for a tribe
+            /// </summary>
+            /// <remarks>Replace {0} by tribe id</remarks>
+            public string GuestTribeLink { get; set; }
+
+            public WorldSettings()
+            {
+                UnitSpeed = 1;
+                TwStats = new TwStatsLinks();
+            }
+        }
+
         /// <summary>
         /// Contains direct links to differnt TW Stats pages
         /// </summary>
@@ -681,9 +684,6 @@ namespace TribalWars.Worlds
                 rank,
                 members
             }
-            #endregion
-
-            #region Fields
             #endregion
 
             #region Properties

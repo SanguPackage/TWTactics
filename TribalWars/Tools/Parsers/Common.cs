@@ -98,7 +98,7 @@ namespace TribalWars.Tools.Parsers
         public static bool Date(string input, out DateTime value)
         {
             value = DateTime.MinValue;
-            var patternMatcher = DatePatternInfo.GetInfo(World.Default.Server.Host);
+            var patternMatcher = DatePatternInfo.GetInfo(World.Default.Settings.Server.Host);
             Match match = patternMatcher.Match(input);
             if (match.Success)
             {
@@ -106,18 +106,18 @@ namespace TribalWars.Tools.Parsers
                 string datePart = match.Groups["date"].Value;
                 if (datePart == patternMatcher.Today)
                 {
-                    date = World.Default.ServerTime.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture);
+                    date = World.Default.Settings.ServerTime.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture);
                 }
                 else if (datePart == patternMatcher.Tomorrow)
                 {
-                    date = World.Default.ServerTime.AddDays(1).ToString("MMM dd, yyyy");
+                    date = World.Default.Settings.ServerTime.AddDays(1).ToString("MMM dd, yyyy");
                 }
                 else
                 {
                     if (match.Groups["dateMonth"].Success)
                     {
                         // on 12.04. at 03:05
-                        string tempDate = string.Format("{0}{1}{2}", World.Default.ServerTime.Year, match.Groups["dateMonth"].Value, match.Groups["dateDay"].Value);
+                        string tempDate = string.Format("{0}{1}{2}", World.Default.Settings.ServerTime.Year, match.Groups["dateMonth"].Value, match.Groups["dateDay"].Value);
                         DateTime tempRealDate;
                         if (!DateTime.TryParseExact(tempDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempRealDate))
                             return false;
