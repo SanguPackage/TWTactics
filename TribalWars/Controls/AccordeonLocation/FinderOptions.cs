@@ -79,10 +79,10 @@ namespace TribalWars.Controls.AccordeonLocation
             switch (EvaluatedArea)
             {
                 case FinderLocationEnum.VisibleMap:
-                    return PlayerMatches(new List<Player>(World.Default.Players.Values.Where(World.Default.Map.Display.IsVisible)));
+                    return PlayerMatches(new List<Player>(World.Default.Players.Where(World.Default.Map.Display.IsVisible)));
 
                 case FinderLocationEnum.EntireMap:
-                    return PlayerMatches(new List<Player>(World.Default.Players.Values));
+                    return PlayerMatches(new List<Player>(World.Default.Players));
 
                 case FinderLocationEnum.Polygon:
                     return PlayerMatches(World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygonVillages().GetPlayers().ToList());
@@ -127,10 +127,10 @@ namespace TribalWars.Controls.AccordeonLocation
             switch (EvaluatedArea)
             {
                 case FinderLocationEnum.VisibleMap:
-                    return TribeMatches(new List<Tribe>(World.Default.Tribes.Values.Where(World.Default.Map.Display.IsVisible)));
+                    return TribeMatches(new List<Tribe>(World.Default.Tribes.Where(World.Default.Map.Display.IsVisible)));
 
                 case FinderLocationEnum.EntireMap:
-                    return TribeMatches(new List<Tribe>(World.Default.Tribes.Values));
+                    return TribeMatches(new List<Tribe>(World.Default.Tribes));
 
                 case FinderLocationEnum.Polygon:
                     return TribeMatches(World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygonVillages().GetTribes().ToList());

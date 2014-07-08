@@ -91,7 +91,7 @@ namespace TribalWars.Worlds.Monitoring
 
                     // Load dictionary
                     PreviousDateList.Enabled = false;
-                    World.Default.Structure.LoadPreviousDictionary(selectedDate.Directory.Name, World.Default.Villages, World.Default.Players, World.Default.Tribes);
+                    World.Default.LoadPreviousTwSnapshot(selectedDate.Directory.Name);
                 }
             }
         }

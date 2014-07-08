@@ -40,8 +40,8 @@ namespace TribalWars.Forms
             //multiColumnCombo1.DropDownList.DisplayMember = "Value";
 
             var col2 =
-                World.Default.Tribes.Select(x => new AutocompleteItem(x.Value))
-                .Union(World.Default.Players.Select(x => new AutocompleteItem(x.Value)))
+                World.Default.Tribes.Select(x => new AutocompleteItem(x))
+                .Union(World.Default.Players.Select(x => new AutocompleteItem(x)))
                 .OrderBy(x => x.Value)
                 .ToArray();
 

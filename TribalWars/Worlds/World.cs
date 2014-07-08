@@ -83,18 +83,18 @@ namespace TribalWars.Worlds
         /// Gets the dictionary with all players
         /// </summary>
         /// <remarks>Key is the name is uppercase</remarks>
-        public Dictionary<string, Player> Players
+        public IEnumerable<Player> Players
         {
-            get { return _players; }
+            get { return _players.Values; }
         }
 
         /// <summary>
         /// Gets the dictionary with all tribes
         /// </summary>
         /// <remarks>Key is the tag in uppercase</remarks>
-        public Dictionary<string, Tribe> Tribes
+        public IEnumerable<Tribe> Tribes
         {
-            get { return _tribes; }
+            get { return _tribes.Values; }
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace TribalWars.Worlds
             Structure = new InternalStructure();
             Structure.SetPath(dataPath);
 
-            Structure.LoadDictionaries(out _villages, out _players, out _tribes);
+            Structure.LoadCurrentAndPreviousTwSnapshot(out _villages, out _players, out _tribes);
 
             if (_villageTypes != null) _villageTypes.Close();
             _villageTypes = Structure.CurrentVillageTypes;
@@ -308,7 +308,7 @@ namespace TribalWars.Worlds
         /// </summary>
         public static IEnumerable<string> GetAllWorlds(string serverName)
         {
-            return InternalStructure.DownloadWorlds(serverName);
+            return InternalStructure.GetWorlds(serverName);
         }
 
         public static void CreateNewWorld(string path, InternalStructure.ServerInfo server)
@@ -362,6 +362,14 @@ namespace TribalWars.Worlds
         {
             Map.Invalidate(resetBackgroundCache);
             _miniMap.Invalidate(resetBackgroundCache);
+        }
+
+        /// <summary>
+        /// Compare current snapshot with previousPath
+        /// </summary>
+        public void LoadPreviousTwSnapshot(string previousPath)
+        {
+            Structure.LoadPreviousTwSnapshot(previousPath, _villages, _players, _tribes);
         }
         #endregion
 
@@ -422,9 +430,10 @@ namespace TribalWars.Worlds
         /// </summary>
         public Player GetPlayer(string input)
         {
-            if (Default.Players.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
+            Player player;
+            if (_players.TryGetValue(input.ToUpper(CultureInfo.InvariantCulture), out player))
             {
-                return Default.Players[input.ToUpper(CultureInfo.InvariantCulture)];
+                return player;
             }
             return null;
         }
@@ -434,9 +443,10 @@ namespace TribalWars.Worlds
         /// </summary>
         public Tribe GetTribe(string input)
         {
-            if (Default.Tribes.ContainsKey(input.ToUpper(CultureInfo.InvariantCulture)))
+            Tribe tribe;
+            if (_tribes.TryGetValue(input.ToUpper(CultureInfo.InvariantCulture), out tribe))
             {
-                return Default.Tribes[input.ToUpper(CultureInfo.InvariantCulture)];
+                return tribe;
             }
             return null;
         }
