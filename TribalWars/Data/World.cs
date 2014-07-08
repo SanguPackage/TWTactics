@@ -384,7 +384,7 @@ namespace TribalWars.Data
         /// </summary>
         public void InvalidateMarkers()
         {
-            Map.MarkerManager.CacheSpecialMarkers();
+            Map.MarkerManager.InvalidateMarkers();
 
             Debug.Assert(ReferenceEquals(Map.MarkerManager, MiniMap.MarkerManager));
             //MiniMap.MarkerManager.CacheSpecialMarkers();

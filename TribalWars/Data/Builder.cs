@@ -58,14 +58,8 @@ namespace TribalWars.Data
                     World.Default.You = new Player();
                 }
 
-                map.MarkerManager.YourMarker = ReadMarker(r, map);
-                Debug.Assert(map.MarkerManager.YourMarker.Settings.Name == Marker.DefaultNames.You);
-                map.MarkerManager.YourTribeMarker = ReadMarker(r, map);
-                Debug.Assert(map.MarkerManager.YourTribeMarker.Settings.Name == Marker.DefaultNames.YourTribe);
-                map.MarkerManager.EnemyMarker = ReadMarker(r, map);
-                Debug.Assert(map.MarkerManager.EnemyMarker.Settings.Name == Marker.DefaultNames.Enemy);
-                map.MarkerManager.AbandonedMarker = ReadMarker(r, map);
-                Debug.Assert(map.MarkerManager.AbandonedMarker.Settings.Name == Marker.DefaultNames.Abandoned);
+                map.MarkerManager.ReadDefaultMarkers(r);
+
                 r.ReadEndElement();
 
                 // Monitor
@@ -104,12 +98,7 @@ namespace TribalWars.Data
 
                 // MainMap: Markers
                 r.ReadStartElement();
-                var markers = new List<Marker>();
-                while (r.IsStartElement("Marker"))
-                {
-                    markers.Add(ReadMarker(r, map));
-                }
-                map.MarkerManager.SetMarkers(markers);
+                map.MarkerManager.ReadUserDefinedMarkers(r);
 
                 // MainMap: Manipulators
                 r.ReadToFollowing("Manipulator");
@@ -136,72 +125,6 @@ namespace TribalWars.Data
         }
 
         /// <summary>
-        /// Reads a Marker from the XML node
-        /// </summary>
-        private static Marker ReadMarker(XmlReader r, Map map)
-        {
-            string name = r.GetAttribute("Name");
-            bool enabled = Convert.ToBoolean(r.GetAttribute("Enabled").ToLower());
-            Color color = XmlHelper.GetColor(r.GetAttribute("Color"));
-            Color extraColor = XmlHelper.GetColor(r.GetAttribute("ExtraColor"));
-            string view = r.GetAttribute("View");
-            var settings = new MarkerSettings(name, enabled, color, extraColor, view);
-            Marker marker = null;
-
-            if (!r.IsEmptyElement)
-            {
-                r.ReadStartElement();
-                while (r.IsStartElement("Marker"))
-                {
-                    string markerType = r.GetAttribute("Type");
-                    string markerName = r.GetAttribute("Name");
-
-                    if (markerType == "Player")
-                    {
-                        Player ply = World.Default.GetPlayer(markerName);
-                        if (ply != null)
-                        {
-                            marker = new Marker(ply, settings);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Assert(markerType == "Tribe");
-                        Tribe tribe = World.Default.GetTribe(markerName);
-                        if (tribe != null)
-                        {
-                            marker = new Marker(tribe, settings);
-                        }
-                    }
-
-                    r.Read();
-                }
-                r.ReadEndElement();
-            }
-            else
-                r.Read();
-           
-            return marker ?? new Marker(settings);
-        }
-
-        /// <summary>
-        /// Writes a marker to the XML node
-        /// </summary>
-        private static void WriteMarker(XmlWriter w, Marker group)
-        {
-            w.WriteStartElement("Marker");
-            w.WriteAttributeString("Name", group.Settings.Name);
-            w.WriteAttributeString("Enabled", group.Settings.Enabled.ToString());
-            w.WriteAttributeString("Color", XmlHelper.SetColor(group.Settings.Color));
-            w.WriteAttributeString("ExtraColor", XmlHelper.SetColor(group.Settings.ExtraColor));
-            w.WriteAttributeString("View", group.Settings.View);
-
-            group.WriteXml(w);
-
-            w.WriteEndElement();
-        }
-
-        /// <summary>
         /// Write the settings file
         /// </summary>
         public static void WriteSettings(FileInfo file, Map map, Monitor monitor)
@@ -216,10 +139,7 @@ namespace TribalWars.Data
 
                 w.WriteStartElement("You");
                 w.WriteAttributeString("Name", World.Default.You != null ? World.Default.You.Name : "");
-                WriteMarker(w, map.MarkerManager.YourMarker);
-                WriteMarker(w, map.MarkerManager.YourTribeMarker);
-                WriteMarker(w, map.MarkerManager.EnemyMarker);
-                WriteMarker(w, map.MarkerManager.AbandonedMarker);
+                map.MarkerManager.WriteDefaultMarkers(w);
                 w.WriteEndElement();
 
                 monitor.WriteXml(w);
@@ -240,10 +160,7 @@ namespace TribalWars.Data
                 w.WriteEndElement();
 
                 w.WriteStartElement("Markers");
-                foreach (Marker group in map.MarkerManager.Markers)
-                {
-                    WriteMarker(w, group);
-                }
+                map.MarkerManager.WriteUserDefinedMarkers(w);
                 w.WriteEndElement();
 
                 // Manipulators

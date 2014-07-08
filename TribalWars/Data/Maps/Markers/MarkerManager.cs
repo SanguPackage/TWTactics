@@ -5,15 +5,21 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using TribalWars.Data.Villages;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
+using TribalWars.Tools;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Markers
 {
     /// <summary>
-    /// Contains all markers on a map
+    /// Contains all markers on a map and keeps a
+    /// cache that combines the default (You, Your
+    /// Tribe, Enemy and Abandoned) and user
+    /// defined markers
     /// </summary>
     public sealed class MarkerManager
     {
@@ -27,32 +33,24 @@ namespace TribalWars.Data.Maps.Markers
 
         #region Properties
         /// <summary>
-        /// Gets all specific markers 
-        /// </summary>
-        public IEnumerable<Marker> Markers
-        {
-            get { return _markers; }
-        }
-
-        /// <summary>
         /// Gets the marker for your own villages
         /// </summary>
-        public Marker YourMarker { get; set; }
+        private Marker YourMarker { get; set; }
 
         /// <summary>
         /// Gets the marker for all other villages
         /// </summary>
-        public Marker EnemyMarker { get; set; }
+        private Marker EnemyMarker { get; set; }
 
         /// <summary>
         /// Gets the marker for villages within your tribe
         /// </summary>
-        public Marker YourTribeMarker { get; set; }
+        private Marker YourTribeMarker { get; set; }
 
         /// <summary>
         /// Gets the marker for abandoned villages
         /// </summary>
-        public Marker AbandonedMarker { get; set; }
+        private Marker AbandonedMarker { get; set; }
         #endregion
 
         #region Constructors
@@ -65,6 +63,9 @@ namespace TribalWars.Data.Maps.Markers
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Update a player marker and refresh the map
+        /// </summary>
         public void UpdateMarker(Map map, Player player, MarkerSettings settings)
         {
             if (player == World.Default.You)
@@ -79,10 +80,13 @@ namespace TribalWars.Data.Maps.Markers
                 Debug.WriteLine("SetPlayer: " + player.Name + " -> " + settings);
             }
 
-            CacheSpecialMarkers();
+            InvalidateMarkers();
             map.Invalidate();
         }
 
+        /// <summary>
+        /// Update a tribe marker and refresh the map
+        /// </summary>
         public void UpdateMarker(Map map, Tribe tribe, MarkerSettings settings)
         {
             if (World.Default.You.HasTribe && tribe == World.Default.You.Tribe)
@@ -95,7 +99,7 @@ namespace TribalWars.Data.Maps.Markers
                 _markers.Add(new Marker(tribe, settings));
             }
 
-            CacheSpecialMarkers();
+            InvalidateMarkers();
             map.Invalidate();
         }
 
@@ -177,9 +181,9 @@ namespace TribalWars.Data.Maps.Markers
         }
 
         /// <summary>
-        /// Cache all special markers
+        /// Rebuild marker cache
         /// </summary>
-        public void CacheSpecialMarkers()
+        public void InvalidateMarkers()
         {
             _markPlayer = new Dictionary<int, Marker>();
             _markTribe = new Dictionary<int, Marker>();
@@ -200,21 +204,6 @@ namespace TribalWars.Data.Maps.Markers
         }
 
         /// <summary>
-        /// Adds Marker to the Manager
-        /// </summary>
-        public void SetMarkers(IEnumerable<Marker> markers)
-        {
-            _markers.Clear();
-            foreach (Marker marker in markers)
-            {
-                if (!marker.Empty)
-                {
-                    _markers.Add(marker);
-                }
-            }
-        }
-
-        /// <summary>
         /// Cache you and your tribe markers
         /// </summary>
         private void CacheYouMarkers()
@@ -230,6 +219,133 @@ namespace TribalWars.Data.Maps.Markers
                 }
             }
         }
+        #endregion
+
+        #region Persistence
+        #region Save
+        public void WriteUserDefinedMarkers(XmlWriter w)
+        {
+            foreach (Marker marker in _markers)
+            {
+                WriteMarker(w, marker);
+            }
+        }
+
+        public void WriteDefaultMarkers(XmlWriter w)
+        {
+            WriteMarker(w, YourMarker);
+            WriteMarker(w, YourTribeMarker);
+            WriteMarker(w, EnemyMarker);
+            WriteMarker(w, AbandonedMarker);
+        }
+
+        /// <summary>
+        /// Writes a marker to the XML node
+        /// </summary>
+        private static void WriteMarker(XmlWriter w, Marker marker)
+        {
+            w.WriteStartElement("Marker");
+            w.WriteAttributeString("Name", marker.Settings.Name);
+            w.WriteAttributeString("Enabled", marker.Settings.Enabled.ToString());
+            w.WriteAttributeString("Color", XmlHelper.SetColor(marker.Settings.Color));
+            w.WriteAttributeString("ExtraColor", XmlHelper.SetColor(marker.Settings.ExtraColor));
+            w.WriteAttributeString("View", marker.Settings.View);
+
+            marker.WriteXml(w);
+
+            w.WriteEndElement();
+        }
+        #endregion
+
+        #region Read
+        public void ReadUserDefinedMarkers(XmlReader r)
+        {
+            var markers = new List<Marker>();
+            while (r.IsStartElement("Marker"))
+            {
+                markers.Add(ReadMarker(r));
+            }
+            SetUserDefinedMarkers(markers);
+        }
+
+        public void ReadDefaultMarkers(XmlReader r)
+        {
+            YourMarker = ReadMarker(r);
+            Debug.Assert(YourMarker.Settings.Name == Marker.DefaultNames.You);
+            YourTribeMarker = ReadMarker(r);
+            Debug.Assert(YourTribeMarker.Settings.Name == Marker.DefaultNames.YourTribe);
+            EnemyMarker = ReadMarker(r);
+            Debug.Assert(EnemyMarker.Settings.Name == Marker.DefaultNames.Enemy);
+            AbandonedMarker = ReadMarker(r);
+            Debug.Assert(AbandonedMarker.Settings.Name == Marker.DefaultNames.Abandoned);
+        }
+
+        /// <summary>
+        /// Reads a Marker from the XML node
+        /// </summary>
+        private static Marker ReadMarker(XmlReader r)
+        {
+            string name = r.GetAttribute("Name");
+            bool enabled = Convert.ToBoolean(r.GetAttribute("Enabled").ToLower());
+            Color color = XmlHelper.GetColor(r.GetAttribute("Color"));
+            Color extraColor = XmlHelper.GetColor(r.GetAttribute("ExtraColor"));
+            string view = r.GetAttribute("View");
+            var settings = new MarkerSettings(name, enabled, color, extraColor, view);
+            Marker marker = null;
+
+            if (!r.IsEmptyElement)
+            {
+                r.ReadStartElement();
+                while (r.IsStartElement("Marker"))
+                {
+                    string markerType = r.GetAttribute("Type");
+                    string markerName = r.GetAttribute("Name");
+
+                    if (markerType == "Player")
+                    {
+                        Player ply = World.Default.GetPlayer(markerName);
+                        if (ply != null)
+                        {
+                            marker = new Marker(ply, settings);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Assert(markerType == "Tribe");
+                        Tribe tribe = World.Default.GetTribe(markerName);
+                        if (tribe != null)
+                        {
+                            marker = new Marker(tribe, settings);
+                        }
+                    }
+
+                    r.Read();
+                }
+                r.ReadEndElement();
+            }
+            else
+            {
+                r.Read();
+            }
+
+            return marker ?? new Marker(settings);
+        }
+
+        /// <summary>
+        /// Adds Markers to the Manager
+        /// </summary>
+        private void SetUserDefinedMarkers(IEnumerable<Marker> markers)
+        {
+            _markers.Clear();
+            foreach (Marker marker in markers)
+            {
+                if (!marker.Empty)
+                {
+                    _markers.Add(marker);
+                }
+            }
+        }
+        #endregion
         #endregion
     }
 }
