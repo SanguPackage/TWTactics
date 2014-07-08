@@ -121,7 +121,7 @@ namespace TribalWars.Browsers.Control
 
         private void OnSettingsLoaded(object sender, EventArgs e)
         {
-            if (World.Default.PlayerSelected && _gameBrowser)
+            if (_gameBrowser)
             {
                 var anyVillage = World.Default.You.Villages.FirstOrDefault();
                 _activeVillage = anyVillage == null ? 0 : anyVillage.Id;

@@ -29,7 +29,7 @@ namespace TribalWars.Controls.AccordeonLocation
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            if (World.Default.PlayerSelected)
+            if (!World.Default.You.Empty)
             {
                 You.SetPlayer(World.Default.You);
             }

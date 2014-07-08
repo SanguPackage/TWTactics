@@ -26,6 +26,15 @@ namespace TribalWars.Villages
 
         #region Properties
         /// <summary>
+        /// Gets a value indicating whether this is 
+        /// really a Player or just a dummy
+        /// </summary>
+        public bool Empty
+        {
+            get { return string.IsNullOrWhiteSpace(Name); }
+        }
+
+        /// <summary>
         /// Gets the villages lost since the data download
         /// </summary>
         public List<Village> LostVillages
@@ -67,7 +76,7 @@ namespace TribalWars.Villages
         /// <summary>
         /// Gets or sets the player name
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets or sets the player Tribe
@@ -85,7 +94,7 @@ namespace TribalWars.Villages
         /// <summary>
         /// Gets or sets the list of villages belonging to the player
         /// </summary>
-        public List<Village> Villages { get; set; }
+        public List<Village> Villages { get; private set; }
 
         /// <summary>
         /// Gets or sets the total points of the player

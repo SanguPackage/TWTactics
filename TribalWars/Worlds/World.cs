@@ -29,6 +29,7 @@ namespace TribalWars.Worlds
         private FileStream _villageTypes;
 
         private readonly Map _miniMap;
+        private Player _you;
 
         private static Regex _villagePattern;
         #endregion
@@ -45,17 +46,23 @@ namespace TribalWars.Worlds
         public Map Map { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating if there is an active player
-        /// </summary>
-        public bool PlayerSelected
-        {
-            get { return You != null && !string.IsNullOrWhiteSpace(You.Name); }
-        }
-
-        /// <summary>
         /// Gets or sets the active player
         /// </summary>
-        public Player You { get; set; }
+        public Player You
+        {
+            get { return _you; }
+            set
+            {
+                if (value == null)
+                {
+                    _you = new Player();
+                }
+                else
+                {
+                    _you = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating if world data has been loaded
