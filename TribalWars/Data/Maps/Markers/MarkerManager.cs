@@ -88,13 +88,11 @@ namespace TribalWars.Data.Maps.Markers
             if (World.Default.You.HasTribe && tribe == World.Default.You.Tribe)
             {
                 YourTribeMarker = new Marker(settings);
-                Debug.WriteLine("SetYourTribe: " + settings);
             }
             else
             {
                 _markers.RemoveAll(x => x.Tribe == tribe);
                 _markers.Add(new Marker(tribe, settings));
-                Debug.WriteLine("SetTribe: " + tribe.Tag + " -> " + settings);
             }
 
             CacheSpecialMarkers();

@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace TribalWars.Controls.TWContextMenu
 
         private readonly UIContextMenu _menu;
         private readonly Map _map;
+
+        private UICommand _mainCommand;
         #endregion
 
         #region Constructors
@@ -73,9 +76,12 @@ namespace TribalWars.Controls.TWContextMenu
         #region Public Methods
         public UICommand GetMainCommand(UIContextMenu menu)
         {
+            Debug.Assert(_mainCommand == null);
             var marker = GetMarker();
             var cmd = menu.AddCommand(GetMainCommandText(marker));
             cmd.Image = GetMainCommandImage(marker);
+
+            _mainCommand = cmd;
             return cmd;
         }
 
@@ -116,6 +122,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _map.MarkerManager.UpdateMarker(_map, _player, settings);
             }
+            _mainCommand.Image = GetMainCommandImage(GetMarker());
         }
 
         /// <summary>

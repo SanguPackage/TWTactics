@@ -96,5 +96,10 @@ namespace TribalWars.Forms
                 IsPlayer = true;
             }
         }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+        }
     }
 }

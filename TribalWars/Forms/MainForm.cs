@@ -47,6 +47,10 @@ namespace TribalWars.Forms
         /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
+#if DEBUG
+            ToolStripProgramSettings.Visible = true;
+#endif
+
             World.Default.InitializeMaps(Map, MiniMap);
 
             World.Default.EventPublisher.Loaded += OnWorldLoaded;
@@ -303,8 +307,11 @@ namespace TribalWars.Forms
 
         private void ToolStripProgramSettings_Click(object sender, EventArgs e)
         {
-            var settings = new SettingsForm();
-            settings.Show();
+            //var settings = new SettingsForm();
+            //settings.Show();
+
+            var f = new ActivePlayerForm();
+            f.Show();
         }
 
         private void ToolStripDraw_Click(object sender, EventArgs e)

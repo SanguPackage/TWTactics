@@ -70,6 +70,26 @@ namespace TribalWars.Tools
             var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
 
             var colorPicker = new UIColorPicker();
+            colorPicker.AutomaticColor = defaultSelectedColor;
+            colorPicker.MoreColorsButtonClick += (sender, args) =>
+                {
+                    using (var dialog = new ColorDialog
+                        {
+                            FullOpen = true,
+                            Color = defaultSelectedColor,
+                            AnyColor = true,
+                            CustomColors = GetUserDefinedColors()
+                        })
+                    {
+                        DialogResult result = dialog.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            colorPicker.SelectedColor = dialog.Color;
+                            SaveUserDefinedColors(dialog.CustomColors);
+                        }
+                    }
+                };
+
             colorPicker.SelectedColor = defaultSelectedColor;
             colorPicker.SelectedColorChanged += (sender, e) =>
                 {
@@ -82,6 +102,20 @@ namespace TribalWars.Tools
             menu.Commands.Add(cmd);
         }
 
+        private static void SaveUserDefinedColors(int[] value)
+        {
+            Properties.Settings.Default.CustomColors = value;
+            Properties.Settings.Default.Save();
+        }
+
+        private static int[] GetUserDefinedColors()
+        {
+            return Properties.Settings.Default.CustomColors;
+        }
+
+        /// <summary>
+        /// Draws an icon for Commands to represent the currently selected color(s)
+        /// </summary>
         public static Image DrawContextIcon(Color color, Color? extraColor = null)
         {
             const int canvasSize = 16;

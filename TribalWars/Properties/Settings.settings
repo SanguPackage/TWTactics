@@ -14,5 +14,8 @@
     <Setting Name="DefaultServer" Type="System.String" Scope="User">
       <Value Profile="(Default)">tribalwars.net</Value>
     </Setting>
+    <Setting Name="CustomColors" Type="System.Int32[]" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

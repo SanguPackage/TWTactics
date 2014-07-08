@@ -70,5 +70,16 @@ namespace TribalWars.Properties {
                 this["DefaultServer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int[] CustomColors {
+            get {
+                return ((int[])(this["CustomColors"]));
+            }
+            set {
+                this["CustomColors"] = value;
+            }
+        }
     }
 }
