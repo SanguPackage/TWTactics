@@ -22,7 +22,7 @@ namespace TribalWars.Data.Maps.Views
 
         #region Constructors
         public VillageTypeView(string name)
-            : base(name)
+            : base(name, true)
         {
             _cache = new Dictionary<VillageType, DrawerData>();
             _importance = new[] {VillageType.Attack, VillageType.Defense, VillageType.Scout, VillageType.Farm };

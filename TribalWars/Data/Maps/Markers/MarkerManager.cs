@@ -112,16 +112,16 @@ namespace TribalWars.Data.Maps.Markers
                 return found;
             }
 
-            Marker color = EnemyMarker;
+            MarkerSettings defaultSettings = EnemyMarker.Settings;
             if (player.HasTribe)
             {
                 Marker marker;
                 if (_markTribe.TryGetValue(player.Tribe.Id, out marker))
                 {
-                    color = marker;
+                    defaultSettings = marker.Settings;
                 }
             }
-            return new Marker(MarkerSettings.Create(color.Settings.Color));
+            return new Marker(MarkerSettings.Create(defaultSettings.Color, defaultSettings.View));
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace TribalWars.Data.Maps.Markers
                 return found;
             }
 
-            return new Marker(MarkerSettings.Create(EnemyMarker.Settings.Color));
+            return new Marker(MarkerSettings.Create(EnemyMarker.Settings.Color, EnemyMarker.Settings.View));
         }
 
         /// <summary>

@@ -88,10 +88,10 @@ namespace TribalWars.Data.Maps.Markers
             newSettings.View = view;
             return newSettings;
         }
-
-        public static MarkerSettings Create(Color color)
+        
+        public static MarkerSettings Create(Color color, string view)
         {
-            return new MarkerSettings("", true, color, Color.Transparent, "Points");
+            return new MarkerSettings("", true, color, Color.Transparent, view);
         }
 
         public bool Equals(MarkerSettings other)

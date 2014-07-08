@@ -34,9 +34,8 @@
             this.multiColumnCombo1 = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
             this.SearchTypeImageList = new System.Windows.Forms.ImageList(this.components);
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
-            this.uiColorPicker1 = new Janus.Windows.EditControls.UIColorPicker();
-            this.uiColorButton1 = new Janus.Windows.EditControls.UIColorButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.uiComboBox1 = new Janus.Windows.EditControls.UIComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,34 +72,18 @@
             this.CloseButton.Text = "OK";
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // uiColorPicker1
-            // 
-            this.uiColorPicker1.Location = new System.Drawing.Point(72, 148);
-            this.uiColorPicker1.Name = "uiColorPicker1";
-            this.uiColorPicker1.Size = new System.Drawing.Size(152, 149);
-            this.uiColorPicker1.TabIndex = 12;
-            this.uiColorPicker1.Text = "uiColorPicker1";
-            // 
-            // uiColorButton1
-            // 
-            // 
-            // 
-            // 
-            this.uiColorButton1.ColorPicker.BorderStyle = Janus.Windows.UI.BorderStyle.None;
-            this.uiColorButton1.ColorPicker.Location = new System.Drawing.Point(0, 0);
-            this.uiColorButton1.ColorPicker.Name = "";
-            this.uiColorButton1.ColorPicker.Size = new System.Drawing.Size(100, 100);
-            this.uiColorButton1.ColorPicker.TabIndex = 0;
-            this.uiColorButton1.Location = new System.Drawing.Point(318, 184);
-            this.uiColorButton1.Name = "uiColorButton1";
-            this.uiColorButton1.Size = new System.Drawing.Size(75, 23);
-            this.uiColorButton1.TabIndex = 15;
-            this.uiColorButton1.Text = "uiColorButton1";
-            // 
             // colorDialog1
             // 
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
+            // 
+            // uiComboBox1
+            // 
+            this.uiComboBox1.Location = new System.Drawing.Point(296, 163);
+            this.uiComboBox1.Name = "uiComboBox1";
+            this.uiComboBox1.Size = new System.Drawing.Size(103, 20);
+            this.uiComboBox1.TabIndex = 15;
+            this.uiComboBox1.Text = "uiComboBox1";
             // 
             // ActivePlayerForm
             // 
@@ -109,8 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
             this.ClientSize = new System.Drawing.Size(616, 418);
-            this.Controls.Add(this.uiColorButton1);
-            this.Controls.Add(this.uiColorPicker1);
+            this.Controls.Add(this.uiComboBox1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.multiColumnCombo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -131,8 +113,7 @@
         private Janus.Windows.EditControls.UIButton CloseButton;
         private Janus.Windows.GridEX.EditControls.MultiColumnCombo multiColumnCombo1;
         private System.Windows.Forms.ImageList SearchTypeImageList;
-        private Janus.Windows.EditControls.UIColorPicker uiColorPicker1;
-        private Janus.Windows.EditControls.UIColorButton uiColorButton1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private Janus.Windows.EditControls.UIComboBox uiComboBox1;
     }
 }

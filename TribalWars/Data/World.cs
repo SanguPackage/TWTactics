@@ -410,6 +410,12 @@ namespace TribalWars.Data
             _villageTypes.WriteByte((byte) value);
         }
 
+        public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)
+        {
+            Map.InitializeMap(mapControl);
+            MiniMap.InitializeMap(miniMapControl, Map);
+        }
+
         /// <summary>
         /// Force redrawing the maps
         /// </summary>
@@ -724,11 +730,5 @@ namespace TribalWars.Data
             #endregion
         }
         #endregion
-
-        public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)
-        {
-            Map.InitializeMap(mapControl);
-            MiniMap.InitializeMap(miniMapControl, Map);
-        }
     }
 }

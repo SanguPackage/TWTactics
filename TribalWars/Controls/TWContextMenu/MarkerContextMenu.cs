@@ -57,6 +57,9 @@ namespace TribalWars.Controls.TWContextMenu
 
             _menu.AddChangeColorCommand("Main color", marker.Settings.Color, OnChangeColor);
             _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, OnChangeExtraColor);
+
+            IEnumerable<string> views = World.Default.Views.Where(x => x.Value.Background).Select(x => x.Key);
+            _menu.AddComboBoxCommand("View", views, marker.Settings.View, OnChangeView);
             _menu.AddToggleCommand(marker.Settings.Enabled ? "Disable marker" : "Activate marker", marker.Settings.Enabled, OnChangeEnabled);
         }
 
@@ -73,7 +76,10 @@ namespace TribalWars.Controls.TWContextMenu
         }
         #endregion
 
-        #region Public Methods
+        #region Methods
+        /// <summary>
+        /// Gets the command that owns GetCommands()
+        /// </summary>
         public UICommand GetMainCommand(UIContextMenu menu)
         {
             Debug.Assert(_mainCommand == null);
@@ -83,6 +89,14 @@ namespace TribalWars.Controls.TWContextMenu
 
             _mainCommand = cmd;
             return cmd;
+        }
+
+        /// <summary>
+        /// Gets the commands to edit the marker
+        /// </summary>
+        public IEnumerable<UICommand> GetCommands()
+        {
+            return _menu.Commands.OfType<UICommand>();
         }
 
         private Image GetMainCommandImage(Marker marker)
@@ -98,11 +112,6 @@ namespace TribalWars.Controls.TWContextMenu
         private string GetMainCommandText(Marker marker)
         {
             return marker.Empty ? "Mark " + (_tribe == null ? _player.Name : _tribe.Tag) : "Marker";
-        }
-
-        public IEnumerable<UICommand> GetCommands()
-        {
-            return _menu.Commands.OfType<UICommand>();
         }
 
         public void Show(Control control, Point position)
@@ -125,18 +134,18 @@ namespace TribalWars.Controls.TWContextMenu
             _mainCommand.Image = GetMainCommandImage(GetMarker());
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         private void OnChangeEnabled(object sender, CommandEventArgs e)
         {
             var marker = GetMarker();
             UpdateMarker(MarkerSettings.ChangeEnabled(marker.Settings, e.Command.IsChecked));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        private void OnChangeView(object sender, EventArgs e)
+        {
+            var marker = GetMarker();
+            UpdateMarker(MarkerSettings.ChangeView(marker.Settings, ((UIComboBox)sender).SelectedValue.ToString()));
+        }
+
         private void OnChangeColor(object sender, EventArgs e)
         {
             var marker = GetMarker();
@@ -144,9 +153,6 @@ namespace TribalWars.Controls.TWContextMenu
             UpdateMarker(MarkerSettings.ChangeColor(marker.Settings, selectedColor));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         private void OnChangeExtraColor(object sender, EventArgs e)
         {
             var marker = GetMarker();

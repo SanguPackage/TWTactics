@@ -12,6 +12,7 @@ using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Players;
 using TribalWars.Data.Tribes;
+using ComboStyle = Janus.Windows.EditControls.ComboStyle;
 using CommandType = Janus.Windows.UI.CommandBars.CommandType;
 
 namespace TribalWars.Tools
@@ -32,6 +33,7 @@ namespace TribalWars.Tools
         #endregion
 
         #region UIContextMenu
+        #region Regular Commands
         public static void AddSeparator(this UIContextMenu menu)
         {
             var sep = new UICommand("SEP", string.Empty, CommandType.Separator);
@@ -64,7 +66,9 @@ namespace TribalWars.Tools
 
             return cmd;
         }
+        #endregion
 
+        #region ChangeColor Command
         public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, EventHandler handler)
         {
             var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
@@ -137,7 +141,9 @@ namespace TribalWars.Tools
 
             return map;
         }
+        #endregion
 
+        #region Other Commands
         public static void AddTextBoxCommand(this UIContextMenu menu, string text, string defaultTextBoxValue, EventHandler handler)
         {
             var txtBox = new TextBox();
@@ -149,18 +155,36 @@ namespace TribalWars.Tools
             menu.Commands.Add(cmd);
         }
 
-        public static void AddMarkerContextCommands(this UIContextMenu menu, MarkerContextMenu markerContext)
-        {
-            var markerHolder = markerContext.GetMainCommand(menu);
-            markerHolder.Commands.AddRange(markerContext.GetCommands().ToArray());
-        }
-
         public static void AddToggleCommand(this UIContextMenu menu, string text, bool defaultValue, CommandEventHandler handler)
         {
             var cmd = new UICommand("", text, CommandType.ToggleButton);
             cmd.IsChecked = defaultValue;
             cmd.Click += handler;
             menu.Commands.Add(cmd);
+        }
+
+        public static void AddComboBoxCommand(this UIContextMenu menu, string text, IEnumerable<string> list, string defaultValue, EventHandler handler)
+        {
+            var ctl = new UIComboBox
+                {
+                    DataSource = list.ToArray(),
+                    SelectedValue = defaultValue,
+                    ComboStyle = ComboStyle.DropDownList
+                };
+
+            ctl.SelectedValueChanged += handler;
+
+            var cmd = new UICommand("", text, CommandType.ComboBoxCommand);
+            cmd.Control = ctl;
+            menu.Commands.Add(cmd);
+        }
+        #endregion
+
+        #region MarkerContexts
+        public static void AddMarkerContextCommands(this UIContextMenu menu, MarkerContextMenu markerContext)
+        {
+            var markerHolder = markerContext.GetMainCommand(menu);
+            markerHolder.Commands.AddRange(markerContext.GetCommands().ToArray());
         }
 
         public static void AddPlayerContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
@@ -178,6 +202,7 @@ namespace TribalWars.Tools
             var tribeContext = new TribeContextMenu(map, tribe);
             tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
         }
+        #endregion
         #endregion
     }
 }

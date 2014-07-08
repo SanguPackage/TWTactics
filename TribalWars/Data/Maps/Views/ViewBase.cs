@@ -26,12 +26,27 @@ namespace TribalWars.Data.Maps.Views
         /// Gets or sets the name of the view
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// A village can have one background drawer
+        /// </summary>
+        public bool Background
+        {
+            get { return !Decorator; }
+        }
+
+        /// <summary>
+        /// A village can have multiple decorators
+        /// enhancing a background view
+        /// </summary>
+        public bool Decorator { get; private set; }
         #endregion
 
         #region Constructors
-        protected ViewBase(string name)
+        protected ViewBase(string name, bool decorator)
         {
             Name = name;
+            Decorator = decorator;
             _drawers = new Dictionary<ViewData, DrawerData>();
         }
         #endregion
