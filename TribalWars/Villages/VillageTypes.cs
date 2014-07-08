@@ -1,6 +1,6 @@
 using System;
 using System.Drawing;
-using TribalWars.Data.Reporting;
+using TribalWars.Maps.Icons;
 using TribalWars.Villages.Buildings;
 using TribalWars.Villages.Units;
 
@@ -66,7 +66,7 @@ namespace TribalWars.Villages
                 return BuildingImages.Farm;
 
             if (type.HasFlag(VillageType.Comments))
-                return Data.Maps.Icons.Other.Note;
+                return Other.Note;
 
             return null;
         }

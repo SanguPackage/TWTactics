@@ -87,49 +87,49 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Accordeon\Details\DetailsCommand.cs" />
-    <Compile Include="Controls\Accordeon\Details\VillageControl.cs">
+    <Compile Include="Controls\AccordeonDetails\DetailsCommand.cs" />
+    <Compile Include="Controls\AccordeonDetails\VillageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Details\VillageControl.Designer.cs">
+    <Compile Include="Controls\AccordeonDetails\VillageControl.Designer.cs">
       <DependentUpon>VillageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\FinderOptions.cs" />
-    <Compile Include="Controls\Accordeon\Location\FinderOptionsControl.cs">
+    <Compile Include="Controls\AccordeonLocation\FinderOptions.cs" />
+    <Compile Include="Controls\Finders\FinderOptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\FinderOptionsControl.Designer.cs">
+    <Compile Include="Controls\Finders\FinderOptionsControl.Designer.cs">
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\LocationChangerControl.cs">
+    <Compile Include="Controls\Finders\LocationChangerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Common\LocationChangerControl.Designer.cs">
+    <Compile Include="Controls\Finders\LocationChangerControl.Designer.cs">
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Display\TableWrapperControl.cs">
+    <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Display\TableWrapperControl.Designer.cs">
+    <Compile Include="Controls\XPTables\TableWrapperControl.Designer.cs">
       <DependentUpon>TableWrapperControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main\Browser\BuildingParser.cs" />
-    <Compile Include="Controls\Main\Browser\TroopsParser.cs" />
-    <Compile Include="Controls\Main\Browser\HtmlReportParser.cs" />
-    <Compile Include="Controls\Main\Browser\IBrowserParser.cs" />
-    <Compile Include="Controls\Main\Browser\ResourcesParser.cs" />
-    <Compile Include="Controls\Main\Browser\VillageInfoHandler.cs" />
-    <Compile Include="Controls\Display\ColumnDisplay.cs" />
-    <Compile Include="Controls\Display\ReportTableRow.cs" />
-    <Compile Include="Controls\Accordeon\Details\DetailsControl.cs">
+    <Compile Include="Browsers\Parsers\BuildingParser.cs" />
+    <Compile Include="Browsers\Parsers\TroopsParser.cs" />
+    <Compile Include="Browsers\Parsers\HtmlReportParser.cs" />
+    <Compile Include="Browsers\Parsers\IBrowserParser.cs" />
+    <Compile Include="Browsers\Parsers\ResourcesParser.cs" />
+    <Compile Include="Browsers\Parsers\VillageInfoHandler.cs" />
+    <Compile Include="Controls\XPTables\ColumnDisplay.cs" />
+    <Compile Include="Controls\XPTables\ReportTableRow.cs" />
+    <Compile Include="Controls\AccordeonDetails\DetailsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Details\DetailsControl.Designer.cs">
+    <Compile Include="Controls\AccordeonDetails\DetailsControl.Designer.cs">
       <DependentUpon>DetailsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Display\PlayerTableRow.cs" />
-    <Compile Include="Controls\Display\TribeTableRow.cs" />
-    <Compile Include="Controls\Display\VillageTableRow.cs" />
+    <Compile Include="Controls\XPTables\PlayerTableRow.cs" />
+    <Compile Include="Controls\XPTables\TribeTableRow.cs" />
+    <Compile Include="Controls\XPTables\VillageTableRow.cs" />
     <Compile Include="Controls\AttackPlan\MapdistanceVillageComparor.cs" />
     <Compile Include="Controls\Common\ImageCombobox.cs">
       <SubType>Component</SubType>
@@ -143,77 +143,89 @@
     <Compile Include="Controls\Common\LabelTextBoxControl.Designer.cs">
       <DependentUpon>LabelTextBoxControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\TimeConverterCalculatorControl.cs">
+    <Compile Include="Controls\TimeConverter\TimeConverterCalculatorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Common\TimeConverterCalculatorControl.Designer.cs">
+    <Compile Include="Controls\TimeConverter\TimeConverterCalculatorControl.Designer.cs">
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Common\ToolStripControlHostWrappers.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationControl.cs">
+    <Compile Include="Controls\AccordeonLocation\LocationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationControl.Designer.cs">
+    <Compile Include="Controls\AccordeonLocation\LocationControl.Designer.cs">
       <DependentUpon>LocationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DistanceToolStrip\DistanceCollectionControl.cs">
+    <Compile Include="Controls\Distance\DistanceCollectionControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\DistanceToolStrip\DistanceContextMenuItem.cs">
+    <Compile Include="Controls\Distance\DistanceContextMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\DistanceToolStrip\DistanceControl.cs">
+    <Compile Include="Controls\Distance\DistanceControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\DistanceToolStrip\DistanceControlHost.cs">
+    <Compile Include="Controls\Distance\DistanceControlHost.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\DistanceToolStrip\ImageToolStripMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Main\Browser\DestinationEnum.cs" />
-    <Compile Include="Controls\Main\Monitoring\MonitoringControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Main\Monitoring\MonitoringControl.Designer.cs">
-      <DependentUpon>MonitoringControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Main\Polygons\PolygonDataSet.cs">
-      <DependentUpon>PolygonDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Main\Polygons\PolygonDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PolygonDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TWContextMenu\MarkerContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\NoVillageMapContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\PolygonContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\NoPolygonContextMenu.cs" />
-    <Compile Include="Controls\Maps\MiniMapControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Maps\ScrollableMapControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\Events\ManipulatorEventArgs.cs" />
-    <Compile Include="Data\Events\MapDisplayTypeEventArgs.cs" />
-    <Compile Include="Data\Events\PolygonEventArgs.cs" />
-    <Compile Include="Data\Maps\DisplaySettings.cs" />
-    <Compile Include="Data\Maps\Displays\MiniMapDrawerFactory.cs" />
-    <Compile Include="Data\Maps\Displays\VillageDimensions.cs" />
-    <Compile Include="Data\Maps\Displays\WorldData.Designer.cs">
+    <Compile Include="Browsers\Control\DestinationEnum.cs" />
+    <Compile Include="Maps\Displays\WorldData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Maps\Drawers\DrawerData.cs" />
-    <Compile Include="Data\Maps\Drawers\DrawerBase.cs" />
-    <Compile Include="Data\Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
-    <Compile Include="Controls\TWContextMenu\VillagesContextMenu.cs">
+    <Compile Include="Maps\Icons\Background.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Background.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\Icons\Other.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Other.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\Icons\Villages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Villages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Worlds\Monitoring\MonitoringControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Worlds\Monitoring\MonitoringControl.Designer.cs">
+      <DependentUpon>MonitoringControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Polygons\PolygonDataSet.cs">
+      <DependentUpon>PolygonDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Polygons\PolygonDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolygonDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\Markers\MarkerContextMenu.cs" />
+    <Compile Include="Maps\Controls\NoVillageMapContextMenu.cs" />
+    <Compile Include="Controls\Polygons\PolygonContextMenu.cs" />
+    <Compile Include="Controls\Polygons\NoPolygonContextMenu.cs" />
+    <Compile Include="Maps\Controls\MiniMapControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Maps\Controls\ScrollableMapControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Worlds\Events\Impls\ManipulatorEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\MapDisplayTypeEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\PolygonEventArgs.cs" />
+    <Compile Include="Maps\DisplaySettings.cs" />
+    <Compile Include="Maps\Displays\MiniMapDrawerFactory.cs" />
+    <Compile Include="Maps\Displays\VillageDimensions.cs" />
+    <Compile Include="Maps\Drawers\DrawerData.cs" />
+    <Compile Include="Maps\Drawers\DrawerBase.cs" />
+    <Compile Include="Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
+    <Compile Include="Villages\ContextMenu\VillagesContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Villages\Buildings\BuildingImages.Designer.cs">
@@ -222,23 +234,23 @@
       <DependentUpon>BuildingImages.resx</DependentUpon>
     </Compile>
     <Compile Include="Villages\Buildings\BuildingTypes.cs" />
-    <Compile Include="Data\Events\BrowserEventArgs.cs" />
-    <Compile Include="Controls\Main\Polygons\PolygonControl.cs">
+    <Compile Include="Browsers\BrowserEventArgs.cs" />
+    <Compile Include="Controls\Polygons\PolygonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Main\Polygons\PolygonControl.designer.cs">
+    <Compile Include="Controls\Polygons\PolygonControl.designer.cs">
       <DependentUpon>PolygonControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main\Browser\BrowserControl.cs">
+    <Compile Include="Browsers\Control\BrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Main\Browser\BrowserControl.designer.cs">
+    <Compile Include="Browsers\Control\BrowserControl.designer.cs">
       <DependentUpon>BrowserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Maps\MapControl.cs">
+    <Compile Include="Maps\Controls\MapControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Maps\MapControl.designer.cs">
+    <Compile Include="Maps\Controls\MapControl.designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AttackPlan\MapDistanceControl.cs">
@@ -259,119 +271,104 @@
     <Compile Include="Controls\AttackPlan\MapDistanceVillageControl.Designer.cs">
       <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationFinderControl.cs">
+    <Compile Include="Controls\AccordeonLocation\LocationFinderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\Location\LocationFinderControl.Designer.cs">
+    <Compile Include="Controls\AccordeonLocation\LocationFinderControl.Designer.cs">
       <DependentUpon>LocationFinderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Accordeon\MarkersContainerControl.cs">
+    <Compile Include="Maps\Markers\MarkersContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Accordeon\MarkersContainerControl.Designer.cs">
+    <Compile Include="Maps\Markers\MarkersContainerControl.Designer.cs">
       <DependentUpon>MarkersContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\TimeConverterControl.cs">
+    <Compile Include="Controls\TimeConverter\TimeConverterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Common\TimeConverterControl.Designer.cs">
+    <Compile Include="Controls\TimeConverter\TimeConverterControl.Designer.cs">
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\VillagePlayerTribeFinderTextBox.cs">
+    <Compile Include="Controls\Finders\VillagePlayerTribeFinderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\TWContextMenu\TribeContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\PlayerContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\ITWContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\IContextMenu.cs" />
-    <Compile Include="Controls\TWContextMenu\VillageContextMenu.cs">
+    <Compile Include="Villages\ContextMenu\TribeContextMenu.cs" />
+    <Compile Include="Villages\ContextMenu\PlayerContextMenu.cs" />
+    <Compile Include="Controls\XPTables\ITwContextMenu.cs" />
+    <Compile Include="Controls\IContextMenu.cs" />
+    <Compile Include="Villages\ContextMenu\VillageContextMenu.cs">
     </Compile>
     <Compile Include="Villages\Buildings\WorldBuildings.cs" />
-    <Compile Include="Data\Events\PlayersEventArgs.cs" />
-    <Compile Include="Data\Events\ReportEventArgs.cs" />
-    <Compile Include="Data\Events\TribesEventArgs.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\BorderDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\ShapeDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\IconOrientation.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
-    <Compile Include="Data\Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
-    <Compile Include="Data\Maps\Icons\Background.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Background.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Maps\Icons\Other.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Other.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Maps\Icons\Villages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Villages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapKeyEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapMouseEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapMouseMoveEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\KeyboardInputToMovementConverter.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\ActiveRectangleManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
-    <Compile Include="Data\Maps\Manipulators\Helpers\Polygon.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\ActiveVillageManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\MapDraggerManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
-    <Compile Include="Data\Maps\Manipulators\Implementations\BbCodeManipulator.cs" />
-    <Compile Include="Data\Maps\Manipulators\ManipulatorBase.cs" />
-    <Compile Include="Data\Maps\Manipulators\ManipulatorManagerController.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
-    <Compile Include="Data\Maps\Manipulators\Managers\PolygonManipulatorManager.cs" />
-    <Compile Include="Data\Maps\Map.cs" />
-    <Compile Include="Data\Maps\Display.cs" />
-    <Compile Include="Data\Maps\Markers\MarkerSettings.cs" />
-    <Compile Include="Data\Maps\Publisher.cs" />
-    <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
-    <Compile Include="Data\Maps\Displays\IconDrawerFactory.cs" />
-    <Compile Include="Data\Maps\Displays\ShapeDrawerFactory.cs" />
-    <Compile Include="Data\Maps\Views\ViewBase.cs" />
-    <Compile Include="Data\Maps\Displays\DrawerFactoryBase.cs" />
-    <Compile Include="Data\Maps\Views\ViewData.cs" />
-    <Compile Include="Data\Maps\Markers\Marker.cs" />
-    <Compile Include="Data\Maps\Markers\MarkerManager.cs" />
-    <Compile Include="Data\Maps\Views\PointsView.cs" />
-    <Compile Include="Data\Maps\Views\VillageTypeView.cs" />
-    <Compile Include="Data\Reporting\CurrentSituation.cs" />
-    <Compile Include="Data\Reporting\HtmlReport.cs" />
-    <Compile Include="Data\Reporting\Images.Designer.cs">
+    <Compile Include="Worlds\Events\Impls\PlayersEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\ReportEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\TribesEventArgs.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\BorderDrawer.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\ShapeDrawer.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\IconDrawer.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\IconOrientation.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
+    <Compile Include="Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapKeyEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapMouseEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapMouseMoveEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\KeyboardInputToMovementConverter.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\ActiveRectangleManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
+    <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
+    <Compile Include="Maps\Manipulators\Helpers\Polygon.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\ActiveVillageManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\MapDraggerManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\BbCodeManipulator.cs" />
+    <Compile Include="Maps\Manipulators\ManipulatorBase.cs" />
+    <Compile Include="Maps\Manipulators\ManipulatorManagerController.cs" />
+    <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
+    <Compile Include="Maps\Manipulators\Managers\PolygonManipulatorManager.cs" />
+    <Compile Include="Maps\Map.cs" />
+    <Compile Include="Maps\Display.cs" />
+    <Compile Include="Maps\Markers\MarkerSettings.cs" />
+    <Compile Include="Maps\Publisher.cs" />
+    <Compile Include="Maps\Displays\DisplayTypes.cs" />
+    <Compile Include="Maps\Displays\IconDrawerFactory.cs" />
+    <Compile Include="Maps\Displays\ShapeDrawerFactory.cs" />
+    <Compile Include="Maps\Views\ViewBase.cs" />
+    <Compile Include="Maps\Displays\DrawerFactoryBase.cs" />
+    <Compile Include="Maps\Views\ViewData.cs" />
+    <Compile Include="Maps\Markers\Marker.cs" />
+    <Compile Include="Maps\Markers\MarkerManager.cs" />
+    <Compile Include="Maps\Views\PointsView.cs" />
+    <Compile Include="Maps\Views\VillageTypeView.cs" />
+    <Compile Include="Browsers\Reporting\CurrentSituation.cs" />
+    <Compile Include="Browsers\Reporting\HtmlReport.cs" />
+    <Compile Include="Browsers\Reporting\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Reporting\ReportBBCodeOutput.cs" />
-    <Compile Include="Data\Reporting\ReportBuilding.cs" />
+    <Compile Include="Browsers\Reporting\ReportBBCodeOutput.cs" />
+    <Compile Include="Browsers\Reporting\ReportBuilding.cs" />
     <Compile Include="Tools\PropertyGrid\ClipboardCopierUIEditor.cs" />
-    <Compile Include="Data\Events\PlayerEventArgs.cs" />
-    <Compile Include="Data\Events\TribeEventArgs.cs" />
-    <Compile Include="Data\Events\VillageEventArgs.cs" />
-    <Compile Include="Data\Events\VillagesEventArgs.cs" />
-    <Compile Include="Data\InternalStructure.cs" />
+    <Compile Include="Worlds\Events\Impls\PlayerEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\TribeEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\VillageEventArgs.cs" />
+    <Compile Include="Worlds\Events\Impls\VillagesEventArgs.cs" />
+    <Compile Include="Worlds\InternalStructure.cs" />
     <Compile Include="Tools\PropertyGrid\Players\ExtendedPlayerDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Players\PlayerCollection.cs" />
     <Compile Include="Tools\PropertyGrid\Players\PlayerPropertyDescriptor.cs" />
-    <Compile Include="Data\Maps\Location.cs" />
-    <Compile Include="Data\Events\MapLocationEventArgs.cs" />
-    <Compile Include="Data\Reporting\Report.cs" />
-    <Compile Include="Data\Reporting\ReportEnums.cs" />
-    <Compile Include="Data\Reporting\ReportOutputOptions.cs" />
-    <Compile Include="Data\Reporting\ReportPainter.cs" />
-    <Compile Include="Data\Reporting\ReportParser.cs" />
-    <Compile Include="Data\Reporting\ReportVillage.cs" />
+    <Compile Include="Maps\Location.cs" />
+    <Compile Include="Worlds\Events\Impls\MapLocationEventArgs.cs" />
+    <Compile Include="Browsers\Reporting\Report.cs" />
+    <Compile Include="Browsers\Reporting\ReportEnums.cs" />
+    <Compile Include="Browsers\Reporting\ReportOutputOptions.cs" />
+    <Compile Include="Browsers\Reporting\ReportPainter.cs" />
+    <Compile Include="Browsers\Reporting\ReportParser.cs" />
+    <Compile Include="Browsers\Reporting\ReportVillage.cs" />
     <Compile Include="Villages\Resources\ResourceImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -386,8 +383,8 @@
     </Compile>
     <Compile Include="Villages\Units\WorldUnits.cs" />
     <Compile Include="Villages\Units\UnitTypes.cs" />
-    <Compile Include="Data\Reporting\ReportUnit.cs" />
-    <Compile Include="Data\VillageCommand.cs" />
+    <Compile Include="Browsers\Reporting\ReportUnit.cs" />
+    <Compile Include="Worlds\Events\VillageCommand.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\ExtendedVillageDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillageCollection.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillagePlayerDescriptor.cs" />
@@ -395,7 +392,7 @@
     <Compile Include="Tools\PropertyGrid\Villages\VillagePropertyDescriptor.cs" />
     <Compile Include="Villages\VillageTooltip.cs" />
     <Compile Include="Villages\VillageTypes.cs" />
-    <Compile Include="Data\VillageTools.cs" />
+    <Compile Include="Worlds\Events\VillageTools.cs" />
     <Compile Include="Forms\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,7 +431,7 @@
     <Compile Include="Tools\PropertyGrid\Players\PlayerDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Tribes\TribeDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillageDescriptor.cs" />
-    <Compile Include="Data\Monitoring\Monitor.cs" />
+    <Compile Include="Worlds\Monitoring\Monitor.cs" />
     <Compile Include="Villages\Tribe.cs" />
     <Compile Include="Villages\Buildings\Building.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -451,15 +448,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldSettings.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\Accordeon\Details\VillageControl.resx">
+    <EmbeddedResource Include="Controls\AccordeonDetails\VillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VillageControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Details\DetailsControl.resx">
+    <EmbeddedResource Include="Controls\AccordeonDetails\DetailsControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DetailsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Location\FinderOptionsControl.resx">
+    <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -467,35 +464,35 @@
       <SubType>Designer</SubType>
       <DependentUpon>LabelTextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Location\LocationControl.resx">
+    <EmbeddedResource Include="Controls\AccordeonLocation\LocationControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LocationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Common\LocationChangerControl.resx">
+    <EmbeddedResource Include="Controls\Finders\LocationChangerControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Display\TableWrapperControl.resx">
+    <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TableWrapperControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Common\TimeConverterCalculatorControl.resx">
+    <EmbeddedResource Include="Controls\TimeConverter\TimeConverterCalculatorControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Main\Monitoring\MonitoringControl.resx">
+    <EmbeddedResource Include="Worlds\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Main\Polygons\PolygonControl.resx">
+    <EmbeddedResource Include="Controls\Polygons\PolygonControl.resx">
       <DependentUpon>PolygonControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Main\Browser\BrowserControl.resx">
+    <EmbeddedResource Include="Browsers\Control\BrowserControl.resx">
       <DependentUpon>BrowserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Maps\MapControl.resx">
+    <EmbeddedResource Include="Maps\Controls\MapControl.resx">
       <DependentUpon>MapControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -511,15 +508,15 @@
       <SubType>Designer</SubType>
       <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\Location\LocationFinderControl.resx">
+    <EmbeddedResource Include="Controls\AccordeonLocation\LocationFinderControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LocationFinderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Accordeon\MarkersContainerControl.resx">
+    <EmbeddedResource Include="Maps\Markers\MarkersContainerControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MarkersContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Common\TimeConverterControl.resx">
+    <EmbeddedResource Include="Controls\TimeConverter\TimeConverterControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -528,26 +525,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>BuildingImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Displays\WorldData.resx">
+    <EmbeddedResource Include="Maps\Displays\WorldData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WorldData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Icons\Background.resx">
+    <EmbeddedResource Include="Maps\Icons\Background.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Background.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Icons\Other.resx">
+    <EmbeddedResource Include="Maps\Icons\Other.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Other.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Maps\Icons\Villages.resx">
+    <EmbeddedResource Include="Maps\Icons\Villages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Villages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Reporting\Images.resx">
+    <EmbeddedResource Include="Browsers\Reporting\Images.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
@@ -585,10 +582,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations\TWWords.nl-BE.resx">
+    <EmbeddedResource Include="Browsers\Translations\TWWords.nl-BE.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations\TWWords.resx">
+    <EmbeddedResource Include="Browsers\Translations\TWWords.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TWWords.Designer.cs</LastGenOutput>
@@ -608,15 +605,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Data\Reporting\VillageReportCollection.cs" />
+    <Compile Include="Browsers\Reporting\VillageReportCollection.cs" />
     <Compile Include="Villages\Resources\Resource.cs" />
-    <Compile Include="Data\Builder.cs" />
+    <Compile Include="Worlds\Builder.cs" />
     <Compile Include="Villages\Player.cs" />
     <Compile Include="Villages\Units\Unit.cs" />
     <Compile Include="Villages\Village.cs" />
-    <Compile Include="Data\World.cs" />
-    <Compile Include="Data\WorldEvents.cs" />
-    <Compile Include="Translations\TWWords.Designer.cs">
+    <Compile Include="Worlds\World.cs" />
+    <Compile Include="Worlds\WorldEvents.cs" />
+    <Compile Include="Browsers\Translations\TWWords.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TWWords.resx</DependentUpon>
@@ -658,15 +655,15 @@
     <Content Include="WorldTemplate\WorldSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Controls\Main\Polygons\PolygonDataSet.xsc">
+    <None Include="Controls\Polygons\PolygonDataSet.xsc">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Controls\Main\Polygons\PolygonDataSet.xsd">
+    <None Include="Controls\Polygons\PolygonDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PolygonDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Controls\Main\Polygons\PolygonDataSet.xss">
+    <None Include="Controls\Polygons\PolygonDataSet.xss">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
     <None Include="Resources\pin.gif" />
@@ -811,9 +808,7 @@
       <Name>XPTable</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Accordeon\Markers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

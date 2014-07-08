@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using TribalWars.Data;
 using TribalWars.Villages;
+using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
 
 namespace TribalWars.Controls.AttackPlan
 {

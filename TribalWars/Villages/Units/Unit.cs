@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
-using TribalWars.Data;
 using TribalWars.Villages.Resources;
+using TribalWars.Worlds;
 
 namespace TribalWars.Villages.Units
 {

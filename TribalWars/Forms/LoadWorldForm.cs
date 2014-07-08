@@ -5,8 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
-using TribalWars.Data;
 using TribalWars.Tools;
+using TribalWars.Worlds;
 
 namespace TribalWars.Forms
 {

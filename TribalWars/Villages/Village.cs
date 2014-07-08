@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using TribalWars.Data;
-using TribalWars.Data.Reporting;
+using TribalWars.Browsers.Reporting;
 using TribalWars.Tools;
 using TribalWars.Villages.Units;
+using TribalWars.Worlds;
 
 namespace TribalWars.Villages
 {

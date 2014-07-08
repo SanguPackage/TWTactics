@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
-using TribalWars.Data;
 using System.Linq;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 
 namespace TribalWars.Forms
 {

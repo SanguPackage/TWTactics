@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TribalWars.Data;
 using TribalWars.Tools;
+using TribalWars.Worlds;
 
 namespace TribalWars.Villages
 {

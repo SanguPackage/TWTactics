@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using TribalWars.Data;
 using TribalWars.Villages;
+using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
 
 namespace TribalWars.Tools.PropertyGrid.Villages
 {

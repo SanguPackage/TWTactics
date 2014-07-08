@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using TribalWars.Data;
+using TribalWars.Worlds;
 
 namespace TribalWars.Tools.Parsers
 {

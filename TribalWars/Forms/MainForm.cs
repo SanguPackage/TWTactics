@@ -5,15 +5,17 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
+using TribalWars.Browsers;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
 using TribalWars.Controls.TWContextMenu;
-using TribalWars.Data;
-using TribalWars.Data.Maps.Displays;
-using TribalWars.Data.Maps.Manipulators.Implementations;
-using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Events;
+using TribalWars.Maps.Displays;
+using TribalWars.Maps.Manipulators.Implementations;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages;
+using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
+using TribalWars.Worlds.Events.Impls;
 
 #endregion
 

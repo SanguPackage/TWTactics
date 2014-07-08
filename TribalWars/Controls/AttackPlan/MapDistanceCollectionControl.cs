@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using TribalWars.Data;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
+using TribalWars.Worlds;
 
 namespace TribalWars.Controls.AttackPlan
 {

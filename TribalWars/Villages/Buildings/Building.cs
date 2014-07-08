@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using TribalWars.Data.Reporting;
+using TribalWars.Browsers.Reporting;
 
 #endregion
 

@@ -1,4 +1,6 @@
 using TribalWars.Controls.Common;
+using TribalWars.Controls.Finders;
+using TribalWars.Controls.TimeConverter;
 
 namespace TribalWars.Controls.AttackPlan
 {
