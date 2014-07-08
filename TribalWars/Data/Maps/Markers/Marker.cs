@@ -50,7 +50,7 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public bool Empty
         {
-            get { return Player == null && Player == null && !IsDefaultMarker; }
+            get { return Player == null && Tribe == null && !IsDefaultMarker; }
         }
 
         /// <summary>
