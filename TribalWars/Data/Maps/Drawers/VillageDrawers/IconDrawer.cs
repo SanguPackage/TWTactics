@@ -30,7 +30,7 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         #endregion
 
         #region Constructors
-        public IconDrawer(Bitmap icon, Marker colors)
+        public IconDrawer(Bitmap icon, MarkerSettings colors)
         {
             ColorBrush = new SolidBrush(colors.Color);
             if (colors.ExtraColor != Color.Transparent)

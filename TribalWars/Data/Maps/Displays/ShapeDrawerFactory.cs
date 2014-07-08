@@ -39,15 +39,15 @@ namespace TribalWars.Data.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker colors)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)
         {
             switch (data.ShapeDrawer)
             {
                 case "RectangleDrawer":
-                    return new ShapeDrawer(false, colors);
+                    return new ShapeDrawer(false, marker);
 
                 case "EllipseDrawer":
-                    return new ShapeDrawer(true, colors);
+                    return new ShapeDrawer(true, marker);
 
                 default:
                     return null;

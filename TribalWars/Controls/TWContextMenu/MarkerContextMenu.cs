@@ -26,37 +26,74 @@ namespace TribalWars.Controls.TWContextMenu
         #region Fields
         private readonly Player _player;
         private readonly Tribe _tribe;
-        private readonly Marker _marker;
 
         private readonly UIContextMenu _menu;
+        private readonly Map _map;
         #endregion
 
         #region Constructors
         public MarkerContextMenu(Map map, Player player)
-            : this()
         {
+            _menu = new UIContextMenu();
+            _map = map;
             _player = player;
-            _marker = map.MarkerManager.GetMarker(player);
+            InitializeMenu();
         }
 
         public MarkerContextMenu(Map map, Tribe tribe)
-            : this()
-        {
-            _tribe = tribe;
-            _marker = map.MarkerManager.GetMarker(tribe);
-        }
-
-        private MarkerContextMenu()
         {
             _menu = new UIContextMenu();
+            _map = map;
+            _tribe = tribe;
+            InitializeMenu();
+        }
 
-            _menu.AddTextBoxCommand("Name", _marker.Name, OnChangeName);
-            _menu.AddChangeColorCommand("Color", _marker.Color, OnChangeColor);
-            _menu.AddChangeColorCommand("Extra color", _marker.Color, OnChangeExtraColor);
+        private void InitializeMenu()
+        {
+            Marker marker = GetMarker();
+
+            _menu.AddChangeColorCommand("Main color", marker.Settings.Color, OnChangeColor);
+            _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, OnChangeExtraColor);
+            _menu.AddToggleCommand(marker.Settings.Enabled ? "Disable marker" : "Activate marker", marker.Settings.Enabled, OnChangeEnabled);
+        }
+
+        private Marker GetMarker()
+        {
+            if (_tribe != null)
+            {
+                return _map.MarkerManager.GetMarker(_tribe);
+            }
+            else
+            {
+                return _map.MarkerManager.GetMarker(_player);
+            }
         }
         #endregion
 
         #region Public Methods
+        public UICommand GetMainCommand(UIContextMenu menu)
+        {
+            var marker = GetMarker();
+            var cmd = menu.AddCommand(GetMainCommandText(marker));
+            cmd.Image = GetMainCommandImage(marker);
+            return cmd;
+        }
+
+        private Image GetMainCommandImage(Marker marker)
+        {
+            if (marker.Empty)
+            {
+                return null;
+            }
+
+            return Tools.Janus.DrawContextIcon(marker.Settings.Color, marker.Settings.ExtraColor);
+        }
+        
+        private string GetMainCommandText(Marker marker)
+        {
+            return marker.Empty ? "Mark " + (_tribe == null ? _player.Name : _tribe.Tag) : "Marker";
+        }
+
         public IEnumerable<UICommand> GetCommands()
         {
             return _menu.Commands.OfType<UICommand>();
@@ -69,13 +106,25 @@ namespace TribalWars.Controls.TWContextMenu
         #endregion
 
         #region EventHandlers
+        private void UpdateMarker(MarkerSettings settings)
+        {
+            if (_tribe != null)
+            {
+                _map.MarkerManager.UpdateMarker(_map, _tribe, settings);
+            }
+            else
+            {
+                _map.MarkerManager.UpdateMarker(_map, _player, settings);
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
-        private void OnChangeName(object sender, EventArgs e)
+        private void OnChangeEnabled(object sender, CommandEventArgs e)
         {
-            var nameChanger = (TextBox)sender;
-            //_marker.Name = nameChanger;
+            var marker = GetMarker();
+            UpdateMarker(MarkerSettings.ChangeEnabled(marker.Settings, e.Command.IsChecked));
         }
 
         /// <summary>
@@ -83,9 +132,9 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnChangeColor(object sender, EventArgs e)
         {
+            var marker = GetMarker();
             Color selectedColor = ((UIColorPicker)sender).SelectedColor;
-            //_marker.Color = selectedColor;
-            World.Default.InvalidateMarkers();
+            UpdateMarker(MarkerSettings.ChangeColor(marker.Settings, selectedColor));
         }
 
         /// <summary>
@@ -93,9 +142,9 @@ namespace TribalWars.Controls.TWContextMenu
         /// </summary>
         private void OnChangeExtraColor(object sender, EventArgs e)
         {
+            var marker = GetMarker();
             Color selectedColor = ((UIColorPicker)sender).SelectedColor;
-            //_marker.ExtraColor = selectedColor;
-            World.Default.InvalidateMarkers();
+            UpdateMarker(MarkerSettings.ChangeExtraColor(marker.Settings, selectedColor));
         }
         #endregion
     }

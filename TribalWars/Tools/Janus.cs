@@ -8,6 +8,10 @@ using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Controls.TWContextMenu;
+using TribalWars.Data.Maps;
+using TribalWars.Data.Players;
+using TribalWars.Data.Tribes;
 using CommandType = Janus.Windows.UI.CommandBars.CommandType;
 
 namespace TribalWars.Tools
@@ -63,13 +67,41 @@ namespace TribalWars.Tools
 
         public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, EventHandler handler)
         {
+            var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
+
             var colorPicker = new UIColorPicker();
             colorPicker.SelectedColor = defaultSelectedColor;
-            colorPicker.SelectedColorChanged += handler;
+            colorPicker.SelectedColorChanged += (sender, e) =>
+                {
+                    cmd.Image = DrawContextIcon(((UIColorPicker)sender).SelectedColor);
+                    handler(sender, e);
+                };
 
-            var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
             cmd.Control = colorPicker;
+            cmd.Image = DrawContextIcon(defaultSelectedColor);
             menu.Commands.Add(cmd);
+        }
+
+        public static Image DrawContextIcon(Color color, Color? extraColor = null)
+        {
+            const int canvasSize = 16;
+
+            var map = new Bitmap(canvasSize, canvasSize);
+            Graphics g = Graphics.FromImage(map);
+            using (var brush = new SolidBrush(color))
+            {
+                g.FillRectangle(brush, 0, 0, canvasSize, canvasSize);
+            }
+            
+            if (extraColor.HasValue)
+            {
+                using (var brush = new SolidBrush(extraColor.Value))
+                {
+                    g.FillRectangle(brush, 5, 5, canvasSize - 10, canvasSize - 10);
+                }
+            }
+
+            return map;
         }
 
         public static void AddTextBoxCommand(this UIContextMenu menu, string text, string defaultTextBoxValue, EventHandler handler)
@@ -81,6 +113,36 @@ namespace TribalWars.Tools
             var cmd = new UICommand("", text, CommandType.TextBoxCommand);
             cmd.Control = txtBox;
             menu.Commands.Add(cmd);
+        }
+
+        public static void AddMarkerContextCommands(this UIContextMenu menu, MarkerContextMenu markerContext)
+        {
+            var markerHolder = markerContext.GetMainCommand(menu);
+            markerHolder.Commands.AddRange(markerContext.GetCommands().ToArray());
+        }
+
+        public static void AddToggleCommand(this UIContextMenu menu, string text, bool defaultValue, CommandEventHandler handler)
+        {
+            var cmd = new UICommand("", text, CommandType.ToggleButton);
+            cmd.IsChecked = defaultValue;
+            cmd.Click += handler;
+            menu.Commands.Add(cmd);
+        }
+
+        public static void AddPlayerContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
+        {
+            var playerCommand = menu.AddCommand(player.Name, null, Properties.Resources.Player);
+            playerCommand.ToolTipText = player.Tooltip;
+            var playerContext = new PlayerContextMenu(map, player, addTribeCommands);
+            playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
+        }
+
+        public static void AddTribeContextCommands(this UIContextMenu menu, Map map, Tribe tribe)
+        {
+            var tribeCommand = menu.AddCommand(tribe.Tag, null, Properties.Resources.Tribe);
+            tribeCommand.ToolTipText = tribe.Tooltip;
+            var tribeContext = new TribeContextMenu(map, tribe);
+            tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
         }
         #endregion
     }

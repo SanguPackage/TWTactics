@@ -329,6 +329,7 @@
     <Compile Include="Data\Maps\Manipulators\Managers\PolygonManipulatorManager.cs" />
     <Compile Include="Data\Maps\Map.cs" />
     <Compile Include="Data\Maps\Display.cs" />
+    <Compile Include="Data\Maps\Markers\MarkerSettings.cs" />
     <Compile Include="Data\Maps\Publisher.cs" />
     <Compile Include="Data\Maps\Displays\DisplayTypes.cs" />
     <Compile Include="Data\Maps\Displays\IconDrawerFactory.cs" />

@@ -66,17 +66,11 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _menu.AddSeparator();
 
-                var playerCommand = _menu.AddCommand(village.Player.Name);
-                playerCommand.ToolTipText = village.Player.Tooltip;
-                var playerContext = new PlayerContextMenu(map, village.Player, false);
-                playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
+                _menu.AddPlayerContextCommands(map, village.Player, false);
 
                 if (village.HasTribe)
                 {
-                    var tribeCommand = _menu.AddCommand(village.Player.Tribe.Tag);
-                    tribeCommand.ToolTipText = village.Player.Tribe.Tooltip;
-                    var tribeContext = new TribeContextMenu(map, village.Player.Tribe);
-                    tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
+                    _menu.AddTribeContextCommands(map, village.Player.Tribe);
                 }
             }
 

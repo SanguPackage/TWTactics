@@ -18,6 +18,7 @@ namespace TribalWars.Data.Maps.Markers
     public sealed class MarkerManager
     {
         #region Fields
+        // Cache: _markers + YourMarker + YourTribeMarker
         private Dictionary<int, Marker> _markTribe;
         private Dictionary<int, Marker> _markPlayer;
 
@@ -64,6 +65,42 @@ namespace TribalWars.Data.Maps.Markers
         #endregion
 
         #region Public Methods
+        public void UpdateMarker(Map map, Player player, MarkerSettings settings)
+        {
+            if (player == World.Default.You)
+            {
+                YourMarker = new Marker(settings);
+                Debug.WriteLine("SetYou: " + settings);
+            }
+            else
+            {
+                _markers.RemoveAll(x => x.Player == player);
+                _markers.Add(new Marker(player, settings));
+                Debug.WriteLine("SetPlayer: " + player.Name + " -> " + settings);
+            }
+
+            CacheSpecialMarkers();
+            map.Invalidate();
+        }
+
+        public void UpdateMarker(Map map, Tribe tribe, MarkerSettings settings)
+        {
+            if (World.Default.You.HasTribe && tribe == World.Default.You.Tribe)
+            {
+                YourTribeMarker = new Marker(settings);
+                Debug.WriteLine("SetYourTribe: " + settings);
+            }
+            else
+            {
+                _markers.RemoveAll(x => x.Tribe == tribe);
+                _markers.Add(new Marker(tribe, settings));
+                Debug.WriteLine("SetTribe: " + tribe.Tag + " -> " + settings);
+            }
+
+            CacheSpecialMarkers();
+            map.Invalidate();
+        }
+
         /// <summary>
         /// Gets the marker for the player or
         /// return a new one
@@ -76,7 +113,17 @@ namespace TribalWars.Data.Maps.Markers
             {
                 return found;
             }
-            return Marker.CreateEmpty();
+
+            Marker color = EnemyMarker;
+            if (player.HasTribe)
+            {
+                Marker marker;
+                if (_markTribe.TryGetValue(player.Tribe.Id, out marker))
+                {
+                    color = marker;
+                }
+            }
+            return new Marker(MarkerSettings.Create(color.Settings.Color));
         }
 
         /// <summary>
@@ -91,7 +138,8 @@ namespace TribalWars.Data.Maps.Markers
             {
                 return found;
             }
-            return Marker.CreateEmpty();
+
+            return new Marker(MarkerSettings.Create(EnemyMarker.Settings.Color));
         }
 
         /// <summary>
@@ -111,12 +159,12 @@ namespace TribalWars.Data.Maps.Markers
             {
                 Marker marker;
                 Player ply = village.Player;
-                if (_markPlayer.TryGetValue(ply.Id, out marker))
+                if (_markPlayer.TryGetValue(ply.Id, out marker) && marker.Settings.Enabled)
                 {
                     return marker;
                 }
 
-                if (ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out marker))
+                if (ply.HasTribe && _markTribe.TryGetValue(ply.Tribe.Id, out marker) && marker.Settings.Enabled)
                 {
                     return marker;
                 }
@@ -146,7 +194,7 @@ namespace TribalWars.Data.Maps.Markers
                 {
                     _markPlayer.Add(marker.Player.Id, marker);
                 }
-                if (marker.Tribe != null && _markTribe.ContainsKey(marker.Tribe.Id))
+                if (marker.Tribe != null && !_markTribe.ContainsKey(marker.Tribe.Id))
                 {
                     _markTribe.Add(marker.Tribe.Id, marker);
                 }
@@ -156,8 +204,9 @@ namespace TribalWars.Data.Maps.Markers
         /// <summary>
         /// Adds Marker to the Manager
         /// </summary>
-        public void AddMarkers(IEnumerable<Marker> markers)
+        public void SetMarkers(IEnumerable<Marker> markers)
         {
+            _markers.Clear();
             foreach (Marker marker in markers)
             {
                 if (!marker.Empty)

@@ -138,7 +138,7 @@ namespace TribalWars.Data.Maps.Displays
         /// </summary>
         protected abstract VillageDimensions CalculateVillageDimensions();
 
-        protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, Marker colors);
+        protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, Marker marker);
 
         protected abstract DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData);
         #endregion

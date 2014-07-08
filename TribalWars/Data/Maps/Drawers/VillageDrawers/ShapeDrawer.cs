@@ -38,10 +38,10 @@ namespace TribalWars.Data.Maps.Drawers.VillageDrawers
         {
             _filler = isEllipse ? EllipseFiller : RectangleFiller;
 
-            _colorBrush = new SolidBrush(colors.Color);
-            if (colors.ExtraColor != Color.Transparent)
+            _colorBrush = new SolidBrush(colors.Settings.Color);
+            if (colors.Settings.ExtraColor != Color.Transparent)
             {
-                _extraColorBrush = new SolidBrush(colors.ExtraColor);
+                _extraColorBrush = new SolidBrush(colors.Settings.ExtraColor);
             }
         }
         #endregion

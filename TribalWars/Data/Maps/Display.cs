@@ -128,7 +128,7 @@ namespace TribalWars.Data.Maps
                 if (marker != null)
                 {
                     // Paint village icon/shape
-                    DrawerData mainData = World.Default.Views[marker.View].GetDrawer(village);
+                    DrawerData mainData = World.Default.Views[marker.Settings.View].GetDrawer(village);
                     finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
                     if (finalCache != null)
                     {

@@ -14,34 +14,35 @@ namespace TribalWars.Data.Maps.Markers
     /// <summary>
     /// Represents a named collection of Player and Tribe Markers
     /// </summary>
+    /// <remarks>
+    /// Either Player or Tribe is null.
+    /// </remarks>
     public sealed class Marker : IEquatable<Marker>
     {
+        #region Constants
+        /// <summary>
+        /// Names of the You, YourTribe, ...
+        /// standard markers
+        /// </summary>
+        public static class DefaultNames
+        {
+            public const string You = "You";
+            public const string YourTribe = "Your Tribe";
+            public const string Enemy = "Enemy";
+            public const string Abandoned = "Abandoned";
+        }
+
+        private static readonly string[] AllDefaultNames = new[]
+            {
+                DefaultNames.You,
+                DefaultNames.YourTribe,
+                DefaultNames.Enemy,
+                DefaultNames.Abandoned
+            };
+        #endregion
+
         #region Properties
-        /// <summary>
-        /// Gets or sets the description
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating the markers are to be drawn
-        /// </summary>
-        public bool Enabled { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the secundary color for the marker
-        /// </summary>
-        public Color ExtraColor { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the primary color for the marker
-        /// </summary>
-        public Color Color { get; private set; }
-
-        /// <summary>
-        /// Gets or sets how to represent the marked
-        /// villages on the map
-        /// </summary>
-        public string View { get; private set; }
+        public MarkerSettings Settings { get; private set; }
 
         /// <summary>
         /// Returns true when there are no tribes
@@ -49,45 +50,48 @@ namespace TribalWars.Data.Maps.Markers
         /// </summary>
         public bool Empty
         {
-            get { return Player == null && Player == null; }
+            get { return Player == null && Player == null && !IsDefaultMarker; }
         }
 
         /// <summary>
-        /// Gets the tribes marked by the group
+        /// Returns true if this is one of the (non deletable)
+        /// default markers
         /// </summary>
-        public Tribe Tribe { get; set; }
+        private bool IsDefaultMarker
+        {
+            get { return AllDefaultNames.Contains(Settings.Name); }
+        }
 
         /// <summary>
-        /// Gets the players marked by the group
+        /// Gets the tribe
         /// </summary>
-        public Player Player { get; set; }
+        public Tribe Tribe { get; private set; }
+
+        /// <summary>
+        /// Gets the player
+        /// </summary>
+        public Player Player { get; private set; }
         #endregion
 
         #region Constructor
-        public Marker(Player player, string name, bool enabled, Color color, Color extraColor, string view)
-            : this(name, enabled, color, extraColor, view)
+        public Marker(Player player, MarkerSettings settings)
+            : this(settings)
         {
+            Debug.Assert(player != null);
             Player = player;
         }
 
-        public Marker(Tribe tribe, string name, bool enabled, Color color, Color extraColor, string view)
-            : this(name, enabled, color, extraColor, view)
+        public Marker(Tribe tribe, MarkerSettings settings)
+            : this(settings)
         {
+            Debug.Assert(tribe != null);
             Tribe = tribe;
         }
 
-        public Marker(string name, bool enabled, Color color, Color extraColor, string view)
+        public Marker(MarkerSettings settings)
         {
-            Name = name;
-            Enabled = enabled;
-            Color = color;
-            ExtraColor = extraColor;
-            View = view;
-        }
-
-        public static Marker CreateEmpty()
-        {
-            return new Marker("", false, Color.Transparent, Color.Transparent, "Points");
+            Debug.Assert(settings != null);
+            Settings = settings;
         }
         #endregion
 
@@ -116,9 +120,20 @@ namespace TribalWars.Data.Maps.Markers
         #region Overriden Methods
         public override string ToString()
         {
-            string views = string.Empty;
-            if (View != null) views = View;
-            return string.Format("{0} ({1} - {2})", Name, views, Color.ToKnownColor()); 
+            var str = "";
+            if (Player != null)
+            {
+                str = string.Format("Player {0}", Player.Name);
+            }
+            else if (Tribe != null)
+            {
+                str = string.Format("Tribe {0}", Tribe.Tag);
+            }
+            else
+            {
+                str = "NOTHING!!";
+            }
+            return string.Format("{0} -- {1}", str, Settings);
         }
         #endregion
 
@@ -126,9 +141,7 @@ namespace TribalWars.Data.Maps.Markers
         public bool Equals(Marker other)
         {
             if (other == null) return false;
-            return View == other.View
-                && Color == other.Color 
-                && ExtraColor == other.ExtraColor;
+            return Tribe == other.Tribe && Player == other.Player;
         }
         #endregion
     }

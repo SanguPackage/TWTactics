@@ -142,7 +142,7 @@ namespace TribalWars.Data.Maps.Displays
             return Math.Max(newZoom, Zoom.Current);
         }
 
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker colors)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)
         {
             string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;
             if (string.IsNullOrEmpty(iconName))
@@ -152,7 +152,7 @@ namespace TribalWars.Data.Maps.Displays
 
             var icon = (Bitmap)Icons.Villages.ResourceManager.GetObject(iconName);
             Debug.Assert(icon != null);
-            return new IconDrawer(icon, colors);
+            return new IconDrawer(icon, marker.Settings);
         }
 
         /// <summary>

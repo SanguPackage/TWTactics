@@ -52,10 +52,10 @@ namespace TribalWars.Data.Maps.Displays
             return FixedDimension;
         }
 
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker colors)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)
         {
-            if (colors.ExtraColor != Color.Transparent) return new MiniMapDrawer(colors.ExtraColor);
-            return new MiniMapDrawer(colors.Color);
+            if (marker.Settings.ExtraColor != Color.Transparent) return new MiniMapDrawer(marker.Settings.ExtraColor);
+            return new MiniMapDrawer(marker.Settings.Color);
         }
 
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData)

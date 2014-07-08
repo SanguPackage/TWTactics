@@ -37,9 +37,11 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnDetails);
             }
-
             _menu.AddCommand("Pinpoint && Center", OnCenter, Resources.TeleportIcon);
+            _menu.AddSeparator();
 
+            var markerContext = new MarkerContextMenu(map, tribe);
+            _menu.AddMarkerContextCommands(markerContext);
             _menu.AddSeparator();
 
             _menu.AddCommand("TWStats", OnTwStats);

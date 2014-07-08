@@ -34,15 +34,20 @@ namespace TribalWars.Controls.TWContextMenu
             _menu = new UIContextMenu();
             _menu.ShowToolTips = InheritableBoolean.True;
 
-            var markerContext = new MarkerContextMenu(map, player);
-            _menu.Commands.AddRange(markerContext.GetCommands().ToArray());
-            _menu.AddSeparator();
-
             if (map.Display.IsVisible(player))
             {
                 _menu.AddCommand("Pinpoint", OnDetails);
             }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddSeparator();
+
+            var markerContext = new MarkerContextMenu(map, player);
+            _menu.AddMarkerContextCommands(markerContext);
+
+            if (addTribeCommands && player.HasTribe)
+            {
+                _menu.AddTribeContextCommands(map, player.Tribe);
+            }
 
             _menu.AddSeparator();
 
@@ -54,16 +59,6 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
             _menu.AddCommand("Operation", OnBbCodeOperation, Properties.Resources.clipboard);
-
-            if (addTribeCommands && player.HasTribe)
-            {
-                _menu.AddSeparator();
-
-                var tribeCommand = _menu.AddCommand(player.Tribe.Tag);
-                tribeCommand.ToolTipText = player.Tribe.Tooltip;
-                var tribeContext = new TribeContextMenu(map, player.Tribe);
-                tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
-            }
         }
         #endregion
 
