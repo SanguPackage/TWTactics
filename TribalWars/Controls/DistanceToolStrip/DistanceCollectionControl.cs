@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
 using TribalWars.Data.Events;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Controls.DistanceToolStrip
 {

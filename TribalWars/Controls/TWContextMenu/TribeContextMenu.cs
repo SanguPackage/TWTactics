@@ -8,10 +8,10 @@ using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Displays;
-using TribalWars.Data.Tribes;
 using TribalWars.Data.Maps;
 using TribalWars.Properties;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.TWContextMenu
 {

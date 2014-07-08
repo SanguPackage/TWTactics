@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Text.RegularExpressions;
-
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Units;
-using TribalWars.Data.Resources;
+using TribalWars.Villages.Buildings;
+using TribalWars.Villages.Resources;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Data.Reporting
 {

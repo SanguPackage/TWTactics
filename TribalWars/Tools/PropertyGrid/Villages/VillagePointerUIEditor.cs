@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 namespace TribalWars.Tools.PropertyGrid.Villages
 {

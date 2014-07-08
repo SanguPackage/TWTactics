@@ -6,7 +6,6 @@ using System.Text;
 using System.Windows.Forms;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Drawers;
 using System.Drawing;
 using TribalWars.Data.Events;
@@ -15,6 +14,8 @@ using TribalWars.Controls.Maps;
 using TribalWars.Data.Maps.Views;
 using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Maps.Displays;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps

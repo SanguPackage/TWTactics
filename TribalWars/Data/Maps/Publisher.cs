@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using TribalWars.Data.Events;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
 using TribalWars.Data.Maps.Manipulators;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps

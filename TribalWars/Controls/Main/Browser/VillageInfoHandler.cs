@@ -1,8 +1,8 @@
 using System;
 using System.Text.RegularExpressions;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
 using System.Drawing;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.Main.Browser
 {

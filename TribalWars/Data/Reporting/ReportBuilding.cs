@@ -4,8 +4,7 @@ using System.Text;
 
 using System.Xml;
 using System.Xml.Serialization;
-
-using TribalWars.Data.Buildings;
+using TribalWars.Villages.Buildings;
 
 namespace TribalWars.Data.Reporting
 {

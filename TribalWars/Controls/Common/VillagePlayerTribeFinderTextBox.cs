@@ -5,13 +5,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Data.Maps;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 #endregion
 

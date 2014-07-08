@@ -11,9 +11,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Reflection;
 using TribalWars.Data;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 namespace TribalWars.Tools
 {

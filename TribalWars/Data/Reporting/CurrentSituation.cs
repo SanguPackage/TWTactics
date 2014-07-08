@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Resources;
 using System.Xml;
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Units;
 using System.Globalization;
+using TribalWars.Villages;
+using TribalWars.Villages.Buildings;
+using TribalWars.Villages.Resources;
+using TribalWars.Villages.Units;
+
 #endregion
 
 namespace TribalWars.Data.Reporting
@@ -138,17 +139,17 @@ namespace TribalWars.Data.Reporting
                 const int imageYTextOffset = 5;
                 if (ResourcesDate != DateTime.MinValue)
                 {
-                    g.DrawImage(Data.Resources.Images.wood, x, resourceYOffset);
+                    g.DrawImage(ResourceImages.wood, x, resourceYOffset);
                     g.DrawString(Resources.WoodString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.WoodString, SystemFonts.DefaultFont).Width;
                     x += imageXOffset + resourceXOffset;
-                    g.DrawImage(Data.Resources.Images.clay, x, resourceYOffset);
+                    g.DrawImage(ResourceImages.clay, x, resourceYOffset);
                     g.DrawString(Resources.ClayString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.ClayString, SystemFonts.DefaultFont).Width;
                     x += imageXOffset + resourceXOffset;
-                    g.DrawImage(Data.Resources.Images.iron, x, resourceYOffset);
+                    g.DrawImage(ResourceImages.iron, x, resourceYOffset);
                     g.DrawString(Resources.IronString, SystemFonts.DefaultFont, Brushes.Black, x + imageXOffset, resourceYOffset + imageYTextOffset);
 
                     x += g.MeasureString(Resources.IronString, SystemFonts.DefaultFont).Width;

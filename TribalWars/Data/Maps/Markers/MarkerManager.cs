@@ -6,10 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 #endregion
 

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using TribalWars.Data.Units;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Data.Reporting
 {

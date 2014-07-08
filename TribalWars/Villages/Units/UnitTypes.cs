@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TribalWars.Data.Units
+namespace TribalWars.Villages.Units
 {
     /// <summary>
     /// The list of all units available in Tribal Wars

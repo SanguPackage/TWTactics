@@ -11,13 +11,8 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.XPath;
-
-using TribalWars.Data.Units;
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Resources;
-
 using System.Globalization;
+using TribalWars.Villages;
 
 namespace TribalWars.Data.Reporting
 {

@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Manipulators;
 using TribalWars.Data.Maps;
 using Janus.Windows.UI.CommandBars;
 using System.Drawing;
 using Janus.Windows.UI;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 #endregion
 

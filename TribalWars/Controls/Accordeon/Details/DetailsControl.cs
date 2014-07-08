@@ -7,14 +7,12 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Controls.Display;
 using TribalWars.Tools.PropertyGrid.Players;
 using TribalWars.Tools.PropertyGrid.Tribes;
 using TribalWars.Tools.PropertyGrid.Villages;
+using TribalWars.Villages;
 
 #endregion
 

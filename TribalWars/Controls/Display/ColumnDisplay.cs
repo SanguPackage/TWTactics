@@ -1,8 +1,7 @@
 using TribalWars.Data;
+using TribalWars.Villages;
 using XPTable.Models;
-using TribalWars.Data.Players;
 using System.Drawing;
-using TribalWars.Data.Tribes;
 using XPTable.Sorting;
 
 namespace TribalWars.Controls.Display

@@ -5,8 +5,8 @@ using System.Windows.Forms;
 using TribalWars.Data.Events;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 #endregion
 
@@ -87,7 +87,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         {
             if (_mainMapSelectedVillage != null)
             {
-                Players.Player player = _mainMapSelectedVillage.Player;
+                Player player = _mainMapSelectedVillage.Player;
                 if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null && _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer)
                 {
                     player = _mainMapSelectedVillage.PreviousVillageDetails.Player;

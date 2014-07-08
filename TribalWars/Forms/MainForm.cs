@@ -12,8 +12,9 @@ using TribalWars.Data;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Implementations;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Events;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Forms

@@ -13,10 +13,8 @@ using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Views;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
 using Monitor = TribalWars.Data.Monitoring.Monitor;
 
 #endregion

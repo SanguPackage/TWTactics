@@ -11,13 +11,12 @@ using TribalWars.Data.Maps;
 using TribalWars.Data.Maps.Views;
 using TribalWars.Data.Maps.Markers;
 using TribalWars.Data.Monitoring;
-using TribalWars.Data.Players;
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Units;
-using TribalWars.Data.Tribes;
 using TribalWars.Tools;
 using System.Globalization;
 using TribalWars.Data.Maps.Displays;
+using TribalWars.Villages;
+using TribalWars.Villages.Buildings;
+using TribalWars.Villages.Units;
 using TribalWars.WorldTemplate;
 
 #endregion

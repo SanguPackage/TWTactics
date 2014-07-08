@@ -1,7 +1,7 @@
 #region Using
 using System.Drawing;
 using TribalWars.Data.Maps.Displays;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 #endregion
 

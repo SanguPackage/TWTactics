@@ -6,11 +6,10 @@ using System.Linq;
 using System.Drawing;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Markers;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Players;
-using TribalWars.Data.Villages;
 using System.Diagnostics;
 using TribalWars.Data.Maps.Displays;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps

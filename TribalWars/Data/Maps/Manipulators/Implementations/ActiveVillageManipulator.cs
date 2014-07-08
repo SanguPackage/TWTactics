@@ -6,9 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Displays;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 #endregion
 

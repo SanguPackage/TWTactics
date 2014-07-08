@@ -6,11 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
-
-using TribalWars.Data.Players;
-using TribalWars.Data.Villages;
 using TribalWars.Controls.TWContextMenu;
-using TribalWars.Data.Tribes;
 using TribalWars.Controls.Display;
 
 using XPTable.Models;

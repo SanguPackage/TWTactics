@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Tribes;
+using TribalWars.Data;
 using TribalWars.Tools;
 
-namespace TribalWars.Data.Players
+namespace TribalWars.Villages
 {
     /// <summary>
     /// Represents a Tribal Wars player

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using TribalWars.Data.Reporting;
+
 #endregion
 
-namespace TribalWars.Data.Buildings
+namespace TribalWars.Villages.Buildings
 {
     /// <summary>
     /// Representation of a building
@@ -59,37 +60,37 @@ namespace TribalWars.Data.Buildings
                 switch (_type)
                 {
                     case BuildingTypes.Academy:
-                        return Images.Academy;
+                        return BuildingImages.Academy;
                     case BuildingTypes.Barracks:
-                        return Images.Barracks;
+                        return BuildingImages.Barracks;
                     case BuildingTypes.ClayPit:
-                        return Images.ClayPit;
+                        return BuildingImages.ClayPit;
                     case BuildingTypes.Farm:
-                        return Images.Farm;
+                        return BuildingImages.Farm;
                     case BuildingTypes.HidingPlace:
-                        return Images.HidingPlace;
+                        return BuildingImages.HidingPlace;
                     case BuildingTypes.IronMine:
-                        return Images.IronMine;
+                        return BuildingImages.IronMine;
                     case BuildingTypes.Market:
-                        return Images.Market;
+                        return BuildingImages.Market;
                     case BuildingTypes.RallyPoint:
-                        return Images.RallyPoint;
+                        return BuildingImages.RallyPoint;
                     case BuildingTypes.Smithy:
-                        return Images.Smithy;
+                        return BuildingImages.Smithy;
                     case BuildingTypes.Stable:
-                        return Images.Stable;
+                        return BuildingImages.Stable;
                     case BuildingTypes.Statue:
-                        return Images.Statue;
+                        return BuildingImages.Statue;
                     case BuildingTypes.TimberCamp:
-                        return Images.TimberCamp;
+                        return BuildingImages.TimberCamp;
                     case BuildingTypes.VillageHeadquarters:
-                        return Images.VillageHeadquarters;
+                        return BuildingImages.VillageHeadquarters;
                     case BuildingTypes.Wall:
-                        return Images.Wall;
+                        return BuildingImages.Wall;
                     case BuildingTypes.Warehouse:
-                        return Images.Warehouse;
+                        return BuildingImages.Warehouse;
                     case BuildingTypes.Workshop:
-                        return Images.Workshop;
+                        return BuildingImages.Workshop;
                     default:
                         return null;
                 }

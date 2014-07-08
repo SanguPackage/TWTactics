@@ -5,9 +5,9 @@ using System.Text;
 using TribalWars.Data;
 using TribalWars.Data.Reporting;
 using System.Text.RegularExpressions;
-using TribalWars.Data.Villages;
 using TribalWars.Tools.Parsers;
 using TribalWars.Translations;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.Main.Browser
 {

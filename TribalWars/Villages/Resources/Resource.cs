@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.Xml.Serialization;
 
-namespace TribalWars.Data.Resources
+namespace TribalWars.Villages.Resources
 {
     /// <summary>
     /// A wrapper to contain an amount of wood, clay and iron
@@ -207,13 +204,13 @@ namespace TribalWars.Data.Resources
             switch (type)
             {
                 case ResourceTypes.Clay:
-                    return Images.clay;
+                    return ResourceImages.clay;
                 case ResourceTypes.Face:
-                    return Images.Face;
+                    return ResourceImages.Face;
                 case ResourceTypes.Iron:
-                    return Images.iron;
+                    return ResourceImages.iron;
                 case ResourceTypes.Wood:
-                    return Images.wood;
+                    return ResourceImages.wood;
             }
             return null;
         }

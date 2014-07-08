@@ -216,12 +216,12 @@
     <Compile Include="Controls\TWContextMenu\VillagesContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Data\Buildings\BuildingTypes.cs" />
-    <Compile Include="Data\Buildings\Images.Designer.cs">
+    <Compile Include="Villages\Buildings\BuildingImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Images.resx</DependentUpon>
+      <DependentUpon>BuildingImages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Villages\Buildings\BuildingTypes.cs" />
     <Compile Include="Data\Events\BrowserEventArgs.cs" />
     <Compile Include="Controls\Main\Polygons\PolygonControl.cs">
       <SubType>UserControl</SubType>
@@ -286,7 +286,7 @@
     <Compile Include="Controls\TWContextMenu\IContextMenu.cs" />
     <Compile Include="Controls\TWContextMenu\VillageContextMenu.cs">
     </Compile>
-    <Compile Include="Data\Buildings\WorldBuildings.cs" />
+    <Compile Include="Villages\Buildings\WorldBuildings.cs" />
     <Compile Include="Data\Events\PlayersEventArgs.cs" />
     <Compile Include="Data\Events\ReportEventArgs.cs" />
     <Compile Include="Data\Events\TribesEventArgs.cs" />
@@ -372,20 +372,20 @@
     <Compile Include="Data\Reporting\ReportPainter.cs" />
     <Compile Include="Data\Reporting\ReportParser.cs" />
     <Compile Include="Data\Reporting\ReportVillage.cs" />
-    <Compile Include="Data\Resources\Images.Designer.cs">
+    <Compile Include="Villages\Resources\ResourceImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Images.resx</DependentUpon>
+      <DependentUpon>ResourceImages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Resources\ResourceTypes.cs" />
+    <Compile Include="Villages\Resources\ResourceTypes.cs" />
     <Compile Include="Tools\PropertyGrid\Tribes\ExtendedTribeDescriptor.cs" />
-    <Compile Include="Data\Units\Images.Designer.cs">
+    <Compile Include="Villages\Units\UnitImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Images.resx</DependentUpon>
+      <DependentUpon>UnitImages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Units\WorldUnits.cs" />
-    <Compile Include="Data\Units\UnitTypes.cs" />
+    <Compile Include="Villages\Units\WorldUnits.cs" />
+    <Compile Include="Villages\Units\UnitTypes.cs" />
     <Compile Include="Data\Reporting\ReportUnit.cs" />
     <Compile Include="Data\VillageCommand.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\ExtendedVillageDescriptor.cs" />
@@ -393,8 +393,8 @@
     <Compile Include="Tools\PropertyGrid\Villages\VillagePlayerDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillagePointerUIEditor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillagePropertyDescriptor.cs" />
-    <Compile Include="Data\Villages\VillageTooltip.cs" />
-    <Compile Include="Data\Villages\VillageTypes.cs" />
+    <Compile Include="Villages\VillageTooltip.cs" />
+    <Compile Include="Villages\VillageTypes.cs" />
     <Compile Include="Data\VillageTools.cs" />
     <Compile Include="Forms\TestForm.cs">
       <SubType>Form</SubType>
@@ -435,8 +435,8 @@
     <Compile Include="Tools\PropertyGrid\Tribes\TribeDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillageDescriptor.cs" />
     <Compile Include="Data\Monitoring\Monitor.cs" />
-    <Compile Include="Data\Tribes\Tribe.cs" />
-    <Compile Include="Data\Buildings\Building.cs" />
+    <Compile Include="Villages\Tribe.cs" />
+    <Compile Include="Villages\Buildings\Building.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -523,10 +523,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Buildings\Images.resx">
+    <EmbeddedResource Include="Villages\Buildings\BuildingImages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <LastGenOutput>BuildingImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Maps\Displays\WorldData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -552,15 +552,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Resources\Images.resx">
+    <EmbeddedResource Include="Villages\Resources\ResourceImages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResourceImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Units\Images.resx">
+    <EmbeddedResource Include="Villages\Units\UnitImages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <LastGenOutput>UnitImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -609,11 +609,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Data\Reporting\VillageReportCollection.cs" />
-    <Compile Include="Data\Resources\Resource.cs" />
+    <Compile Include="Villages\Resources\Resource.cs" />
     <Compile Include="Data\Builder.cs" />
-    <Compile Include="Data\Players\Player.cs" />
-    <Compile Include="Data\Units\Unit.cs" />
-    <Compile Include="Data\Villages\Village.cs" />
+    <Compile Include="Villages\Player.cs" />
+    <Compile Include="Villages\Units\Unit.cs" />
+    <Compile Include="Villages\Village.cs" />
     <Compile Include="Data\World.cs" />
     <Compile Include="Data\WorldEvents.cs" />
     <Compile Include="Translations\TWWords.Designer.cs">

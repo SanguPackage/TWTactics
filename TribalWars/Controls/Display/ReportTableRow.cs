@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Reporting;
+using TribalWars.Villages;
 using XPTable.Models;
 
 namespace TribalWars.Controls.Display

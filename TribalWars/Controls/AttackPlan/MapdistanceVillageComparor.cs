@@ -1,5 +1,5 @@
 using System;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.AttackPlan
 {

@@ -15,8 +15,9 @@ using TribalWars.Data.Events;
 using Janus.Windows.GridEX;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Controls.Main.Polygons

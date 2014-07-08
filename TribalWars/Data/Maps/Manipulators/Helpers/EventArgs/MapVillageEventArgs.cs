@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 #endregion
 

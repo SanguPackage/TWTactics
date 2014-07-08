@@ -7,10 +7,11 @@ using System.Linq;
 using TribalWars.Data.Maps.Drawers;
 using TribalWars.Data.Maps.Drawers.OtherDrawers;
 using TribalWars.Data.Maps.Drawers.VillageDrawers;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Markers;
 using System.IO;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Displays

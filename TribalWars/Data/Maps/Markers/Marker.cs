@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Players;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Markers

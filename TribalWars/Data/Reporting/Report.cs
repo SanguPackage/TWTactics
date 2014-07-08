@@ -4,15 +4,13 @@ using System.Text;
 
 using System.Xml;
 using System.Xml.Serialization;
-
-using TribalWars.Data.Units;
-using TribalWars.Data.Resources;
-using TribalWars.Data.Buildings;
-
 using System.IO;
 using System.Drawing;
 
 using System.Text.RegularExpressions;
+using TribalWars.Villages.Buildings;
+using TribalWars.Villages.Resources;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Data.Reporting
 {
@@ -391,15 +389,15 @@ namespace TribalWars.Data.Reporting
             switch (report.ReportType)
             {
                 case ReportTypes.Attack:
-                    return Data.Buildings.Images.Barracks;
+                    return BuildingImages.Barracks;
                 case ReportTypes.Fake:
                     return Images.Fake;
                 case ReportTypes.Farm:
-                    return Data.Buildings.Images.Farm;
+                    return BuildingImages.Farm;
                 case ReportTypes.Noble:
-                    return Units.Images.Noble;
+                    return UnitImages.Noble;
                 case ReportTypes.Scout:
-                    return Units.Images.Scout;
+                    return UnitImages.Scout;
             }
             return null;
         }

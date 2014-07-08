@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
 using TribalWars.Tools;
 
-namespace TribalWars.Data.Tribes
+namespace TribalWars.Villages
 {
     /// <summary>
     /// Represents a Tribal Wars Tribe

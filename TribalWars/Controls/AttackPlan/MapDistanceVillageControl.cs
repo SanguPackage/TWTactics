@@ -4,8 +4,8 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Controls.AttackPlan
 {

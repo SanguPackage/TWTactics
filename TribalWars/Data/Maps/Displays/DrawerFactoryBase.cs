@@ -6,8 +6,9 @@ using System.Text;
 using System.Drawing;
 
 using TribalWars.Data.Maps.Drawers;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Maps.Markers;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Displays

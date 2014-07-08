@@ -11,7 +11,6 @@ using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Implementations;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
 
 namespace TribalWars.Controls.TWContextMenu

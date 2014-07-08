@@ -9,8 +9,9 @@ using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Data;
 using TribalWars.Data.Maps;
-using TribalWars.Data.Players;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Controls.TWContextMenu

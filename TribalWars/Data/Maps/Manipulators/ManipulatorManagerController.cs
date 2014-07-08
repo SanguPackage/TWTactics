@@ -5,8 +5,9 @@ using System.Windows.Forms;
 using TribalWars.Controls.Maps;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators

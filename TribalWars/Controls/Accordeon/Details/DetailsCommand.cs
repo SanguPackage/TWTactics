@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.Accordeon.Details
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using TribalWars.Data.Units;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.WorldTemplate
 {

@@ -1,6 +1,8 @@
 #region Imports
 using System.Collections.Generic;
 using System.Drawing;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Controls.TWContextMenu
@@ -19,7 +21,7 @@ namespace TribalWars.Controls.TWContextMenu
         /// <summary>
         /// Gets a list of all villages
         /// </summary>
-        IEnumerable<Data.Villages.Village> GetVillages();
+        IEnumerable<Village> GetVillages();
 
         /// <summary>
         /// Displays the details for the context

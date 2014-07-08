@@ -4,12 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Data.Maps;
+using TribalWars.Villages;
 using XPTable.Models;
-
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Villages;
-
 using TribalWars.Controls.Accordeon.Location;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Reporting;

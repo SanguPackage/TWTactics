@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Events

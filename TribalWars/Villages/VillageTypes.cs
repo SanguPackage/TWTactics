@@ -1,9 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
+using TribalWars.Data.Reporting;
+using TribalWars.Villages.Buildings;
+using TribalWars.Villages.Units;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Villages
 {
     /// <summary>
     /// Values indicating the troop content
@@ -50,22 +51,22 @@ namespace TribalWars.Data.Villages
         public static Image GetImage(this VillageType type)
         {
             if (type.HasFlag(VillageType.Noble))
-                return Units.Images.Noble;
+                return UnitImages.Noble;
 
             if (type.HasFlag(VillageType.Attack))
-                return Units.Images.Axe;
+                return UnitImages.Axe;
 
             if (type.HasFlag(VillageType.Defense))
                 return Properties.Resources.Defense;
 
             if (type.HasFlag(VillageType.Scout))
-                return Units.Images.Scout;
+                return UnitImages.Scout;
 
             if (type.HasFlag(VillageType.Farm))
-                return Buildings.Images.Farm;
+                return BuildingImages.Farm;
 
             if (type.HasFlag(VillageType.Comments))
-                return Maps.Icons.Other.Note;
+                return Data.Maps.Icons.Other.Note;
 
             return null;
         }

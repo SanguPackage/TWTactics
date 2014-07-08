@@ -4,11 +4,8 @@ using System.Text;
 
 using System.Xml;
 using System.Xml.Serialization;
-using TribalWars.Data.Villages;
 using System.Text.RegularExpressions;
-
-using TribalWars.Data.Buildings;
-using TribalWars.Data.Resources;
+using TribalWars.Villages;
 
 namespace TribalWars.Data.Reporting
 {

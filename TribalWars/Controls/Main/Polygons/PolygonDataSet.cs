@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using TribalWars.Data;
 using TribalWars.Data.Maps.Manipulators.Helpers;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Controls.Main.Polygons

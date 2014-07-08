@@ -1,10 +1,8 @@
 #region Using
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 #endregion
 
-namespace TribalWars.Data.Buildings
+namespace TribalWars.Villages.Buildings
 {
     /// <summary>
     /// The list of all buildings available in Tribal Wars

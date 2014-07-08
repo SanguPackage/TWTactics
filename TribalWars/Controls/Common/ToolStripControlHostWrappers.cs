@@ -3,12 +3,10 @@ using System.Drawing;
 using System.Windows.Forms.Design;
 using System.Windows.Forms;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
 using TribalWars.Data.Events;
-using TribalWars.Data.Tribes;
-using TribalWars.Data.Players;
 using System.ComponentModel;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Controls.Common
 {

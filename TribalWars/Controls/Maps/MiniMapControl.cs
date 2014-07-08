@@ -5,7 +5,6 @@ using System.Text;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Events;
 using System.Drawing;
-using TribalWars.Data.Villages;
 using System.Windows.Forms;
 #endregion
 

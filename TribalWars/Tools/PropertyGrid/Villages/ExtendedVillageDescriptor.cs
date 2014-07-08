@@ -1,6 +1,6 @@
 using System.ComponentModel;
-using TribalWars.Data.Villages;
 using TribalWars.Tools.PropertyGrid.Tribes;
+using TribalWars.Villages;
 
 namespace TribalWars.Tools.PropertyGrid.Villages
 {

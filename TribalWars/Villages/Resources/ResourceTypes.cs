@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TribalWars.Data.Resources
+namespace TribalWars.Villages.Resources
 {
     /// <summary>
     /// The list of all resources available in Tribal Wars

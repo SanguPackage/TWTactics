@@ -5,7 +5,7 @@ using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Maps;
-using TribalWars.Data.Tribes;
+using TribalWars.Villages;
 using XPTable.Models;
 #endregion
 
@@ -103,7 +103,7 @@ namespace TribalWars.Controls.Display
             }
         }
 
-        public IEnumerable<Data.Villages.Village> GetVillages()
+        public IEnumerable<Village> GetVillages()
         {
             return Tribe;
         }

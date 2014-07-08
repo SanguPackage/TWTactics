@@ -5,8 +5,9 @@ using System.Text;
 using TribalWars.Data;
 using TribalWars.Data.Reporting;
 using System.Text.RegularExpressions;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
+
 #endregion
 
 namespace TribalWars.Controls.Main.Browser

@@ -1,5 +1,6 @@
 #region Using
 using TribalWars.Data.Maps.Manipulators.Implementations;
+using TribalWars.Villages;
 
 #endregion
 
@@ -23,7 +24,7 @@ namespace TribalWars.Data.Maps.Manipulators.Managers
         }
         #endregion
 
-        public override Controls.TWContextMenu.IContextMenu GetContextMenu(System.Drawing.Point location, Villages.Village village)
+        public override Controls.TWContextMenu.IContextMenu GetContextMenu(System.Drawing.Point location, Village village)
         {
             return null;
         }

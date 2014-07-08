@@ -4,10 +4,8 @@ using System.Drawing;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data;
 using TribalWars.Data.Maps;
-using TribalWars.Data.Villages;
-
+using TribalWars.Villages;
 using XPTable.Models;
-using TribalWars.Data.Players;
 
 namespace TribalWars.Controls.Display
 {

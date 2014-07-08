@@ -6,8 +6,8 @@ using System.Windows.Forms;
 using System.Xml;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 #endregion
 

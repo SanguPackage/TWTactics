@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 using System.Drawing;
-using TribalWars.Data.Players;
-using TribalWars.Data.Units;
+using TribalWars.Data;
 using TribalWars.Data.Reporting;
-using TribalWars.Data.Tribes;
 using TribalWars.Tools;
+using TribalWars.Villages.Units;
 
-namespace TribalWars.Data.Villages
+namespace TribalWars.Villages
 {
     /// <summary>
     /// Representation of a Tribal Wars village

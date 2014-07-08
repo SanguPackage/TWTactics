@@ -13,6 +13,8 @@ using TribalWars.Data.Maps.Manipulators.Helpers;
 using TribalWars.Data.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Data.Maps.Manipulators.Managers;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Implementations
@@ -237,7 +239,7 @@ namespace TribalWars.Data.Maps.Manipulators.Implementations
         #endregion
 
         #region Public Methods
-        public override IContextMenu GetContextMenu(Point location, Villages.Village village)
+        public override IContextMenu GetContextMenu(Point location, Village village)
         {
             Debug.Assert(ActivePolygon != null);
             return new PolygonContextMenu(this);

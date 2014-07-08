@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using TribalWars.Data.Maps.Drawers;
-using TribalWars.Data.Villages;
 using TribalWars.Tools;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Views

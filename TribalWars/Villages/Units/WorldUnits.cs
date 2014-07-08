@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Xml.XPath;
-using System.Xml;
 
-namespace TribalWars.Data.Units
+namespace TribalWars.Villages.Units
 {
     /// <summary>
     /// A collection of all units in the current world

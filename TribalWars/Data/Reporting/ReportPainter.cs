@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Units;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
 
 namespace TribalWars.Data.Reporting
 {

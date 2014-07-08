@@ -1,8 +1,9 @@
 using System;
 using System.Diagnostics;
-using TribalWars.Data.Resources;
+using TribalWars.Data;
+using TribalWars.Villages.Resources;
 
-namespace TribalWars.Data.Units
+namespace TribalWars.Villages.Units
 {
     /// <summary>
     /// Representation of a unit
@@ -67,29 +68,29 @@ namespace TribalWars.Data.Units
                 switch (Type)
                 {
                     case UnitTypes.Archer:
-                        return Images.Archer;
+                        return UnitImages.Archer;
                     case UnitTypes.Axe:
-                        return Images.Axe;
+                        return UnitImages.Axe;
                     case UnitTypes.Catapult:
-                        return Images.Catapult;
+                        return UnitImages.Catapult;
                     case UnitTypes.Heavy:
-                        return Images.HeavyCavalry;
+                        return UnitImages.HeavyCavalry;
                     case UnitTypes.Light:
-                        return Images.LightCavalry;
+                        return UnitImages.LightCavalry;
                     case UnitTypes.MArcher:
-                        return Images.MountedArcher;
+                        return UnitImages.MountedArcher;
                     case UnitTypes.Snob:
-                        return Images.Noble;
+                        return UnitImages.Noble;
                     case UnitTypes.Knight:
-                        return Images.Paladin;
+                        return UnitImages.Paladin;
                     case UnitTypes.Ram:
-                        return Images.Ram;
+                        return UnitImages.Ram;
                     case UnitTypes.Spy:
-                        return Images.Scout;
+                        return UnitImages.Scout;
                     case UnitTypes.Spear:
-                        return Images.Spear;
+                        return UnitImages.Spear;
                     case UnitTypes.Sword:
-                        return Images.Sword;
+                        return UnitImages.Sword;
                     default:
                         return Properties.Resources.face;
                 }

@@ -4,8 +4,7 @@ using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using TribalWars.Data;
 using System.Linq;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
+using TribalWars.Villages;
 
 namespace TribalWars.Forms
 {

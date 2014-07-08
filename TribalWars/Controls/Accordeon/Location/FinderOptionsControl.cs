@@ -10,8 +10,7 @@ using System.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Data.Events;
 using System.Globalization;
-using TribalWars.Data.Players;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.Accordeon.Location
 {

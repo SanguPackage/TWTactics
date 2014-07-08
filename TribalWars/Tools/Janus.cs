@@ -10,8 +10,7 @@ using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Data.Maps;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
+using TribalWars.Villages;
 using ComboStyle = Janus.Windows.EditControls.ComboStyle;
 using CommandType = Janus.Windows.UI.CommandBars.CommandType;
 

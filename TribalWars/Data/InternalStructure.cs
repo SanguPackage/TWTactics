@@ -12,14 +12,12 @@ using System.Xml;
 using System.IO;
 using System.Xml.Linq;
 using TribalWars.Data.Maps.Displays;
-using TribalWars.Data.Players;
-using TribalWars.Data.Units;
-using TribalWars.Data.Villages;
 using System.Drawing;
-using TribalWars.Data.Tribes;
 using System.Windows.Forms;
 using TribalWars.Forms;
 using TribalWars.Tools;
+using TribalWars.Villages;
+using TribalWars.Villages.Units;
 using TribalWars.WorldTemplate;
 #endregion
 

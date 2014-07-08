@@ -1,11 +1,10 @@
 #region Using
-
 using System.Collections.Generic;
 using System.Linq;
 
 #endregion
 
-namespace TribalWars.Data.Buildings
+namespace TribalWars.Villages.Buildings
 {
     /// <summary>
     /// A collection of all buildings in the current world

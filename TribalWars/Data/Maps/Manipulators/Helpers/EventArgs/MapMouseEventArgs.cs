@@ -1,6 +1,7 @@
 #region Using
 using System.Windows.Forms;
-using TribalWars.Data.Villages;
+using TribalWars.Villages;
+
 #endregion
 
 namespace TribalWars.Data.Maps.Manipulators.Helpers.EventArgs

@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using TribalWars.Data;
-using TribalWars.Data.Villages;
-using TribalWars.Data.Players;
-using TribalWars.Data.Tribes;
 using TribalWars.Tools;
+using TribalWars.Villages;
 
 namespace TribalWars.Controls.Accordeon.Location
 {

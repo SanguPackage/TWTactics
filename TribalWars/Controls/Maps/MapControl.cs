@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using TribalWars.Data;
 using TribalWars.Tools;
-using TribalWars.Data.Villages;
 using TribalWars.Data.Reporting;
 using TribalWars.Data.Maps;
 using TribalWars.Data.Events;
