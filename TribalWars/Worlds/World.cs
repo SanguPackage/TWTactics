@@ -5,10 +5,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TribalWars.Maps;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawers;
 using TribalWars.Maps.Views;
 using TribalWars.Villages;
 using Monitor = TribalWars.Worlds.Monitoring.Monitor;
@@ -26,10 +28,11 @@ namespace TribalWars.Worlds
         private Dictionary<string, Player> _players;
         private WorldVillagesCollection _villages;
         private Dictionary<string, Tribe> _tribes;
-        private FileStream _villageTypes;
-
-        private readonly Map _miniMap;
         private Player _you;
+
+        private FileStream _villageTypes;
+        private readonly Map _miniMap;
+        private Dictionary<string, ViewBase> _views;
 
         private static Regex _villagePattern;
         #endregion
@@ -38,7 +41,10 @@ namespace TribalWars.Worlds
         /// <summary>
         /// Gets all map views
         /// </summary>
-        public Dictionary<string, ViewBase> Views { get; private set; }
+        public IEnumerable<ViewBase> Views
+        {
+            get { return _views.Values; }
+        }
 
         /// <summary>
         /// Gets the main WorldMap
@@ -168,7 +174,7 @@ namespace TribalWars.Worlds
             _tribes = new Dictionary<string, Tribe>();
             _villages = new WorldVillagesCollection();
 
-            Views = new Dictionary<string, ViewBase>();
+            _views = new Dictionary<string, ViewBase>();
 
             You = new Player();
         }
@@ -347,6 +353,20 @@ namespace TribalWars.Worlds
         {
             _villageTypes.Position = village.Y*1000 + village.X;
             _villageTypes.WriteByte((byte) value);
+        }
+
+        /// <summary>
+        /// Views should be owned by Display but at the time the Builder 
+        /// reads the views, Display is not yet instantiated.
+        /// </summary>
+        public void SetViews(IEnumerable<ViewBase> views)
+        {
+            _views = views.ToDictionary(x => x.Name);
+        }
+
+        public DrawerData GetDrawerData(Village village, string view)
+        {
+            return _views[view].GetDrawerData(village);
         }
 
         public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)

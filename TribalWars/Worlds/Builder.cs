@@ -213,7 +213,7 @@ namespace TribalWars.Worlds
 
             w.Settings.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
 
-            World.Default.Views.Clear();
+            var views = new List<ViewBase>();
             foreach (var view in info.Views)
             {
                 ViewBase viewToAdd = CreateView(view.Name, view.Type);
@@ -221,8 +221,9 @@ namespace TribalWars.Worlds
                 {
                     viewToAdd.AddDrawer(drawer.Type, drawer.Icon, drawer.BonusIcon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
                 }
-                World.Default.Views.Add(viewToAdd.Name, viewToAdd);
+                views.Add(viewToAdd);
             }
+            World.Default.SetViews(views);
 
             WorldBuildings.Default.SetBuildings(ReadWorldBuildings(info.Buildings));
             WorldUnits.Default.SetBuildings(ReadWorldUnits(info.Units));

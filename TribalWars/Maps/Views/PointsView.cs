@@ -21,7 +21,7 @@ namespace TribalWars.Maps.Views
         #endregion
 
         #region Public Methods
-        public override DrawerData GetDrawer(Village village)
+        public override DrawerData GetDrawerData(Village village)
         {
             foreach (KeyValuePair<ViewData, DrawerData> pair in _drawers)
             {

@@ -52,7 +52,7 @@ namespace TribalWars.Maps.Views
         /// <summary>
         /// Gets the drawer data for a village
         /// </summary>
-        public abstract DrawerData GetDrawer(Village village);
+        public abstract DrawerData GetDrawerData(Village village);
 
         /// <summary>
         /// Adds a new Drawer to the collection

@@ -30,7 +30,7 @@ namespace TribalWars.Maps.Views
         #endregion
 
         #region Public Methods
-        public override DrawerData GetDrawer(Village village)
+        public override DrawerData GetDrawerData(Village village)
         {
             DrawerData data;
             if (!_cache.TryGetValue(village.Type, out data))
