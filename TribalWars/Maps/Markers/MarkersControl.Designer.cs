@@ -35,9 +35,9 @@
             this.RefreshMarkersButton = new Janus.Windows.EditControls.UIButton();
             this.MarkersGrid = new Janus.Windows.GridEX.GridEX();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
-            this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.AbandonedMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
+            this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarkersGrid)).BeginInit();
@@ -83,6 +83,8 @@
             MarkersGrid_DesignTimeLayout_Reference_0});
             MarkersGrid_DesignTimeLayout.LayoutString = resources.GetString("MarkersGrid_DesignTimeLayout.LayoutString");
             this.MarkersGrid.DesignTimeLayout = MarkersGrid_DesignTimeLayout;
+            this.MarkersGrid.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.MarkersGrid.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
             this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.MarkersGrid.GroupByBoxVisible = false;
             this.MarkersGrid.Location = new System.Drawing.Point(3, 22);
@@ -94,7 +96,6 @@
             this.MarkersGrid.GetNewRow += new Janus.Windows.GridEX.GetNewRowEventHandler(this.MarkersGrid_GetNewRow);
             this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
             this.MarkersGrid.UpdatingCell += new Janus.Windows.GridEX.UpdatingCellEventHandler(this.MarkersGrid_UpdatingCell);
-            this.MarkersGrid.RecordAdded += new System.EventHandler(this.MarkersGrid_RecordAdded);
             this.MarkersGrid.AddingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_AddingRecord);
             this.MarkersGrid.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_ColumnButtonClick);
             this.MarkersGrid.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.MarkersGrid_InitCustomEdit);
@@ -109,19 +110,6 @@
             this.uiGroupBox2.Size = new System.Drawing.Size(318, 46);
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Change enemy marker";
-            // 
-            // EnemyMarker
-            // 
-            this.EnemyMarker.AutoUpdateMarkers = true;
-            this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
-            this.EnemyMarker.CanDeactivate = false;
-            this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
-            this.EnemyMarker.Location = new System.Drawing.Point(6, 16);
-            this.EnemyMarker.Margin = new System.Windows.Forms.Padding(0);
-            this.EnemyMarker.Name = "EnemyMarker";
-            this.EnemyMarker.Size = new System.Drawing.Size(307, 25);
-            this.EnemyMarker.TabIndex = 0;
             // 
             // uiGroupBox3
             // 
@@ -145,6 +133,19 @@
             this.AbandonedMarker.Name = "AbandonedMarker";
             this.AbandonedMarker.Size = new System.Drawing.Size(307, 25);
             this.AbandonedMarker.TabIndex = 0;
+            // 
+            // EnemyMarker
+            // 
+            this.EnemyMarker.AutoUpdateMarkers = true;
+            this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
+            this.EnemyMarker.CanDeactivate = false;
+            this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
+            this.EnemyMarker.Location = new System.Drawing.Point(6, 16);
+            this.EnemyMarker.Margin = new System.Windows.Forms.Padding(0);
+            this.EnemyMarker.Name = "EnemyMarker";
+            this.EnemyMarker.Size = new System.Drawing.Size(307, 25);
+            this.EnemyMarker.TabIndex = 0;
             // 
             // MarkersControl
             // 

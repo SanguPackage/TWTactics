@@ -45,6 +45,9 @@ namespace TribalWars.Controls.Polygons
         #region Event Handlers
         private void PolygonControl_Load(object sender, EventArgs e)
         {
+            GridExVillage.Configure(true, true);
+            GridExPolygon.Configure(true, false);
+
             GridExPolygon.RootTable.Columns["LineColor"].ConfigureAsColor();
         }
 

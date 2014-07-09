@@ -206,8 +206,8 @@ namespace TribalWars.Controls.Polygons
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentModusGroupbox.Controls.Add(this.GridExVillageShowFieldChooser);
-            this.CurrentModusGroupbox.Controls.Add(this.GridExPolygon);
             this.CurrentModusGroupbox.Controls.Add(this.GridExVillage);
+            this.CurrentModusGroupbox.Controls.Add(this.GridExPolygon);
             this.CurrentModusGroupbox.Location = new System.Drawing.Point(109, 3);
             this.CurrentModusGroupbox.Name = "CurrentModusGroupbox";
             this.CurrentModusGroupbox.Size = new System.Drawing.Size(718, 269);

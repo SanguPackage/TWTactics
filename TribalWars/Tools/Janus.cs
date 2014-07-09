@@ -31,10 +31,13 @@ namespace TribalWars.Tools
             grid.BorderStyle = BorderStyle.Flat;
             grid.HideSelection = HideSelection.Highlight;
             grid.AllowRemoveColumns = InheritableBoolean.False;
-            grid.FilterMode = allowFilter ? FilterMode.Automatic : FilterMode.None;
             grid.HideColumnsWhenGrouped = InheritableBoolean.True;
             grid.FilterRowButtonStyle = FilterRowButtonStyle.ConditionOperatorDropDown;
             grid.FocusCellDisplayMode = forEdit ? FocusCellDisplayMode.UseFocusCellFormatStyle : FocusCellDisplayMode.UseSelectedFormatStyle;
+
+            grid.FilterMode = allowFilter ? FilterMode.Automatic : FilterMode.None;
+            grid.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges;
+
 #if !DEBUG
             grid.SaveSettings = true;
 #endif

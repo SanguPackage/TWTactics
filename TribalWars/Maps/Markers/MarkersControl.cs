@@ -22,6 +22,7 @@ namespace TribalWars.Maps.Markers
     {
         #region Fields
         private readonly VillagePlayerTribeFinderTextBox _playerTribeSelector;
+        private List<MarkerGridRow> _markers = new List<MarkerGridRow>();
         #endregion
 
         #region Constructors
@@ -36,27 +37,29 @@ namespace TribalWars.Maps.Markers
             _playerTribeSelector.AllowTribe = true;
             _playerTribeSelector.AllowVillage = false;
         }
-        #endregion
 
-        #region EventHandlers
         private void WorldEventPublisher_SettingsLoaded(object sender, EventArgs e)
         {
             EnemyMarker.SetMarker(World.Default.Map.MarkerManager.EnemyMarkerSettings);
             AbandonedMarker.SetMarker(World.Default.Map.MarkerManager.AbandonedMarkerSettings);
 
-            var views = new GridEXValueListItemCollection();
-            views.AddRange(World.Default.GetBackgroundViews().Select(x => new GridEXValueListItem(x, x)).ToArray());
-            MarkersGrid.RootTable.Columns["View"].EditValueList = views;
+            var viewsList = new GridEXValueListItemCollection();
+            string[] viewItems = World.Default.GetBackgroundViews().ToArray();
+            viewsList.AddRange(viewItems.Select(x => new GridEXValueListItem(x, x)).ToArray());
+            MarkersGrid.RootTable.Columns["View"].EditValueList = viewsList;
+            MarkersGrid.RootTable.Columns["View"].DefaultValue = viewItems.FirstOrDefault();
 
             SetMarkersGridDataSource();
         }
+        #endregion
 
+        #region EventHandlers
         /// <summary>
         /// Configure grid
         /// </summary>
         private void MarkersControl_Load(object sender, EventArgs e)
         {
-            MarkersGrid.Configure(true, false);
+            MarkersGrid.Configure(true, true);
 
             MarkersGrid.RootTable.Columns["Color"].ConfigureAsColor();
             MarkersGrid.RootTable.Columns["ExtraColor"].ConfigureAsColor(Color.Transparent);
@@ -213,43 +216,6 @@ namespace TribalWars.Maps.Markers
                 DeleteMarker(row);
             }
         }
-        #endregion
-
-        #region Private
-        private List<MarkerGridRow> _markers = new List<MarkerGridRow>();
-
-
-        private void SetMarkersGridDataSource()
-        {
-            _markers = new List<MarkerGridRow>();
-            foreach (var marker in World.Default.Map.MarkerManager.GetMarkers())
-            {
-                _markers.Add(marker);
-            }
-
-            MarkersGrid.DataSource = _markers;
-        }
-
-        private void DeleteMarker(MarkerGridRow row)
-        {
-            if (row != null)
-            {
-                if (row.Player != null)
-                {
-                    World.Default.Map.MarkerManager.RemoveMarker(World.Default.Map, row.Player);
-                }
-                else if (row.Tribe != null)
-                {
-                    World.Default.Map.MarkerManager.RemoveMarker(World.Default.Map, row.Tribe);
-                }
-            }
-        }
-        #endregion
-
-        private void MarkersGrid_RecordAdded(object sender, EventArgs e)
-        {
-            var x = 5;
-        }
 
         private void MarkersGrid_AddingRecord(object sender, CancelEventArgs e)
         {
@@ -276,6 +242,39 @@ namespace TribalWars.Maps.Markers
             e.NewRow = new MarkerGridRow();
         }
 
+        private void RefreshMarkersButton_Click(object sender, EventArgs e)
+        {
+            SetMarkersGridDataSource();
+        }
+        #endregion
+
+        #region Private
+        private void SetMarkersGridDataSource()
+        {
+            _markers = new List<MarkerGridRow>();
+            foreach (var marker in World.Default.Map.MarkerManager.GetMarkers())
+            {
+                _markers.Add(marker);
+            }
+
+            MarkersGrid.DataSource = _markers;
+        }
+
+        private void DeleteMarker(MarkerGridRow row)
+        {
+            if (row != null)
+            {
+                if (row.Player != null)
+                {
+                    World.Default.Map.MarkerManager.RemoveMarker(World.Default.Map, row.Player);
+                }
+                else if (row.Tribe != null)
+                {
+                    World.Default.Map.MarkerManager.RemoveMarker(World.Default.Map, row.Tribe);
+                }
+            }
+        }
+
         private void UpdateMarker(MarkerGridRow data, MarkerSettings settings)
         {
             if (data.Player != null)
@@ -287,10 +286,6 @@ namespace TribalWars.Maps.Markers
                 World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, data.Tribe, settings);
             }
         }
-
-        private void RefreshMarkersButton_Click(object sender, EventArgs e)
-        {
-            SetMarkersGridDataSource();
-        }
+        #endregion
     }
 }
