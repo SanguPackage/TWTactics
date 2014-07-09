@@ -39,14 +39,6 @@ namespace TribalWars.Worlds
 
         #region Properties
         /// <summary>
-        /// Gets all map views
-        /// </summary>
-        public IEnumerable<ViewBase> Views
-        {
-            get { return _views.Values; }
-        }
-
-        /// <summary>
         /// Gets the main WorldMap
         /// </summary>
         public Map Map { get; private set; }
@@ -323,6 +315,35 @@ namespace TribalWars.Worlds
         }
         #endregion
 
+        #region Display Views
+        /// <summary>
+        /// Gets all map views
+        /// </summary>
+        private IEnumerable<ViewBase> Views
+        {
+            get { return _views.Values; }
+        }
+
+        /// <summary>
+        /// Views should be owned by Display but at the time the Builder 
+        /// reads the views, Display is not yet instantiated.
+        /// </summary>
+        public void SetViews(IEnumerable<ViewBase> views)
+        {
+            _views = views.ToDictionary(x => x.Name);
+        }
+
+        public DrawerData GetDrawerData(Village village, string view)
+        {
+            return _views[view].GetDrawerData(village);
+        }
+
+        public IEnumerable<string> GetBackgroundViews()
+        {
+            return Views.Where(x => x.Background).Select(x => x.Name);
+        }
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Rebuilds all markers on all maps
@@ -353,20 +374,6 @@ namespace TribalWars.Worlds
         {
             _villageTypes.Position = village.Y*1000 + village.X;
             _villageTypes.WriteByte((byte) value);
-        }
-
-        /// <summary>
-        /// Views should be owned by Display but at the time the Builder 
-        /// reads the views, Display is not yet instantiated.
-        /// </summary>
-        public void SetViews(IEnumerable<ViewBase> views)
-        {
-            _views = views.ToDictionary(x => x.Name);
-        }
-
-        public DrawerData GetDrawerData(Village village, string view)
-        {
-            return _views[view].GetDrawerData(village);
         }
 
         public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)

@@ -50,6 +50,8 @@ namespace TribalWars.Maps.Markers
             // 
             // MarkerActivePanel
             // 
+            this.MarkerActivePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MarkerActivePanel.Controls.Add(this.MarkerView);
             this.MarkerActivePanel.Controls.Add(this.MarkerExtraColor);
             this.MarkerActivePanel.Controls.Add(this.MarkerColor);
@@ -61,6 +63,8 @@ namespace TribalWars.Maps.Markers
             // 
             // MarkerView
             // 
+            this.MarkerView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MarkerView.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.MarkerView.Location = new System.Drawing.Point(156, 3);
             this.MarkerView.Name = "MarkerView";
@@ -122,7 +126,6 @@ namespace TribalWars.Maps.Markers
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MarkerSettingsControl";
             this.Size = new System.Drawing.Size(299, 25);
-            this.Load += new System.EventHandler(this.MarkersContainerControl_Load);
             this.MarkerActivePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

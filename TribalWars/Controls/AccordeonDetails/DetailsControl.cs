@@ -309,8 +309,7 @@ namespace TribalWars.Controls.AccordeonDetails
                 case DetailsDisplayEnum.Player:
                     ContextStrip.Visible = false;
                     MarkPlayerOrTribe.Visible = true;
-                    Marker playerMarker = World.Default.Map.MarkerManager.GetMarker(command.Player);
-                    MarkPlayerOrTribe.SetMarker(playerMarker.Settings);
+                    MarkPlayerOrTribe.SetMarker(command.Player);
 
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = true;
@@ -338,8 +337,7 @@ namespace TribalWars.Controls.AccordeonDetails
                 case DetailsDisplayEnum.Tribe:
                     ContextStrip.Visible = false;
                     MarkPlayerOrTribe.Visible = true;
-                    Marker tribeMarker = World.Default.Map.MarkerManager.GetMarker(command.Tribe);
-                    MarkPlayerOrTribe.SetMarker(tribeMarker.Settings);
+                    MarkPlayerOrTribe.SetMarker(command.Tribe);
 
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
