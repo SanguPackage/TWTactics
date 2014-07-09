@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkersControl));
             Janus.Windows.GridEX.GridEXLayout MarkersGrid_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.Common.Layouts.JanusLayoutReference MarkersGrid_DesignTimeLayout_Reference_0 = new Janus.Windows.Common.Layouts.JanusLayoutReference("GridEXLayoutData.RootTable.Columns.Column6.ButtonImage");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkersControl));
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
+            this.RefreshMarkersButton = new Janus.Windows.EditControls.UIButton();
             this.MarkersGrid = new Janus.Windows.GridEX.GridEX();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
@@ -52,7 +52,7 @@
             this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiGroupBox1.Controls.Add(this.uiButton1);
+            this.uiGroupBox1.Controls.Add(this.RefreshMarkersButton);
             this.uiGroupBox1.Controls.Add(this.MarkersGrid);
             this.uiGroupBox1.Location = new System.Drawing.Point(2, 103);
             this.uiGroupBox1.Name = "uiGroupBox1";
@@ -60,42 +60,43 @@
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Markers";
             // 
-            // uiButton1
+            // RefreshMarkersButton
             // 
-            this.uiButton1.Location = new System.Drawing.Point(237, -11);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Size = new System.Drawing.Size(75, 23);
-            this.uiButton1.TabIndex = 1;
-            this.uiButton1.Text = "uiButton1";
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
+            this.RefreshMarkersButton.Icon = ((System.Drawing.Icon)(resources.GetObject("RefreshMarkersButton.Icon")));
+            this.RefreshMarkersButton.Location = new System.Drawing.Point(237, 0);
+            this.RefreshMarkersButton.Name = "RefreshMarkersButton";
+            this.RefreshMarkersButton.Size = new System.Drawing.Size(75, 16);
+            this.RefreshMarkersButton.TabIndex = 1;
+            this.RefreshMarkersButton.Text = "Refresh";
+            this.RefreshMarkersButton.ToolTipText = "The marker list is not updated when you alter the markers from the context menu. " +
+    "Click this button to refresh the marker list.";
+            this.RefreshMarkersButton.Click += new System.EventHandler(this.RefreshMarkersButton_Click);
             // 
             // MarkersGrid
             // 
+            this.MarkersGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MarkersGrid.ColumnAutoResize = true;
             MarkersGrid_DesignTimeLayout_Reference_0.Instance = ((object)(resources.GetObject("MarkersGrid_DesignTimeLayout_Reference_0.Instance")));
             MarkersGrid_DesignTimeLayout.LayoutReferences.AddRange(new Janus.Windows.Common.Layouts.JanusLayoutReference[] {
             MarkersGrid_DesignTimeLayout_Reference_0});
             MarkersGrid_DesignTimeLayout.LayoutString = resources.GetString("MarkersGrid_DesignTimeLayout.LayoutString");
             this.MarkersGrid.DesignTimeLayout = MarkersGrid_DesignTimeLayout;
-            this.MarkersGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.MarkersGrid.GroupByBoxVisible = false;
-            this.MarkersGrid.Location = new System.Drawing.Point(3, 16);
+            this.MarkersGrid.Location = new System.Drawing.Point(3, 22);
             this.MarkersGrid.Name = "MarkersGrid";
-            this.MarkersGrid.Size = new System.Drawing.Size(312, 245);
+            this.MarkersGrid.Size = new System.Drawing.Size(312, 239);
             this.MarkersGrid.TabIndex = 0;
             this.MarkersGrid.UpdateMode = Janus.Windows.GridEX.UpdateMode.CellUpdate;
             this.MarkersGrid.DeletingRecord += new Janus.Windows.GridEX.RowActionCancelEventHandler(this.MarkersGrid_DeletingRecord);
-            this.MarkersGrid.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_CellValueChanged);
             this.MarkersGrid.GetNewRow += new Janus.Windows.GridEX.GetNewRowEventHandler(this.MarkersGrid_GetNewRow);
             this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
             this.MarkersGrid.UpdatingCell += new Janus.Windows.GridEX.UpdatingCellEventHandler(this.MarkersGrid_UpdatingCell);
-            this.MarkersGrid.RecordUpdated += new System.EventHandler(this.MarkersGrid_RecordUpdated);
             this.MarkersGrid.RecordAdded += new System.EventHandler(this.MarkersGrid_RecordAdded);
-            this.MarkersGrid.UpdatingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_UpdatingRecord);
             this.MarkersGrid.AddingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_AddingRecord);
             this.MarkersGrid.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_ColumnButtonClick);
-            this.MarkersGrid.CurrentCellChanged += new System.EventHandler(this.MarkersGrid_CurrentCellChanged);
             this.MarkersGrid.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.MarkersGrid_InitCustomEdit);
             this.MarkersGrid.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.MarkersGrid_EndCustomEdit);
             // 
@@ -175,6 +176,6 @@
         private MarkerSettingsControl EnemyMarker;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;
         private MarkerSettingsControl AbandonedMarker;
-        private Janus.Windows.EditControls.UIButton uiButton1;
+        private Janus.Windows.EditControls.UIButton RefreshMarkersButton;
     }
 }

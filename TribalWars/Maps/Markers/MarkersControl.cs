@@ -62,6 +62,52 @@ namespace TribalWars.Maps.Markers
             MarkersGrid.RootTable.Columns["ExtraColor"].ConfigureAsColor(Color.Transparent);
         }
 
+        private void MarkersGrid_UpdatingCell(object sender, UpdatingCellEventArgs e)
+        {
+            var currentRow = MarkersGrid.CurrentRow;
+            if (currentRow != null && currentRow.RowType == RowType.Record)
+            {
+                var data = currentRow.DataRow as MarkerGridRow;
+                if (data != null)
+                {
+                    MarkerSettings settings = data.GetMarkerSettings();
+
+                    object newValue = e.Value;
+                    if (e.Value != null)
+                    {
+                        switch (e.Column.Key)
+                        {
+                            case "Enabled":
+                                settings = MarkerSettings.ChangeEnabled(settings, (bool)newValue);
+                                data.Enabled = (bool)newValue;
+                                break;
+
+                            case "Name":
+                                // Done in Init/EndCustomEdit
+                                break;
+
+                            case "Color":
+                                settings = MarkerSettings.ChangeColor(settings, (Color)newValue);
+                                data.Color = (Color)newValue;
+                                break;
+
+                            case "ExtraColor":
+                                settings = MarkerSettings.ChangeExtraColor(settings, (Color)newValue);
+                                data.ExtraColor = (Color)newValue;
+                                break;
+
+                            case "View":
+                                settings = MarkerSettings.ChangeView(settings, (string)newValue);
+                                data.View = (string)newValue;
+                                break;
+                        }
+                    }
+
+                    UpdateMarker(data, settings);
+                }
+            }
+        }
+
         private void MarkersGrid_FormattingRow(object sender, RowLoadEventArgs e)
         {
             if (e.Row.RowType == RowType.Record || e.Row.RowType == RowType.NewRecord)
@@ -101,19 +147,6 @@ namespace TribalWars.Maps.Markers
                     _playerTribeSelector.EmptyTextBox(false);
                 }
 
-                if (_playerTribeSelector.Tribe != null)
-                {
-                    Debug.WriteLine("INIT: Tribe=" + _playerTribeSelector.Tribe.Tag);
-                }
-                else if (_playerTribeSelector.Player != null)
-                {
-                    Debug.WriteLine("INIT: Ply=" + _playerTribeSelector.Player.Name);
-                }
-                else
-                {
-                    Debug.WriteLine("INIT: EMPTY");
-                }
-
                 e.EditControl = _playerTribeSelector;
             }
         }
@@ -126,61 +159,32 @@ namespace TribalWars.Maps.Markers
             if (e.Column.Key == "Name")
             {
                 var oldMarker = e.Row.DataRow as MarkerGridRow;
-                if (oldMarker != null)
+                if (oldMarker == null || e.Row.RowType == RowType.NewRecord)
+                {
+                    //oldMarker = new MarkerGridRow();
+                    //oldMarker.Enabled = (bool)e.Row.GridEX.GetValue("Enabled");
+
+                    object selected = _playerTribeSelector.Tribe ?? (object)_playerTribeSelector.Player;
+                    e.Value = selected;
+                    e.DataChanged = true;
+                }
+                else
                 {
                     Player newPlayer = _playerTribeSelector.Player;
                     Tribe newTribe = _playerTribeSelector.Tribe;
 
                     if (newPlayer != oldMarker.Player || newTribe != oldMarker.Tribe)
                     {
-                        if (newPlayer != oldMarker.Player)
-                        {
-                            if (oldMarker.Player != null)
-                            {
-                                DeleteMarker(oldMarker);
-                                oldMarker.Player = newPlayer;
-                                UpdateMarker(oldMarker, oldMarker.GetMarkerSettings());
-                            }
-                            else
-                            {
-                                oldMarker.Player = newPlayer;
-                            }
-                        }
+                        DeleteMarker(oldMarker);
 
-                    
-                        if (newTribe != oldMarker.Tribe)
-                        {
-                            if (oldMarker.Tribe != null && oldMarker.Player == null)
-                            {
-                                DeleteMarker(oldMarker);
-                                oldMarker.Tribe = newTribe;
-                                UpdateMarker(oldMarker, oldMarker.GetMarkerSettings());
-                            }
-                            else
-                            {
-                                oldMarker.Tribe = newTribe;
-                            }
-                        }
+                        oldMarker.Player = newPlayer;
+                        oldMarker.Tribe = newTribe;
+                        UpdateMarker(oldMarker, oldMarker.GetMarkerSettings());
 
                         object selected = _playerTribeSelector.Tribe ?? (object)_playerTribeSelector.Player;
                         e.Value = selected;
                         e.DataChanged = true;
                     }
-                }
-
-                
-
-                if (_playerTribeSelector.Tribe != null)
-                {
-                    Debug.WriteLine("END: Tribe=" + _playerTribeSelector.Tribe.Tag + ", ValueSet=" + e.Value);
-                }
-                else if (_playerTribeSelector.Player != null)
-                {
-                    Debug.WriteLine("END: Ply=" + _playerTribeSelector.Player.Name + ", ValueSet=" + e.Value);
-                }
-                else
-                {
-                    Debug.WriteLine("END: EMPTY" + ", ValueSet=" + e.Value);
                 }
             }
         }
@@ -247,80 +251,29 @@ namespace TribalWars.Maps.Markers
             var x = 5;
         }
 
-        private void MarkersGrid_RecordUpdated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MarkersGrid_CellValueChanged(object sender, ColumnActionEventArgs e)
-        {
-            
-        }
-
         private void MarkersGrid_AddingRecord(object sender, CancelEventArgs e)
         {
-
-        }
-
-        private void MarkersGrid_CurrentCellChanged(object sender, EventArgs e)
-        {
-
+            var currentRow = MarkersGrid.CurrentRow;
+            if (currentRow != null && currentRow.RowType == RowType.NewRecord)
+            {
+                var marker = currentRow.DataRow as MarkerGridRow;
+                if (marker != null)
+                {
+                    if (marker.IsValid())
+                    {
+                        UpdateMarker(marker, marker.GetMarkerSettings());
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
         }
 
         private void MarkersGrid_GetNewRow(object sender, GetNewRowEventArgs e)
         {
-
-        }
-
-        private void MarkersGrid_UpdatingRecord(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void MarkersGrid_UpdatingCell(object sender, UpdatingCellEventArgs e)
-        {
-            var currentRow = MarkersGrid.CurrentRow;
-            if (currentRow != null && currentRow.RowType == RowType.Record)
-            {
-                var data = currentRow.DataRow as MarkerGridRow;
-                if (data != null)
-                {
-                    MarkerSettings settings = data.GetMarkerSettings();
-
-                    object newValue = e.Value;
-                    if (e.Value != null)
-                    {
-                        switch (e.Column.Key)
-                        {
-                            case "Enabled":
-                                settings = MarkerSettings.ChangeEnabled(settings, (bool)newValue);
-                                data.Enabled = (bool) newValue;
-                                break;
-
-                            case "Name":
-                                // Done in Init/EndCustomEdit
-                                break;
-
-                            case "Color":
-                                settings = MarkerSettings.ChangeColor(settings, (Color)newValue);
-                                data.Color = (Color) newValue;
-                                break;
-
-                            case "ExtraColor":
-                                settings = MarkerSettings.ChangeExtraColor(settings, (Color)newValue);
-                                data.ExtraColor = (Color)newValue;
-                                break;
-
-                            case "View":
-                                settings = MarkerSettings.ChangeView(settings, (string)newValue);
-                                data.View = (string)newValue;
-                                break;
-                        }
-                    }
-
-                    UpdateMarker(data, settings);
-                }
-            }
+            e.NewRow = new MarkerGridRow();
         }
 
         private void UpdateMarker(MarkerGridRow data, MarkerSettings settings)
@@ -335,8 +288,7 @@ namespace TribalWars.Maps.Markers
             }
         }
 
-
-        private void uiButton1_Click(object sender, EventArgs e)
+        private void RefreshMarkersButton_Click(object sender, EventArgs e)
         {
             SetMarkersGridDataSource();
         }

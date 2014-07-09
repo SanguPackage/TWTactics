@@ -21,6 +21,21 @@ namespace TribalWars.Maps.Markers
         public Tribe Tribe { get; set; }
         public Player Player { get; set; }
         public string View { get; set; }
+        public int Type
+        {
+            get
+            {
+                if (Tribe != null) return 0;
+                return 1;
+            }
+        }
+
+        public bool IsValid()
+        {
+            if (Tribe == null && Player == null) return false;
+            if (string.IsNullOrWhiteSpace(View)) return false;
+            return true;
+        }
 
         public string Name
         {
@@ -34,7 +49,6 @@ namespace TribalWars.Maps.Markers
 
                 return "";
             }
-            set { }
         }
 
         public object SelectedPlayerOrTribe
