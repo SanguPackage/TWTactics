@@ -39,7 +39,7 @@ namespace TribalWars.Maps.Markers
             views.AddRange(World.Default.GetBackgroundViews().Select(x => new GridEXValueListItem(x, x)).ToArray());
             MarkersGrid.RootTable.Columns["View"].EditValueList = views;
 
-            uiButton1.PerformClick();
+            SetMarkersGridDataSource();
         }
 
         private void MarkersControl_Load(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace TribalWars.Maps.Markers
 
 
         private List<MarkerGridRow> _markers = new List<MarkerGridRow>();
-        private void uiButton1_Click(object sender, EventArgs e)
+        private void SetMarkersGridDataSource()
         {
             _markers = new List<MarkerGridRow>();
             foreach (var marker in World.Default.Map.MarkerManager.GetMarkers())

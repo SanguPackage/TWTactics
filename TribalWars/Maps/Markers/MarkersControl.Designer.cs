@@ -32,7 +32,6 @@
             Janus.Windows.Common.Layouts.JanusLayoutReference MarkersGrid_DesignTimeLayout_Reference_0 = new Janus.Windows.Common.Layouts.JanusLayoutReference("GridEXLayoutData.RootTable.Columns.Column6.ButtonImage");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkersControl));
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
             this.MarkersGrid = new Janus.Windows.GridEX.GridEX();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
@@ -49,22 +48,15 @@
             // 
             // uiGroupBox1
             // 
-            this.uiGroupBox1.Controls.Add(this.uiButton1);
+            this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiGroupBox1.Controls.Add(this.MarkersGrid);
-            this.uiGroupBox1.Location = new System.Drawing.Point(3, 106);
+            this.uiGroupBox1.Location = new System.Drawing.Point(2, 103);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(313, 257);
+            this.uiGroupBox1.Size = new System.Drawing.Size(318, 264);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Markers";
-            // 
-            // uiButton1
-            // 
-            this.uiButton1.Location = new System.Drawing.Point(219, 0);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Size = new System.Drawing.Size(75, 23);
-            this.uiButton1.TabIndex = 1;
-            this.uiButton1.Text = "uiButton1";
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // MarkersGrid
             // 
@@ -74,11 +66,12 @@
             MarkersGrid_DesignTimeLayout_Reference_0});
             MarkersGrid_DesignTimeLayout.LayoutString = resources.GetString("MarkersGrid_DesignTimeLayout.LayoutString");
             this.MarkersGrid.DesignTimeLayout = MarkersGrid_DesignTimeLayout;
+            this.MarkersGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MarkersGrid.GroupByBoxVisible = false;
-            this.MarkersGrid.Location = new System.Drawing.Point(6, 29);
+            this.MarkersGrid.Location = new System.Drawing.Point(3, 16);
             this.MarkersGrid.Name = "MarkersGrid";
-            this.MarkersGrid.Size = new System.Drawing.Size(301, 222);
+            this.MarkersGrid.Size = new System.Drawing.Size(312, 245);
             this.MarkersGrid.TabIndex = 0;
             this.MarkersGrid.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_CellValueChanged);
             this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
@@ -93,18 +86,20 @@
             // uiGroupBox2
             // 
             this.uiGroupBox2.Controls.Add(this.EnemyMarker);
-            this.uiGroupBox2.Location = new System.Drawing.Point(3, 4);
+            this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiGroupBox2.Location = new System.Drawing.Point(2, 2);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(316, 46);
+            this.uiGroupBox2.Size = new System.Drawing.Size(318, 46);
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Change enemy marker";
             // 
             // uiGroupBox3
             // 
             this.uiGroupBox3.Controls.Add(this.AbandonedMarker);
-            this.uiGroupBox3.Location = new System.Drawing.Point(3, 51);
+            this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiGroupBox3.Location = new System.Drawing.Point(2, 48);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(313, 49);
+            this.uiGroupBox3.Size = new System.Drawing.Size(318, 49);
             this.uiGroupBox3.TabIndex = 1;
             this.uiGroupBox3.Text = "Change abandoned villages marker";
             // 
@@ -117,7 +112,7 @@
             this.AbandonedMarker.Location = new System.Drawing.Point(6, 16);
             this.AbandonedMarker.Margin = new System.Windows.Forms.Padding(0);
             this.AbandonedMarker.Name = "AbandonedMarker";
-            this.AbandonedMarker.Size = new System.Drawing.Size(304, 25);
+            this.AbandonedMarker.Size = new System.Drawing.Size(307, 25);
             this.AbandonedMarker.TabIndex = 0;
             // 
             // EnemyMarker
@@ -140,6 +135,7 @@
             this.Controls.Add(this.uiGroupBox2);
             this.Controls.Add(this.uiGroupBox1);
             this.Name = "MarkersControl";
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.Size = new System.Drawing.Size(322, 369);
             this.Load += new System.EventHandler(this.MarkersControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
@@ -157,7 +153,6 @@
 
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
         private Janus.Windows.GridEX.GridEX MarkersGrid;
-        private Janus.Windows.EditControls.UIButton uiButton1;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox2;
         private MarkerSettingsControl EnemyMarker;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;
