@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Janus.Windows.GridEX.GridEXLayout MarkersGrid_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.Common.Layouts.JanusLayoutReference MarkersGrid_DesignTimeLayout_Reference_0 = new Janus.Windows.Common.Layouts.JanusLayoutReference("GridEXLayoutData.RootTable.Columns.Column6.ButtonImage");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkersControl));
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.uiButton1 = new Janus.Windows.EditControls.UIButton();
@@ -68,6 +69,9 @@
             // MarkersGrid
             // 
             this.MarkersGrid.ColumnAutoResize = true;
+            MarkersGrid_DesignTimeLayout_Reference_0.Instance = ((object)(resources.GetObject("MarkersGrid_DesignTimeLayout_Reference_0.Instance")));
+            MarkersGrid_DesignTimeLayout.LayoutReferences.AddRange(new Janus.Windows.Common.Layouts.JanusLayoutReference[] {
+            MarkersGrid_DesignTimeLayout_Reference_0});
             MarkersGrid_DesignTimeLayout.LayoutString = resources.GetString("MarkersGrid_DesignTimeLayout.LayoutString");
             this.MarkersGrid.DesignTimeLayout = MarkersGrid_DesignTimeLayout;
             this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -81,6 +85,8 @@
             this.MarkersGrid.RecordsDeleted += new System.EventHandler(this.MarkersGrid_RecordsDeleted);
             this.MarkersGrid.RecordUpdated += new System.EventHandler(this.MarkersGrid_RecordUpdated);
             this.MarkersGrid.RecordAdded += new System.EventHandler(this.MarkersGrid_RecordAdded);
+            this.MarkersGrid.AddingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_AddingRecord);
+            this.MarkersGrid.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_ColumnButtonClick);
             this.MarkersGrid.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.MarkersGrid_InitCustomEdit);
             this.MarkersGrid.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.MarkersGrid_EndCustomEdit);
             // 

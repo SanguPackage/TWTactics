@@ -28,16 +28,10 @@ namespace TribalWars.Controls.Polygons
     /// </summary>
     public partial class PolygonControl : UserControl
     {
-        //#region Fields
-        //private readonly UIColorButton _colorControl;
-        //#endregion
-
         #region Constructors
         public PolygonControl()
         {
             InitializeComponent();
-            //_colorControl = new UIColorButton();
-            //_colorControl.Configure();
         }
 
         public void Initialize()
@@ -380,26 +374,6 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             GridExVillage.RootTable.Columns["ISVISIBLE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Visible;
         }
         #endregion
-
-        //#region GridExPolygon
-        //private void GridExPolygon_InitCustomEdit(object sender, InitCustomEditEventArgs e)
-        //{
-        //    if (e.Column.Key == "LineColor")
-        //    {
-        //        //_colorControl.SelectedColor = (Color)e.Value;
-        //        //e.EditControl = _colorControl;
-        //    }
-        //}
-
-        //private void GridExPolygon_EndCustomEdit(object sender, EndCustomEditEventArgs e)
-        //{
-        //    if (e.Column.Key == "LineColor")
-        //    {
-        //        //e.Value = _colorControl.SelectedColor;
-        //        //e.DataChanged = true;
-        //    }
-        //}
-        //#endregion
 
         #region Modus Switch
         private void ModusVillage_Click(object sender, EventArgs e)

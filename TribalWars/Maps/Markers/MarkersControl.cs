@@ -143,6 +143,22 @@ namespace TribalWars.Maps.Markers
                 }
             }
         }
+
+        private void MarkersGrid_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        {
+            if (e.Column.Key == "Delete")
+            {
+                if (MarkersGrid.CurrentRow != null && MarkersGrid.CurrentRow.RowType == RowType.Record)
+                {
+                    MarkersGrid.CurrentRow.Delete();
+                }
+            }
+        }
+
+        private void MarkersGrid_AddingRecord(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 
     /// <summary>
