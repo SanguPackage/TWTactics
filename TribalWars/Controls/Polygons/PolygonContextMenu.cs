@@ -62,9 +62,9 @@ namespace TribalWars.Controls.Polygons
             _bbCode.ActivePolygon.Group = groupChanger.Text;
         }
 
-        private void SelectedColorChanged(object sender, EventArgs e)
+        private void SelectedColorChanged(object sender, Color selectedColor)
         {
-            _bbCode.ActivePolygon.LineColor = ((UIColorPicker)sender).SelectedColor;
+            _bbCode.ActivePolygon.LineColor = selectedColor;
             World.Default.DrawMaps(false);
         }
 

@@ -32,6 +32,62 @@ namespace TribalWars.Tools
         }
         #endregion
 
+        #region ColorPicker
+        public static void Configure(this UIColorPicker colorPicker)
+        {
+            colorPicker.MoreColorsButtonClick += (sender, args) =>
+            {
+                Color? color = ShowMoreColorsDialog();
+                if (color.HasValue)
+                {
+                    colorPicker.SelectedColor = color.Value;
+                }
+            };
+        }
+
+        public static void Configure(this UIColorButton colorPicker)
+        {
+            colorPicker.MoreColorsButtonClick += (sender, args) =>
+                {
+                    Color? color = ShowMoreColorsDialog();
+                    if (color.HasValue)
+                    {
+                        colorPicker.SelectedColor = color.Value;
+                    }
+            };
+        }
+
+        private static Color? ShowMoreColorsDialog()
+        {
+            using (var dialog = new ColorDialog
+            {
+                FullOpen = true,
+                AnyColor = true,
+                CustomColors = GetUserDefinedColors()
+            })
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    SaveUserDefinedColors(dialog.CustomColors);
+                    return dialog.Color;
+                }
+            }
+            return null;
+        }
+
+        private static void SaveUserDefinedColors(int[] value)
+        {
+            Properties.Settings.Default.CustomColors = value;
+            Properties.Settings.Default.Save();
+        }
+
+        private static int[] GetUserDefinedColors()
+        {
+            return Properties.Settings.Default.CustomColors;
+        }
+        #endregion
+
         #region UIContextMenu
         #region Regular Commands
         public static void AddSeparator(this UIContextMenu menu)
@@ -69,36 +125,31 @@ namespace TribalWars.Tools
         #endregion
 
         #region ChangeColor Command
-        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, EventHandler handler)
+        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, Action<object, Color> handler)
+        {
+            menu.AddChangeColorCommand(text, defaultSelectedColor, defaultSelectedColor, handler);
+        }
+
+        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, Color automaticColor, Action<object, Color> handler)
         {
             var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
 
             var colorPicker = new UIColorPicker();
-            colorPicker.AutomaticColor = defaultSelectedColor;
-            colorPicker.MoreColorsButtonClick += (sender, args) =>
-                {
-                    using (var dialog = new ColorDialog
-                        {
-                            FullOpen = true,
-                            Color = defaultSelectedColor,
-                            AnyColor = true,
-                            CustomColors = GetUserDefinedColors()
-                        })
-                    {
-                        DialogResult result = dialog.ShowDialog();
-                        if (result == DialogResult.OK)
-                        {
-                            colorPicker.SelectedColor = dialog.Color;
-                            SaveUserDefinedColors(dialog.CustomColors);
-                        }
-                    }
-                };
+            colorPicker.Configure();
 
             colorPicker.SelectedColor = defaultSelectedColor;
+            colorPicker.AutomaticColor = automaticColor;
             colorPicker.SelectedColorChanged += (sender, e) =>
                 {
-                    cmd.Image = DrawContextIcon(((UIColorPicker)sender).SelectedColor);
-                    handler(sender, e);
+                    Color selectedColor = ((UIColorPicker) sender).SelectedColor;
+                    cmd.Image = DrawContextIcon(selectedColor);
+                    handler(sender, selectedColor);
+                };
+
+            colorPicker.AutomaticButtonClick += (sender, e) =>
+                {
+                    cmd.Image = DrawContextIcon(automaticColor);
+                    handler(sender, automaticColor);
                 };
 
             cmd.Control = colorPicker;
@@ -106,22 +157,16 @@ namespace TribalWars.Tools
             menu.Commands.Add(cmd);
         }
 
-        private static void SaveUserDefinedColors(int[] value)
-        {
-            Properties.Settings.Default.CustomColors = value;
-            Properties.Settings.Default.Save();
-        }
-
-        private static int[] GetUserDefinedColors()
-        {
-            return Properties.Settings.Default.CustomColors;
-        }
-
         /// <summary>
         /// Draws an icon for Commands to represent the currently selected color(s)
         /// </summary>
         public static Image DrawContextIcon(Color color, Color? extraColor = null)
         {
+            if (color == Color.Transparent && (extraColor == null || extraColor == Color.Transparent))
+            {
+                return null;
+            }
+
             const int canvasSize = 16;
 
             var map = new Bitmap(canvasSize, canvasSize);

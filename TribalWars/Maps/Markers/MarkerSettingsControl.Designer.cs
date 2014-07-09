@@ -28,22 +28,25 @@ namespace TribalWars.Maps.Markers
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkerSettingsControl));
             this.MarkerActive = new Janus.Windows.EditControls.UICheckBox();
             this.MarkerActivePanel = new System.Windows.Forms.Panel();
             this.MarkerView = new Janus.Windows.EditControls.UIComboBox();
             this.MarkerExtraColor = new Janus.Windows.EditControls.UIColorButton();
             this.MarkerColor = new Janus.Windows.EditControls.UIColorButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MarkerActivePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // MarkerActive
             // 
             this.MarkerActive.Checked = true;
             this.MarkerActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MarkerActive.Location = new System.Drawing.Point(36, 6);
+            this.MarkerActive.Location = new System.Drawing.Point(32, 0);
             this.MarkerActive.Name = "MarkerActive";
-            this.MarkerActive.Size = new System.Drawing.Size(16, 16);
+            this.MarkerActive.ShowFocusRectangle = false;
+            this.MarkerActive.Size = new System.Drawing.Size(16, 25);
             this.MarkerActive.TabIndex = 0;
             this.MarkerActive.ToolTipText = "Activate or disable the marker";
             this.MarkerActive.CheckedChanged += new System.EventHandler(this.MarkerActive_CheckedChanged);
@@ -106,29 +109,30 @@ namespace TribalWars.Maps.Markers
             this.MarkerColor.ToolTipText = "Choose main color";
             this.MarkerColor.SelectedColorChanged += new System.EventHandler(this.MarkerColor_SelectedColorChanged);
             // 
-            // label1
+            // pictureBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mark";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 22);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // MarkerSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.MarkerActivePanel);
             this.Controls.Add(this.MarkerActive);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MarkerSettingsControl";
             this.Size = new System.Drawing.Size(299, 25);
+            this.Load += new System.EventHandler(this.MarkerSettingsControl_Load);
             this.MarkerActivePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -139,7 +143,7 @@ namespace TribalWars.Maps.Markers
         private Janus.Windows.EditControls.UIColorButton MarkerExtraColor;
         private Janus.Windows.EditControls.UIColorButton MarkerColor;
         private Janus.Windows.EditControls.UIComboBox MarkerView;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

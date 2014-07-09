@@ -54,7 +54,7 @@ namespace TribalWars.Maps.Markers
             Marker marker = GetMarker();
 
             _menu.AddChangeColorCommand("Main color", marker.Settings.Color, OnChangeColor);
-            _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, OnChangeExtraColor);
+            _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, Color.Transparent, OnChangeExtraColor);
 
             IEnumerable<string> views = World.Default.GetBackgroundViews();
             _menu.AddComboBoxCommand("View", views, marker.Settings.View, OnChangeView);
@@ -147,17 +147,15 @@ namespace TribalWars.Maps.Markers
             UpdateMarker(MarkerSettings.ChangeView(marker.Settings, ((UIComboBox)sender).SelectedValue.ToString()));
         }
 
-        private void OnChangeColor(object sender, EventArgs e)
+        private void OnChangeColor(object sender, Color selectedColor)
         {
             var marker = GetMarker();
-            Color selectedColor = ((UIColorPicker)sender).SelectedColor;
             UpdateMarker(MarkerSettings.ChangeColor(marker.Settings, selectedColor));
         }
 
-        private void OnChangeExtraColor(object sender, EventArgs e)
+        private void OnChangeExtraColor(object sender, Color selectedColor)
         {
             var marker = GetMarker();
-            Color selectedColor = ((UIColorPicker)sender).SelectedColor;
             UpdateMarker(MarkerSettings.ChangeExtraColor(marker.Settings, selectedColor));
         }
         #endregion

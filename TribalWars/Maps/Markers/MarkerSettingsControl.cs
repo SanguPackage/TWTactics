@@ -1,8 +1,10 @@
 #region Using
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
@@ -19,6 +21,15 @@ namespace TribalWars.Maps.Markers
         public MarkerSettingsControl()
         {
             InitializeComponent();
+        }
+
+        private void MarkerSettingsControl_Load(object sender, EventArgs e)
+        {
+            _settingProperties = true;
+            MarkerColor.Configure();
+            MarkerExtraColor.Configure();
+            MarkerExtraColor.ColorPicker.AutomaticColor = Color.Transparent;
+            _settingProperties = false;
         }
 
         private Marker GetMarker()
