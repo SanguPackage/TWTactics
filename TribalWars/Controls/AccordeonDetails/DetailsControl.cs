@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TribalWars.Controls.XPTables;
+using TribalWars.Maps.Markers;
 using TribalWars.Tools.PropertyGrid.Players;
 using TribalWars.Tools.PropertyGrid.Tribes;
 using TribalWars.Tools.PropertyGrid.Villages;
@@ -38,8 +39,6 @@ namespace TribalWars.Controls.AccordeonDetails
         #endregion
 
         #region Fields
-        private readonly ToolStripItem[] _villageContext;
-
         private readonly Stack<DetailsCommand> _undo = new Stack<DetailsCommand>();
         private Stack<DetailsCommand> _redo = new Stack<DetailsCommand>();
         private DetailsCommand _current = new DetailsCommand();
@@ -49,9 +48,6 @@ namespace TribalWars.Controls.AccordeonDetails
         public DetailsControl()
         {
             InitializeComponent();
-
-            ContextStrip.Items.Clear();
-            _villageContext = new ToolStripItem[] { AttackFlag, DefenseFlag, NobleFlag, ScoutFlag, FarmFlag, VillageSeperator, VillageCurrentSituation };
 
             World.Default.Map.EventPublisher.TribeSelected += EventPublisher_TribeSelected;
             World.Default.Map.EventPublisher.PlayerSelected += EventPublisher_PlayerSelected;
@@ -305,14 +301,16 @@ namespace TribalWars.Controls.AccordeonDetails
         /// </summary>
         private void SetLayout(DetailsCommand command)
         {
-            ContextStrip.Items.Clear();
             ViewVillageDetails.Enabled = command.Village != null;
             ViewTribeDetails.Enabled = command.Tribe != null;
             ViewPlayerDetails.Enabled = command.Player != null;
             switch (command.Display)
             {
                 case DetailsDisplayEnum.Player:
-                    ContextStrip.Items.Clear();
+                    ContextStrip.Visible = false;
+                    MarkPlayerOrTribe.Visible = true;
+                    Marker playerMarker = World.Default.Map.MarkerManager.GetMarker(command.Player);
+                    MarkPlayerOrTribe.SetMarker(playerMarker.Settings);
 
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = true;
@@ -338,7 +336,10 @@ namespace TribalWars.Controls.AccordeonDetails
                     break;
 
                 case DetailsDisplayEnum.Tribe:
-                    ContextStrip.Items.Clear();
+                    ContextStrip.Visible = false;
+                    MarkPlayerOrTribe.Visible = true;
+                    Marker tribeMarker = World.Default.Map.MarkerManager.GetMarker(command.Tribe);
+                    MarkPlayerOrTribe.SetMarker(tribeMarker.Settings);
 
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
@@ -366,7 +367,9 @@ namespace TribalWars.Controls.AccordeonDetails
                     break;
 
                 case DetailsDisplayEnum.Village:
-                    if (_villageContext != null && ContextStrip.Items.Count == 0) ContextStrip.Items.AddRange(_villageContext);
+                    ContextStrip.Visible = true;
+                    MarkPlayerOrTribe.Visible = false;
+
                     ViewVillageDetails.Checked = true;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = false;
@@ -386,6 +389,9 @@ namespace TribalWars.Controls.AccordeonDetails
                     break;
 
                 default:
+                    ContextStrip.Visible = false;
+                    MarkPlayerOrTribe.Visible = false;
+
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = false;

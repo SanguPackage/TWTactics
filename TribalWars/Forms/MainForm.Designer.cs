@@ -107,7 +107,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind = new Ascend.Windows.Forms.NavigationPanePage();
             this.detailsControl1 = new DetailsControl();
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
-            this.markersContainerControl1 = new MarkersContainerControl();
+            this.markersContainerControl1 = new MarkerSettingsControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
             this.MapDistance = new TribalWars.Controls.AttackPlan.MapDistanceCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
@@ -1141,7 +1141,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuFileWorldDownload;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Location;
         //private TribalWars.Controls.Accordeon.Location.LocationControl locationControl1;
-        private MarkersContainerControl markersContainerControl1;
+        private MarkerSettingsControl markersContainerControl1;
         private MapControl Map;
         private PolygonControl Polygon;
         //private TribalWars.Controls.Accordeon.Details.DetailsControl QuickDetails;

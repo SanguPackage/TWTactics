@@ -83,7 +83,10 @@ namespace TribalWars.Maps.Markers
             Debug.Assert(_mainCommand == null);
             var marker = GetMarker();
             var cmd = menu.AddCommand(GetMainCommandText(marker));
-            cmd.Image = GetMainCommandImage(marker);
+            if (marker.Settings.Enabled)
+            {
+                cmd.Image = GetMainCommandImage(marker);
+            }
 
             _mainCommand = cmd;
             return cmd;

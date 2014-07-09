@@ -21,7 +21,7 @@
   <Views>
     <View>
       <Type>Points</Type>
-      <Name>Points</Name>
+      <Name>Default</Name>
       <Drawers>
         <Drawer>
           <Type>EllipseDrawer</Type>
@@ -62,7 +62,7 @@
     </View>
     <View>
       <Type>Points</Type>
-      <Name>PointsAbandoned</Name>
+      <Name>Abandoned</Name>
       <Drawers>
         <Drawer>
           <Type>EllipseDrawer</Type>
@@ -104,7 +104,7 @@
     </View>
     <View>
       <Type>VillageType</Type>
-      <Name>VillageType</Name>
+      <Name>VillageDecorators</Name>
       <Drawers>
         <Drawer>
           <Type>BorderDrawer</Type>

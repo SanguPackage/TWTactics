@@ -37,8 +37,8 @@ namespace TribalWars.Controls.AccordeonDetails
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Comments = new System.Windows.Forms.TextBox();
             this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
-            this.Table = new TableWrapperControl();
-            this.SpecialVillage = new VillageControl();
+            this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
+            this.SpecialVillage = new TribalWars.Controls.AccordeonDetails.VillageControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.SelectedVillage = new TribalWars.Controls.Common.ToolStripVillageTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,11 +52,12 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewPlayerDetails = new System.Windows.Forms.ToolStripButton();
             this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
             this.ContextStripPanel = new System.Windows.Forms.Panel();
+            this.MarkPlayerOrTribe = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.ContextStrip = new System.Windows.Forms.ToolStrip();
             this.AttackFlag = new System.Windows.Forms.ToolStripButton();
             this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
-            this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
             this.NobleFlag = new System.Windows.Forms.ToolStripButton();
+            this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
             this.FarmFlag = new System.Windows.Forms.ToolStripButton();
             this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
@@ -138,33 +139,33 @@ namespace TribalWars.Controls.AccordeonDetails
             // 
             this.Table.AutoSelectSingleRow = false;
             this.Table.BackColor = System.Drawing.Color.Transparent;
-            this.Table.DisplayType = TableWrapperControl.ColumnDisplayTypeEnum.Custom;
+            this.Table.DisplayType = TribalWars.Controls.XPTables.TableWrapperControl.ColumnDisplayTypeEnum.Custom;
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Table.Location = new System.Drawing.Point(0, 0);
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
-            this.Table.RowSelectionAction = TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
+            this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
             this.Table.Size = new System.Drawing.Size(267, 121);
             this.Table.TabIndex = 0;
-            this.Table.VisiblePlayerFields = ((PlayerFields)(((((PlayerFields.Name | PlayerFields.Points) 
-            | PlayerFields.PointsDifference) 
-            | PlayerFields.Villages) 
-            | PlayerFields.VillagesDifference)));
-            this.Table.VisibleReportFields = ((ReportFields)((((((ReportFields.Type | ReportFields.Status) 
-            | ReportFields.Village) 
-            | ReportFields.Player) 
-            | ReportFields.Date) 
-            | ReportFields.Flag)));
-            this.Table.VisibleTribeFields = ((TribeFields)((((((TribeFields.Tag | TribeFields.Name) 
-            | TribeFields.Players) 
-            | TribeFields.Points) 
-            | TribeFields.Villages) 
-            | TribeFields.Rank)));
-            this.Table.VisibleVillageFields = ((VillageFields)((((((VillageFields.Type | VillageFields.Coordinates) 
-            | VillageFields.Name) 
-            | VillageFields.Points) 
-            | VillageFields.PointsDifference) 
-            | VillageFields.HasReport)));
+            this.Table.VisiblePlayerFields = ((TribalWars.Controls.XPTables.PlayerFields)(((((TribalWars.Controls.XPTables.PlayerFields.Name | TribalWars.Controls.XPTables.PlayerFields.Points) 
+            | TribalWars.Controls.XPTables.PlayerFields.PointsDifference) 
+            | TribalWars.Controls.XPTables.PlayerFields.Villages) 
+            | TribalWars.Controls.XPTables.PlayerFields.VillagesDifference)));
+            this.Table.VisibleReportFields = ((TribalWars.Controls.XPTables.ReportFields)((((((TribalWars.Controls.XPTables.ReportFields.Type | TribalWars.Controls.XPTables.ReportFields.Status) 
+            | TribalWars.Controls.XPTables.ReportFields.Village) 
+            | TribalWars.Controls.XPTables.ReportFields.Player) 
+            | TribalWars.Controls.XPTables.ReportFields.Date) 
+            | TribalWars.Controls.XPTables.ReportFields.Flag)));
+            this.Table.VisibleTribeFields = ((TribalWars.Controls.XPTables.TribeFields)((((((TribalWars.Controls.XPTables.TribeFields.Tag | TribalWars.Controls.XPTables.TribeFields.Name) 
+            | TribalWars.Controls.XPTables.TribeFields.Players) 
+            | TribalWars.Controls.XPTables.TribeFields.Points) 
+            | TribalWars.Controls.XPTables.TribeFields.Villages) 
+            | TribalWars.Controls.XPTables.TribeFields.Rank)));
+            this.Table.VisibleVillageFields = ((TribalWars.Controls.XPTables.VillageFields)((((((TribalWars.Controls.XPTables.VillageFields.Type | TribalWars.Controls.XPTables.VillageFields.Coordinates) 
+            | TribalWars.Controls.XPTables.VillageFields.Name) 
+            | TribalWars.Controls.XPTables.VillageFields.Points) 
+            | TribalWars.Controls.XPTables.VillageFields.PointsDifference) 
+            | TribalWars.Controls.XPTables.VillageFields.HasReport)));
             this.Table.RowSelected += new System.EventHandler<System.EventArgs>(this.Table_RowSelected);
             // 
             // SpecialVillage
@@ -213,9 +214,9 @@ namespace TribalWars.Controls.AccordeonDetails
             this.SelectedVillage.Size = new System.Drawing.Size(80, 23);
             this.SelectedVillage.Tribe = null;
             this.SelectedVillage.Village = null;
-            this.SelectedVillage.VillageSelected += new System.EventHandler<VillageEventArgs>(this.SelectedVillage_VillageSelected);
-            this.SelectedVillage.PlayerSelected += new System.EventHandler<PlayerEventArgs>(this.SelectedVillage_PlayerSelected);
-            this.SelectedVillage.TribeSelected += new System.EventHandler<TribeEventArgs>(this.SelectedVillage_TribeSelected);
+            this.SelectedVillage.VillageSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.VillageEventArgs>(this.SelectedVillage_VillageSelected);
+            this.SelectedVillage.PlayerSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.PlayerEventArgs>(this.SelectedVillage_PlayerSelected);
+            this.SelectedVillage.TribeSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.TribeEventArgs>(this.SelectedVillage_TribeSelected);
             // 
             // toolStripSeparator2
             // 
@@ -313,6 +314,7 @@ namespace TribalWars.Controls.AccordeonDetails
             // 
             // ContextStripPanel
             // 
+            this.ContextStripPanel.Controls.Add(this.MarkPlayerOrTribe);
             this.ContextStripPanel.Controls.Add(this.ContextStrip);
             this.ContextStripPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContextStripPanel.Location = new System.Drawing.Point(0, 25);
@@ -320,6 +322,17 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ContextStripPanel.Name = "ContextStripPanel";
             this.ContextStripPanel.Size = new System.Drawing.Size(267, 25);
             this.ContextStripPanel.TabIndex = 8;
+            // 
+            // MarkPlayerOrTribe
+            // 
+            this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
+            this.MarkPlayerOrTribe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MarkPlayerOrTribe.Location = new System.Drawing.Point(0, 0);
+            this.MarkPlayerOrTribe.Margin = new System.Windows.Forms.Padding(0);
+            this.MarkPlayerOrTribe.Name = "MarkPlayerOrTribe";
+            this.MarkPlayerOrTribe.Size = new System.Drawing.Size(267, 25);
+            this.MarkPlayerOrTribe.TabIndex = 1;
+            this.MarkPlayerOrTribe.Visible = false;
             // 
             // ContextStrip
             // 
@@ -358,16 +371,6 @@ namespace TribalWars.Controls.AccordeonDetails
             this.DefenseFlag.ToolTipText = "Mark this village as defensive";
             this.DefenseFlag.Click += new System.EventHandler(this.DefenseFlag_Click);
             // 
-            // ScoutFlag
-            // 
-            this.ScoutFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ScoutFlag.Image = global::TribalWars.Properties.Resources.scout;
-            this.ScoutFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ScoutFlag.Name = "ScoutFlag";
-            this.ScoutFlag.Size = new System.Drawing.Size(23, 22);
-            this.ScoutFlag.ToolTipText = "Mark this village for scouts";
-            this.ScoutFlag.Click += new System.EventHandler(this.ScoutFlag_Click);
-            // 
             // NobleFlag
             // 
             this.NobleFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -377,6 +380,16 @@ namespace TribalWars.Controls.AccordeonDetails
             this.NobleFlag.Size = new System.Drawing.Size(23, 22);
             this.NobleFlag.ToolTipText = "Mark this village for nobles";
             this.NobleFlag.Click += new System.EventHandler(this.NobleFlag_Click);
+            // 
+            // ScoutFlag
+            // 
+            this.ScoutFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ScoutFlag.Image = global::TribalWars.Properties.Resources.scout;
+            this.ScoutFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ScoutFlag.Name = "ScoutFlag";
+            this.ScoutFlag.Size = new System.Drawing.Size(23, 22);
+            this.ScoutFlag.ToolTipText = "Mark this village for scouts";
+            this.ScoutFlag.Click += new System.EventHandler(this.ScoutFlag_Click);
             // 
             // FarmFlag
             // 
@@ -462,5 +475,6 @@ namespace TribalWars.Controls.AccordeonDetails
         private System.Windows.Forms.TextBox Comments;
         private System.Windows.Forms.ToolStripSeparator VillageSeperator;
         private System.Windows.Forms.ToolStripButton VillageCurrentSituation;
+        private Maps.Markers.MarkerSettingsControl MarkPlayerOrTribe;
     }
 }

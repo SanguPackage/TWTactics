@@ -277,11 +277,11 @@
     <Compile Include="Controls\AccordeonLocation\LocationFinderControl.Designer.cs">
       <DependentUpon>LocationFinderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Markers\MarkersContainerControl.cs">
+    <Compile Include="Maps\Markers\MarkerSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Markers\MarkersContainerControl.Designer.cs">
-      <DependentUpon>MarkersContainerControl.cs</DependentUpon>
+    <Compile Include="Maps\Markers\MarkerSettingsControl.Designer.cs">
+      <DependentUpon>MarkerSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TimeConverter\TimeConverterControl.cs">
       <SubType>UserControl</SubType>
@@ -512,9 +512,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>LocationFinderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Markers\MarkersContainerControl.resx">
+    <EmbeddedResource Include="Maps\Markers\MarkerSettingsControl.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MarkersContainerControl.cs</DependentUpon>
+      <DependentUpon>MarkerSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TimeConverter\TimeConverterControl.resx">
       <SubType>Designer</SubType>

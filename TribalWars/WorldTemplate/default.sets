@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settings Date="{SettingsDate}">
  <You Name="{YourName}">
-  <Marker Name="You" Enabled="True" Color="Black" ExtraColor="Yellow" View="Points" />
-  <Marker Name="Your Tribe" Enabled="True" Color="Black" ExtraColor="Transparent" View="Points" />
-  <Marker Name="Enemy" Enabled="True" Color="Red" ExtraColor="Transparent" View="Points" />
-  <Marker Name="Abandoned" Enabled="True" Color="Olive" ExtraColor="Transparent" View="PointsAbandoned" />
+  <Marker Name="You" Enabled="True" Color="Black" ExtraColor="Yellow" View="Default" />
+  <Marker Name="Your Tribe" Enabled="True" Color="Black" ExtraColor="Transparent" View="Default" />
+  <Marker Name="Enemy" Enabled="True" Color="Red" ExtraColor="Transparent" View="Default" />
+  <Marker Name="Abandoned" Enabled="True" Color="Olive" ExtraColor="Transparent" View="Abandoned" />
  </You>
  <Monitor X="1" Y="1" Width="1000" Height="1000" />
  <MainMap>
