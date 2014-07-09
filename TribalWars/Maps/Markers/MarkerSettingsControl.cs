@@ -18,11 +18,14 @@ namespace TribalWars.Maps.Markers
     /// </summary>
     public partial class MarkerSettingsControl : UserControl
     {
+        #region Fields
         private Player _player;
         private Tribe _tribe;
         private MarkerSettings _settings;
         private bool _settingProperties;
+        #endregion
 
+        #region Properties
         /// <summary>
         /// Can the marker be deactivated
         /// </summary>
@@ -62,12 +65,47 @@ namespace TribalWars.Maps.Markers
                 _settingProperties = false;
             }
         }
+        #endregion
 
+        #region Constructors
         public MarkerSettingsControl()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region Public Methods
+        public void SetMarker(MarkerSettings settings)
+        {
+            _settings = settings;
+            _player = null;
+            _tribe = null;
+
+            SetControlProperties(settings);
+        }
+
+        public void SetMarker(Player player)
+        {
+            _settings = null;
+            _player = player;
+            _tribe = null;
+
+            Marker marker = World.Default.Map.MarkerManager.GetMarker(player);
+            SetControlProperties(marker.Settings);
+        }
+
+        public void SetMarker(Tribe tribe)
+        {
+            _settings = null;
+            _player = null;
+            _tribe = tribe;
+
+            Marker marker = World.Default.Map.MarkerManager.GetMarker(tribe);
+            SetControlProperties(marker.Settings);
+        }
+        #endregion
+
+        #region EventHandlers
         private void MarkerSettingsControl_Load(object sender, EventArgs e)
         {
             _settingProperties = true;
@@ -75,38 +113,6 @@ namespace TribalWars.Maps.Markers
             MarkerExtraColor.Configure();
             MarkerExtraColor.ColorPicker.AutomaticColor = Color.Transparent;
             _settingProperties = false;
-        }
-
-        private MarkerSettings GetMarkerSettings()
-        {
-            if (_settings != null)
-            {
-                return _settings;
-            }
-            if (_tribe != null)
-            {
-                return World.Default.Map.MarkerManager.GetMarker(_tribe).Settings;
-            }
-            else
-            {
-                return World.Default.Map.MarkerManager.GetMarker(_player).Settings;
-            }
-        }
-
-        private void UpdateMarker(MarkerSettings settings)
-        {
-            if (_settings != null)
-            {
-                World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, settings);
-            }
-            else if (_tribe != null)
-            {
-                World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _tribe, settings);
-            }
-            else
-            {
-                World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _player, settings);
-            }
         }
 
         private void MarkerActive_CheckedChanged(object sender, EventArgs e)
@@ -146,34 +152,39 @@ namespace TribalWars.Maps.Markers
                 UpdateMarker(MarkerSettings.ChangeView(settings, MarkerView.SelectedValue.ToString()));
             }
         }
+        #endregion
 
-        public void SetMarker(MarkerSettings settings)
+        #region Private
+        private MarkerSettings GetMarkerSettings()
         {
-            _settings = settings;
-            _player = null;
-            _tribe = null;
-
-            SetControlProperties(settings);
+            if (_settings != null)
+            {
+                return _settings;
+            }
+            if (_tribe != null)
+            {
+                return World.Default.Map.MarkerManager.GetMarker(_tribe).Settings;
+            }
+            else
+            {
+                return World.Default.Map.MarkerManager.GetMarker(_player).Settings;
+            }
         }
 
-        public void SetMarker(Player player)
+        private void UpdateMarker(MarkerSettings settings)
         {
-            _settings = null;
-            _player = player;
-            _tribe = null;
-
-            Marker marker = World.Default.Map.MarkerManager.GetMarker(player);
-            SetControlProperties(marker.Settings);
-        }
-
-        public void SetMarker(Tribe tribe)
-        {
-            _settings = null;
-            _player = null;
-            _tribe = tribe;
-
-            Marker marker = World.Default.Map.MarkerManager.GetMarker(tribe);
-            SetControlProperties(marker.Settings);
+            if (_settings != null)
+            {
+                World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, settings);
+            }
+            else if (_tribe != null)
+            {
+                World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _tribe, settings);
+            }
+            else
+            {
+                World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _player, settings);
+            }
         }
 
         /// <summary>
@@ -181,14 +192,17 @@ namespace TribalWars.Maps.Markers
         /// </summary>
         private void SetControlProperties(MarkerSettings settings)
         {
+            _settingProperties = true;
+
+            MarkerView.SelectedValue = settings.View;
             MarkerView.DataSource = World.Default.GetBackgroundViews().ToArray();
 
-            _settingProperties = true;
             MarkerActive.Checked = settings.Enabled;
             MarkerColor.SelectedColor = settings.Color;
             MarkerExtraColor.SelectedColor = settings.ExtraColor;
-            MarkerView.SelectedValue = settings.View;
+            
             _settingProperties = false;
         }
+        #endregion
     }
 }

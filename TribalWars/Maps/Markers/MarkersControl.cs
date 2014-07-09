@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.GridEX;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
@@ -26,7 +27,9 @@ namespace TribalWars.Maps.Markers
             EnemyMarker.SetMarker(World.Default.Map.MarkerManager.EnemyMarkerSettings);
             AbandonedMarker.SetMarker(World.Default.Map.MarkerManager.AbandonedMarkerSettings);
 
-
+            var views = World.Default.GetBackgroundViews().Select(x => new GridEXValueListItem(x, x));
+            MarkersGrid.RootTable.Columns["View"].ValueList.Clear();
+            MarkersGrid.RootTable.Columns["View"].ValueList.AddRange(views.ToArray());
         }
 
         private void MarkersControl_Load(object sender, EventArgs e)
@@ -37,6 +40,20 @@ namespace TribalWars.Maps.Markers
             MarkersGrid.RootTable.Columns["ExtraColor"].ConfigureAsColor();
 
         }
+
+        private void MarkersGrid_FormattingRow(object sender, RowLoadEventArgs e)
+        {
+            if (e.Row.RowType == RowType.Record)
+            {
+                var marker = (MarkerGridRow)e.Row.DataRow;
+
+                e.Row.Cells["Type"].Image = marker.GetTypeImage();
+
+            }
+        }
+
+
+
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
@@ -78,8 +95,6 @@ namespace TribalWars.Maps.Markers
             }
         }
 
-        // no row highlight
-
         public MarkerGridRow(Marker marker)
         {
             Enabled = marker.Settings.Enabled;
@@ -88,6 +103,19 @@ namespace TribalWars.Maps.Markers
             View = marker.Settings.View;
             Tribe = marker.Tribe;
             Player = marker.Player;
+        }
+
+        public Image GetTypeImage()
+        {
+            if (Tribe != null)
+            {
+                return Properties.Resources.Tribe;
+            }
+            if (Player != null)
+            {
+                return Properties.Resources.Player;
+            }
+            return null;
         }
     }
 }

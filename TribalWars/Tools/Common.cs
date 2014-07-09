@@ -119,6 +119,15 @@ namespace TribalWars.Tools
         }
         #endregion
 
+        #region Color Methods
+        public static string Description(this Color color)
+        {
+            if (color.IsNamedColor) return color.Name;
+            if (color.IsKnownColor) return color.ToKnownColor().ToString();
+            return color.ToString();
+        }
+        #endregion
+
         #region Change Width PropertyGrid
         public static void MoveSplitter(System.Windows.Forms.PropertyGrid propertyGrid, int width)
         {

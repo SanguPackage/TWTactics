@@ -74,10 +74,9 @@
             this.MarkersGrid.GroupByBoxVisible = false;
             this.MarkersGrid.Location = new System.Drawing.Point(6, 29);
             this.MarkersGrid.Name = "MarkersGrid";
-            this.MarkersGrid.SelectedFormatStyle.BackColor = System.Drawing.Color.Turquoise;
-            this.MarkersGrid.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.MarkersGrid.Size = new System.Drawing.Size(301, 222);
             this.MarkersGrid.TabIndex = 0;
+            this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
             // 
             // uiGroupBox2
             // 

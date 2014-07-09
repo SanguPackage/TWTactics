@@ -76,9 +76,11 @@ namespace TribalWars.Tools
                 {
                     if (e.Row.RowType == RowType.Record)
                     {
-                        var cell = e.Row.Cells[column];
+                        GridEXCell cell = e.Row.Cells[column];
+                        var color = (Color) cell.Value;
                         cell.FormatStyle = new GridEXFormatStyle();
-                        cell.FormatStyle.BackColor = (Color)cell.Value;
+                        cell.FormatStyle.BackColor = color;
+                        cell.Text = color.Description();
                     }
                 };
         }
