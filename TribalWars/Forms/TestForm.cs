@@ -11,13 +11,13 @@ namespace TribalWars.Forms
     /// <summary>
     /// 
     /// </summary>
-    public partial class ActivePlayerForm : Form
+    public partial class TestForm : Form
     {
         #region Properties
         #endregion
 
         #region Constructors
-        public ActivePlayerForm()
+        public TestForm()
         {
             InitializeComponent();
         }

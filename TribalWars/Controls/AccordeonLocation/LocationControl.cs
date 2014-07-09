@@ -67,13 +67,5 @@ namespace TribalWars.Controls.AccordeonLocation
                 World.Default.Map.SetCenter(e.SelectedPlayer);
             }
         }
-
-        public void FocusYouControl()
-        {
-            // When starting out, select the You control
-            // it's probably a good idea to start by providing
-            // your player name
-            You.Focus();
-        }
     }
 }

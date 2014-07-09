@@ -119,12 +119,24 @@ namespace TribalWars.Forms
             World.CreateNewWorld(path, server);
             World.Default.LoadWorld(path);
 
+            ActivePlayerForm.UpdateDefaultWorld();
+
             World.Default.DrawMaps();
 
             Properties.Settings.Default.DefaultServer = server.ServerUrl;
             Properties.Settings.Default.Save();
 
             Close();
+
+            string selectYouLater = "";
+            if (World.Default.You.Empty)
+            {
+                selectYouLater = Environment.NewLine + Environment.NewLine + "You can later still specify yourself through the World -> 'Select Active Player' menu.";
+            }
+
+            MessageBox.Show(@"A new world has been created!
+
+Right click a village if you don't know where to start." + selectYouLater, "World Created!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Servers_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿namespace TribalWars.Forms
 {
-    partial class ActivePlayerForm
+    partial class TestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Janus.Windows.GridEX.GridEXLayout multiColumnCombo1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivePlayerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
             this.multiColumnCombo1 = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
             this.SearchTypeImageList = new System.Windows.Forms.ImageList(this.components);
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
@@ -97,7 +97,7 @@
             this.Controls.Add(this.multiColumnCombo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "ActivePlayerForm";
+            this.Name = "TestForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TEST FORM";

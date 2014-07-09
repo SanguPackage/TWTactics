@@ -36,7 +36,7 @@ namespace TribalWars.Tools
         public static XDocument DownloadXml(string url)
         {
             string xml = GetWebRequest(url);
-            return XDocument.Load(xml);
+            return XDocument.Parse(xml);
         }
     }
 }

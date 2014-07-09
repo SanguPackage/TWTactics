@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -65,12 +66,19 @@ namespace TribalWars.Maps.Markers
                 _settingProperties = false;
             }
         }
+
+        /// <summary>
+        /// Automatically update marker settings back
+        /// to the World
+        /// </summary>
+        public bool AutoUpdateMarkers { get; set; }
         #endregion
 
         #region Constructors
         public MarkerSettingsControl()
         {
             InitializeComponent();
+            AutoUpdateMarkers = true;
         }
         #endregion
 
@@ -102,6 +110,22 @@ namespace TribalWars.Maps.Markers
 
             Marker marker = World.Default.Map.MarkerManager.GetMarker(tribe);
             SetControlProperties(marker.Settings);
+        }
+
+        public MarkerSettings GetMarkerSettings()
+        {
+            if (_settings != null)
+            {
+                return _settings;
+            }
+            if (_tribe != null)
+            {
+                return World.Default.Map.MarkerManager.GetMarker(_tribe).Settings;
+            }
+            else
+            {
+                return World.Default.Map.MarkerManager.GetMarker(_player).Settings;
+            }
         }
         #endregion
 
@@ -155,34 +179,24 @@ namespace TribalWars.Maps.Markers
         #endregion
 
         #region Private
-        private MarkerSettings GetMarkerSettings()
-        {
-            if (_settings != null)
-            {
-                return _settings;
-            }
-            if (_tribe != null)
-            {
-                return World.Default.Map.MarkerManager.GetMarker(_tribe).Settings;
-            }
-            else
-            {
-                return World.Default.Map.MarkerManager.GetMarker(_player).Settings;
-            }
-        }
-
         private void UpdateMarker(MarkerSettings settings)
         {
             if (_settings != null)
             {
-                World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, settings);
+                if (AutoUpdateMarkers)
+                {
+                    World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, settings);
+                }
+                _settings = settings;
             }
             else if (_tribe != null)
             {
+                Debug.Assert(AutoUpdateMarkers);
                 World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _tribe, settings);
             }
             else
             {
+                Debug.Assert(AutoUpdateMarkers);
                 World.Default.Map.MarkerManager.UpdateMarker(World.Default.Map, _player, settings);
             }
         }

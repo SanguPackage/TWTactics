@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeZoneForm));
-            this.gbTimeZome = new System.Windows.Forms.GroupBox();
+            this.gbTimeZome = new Janus.Windows.EditControls.UIGroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TimeOffset = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -186,7 +186,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbTimeZome;
+        private Janus.Windows.EditControls.UIGroupBox gbTimeZome;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown TimeOffset;
         private System.Windows.Forms.Label label2;

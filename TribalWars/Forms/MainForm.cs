@@ -77,7 +77,6 @@ namespace TribalWars.Forms
                 {
                     loadForm.ShowDialog();
                 }
-                locationControl1.FocusYouControl();
             }
 
             Polygon.Initialize();
@@ -288,6 +287,11 @@ namespace TribalWars.Forms
             }
         }
 
+        private void MenuFileSetActivePlayer_Click(object sender, EventArgs e)
+        {
+            ActivePlayerForm.UpdateDefaultWorld();
+        }
+
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
             World.Default.SaveSettings();
@@ -311,7 +315,7 @@ namespace TribalWars.Forms
             //var settings = new SettingsForm();
             //settings.Show();
 
-            var f = new ActivePlayerForm();
+            var f = new TestForm();
             f.Show();
         }
 

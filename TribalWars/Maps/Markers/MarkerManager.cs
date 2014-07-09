@@ -36,6 +36,14 @@ namespace TribalWars.Maps.Markers
         private Marker YourMarker { get; set; }
 
         /// <summary>
+        /// Gets the marker settings for your villages
+        /// </summary>
+        public MarkerSettings YourMarkerSettings
+        {
+            get { return YourMarker.Settings; }
+        }
+
+        /// <summary>
         /// Gets the marker for all other villages
         /// </summary>
         private Marker EnemyMarker { get; set; }
@@ -52,6 +60,14 @@ namespace TribalWars.Maps.Markers
         /// Gets the marker for villages within your tribe
         /// </summary>
         private Marker YourTribeMarker { get; set; }
+
+        /// <summary>
+        /// Gets the marker settings for players of your tribe
+        /// </summary>
+        public MarkerSettings YourTribeMarkerSettings
+        {
+            get { return YourTribeMarker.Settings; }
+        }
 
         /// <summary>
         /// Gets the marker for abandoned villages
@@ -89,6 +105,14 @@ namespace TribalWars.Maps.Markers
             else if (settings.Name == Marker.DefaultNames.Enemy)
             {
                 EnemyMarker = new Marker(settings);
+            }
+            else if (settings.Name == Marker.DefaultNames.You)
+            {
+                YourMarker = new Marker(settings);
+            }
+            else if (settings.Name == Marker.DefaultNames.YourTribe)
+            {
+                YourTribeMarker = new Marker(settings);
             }
             else
             {

@@ -36,12 +36,12 @@ namespace TribalWars.Controls.AccordeonLocation
             this.cmdCenterKingdom = new System.Windows.Forms.Button();
             this.txtK = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this._locationFinderControl1 = new LocationFinderControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.GoHome = new Janus.Windows.EditControls.UIButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.You = new VillagePlayerTribeFinderTextBox();
+            this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
+            this.You = new TribalWars.Controls.Finders.VillagePlayerTribeFinderTextBox();
             groupBox1 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,16 +96,6 @@ namespace TribalWars.Controls.AccordeonLocation
             this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 324);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // _locationFinderControl1
-            // 
-            this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
-            this._locationFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._locationFinderControl1.Location = new System.Drawing.Point(2, 50);
-            this._locationFinderControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this._locationFinderControl1.Name = "_locationFinderControl1";
-            this._locationFinderControl1.Size = new System.Drawing.Size(300, 272);
-            this._locationFinderControl1.TabIndex = 7;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
@@ -148,6 +138,17 @@ namespace TribalWars.Controls.AccordeonLocation
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Active player";
+            this.groupBox4.Visible = false;
+            // 
+            // _locationFinderControl1
+            // 
+            this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
+            this._locationFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._locationFinderControl1.Location = new System.Drawing.Point(2, 50);
+            this._locationFinderControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this._locationFinderControl1.Name = "_locationFinderControl1";
+            this._locationFinderControl1.Size = new System.Drawing.Size(300, 272);
+            this._locationFinderControl1.TabIndex = 7;
             // 
             // You
             // 
@@ -159,7 +160,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.You.Name = "You";
             this.You.Size = new System.Drawing.Size(102, 20);
             this.You.TabIndex = 11;
-            this.You.PlayerSelected += new System.EventHandler<PlayerEventArgs>(this.You_PlayerSelected);
+            this.You.PlayerSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.PlayerEventArgs>(this.You_PlayerSelected);
             // 
             // LocationControl
             // 
