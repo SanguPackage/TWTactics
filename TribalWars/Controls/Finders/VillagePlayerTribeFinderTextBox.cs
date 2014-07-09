@@ -206,19 +206,21 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void EmptyTextBox(bool raiseEvent)
         {
+            Village = null;
+            Player = null;
+            Tribe = null;
+            BackColor = Color.White;
+
+            _tooltip.ToolTipTitle = string.Empty;
+            _tooltip.SetToolTip(this, GetEmptyTooltip());
+
             if (string.IsNullOrEmpty(Text))
                 return;
 
             bool oldHandleText = _handleTextChanged;
             _handleTextChanged = raiseEvent;
 
-            Village = null;
-            Player = null;
-            Tribe = null;
             Text = string.Empty;
-            BackColor = Color.White;
-            _tooltip.ToolTipTitle = string.Empty;
-            _tooltip.SetToolTip(this, GetEmptyTooltip());
 
             _handleTextChanged = oldHandleText;
         }
@@ -237,6 +239,9 @@ namespace TribalWars.Controls.Finders
         public void SetVillage(Village village, bool raiseEvent)
         {
             Village = village;
+            Player = null;
+            Tribe = null;
+
             if (village != null)
             {
                 if (Text != village.LocationString)
@@ -279,7 +284,10 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void SetPlayer(Player player, bool raiseEvent)
         {
+            Village = null;
             Player = player;
+            Tribe = null;
+
             if (player != null)
             {
                 if (Text != player.Name)
@@ -322,7 +330,10 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void SetTribe(Tribe tribe, bool raiseEvent)
         {
+            Village = null;
+            Player = null;
             Tribe = tribe;
+
             if (tribe != null)
             {
                 if (Text != tribe.Tag)
@@ -369,8 +380,6 @@ namespace TribalWars.Controls.Finders
             return string.Empty;
         }
         #endregion
-
-        
     }
 }
 

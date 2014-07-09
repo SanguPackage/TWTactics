@@ -161,6 +161,22 @@ namespace TribalWars.Maps.Markers
             map.Invalidate();
         }
 
+        public void RemoveMarker(Map map, Player player)
+        {
+            _markers.RemoveAll(x => x.Player == player);
+
+            InvalidateMarkers();
+            map.Invalidate();
+        }
+
+        public void RemoveMarker(Map map, Tribe tribe)
+        {
+            _markers.RemoveAll(x => x.Tribe == tribe);
+
+            InvalidateMarkers();
+            map.Invalidate();
+        }
+
         /// <summary>
         /// Gets all user defined markers
         /// </summary>

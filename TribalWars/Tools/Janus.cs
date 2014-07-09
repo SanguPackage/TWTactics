@@ -47,7 +47,7 @@ namespace TribalWars.Tools
             }
         }
 
-        public static void ConfigureAsColor(this GridEXColumn column)
+        public static void ConfigureAsColor(this GridEXColumn column, Color? defaultColor = null)
         {
             column.ColumnType = ColumnType.Text;
             column.EditType = EditType.Custom;
@@ -56,6 +56,10 @@ namespace TribalWars.Tools
                 // Fancy scope so that the colorControl is not captured in FormattingRow
                 var colorControl = new UIColorButton();
                 colorControl.Configure();
+                if (defaultColor.HasValue)
+                {
+                    colorControl.ColorPicker.AutomaticColor = defaultColor.Value;
+                }
 
                 column.GridEX.InitCustomEdit += (sender, e) =>
                     {

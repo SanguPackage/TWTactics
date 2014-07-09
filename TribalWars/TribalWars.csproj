@@ -197,6 +197,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Villages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -32,11 +32,12 @@
             Janus.Windows.Common.Layouts.JanusLayoutReference MarkersGrid_DesignTimeLayout_Reference_0 = new Janus.Windows.Common.Layouts.JanusLayoutReference("GridEXLayoutData.RootTable.Columns.Column6.ButtonImage");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkersControl));
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
             this.MarkersGrid = new Janus.Windows.GridEX.GridEX();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
+            this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.AbandonedMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
-            this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarkersGrid)).BeginInit();
@@ -51,12 +52,22 @@
             this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiGroupBox1.Controls.Add(this.uiButton1);
             this.uiGroupBox1.Controls.Add(this.MarkersGrid);
             this.uiGroupBox1.Location = new System.Drawing.Point(2, 103);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(318, 264);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Markers";
+            // 
+            // uiButton1
+            // 
+            this.uiButton1.Location = new System.Drawing.Point(237, -11);
+            this.uiButton1.Name = "uiButton1";
+            this.uiButton1.Size = new System.Drawing.Size(75, 23);
+            this.uiButton1.TabIndex = 1;
+            this.uiButton1.Text = "uiButton1";
+            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // MarkersGrid
             // 
@@ -67,19 +78,24 @@
             MarkersGrid_DesignTimeLayout.LayoutString = resources.GetString("MarkersGrid_DesignTimeLayout.LayoutString");
             this.MarkersGrid.DesignTimeLayout = MarkersGrid_DesignTimeLayout;
             this.MarkersGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MarkersGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.MarkersGrid.GroupByBoxVisible = false;
             this.MarkersGrid.Location = new System.Drawing.Point(3, 16);
             this.MarkersGrid.Name = "MarkersGrid";
             this.MarkersGrid.Size = new System.Drawing.Size(312, 245);
             this.MarkersGrid.TabIndex = 0;
+            this.MarkersGrid.UpdateMode = Janus.Windows.GridEX.UpdateMode.CellUpdate;
+            this.MarkersGrid.DeletingRecord += new Janus.Windows.GridEX.RowActionCancelEventHandler(this.MarkersGrid_DeletingRecord);
             this.MarkersGrid.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_CellValueChanged);
+            this.MarkersGrid.GetNewRow += new Janus.Windows.GridEX.GetNewRowEventHandler(this.MarkersGrid_GetNewRow);
             this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
-            this.MarkersGrid.RecordsDeleted += new System.EventHandler(this.MarkersGrid_RecordsDeleted);
+            this.MarkersGrid.UpdatingCell += new Janus.Windows.GridEX.UpdatingCellEventHandler(this.MarkersGrid_UpdatingCell);
             this.MarkersGrid.RecordUpdated += new System.EventHandler(this.MarkersGrid_RecordUpdated);
             this.MarkersGrid.RecordAdded += new System.EventHandler(this.MarkersGrid_RecordAdded);
+            this.MarkersGrid.UpdatingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_UpdatingRecord);
             this.MarkersGrid.AddingRecord += new System.ComponentModel.CancelEventHandler(this.MarkersGrid_AddingRecord);
             this.MarkersGrid.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_ColumnButtonClick);
+            this.MarkersGrid.CurrentCellChanged += new System.EventHandler(this.MarkersGrid_CurrentCellChanged);
             this.MarkersGrid.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.MarkersGrid_InitCustomEdit);
             this.MarkersGrid.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.MarkersGrid_EndCustomEdit);
             // 
@@ -93,6 +109,19 @@
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Change enemy marker";
             // 
+            // EnemyMarker
+            // 
+            this.EnemyMarker.AutoUpdateMarkers = true;
+            this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
+            this.EnemyMarker.CanDeactivate = false;
+            this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
+            this.EnemyMarker.Location = new System.Drawing.Point(6, 16);
+            this.EnemyMarker.Margin = new System.Windows.Forms.Padding(0);
+            this.EnemyMarker.Name = "EnemyMarker";
+            this.EnemyMarker.Size = new System.Drawing.Size(307, 25);
+            this.EnemyMarker.TabIndex = 0;
+            // 
             // uiGroupBox3
             // 
             this.uiGroupBox3.Controls.Add(this.AbandonedMarker);
@@ -105,6 +134,7 @@
             // 
             // AbandonedMarker
             // 
+            this.AbandonedMarker.AutoUpdateMarkers = true;
             this.AbandonedMarker.BackColor = System.Drawing.Color.Transparent;
             this.AbandonedMarker.CanDeactivate = false;
             this.AbandonedMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
@@ -114,18 +144,6 @@
             this.AbandonedMarker.Name = "AbandonedMarker";
             this.AbandonedMarker.Size = new System.Drawing.Size(307, 25);
             this.AbandonedMarker.TabIndex = 0;
-            // 
-            // EnemyMarker
-            // 
-            this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
-            this.EnemyMarker.CanDeactivate = false;
-            this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
-            this.EnemyMarker.Location = new System.Drawing.Point(6, 16);
-            this.EnemyMarker.Margin = new System.Windows.Forms.Padding(0);
-            this.EnemyMarker.Name = "EnemyMarker";
-            this.EnemyMarker.Size = new System.Drawing.Size(307, 25);
-            this.EnemyMarker.TabIndex = 0;
             // 
             // MarkersControl
             // 
@@ -157,5 +175,6 @@
         private MarkerSettingsControl EnemyMarker;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;
         private MarkerSettingsControl AbandonedMarker;
+        private Janus.Windows.EditControls.UIButton uiButton1;
     }
 }
