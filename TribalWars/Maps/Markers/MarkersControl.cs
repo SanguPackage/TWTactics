@@ -197,9 +197,9 @@ namespace TribalWars.Maps.Markers
         /// </summary>
         private void MarkersGrid_ColumnButtonClick(object sender, ColumnActionEventArgs e)
         {
-            if (e.Column.Key == "Delete")
+            if (e.Column.Key == "Delete" && MarkersGrid.CurrentRow != null)
             {
-                if (MarkersGrid.CurrentRow != null && MarkersGrid.CurrentRow.RowType == RowType.Record)
+                if (MarkersGrid.CurrentRow.RowType == RowType.Record)
                 {
                     var row = MarkersGrid.CurrentRow.DataRow as MarkerGridRow;
                     DeleteMarker(row);
@@ -232,6 +232,7 @@ namespace TribalWars.Maps.Markers
                     else
                     {
                         e.Cancel = true;
+                        MarkersGrid.CancelCurrentEdit();
                     }
                 }
             }

@@ -21,6 +21,10 @@ namespace TribalWars.Maps.Markers
         public Tribe Tribe { get; set; }
         public Player Player { get; set; }
         public string View { get; set; }
+
+        /// <summary>
+        /// For sorting on TypeImage
+        /// </summary>
         public int Type
         {
             get
@@ -28,13 +32,6 @@ namespace TribalWars.Maps.Markers
                 if (Tribe != null) return 0;
                 return 1;
             }
-        }
-
-        public bool IsValid()
-        {
-            if (Tribe == null && Player == null) return false;
-            if (string.IsNullOrWhiteSpace(View)) return false;
-            return true;
         }
 
         public string Name
@@ -51,6 +48,10 @@ namespace TribalWars.Maps.Markers
             }
         }
 
+        /// <summary>
+        /// For custom gridex binding with
+        /// VillagePlayerTribeSelector
+        /// </summary>
         public object SelectedPlayerOrTribe
         {
             get
@@ -105,6 +106,13 @@ namespace TribalWars.Maps.Markers
         #endregion
 
         #region Public
+        public bool IsValid()
+        {
+            if (Tribe == null && Player == null) return false;
+            if (string.IsNullOrWhiteSpace(View)) return false;
+            return true;
+        }
+
         public MarkerSettings GetMarkerSettings()
         {
             return new MarkerSettings("", Enabled, Color, ExtraColor, View);
