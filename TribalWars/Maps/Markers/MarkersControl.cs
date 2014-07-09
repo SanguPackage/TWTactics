@@ -245,6 +245,9 @@ namespace TribalWars.Maps.Markers
         private void RefreshMarkersButton_Click(object sender, EventArgs e)
         {
             SetMarkersGridDataSource();
+
+            Debug.WriteLine("MarkersGrid FilterMode: " + MarkersGrid.FilterMode.ToString());
+            Debug.WriteLine("MarkersGrid UpdateMode: " + MarkersGrid.UpdateMode.ToString());
         }
         #endregion
 

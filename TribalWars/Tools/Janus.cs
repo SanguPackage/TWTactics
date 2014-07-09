@@ -37,9 +37,14 @@ namespace TribalWars.Tools
 
             grid.FilterMode = allowFilter ? FilterMode.Automatic : FilterMode.None;
             grid.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges;
+            grid.UpdateMode = UpdateMode.CellUpdate;
+            grid.FilterRowButtonStyle = FilterRowButtonStyle.ConditionOperatorDropDown;
+
+            //column: DefaultFilterRowComparison
+            
 
 #if !DEBUG
-            grid.SaveSettings = true;
+            //grid.SaveSettings = true;
 #endif
             grid.TotalRowPosition = TotalRowPosition.BottomFixed;
             grid.ColumnAutoResize = true;
@@ -48,6 +53,8 @@ namespace TribalWars.Tools
             {
                 grid.AutoEdit = false;
             }
+
+            grid.AutoEdit = true;
         }
 
         public static void ConfigureAsColor(this GridEXColumn column, Color? defaultColor = null)

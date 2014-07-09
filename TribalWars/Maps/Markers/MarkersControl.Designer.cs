@@ -89,6 +89,7 @@
             this.MarkersGrid.GroupByBoxVisible = false;
             this.MarkersGrid.Location = new System.Drawing.Point(3, 22);
             this.MarkersGrid.Name = "MarkersGrid";
+            this.MarkersGrid.SettingsKey = "MarkersGrid2";
             this.MarkersGrid.Size = new System.Drawing.Size(312, 239);
             this.MarkersGrid.TabIndex = 0;
             this.MarkersGrid.UpdateMode = Janus.Windows.GridEX.UpdateMode.CellUpdate;

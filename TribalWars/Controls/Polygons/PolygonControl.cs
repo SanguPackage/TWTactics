@@ -126,6 +126,12 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 GridExPolygon.DataSource = polygons;
                 GridExPolygon.MoveFirst();
             }
+
+
+            //TODO: GridExVillage.RootTable.Columns["PLAYER"].
+            Debug.WriteLine("FilterMode: " + GridExVillage.FilterMode.ToString());
+            Debug.WriteLine("UpdateMode: " + GridExVillage.UpdateMode.ToString());
+
         }
         #endregion
 
