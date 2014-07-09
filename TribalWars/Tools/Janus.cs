@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Controls.Finders;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
@@ -42,12 +43,15 @@ namespace TribalWars.Tools
 
             if (forEdit)
             {
-                grid.AutoEdit = true;
+                grid.AutoEdit = false;
             }
         }
 
         public static void ConfigureAsColor(this GridEXColumn column)
         {
+            column.ColumnType = ColumnType.Text;
+            column.EditType = EditType.Custom;
+
             {
                 // Fancy scope so that the colorControl is not captured in FormattingRow
                 var colorControl = new UIColorButton();
@@ -57,7 +61,10 @@ namespace TribalWars.Tools
                     {
                         if (e.Column == column)
                         {
-                            colorControl.SelectedColor = (Color) e.Value;
+                            if (e.Value != null)
+                            {
+                                colorControl.SelectedColor = (Color) e.Value;
+                            }
                             e.EditControl = colorControl;
                         }
                     };
@@ -81,6 +88,7 @@ namespace TribalWars.Tools
                         cell.FormatStyle = new GridEXFormatStyle();
                         cell.FormatStyle.BackColor = color;
                         cell.Text = color.Description();
+                        cell.ToolTipText = cell.Text;
                     }
                 };
         }

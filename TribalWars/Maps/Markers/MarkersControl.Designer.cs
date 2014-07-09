@@ -76,7 +76,13 @@
             this.MarkersGrid.Name = "MarkersGrid";
             this.MarkersGrid.Size = new System.Drawing.Size(301, 222);
             this.MarkersGrid.TabIndex = 0;
+            this.MarkersGrid.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.MarkersGrid_CellValueChanged);
             this.MarkersGrid.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.MarkersGrid_FormattingRow);
+            this.MarkersGrid.RecordsDeleted += new System.EventHandler(this.MarkersGrid_RecordsDeleted);
+            this.MarkersGrid.RecordUpdated += new System.EventHandler(this.MarkersGrid_RecordUpdated);
+            this.MarkersGrid.RecordAdded += new System.EventHandler(this.MarkersGrid_RecordAdded);
+            this.MarkersGrid.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.MarkersGrid_InitCustomEdit);
+            this.MarkersGrid.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.MarkersGrid_EndCustomEdit);
             // 
             // uiGroupBox2
             // 

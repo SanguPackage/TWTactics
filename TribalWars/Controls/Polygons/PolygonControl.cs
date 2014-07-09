@@ -98,7 +98,7 @@ namespace TribalWars.Controls.Polygons
         /// </summary>
         private void LoadPolygonData_Click(object sender, EventArgs e)
         {
-            Polygon[] polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToArray();
+            List<Polygon> polygons = World.Default.Map.Manipulators.PolygonManipulator.GetAllPolygons().ToList();
             if (!polygons.Any())
             {
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);

@@ -124,7 +124,12 @@ namespace TribalWars.Tools
         {
             if (color.IsNamedColor) return color.Name;
             if (color.IsKnownColor) return color.ToKnownColor().ToString();
-            return color.ToString();
+            var colorString = color.ToString();
+
+            int startOfRgb = colorString.IndexOf("R", StringComparison.InvariantCulture);
+            if (startOfRgb == -1) return colorString;
+
+            return colorString.Substring(startOfRgb).TrimEnd(new[] {']'});
         }
         #endregion
 

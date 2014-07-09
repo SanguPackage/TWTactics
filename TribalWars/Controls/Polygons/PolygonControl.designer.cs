@@ -120,7 +120,6 @@ namespace TribalWars.Controls.Polygons
             this.GridExVillage.ImageList = this.VisibleImageList;
             this.GridExVillage.Location = new System.Drawing.Point(6, 19);
             this.GridExVillage.Name = "GridExVillage";
-            this.GridExVillage.SaveSettings = true;
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
             this.GridExVillage.SettingsKey = "PolygonVillage";
             this.GridExVillage.Size = new System.Drawing.Size(706, 244);
@@ -183,20 +182,19 @@ namespace TribalWars.Controls.Polygons
             // 
             // GridExPolygon
             // 
+            this.GridExPolygon.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExPolygon.AlternatingColors = true;
             this.GridExPolygon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridExPolygon.AutoEdit = true;
             GridExPolygon_DesignTimeLayout.LayoutString = resources.GetString("GridExPolygon_DesignTimeLayout.LayoutString");
             this.GridExPolygon.DesignTimeLayout = GridExPolygon_DesignTimeLayout;
-            this.GridExPolygon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridExPolygon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.GridExPolygon.GroupByBoxVisible = false;
             this.GridExPolygon.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
             this.GridExPolygon.Location = new System.Drawing.Point(6, 19);
             this.GridExPolygon.Name = "GridExPolygon";
             this.GridExPolygon.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.GridExPolygon.SaveSettings = true;
             this.GridExPolygon.SettingsKey = "PolygonManage";
             this.GridExPolygon.Size = new System.Drawing.Size(706, 244);
             this.GridExPolygon.TabIndex = 7;
@@ -227,14 +225,12 @@ namespace TribalWars.Controls.Polygons
             this.Name = "PolygonControl";
             this.Size = new System.Drawing.Size(829, 278);
             this.Load += new System.EventHandler(this.PolygonControl_Load);
-            ((System.Configuration.IPersistComponentSettings)(this.GridExVillage)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.polygonDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeneratorActions)).EndInit();
             this.GeneratorActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
-            ((System.Configuration.IPersistComponentSettings)(this.GridExPolygon)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExPolygon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentModusGroupbox)).EndInit();
             this.CurrentModusGroupbox.ResumeLayout(false);
