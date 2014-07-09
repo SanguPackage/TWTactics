@@ -41,19 +41,12 @@ namespace TribalWars.Tools
             grid.FilterRowButtonStyle = FilterRowButtonStyle.ConditionOperatorDropDown;
 
             //column: DefaultFilterRowComparison
-            
 
 #if !DEBUG
-            //grid.SaveSettings = true;
+            grid.SaveSettings = true;
 #endif
             grid.TotalRowPosition = TotalRowPosition.BottomFixed;
             grid.ColumnAutoResize = true;
-
-            if (forEdit)
-            {
-                grid.AutoEdit = false;
-            }
-
             grid.AutoEdit = true;
         }
 

@@ -67,6 +67,7 @@ namespace TribalWars.Forms
             this.MenuFileSaveSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuFileSaveSettingsAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuFileSetActivePlayer = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuFileSynchronizeTime = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,6 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
             this.MapDistance = new TribalWars.Controls.AttackPlan.MapDistanceCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
@@ -120,9 +120,9 @@ namespace TribalWars.Forms
             this.Polygon = new TribalWars.Controls.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.monitoringControl1 = new TribalWars.Worlds.Monitoring.MonitoringControl();
+            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.MenuFileSetActivePlayer = new System.Windows.Forms.ToolStripMenuItem();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -390,6 +390,13 @@ namespace TribalWars.Forms
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(303, 6);
+            // 
+            // MenuFileSetActivePlayer
+            // 
+            this.MenuFileSetActivePlayer.Name = "MenuFileSetActivePlayer";
+            this.MenuFileSetActivePlayer.Size = new System.Drawing.Size(306, 22);
+            this.MenuFileSetActivePlayer.Text = "Set Active Player";
+            this.MenuFileSetActivePlayer.Click += new System.EventHandler(this.MenuFileSetActivePlayer_Click);
             // 
             // MenuFileSynchronizeTime
             // 
@@ -927,14 +934,6 @@ namespace TribalWars.Forms
             this.TabsMonitoring,
             this.uiTabPage1});
             // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(848, 583);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "Testing";
-            // 
             // TabsMap
             // 
             this.TabsMap.Controls.Add(this.Map);
@@ -1020,6 +1019,14 @@ namespace TribalWars.Forms
             this.monitoringControl1.Size = new System.Drawing.Size(848, 583);
             this.monitoringControl1.TabIndex = 0;
             // 
+            // uiTabPage1
+            // 
+            this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPage1.Name = "uiTabPage1";
+            this.uiTabPage1.Size = new System.Drawing.Size(848, 583);
+            this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.Text = "Testing";
+            // 
             // FormToolbarContainer
             // 
             // 
@@ -1044,13 +1051,6 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
-            // 
-            // MenuFileSetActivePlayer
-            // 
-            this.MenuFileSetActivePlayer.Name = "MenuFileSetActivePlayer";
-            this.MenuFileSetActivePlayer.Size = new System.Drawing.Size(306, 22);
-            this.MenuFileSetActivePlayer.Text = "Set Active Player";
-            this.MenuFileSetActivePlayer.Click += new System.EventHandler(this.MenuFileSetActivePlayer_Click);
             // 
             // MainForm
             // 

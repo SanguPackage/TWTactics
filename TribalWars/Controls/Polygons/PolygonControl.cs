@@ -64,7 +64,7 @@ namespace TribalWars.Controls.Polygons
                 {
                     if (row.RowType == RowType.Record)
                     {
-                        var polygon = (Polygon) row.DataRow;
+                        var polygon = (Polygon)row.DataRow;
                         if (polygon.Equals(polygons[0]))
                         {
                             GridExPolygon.MoveTo(row);
@@ -83,7 +83,7 @@ namespace TribalWars.Controls.Polygons
         /// </summary>
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
         {
-            var villageDs = (PolygonDataSet) GridExVillage.DataSource;
+            var villageDs = (PolygonDataSet)GridExVillage.DataSource;
             foreach (var record in villageDs.VILLAGE.Rows.OfType<PolygonDataSet.VILLAGERow>())
             {
                 record.ISVISIBLE = World.Default.Map.Display.IsVisible(record.Village);
@@ -126,12 +126,6 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 GridExPolygon.DataSource = polygons;
                 GridExPolygon.MoveFirst();
             }
-
-
-            //TODO: GridExVillage.RootTable.Columns["PLAYER"].
-            Debug.WriteLine("FilterMode: " + GridExVillage.FilterMode.ToString());
-            Debug.WriteLine("UpdateMode: " + GridExVillage.UpdateMode.ToString());
-
         }
         #endregion
 
@@ -221,18 +215,18 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             }
         }
 
-         /// <summary>
-         /// PinPoint the village
-         /// </summary>
-         private void GridExVillage_RowDoubleClick(object sender, RowActionEventArgs e)
-         {
-             if (e.Row.RowType == RowType.Record)
-             {
-                 PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
-                 World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
-                 World.Default.Map.SetCenter(row.Village.Location);
-             }
-         }
+        /// <summary>
+        /// PinPoint the village
+        /// </summary>
+        private void GridExVillage_RowDoubleClick(object sender, RowActionEventArgs e)
+        {
+            if (e.Row.RowType == RowType.Record)
+            {
+                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
+                World.Default.Map.SetCenter(row.Village.Location);
+            }
+        }
 
         /// <summary>
         /// Special formatting, image display, tooltips
@@ -296,19 +290,19 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         private void GridExVillage_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
         {
             GridEXRow groupToUpdate = e.Row;
-             if (e.Row.RowType == RowType.Record)
-             {
-                 groupToUpdate = e.Row.Parent;
-             }
- 
-             if (groupToUpdate.RowType == RowType.GroupHeader)
-             {
-                 UpdateGroupRecordText(groupToUpdate);
-                 if (groupToUpdate.Parent != null)
-                 {
-                     UpdateGroupRecordText(groupToUpdate.Parent);
-                 }
-             }
+            if (e.Row.RowType == RowType.Record)
+            {
+                groupToUpdate = e.Row.Parent;
+            }
+
+            if (groupToUpdate.RowType == RowType.GroupHeader)
+            {
+                UpdateGroupRecordText(groupToUpdate);
+                if (groupToUpdate.Parent != null)
+                {
+                    UpdateGroupRecordText(groupToUpdate.Parent);
+                }
+            }
         }
 
         /// <summary>
