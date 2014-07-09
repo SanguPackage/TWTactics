@@ -191,6 +191,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Villages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Markers\MarkersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Maps\Markers\MarkersControl.Designer.cs">
+      <DependentUpon>MarkersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Worlds\Monitoring\MonitoringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -479,6 +485,9 @@
     <EmbeddedResource Include="Controls\TimeConverter\TimeConverterCalculatorControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
+      <DependentUpon>MarkersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Worlds\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>

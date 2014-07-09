@@ -12,6 +12,7 @@ using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
+using BorderStyle = Janus.Windows.GridEX.BorderStyle;
 using ComboStyle = Janus.Windows.EditControls.ComboStyle;
 using CommandType = Janus.Windows.UI.CommandBars.CommandType;
 
@@ -23,6 +24,65 @@ namespace TribalWars.Tools
     public static class Janus
     {
         #region GridEX
+        public static void Configure(this GridEX grid, bool forEdit, bool allowFilter)
+        {
+            grid.AlternatingColors = true;
+            grid.BorderStyle = BorderStyle.Flat;
+            grid.HideSelection = HideSelection.Highlight;
+            grid.AllowRemoveColumns = InheritableBoolean.False;
+            grid.FilterMode = allowFilter ? FilterMode.Automatic : FilterMode.None;
+            grid.HideColumnsWhenGrouped = InheritableBoolean.True;
+            grid.FilterRowButtonStyle = FilterRowButtonStyle.ConditionOperatorDropDown;
+            grid.FocusCellDisplayMode = forEdit ? FocusCellDisplayMode.UseFocusCellFormatStyle : FocusCellDisplayMode.UseSelectedFormatStyle;
+#if !DEBUG
+            grid.SaveSettings = true;
+#endif
+            grid.TotalRowPosition = TotalRowPosition.BottomFixed;
+            grid.ColumnAutoResize = true;
+
+            if (forEdit)
+            {
+                grid.AutoEdit = true;
+            }
+        }
+
+        public static void ConfigureAsColor(this GridEXColumn column)
+        {
+            {
+                // Fancy scope so that the colorControl is not captured in FormattingRow
+                var colorControl = new UIColorButton();
+                colorControl.Configure();
+
+                column.GridEX.InitCustomEdit += (sender, e) =>
+                    {
+                        if (e.Column == column)
+                        {
+                            colorControl.SelectedColor = (Color) e.Value;
+                            e.EditControl = colorControl;
+                        }
+                    };
+
+                column.GridEX.EndCustomEdit += (sender, e) =>
+                    {
+                        if (e.Column == column)
+                        {
+                            e.Value = colorControl.SelectedColor;
+                            e.DataChanged = true;
+                        }
+                    };
+            }
+
+            column.GridEX.FormattingRow += (sender, e) =>
+                {
+                    if (e.Row.RowType == RowType.Record)
+                    {
+                        var cell = e.Row.Cells[column];
+                        cell.FormatStyle = new GridEXFormatStyle();
+                        cell.FormatStyle.BackColor = (Color)cell.Value;
+                    }
+                };
+        }
+
         /// <summary>
         /// Get DataRow when bound to DataSet
         /// </summary>

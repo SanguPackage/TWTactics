@@ -34,9 +34,9 @@ namespace TribalWars.Maps.Markers
             this.MarkerView = new Janus.Windows.EditControls.UIComboBox();
             this.MarkerExtraColor = new Janus.Windows.EditControls.UIColorButton();
             this.MarkerColor = new Janus.Windows.EditControls.UIColorButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BilliardMarkerPicturebox = new System.Windows.Forms.PictureBox();
             this.MarkerActivePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BilliardMarkerPicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // MarkerActive
@@ -109,21 +109,21 @@ namespace TribalWars.Maps.Markers
             this.MarkerColor.ToolTipText = "Choose main color";
             this.MarkerColor.SelectedColorChanged += new System.EventHandler(this.MarkerColor_SelectedColorChanged);
             // 
-            // pictureBox1
+            // BilliardMarkerPicturebox
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(5, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 22);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.BilliardMarkerPicturebox.Image = ((System.Drawing.Image)(resources.GetObject("BilliardMarkerPicturebox.Image")));
+            this.BilliardMarkerPicturebox.Location = new System.Drawing.Point(5, 3);
+            this.BilliardMarkerPicturebox.Name = "BilliardMarkerPicturebox";
+            this.BilliardMarkerPicturebox.Size = new System.Drawing.Size(24, 22);
+            this.BilliardMarkerPicturebox.TabIndex = 2;
+            this.BilliardMarkerPicturebox.TabStop = false;
             // 
             // MarkerSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.pictureBox1);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.BilliardMarkerPicturebox);
             this.Controls.Add(this.MarkerActivePanel);
             this.Controls.Add(this.MarkerActive);
             this.Margin = new System.Windows.Forms.Padding(0);
@@ -131,7 +131,7 @@ namespace TribalWars.Maps.Markers
             this.Size = new System.Drawing.Size(299, 25);
             this.Load += new System.EventHandler(this.MarkerSettingsControl_Load);
             this.MarkerActivePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BilliardMarkerPicturebox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -143,7 +143,7 @@ namespace TribalWars.Maps.Markers
         private Janus.Windows.EditControls.UIColorButton MarkerExtraColor;
         private Janus.Windows.EditControls.UIColorButton MarkerColor;
         private Janus.Windows.EditControls.UIComboBox MarkerView;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox BilliardMarkerPicturebox;
 
     }
 }

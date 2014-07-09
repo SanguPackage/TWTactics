@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Xml;
 using TribalWars.Tools;
 using TribalWars.Villages;
@@ -40,6 +41,14 @@ namespace TribalWars.Maps.Markers
         private Marker EnemyMarker { get; set; }
 
         /// <summary>
+        /// Gets the marker settinggs for all other villages
+        /// </summary>
+        public MarkerSettings EnemyMarkerSettings
+        {
+            get { return EnemyMarker.Settings; }
+        }
+
+        /// <summary>
         /// Gets the marker for villages within your tribe
         /// </summary>
         private Marker YourTribeMarker { get; set; }
@@ -48,6 +57,14 @@ namespace TribalWars.Maps.Markers
         /// Gets the marker for abandoned villages
         /// </summary>
         private Marker AbandonedMarker { get; set; }
+
+        /// <summary>
+        /// Gets the marker settings for abandoned villages
+        /// </summary>
+        public MarkerSettings AbandonedMarkerSettings
+        {
+            get { return AbandonedMarker.Settings; }
+        }
         #endregion
 
         #region Constructors
@@ -61,6 +78,28 @@ namespace TribalWars.Maps.Markers
 
         #region Public Methods
         /// <summary>
+        /// Update Enemy or Abandoned markers
+        /// </summary>
+        public void UpdateDefaultMarker(Map map, MarkerSettings settings)
+        {
+            if (settings.Name == Marker.DefaultNames.Abandoned)
+            {
+                AbandonedMarker = new Marker(settings);
+            }
+            else if (settings.Name == Marker.DefaultNames.Enemy)
+            {
+                EnemyMarker = new Marker(settings);
+            }
+            else
+            {
+                Debug.Assert(false, "'You' and 'Your Tribe' markers are updated through the regular UpdateMarker methods");
+            }
+
+            InvalidateMarkers();
+            map.Invalidate();
+        }
+
+        /// <summary>
         /// Update a player marker and refresh the map
         /// </summary>
         public void UpdateMarker(Map map, Player player, MarkerSettings settings)
@@ -68,13 +107,11 @@ namespace TribalWars.Maps.Markers
             if (player == World.Default.You)
             {
                 YourMarker = new Marker(settings);
-                Debug.WriteLine("SetYou: " + settings);
             }
             else
             {
                 _markers.RemoveAll(x => x.Player == player);
                 _markers.Add(new Marker(player, settings));
-                Debug.WriteLine("SetPlayer: " + player.Name + " -> " + settings);
             }
 
             InvalidateMarkers();
@@ -98,6 +135,14 @@ namespace TribalWars.Maps.Markers
 
             InvalidateMarkers();
             map.Invalidate();
+        }
+
+        /// <summary>
+        /// Gets all user defined markers
+        /// </summary>
+        public IEnumerable<MarkerGridRow> GetMarkers()
+        {
+            return _markers.Select(x => new MarkerGridRow(x));
         }
 
         /// <summary>

@@ -28,15 +28,16 @@ namespace TribalWars.Controls.Polygons
     /// </summary>
     public partial class PolygonControl : UserControl
     {
-        #region Fields
-        private readonly UIColorButton _colorControl;
-        #endregion
+        //#region Fields
+        //private readonly UIColorButton _colorControl;
+        //#endregion
 
         #region Constructors
         public PolygonControl()
         {
             InitializeComponent();
-            _colorControl = new UIColorButton();
+            //_colorControl = new UIColorButton();
+            //_colorControl.Configure();
         }
 
         public void Initialize()
@@ -48,6 +49,11 @@ namespace TribalWars.Controls.Polygons
         #endregion
 
         #region Event Handlers
+        private void PolygonControl_Load(object sender, EventArgs e)
+        {
+            GridExPolygon.RootTable.Columns["LineColor"].ConfigureAsColor();
+        }
+
         /// <summary>
         /// BBCodeArea polygon(s) have been ported to this control
         /// </summary>
@@ -307,6 +313,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         /// </summary>
         private void GridExVillage_GroupsChanging(object sender, GroupsChangingEventArgs e)
         {
+            // Things will break if groups are changed
             e.Cancel = true;
         }
 
@@ -374,25 +381,25 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         }
         #endregion
 
-        #region GridExPolygon
-        private void GridExPolygon_InitCustomEdit(object sender, InitCustomEditEventArgs e)
-        {
-            if (e.Column.Key == "LineColor")
-            {
-                _colorControl.SelectedColor = (Color)e.Value;
-                e.EditControl = _colorControl;
-            }
-        }
+        //#region GridExPolygon
+        //private void GridExPolygon_InitCustomEdit(object sender, InitCustomEditEventArgs e)
+        //{
+        //    if (e.Column.Key == "LineColor")
+        //    {
+        //        //_colorControl.SelectedColor = (Color)e.Value;
+        //        //e.EditControl = _colorControl;
+        //    }
+        //}
 
-        private void GridExPolygon_EndCustomEdit(object sender, EndCustomEditEventArgs e)
-        {
-            if (e.Column.Key == "LineColor")
-            {
-                e.Value = _colorControl.SelectedColor;
-                e.DataChanged = true;
-            }
-        }
-        #endregion
+        //private void GridExPolygon_EndCustomEdit(object sender, EndCustomEditEventArgs e)
+        //{
+        //    if (e.Column.Key == "LineColor")
+        //    {
+        //        //e.Value = _colorControl.SelectedColor;
+        //        //e.DataChanged = true;
+        //    }
+        //}
+        //#endregion
 
         #region Modus Switch
         private void ModusVillage_Click(object sender, EventArgs e)

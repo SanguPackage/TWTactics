@@ -190,6 +190,7 @@ namespace TribalWars.Controls.Polygons
             this.GridExPolygon.AutoEdit = true;
             GridExPolygon_DesignTimeLayout.LayoutString = resources.GetString("GridExPolygon_DesignTimeLayout.LayoutString");
             this.GridExPolygon.DesignTimeLayout = GridExPolygon_DesignTimeLayout;
+            this.GridExPolygon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GridExPolygon.GroupByBoxVisible = false;
             this.GridExPolygon.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
             this.GridExPolygon.Location = new System.Drawing.Point(6, 19);
@@ -200,8 +201,6 @@ namespace TribalWars.Controls.Polygons
             this.GridExPolygon.Size = new System.Drawing.Size(706, 244);
             this.GridExPolygon.TabIndex = 7;
             this.GridExPolygon.Visible = false;
-            this.GridExPolygon.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.GridExPolygon_InitCustomEdit);
-            this.GridExPolygon.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.GridExPolygon_EndCustomEdit);
             // 
             // CurrentModusGroupbox
             // 
@@ -209,8 +208,8 @@ namespace TribalWars.Controls.Polygons
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentModusGroupbox.Controls.Add(this.GridExVillageShowFieldChooser);
-            this.CurrentModusGroupbox.Controls.Add(this.GridExVillage);
             this.CurrentModusGroupbox.Controls.Add(this.GridExPolygon);
+            this.CurrentModusGroupbox.Controls.Add(this.GridExVillage);
             this.CurrentModusGroupbox.Location = new System.Drawing.Point(109, 3);
             this.CurrentModusGroupbox.Name = "CurrentModusGroupbox";
             this.CurrentModusGroupbox.Size = new System.Drawing.Size(718, 269);
@@ -227,6 +226,7 @@ namespace TribalWars.Controls.Polygons
             this.Controls.Add(this.GeneratorActions);
             this.Name = "PolygonControl";
             this.Size = new System.Drawing.Size(829, 278);
+            this.Load += new System.EventHandler(this.PolygonControl_Load);
             ((System.Configuration.IPersistComponentSettings)(this.GridExVillage)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.polygonDataSet1)).EndInit();
