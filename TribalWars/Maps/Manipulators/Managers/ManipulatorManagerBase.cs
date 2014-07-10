@@ -22,8 +22,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         #region Fields
         protected readonly List<ManipulatorBase> _manipulators;
         protected ManipulatorBase _fullControllManipulator;
-
-        private readonly JanusSuperTip _toolTipControl;
         #endregion
 
         #region Properties
@@ -39,7 +37,6 @@ namespace TribalWars.Maps.Manipulators.Managers
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();
-            _toolTipControl = JanusControls.CreateTooltip();
             TooltipActive = showTooltip;
         }
         #endregion
@@ -78,11 +75,6 @@ namespace TribalWars.Maps.Manipulators.Managers
             {
                 _map.ShowTooltip(village);
             }
-        }
-
-        public void StopTooltip()
-        {
-            _toolTipControl.HideActiveToolTip();
         }
         #endregion
 

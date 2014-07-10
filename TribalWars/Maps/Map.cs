@@ -426,6 +426,11 @@ namespace TribalWars.Maps
 
             _toolTip.Show(settings, _control);
         }
+
+        public void StopTooltip()
+        {
+            _toolTip.HideActiveToolTip();
+        }
         #endregion
     }
 }

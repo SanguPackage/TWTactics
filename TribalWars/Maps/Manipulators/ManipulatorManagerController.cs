@@ -176,7 +176,7 @@ namespace TribalWars.Maps.Manipulators
             }
             else
             {
-                CurrentManipulator.StopTooltip();
+                Map.StopTooltip();
             }
 
             // Invoke the MouseMoved delegate each time the current mouse location is different from the last location
