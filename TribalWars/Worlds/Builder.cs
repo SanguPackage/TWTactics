@@ -188,7 +188,7 @@ namespace TribalWars.Worlds
         public static void ReadWorld(string worldXmlPath)
         {
             World w = World.Default;
-            var info = WorldTemplate.World.LoadFromFile(worldXmlPath);
+            var info = WorldTemplate.WorldConfiguration.LoadFromFile(worldXmlPath);
 
             w.Settings.Server = new Uri(info.Server);
             w.Settings.Name = info.Name;
@@ -249,7 +249,7 @@ namespace TribalWars.Worlds
         /// <summary>
         /// Loads the buildings from the World.xml stream
         /// </summary>
-        private static Dictionary<BuildingTypes, Building> ReadWorldBuildings(IEnumerable<WorldBuildingsBuilding> buildingsIn)
+        private static Dictionary<BuildingTypes, Building> ReadWorldBuildings(IEnumerable<WorldConfigurationBuildingsBuilding> buildingsIn)
         {
             var buildingsOut = new Dictionary<BuildingTypes, Building>();
             foreach (var building in buildingsIn)
@@ -264,7 +264,7 @@ namespace TribalWars.Worlds
         /// <summary>
         /// Loads the units from the World.xml stream
         /// </summary>
-        private static Dictionary<UnitTypes, Unit> ReadWorldUnits(IEnumerable<WorldUnitsUnit> unitsIn)
+        private static Dictionary<UnitTypes, Unit> ReadWorldUnits(IEnumerable<WorldConfigurationUnitsUnit> unitsIn)
         {
             var  unitsOut = new Dictionary<UnitTypes, Unit>();
             foreach (var unit in unitsIn)

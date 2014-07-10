@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<World xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<WorldConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Server>http://www.{ServerUrl}</Server>
   <Name>{WorldName}</Name>
   <Offset>0</Offset>
@@ -434,4 +434,4 @@
       <CostPeople>0</CostPeople>
     </Unit>
   </Units>
-</World>
+</WorldConfiguration>

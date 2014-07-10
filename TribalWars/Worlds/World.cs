@@ -282,7 +282,7 @@ namespace TribalWars.Worlds
             // world.xml
             Debug.Assert(Settings.ServerOffset.Hours == (int)Settings.ServerOffset.TotalHours);
 
-            var worldSettings = WorldTemplate.World.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
+            var worldSettings = WorldTemplate.WorldConfiguration.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
             worldSettings.Offset = Settings.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
             worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
         }

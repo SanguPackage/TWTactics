@@ -451,7 +451,7 @@ namespace TribalWars.Worlds
                 }
 
                 // world.xml
-                var worldInfo = WorldTemplate.World.LoadFromFile(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString));
+                var worldInfo = WorldConfiguration.LoadFromFile(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString));
                 worldInfo.Name = worldName;
                 using (var timeZoneSetter = new TimeZoneForm())
                 {
@@ -536,19 +536,19 @@ namespace TribalWars.Worlds
             /// Gets the unit information for this world
             /// and combines it with TWTactics data
             /// </summary>
-            private static IEnumerable<WorldUnitsUnit> GetWorldUnitSettings(string worldName, ServerInfo server)
+            private static IEnumerable<WorldConfigurationUnitsUnit> GetWorldUnitSettings(string worldName, ServerInfo server)
             {
                 List<TacticsUnit> twTacticsUnits = TacticsUnit.GetUnitsFromXml(Path.Combine(WorldTemplateDirectory, "TacticsUnits.xml"));
                 IEnumerable<TwUnit> twUnits = DownloadWorldUnitSettings(worldName, server.ServerUrl);
 
-                var list = new List<WorldUnitsUnit>();
+                var list = new List<WorldConfigurationUnitsUnit>();
                 int position = 0;
                 foreach (TwUnit twUnit in twUnits)
                 {
                     TacticsUnit tacticsUnit = twTacticsUnits.SingleOrDefault(x => x.Type == twUnit.Type);
                     if (tacticsUnit != null)
                     {
-                        list.Add(new WorldUnitsUnit
+                        list.Add(new WorldConfigurationUnitsUnit
                         {
                             Carry = twUnit.Carry.ToString(CultureInfo.InvariantCulture),
                             CostClay = twUnit.Clay.ToString(CultureInfo.InvariantCulture),

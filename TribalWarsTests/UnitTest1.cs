@@ -18,8 +18,8 @@ namespace TribalWarsTests
         [TestMethod]
         public void Display()
         {
-            var path = @"C:\unix\code\TribalWars\TWTactics\TribalWars\WorldTemplate\WorldSettings.xml";
-            var obj = World.LoadFromFile(path);
+            //var path = @"C:\unix\code\TribalWars\TWTactics\TribalWars\WorldTemplate\WorldSettings.xml";
+            //var obj = WorldConfiguration.LoadFromFile(path);
 
             //var wvv = new WorldViewsView();
             //obj.Views.Add(wvv);
@@ -38,7 +38,7 @@ namespace TribalWarsTests
             //Assert.AreEqual("{WorldName}", obj.Name);
             //Assert.AreEqual(3, obj.Data.Count(), "Data.Village / Player / Tribe not loaded");
             
-            obj.SaveToFile(@"c:\temp\test.txt");
+            //obj.SaveToFile(@"c:\temp\test.txt");
         }
     }
 }

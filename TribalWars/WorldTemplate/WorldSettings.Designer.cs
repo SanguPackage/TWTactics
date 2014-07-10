@@ -17,7 +17,7 @@ namespace TribalWars.WorldTemplate
     using System.Collections.Generic;
 
 
-    public partial class World
+    public partial class WorldConfiguration
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -75,13 +75,13 @@ namespace TribalWars.WorldTemplate
         private string worldDatSceneryField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private List<WorldViewsView> viewsField;
+        private List<WorldConfigurationViewsView> viewsField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private List<WorldBuildingsBuilding> buildingsField;
+        private List<WorldConfigurationBuildingsBuilding> buildingsField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private List<WorldUnitsUnit> unitsField;
+        private List<WorldConfigurationUnitsUnit> unitsField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -122,16 +122,16 @@ namespace TribalWars.WorldTemplate
         public string WorldDatScenery { get; set; }
 
 
-        public World()
+        public WorldConfiguration()
         {
-            this.unitsField = new List<WorldUnitsUnit>();
-            this.buildingsField = new List<WorldBuildingsBuilding>();
-            this.viewsField = new List<WorldViewsView>();
+            this.unitsField = new List<WorldConfigurationUnitsUnit>();
+            this.buildingsField = new List<WorldConfigurationBuildingsBuilding>();
+            this.viewsField = new List<WorldConfigurationViewsView>();
         }
 
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("View", typeof(WorldViewsView), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public List<WorldViewsView> Views
+        [System.Xml.Serialization.XmlArrayItemAttribute("View", typeof(WorldConfigurationViewsView), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<WorldConfigurationViewsView> Views
         {
             get
             {
@@ -144,8 +144,8 @@ namespace TribalWars.WorldTemplate
         }
 
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Building", typeof(WorldBuildingsBuilding), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public List<WorldBuildingsBuilding> Buildings
+        [System.Xml.Serialization.XmlArrayItemAttribute("Building", typeof(WorldConfigurationBuildingsBuilding), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<WorldConfigurationBuildingsBuilding> Buildings
         {
             get
             {
@@ -158,8 +158,8 @@ namespace TribalWars.WorldTemplate
         }
 
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Unit", typeof(WorldUnitsUnit), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public List<WorldUnitsUnit> Units
+        [System.Xml.Serialization.XmlArrayItemAttribute("Unit", typeof(WorldConfigurationUnitsUnit), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<WorldConfigurationUnitsUnit> Units
         {
             get
             {
@@ -177,7 +177,7 @@ namespace TribalWars.WorldTemplate
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(World));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldConfiguration));
                 }
                 return serializer;
             }
@@ -185,7 +185,7 @@ namespace TribalWars.WorldTemplate
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serializes current World object into an XML document
+        /// Serializes current WorldConfiguration object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize()
@@ -214,16 +214,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an World object
+        /// Deserializes workflow markup into an WorldConfiguration object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output World object</param>
+        /// <param name="obj">Output WorldConfiguration object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out World obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out WorldConfiguration obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(World);
+            obj = default(WorldConfiguration);
             try
             {
                 obj = Deserialize(xml);
@@ -236,19 +236,19 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool Deserialize(string xml, out World obj)
+        public static bool Deserialize(string xml, out WorldConfiguration obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
 
-        public static World Deserialize(string xml)
+        public static WorldConfiguration Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((World)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((WorldConfiguration)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -260,7 +260,7 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Serializes current World object into file
+        /// Serializes current WorldConfiguration object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -301,16 +301,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an World object
+        /// Deserializes xml markup from file into an WorldConfiguration object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output World object</param>
+        /// <param name="obj">Output WorldConfiguration object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out World obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out WorldConfiguration obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(World);
+            obj = default(WorldConfiguration);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -323,13 +323,13 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool LoadFromFile(string fileName, out World obj)
+        public static bool LoadFromFile(string fileName, out WorldConfiguration obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static World LoadFromFile(string fileName)
+        public static WorldConfiguration LoadFromFile(string fileName)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -357,7 +357,7 @@ namespace TribalWars.WorldTemplate
         #endregion
     }
 
-    public partial class WorldViewsView
+    public partial class WorldConfigurationViewsView
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -367,7 +367,7 @@ namespace TribalWars.WorldTemplate
         private string nameField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private List<WorldViewsViewDrawersDrawer> drawersField;
+        private List<WorldConfigurationViewsViewDrawersDrawer> drawersField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -376,14 +376,14 @@ namespace TribalWars.WorldTemplate
         public string Name { get; set; }
 
 
-        public WorldViewsView()
+        public WorldConfigurationViewsView()
         {
-            this.drawersField = new List<WorldViewsViewDrawersDrawer>();
+            this.drawersField = new List<WorldConfigurationViewsViewDrawersDrawer>();
         }
 
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Drawer", typeof(WorldViewsViewDrawersDrawer), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public List<WorldViewsViewDrawersDrawer> Drawers
+        [System.Xml.Serialization.XmlArrayItemAttribute("Drawer", typeof(WorldConfigurationViewsViewDrawersDrawer), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public List<WorldConfigurationViewsViewDrawersDrawer> Drawers
         {
             get
             {
@@ -401,7 +401,7 @@ namespace TribalWars.WorldTemplate
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldViewsView));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldConfigurationViewsView));
                 }
                 return serializer;
             }
@@ -409,7 +409,7 @@ namespace TribalWars.WorldTemplate
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serializes current WorldViewsView object into an XML document
+        /// Serializes current WorldConfigurationViewsView object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize()
@@ -438,16 +438,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an WorldViewsView object
+        /// Deserializes workflow markup into an WorldConfigurationViewsView object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output WorldViewsView object</param>
+        /// <param name="obj">Output WorldConfigurationViewsView object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out WorldViewsView obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out WorldConfigurationViewsView obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldViewsView);
+            obj = default(WorldConfigurationViewsView);
             try
             {
                 obj = Deserialize(xml);
@@ -460,19 +460,19 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool Deserialize(string xml, out WorldViewsView obj)
+        public static bool Deserialize(string xml, out WorldConfigurationViewsView obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
 
-        public static WorldViewsView Deserialize(string xml)
+        public static WorldConfigurationViewsView Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((WorldViewsView)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((WorldConfigurationViewsView)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -484,7 +484,7 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Serializes current WorldViewsView object into file
+        /// Serializes current WorldConfigurationViewsView object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -525,16 +525,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an WorldViewsView object
+        /// Deserializes xml markup from file into an WorldConfigurationViewsView object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output WorldViewsView object</param>
+        /// <param name="obj">Output WorldConfigurationViewsView object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out WorldViewsView obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationViewsView obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldViewsView);
+            obj = default(WorldConfigurationViewsView);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -547,13 +547,13 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool LoadFromFile(string fileName, out WorldViewsView obj)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationViewsView obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static WorldViewsView LoadFromFile(string fileName)
+        public static WorldConfigurationViewsView LoadFromFile(string fileName)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -581,7 +581,7 @@ namespace TribalWars.WorldTemplate
         #endregion
     }
 
-    public partial class WorldViewsViewDrawersDrawer
+    public partial class WorldConfigurationViewsViewDrawersDrawer
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -618,7 +618,7 @@ namespace TribalWars.WorldTemplate
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldViewsViewDrawersDrawer));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldConfigurationViewsViewDrawersDrawer));
                 }
                 return serializer;
             }
@@ -626,7 +626,7 @@ namespace TribalWars.WorldTemplate
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serializes current WorldViewsViewDrawersDrawer object into an XML document
+        /// Serializes current WorldConfigurationViewsViewDrawersDrawer object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize()
@@ -655,16 +655,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an WorldViewsViewDrawersDrawer object
+        /// Deserializes workflow markup into an WorldConfigurationViewsViewDrawersDrawer object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output WorldViewsViewDrawersDrawer object</param>
+        /// <param name="obj">Output WorldConfigurationViewsViewDrawersDrawer object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out WorldViewsViewDrawersDrawer obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out WorldConfigurationViewsViewDrawersDrawer obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldViewsViewDrawersDrawer);
+            obj = default(WorldConfigurationViewsViewDrawersDrawer);
             try
             {
                 obj = Deserialize(xml);
@@ -677,19 +677,19 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool Deserialize(string xml, out WorldViewsViewDrawersDrawer obj)
+        public static bool Deserialize(string xml, out WorldConfigurationViewsViewDrawersDrawer obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
 
-        public static WorldViewsViewDrawersDrawer Deserialize(string xml)
+        public static WorldConfigurationViewsViewDrawersDrawer Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((WorldViewsViewDrawersDrawer)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((WorldConfigurationViewsViewDrawersDrawer)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -701,7 +701,7 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Serializes current WorldViewsViewDrawersDrawer object into file
+        /// Serializes current WorldConfigurationViewsViewDrawersDrawer object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -742,16 +742,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an WorldViewsViewDrawersDrawer object
+        /// Deserializes xml markup from file into an WorldConfigurationViewsViewDrawersDrawer object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output WorldViewsViewDrawersDrawer object</param>
+        /// <param name="obj">Output WorldConfigurationViewsViewDrawersDrawer object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out WorldViewsViewDrawersDrawer obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationViewsViewDrawersDrawer obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldViewsViewDrawersDrawer);
+            obj = default(WorldConfigurationViewsViewDrawersDrawer);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -764,13 +764,13 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool LoadFromFile(string fileName, out WorldViewsViewDrawersDrawer obj)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationViewsViewDrawersDrawer obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static WorldViewsViewDrawersDrawer LoadFromFile(string fileName)
+        public static WorldConfigurationViewsViewDrawersDrawer LoadFromFile(string fileName)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -798,7 +798,7 @@ namespace TribalWars.WorldTemplate
         #endregion
     }
 
-    public partial class WorldBuildingsBuilding
+    public partial class WorldConfigurationBuildingsBuilding
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -840,7 +840,7 @@ namespace TribalWars.WorldTemplate
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldBuildingsBuilding));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldConfigurationBuildingsBuilding));
                 }
                 return serializer;
             }
@@ -848,7 +848,7 @@ namespace TribalWars.WorldTemplate
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serializes current WorldBuildingsBuilding object into an XML document
+        /// Serializes current WorldConfigurationBuildingsBuilding object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize()
@@ -877,16 +877,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an WorldBuildingsBuilding object
+        /// Deserializes workflow markup into an WorldConfigurationBuildingsBuilding object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output WorldBuildingsBuilding object</param>
+        /// <param name="obj">Output WorldConfigurationBuildingsBuilding object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out WorldBuildingsBuilding obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out WorldConfigurationBuildingsBuilding obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldBuildingsBuilding);
+            obj = default(WorldConfigurationBuildingsBuilding);
             try
             {
                 obj = Deserialize(xml);
@@ -899,19 +899,19 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool Deserialize(string xml, out WorldBuildingsBuilding obj)
+        public static bool Deserialize(string xml, out WorldConfigurationBuildingsBuilding obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
 
-        public static WorldBuildingsBuilding Deserialize(string xml)
+        public static WorldConfigurationBuildingsBuilding Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((WorldBuildingsBuilding)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((WorldConfigurationBuildingsBuilding)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -923,7 +923,7 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Serializes current WorldBuildingsBuilding object into file
+        /// Serializes current WorldConfigurationBuildingsBuilding object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -964,16 +964,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an WorldBuildingsBuilding object
+        /// Deserializes xml markup from file into an WorldConfigurationBuildingsBuilding object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output WorldBuildingsBuilding object</param>
+        /// <param name="obj">Output WorldConfigurationBuildingsBuilding object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out WorldBuildingsBuilding obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationBuildingsBuilding obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldBuildingsBuilding);
+            obj = default(WorldConfigurationBuildingsBuilding);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -986,13 +986,13 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool LoadFromFile(string fileName, out WorldBuildingsBuilding obj)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationBuildingsBuilding obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static WorldBuildingsBuilding LoadFromFile(string fileName)
+        public static WorldConfigurationBuildingsBuilding LoadFromFile(string fileName)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -1020,7 +1020,7 @@ namespace TribalWars.WorldTemplate
         #endregion
     }
 
-    public partial class WorldUnitsUnit
+    public partial class WorldConfigurationUnitsUnit
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1097,7 +1097,7 @@ namespace TribalWars.WorldTemplate
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldUnitsUnit));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(WorldConfigurationUnitsUnit));
                 }
                 return serializer;
             }
@@ -1105,7 +1105,7 @@ namespace TribalWars.WorldTemplate
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serializes current WorldUnitsUnit object into an XML document
+        /// Serializes current WorldConfigurationUnitsUnit object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize()
@@ -1134,16 +1134,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an WorldUnitsUnit object
+        /// Deserializes workflow markup into an WorldConfigurationUnitsUnit object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output WorldUnitsUnit object</param>
+        /// <param name="obj">Output WorldConfigurationUnitsUnit object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out WorldUnitsUnit obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out WorldConfigurationUnitsUnit obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldUnitsUnit);
+            obj = default(WorldConfigurationUnitsUnit);
             try
             {
                 obj = Deserialize(xml);
@@ -1156,19 +1156,19 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool Deserialize(string xml, out WorldUnitsUnit obj)
+        public static bool Deserialize(string xml, out WorldConfigurationUnitsUnit obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
 
-        public static WorldUnitsUnit Deserialize(string xml)
+        public static WorldConfigurationUnitsUnit Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((WorldUnitsUnit)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((WorldConfigurationUnitsUnit)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -1180,7 +1180,7 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Serializes current WorldUnitsUnit object into file
+        /// Serializes current WorldConfigurationUnitsUnit object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -1221,16 +1221,16 @@ namespace TribalWars.WorldTemplate
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an WorldUnitsUnit object
+        /// Deserializes xml markup from file into an WorldConfigurationUnitsUnit object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output WorldUnitsUnit object</param>
+        /// <param name="obj">Output WorldConfigurationUnitsUnit object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out WorldUnitsUnit obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationUnitsUnit obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(WorldUnitsUnit);
+            obj = default(WorldConfigurationUnitsUnit);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -1243,13 +1243,13 @@ namespace TribalWars.WorldTemplate
             }
         }
 
-        public static bool LoadFromFile(string fileName, out WorldUnitsUnit obj)
+        public static bool LoadFromFile(string fileName, out WorldConfigurationUnitsUnit obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static WorldUnitsUnit LoadFromFile(string fileName)
+        public static WorldConfigurationUnitsUnit LoadFromFile(string fileName)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -1281,16 +1281,16 @@ namespace TribalWars.WorldTemplate
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private List<World> itemsField;
+        private List<WorldConfiguration> itemsField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
         public NewDataSet()
         {
-            this.itemsField = new List<World>();
+            this.itemsField = new List<WorldConfiguration>();
         }
 
-        public List<World> Items
+        public List<WorldConfiguration> Items
         {
             get
             {
