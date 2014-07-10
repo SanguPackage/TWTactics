@@ -129,7 +129,7 @@ namespace TribalWars.Maps.Markers
             }
             else
             {
-                str = "NOTHING!!";
+                str = string.IsNullOrEmpty(Settings.Name) ? "NOTHING!!" : Settings.Name;
             }
             return string.Format("{0} -- {1}", str, Settings);
         }

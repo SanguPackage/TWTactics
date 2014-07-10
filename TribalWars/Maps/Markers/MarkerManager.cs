@@ -98,25 +98,27 @@ namespace TribalWars.Maps.Markers
         /// </summary>
         public void UpdateDefaultMarker(Map map, MarkerSettings settings)
         {
-            if (settings.Name == Marker.DefaultNames.Abandoned)
+            switch (settings.Name)
             {
-                AbandonedMarker = new Marker(settings);
-            }
-            else if (settings.Name == Marker.DefaultNames.Enemy)
-            {
-                EnemyMarker = new Marker(settings);
-            }
-            else if (settings.Name == Marker.DefaultNames.You)
-            {
-                YourMarker = new Marker(settings);
-            }
-            else if (settings.Name == Marker.DefaultNames.YourTribe)
-            {
-                YourTribeMarker = new Marker(settings);
-            }
-            else
-            {
-                Debug.Assert(false, "'You' and 'Your Tribe' markers are updated through the regular UpdateMarker methods");
+                case Marker.DefaultNames.Abandoned:
+                    AbandonedMarker = new Marker(settings);
+                    break;
+
+                case Marker.DefaultNames.Enemy:
+                    EnemyMarker = new Marker(settings);
+                    break;
+
+                case Marker.DefaultNames.You:
+                    YourMarker = new Marker(settings);
+                    break;
+
+                case Marker.DefaultNames.YourTribe:
+                    YourTribeMarker = new Marker(settings);
+                    break;
+
+                default:
+                    Debug.Assert(false, "'You' and 'Your Tribe' markers are updated through the regular UpdateMarker methods");
+                    break;
             }
 
             InvalidateMarkers();
@@ -130,6 +132,7 @@ namespace TribalWars.Maps.Markers
         {
             if (player == World.Default.You)
             {
+                settings = MarkerSettings.ChangeName(settings, Marker.DefaultNames.You);
                 YourMarker = new Marker(settings);
             }
             else
@@ -149,6 +152,7 @@ namespace TribalWars.Maps.Markers
         {
             if (World.Default.You.HasTribe && tribe == World.Default.You.Tribe)
             {
+                settings = MarkerSettings.ChangeName(settings, Marker.DefaultNames.YourTribe);
                 YourTribeMarker = new Marker(settings);
             }
             else
@@ -192,6 +196,12 @@ namespace TribalWars.Maps.Markers
         public Marker GetMarker(Player player)
         {
             Debug.Assert(player != null);
+            if (player.Name == World.Default.You.Name)
+            {
+                Debug.Assert(YourMarker.Settings.Name == Marker.DefaultNames.You);
+                return YourMarker;
+            }
+
             Marker found;
             if (_markPlayer.TryGetValue(player.Id, out found))
             {
@@ -217,6 +227,12 @@ namespace TribalWars.Maps.Markers
         public Marker GetMarker(Tribe tribe)
         {
             Debug.Assert(tribe != null);
+            if (World.Default.You.HasTribe && World.Default.You.Tribe == tribe)
+            {
+                Debug.Assert(YourTribeMarker.Settings.Name == Marker.DefaultNames.YourTribe);
+                return YourTribeMarker;
+            }
+
             Marker found;
             if (_markTribe.TryGetValue(tribe.Id, out found))
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using TribalWars.Tools;
 
 namespace TribalWars.Maps.Markers
 {
@@ -102,7 +103,7 @@ namespace TribalWars.Maps.Markers
         {
             string views = string.Empty;
             if (View != null) views = View;
-            return string.Format("{0} ({1} - {2} / {3})", Name, views, Color, ExtraColor); 
+            return string.Format("View={0}, Color={1}, ExtraColor={2}, Enabled={3}, Name={4}", views, Color.Description(), ExtraColor.Description(), Enabled, Name); 
         }
     }
 }
