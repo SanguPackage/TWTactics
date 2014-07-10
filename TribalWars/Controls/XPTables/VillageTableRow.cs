@@ -64,7 +64,6 @@ namespace TribalWars.Controls.XPTables
         {
             _village = village;
             _map = map;
-            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // Village is currently visible?
             Cells.Add(new Cell
@@ -126,14 +125,6 @@ namespace TribalWars.Controls.XPTables
             Cells.Add(ColumnDisplay.CreateDifferenceCell(prevVillages));
             Cells.Add(new Cell(tribe));
             Cells.Add(tribeRank != 0 ? new Cell(tribeRank) : new Cell());
-        }
-        #endregion
-
-        #region Event Handlers
-        private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
-        {
-            var image = GetVisibleImage();
-            Cells[0].Image = image;
         }
         #endregion
 

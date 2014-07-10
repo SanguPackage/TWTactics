@@ -338,9 +338,14 @@ namespace TribalWars.Worlds
             return _views[view].GetDrawerData(village);
         }
 
-        public IEnumerable<string> GetBackgroundViews()
+        public IEnumerable<string> GetBackgroundViews(bool alsoGetBarbarianViews)
         {
-            return Views.Where(x => x.Background).Where(x => x.Name != "Abandoned").Select(x => x.Name);
+            var views = Views.Where(x => x.Background);
+            if (!alsoGetBarbarianViews)
+            {
+                views = views.Where(x => x.Name != "Abandoned");
+            }
+            return views.Select(x => x.Name);
         }
         #endregion
 

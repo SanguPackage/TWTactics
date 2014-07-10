@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Browsers.Reporting;
@@ -9,6 +10,7 @@ using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
+using TribalWars.Worlds.Events.Impls;
 using XPTable.Models;
 
 namespace TribalWars.Controls.XPTables
@@ -215,9 +217,35 @@ namespace TribalWars.Controls.XPTables
 
             _map = World.Default.Map;
         }
+
+        private void TableWrapperControl_Load(object sender, EventArgs e)
+        {
+            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+        }
         #endregion
 
         #region EventHandlers
+        private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
+        {
+            foreach (var row in Table.TableModel.Rows.OfType<Row>())
+            {
+                var twRow = row as ITwContextMenu;
+                if (twRow != null)
+                {
+                    row.Cells[0].Image = GetVisibleImage(twRow.GetVillages());
+                }
+            }
+        }
+
+        private Image GetVisibleImage(IEnumerable<Village> villages)
+        {
+            if (_map.Display.IsVisible(villages))
+            {
+                return Properties.Resources.Visible;
+            }
+            return null;
+        }
+
         /// <summary>
         /// Right click village context menu on the XPTable
         /// </summary>

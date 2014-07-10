@@ -229,6 +229,7 @@ namespace TribalWars.Forms
             if (World.Default.HasLoaded)
             {
                 saveFileDialog1.InitialDirectory = World.Default.Structure.CurrentWorldSettingsDirectory;
+                saveFileDialog1.FileName = "";
                 DialogResult result = saveFileDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {

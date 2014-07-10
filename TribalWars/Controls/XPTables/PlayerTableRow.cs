@@ -55,7 +55,6 @@ namespace TribalWars.Controls.XPTables
         {
             _player = ply;
             _map = map;
-            _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
 
             // player is currently visible?
             Cells.Add(new Cell
@@ -92,14 +91,6 @@ namespace TribalWars.Controls.XPTables
             {
                 Cells.Add(new Cell());
             }
-        }
-        #endregion
-
-        #region Event Handlers
-        private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
-        {
-            var image = GetVisibleImage();
-            Cells[0].Image = image;
         }
         #endregion
 

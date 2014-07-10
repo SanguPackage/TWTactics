@@ -69,6 +69,12 @@ namespace TribalWars.Maps.Markers
         }
 
         /// <summary>
+        /// If true, all views are allowed, otherwise
+        /// the Barbarian views are not selectable
+        /// </summary>
+        public bool AllowBarbarianViews { get; set; }
+
+        /// <summary>
         /// Automatically update marker settings back
         /// to the World
         /// </summary>
@@ -209,8 +215,8 @@ namespace TribalWars.Maps.Markers
         {
             _settingProperties = true;
 
+            MarkerView.DataSource = World.Default.GetBackgroundViews(AllowBarbarianViews).ToArray();
             MarkerView.SelectedValue = settings.View;
-            MarkerView.DataSource = World.Default.GetBackgroundViews().ToArray();
 
             MarkerActive.Checked = settings.Enabled;
             MarkerColor.SelectedColor = settings.Color;

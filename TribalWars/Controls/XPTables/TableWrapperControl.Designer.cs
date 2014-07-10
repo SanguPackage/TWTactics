@@ -66,6 +66,7 @@ namespace TribalWars.Controls.XPTables
             this.Controls.Add(this.Table);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "TableWrapperControl";
+            this.Load += new System.EventHandler(this.TableWrapperControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.ResumeLayout(false);
 

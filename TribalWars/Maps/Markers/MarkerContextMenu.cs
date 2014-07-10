@@ -56,7 +56,7 @@ namespace TribalWars.Maps.Markers
             _menu.AddChangeColorCommand("Main color", marker.Settings.Color, OnChangeColor);
             _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, Color.Transparent, OnChangeExtraColor);
 
-            IEnumerable<string> views = World.Default.GetBackgroundViews();
+            IEnumerable<string> views = World.Default.GetBackgroundViews(false);
             _menu.AddComboBoxCommand("View", views, marker.Settings.View, OnChangeView);
             _menu.AddToggleCommand(marker.Settings.Enabled ? "Disable marker" : "Activate marker", marker.Settings.Enabled, OnChangeEnabled);
         }

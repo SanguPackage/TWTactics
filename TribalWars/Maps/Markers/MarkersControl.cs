@@ -45,7 +45,7 @@ namespace TribalWars.Maps.Markers
             AbandonedMarker.SetMarker(World.Default.Map.MarkerManager.AbandonedMarkerSettings);
 
             var viewsList = new GridEXValueListItemCollection();
-            string[] viewItems = World.Default.GetBackgroundViews().ToArray();
+            string[] viewItems = World.Default.GetBackgroundViews(false).ToArray();
             viewsList.AddRange(viewItems.Select(x => new GridEXValueListItem(x, x)).ToArray());
             MarkersGrid.RootTable.Columns["View"].EditValueList = viewsList;
             MarkersGrid.RootTable.Columns["View"].DefaultValue = viewItems.FirstOrDefault();
