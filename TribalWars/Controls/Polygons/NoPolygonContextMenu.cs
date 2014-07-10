@@ -20,7 +20,7 @@ namespace TribalWars.Controls.Polygons
         public NoPolygonContextMenu(BbCodeManipulator bbCode)
         {
             _bbCode = bbCode;
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
 
             if (_bbCode.Polygons.Count > 0)
             {

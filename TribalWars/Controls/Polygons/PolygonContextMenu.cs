@@ -23,7 +23,7 @@ namespace TribalWars.Controls.Polygons
         public PolygonContextMenu(BbCodeManipulator bbCode)
         {
             _bbCode = bbCode;
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
 
             Debug.Assert(_bbCode.ActivePolygon != null);
 

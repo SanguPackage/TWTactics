@@ -32,7 +32,7 @@ namespace TribalWars.Villages.ContextMenu
         {
             _tribe = tribe;
 
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
 
             if (map.Display.IsVisible(tribe))
             {

@@ -35,7 +35,7 @@ namespace TribalWars.Maps.Markers
         #region Constructors
         public MarkerContextMenu(Map map, Player player)
         {
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
             _map = map;
             _player = player;
             InitializeMenu();
@@ -43,7 +43,7 @@ namespace TribalWars.Maps.Markers
 
         public MarkerContextMenu(Map map, Tribe tribe)
         {
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
             _map = map;
             _tribe = tribe;
             InitializeMenu();

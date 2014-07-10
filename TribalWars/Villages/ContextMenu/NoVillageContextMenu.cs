@@ -20,7 +20,7 @@ namespace TribalWars.Villages.ContextMenu
         {
             _gameLocation = gameLocation;
 
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
             _menu.AddCommand("Center here", OnMapCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 

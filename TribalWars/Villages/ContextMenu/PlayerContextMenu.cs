@@ -36,7 +36,7 @@ namespace TribalWars.Villages.ContextMenu
         {
             _player = player;
 
-            _menu = new UIContextMenu();
+            _menu = JanusContextMenu.Create();
             _menu.ShowToolTips = InheritableBoolean.True;
 
             if (map.Display.IsVisible(player))
