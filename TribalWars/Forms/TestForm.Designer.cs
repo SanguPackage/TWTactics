@@ -36,6 +36,7 @@
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.uiComboBox1 = new Janus.Windows.EditControls.UIComboBox();
+            this.villagePlayerTribeFinderTextBox1 = new TribalWars.Controls.Finders.VillagePlayerTribeFinderTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.multiColumnCombo1.DesignTimeLayout = multiColumnCombo1_DesignTimeLayout;
             this.multiColumnCombo1.DisplayMember = "Text";
             this.multiColumnCombo1.ImageList = this.SearchTypeImageList;
-            this.multiColumnCombo1.Location = new System.Drawing.Point(26, 12);
+            this.multiColumnCombo1.Location = new System.Drawing.Point(63, 23);
             this.multiColumnCombo1.Name = "multiColumnCombo1";
             this.multiColumnCombo1.SelectedIndex = -1;
             this.multiColumnCombo1.SelectedItem = null;
@@ -79,19 +80,33 @@
             // 
             // uiComboBox1
             // 
-            this.uiComboBox1.Location = new System.Drawing.Point(296, 163);
+            this.uiComboBox1.Location = new System.Drawing.Point(393, 79);
             this.uiComboBox1.Name = "uiComboBox1";
             this.uiComboBox1.Size = new System.Drawing.Size(103, 20);
             this.uiComboBox1.TabIndex = 15;
             this.uiComboBox1.Text = "uiComboBox1";
             // 
-            // ActivePlayerForm
+            // villagePlayerTribeFinderTextBox1
+            // 
+            this.villagePlayerTribeFinderTextBox1.AllowPlayer = true;
+            this.villagePlayerTribeFinderTextBox1.AllowTribe = true;
+            this.villagePlayerTribeFinderTextBox1.BackColor = System.Drawing.Color.Red;
+            this.villagePlayerTribeFinderTextBox1.ButtonImage = ((System.Drawing.Image)(resources.GetObject("villagePlayerTribeFinderTextBox1.ButtonImage")));
+            this.villagePlayerTribeFinderTextBox1.ButtonImageSize = new System.Drawing.Size(15, 15);
+            this.villagePlayerTribeFinderTextBox1.GameLocation = null;
+            this.villagePlayerTribeFinderTextBox1.Location = new System.Drawing.Point(148, 181);
+            this.villagePlayerTribeFinderTextBox1.Name = "villagePlayerTribeFinderTextBox1";
+            this.villagePlayerTribeFinderTextBox1.Size = new System.Drawing.Size(267, 20);
+            this.villagePlayerTribeFinderTextBox1.TabIndex = 16;
+            // 
+            // TestForm
             // 
             this.AcceptButton = this.CloseButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
             this.ClientSize = new System.Drawing.Size(616, 418);
+            this.Controls.Add(this.villagePlayerTribeFinderTextBox1);
             this.Controls.Add(this.uiComboBox1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.multiColumnCombo1);
@@ -115,5 +130,6 @@
         private System.Windows.Forms.ImageList SearchTypeImageList;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private Janus.Windows.EditControls.UIComboBox uiComboBox1;
+        private Controls.Finders.VillagePlayerTribeFinderTextBox villagePlayerTribeFinderTextBox1;
     }
 }

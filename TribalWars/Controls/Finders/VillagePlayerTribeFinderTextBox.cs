@@ -109,8 +109,9 @@ namespace TribalWars.Controls.Finders
             {
                 if (value)
                 {
-                    ButtonStyle = EditButtonStyle.TextButton;
-                    ButtonText = "» OK «";
+                    ButtonStyle = EditButtonStyle.Image;
+                    ButtonImageSize = new Size(15, 15);
+                    ButtonImage = Properties.Resources.teleport;
                 }
                 else
                 {
