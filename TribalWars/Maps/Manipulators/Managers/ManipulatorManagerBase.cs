@@ -7,6 +7,7 @@ using Janus.Windows.Common;
 using TribalWars.Controls;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 
 #endregion
@@ -38,7 +39,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();
-            _toolTipControl = Tools.Janus.CreateTooltip();
+            _toolTipControl = JanusControls.CreateTooltip();
             TooltipActive = showTooltip;
         }
         #endregion

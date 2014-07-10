@@ -204,6 +204,8 @@
     <Compile Include="Maps\Markers\MarkersControl.Designer.cs">
       <DependentUpon>MarkersControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\JanusExtensions\JanusContextMenu.cs" />
+    <Compile Include="Tools\JanusExtensions\JanusGridEx.cs" />
     <Compile Include="Worlds\Monitoring\MonitoringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -431,7 +433,7 @@
       <DependentUpon>TimeZoneForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Common.cs" />
-    <Compile Include="Tools\Janus.cs" />
+    <Compile Include="Tools\JanusExtensions\JanusControls.cs" />
     <Compile Include="Tools\Network.cs" />
     <Compile Include="Tools\TupleList.cs" />
     <Compile Include="Tools\Parsers\Common.cs" />

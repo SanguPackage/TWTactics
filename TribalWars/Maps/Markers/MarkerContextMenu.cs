@@ -9,6 +9,7 @@ using Janus.Windows.EditControls;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
@@ -106,7 +107,7 @@ namespace TribalWars.Maps.Markers
                 return null;
             }
 
-            return Tools.Janus.DrawContextIcon(marker.Settings.Color, marker.Settings.ExtraColor);
+            return JanusContextMenu.DrawContextIcon(marker.Settings.Color, marker.Settings.ExtraColor);
         }
         
         private string GetMainCommandText(Marker marker)

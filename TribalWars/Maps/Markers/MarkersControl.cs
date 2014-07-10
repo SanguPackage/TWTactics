@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using TribalWars.Controls.Finders;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 

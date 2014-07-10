@@ -11,6 +11,7 @@ using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events.Impls;
 
@@ -27,7 +28,7 @@ namespace TribalWars.Maps
         private Display _display;
         private ScrollableMapControl _control;
         private Location _location;
-        private readonly JanusSuperTip _toolTip = Tools.Janus.CreateTooltip();
+        private readonly JanusSuperTip _toolTip = JanusControls.CreateTooltip();
         #endregion
 
         #region Properties

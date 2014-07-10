@@ -12,6 +12,7 @@ using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 

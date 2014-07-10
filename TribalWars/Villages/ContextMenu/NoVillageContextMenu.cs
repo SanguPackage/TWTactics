@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
 
 namespace TribalWars.Villages.ContextMenu

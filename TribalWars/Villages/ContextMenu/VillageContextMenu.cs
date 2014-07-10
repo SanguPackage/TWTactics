@@ -9,6 +9,7 @@ using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
@@ -43,9 +44,7 @@ namespace TribalWars.Villages.ContextMenu
             _map = map;
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
 
-            _menu = new UIContextMenu();
-            _menu.ShowToolTips = InheritableBoolean.True;
-
+            _menu = JanusContextMenu.Create();
             if (map.Display.IsVisible(village))
             {
                 _menu.AddCommand("Pinpoint", OnDetails);

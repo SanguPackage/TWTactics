@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 

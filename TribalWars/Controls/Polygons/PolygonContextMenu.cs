@@ -7,6 +7,7 @@ using Janus.Windows.EditControls;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Tools;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
 
 namespace TribalWars.Controls.Polygons
