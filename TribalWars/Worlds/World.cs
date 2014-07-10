@@ -340,7 +340,7 @@ namespace TribalWars.Worlds
 
         public IEnumerable<string> GetBackgroundViews()
         {
-            return Views.Where(x => x.Background).Select(x => x.Name);
+            return Views.Where(x => x.Background).Where(x => x.Name != "Abandoned").Select(x => x.Name);
         }
         #endregion
 
