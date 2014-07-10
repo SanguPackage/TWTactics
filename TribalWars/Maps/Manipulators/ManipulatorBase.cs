@@ -1,11 +1,11 @@
 #region Using
 using System.Drawing;
 using TribalWars.Controls;
-using TribalWars.Controls.TWContextMenu;
 using System.Xml;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 
 #endregion
@@ -72,7 +72,7 @@ namespace TribalWars.Maps.Manipulators
                 return new VillageContextMenu(_map, village);
             }
             Point gameLocation = World.Default.Map.Display.GetGameLocation(location);
-            return new NoVillageMapContextMenu(gameLocation);
+            return new NoVillageContextMenu(gameLocation);
         }
 
         /// <summary>

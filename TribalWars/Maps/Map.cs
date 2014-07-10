@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Janus.Windows.Common;
 using TribalWars.Controls;
-using TribalWars.Controls.TWContextMenu;
 using System.Drawing;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;

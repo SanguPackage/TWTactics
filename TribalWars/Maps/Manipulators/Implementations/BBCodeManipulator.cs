@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.Xml;
 using TribalWars.Controls;
 using TribalWars.Controls.Polygons;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;

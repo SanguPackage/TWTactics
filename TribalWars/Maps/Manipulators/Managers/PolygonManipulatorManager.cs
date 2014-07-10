@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml;
 using TribalWars.Controls;
 using TribalWars.Controls.Polygons;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Villages;

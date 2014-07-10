@@ -6,10 +6,10 @@ using TribalWars.Browsers.Reporting;
 using TribalWars.Controls.AccordeonLocation;
 using TribalWars.Maps;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 using XPTable.Models;
-using TribalWars.Controls.TWContextMenu;
 
 namespace TribalWars.Controls.XPTables
 {

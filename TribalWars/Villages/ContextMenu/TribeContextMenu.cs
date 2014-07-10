@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Browsers.Control;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
-using TribalWars.Properties;
 using TribalWars.Tools;
-using TribalWars.Villages;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
-namespace TribalWars.Controls.TWContextMenu
+namespace TribalWars.Villages.ContextMenu
 {
     /// <summary>
     /// ContextMenu with general Tribe operations
@@ -39,7 +37,7 @@ namespace TribalWars.Controls.TWContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnDetails);
             }
-            _menu.AddCommand("Pinpoint && Center", OnCenter, Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
             var markerContext = new MarkerContextMenu(map, tribe);
@@ -51,8 +49,8 @@ namespace TribalWars.Controls.TWContextMenu
 
             _menu.AddSeparator();
 
-            _menu.AddCommand("To clipboard", OnToClipboard, Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Resources.clipboard);
+            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
+            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
         #endregion
 

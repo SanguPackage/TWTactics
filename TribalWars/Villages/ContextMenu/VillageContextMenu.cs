@@ -1,23 +1,20 @@
 #region Using
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TribalWars.Browsers.Control;
 using Janus.Windows.UI.CommandBars;
 using System.Drawing;
 using Janus.Windows.UI;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Tools;
-using TribalWars.Villages;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
 #endregion
 
-namespace TribalWars.Controls.TWContextMenu
+namespace TribalWars.Villages.ContextMenu
 {
     /// <summary>
     /// ContextMenu with general Village operations

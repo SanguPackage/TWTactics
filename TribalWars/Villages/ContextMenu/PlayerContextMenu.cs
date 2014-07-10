@@ -8,16 +8,16 @@ using System.Windows.Forms;
 using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Browsers.Control;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
-using TribalWars.Villages;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
 #endregion
 
-namespace TribalWars.Controls.TWContextMenu
+namespace TribalWars.Villages.ContextMenu
 {
     /// <summary>
     /// ContextMenu with general Player operations

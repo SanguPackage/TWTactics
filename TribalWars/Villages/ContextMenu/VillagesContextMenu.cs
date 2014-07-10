@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using TribalWars.Villages;
 
 #endregion
 
-namespace TribalWars.Controls.TWContextMenu
+namespace TribalWars.Villages.ContextMenu
 {
     /// <summary>
     /// ContextMenu with general Villages operations

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds.Events;
 using TribalWars.Worlds.Events.Impls;
 using XPTable.Models;

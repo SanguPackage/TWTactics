@@ -2,21 +2,20 @@
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Tools;
 using TribalWars.Worlds;
 
-namespace TribalWars.Maps.Controls
+namespace TribalWars.Villages.ContextMenu
 {
     /// <summary>
     /// ContextMenu when right clicking but not on any village on the map
     /// </summary>
-    public class NoVillageMapContextMenu : IContextMenu
+    public class NoVillageContextMenu : IContextMenu
     {
         private readonly UIContextMenu _menu;
         private readonly Point _gameLocation;
 
-        public NoVillageMapContextMenu(Point gameLocation)
+        public NoVillageContextMenu(Point gameLocation)
         {
             _gameLocation = gameLocation;
 

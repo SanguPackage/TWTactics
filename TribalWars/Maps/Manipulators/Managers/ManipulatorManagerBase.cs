@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Xml;
 using Janus.Windows.Common;
 using TribalWars.Controls;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Tools;
 using TribalWars.Villages;

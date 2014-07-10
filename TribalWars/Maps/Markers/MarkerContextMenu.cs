@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
-using TribalWars.Controls.TWContextMenu;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;

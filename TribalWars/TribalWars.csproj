@@ -220,7 +220,7 @@
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Maps\Markers\MarkerContextMenu.cs" />
-    <Compile Include="Maps\Controls\NoVillageMapContextMenu.cs" />
+    <Compile Include="Villages\ContextMenu\NoVillageContextMenu.cs" />
     <Compile Include="Controls\Polygons\PolygonContextMenu.cs" />
     <Compile Include="Controls\Polygons\NoPolygonContextMenu.cs" />
     <Compile Include="Maps\Controls\MiniMapControl.cs">
