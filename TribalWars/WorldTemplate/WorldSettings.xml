@@ -104,7 +104,7 @@
     </View>
     <View>
       <Type>VillageType</Type>
-      <Name>VillageDecorators</Name>
+      <Name>VillageType</Name>
       <Drawers>
         <Drawer>
           <Type>BorderDrawer</Type>
