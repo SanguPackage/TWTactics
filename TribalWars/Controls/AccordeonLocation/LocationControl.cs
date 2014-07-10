@@ -15,8 +15,6 @@ namespace TribalWars.Controls.AccordeonLocation
     /// </summary>
     public partial class LocationControl : UserControl
     {
-        private bool _worldLoaded;
-
         public LocationControl()
         {
             InitializeComponent();
@@ -29,21 +27,6 @@ namespace TribalWars.Controls.AccordeonLocation
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-            if (!World.Default.You.Empty)
-            {
-                You.SetPlayer(World.Default.You);
-            }
-
-            _worldLoaded = true;
-        }
-
-        private void cmdCenterKingdom_Click(object sender, EventArgs e)
-        {
-            int continent;
-            if (int.TryParse(txtK.Text, out continent))
-            {
-                World.Default.Map.SetCenterContinent(continent);
-            }
         }
 
         private void GoHome_Click(object sender, EventArgs e)
@@ -55,16 +38,6 @@ namespace TribalWars.Controls.AccordeonLocation
                 {
                     World.Default.Map.SaveHome();
                 }
-            }
-        }
-
-        private void You_PlayerSelected(object sender, PlayerEventArgs e)
-        {
-            if (_worldLoaded)
-            {
-                World.Default.You = e.SelectedPlayer;
-                World.Default.InvalidateMarkers();
-                World.Default.Map.SetCenter(e.SelectedPlayer);
             }
         }
     }

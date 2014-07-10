@@ -44,7 +44,6 @@ namespace TribalWars.Forms
             villagePlayerTribeSelector1.Initialize(World.Default.Map);
             villagePlayerTribeSelectorOld1.Initialize(World.Default.Map);
 
-            villagePlayerTribeSelector1.SetAutocompleteDataSource();
         }
 
         private void DropDownList_FormattingRow(object sender, RowLoadEventArgs e)

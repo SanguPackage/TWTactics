@@ -2,10 +2,10 @@ using TribalWars.Browsers.Control;
 using TribalWars.Controls.AccordeonDetails;
 using TribalWars.Controls.AccordeonLocation;
 using TribalWars.Controls.AttackPlan;
+using TribalWars.Controls.Monitoring;
 using TribalWars.Controls.Polygons;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Markers;
-using TribalWars.Worlds.Monitoring;
 
 namespace TribalWars.Forms
 {
@@ -119,7 +119,7 @@ namespace TribalWars.Forms
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new TribalWars.Worlds.Monitoring.MonitoringControl();
+            this.monitoringControl1 = new MonitoringControl();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();

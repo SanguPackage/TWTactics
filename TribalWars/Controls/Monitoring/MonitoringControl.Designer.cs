@@ -1,7 +1,7 @@
 using TribalWars.Controls.Finders;
 using TribalWars.Controls.XPTables;
 
-namespace TribalWars.Worlds.Monitoring
+namespace TribalWars.Controls.Monitoring
 {
     partial class MonitoringControl
     {

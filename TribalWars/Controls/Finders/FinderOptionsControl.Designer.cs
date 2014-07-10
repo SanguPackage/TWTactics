@@ -33,7 +33,7 @@ namespace TribalWars.Controls.Finders
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinderOptionsControl));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.Tribe = new VillagePlayerTribeSelectorOld();
+            this.Tribe = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -85,12 +85,14 @@ namespace TribalWars.Controls.Finders
             // 
             this.Tribe.AllowTribe = true;
             this.Tribe.AllowVillage = false;
+            this.Tribe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Tribe.BackColor = System.Drawing.Color.Red;
-            this.Tribe.ButtonText = "» OK «";
             this.Tribe.GameLocation = null;
             this.Tribe.Location = new System.Drawing.Point(96, 117);
+            this.Tribe.Margin = new System.Windows.Forms.Padding(0);
             this.Tribe.Name = "Tribe";
-            this.Tribe.Size = new System.Drawing.Size(50, 20);
+            this.Tribe.Size = new System.Drawing.Size(185, 20);
             this.Tribe.TabIndex = 10;
             // 
             // label5
@@ -314,7 +316,7 @@ namespace TribalWars.Controls.Finders
             this.Controls.Add(this.What);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FinderOptionsControl";
-            this.Size = new System.Drawing.Size(285, 35);
+            this.Size = new System.Drawing.Size(285, 33);
             this.Load += new System.EventHandler(this.FinderOptionsControl_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -343,7 +345,7 @@ namespace TribalWars.Controls.Finders
         private System.Windows.Forms.Button cmdTribe;
         private System.Windows.Forms.Button cmdPlayer;
         private System.Windows.Forms.Label label5;
-        private VillagePlayerTribeSelectorOld Tribe;
+        private PlayerTribeDropdown Tribe;
         private System.Windows.Forms.ComboBox What;
         private System.Windows.Forms.ToolTip toolTip1;
     }

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.Drawing;
 using TribalWars.Controls.Finders;
 
-namespace TribalWars.Worlds.Monitoring
+namespace TribalWars.Controls.Monitoring
 {
     /// <summary>
     /// Contains the ActiveRectangle used by <see cref="FinderOptionsControl"/>

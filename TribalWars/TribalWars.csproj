@@ -108,11 +108,11 @@
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Finders\VillagePlayerTribeRow.cs" />
-    <Compile Include="Controls\Finders\VillagePlayerTribeSelector.cs">
+    <Compile Include="Controls\Finders\PlayerTribeDropdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Finders\VillagePlayerTribeSelector.Designer.cs">
-      <DependentUpon>VillagePlayerTribeSelector.cs</DependentUpon>
+    <Compile Include="Controls\Finders\PlayerTribeDropdown.Designer.cs">
+      <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
@@ -214,10 +214,11 @@
     <Compile Include="Tools\JanusExtensions\JanusContextMenu.cs" />
     <Compile Include="Tools\JanusExtensions\JanusGridEx.cs" />
     <Compile Include="Villages\Helpers\IVisible.cs" />
-    <Compile Include="Worlds\Monitoring\MonitoringControl.cs">
+    <Compile Include="Controls\Finders\AutoCompleteCache.cs" />
+    <Compile Include="Controls\Monitoring\MonitoringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Worlds\Monitoring\MonitoringControl.Designer.cs">
+    <Compile Include="Controls\Monitoring\MonitoringControl.Designer.cs">
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Polygons\PolygonDataSet.cs">
@@ -312,7 +313,7 @@
     <Compile Include="Controls\TimeConverter\TimeConverterControl.Designer.cs">
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Finders\VillagePlayerTribeSelectorOld.cs">
+    <Compile Include="Controls\Finders\VillagePlayerTribeSelector.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Villages\ContextMenu\TribeContextMenu.cs" />
@@ -454,7 +455,7 @@
     <Compile Include="Tools\PropertyGrid\Players\PlayerDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Tribes\TribeDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillageDescriptor.cs" />
-    <Compile Include="Worlds\Monitoring\Monitor.cs" />
+    <Compile Include="Controls\Monitoring\Monitor.cs" />
     <Compile Include="Villages\Tribe.cs" />
     <Compile Include="Villages\Buildings\Building.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -495,8 +496,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Finders\VillagePlayerTribeSelector.resx">
-      <DependentUpon>VillagePlayerTribeSelector.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Finders\PlayerTribeDropdown.resx">
+      <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
       <SubType>Designer</SubType>
@@ -512,7 +513,7 @@
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Worlds\Monitoring\MonitoringControl.resx">
+    <EmbeddedResource Include="Controls\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </EmbeddedResource>

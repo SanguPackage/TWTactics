@@ -8,8 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using TribalWars.Controls.AccordeonLocation;
 using TribalWars.Tools;
+using TribalWars.Worlds;
 
-namespace TribalWars.Worlds.Monitoring
+namespace TribalWars.Controls.Monitoring
 {
     /// <summary>
     /// The complete monitoring tab, active in the MainForm

@@ -22,7 +22,7 @@ namespace TribalWars.Maps.Markers
     public partial class MarkersControl : UserControl
     {
         #region Fields
-        private readonly VillagePlayerTribeSelectorOld _playerTribeSelectorOld;
+        private readonly VillagePlayerTribeSelector _playerTribeSelector;
         private List<MarkerGridRow> _markers = new List<MarkerGridRow>();
         #endregion
 
@@ -33,10 +33,10 @@ namespace TribalWars.Maps.Markers
 
             World.Default.EventPublisher.SettingsLoaded += WorldEventPublisher_SettingsLoaded;
 
-            _playerTribeSelectorOld = new VillagePlayerTribeSelectorOld();
-            _playerTribeSelectorOld.AllowPlayer = true;
-            _playerTribeSelectorOld.AllowTribe = true;
-            _playerTribeSelectorOld.AllowVillage = false;
+            _playerTribeSelector = new VillagePlayerTribeSelector();
+            _playerTribeSelector.AllowPlayer = true;
+            _playerTribeSelector.AllowTribe = true;
+            _playerTribeSelector.AllowVillage = false;
         }
 
         private void WorldEventPublisher_SettingsLoaded(object sender, EventArgs e)
@@ -139,19 +139,19 @@ namespace TribalWars.Maps.Markers
                 {
                     if (rowData.Player != null)
                     {
-                        _playerTribeSelectorOld.SetPlayer(rowData.Player);
+                        _playerTribeSelector.SetPlayer(rowData.Player);
                     }
                     else
                     {
-                        _playerTribeSelectorOld.SetTribe(rowData.Tribe);
+                        _playerTribeSelector.SetTribe(rowData.Tribe);
                     }
                 }
                 else
                 {
-                    _playerTribeSelectorOld.EmptyTextBox(false);
+                    _playerTribeSelector.EmptyTextBox(false);
                 }
 
-                e.EditControl = _playerTribeSelectorOld;
+                e.EditControl = _playerTribeSelector;
             }
         }
 
@@ -168,14 +168,14 @@ namespace TribalWars.Maps.Markers
                     //oldMarker = new MarkerGridRow();
                     //oldMarker.Enabled = (bool)e.Row.GridEX.GetValue("Enabled");
 
-                    object selected = _playerTribeSelectorOld.Tribe ?? (object)_playerTribeSelectorOld.Player;
+                    object selected = _playerTribeSelector.Tribe ?? (object)_playerTribeSelector.Player;
                     e.Value = selected;
                     e.DataChanged = true;
                 }
                 else
                 {
-                    Player newPlayer = _playerTribeSelectorOld.Player;
-                    Tribe newTribe = _playerTribeSelectorOld.Tribe;
+                    Player newPlayer = _playerTribeSelector.Player;
+                    Tribe newTribe = _playerTribeSelector.Tribe;
 
                     if (newPlayer != oldMarker.Player || newTribe != oldMarker.Tribe)
                     {
@@ -185,7 +185,7 @@ namespace TribalWars.Maps.Markers
                         oldMarker.Tribe = newTribe;
                         UpdateMarker(oldMarker, oldMarker.GetMarkerSettings());
 
-                        object selected = _playerTribeSelectorOld.Tribe ?? (object)_playerTribeSelectorOld.Player;
+                        object selected = _playerTribeSelector.Tribe ?? (object)_playerTribeSelector.Player;
                         e.Value = selected;
                         e.DataChanged = true;
                     }

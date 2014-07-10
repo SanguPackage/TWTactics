@@ -9,9 +9,27 @@ using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events.Impls;
+using XPTable.Models;
 
 namespace TribalWars.Controls.Common
 {
+    #region Generics?
+    // looks like the separate classes exist for design time convenience
+    //public class ToolStripControlHoster<T> : ToolStripControlHost where T : Control, new()
+    //{
+    //    public T HosterControl
+    //    {
+    //        get { return Control as T; }
+    //    }
+
+    //    public ToolStripControlHoster()
+    //        : base(new T())
+    //    {
+    //        AutoSize = false;
+    //    }
+    //}
+    #endregion
+
     /// <summary>
     /// Wrapper for a Unit ImageCombobox for use in a ToolStrip
     /// </summary>
@@ -71,9 +89,9 @@ namespace TribalWars.Controls.Common
         /// <summary>
         /// Gets the underlying VillageTextBox
         /// </summary>
-        public VillagePlayerTribeSelectorOld PlayerTribeSelectorOld
+        public VillagePlayerTribeSelector PlayerTribeSelector
         {
-            get { return Control as VillagePlayerTribeSelectorOld; }
+            get { return Control as VillagePlayerTribeSelector; }
         }
 
         /// <summary>
@@ -82,8 +100,8 @@ namespace TribalWars.Controls.Common
         [Browsable(false)]
         public Village Village
         {
-            get { return PlayerTribeSelectorOld.Village; }
-            set { PlayerTribeSelectorOld.SetVillage(value, false); }
+            get { return PlayerTribeSelector.Village; }
+            set { PlayerTribeSelector.SetVillage(value, false); }
         }
 
         /// <summary>
@@ -92,8 +110,8 @@ namespace TribalWars.Controls.Common
         [Browsable(false)]
         public Player Player
         {
-            get { return PlayerTribeSelectorOld.Player; }
-            set { PlayerTribeSelectorOld.SetPlayer(value, false); }
+            get { return PlayerTribeSelector.Player; }
+            set { PlayerTribeSelector.SetPlayer(value, false); }
         }
 
         /// <summary>
@@ -102,8 +120,8 @@ namespace TribalWars.Controls.Common
         [Browsable(false)]
         public Tribe Tribe
         {
-            get { return PlayerTribeSelectorOld.Tribe; }
-            set { PlayerTribeSelectorOld.SetTribe(value, false); }
+            get { return PlayerTribeSelector.Tribe; }
+            set { PlayerTribeSelector.SetTribe(value, false); }
         }
 
         /// <summary>
@@ -113,8 +131,8 @@ namespace TribalWars.Controls.Common
         [DefaultValue(false)]
         public bool AllowTribe
         {
-            get { return PlayerTribeSelectorOld.AllowTribe; }
-            set { PlayerTribeSelectorOld.AllowTribe = value; }
+            get { return PlayerTribeSelector.AllowTribe; }
+            set { PlayerTribeSelector.AllowTribe = value; }
         }
 
         /// <summary>
@@ -124,8 +142,8 @@ namespace TribalWars.Controls.Common
         [DefaultValue(false)]
         public bool AllowPlayer
         {
-            get { return PlayerTribeSelectorOld.AllowPlayer; }
-            set { PlayerTribeSelectorOld.AllowPlayer = value; }
+            get { return PlayerTribeSelector.AllowPlayer; }
+            set { PlayerTribeSelector.AllowPlayer = value; }
         }
 
         /// <summary>
@@ -135,21 +153,21 @@ namespace TribalWars.Controls.Common
         [DefaultValue(true)]
         public bool AllowVillage
         {
-            get { return PlayerTribeSelectorOld.AllowVillage; }
-            set { PlayerTribeSelectorOld.AllowVillage = value; }
+            get { return PlayerTribeSelector.AllowVillage; }
+            set { PlayerTribeSelector.AllowVillage = value; }
         }
         #endregion
 
         #region Constructors
         public ToolStripVillageTextBox()
-            : base(new VillagePlayerTribeSelectorOld())
+            : base(new VillagePlayerTribeSelector())
         {
             AutoSize = false;
             Text = string.Empty;
             ToolTipText = string.Empty;
 
-            PlayerTribeSelectorOld.Width = 50;
-            PlayerTribeSelectorOld.Text = string.Empty;
+            PlayerTribeSelector.Width = 50;
+            PlayerTribeSelector.Text = string.Empty;
         }
         #endregion
 
@@ -159,9 +177,9 @@ namespace TribalWars.Controls.Common
             base.OnSubscribeControlEvents(control);
 
             // Add the event.
-            PlayerTribeSelectorOld.VillageSelected += control_VillageSelected;
-            PlayerTribeSelectorOld.TribeSelected += TextBox_TribeSelected;
-            PlayerTribeSelectorOld.PlayerSelected += TextBox_PlayerSelected;
+            PlayerTribeSelector.VillageSelected += control_VillageSelected;
+            PlayerTribeSelector.TribeSelected += TextBox_TribeSelected;
+            PlayerTribeSelector.PlayerSelected += TextBox_PlayerSelected;
         }
 
         private void TextBox_PlayerSelected(object sender, PlayerEventArgs e)
@@ -184,9 +202,9 @@ namespace TribalWars.Controls.Common
             base.OnUnsubscribeControlEvents(control);
 
             // Remove the event.
-            PlayerTribeSelectorOld.VillageSelected -= control_VillageSelected;
-            PlayerTribeSelectorOld.TribeSelected -= TextBox_TribeSelected;
-            PlayerTribeSelectorOld.PlayerSelected -= TextBox_PlayerSelected;
+            PlayerTribeSelector.VillageSelected -= control_VillageSelected;
+            PlayerTribeSelector.TribeSelected -= TextBox_TribeSelected;
+            PlayerTribeSelector.PlayerSelected -= TextBox_PlayerSelected;
         }
         #endregion
     }
@@ -194,13 +212,10 @@ namespace TribalWars.Controls.Common
     
     /// <summary>
     /// Wrapper for a LocationChangerControl for use in a ToolStrip.
-    /// Also provides the placeholder text for the VillagePlayerTribeSelector.
     /// </summary>
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
     public class ToolStripLocationChangerControl : ToolStripControlHost
     {
-        private const string DefaultPlaceHolderText = "Search village, player, tribe...";
-
         #region Properties
         /// <summary>
         /// Gets the underlying LocationChangerControl
@@ -217,45 +232,11 @@ namespace TribalWars.Controls.Common
         {
             AutoSize = false;
             ToolTipText = string.Empty;
-            LocationChanger.Width = 400;
-
-            LocationChanger.PlayerTribeSelectorOld.Text = DefaultPlaceHolderText;
-            LocationChanger.PlayerTribeSelectorOld.LostFocus += PlayerTribeSelectorOldOnLostFocus;
-            LocationChanger.PlayerTribeSelectorOld.GotFocus += PlayerTribeSelectorOldOnGotFocus;
-
-            LocationChanger.VillagePlayerTribeSelector.Text = DefaultPlaceHolderText;
-            LocationChanger.VillagePlayerTribeSelector.LostFocus += PlayerTribeSelectorOldOnLostFocus;
-            LocationChanger.VillagePlayerTribeSelector.GotFocus += PlayerTribeSelectorOldOnGotFocus;
-        }
-
-        private void PlayerTribeSelectorOldOnGotFocus(object sender, EventArgs e)
-        {
-            // TODO: this still working with the old:
-            if (LocationChanger.PlayerTribeSelectorOld.Text == DefaultPlaceHolderText)
-            {
-                LocationChanger.PlayerTribeSelectorOld.Text = "";
-            }
-
-            if (LocationChanger.VillagePlayerTribeSelector.Text == DefaultPlaceHolderText)
-            {
-                LocationChanger.VillagePlayerTribeSelector.Text = "";
-            }
-        }
-
-        private void PlayerTribeSelectorOldOnLostFocus(object sender, EventArgs e)
-        {
-            if (LocationChanger.PlayerTribeSelectorOld.Text == "")
-            {
-                LocationChanger.PlayerTribeSelectorOld.Text = DefaultPlaceHolderText;
-            }
-
-            if (LocationChanger.VillagePlayerTribeSelector.Text == "")
-            {
-                LocationChanger.VillagePlayerTribeSelector.Text = DefaultPlaceHolderText;
-            }
+            LocationChanger.Width = 200;
         }
         #endregion
     }
+
 
 
     /// <summary>

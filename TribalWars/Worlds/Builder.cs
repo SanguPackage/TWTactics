@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Xml;
+using TribalWars.Controls.Monitoring;
 using TribalWars.Maps;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Managers;
@@ -15,7 +16,6 @@ using TribalWars.Villages;
 using TribalWars.Villages.Buildings;
 using TribalWars.Villages.Units;
 using TribalWars.WorldTemplate;
-using TribalWars.Worlds.Monitoring;
 using World = TribalWars.Worlds.World;
 
 #endregion

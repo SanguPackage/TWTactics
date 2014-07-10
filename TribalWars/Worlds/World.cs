@@ -7,13 +7,14 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawers;
 using TribalWars.Maps.Views;
 using TribalWars.Villages;
-using Monitor = TribalWars.Worlds.Monitoring.Monitor;
+using Monitor = TribalWars.Controls.Monitoring.Monitor;
 
 #endregion
 
@@ -38,6 +39,11 @@ namespace TribalWars.Worlds
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Cache for Players and Tribes Autocomplete
+        /// </summary>
+        public AutoCompleteCache Cache { get; private set; }
+
         /// <summary>
         /// Gets the main WorldMap
         /// </summary>
@@ -168,6 +174,8 @@ namespace TribalWars.Worlds
 
             _views = new Dictionary<string, ViewBase>();
 
+            Cache = new AutoCompleteCache();
+
             You = new Player();
         }
 
@@ -225,6 +233,8 @@ namespace TribalWars.Worlds
             bool settingLoadSuccess = LoadSettingsCore(settings, false);
             if (!settingLoadSuccess)
                 return false;
+
+            Cache = new AutoCompleteCache(_players, _tribes);
 
             HasLoaded = true;
 

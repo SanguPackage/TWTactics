@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivePlayerForm));
             this.OkButton = new Janus.Windows.EditControls.UIButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.You = new TribalWars.Controls.Finders.VillagePlayerTribeSelectorOld();
+            this.You = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.YourMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
@@ -153,7 +153,7 @@
 
         private Janus.Windows.EditControls.UIButton OkButton;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
-        private Controls.Finders.VillagePlayerTribeSelectorOld You;
+        private Controls.Finders.PlayerTribeDropdown You;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox2;
         private Maps.Markers.MarkerSettingsControl YourMarker;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;

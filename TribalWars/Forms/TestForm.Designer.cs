@@ -34,8 +34,9 @@
             this.multiColumnCombo1 = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
             this.SearchTypeImageList = new System.Windows.Forms.ImageList(this.components);
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
-            this.villagePlayerTribeSelector1 = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
-            this.villagePlayerTribeSelectorOld1 = new TribalWars.Controls.Finders.VillagePlayerTribeSelectorOld();
+            this.villagePlayerTribeSelector1 = new TribalWars.Controls.Finders.PlayerTribeDropdown();
+            this.villagePlayerTribeSelectorOld1 = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
+            this.editBox1 = new Janus.Windows.GridEX.EditControls.EditBox();
             ((System.ComponentModel.ISupportInitialize)(this.multiColumnCombo1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,8 +91,17 @@
             this.villagePlayerTribeSelectorOld1.GameLocation = null;
             this.villagePlayerTribeSelectorOld1.Location = new System.Drawing.Point(63, 60);
             this.villagePlayerTribeSelectorOld1.Name = "villagePlayerTribeSelectorOld1";
+            this.villagePlayerTribeSelectorOld1.PlaceHolderText = "";
             this.villagePlayerTribeSelectorOld1.Size = new System.Drawing.Size(181, 20);
             this.villagePlayerTribeSelectorOld1.TabIndex = 16;
+            // 
+            // editBox1
+            // 
+            this.editBox1.Image = ((System.Drawing.Image)(resources.GetObject("editBox1.Image")));
+            this.editBox1.Location = new System.Drawing.Point(134, 114);
+            this.editBox1.Name = "editBox1";
+            this.editBox1.Size = new System.Drawing.Size(100, 24);
+            this.editBox1.TabIndex = 17;
             // 
             // TestForm
             // 
@@ -100,6 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CloseButton;
             this.ClientSize = new System.Drawing.Size(616, 418);
+            this.Controls.Add(this.editBox1);
             this.Controls.Add(this.villagePlayerTribeSelectorOld1);
             this.Controls.Add(this.villagePlayerTribeSelector1);
             this.Controls.Add(this.CloseButton);
@@ -122,7 +133,8 @@
         private Janus.Windows.EditControls.UIButton CloseButton;
         private Janus.Windows.GridEX.EditControls.MultiColumnCombo multiColumnCombo1;
         private System.Windows.Forms.ImageList SearchTypeImageList;
-        private Controls.Finders.VillagePlayerTribeSelector villagePlayerTribeSelector1;
-        private Controls.Finders.VillagePlayerTribeSelectorOld villagePlayerTribeSelectorOld1;
+        private Controls.Finders.PlayerTribeDropdown villagePlayerTribeSelector1;
+        private Controls.Finders.VillagePlayerTribeSelector villagePlayerTribeSelectorOld1;
+        private Janus.Windows.GridEX.EditControls.EditBox editBox1;
     }
 }

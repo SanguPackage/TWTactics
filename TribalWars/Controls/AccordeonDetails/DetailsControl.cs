@@ -478,7 +478,7 @@ namespace TribalWars.Controls.AccordeonDetails
                         SelectedVillage.Tribe = command.Tribe;
                         break;
                     default:
-                        SelectedVillage.PlayerTribeSelectorOld.Clear();
+                        SelectedVillage.PlayerTribeSelector.Clear();
                         break;
                 }
             }

@@ -18,6 +18,8 @@ namespace TribalWars.Controls.Finders
     /// </summary>
     public partial class LocationChangerControl : UserControl
     {
+        private const string DefaultPlaceHolderText = "Search village, player, tribe...";
+
         #region Fields
         private Map _map;
         private bool _updatingZoom;
@@ -33,31 +35,13 @@ namespace TribalWars.Controls.Finders
         {
             ZoomControl.Value = map.Location.Zoom;
             _map = map;
-            PlayerTribeSelectorOld.Initialize(map);
-            VillagePlayerTribeSelector.Initialize(map);
+            SelectorControl.Initialize(map);
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
+            SelectorControl.PlaceHolderText = DefaultPlaceHolderText;
         }
         #endregion
 
         #region Event Handlers
-        private void TeleportButton_Click(object sender, EventArgs e)
-        {
-            Point? point = World.Default.GetCoordinates(Text);
-            if (point.HasValue)
-            {
-                if (_map != null)
-                {
-                    _map.SetCenter(point.Value);
-                }
-            }
-            else
-            {
-                // TODO: tooltip
-                //tooltip.ToolTipTitle = string.Empty;
-                //tooltip.SetToolTip(this, GetEmptyTooltip());
-            }
-        }
-
         /// <summary>
         /// Changes the zoom level of the map
         /// </summary>
