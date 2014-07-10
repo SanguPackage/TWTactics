@@ -215,7 +215,6 @@ namespace TribalWars.Maps
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
         /// <param name="vils">Villages that have to be visible</param>
-        /// <param name="tryRespectCurrentZoom">False: use optimal zoom level, True: try to keep current zoom level</param>
         private Location GetSpan(IEnumerable<Village> vils)
         {
             int leftX = 999, topY = 999, rightX = 0, bottomY = 0;

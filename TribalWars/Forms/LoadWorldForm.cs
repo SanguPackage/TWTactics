@@ -153,13 +153,18 @@ Right click a village if you don't know where to start." + selectYouLater, "Worl
         {
             if (Worlds.SelectedNode != null)
             {
-                if (Worlds.SelectedNode.ImageIndex == ImageWorld)
+                switch (Worlds.SelectedNode.ImageIndex)
                 {
-                    if (Worlds.SelectedNode.Nodes.Count != 0)
-                        return Worlds.SelectedNode.Nodes[0].Name;
+                    case ImageWorld:
+                        if (Worlds.SelectedNode.Nodes.Count != 0)
+                        {
+                            return Worlds.SelectedNode.Nodes[0].Name;
+                        }
+                        break;
+
+                    case ImageData:
+                        return Worlds.SelectedNode.Name;
                 }
-                else if (Worlds.SelectedNode.ImageIndex == ImageData)
-                    return Worlds.SelectedNode.Name;
             }
 
             return string.Empty;

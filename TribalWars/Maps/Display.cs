@@ -23,11 +23,7 @@ namespace TribalWars.Maps
         private readonly Map _map;
         private readonly MarkerManager _markers;
 
-        private readonly Pen _continentPen;
-        private readonly Pen _provincePen;
         private Rectangle _visibleRectangle;
-
-        private readonly Brush _backgroundBrush;
 
         private Bitmap _background; // TODO: private PainterCache _cache?
         private Painter _painter;
@@ -71,19 +67,6 @@ namespace TribalWars.Maps
             _markers = map.MarkerManager;
 
             _drawerFactoryStrategy = DrawerFactoryBase.Create(displayType, zoomLevel, settings.Scenery);
-
-            // TODO: all these move to the painter
-            _backgroundBrush = new SolidBrush(settings.BackgroundColor);
-            if (settings.ContinentLines)
-            {
-                _continentPen = new Pen(Color.Black, 1);
-                _continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            }
-            if (settings.ProvinceLines)
-            {
-                _provincePen = new Pen(Color.FromArgb(42, 94, 31), 1f);
-                _provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-            }
         }
         #endregion
 
@@ -329,7 +312,10 @@ namespace TribalWars.Maps
                 mapSize.Offset(mapOffset);
                 _toPaint = mapSize;
 
-                _g.FillRectangle(display._backgroundBrush, _toPaint);
+                using (var backgroundBrush = new SolidBrush(_display.Settings.BackgroundColor))
+                {
+                    _g.FillRectangle(backgroundBrush, _toPaint);
+                }
 
                 var dimensions = display.Dimensions;
                 _villageWidthSpacing = dimensions.SizeWithSpacing.Width;
@@ -388,13 +374,20 @@ namespace TribalWars.Maps
 
                 if (_villageWidthSpacing > 4 && _display.Settings.ProvinceLines)
                 {
-                    // These are the province lines:
-                    DrawContinentLines(_display._provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                    using (var provincePen = _display.Settings.CreateProvincePen())
+                    {
+                        provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                        DrawContinentLines(provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                    }
                 }
 
                 if (_display.Settings.ContinentLines)
                 {
-                    DrawContinentLines(_display._continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                    using (var continentPen = _display.Settings.CreateContinentPen())
+                    {
+                        continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                        DrawContinentLines(continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
+                    }
                 }
             }
 

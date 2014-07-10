@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using TribalWars.Maps.Displays;
 
 namespace TribalWars.Maps
@@ -11,29 +12,29 @@ namespace TribalWars.Maps
         /// <summary>
         /// Gets or sets the canvas background color
         /// </summary>
-        public Color BackgroundColor { get; private set; }
+        public Color BackgroundColor { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether continent lines should be drawn
         /// </summary>
-        public bool ContinentLines { get; private set; }
+        public bool ContinentLines { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether province lines should be drawn
         /// </summary>
-        public bool ProvinceLines { get; private set; }
+        public bool ProvinceLines { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating wether abandoned 
         /// villages should be shown on the map
         /// </summary>
-        public bool HideAbandoned { get; private set; }
+        public bool HideAbandoned { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating wether unmarked
         /// villages should be shown on the map
         /// </summary>
-        public bool MarkedOnly { get; private set; }
+        public bool MarkedOnly { get; set; }
 
         /// <summary>
         /// Which world.dat to use for displaying mountains etc.
@@ -48,6 +49,18 @@ namespace TribalWars.Maps
             ProvinceLines = provinceLines;
             HideAbandoned = hideAbandoned;
             MarkedOnly = markedOnly;
+        }
+
+        public Pen CreateProvincePen()
+        {
+            Debug.Assert(ProvinceLines);
+            return new Pen(Color.FromArgb(42, 94, 31), 1f);
+        }
+
+        public Pen CreateContinentPen()
+        {
+            Debug.Assert(ContinentLines);
+            return new Pen(Color.Black, 1);
         }
     }
 }

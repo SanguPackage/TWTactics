@@ -118,7 +118,7 @@ namespace TribalWars.Maps.Markers
         #region Overriden Methods
         public override string ToString()
         {
-            var str = "";
+            string str;
             if (Player != null)
             {
                 str = string.Format("Player {0}", Player.Name);
