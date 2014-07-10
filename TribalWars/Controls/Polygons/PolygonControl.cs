@@ -251,7 +251,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 // SetVillageType()
                 if (record.Village.Type != VillageType.None)
                 {
-                    e.Row.Cells["TYPE"].Image = record.Village.Type.GetImage();
+                    e.Row.Cells["TYPE"].Image = record.Village.Type.GetImage(true);
                     if (record.Village.Type.HasFlag(VillageType.Comments))
                     {
                         e.Row.Cells["TYPE"].ToolTipText = record.Village.Comments;

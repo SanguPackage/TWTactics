@@ -48,7 +48,7 @@ namespace TribalWars.Villages
         /// Gets the most important image
         /// (in case multiple flags are active)
         /// </summary>
-        public static Image GetImage(this VillageType type)
+        public static Image GetImage(this VillageType type, bool displayComments)
         {
             if (type.HasFlag(VillageType.Noble))
                 return UnitImages.Noble;
@@ -65,7 +65,7 @@ namespace TribalWars.Villages
             if (type.HasFlag(VillageType.Farm))
                 return BuildingImages.Farm;
 
-            if (type.HasFlag(VillageType.Comments))
+            if (displayComments && type.HasFlag(VillageType.Comments))
                 return Other.Note;
 
             return null;

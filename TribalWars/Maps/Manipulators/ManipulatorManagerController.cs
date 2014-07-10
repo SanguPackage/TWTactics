@@ -153,7 +153,7 @@ namespace TribalWars.Maps.Manipulators
             return redraw;
         }
 
-        public bool MouseMove(MouseEventArgs e, ScrollableMapControl mapPicture)
+        public bool MouseMove(MouseEventArgs e)
         {
             Point game = Map.Display.GetGameLocation(e.Location);
             if (!game.IsValidGameCoordinate())
@@ -171,7 +171,7 @@ namespace TribalWars.Maps.Manipulators
                 {
                     LastActiveVillage = ActiveVillage;
                     ActiveVillage = village.Location;
-                    CurrentManipulator.ShowTooltip(mapPicture, village);
+                    CurrentManipulator.ShowTooltip(village);
                 }
             }
             else

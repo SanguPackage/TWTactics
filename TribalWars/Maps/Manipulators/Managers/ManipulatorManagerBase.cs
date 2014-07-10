@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using Janus.Windows.Common;
 using TribalWars.Controls;
 using TribalWars.Controls.TWContextMenu;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
@@ -22,7 +23,7 @@ namespace TribalWars.Maps.Manipulators.Managers
         protected readonly List<ManipulatorBase> _manipulators;
         protected ManipulatorBase _fullControllManipulator;
 
-        private readonly ToolTip _toolTipControl;
+        private readonly JanusSuperTip _toolTipControl;
         #endregion
 
         #region Properties
@@ -38,7 +39,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             : base(map)
         {
             _manipulators = new List<ManipulatorBase>();
-            _toolTipControl = WinForms.CreateTooltip();
+            _toolTipControl = Tools.Janus.CreateTooltip();
             TooltipActive = showTooltip;
         }
         #endregion
@@ -71,20 +72,17 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
-        public void ShowTooltip(Control map, Village village)
+        public void ShowTooltip(Village village)
         {
             if (TooltipActive)
             {
-                _toolTipControl.Active = true;
-                _toolTipControl.ToolTipTitle = village.Tooltip.Title;
-                _toolTipControl.SetToolTip(map, village.Tooltip.Text);
+                _map.ShowTooltip(village);
             }
-
         }
 
         public void StopTooltip()
         {
-            _toolTipControl.Active = false;
+            _toolTipControl.HideActiveToolTip();
         }
         #endregion
 

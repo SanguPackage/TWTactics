@@ -75,7 +75,7 @@ namespace TribalWars.Controls.XPTables
             // General village info columns
             if (village.Reports != null && village.Type != VillageType.None)
             {
-                Cells.Add(new Cell(string.Empty, village.Type.GetImage()));
+                Cells.Add(new Cell(string.Empty, village.Type.GetImage(true)));
             }
             else
             {
@@ -142,7 +142,7 @@ namespace TribalWars.Controls.XPTables
         {
             if (TableModel != null)
             {
-                var context = new VillageContextMenu(_map, _village, () => Cells[1].Image = _village.Type.GetImage());
+                var context = new VillageContextMenu(_map, _village, () => Cells[1].Image = _village.Type.GetImage(true));
                 context.Show(TableModel.Table, p);
             }
         }

@@ -111,14 +111,6 @@ namespace TribalWars.Villages
                     }
                 }
 
-                if (_village.Type.HasFlag(VillageType.Comments))
-                {
-                    str.AppendLine();
-                    str.AppendLine();
-                    str.AppendLine("Comments:");
-                    str.AppendLine(_village.Comments);
-                }
-
                 return str.ToString();
             }
         }
@@ -129,6 +121,21 @@ namespace TribalWars.Villages
             {
                 if (_village.Player == null) return _village.ToString();
                 return string.Format("{0} - {1}", _village, _village.Player.Name);
+            }
+        }
+
+        public string Footer
+        {
+            get
+            {
+                if (_village.Type.HasFlag(VillageType.Comments))
+                {
+                    var str = new StringBuilder();
+                    str.AppendLine("Comments:");
+                    str.AppendLine(_village.Comments);
+                    return str.ToString();
+                }
+                return "";
             }
         }
     }

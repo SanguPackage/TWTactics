@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Janus.Windows.Common;
 using TribalWars.Controls;
 using TribalWars.Controls.TWContextMenu;
 using System.Drawing;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
+using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Markers;
+using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events.Impls;
 
@@ -25,6 +28,7 @@ namespace TribalWars.Maps
         private Display _display;
         private ScrollableMapControl _control;
         private Location _location;
+        private readonly JanusSuperTip _toolTip = Tools.Janus.CreateTooltip();
         #endregion
 
         #region Properties
@@ -111,6 +115,8 @@ namespace TribalWars.Maps
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
             Manipulators = new ManipulatorManagerController(this, mainMap);
+
+            SetTooltipProperties();
         }
 
         /// <summary>
@@ -121,6 +127,14 @@ namespace TribalWars.Maps
             EventPublisher = new Publisher(this);
             MarkerManager = new MarkerManager();
             Manipulators = new ManipulatorManagerController(this);
+
+            SetTooltipProperties();
+        }
+
+        private void SetTooltipProperties()
+        {
+            _toolTip.InitialDelay = 400;
+            _toolTip.AutoPopDelay = 6000;
         }
 
         public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, int zoomLevel)
@@ -388,9 +402,30 @@ namespace TribalWars.Maps
             menu.Show(_control, mapLocation);
         }
 
-        public void ShowTooltip(ToolTip toolTip, string body)
+        public void ShowTooltip(string title, string body)
         {
-            toolTip.SetToolTip(_control, body);
+            var settings = new SuperTipSettings();
+            settings.HeaderText = title;
+            settings.Text = body;
+
+            _toolTip.Show(settings, _control);
+        }
+
+        public void ShowTooltip(Village village)
+        {
+            var settings = new SuperTipSettings();
+            settings.ToolTipStyle = ToolTipStyle.Standard;
+            settings.HeaderText = village.Tooltip.Title;
+            settings.Text = village.Tooltip.Text;
+            settings.Image = village.Type.GetImage(false);
+
+            if (!string.IsNullOrEmpty(village.Tooltip.Footer))
+            {
+                settings.FooterText = village.Tooltip.Footer;
+                settings.FooterImage = Other.Note;
+            }
+
+            _toolTip.Show(settings, _control);
         }
         #endregion
     }

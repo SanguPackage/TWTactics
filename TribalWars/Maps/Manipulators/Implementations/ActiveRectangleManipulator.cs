@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Janus.Windows.Common;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
 using TribalWars.Tools;
@@ -29,7 +30,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
 
         private bool _showHelpTooltip;
         private Point _lastTooltipLocation;
-        private readonly ToolTip _helpTooltip;
         private const string HelpTitle = "Monitoring ActiveRectangle";
         private const string HelpBody = 
                 @"Press +, - and the arrow keys to 
@@ -46,7 +46,6 @@ Press 's' to remove this tooltip.";
             : base(map)
         {
             _rectanglePen = new Pen(Color.Yellow, 3);
-            _helpTooltip = WinForms.CreateTooltip();
             _showHelpTooltip = true;
             _releaseAction = releaseAction;
 
@@ -72,7 +71,6 @@ Press 's' to remove this tooltip.";
         protected internal override void RemoveFullControlManipulatorCore()
         {
             _map.Manipulators.CurrentManipulator.TooltipActive = _wasShowingTooltip;
-            _helpTooltip.Active = false;
 
             if (_releaseAction != null)
                 _releaseAction(_hasSetNew);
@@ -123,8 +121,7 @@ Press 's' to remove this tooltip.";
             if (_showHelpTooltip && _lastTooltipLocation != e.Location)
             {
                 _lastTooltipLocation = e.Location;
-                _helpTooltip.ToolTipTitle = HelpTitle;
-                _map.ShowTooltip(_helpTooltip, HelpBody);
+                _map.ShowTooltip(HelpTitle, HelpBody);
             }
             
             CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);
@@ -170,7 +167,6 @@ Press 's' to remove this tooltip.";
 
                     case Keys.S:
                         _showHelpTooltip = false;
-                        _helpTooltip.Active = false;
                         return true;
                 }
             }
@@ -180,7 +176,6 @@ Press 's' to remove this tooltip.";
         public override void Dispose()
         {
             _rectanglePen.Dispose();
-            _helpTooltip.Dispose();
         }
         #endregion
 

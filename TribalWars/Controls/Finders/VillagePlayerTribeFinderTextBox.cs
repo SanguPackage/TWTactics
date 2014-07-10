@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Janus.Windows.Common;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Maps;
 using TribalWars.Tools;
@@ -125,7 +126,11 @@ namespace TribalWars.Controls.Finders
         {
             AllowVillage = true;
             Width = 50;
-            _tooltip = WinForms.CreateTooltip();
+            _tooltip =  new ToolTip
+                {
+                    Active = true,
+                    IsBalloon = true
+                };
         }
 
         public void Initialize(Map map)

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.Common;
 using Janus.Windows.UI.CommandBars;
 
 namespace TribalWars.Tools
@@ -13,18 +14,6 @@ namespace TribalWars.Tools
     /// </summary>
     public static class WinForms
     {
-        /// <summary>
-        /// Create a WinForms tooltip control with default properties set
-        /// </summary>
-        public static ToolTip CreateTooltip()
-        {
-            return new ToolTip
-                {
-                    Active = true,
-                    IsBalloon = true
-                };
-        }
-
         /// <summary>
         /// Update a control from different thread
         /// </summary>

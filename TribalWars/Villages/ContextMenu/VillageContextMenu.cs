@@ -56,7 +56,7 @@ namespace TribalWars.Controls.TWContextMenu
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             
             _menu.AddSeparator();
-            UICommand villageTypes =_menu.AddCommand("Type", null, village.Type.GetImage());
+            UICommand villageTypes =_menu.AddCommand("Type", null, village.Type.GetImage(true));
             AddVillageTypeCommand(villageTypes, VillageType.Attack, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Defense, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Noble, village.Type);
@@ -90,7 +90,7 @@ namespace TribalWars.Controls.TWContextMenu
 
             var command = new UICommand("", typeToSet.GetDescription());
             command.Tag = typeToSet;
-            command.Image = typeToSet.GetImage();
+            command.Image = typeToSet.GetImage(true);
             command.Checked = isCurrentlySet ? InheritableBoolean.True : InheritableBoolean.False;
             command.Click += OnVillageTypeChange;
             menu.Commands.Add(command);

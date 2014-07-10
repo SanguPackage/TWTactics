@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.Common;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
 using Janus.Windows.UI.CommandBars;
@@ -326,5 +327,19 @@ namespace TribalWars.Tools
         }
         #endregion
         #endregion
+
+        #region JanusSuperTip
+        /// <summary>
+        /// Create a WinForms tooltip control with default properties set
+        /// </summary>
+        public static JanusSuperTip CreateTooltip()
+        {
+            return new JanusSuperTip
+                {
+                    InitialDelay = 400
+                };
+        }
+        #endregion
+
     }
 }
