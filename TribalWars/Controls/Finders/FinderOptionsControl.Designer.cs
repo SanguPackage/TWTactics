@@ -33,7 +33,7 @@ namespace TribalWars.Controls.Finders
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinderOptionsControl));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.Tribe = new VillagePlayerTribeFinderTextBox();
+            this.Tribe = new VillagePlayerTribeSelectorOld();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -343,7 +343,7 @@ namespace TribalWars.Controls.Finders
         private System.Windows.Forms.Button cmdTribe;
         private System.Windows.Forms.Button cmdPlayer;
         private System.Windows.Forms.Label label5;
-        private VillagePlayerTribeFinderTextBox Tribe;
+        private VillagePlayerTribeSelectorOld Tribe;
         private System.Windows.Forms.ComboBox What;
         private System.Windows.Forms.ToolTip toolTip1;
     }

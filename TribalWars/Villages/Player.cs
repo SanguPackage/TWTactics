@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TribalWars.Maps;
 using TribalWars.Tools;
+using TribalWars.Villages.Helpers;
 using TribalWars.Worlds;
 
 namespace TribalWars.Villages
@@ -9,7 +11,7 @@ namespace TribalWars.Villages
     /// <summary>
     /// Represents a Tribal Wars player
     /// </summary>
-    public sealed class Player : IComparable<Player>, IEquatable<Player>, IEnumerable<Village>
+    public sealed class Player : IVisible, IComparable<Player>, IEquatable<Player>, IEnumerable<Village>
     {
         #region Fields
         private int _id;
@@ -407,6 +409,11 @@ namespace TribalWars.Villages
         public override int GetHashCode()
         {
             return Rank.GetHashCode();
+        }
+
+        public bool IsVisible(Map map)
+        {
+            return map.Display.IsVisible(this);
         }
 
         public static bool operator ==(Player left, Player right)

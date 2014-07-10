@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using TribalWars.Maps;
 using TribalWars.Tools;
+using TribalWars.Villages.Helpers;
 
 namespace TribalWars.Villages
 {
     /// <summary>
     /// Represents a Tribal Wars Tribe
     /// </summary>
-    public class Tribe : IEquatable<Tribe>, IComparable<Tribe>, IEnumerable<Village>
+    public class Tribe : IVisible, IEquatable<Tribe>, IComparable<Tribe>, IEnumerable<Village>
     {
         #region Fields
         private int _id;
@@ -238,6 +240,11 @@ namespace TribalWars.Villages
         public override int GetHashCode()
         {
             return AllPoints.GetHashCode();
+        }
+
+        public bool IsVisible(Map map)
+        {
+            return map.Display.IsVisible(this);
         }
 
         public override bool Equals(object obj)

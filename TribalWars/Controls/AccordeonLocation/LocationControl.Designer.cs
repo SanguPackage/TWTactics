@@ -41,7 +41,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.GoHome = new Janus.Windows.EditControls.UIButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
-            this.You = new TribalWars.Controls.Finders.VillagePlayerTribeFinderTextBox();
+            this.You = new TribalWars.Controls.Finders.VillagePlayerTribeSelectorOld();
             groupBox1 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -190,7 +190,7 @@ namespace TribalWars.Controls.AccordeonLocation
         private System.Windows.Forms.TextBox txtK;
         private System.Windows.Forms.Panel panel1;
         private LocationFinderControl _locationFinderControl1;
-        private VillagePlayerTribeFinderTextBox You;
+        private VillagePlayerTribeSelectorOld You;
         private System.Windows.Forms.GroupBox groupBox4;
         private Janus.Windows.EditControls.UIButton GoHome;
         private System.Windows.Forms.GroupBox groupBox2;

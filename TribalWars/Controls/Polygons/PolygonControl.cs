@@ -46,7 +46,7 @@ namespace TribalWars.Controls.Polygons
         #region Event Handlers
         private void PolygonControl_Load(object sender, EventArgs e)
         {
-            GridExVillage.Configure(true, true);
+            GridExVillage.Configure(false, true);
             GridExPolygon.Configure(true, false);
 
             GridExPolygon.RootTable.Columns["LineColor"].ConfigureAsColor();
@@ -245,7 +245,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 // SetVillageVisibility()
                 if (record.ISVISIBLE)
                 {
-                    e.Row.Cells["ISVISIBLE"].Image = VisibleImageList.Images[0];
+                    e.Row.Cells["ISVISIBLE"].Image = Properties.Resources.Visible;
                     e.Row.Cells["ISVISIBLE"].ToolTipText = "Currently visible on the map";
                 }
 

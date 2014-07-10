@@ -20,7 +20,9 @@ namespace TribalWars.Tools.JanusExtensions
             grid.AllowRemoveColumns = InheritableBoolean.False;
             grid.HideColumnsWhenGrouped = InheritableBoolean.True;
             grid.FilterRowButtonStyle = FilterRowButtonStyle.ConditionOperatorDropDown;
+
             grid.FocusCellDisplayMode = forEdit ? FocusCellDisplayMode.UseFocusCellFormatStyle : FocusCellDisplayMode.UseSelectedFormatStyle;
+            grid.AllowEdit = forEdit ? InheritableBoolean.True : InheritableBoolean.False;
 
             grid.FilterMode = allowFilter ? FilterMode.Automatic : FilterMode.None;
             grid.FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges;

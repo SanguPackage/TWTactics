@@ -1,28 +1,32 @@
-#region Using
-using System;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Data;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
-using Janus.Windows.Common;
+using Janus.Windows.GridEX;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Maps;
-using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 using TribalWars.Worlds.Events.Impls;
 
-#endregion
-
 namespace TribalWars.Controls.Finders
 {
-    /// <summary>
-    /// Extended TextBox that accepts Village coordinates, player names and tribe tags
-    /// </summary>
-    public class VillagePlayerTribeFinderTextBox : EditBox
+    public partial class VillagePlayerTribeSelector : UserControl
     {
         #region Constants
         private const string PropertyGridCategory = "Tribal Wars";
+
+        private readonly static Color BadInput = Color.Red;
+        private readonly static Color GoodInput = Color.Green;
+        private readonly static Color NeutralInput = Color.White;
         #endregion
 
         #region Events
@@ -34,10 +38,12 @@ namespace TribalWars.Controls.Finders
         #region Fields
         private Map _map;
         private readonly ToolTip _tooltip;
-
-        private bool _showButton;
-
         private bool _handleTextChanged = true;
+
+        private IEnumerable<VillagePlayerTribeRow> _playerAutoComplete;
+        private IEnumerable<VillagePlayerTribeRow> _tribeAutoComplete;
+        private IEnumerable<VillagePlayerTribeRow> _villageAutoComplete;
+        private bool _villagesAdded;
         #endregion
 
         #region Properties
@@ -48,14 +54,18 @@ namespace TribalWars.Controls.Finders
         {
             get
             {
-                return World.Default.GetCoordinates(Text);
+                return World.Default.GetCoordinates(SelectorControl.Text);
             }
             set
             {
                 if (value.HasValue)
-                    Text = string.Format("{0}|{1}", value.Value.X, value.Value.Y);
+                {
+                    SelectorControl.Text = string.Format("{0}|{1}", value.Value.X, value.Value.Y);
+                }
                 else
-                    Text = string.Empty;
+                {
+                    SelectorControl.Text = string.Empty;
+                }
             }
         }
 
@@ -97,43 +107,22 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         [Category(PropertyGridCategory), DefaultValue(true)]
         public bool AllowVillage { get; set; }
-
-        /// <summary>
-        /// Shows or hides the location changer button
-        /// </summary>
-        [Category(PropertyGridCategory), DefaultValue(false)]
-        public bool ShowButton
-        {
-            get { return _showButton; }
-            set
-            {
-                if (value)
-                {
-                    ButtonStyle = EditButtonStyle.Image;
-                    ButtonImageSize = new Size(15, 15);
-                    ButtonImage = Properties.Resources.teleport;
-                }
-                else
-                {
-                    ButtonStyle = EditButtonStyle.NoButton;
-                }
-                _showButton = value;
-            }
-        }
         #endregion
 
         #region Constructors
-        public VillagePlayerTribeFinderTextBox()
+        public VillagePlayerTribeSelector()
         {
+            InitializeComponent();
             AllowVillage = true;
-            Width = 50;
-            _tooltip =  new ToolTip
-                {
-                    Active = true,
-                    IsBalloon = true
-                };
-        }
 
+            _tooltip = new ToolTip
+            {
+                Active = true,
+                IsBalloon = true
+            };
+
+            World.Default.EventPublisher.Loaded += WorldEventPublisher_Loaded;
+        }
         public void Initialize(Map map)
         {
             _map = map;
@@ -141,14 +130,116 @@ namespace TribalWars.Controls.Finders
         #endregion
 
         #region Event Handlers
-        protected override void OnTextChanged(EventArgs e)
+        public void SetAutocompleteDataSource()
+        {
+            WorldEventPublisher_Loaded(null, EventArgs.Empty);
+        }
+
+        private void WorldEventPublisher_Loaded(object sender, EventArgs e)
+        {
+            SelectorControl.ValueMember = "Value";
+            SelectorControl.DisplayMember = "Value";
+            SelectorControl.DropDownList.AutomaticSort = true;
+
+            if (AllowPlayer)
+            {
+                _playerAutoComplete = World.Default.Players.Select(x => new VillagePlayerTribeRow(x));
+            }
+
+            if (AllowTribe)
+            {
+                _tribeAutoComplete = World.Default.Tribes.Select(x => new VillagePlayerTribeRow(x));
+            }
+
+            _villagesAdded = false;
+            //if (AllowVillage)
+            //{
+            //    _villageAutoComplete = World.Default.Villages.Values.Select(x => new VillagePlayerTribeRow(x));
+            //}
+
+            SelectorControl.DataSource = GetAutoCompleteDataSource().ToArray();
+        }
+
+        private IEnumerable<VillagePlayerTribeRow> GetAutoCompleteDataSource(int? xCoordVillages = null)
+        {
+            if (AllowVillage && xCoordVillages.HasValue)
+            {
+                return World.Default.Villages.Values.Where(vil => vil.X == xCoordVillages.Value).Select(x => new VillagePlayerTribeRow(x));
+            }
+            else
+            {
+                var dataSource = Enumerable.Empty<VillagePlayerTribeRow>();
+                if (AllowPlayer)
+                {
+                    dataSource = dataSource.Concat(_playerAutoComplete);
+                }
+                if (AllowTribe)
+                {
+                    dataSource = dataSource.Concat(_tribeAutoComplete);
+                }
+                return dataSource;
+            }
+        }
+
+        private void VillagePlayerTribeSelector_Load(object sender, EventArgs e)
+        {
+            SelectorControl.DropDownList.FormattingRow += DropDownList_FormattingRow;
+        }
+
+        private void DropDownList_FormattingRow(object sender, RowLoadEventArgs e)
+        {
+            if (e.Row.RowType == RowType.Record)
+            {
+                var data = (VillagePlayerTribeRow) e.Row.DataRow;
+
+                e.Row.Cells["Visible"].Image = data.VisibleImage;
+                e.Row.Cells["Image"].ImageIndex = data.ImageIndex;
+
+                e.Row.Cells["Value"].ToolTipText = ""; // TODO: add tooltip
+            }
+        }
+
+        private void AddVillageAutoCompleteRows()
+        {
+            Debug.Assert(AllowVillage);
+
+            bool shouldAddVillages = false;
+            int xCoord = 0;
+            if (SelectorControl.Text.Length > 2 && SelectorControl.Text.Length < 8)
+            {
+                if (int.TryParse(SelectorControl.Text.Substring(0, 3), NumberStyles.None, CultureInfo.InvariantCulture, out xCoord))
+                {
+                    shouldAddVillages = true;
+                }
+            }
+
+            if (shouldAddVillages && !_villagesAdded)
+            {
+                _villagesAdded = true;
+                SelectorControl.DataSource = GetAutoCompleteDataSource(xCoord).ToArray();
+            }
+            else if (!shouldAddVillages && _villagesAdded)
+            {
+                _villagesAdded = false;
+                SelectorControl.DataSource = GetAutoCompleteDataSource().ToArray();
+            }
+        }
+
+        private void SelectorControl_TextChanged(object sender, EventArgs e)
         {
             if (_handleTextChanged)
             {
+                if (SelectorControl.Text.Length > 0)
+                {
+                    SelectorControl.DroppedDown = true;
+                }
+
                 bool found = false;
                 if (AllowVillage)
                 {
-                    Village vil = World.Default.GetVillage(Text);
+                    //AddVillageAutoCompleteRows();
+
+                    Village vil = World.Default.GetVillage(SelectorControl.Text);
                     if (vil != null)
                     {
                         found = true;
@@ -157,7 +248,7 @@ namespace TribalWars.Controls.Finders
                 }
                 if (AllowPlayer && !found)
                 {
-                    Player ply = World.Default.GetPlayer(Text);
+                    Player ply = World.Default.GetPlayer(SelectorControl.Text);
                     if (ply != null)
                     {
                         found = true;
@@ -166,7 +257,7 @@ namespace TribalWars.Controls.Finders
                 }
                 if (AllowTribe && !found)
                 {
-                    Tribe tribe = World.Default.GetTribe(Text);
+                    Tribe tribe = World.Default.GetTribe(SelectorControl.Text);
                     if (tribe != null)
                     {
                         found = true;
@@ -174,9 +265,9 @@ namespace TribalWars.Controls.Finders
                     }
                 }
 
-                if (!found && BackColor != Color.Red)
+                if (!found && SelectorControl.BackColor != BadInput)
                 {
-                    BackColor = Color.Red;
+                    SelectorControl.BackColor = BadInput;
                     _tooltip.ToolTipTitle = string.Empty;
                     _tooltip.SetToolTip(this, GetEmptyTooltip());
 
@@ -184,24 +275,6 @@ namespace TribalWars.Controls.Finders
                     Village = null;
                     Player = null;
                 }
-            }
-            base.OnTextChanged(e);
-        }
-
-        protected override void OnButtonClick(EditButton editButton)
-        {
-            Point? point = World.Default.GetCoordinates(Text);
-            if (point.HasValue)
-            {
-                if (_showButton && _map != null)
-                {
-                    _map.SetCenter(point.Value);
-                }
-            }
-            else
-            {
-                _tooltip.ToolTipTitle = string.Empty;
-                _tooltip.SetToolTip(this, GetEmptyTooltip());
             }
         }
         #endregion
@@ -215,18 +288,18 @@ namespace TribalWars.Controls.Finders
             Village = null;
             Player = null;
             Tribe = null;
-            BackColor = Color.White;
+            SelectorControl.BackColor = NeutralInput;
 
             _tooltip.ToolTipTitle = string.Empty;
             _tooltip.SetToolTip(this, GetEmptyTooltip());
 
-            if (string.IsNullOrEmpty(Text))
+            if (string.IsNullOrEmpty(SelectorControl.Text))
                 return;
 
             bool oldHandleText = _handleTextChanged;
             _handleTextChanged = raiseEvent;
 
-            Text = string.Empty;
+            SelectorControl.Text = string.Empty;
 
             _handleTextChanged = oldHandleText;
         }
@@ -250,14 +323,14 @@ namespace TribalWars.Controls.Finders
 
             if (village != null)
             {
-                if (Text != village.LocationString)
+                if (SelectorControl.Text != village.LocationString)
                 {
                     _handleTextChanged = false;
-                    Text = village.LocationString;
+                    SelectorControl.Text = village.LocationString;
                     _handleTextChanged = true;
                 }
 
-                BackColor = Color.Green;
+                SelectorControl.BackColor = GoodInput;
                 _tooltip.ToolTipTitle = village.Tooltip.Title;
                 _tooltip.SetToolTip(this, village.Tooltip.Text);
 
@@ -265,11 +338,12 @@ namespace TribalWars.Controls.Finders
                 {
                     VillageSelected(this, new VillageEventArgs(village, VillageTools.PinPoint));
                 }
-                else if (_showButton && _map != null)
+                // TODO: button code
+                /*else if (_showButton && _map != null)
                 {
                     _map.SetCenter(village.Location);
                     _map.EventPublisher.SelectVillages(this, village, new VillageCommand(VillageTools.PinPoint));
-                }
+                }*/
             }
             else
             {
@@ -296,26 +370,27 @@ namespace TribalWars.Controls.Finders
 
             if (player != null)
             {
-                if (Text != player.Name)
+                if (SelectorControl.Text != player.Name)
                 {
                     _handleTextChanged = false;
-                    Text = player.Name;
+                    SelectorControl.Text = player.Name;
                     _handleTextChanged = true;
                 }
 
-                SelectionStart = Text.Length;
-                BackColor = Color.Green;
+                SelectorControl.SelectAll();
+                SelectorControl.BackColor = GoodInput;
                 _tooltip.ToolTipTitle = player.Name;
                 _tooltip.SetToolTip(this, player.Tooltip);
                 if (raiseEvent && PlayerSelected != null)
                 {
                     PlayerSelected(this, new PlayerEventArgs(player, VillageTools.PinPoint));
                 }
-                else if (_showButton && _map != null)
-                {
-                    _map.SetCenter(player);
-                    _map.EventPublisher.SelectVillages(this, player, VillageTools.PinPoint);
-                }
+                // TODO: button code
+                //else if (_showButton && _map != null)
+                //{
+                //    _map.SetCenter(player);
+                //    _map.EventPublisher.SelectVillages(this, player, VillageTools.PinPoint);
+                //}
             }
             else
             {
@@ -342,26 +417,27 @@ namespace TribalWars.Controls.Finders
 
             if (tribe != null)
             {
-                if (Text != tribe.Tag)
+                if (SelectorControl.Text != tribe.Tag)
                 {
                     _handleTextChanged = false;
-                    Text = tribe.Tag;
+                    SelectorControl.Text = tribe.Tag;
                     _handleTextChanged = true;
                 }
 
-                SelectionStart = Text.Length;
-                BackColor = Color.Green;
+                SelectorControl.SelectAll();
+                SelectorControl.BackColor = GoodInput;
                 _tooltip.ToolTipTitle = tribe.Tag;
                 _tooltip.SetToolTip(this, tribe.Tooltip);
                 if (raiseEvent && TribeSelected != null)
                 {
                     TribeSelected(this, new TribeEventArgs(tribe, VillageTools.PinPoint));
                 }
-                else if (_showButton && _map != null)
-                {
-                    _map.SetCenter(tribe);
-                    _map.EventPublisher.SelectVillages(this, tribe, VillageTools.PinPoint);
-                }
+                // TODO: button code
+                //else if (_showButton && _map != null)
+                //{
+                //    _map.SetCenter(tribe);
+                //    _map.EventPublisher.SelectVillages(this, tribe, VillageTools.PinPoint);
+                //}
             }
             else
             {
@@ -386,6 +462,27 @@ namespace TribalWars.Controls.Finders
             return string.Empty;
         }
         #endregion
+
+        private void SelectorControl_DropDown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectorControl_DropDownHide(object sender, ComboDropDownHideEventArgs e)
+        {
+
+        }
+
+        private void SelectorControl_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        
+
     }
 }
+
 

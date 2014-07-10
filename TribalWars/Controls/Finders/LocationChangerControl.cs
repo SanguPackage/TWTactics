@@ -1,7 +1,12 @@
 #region Imports
 using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
+using Janus.Windows.EditControls;
+using Janus.Windows.GridEX.EditControls;
 using TribalWars.Maps;
+using TribalWars.Worlds;
 using TribalWars.Worlds.Events.Impls;
 
 #endregion
@@ -28,12 +33,31 @@ namespace TribalWars.Controls.Finders
         {
             ZoomControl.Value = map.Location.Zoom;
             _map = map;
-            PlayerTribeFinderTextBox.Initialize(map);
+            PlayerTribeSelectorOld.Initialize(map);
+            VillagePlayerTribeSelector.Initialize(map);
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
         }
         #endregion
 
         #region Event Handlers
+        private void TeleportButton_Click(object sender, EventArgs e)
+        {
+            Point? point = World.Default.GetCoordinates(Text);
+            if (point.HasValue)
+            {
+                if (_map != null)
+                {
+                    _map.SetCenter(point.Value);
+                }
+            }
+            else
+            {
+                // TODO: tooltip
+                //tooltip.ToolTipTitle = string.Empty;
+                //tooltip.SetToolTip(this, GetEmptyTooltip());
+            }
+        }
+
         /// <summary>
         /// Changes the zoom level of the map
         /// </summary>

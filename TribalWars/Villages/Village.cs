@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using TribalWars.Browsers.Reporting;
+using TribalWars.Maps;
 using TribalWars.Tools;
+using TribalWars.Villages.Helpers;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 
@@ -11,7 +13,7 @@ namespace TribalWars.Villages
     /// <summary>
     /// Representation of a Tribal Wars village
     /// </summary>
-    public sealed class Village : IEnumerable<Village>, IEquatable<Village>, IComparable<Village>
+    public sealed class Village : IVisible, IEnumerable<Village>, IEquatable<Village>, IComparable<Village>
     {
         #region BonusTypes
         public enum BonusType
@@ -352,6 +354,11 @@ namespace TribalWars.Villages
         public override int GetHashCode()
         {
             return LocationString.GetHashCode();
+        }
+
+        public bool IsVisible(Map map)
+        {
+            return map.Display.IsVisible(this);
         }
 
         public override bool Equals(object obj)

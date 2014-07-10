@@ -34,7 +34,7 @@ namespace TribalWars.Controls.AttackPlan
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coords = new VillagePlayerTribeFinderTextBox();
+            this.Coords = new VillagePlayerTribeSelectorOld();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
@@ -223,6 +223,6 @@ namespace TribalWars.Controls.AttackPlan
         private System.Windows.Forms.LinkLabel Close;
         private TimeConverterControl Date;
         private System.Windows.Forms.ComboBox InfoText;
-        private VillagePlayerTribeFinderTextBox Coords;
+        private VillagePlayerTribeSelectorOld Coords;
     }
 }

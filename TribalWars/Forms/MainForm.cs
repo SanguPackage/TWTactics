@@ -316,8 +316,10 @@ namespace TribalWars.Forms
             //var settings = new SettingsForm();
             //settings.Show();
 
-            var f = new TestForm();
-            f.Show();
+            using (var f = new TestForm())
+            {
+                f.ShowDialog();
+            }
         }
 
         private void ToolStripDraw_Click(object sender, EventArgs e)

@@ -29,12 +29,11 @@ namespace TribalWars.Controls.Polygons
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolygonControl));
             Janus.Windows.GridEX.GridEXLayout GridExVillage_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolygonControl));
             Janus.Windows.GridEX.GridEXLayout GridExPolygon_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.ButtonGenerate = new Janus.Windows.EditControls.UIButton();
             this.LoadPolygonData = new Janus.Windows.EditControls.UIButton();
-            this.VisibleImageList = new System.Windows.Forms.ImageList(this.components);
             this.GridExVillageShowFieldChooser = new Janus.Windows.EditControls.UIButton();
             this.GridExVillage = new Janus.Windows.GridEX.GridEX();
             this.polygonDataSet1 = new TribalWars.Controls.Polygons.PolygonDataSet();
@@ -77,12 +76,6 @@ namespace TribalWars.Controls.Polygons
             this.LoadPolygonData.ToolTipText = "Load (or reload) all your drawn polygons.";
             this.LoadPolygonData.Click += new System.EventHandler(this.LoadPolygonData_Click);
             // 
-            // VisibleImageList
-            // 
-            this.VisibleImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("VisibleImageList.ImageStream")));
-            this.VisibleImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.VisibleImageList.Images.SetKeyName(0, "Visible");
-            // 
             // GridExVillageShowFieldChooser
             // 
             this.GridExVillageShowFieldChooser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -117,7 +110,6 @@ namespace TribalWars.Controls.Polygons
             this.GridExVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GridExVillage.HideColumnsWhenGrouped = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.GridExVillage.ImageList = this.VisibleImageList;
             this.GridExVillage.Location = new System.Drawing.Point(6, 19);
             this.GridExVillage.Name = "GridExVillage";
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
@@ -244,7 +236,6 @@ namespace TribalWars.Controls.Polygons
         private PolygonDataSet polygonDataSet1;
         private Janus.Windows.EditControls.UIButton ButtonGenerate;
         private Janus.Windows.EditControls.UIButton LoadPolygonData;
-        private System.Windows.Forms.ImageList VisibleImageList;
         private Janus.Windows.EditControls.UIButton GridExVillageShowFieldChooser;
         private Janus.Windows.EditControls.UIButton ModusPolygon;
         private Janus.Windows.EditControls.UIGroupBox GeneratorActions;

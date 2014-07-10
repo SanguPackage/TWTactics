@@ -107,6 +107,13 @@
     <Compile Include="Controls\Finders\LocationChangerControl.Designer.cs">
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Finders\VillagePlayerTribeRow.cs" />
+    <Compile Include="Controls\Finders\VillagePlayerTribeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Finders\VillagePlayerTribeSelector.Designer.cs">
+      <DependentUpon>VillagePlayerTribeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +213,7 @@
     </Compile>
     <Compile Include="Tools\JanusExtensions\JanusContextMenu.cs" />
     <Compile Include="Tools\JanusExtensions\JanusGridEx.cs" />
+    <Compile Include="Villages\Helpers\IVisible.cs" />
     <Compile Include="Worlds\Monitoring\MonitoringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -304,7 +312,7 @@
     <Compile Include="Controls\TimeConverter\TimeConverterControl.Designer.cs">
       <DependentUpon>TimeConverterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Finders\VillagePlayerTribeFinderTextBox.cs">
+    <Compile Include="Controls\Finders\VillagePlayerTribeSelectorOld.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Villages\ContextMenu\TribeContextMenu.cs" />
@@ -487,6 +495,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Finders\VillagePlayerTribeSelector.resx">
+      <DependentUpon>VillagePlayerTribeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TableWrapperControl.cs</DependentUpon>
@@ -667,6 +678,7 @@
     <None Include="Resources\teleport.png" />
     <None Include="Resources\TeleportIcon.ico" />
     <None Include="Resources\clipboard.ico" />
+    <None Include="Resources\VisibleNew.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
