@@ -32,9 +32,11 @@ namespace TribalWars.Controls.AccordeonLocation
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PlayerTribeSelector = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -43,7 +45,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this._locationFinderControl1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -53,6 +55,17 @@ namespace TribalWars.Controls.AccordeonLocation
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 324);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.PlayerTribeSelector);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(298, 44);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Search players and tribes";
             // 
             // _locationFinderControl1
             // 
@@ -64,15 +77,17 @@ namespace TribalWars.Controls.AccordeonLocation
             this._locationFinderControl1.Size = new System.Drawing.Size(300, 272);
             this._locationFinderControl1.TabIndex = 7;
             // 
-            // panel1
+            // PlayerTribeSelector
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(304, 50);
-            this.panel1.TabIndex = 6;
+            this.PlayerTribeSelector.AllowPlayer = true;
+            this.PlayerTribeSelector.AllowTribe = true;
+            this.PlayerTribeSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PlayerTribeSelector.Location = new System.Drawing.Point(3, 16);
+            this.PlayerTribeSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.PlayerTribeSelector.Name = "PlayerTribeSelector";
+            this.PlayerTribeSelector.Size = new System.Drawing.Size(292, 22);
+            this.PlayerTribeSelector.TabIndex = 0;
             // 
             // LocationControl
             // 
@@ -85,6 +100,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.Size = new System.Drawing.Size(304, 324);
             this.Load += new System.EventHandler(this.LocationControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -92,8 +108,9 @@ namespace TribalWars.Controls.AccordeonLocation
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
         private LocationFinderControl _locationFinderControl1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private PlayerTribeDropdown PlayerTribeSelector;
 
     }
 }

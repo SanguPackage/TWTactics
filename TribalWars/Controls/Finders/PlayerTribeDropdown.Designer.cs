@@ -55,8 +55,8 @@
             this.SelectorControl.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             this.SelectorControl.ValueChanged += new System.EventHandler(this.SelectorControl_ValueChanged);
             this.SelectorControl.DropDown += new System.EventHandler(this.SelectorControl_DropDown);
-            this.SelectorControl.DropDownHide += new Janus.Windows.GridEX.ComboDropDownHideEventHandler(this.SelectorControl_DropDownHide);
             this.SelectorControl.TextChanged += new System.EventHandler(this.SelectorControl_TextChanged);
+            this.SelectorControl.Enter += new System.EventHandler(this.SelectorControl_Enter);
             // 
             // SearchTypeImageList
             // 

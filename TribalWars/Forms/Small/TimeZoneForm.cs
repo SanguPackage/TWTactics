@@ -51,6 +51,7 @@ namespace TribalWars.Forms.Small
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

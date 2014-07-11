@@ -456,8 +456,10 @@ namespace TribalWars.Worlds
                 worldInfo.Name = worldName;
                 using (var timeZoneSetter = new TimeZoneForm())
                 {
-                    timeZoneSetter.ShowDialog();
-                    worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                    if (timeZoneSetter.ShowDialog() == DialogResult.OK)
+                    {
+                        worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                    }
                 }
 
                 TwWorldSettings twWorldSettings = DownloadWorldSettings(worldName, server.ServerUrl);

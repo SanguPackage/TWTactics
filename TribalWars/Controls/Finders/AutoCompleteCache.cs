@@ -43,7 +43,7 @@ namespace TribalWars.Controls.Finders
         //    }
         //}
 
-        public IEnumerable<VillagePlayerTribeRow> GetPlayersAndTribes(bool players, bool tribes)
+        public VillagePlayerTribeRow[] GetPlayersAndTribes(bool players, bool tribes)
         {
             var dataSource = Enumerable.Empty<VillagePlayerTribeRow>();
             if (players)
@@ -54,7 +54,7 @@ namespace TribalWars.Controls.Finders
             {
                 dataSource = dataSource.Concat(_tribeAutoComplete);
             }
-            return dataSource;
+            return dataSource.ToArray();
         }
 
         public AutoCompleteCache()

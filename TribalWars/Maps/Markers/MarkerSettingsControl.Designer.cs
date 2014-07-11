@@ -89,7 +89,7 @@ namespace TribalWars.Maps.Markers
             this.MarkerExtraColor.Name = "MarkerExtraColor";
             this.MarkerExtraColor.Size = new System.Drawing.Size(75, 23);
             this.MarkerExtraColor.TabIndex = 1;
-            this.MarkerExtraColor.ToolTipText = "Choose inner color";
+            this.MarkerExtraColor.ToolTipText = "Choose marker inner color";
             this.MarkerExtraColor.SelectedColorChanged += new System.EventHandler(this.MarkerExtraColor_SelectedColorChanged);
             // 
             // MarkerColor
@@ -106,7 +106,7 @@ namespace TribalWars.Maps.Markers
             this.MarkerColor.Name = "MarkerColor";
             this.MarkerColor.Size = new System.Drawing.Size(75, 23);
             this.MarkerColor.TabIndex = 0;
-            this.MarkerColor.ToolTipText = "Choose main color";
+            this.MarkerColor.ToolTipText = "Choose marker main color";
             this.MarkerColor.SelectedColorChanged += new System.EventHandler(this.MarkerColor_SelectedColorChanged);
             // 
             // BilliardMarkerPicturebox

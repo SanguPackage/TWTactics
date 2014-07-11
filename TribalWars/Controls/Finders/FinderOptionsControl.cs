@@ -20,7 +20,7 @@ namespace TribalWars.Controls.Finders
     {
         #region Constants
         private const int OptionsPaneSmall = 35;
-        private const int OptionsPaneBig = 178;
+        private const int OptionsPaneBig = 158;
         #endregion
 
         #region Fields

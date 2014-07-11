@@ -27,7 +27,7 @@ namespace TribalWars.Controls.Finders
         #region Constants
         private const string PropertyGridCategory = "Tribal Wars";
 
-        private static readonly Color GoodInput = Color.FromArgb(212, 200, 160);
+        public static readonly Color GoodInput = Color.FromArgb(212, 200, 160);
         #endregion
 
         #region Events

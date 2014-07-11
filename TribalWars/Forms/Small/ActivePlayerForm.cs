@@ -36,6 +36,7 @@ namespace TribalWars.Forms.Small
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -49,14 +50,17 @@ namespace TribalWars.Forms.Small
                 youChooser.YouPlayer = World.Default.You;
                 youChooser.YourMarkerSettings = World.Default.Map.MarkerManager.YourMarkerSettings;
                 youChooser.YourTribeMarkerSettings = World.Default.Map.MarkerManager.YourTribeMarkerSettings;
-                youChooser.ShowDialog();
+                var result = youChooser.ShowDialog();
 
-                World.Default.You = youChooser.YouPlayer;
-                World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourMarkerSettings);
-                World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourTribeMarkerSettings);
+                if (result == DialogResult.OK)
+                {
+                    World.Default.You = youChooser.YouPlayer;
+                    World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourMarkerSettings);
+                    World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourTribeMarkerSettings);
 
-                World.Default.InvalidateMarkers();
-                World.Default.Map.SetCenter(World.Default.You);
+                    World.Default.InvalidateMarkers();
+                    World.Default.Map.SetCenter(World.Default.You);
+                }
             }
         }
     }

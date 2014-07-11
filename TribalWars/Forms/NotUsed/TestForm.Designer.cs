@@ -78,7 +78,6 @@
             // 
             this.villagePlayerTribeSelector1.AllowPlayer = true;
             this.villagePlayerTribeSelector1.AllowTribe = true;
-            this.villagePlayerTribeSelector1.GameLocation = null;
             this.villagePlayerTribeSelector1.Location = new System.Drawing.Point(134, 194);
             this.villagePlayerTribeSelector1.Margin = new System.Windows.Forms.Padding(0);
             this.villagePlayerTribeSelector1.Name = "villagePlayerTribeSelector1";

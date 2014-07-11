@@ -19,18 +19,20 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Controls.Finders
 {
+    /// <summary>
+    /// Select player or tribe with dropdownlist
+    /// </summary>
     public partial class PlayerTribeDropdown : UserControl
     {
         #region Constants
         private const string PropertyGridCategory = "Tribal Wars";
 
         private readonly static Color BadInput = Color.Red;
-        private readonly static Color GoodInput = Color.Green;
+        private static readonly Color GoodInput = VillagePlayerTribeSelector.GoodInput;
         private readonly static Color NeutralInput = Color.White;
         #endregion
 
         #region Events
-        public event EventHandler<VillageEventArgs> VillageSelected;
         public event EventHandler<PlayerEventArgs> PlayerSelected;
         public event EventHandler<TribeEventArgs> TribeSelected;
         #endregion
@@ -42,34 +44,6 @@ namespace TribalWars.Controls.Finders
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the game location if coordinates are filled in
-        /// </summary>
-        public Point? GameLocation
-        {
-            get
-            {
-                return World.Default.GetCoordinates(SelectorControl.Text);
-            }
-            set
-            {
-                if (value.HasValue)
-                {
-                    SelectorControl.Text = string.Format("{0}|{1}", value.Value.X, value.Value.Y);
-                }
-                else
-                {
-                    SelectorControl.Text = string.Empty;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the selected Village
-        /// </summary>
-        [Browsable(false)]
-        public Village Village { get; private set; }
-
         /// <summary>
         /// Gets or sets the active player
         /// </summary>
@@ -86,30 +60,26 @@ namespace TribalWars.Controls.Finders
         /// Gets or sets a value indicating whether
         /// the textbox allows entering tribe tags
         /// </summary>
-        [Category(PropertyGridCategory), DefaultValue(false)]
+        [Category(PropertyGridCategory), DefaultValue(true)]
         public bool AllowTribe { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether
         /// the textbox allows entering players
         /// </summary>
-        [Category(PropertyGridCategory), DefaultValue(false)]
+        [Category(PropertyGridCategory), DefaultValue(true)]
         public bool AllowPlayer { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether
-        /// the textbox allow entering village coordinates
-        /// </summary>
-        [Category(PropertyGridCategory), DefaultValue(true)]
-        public bool AllowVillage { get; set; }
+        public bool AutoOpenOnFocus { get; set; }
         #endregion
 
         #region Constructors
         public PlayerTribeDropdown()
         {
             InitializeComponent();
-            AllowVillage = true;
-
+            AllowPlayer = true;
+            AllowTribe = true;
+            
             _tooltip = new ToolTip
             {
                 Active = true,
@@ -124,8 +94,6 @@ namespace TribalWars.Controls.Finders
         #endregion
 
         #region Event Handlers
-        
-
         private void VillagePlayerTribeSelector_Load(object sender, EventArgs e)
         {
             SelectorControl.DropDownList.FormattingRow += DropDownList_FormattingRow;
@@ -146,53 +114,97 @@ namespace TribalWars.Controls.Finders
 
         private void SelectorControl_TextChanged(object sender, EventArgs e)
         {
-            if (_handleTextChanged)
-            {
-                if (SelectorControl.Text.Length > 0)
-                {
-                    SelectorControl.DroppedDown = true;
-                }
+            //var x1 = SelectorControl.NotInList;
+            //var x2 = SelectorControl.SelectedItem;
+            //var x3 = SelectorControl.Value;
 
-                bool found = false;
-                if (AllowVillage)
-                {
-                    Village vil = World.Default.GetVillage(SelectorControl.Text);
-                    if (vil != null)
-                    {
-                        found = true;
-                        SetVillage(vil, true);
-                    }
-                }
-                if (AllowPlayer && !found)
+            //if (_handleTextChanged)
+            //{
+            //    bool found = false;
+            //    if (SelectorControl.Text.Length > 0 && string.IsNullOrEmpty(SelectorControl.SelectedText))
+            //    {
+            //        if (AllowPlayer)
+            //        {
+            //            Player ply = World.Default.GetPlayer(SelectorControl.Text);
+            //            if (ply != null)
+            //            {
+            //                found = true;
+            //                SetPlayer(ply, true);
+            //            }
+            //        }
+            //        if (AllowTribe && !found)
+            //        {
+            //            Tribe tribe = World.Default.GetTribe(SelectorControl.Text);
+            //            if (tribe != null)
+            //            {
+            //                found = true;
+            //                SetTribe(tribe, true);
+            //            }
+            //        }
+            //    }
+
+            //    if (!found && SelectorControl.BackColor != BadInput)
+            //    {
+            //        if (SelectorControl.Text.Length == 0)
+            //        {
+            //            SelectorControl.BackColor = NeutralInput;
+            //        }
+            //        else
+            //        {
+            //            SelectorControl.BackColor = BadInput;
+            //            _tooltip.ToolTipTitle = string.Empty;
+            //            _tooltip.SetToolTip(this, GetEmptyTooltip());
+            //        }
+
+            //        SelectorControl.Image = null;
+            //        Tribe = null;
+            //        Player = null;
+            //    }
+            //}
+        }
+
+        private void SelectorControl_ValueChanged(object sender, EventArgs e)
+        {
+            //SelectorControl.NotInList
+            //SelectorControl.SelectedItem
+            //SelectorControl.Value
+            //SelectorControl.DropDownList.
+
+            //Debug.WriteLine("SelectorControl.Value=" + SelectorControl.Value);
+
+            var selected = SelectorControl.SelectedItem as VillagePlayerTribeRow;
+            if (selected != null)
+            {
+                if (selected.IsPlayer)
                 {
                     Player ply = World.Default.GetPlayer(SelectorControl.Text);
                     if (ply != null)
                     {
-                        found = true;
                         SetPlayer(ply, true);
                     }
                 }
-                if (AllowTribe && !found)
+                else if (selected.IsTribe)
                 {
-                    Tribe tribe = World.Default.GetTribe(SelectorControl.Text);
-                    if (tribe != null)
+                    var ply = World.Default.GetTribe(SelectorControl.Text);
+                    if (ply != null)
                     {
-                        found = true;
-                        SetTribe(tribe, true);
+                        SetTribe(ply, true);
                     }
                 }
-
-                if (!found && SelectorControl.BackColor != BadInput)
-                {
-                    SelectorControl.BackColor = BadInput;
-                    _tooltip.ToolTipTitle = string.Empty;
-                    _tooltip.SetToolTip(this, GetEmptyTooltip());
-
-                    Tribe = null;
-                    Village = null;
-                    Player = null;
-                }
             }
+        }
+
+        private void SelectorControl_Enter(object sender, EventArgs e)
+        {
+            if (AutoOpenOnFocus)
+            {
+                SelectorControl.DroppedDown = true;
+            }
+        }
+
+        private void SelectorControl_DropDown(object sender, EventArgs e)
+        {
+            SelectorControl.DataSource = World.Default.Cache.GetPlayersAndTribes(AllowPlayer, AllowTribe);
         }
         #endregion
 
@@ -202,7 +214,6 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void EmptyTextBox(bool raiseEvent)
         {
-            Village = null;
             Player = null;
             Tribe = null;
             SelectorControl.BackColor = NeutralInput;
@@ -221,53 +232,7 @@ namespace TribalWars.Controls.Finders
             _handleTextChanged = oldHandleText;
         }
 
-        /// <summary>
-        /// Sets a village in the box
-        /// </summary>
-        public void SetVillage(Village village)
-        {
-            SetVillage(village, false);
-        }
-
-        /// <summary>
-        /// Sets a village in the box
-        /// </summary>
-        public void SetVillage(Village village, bool raiseEvent)
-        {
-            Village = village;
-            Player = null;
-            Tribe = null;
-
-            if (village != null)
-            {
-                if (SelectorControl.Text != village.LocationString)
-                {
-                    _handleTextChanged = false;
-                    SelectorControl.Text = village.LocationString;
-                    _handleTextChanged = true;
-                }
-
-                SelectorControl.BackColor = GoodInput;
-                _tooltip.ToolTipTitle = village.Tooltip.Title;
-                _tooltip.SetToolTip(this, village.Tooltip.Text);
-
-                if (raiseEvent && VillageSelected != null)
-                {
-                    VillageSelected(this, new VillageEventArgs(village, VillageTools.PinPoint));
-                }
-                // TODO: button code
-                /*else if (_showButton && _map != null)
-                {
-                    _map.SetCenter(village.Location);
-                    _map.EventPublisher.SelectVillages(this, village, new VillageCommand(VillageTools.PinPoint));
-                }*/
-            }
-            else
-            {
-                EmptyTextBox(raiseEvent);
-            }
-        }
-
+       
         /// <summary>
         /// Sets a player in the box
         /// </summary>
@@ -281,7 +246,6 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void SetPlayer(Player player, bool raiseEvent)
         {
-            Village = null;
             Player = player;
             Tribe = null;
 
@@ -294,7 +258,7 @@ namespace TribalWars.Controls.Finders
                     _handleTextChanged = true;
                 }
 
-                SelectorControl.SelectAll();
+                SelectorControl.SelectionStart = Text.Length;
                 SelectorControl.BackColor = GoodInput;
                 _tooltip.ToolTipTitle = player.Name;
                 _tooltip.SetToolTip(this, player.Tooltip);
@@ -302,12 +266,6 @@ namespace TribalWars.Controls.Finders
                 {
                     PlayerSelected(this, new PlayerEventArgs(player, VillageTools.PinPoint));
                 }
-                // TODO: button code
-                //else if (_showButton && _map != null)
-                //{
-                //    _map.SetCenter(player);
-                //    _map.EventPublisher.SelectVillages(this, player, VillageTools.PinPoint);
-                //}
             }
             else
             {
@@ -328,7 +286,6 @@ namespace TribalWars.Controls.Finders
         /// </summary>
         public void SetTribe(Tribe tribe, bool raiseEvent)
         {
-            Village = null;
             Player = null;
             Tribe = tribe;
 
@@ -341,7 +298,7 @@ namespace TribalWars.Controls.Finders
                     _handleTextChanged = true;
                 }
 
-                SelectorControl.SelectAll();
+                SelectorControl.SelectionStart = Text.Length;
                 SelectorControl.BackColor = GoodInput;
                 _tooltip.ToolTipTitle = tribe.Tag;
                 _tooltip.SetToolTip(this, tribe.Tooltip);
@@ -349,12 +306,6 @@ namespace TribalWars.Controls.Finders
                 {
                     TribeSelected(this, new TribeEventArgs(tribe, VillageTools.PinPoint));
                 }
-                // TODO: button code
-                //else if (_showButton && _map != null)
-                //{
-                //    _map.SetCenter(tribe);
-                //    _map.EventPublisher.SelectVillages(this, tribe, VillageTools.PinPoint);
-                //}
             }
             else
             {
@@ -370,7 +321,6 @@ namespace TribalWars.Controls.Finders
         private string GetEmptyTooltip()
         {
             string str = "";
-            if (AllowVillage) str += ", world coordinates";
             if (AllowPlayer) str += ", player name";
             if (AllowTribe) str += ", tribe tag";
             if (str != string.Empty)
@@ -379,27 +329,5 @@ namespace TribalWars.Controls.Finders
             return string.Empty;
         }
         #endregion
-
-        private void SelectorControl_DropDown(object sender, EventArgs e)
-        {
-            SelectorControl.DataSource = World.Default.Cache.GetPlayersAndTribes(AllowPlayer, AllowTribe);
-        }
-
-        private void SelectorControl_DropDownHide(object sender, ComboDropDownHideEventArgs e)
-        {
-
-        }
-
-        private void SelectorControl_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        
-
     }
 }
-
-
