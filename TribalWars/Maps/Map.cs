@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Janus.Windows.Common;
+using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
 using System.Drawing;
 using TribalWars.Maps.Controls;
@@ -29,6 +30,7 @@ namespace TribalWars.Maps
         private ScrollableMapControl _control;
         private Location _location;
         private readonly JanusSuperTip _toolTip = JanusControls.CreateTooltip();
+        private IContextMenu _activeContextMenu;
         #endregion
 
         #region Properties
@@ -401,11 +403,20 @@ namespace TribalWars.Maps
 
         public void ShowContextMenu(IContextMenu menu, Point mapLocation)
         {
+            StopTooltip();
+
+            _activeContextMenu = menu;
             menu.Show(_control, mapLocation);
         }
 
         public void ShowTooltip(string title, string body)
         {
+            if (_activeContextMenu != null && _activeContextMenu.IsVisible())
+            {
+                // No tooltips when there is a contextmenu active
+                return;
+            }
+
             var settings = new SuperTipSettings();
             settings.HeaderText = title;
             settings.Text = body;
@@ -415,6 +426,11 @@ namespace TribalWars.Maps
 
         public void ShowTooltip(Village village)
         {
+            if (_activeContextMenu != null && _activeContextMenu.IsVisible())
+            {
+                return;
+            }
+
             var settings = new SuperTipSettings();
             settings.ToolTipStyle = ToolTipStyle.Standard;
             settings.HeaderText = village.Tooltip.Title;

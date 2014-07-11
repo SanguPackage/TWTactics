@@ -64,6 +64,11 @@ namespace TribalWars.Villages.ContextMenu
             _menu.Show(control, position);
         }
 
+        public bool IsVisible()
+        {
+            return _menu.IsVisible;
+        }
+
         public IEnumerable<UICommand> GetCommands()
         {
             return _menu.Commands.OfType<UICommand>();

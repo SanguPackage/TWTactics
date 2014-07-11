@@ -120,6 +120,11 @@ namespace TribalWars.Villages.ContextMenu
         {
             _menu.Show(control, position);
         }
+
+        public bool IsVisible()
+        {
+            return _menu.IsVisible;
+        }
         #endregion
 
         #region EventHandlers

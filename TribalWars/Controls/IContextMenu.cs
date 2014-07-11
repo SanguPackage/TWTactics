@@ -11,6 +11,14 @@ namespace TribalWars.Controls
     /// </summary>
     public interface IContextMenu
     {
+        /// <summary>
+        /// Show the contextmenu
+        /// </summary>
         void Show(Control c, Point p);
+
+        /// <summary>
+        /// Is the contextmenu currently visible
+        /// </summary>
+        bool IsVisible();
     }
 }

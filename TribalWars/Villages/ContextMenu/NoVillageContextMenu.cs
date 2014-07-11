@@ -68,6 +68,11 @@ namespace TribalWars.Villages.ContextMenu
             _menu.Show(control, pos);
         }
 
+        public bool IsVisible()
+        {
+            return _menu.IsVisible;
+        }
+
         private void OnMapCenter(object sender, CommandEventArgs e)
         {
             World.Default.Map.SetCenter(_gameLocation);

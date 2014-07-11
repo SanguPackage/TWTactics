@@ -50,6 +50,11 @@ namespace TribalWars.Controls.Polygons
             _menu.Show(control, pos);
         }
 
+        public bool IsVisible()
+        {
+            return _menu.IsVisible;
+        }
+
         /// <summary>
         /// Clears all the polygons
         /// </summary>

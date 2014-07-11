@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events.Impls;
@@ -16,7 +17,7 @@ namespace TribalWars.Maps.Controls
         #region Fields
         private Map _map;
         private readonly Ruler _ruler;
-        private Point _point00 = new Point(0, 0);
+        private readonly Point _point00 = new Point(0, 0);
         #endregion
 
         #region Properties
@@ -62,7 +63,6 @@ namespace TribalWars.Maps.Controls
         {
             if (!DesignMode && _ruler != null && World.Default.HasLoaded)
             {
-                Location loc = _map.Location;
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.Dimensions.SizeWithSpacing.Width;
@@ -78,7 +78,6 @@ namespace TribalWars.Maps.Controls
         {
             if (!DesignMode && _ruler != null && World.Default.HasLoaded)
             {
-                Location loc = _map.Location;
                 Point gameLocation = _map.Display.GetGameLocation(_point00);
                 Point mapLocation = _map.Display.GetMapLocation(gameLocation);
                 int width = _map.Display.Dimensions.SizeWithSpacing.Width;
@@ -140,10 +139,10 @@ namespace TribalWars.Maps.Controls
                     {
                         if (gameLeftTop.X > 0 && gameLeftTop.X < 1000 && i > 0)
                         {
-                            g2.DrawString(gameLeftTop.X.ToString(), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
+                            g2.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
                             g2.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
 
-                            g.DrawString(gameLeftTop.X.ToString(), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
+                            g.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
                             g.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
                         }
 
@@ -166,7 +165,6 @@ namespace TribalWars.Maps.Controls
                     _cacheY = new Bitmap(panel.ClientRectangle.Width, panel.ClientRectangle.Height);
                     Graphics g2 = Graphics.FromImage(_cacheY);
 
-                    int beginOffset = gameLeftTop.Y % 5;
                     int mapOffset = villageHeight;
                     int gameOffset = 1;
                     if (mapOffset < 38)
@@ -183,10 +181,10 @@ namespace TribalWars.Maps.Controls
                     {
                         if (gameLeftTop.Y > 0 && gameLeftTop.Y < 1000 && i > 0)
                         {
-                            g2.DrawString(gameLeftTop.Y.ToString(), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
+                            g2.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
                             g2.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
 
-                            g.DrawString(gameLeftTop.Y.ToString(), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
+                            g.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
                             g.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
                         }
 

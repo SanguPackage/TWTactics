@@ -119,6 +119,11 @@ namespace TribalWars.Maps.Markers
         {
             _menu.Show(control, position);
         }
+
+        public bool IsVisible()
+        {
+            return _menu.IsVisible;
+        }
         #endregion
 
         #region EventHandlers
