@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Forms;
+using TribalWars.Forms.Small;
 using TribalWars.Maps.Displays;
 using TribalWars.Tools;
 using TribalWars.Villages;

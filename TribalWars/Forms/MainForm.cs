@@ -8,6 +8,8 @@ using System.IO;
 using TribalWars.Browsers;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
+using TribalWars.Forms.NotUsed;
+using TribalWars.Forms.Small;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
@@ -49,6 +51,8 @@ namespace TribalWars.Forms
         /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
+            Text = string.Format("TW Tactics v{0} - by Sangu", AboutForm.ProgramVersion);
+
 #if DEBUG
             ToolStripProgramSettings.Visible = true;
 #endif
@@ -387,6 +391,14 @@ namespace TribalWars.Forms
             Process.Start(World.Default.Structure.CurrentWorldScreenshotDirectory);
         }
 
+        private void MenuHelpAbout_Click(object sender, EventArgs e)
+        {
+            using (var about = new AboutForm())
+            {
+                about.ShowDialog();
+            }
+        }
+
         private void EventPublisher_Browse(object sender, BrowserEventArgs e)
         {
             Tabs.SelectedTab = TabsBrowser;
@@ -421,5 +433,6 @@ namespace TribalWars.Forms
             return LeftNavigation.NavigationPages[(int)pane];
         }
         #endregion
+
     }
 }

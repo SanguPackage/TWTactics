@@ -77,6 +77,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExternalDependencies\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -178,10 +180,16 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Browsers\Control\DestinationEnum.cs" />
-    <Compile Include="Forms\ActivePlayerForm.cs">
+    <Compile Include="Forms\Small\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ActivePlayerForm.Designer.cs">
+    <Compile Include="Forms\Small\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Small\ActivePlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Small\ActivePlayerForm.Designer.cs">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Displays\WorldData.Designer.cs">
@@ -417,10 +425,10 @@
     <Compile Include="Villages\VillageTooltip.cs" />
     <Compile Include="Villages\VillageTypes.cs" />
     <Compile Include="Worlds\Events\VillageTools.cs" />
-    <Compile Include="Forms\TestForm.cs">
+    <Compile Include="Forms\NotUsed\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TestForm.Designer.cs">
+    <Compile Include="Forms\NotUsed\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoadWorldForm.cs">
@@ -429,16 +437,16 @@
     <Compile Include="Forms\LoadWorldForm.Designer.cs">
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SettingsForm.cs">
+    <Compile Include="Forms\NotUsed\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SettingsForm.Designer.cs">
+    <Compile Include="Forms\NotUsed\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeZoneForm.cs">
+    <Compile Include="Forms\Small\TimeZoneForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TimeZoneForm.Designer.cs">
+    <Compile Include="Forms\Small\TimeZoneForm.Designer.cs">
       <DependentUpon>TimeZoneForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Common.cs" />
@@ -507,7 +515,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ActivePlayerForm.resx">
+    <EmbeddedResource Include="Forms\Small\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
@@ -592,10 +603,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UnitImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.resx">
+    <EmbeddedResource Include="Forms\NotUsed\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TestForm.resx">
+    <EmbeddedResource Include="Forms\NotUsed\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
@@ -606,7 +617,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeZoneForm.resx">
+    <EmbeddedResource Include="Forms\Small\TimeZoneForm.resx">
       <DependentUpon>TimeZoneForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

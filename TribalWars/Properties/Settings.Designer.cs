@@ -81,5 +81,17 @@ namespace TribalWars.Properties {
                 this["CustomColors"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RegistratedTo {
+            get {
+                return ((string)(this["RegistratedTo"]));
+            }
+            set {
+                this["RegistratedTo"] = value;
+            }
+        }
     }
 }

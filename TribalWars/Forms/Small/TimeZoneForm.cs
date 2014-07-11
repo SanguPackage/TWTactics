@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TribalWars.Forms
+namespace TribalWars.Forms.Small
 {
     /// <summary>
     /// Select the difference (in hours) between local system time

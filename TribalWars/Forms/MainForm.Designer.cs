@@ -74,6 +74,8 @@ namespace TribalWars.Forms
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -81,6 +83,7 @@ namespace TribalWars.Forms
             this.ToolstripButtonCreateWorld = new System.Windows.Forms.ToolStripButton();
             this.ToolStripOpen = new System.Windows.Forms.ToolStripButton();
             this.ToolStripProgramSettings = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripDownload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -119,7 +122,7 @@ namespace TribalWars.Forms
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
             this.Polygon = new TribalWars.Controls.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new MonitoringControl();
+            this.monitoringControl1 = new TribalWars.Controls.Monitoring.MonitoringControl();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -305,7 +308,8 @@ namespace TribalWars.Forms
             // 
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.mapToolStripMenuItem});
+            this.mapToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.Size = new System.Drawing.Size(1199, 24);
@@ -441,6 +445,21 @@ namespace TribalWars.Forms
             this.MenuMapSeeScreenshots.Text = "See screenshots";
             this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuHelpAbout});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // MenuHelpAbout
+            // 
+            this.MenuHelpAbout.Name = "MenuHelpAbout";
+            this.MenuHelpAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuHelpAbout.Text = "About";
+            this.MenuHelpAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -470,6 +489,7 @@ namespace TribalWars.Forms
             this.ToolstripButtonCreateWorld,
             this.ToolStripOpen,
             this.ToolStripProgramSettings,
+            this.ToolStripAbout,
             this.toolStripSeparator7,
             this.ToolStripDownload,
             this.toolStripSeparator6,
@@ -488,7 +508,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(363, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(386, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -522,6 +542,16 @@ namespace TribalWars.Forms
             this.ToolStripProgramSettings.ToolTipText = "Change program settings";
             this.ToolStripProgramSettings.Visible = false;
             this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
+            // 
+            // ToolStripAbout
+            // 
+            this.ToolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAbout.Image")));
+            this.ToolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripAbout.Name = "ToolStripAbout";
+            this.ToolStripAbout.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripAbout.ToolTipText = "Postcardware!";
+            this.ToolStripAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
             // 
             // toolStripSeparator7
             // 
@@ -1064,7 +1094,7 @@ namespace TribalWars.Forms
             this.MainMenuStrip = this.MenuBar;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TW Tactics v0.4 - by Sangu";
+            this.Text = "TW Tactics - by Sangu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -1190,6 +1220,9 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripButton ToolStripProgramSettings;
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private System.Windows.Forms.ToolStripMenuItem MenuFileSetActivePlayer;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuHelpAbout;
+        private System.Windows.Forms.ToolStripButton ToolStripAbout;
     }
 }
 

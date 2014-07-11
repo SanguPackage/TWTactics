@@ -1,4 +1,4 @@
-﻿namespace TribalWars.Forms
+﻿namespace TribalWars.Forms.Small
 {
     partial class TimeZoneForm
     {

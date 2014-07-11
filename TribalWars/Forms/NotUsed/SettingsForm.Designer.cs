@@ -1,4 +1,4 @@
-﻿namespace TribalWars.Forms
+﻿namespace TribalWars.Forms.NotUsed
 {
     partial class SettingsForm
     {

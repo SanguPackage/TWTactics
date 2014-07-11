@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using System.Linq;
 using TribalWars.Controls.Finders;
-using TribalWars.Villages;
 using TribalWars.Worlds;
 
-namespace TribalWars.Forms
+namespace TribalWars.Forms.NotUsed
 {
     /// <summary>
     /// 
