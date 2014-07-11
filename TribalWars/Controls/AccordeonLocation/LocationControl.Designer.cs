@@ -31,15 +31,10 @@ namespace TribalWars.Controls.AccordeonLocation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.GoHome = new Janus.Windows.EditControls.UIButton();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,33 +67,12 @@ namespace TribalWars.Controls.AccordeonLocation
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(304, 50);
             this.panel1.TabIndex = 6;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.GoHome);
-            this.groupBox2.Location = new System.Drawing.Point(234, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(66, 43);
-            this.groupBox2.TabIndex = 14;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Set home";
-            // 
-            // GoHome
-            // 
-            this.GoHome.Image = ((System.Drawing.Image)(resources.GetObject("GoHome.Image")));
-            this.GoHome.Location = new System.Drawing.Point(6, 14);
-            this.GoHome.Name = "GoHome";
-            this.GoHome.Size = new System.Drawing.Size(54, 23);
-            this.GoHome.TabIndex = 9;
-            this.GoHome.ToolTipText = "Set new home location";
-            this.GoHome.Click += new System.EventHandler(this.GoHome_Click);
             // 
             // LocationControl
             // 
@@ -111,8 +85,6 @@ namespace TribalWars.Controls.AccordeonLocation
             this.Size = new System.Drawing.Size(304, 324);
             this.Load += new System.EventHandler(this.LocationControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -122,8 +94,6 @@ namespace TribalWars.Controls.AccordeonLocation
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private LocationFinderControl _locationFinderControl1;
-        private Janus.Windows.EditControls.UIButton GoHome;
-        private System.Windows.Forms.GroupBox groupBox2;
 
     }
 }

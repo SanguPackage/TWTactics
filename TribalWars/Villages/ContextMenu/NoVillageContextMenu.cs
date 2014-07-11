@@ -22,6 +22,7 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu = JanusContextMenu.Create();
             _menu.AddCommand("Center here", OnMapCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Set Home", OnSetHome, Properties.Resources.HomeIcon);
             _menu.AddSeparator();
 
             _menu.AddChangeColorCommand("Background color", World.Default.Map.Display.Settings.BackgroundColor, Color.Green, OnBackgroundColor);
@@ -70,6 +71,11 @@ namespace TribalWars.Villages.ContextMenu
         private void OnMapCenter(object sender, CommandEventArgs e)
         {
             World.Default.Map.SetCenter(_gameLocation);
+        }
+
+        private void OnSetHome(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.SaveHome();
         }
 
         private void OnShowTooltip(object sender, CommandEventArgs e)

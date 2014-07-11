@@ -72,6 +72,8 @@ namespace TribalWars.Forms
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSetHomeLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -424,24 +426,40 @@ namespace TribalWars.Forms
             // mapToolStripMenuItem
             // 
             this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuMapSetHomeLocation,
+            this.toolStripMenuItem2,
             this.MenuMapScreenshot,
             this.MenuMapSeeScreenshots});
             this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
             this.mapToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.mapToolStripMenuItem.Text = "&Map";
             // 
+            // MenuMapSetHomeLocation
+            // 
+            this.MenuMapSetHomeLocation.Image = global::TribalWars.Properties.Resources.Home2;
+            this.MenuMapSetHomeLocation.ImageTransparentColor = System.Drawing.Color.Black;
+            this.MenuMapSetHomeLocation.Name = "MenuMapSetHomeLocation";
+            this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSetHomeLocation.Text = "Set as Home Location";
+            this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
+            // 
             // MenuMapScreenshot
             // 
             this.MenuMapScreenshot.Name = "MenuMapScreenshot";
             this.MenuMapScreenshot.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.MenuMapScreenshot.Size = new System.Drawing.Size(173, 22);
+            this.MenuMapScreenshot.Size = new System.Drawing.Size(189, 22);
             this.MenuMapScreenshot.Text = "Screenshot";
             this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
             // 
             // MenuMapSeeScreenshots
             // 
             this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
-            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(173, 22);
+            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(189, 22);
             this.MenuMapSeeScreenshots.Text = "See screenshots";
             this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
             // 
@@ -602,7 +620,7 @@ namespace TribalWars.Forms
             // ToolStripHome
             // 
             this.ToolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripHome.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripHome.Image")));
+            this.ToolStripHome.Image = global::TribalWars.Properties.Resources.Home2;
             this.ToolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripHome.Name = "ToolStripHome";
             this.ToolStripHome.Size = new System.Drawing.Size(23, 22);
@@ -1223,6 +1241,8 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuHelpAbout;
         private System.Windows.Forms.ToolStripButton ToolStripAbout;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSetHomeLocation;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 

@@ -8,11 +8,6 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Controls.AccordeonLocation
 {
-    /// <summary>
-    /// UI control with Location, You (=current player) setting,
-    /// continent center and grid with search options for village, player
-    /// and tribe
-    /// </summary>
     public partial class LocationControl : UserControl
     {
         public LocationControl()
@@ -27,18 +22,6 @@ namespace TribalWars.Controls.AccordeonLocation
 
         private void World_SettingsLoaded(object sender, EventArgs e)
         {
-        }
-
-        private void GoHome_Click(object sender, EventArgs e)
-        {
-            if (World.Default.HasLoaded)
-            {
-                DialogResult result = MessageBox.Show("Use the current position as your home?", "Set Homepage", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    World.Default.Map.SaveHome();
-                }
-            }
         }
     }
 }

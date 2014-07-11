@@ -434,5 +434,16 @@ namespace TribalWars.Forms
         }
         #endregion
 
+        private void MenuMapSetHomeLocation_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                DialogResult result = MessageBox.Show("Use the current position as your home?\n(You can use the Home key to jump to the Home location)", "Set Home Location", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    World.Default.Map.SaveHome();
+                }
+            }
+        }
     }
 }

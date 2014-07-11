@@ -344,6 +344,9 @@ namespace TribalWars.Maps
             }
         }
 
+        /// <summary>
+        /// Save the current location as your home location
+        /// </summary>
         public void SaveHome()
         {
             HomeLocation = Location;

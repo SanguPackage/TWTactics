@@ -691,6 +691,8 @@
     <None Include="Resources\TeleportIcon.ico" />
     <None Include="Resources\clipboard.ico" />
     <None Include="Resources\VisibleNew.png" />
+    <None Include="Resources\Home2.png" />
+    <None Include="Resources\HomeIcon.ico" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
