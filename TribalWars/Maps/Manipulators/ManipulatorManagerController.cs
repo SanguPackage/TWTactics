@@ -156,11 +156,6 @@ namespace TribalWars.Maps.Manipulators
         public bool MouseMove(MouseEventArgs e)
         {
             Point game = Map.Display.GetGameLocation(e.Location);
-            if (!game.IsValidGameCoordinate())
-            {
-                return false;
-            }
-
             Village village = World.Default.GetVillage(game);
             Point map = Map.Display.GetMapLocation(game);
 
