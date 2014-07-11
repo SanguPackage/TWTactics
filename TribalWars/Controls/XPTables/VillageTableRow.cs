@@ -72,9 +72,18 @@ namespace TribalWars.Controls.XPTables
                 });
 
             // General village info columns
-            if (village.Reports != null && village.Type != VillageType.None)
+            if (village.Type != VillageType.None)
             {
-                Cells.Add(new Cell(string.Empty, village.Type.GetImage(true)));
+                var cell = new Cell(string.Empty, village.Type.GetImage(true));
+                if (village.Type.HasFlag(VillageType.Comments))
+                {
+                    cell.ToolTipText = village.Comments;
+                }
+                else
+                {
+                    cell.ToolTipText = village.Type.GetDescription();
+                }
+                Cells.Add(cell);
             }
             else
             {
