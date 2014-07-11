@@ -211,7 +211,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.SelectedVillage.ForeColor = System.Drawing.SystemColors.WindowText;
             this.SelectedVillage.Name = "SelectedVillage";
             this.SelectedVillage.Player = null;
-            this.SelectedVillage.Size = new System.Drawing.Size(80, 23);
+            this.SelectedVillage.Size = new System.Drawing.Size(130, 23);
             this.SelectedVillage.Tribe = null;
             this.SelectedVillage.Village = null;
             this.SelectedVillage.VillageSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.VillageEventArgs>(this.SelectedVillage_VillageSelected);
@@ -286,7 +286,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewVillageDetails.Image = global::TribalWars.Properties.Resources.Village;
             this.ViewVillageDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewVillageDetails.Name = "ViewVillageDetails";
-            this.ViewVillageDetails.Size = new System.Drawing.Size(23, 22);
+            this.ViewVillageDetails.Size = new System.Drawing.Size(23, 20);
             this.ViewVillageDetails.ToolTipText = "View village details";
             this.ViewVillageDetails.Click += new System.EventHandler(this.ViewVillageDetails_Click);
             // 
@@ -297,7 +297,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewPlayerDetails.Image = global::TribalWars.Properties.Resources.Player;
             this.ViewPlayerDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewPlayerDetails.Name = "ViewPlayerDetails";
-            this.ViewPlayerDetails.Size = new System.Drawing.Size(23, 22);
+            this.ViewPlayerDetails.Size = new System.Drawing.Size(23, 20);
             this.ViewPlayerDetails.ToolTipText = "View player details";
             this.ViewPlayerDetails.Click += new System.EventHandler(this.ViewPlayerDetails_Click);
             // 
@@ -325,7 +325,12 @@ namespace TribalWars.Controls.AccordeonDetails
             // 
             // MarkPlayerOrTribe
             // 
+            this.MarkPlayerOrTribe.AllowBarbarianViews = false;
+            this.MarkPlayerOrTribe.AutoUpdateMarkers = true;
             this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
+            this.MarkPlayerOrTribe.CanDeactivate = true;
+            this.MarkPlayerOrTribe.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.MarkPlayerOrTribe.DefaultMarkerColor = System.Drawing.Color.Black;
             this.MarkPlayerOrTribe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MarkPlayerOrTribe.Location = new System.Drawing.Point(0, 0);
             this.MarkPlayerOrTribe.Margin = new System.Windows.Forms.Padding(0);
