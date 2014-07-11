@@ -44,11 +44,12 @@ namespace TribalWars.Controls.Finders
             this.ZoomControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ZoomControl.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
+            this.ZoomControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.ZoomControl.Location = new System.Drawing.Point(100, 3);
             this.ZoomControl.Maximum = 50;
             this.ZoomControl.Minimum = 1;
             this.ZoomControl.Name = "ZoomControl";
-            this.ZoomControl.Size = new System.Drawing.Size(36, 20);
+            this.ZoomControl.Size = new System.Drawing.Size(36, 24);
             this.ZoomControl.TabIndex = 1;
             this.toolTip1.SetToolTip(this.ZoomControl, "Change map zoom level");
             this.ZoomControl.Value = 1;
@@ -65,16 +66,15 @@ namespace TribalWars.Controls.Finders
             this.SelectorControl.BackColor = System.Drawing.Color.White;
             this.SelectorControl.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.SelectorControl.ButtonImage = ((System.Drawing.Image)(resources.GetObject("SelectorControl.ButtonImage")));
-            this.SelectorControl.ButtonImageSize = new System.Drawing.Size(15, 15);
+            this.SelectorControl.ButtonImageSize = new System.Drawing.Size(18, 18);
             this.SelectorControl.ButtonStyle = Janus.Windows.GridEX.EditControls.EditButtonStyle.Image;
-            this.SelectorControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectorControl.ForeColor = System.Drawing.SystemColors.GrayText;
             this.SelectorControl.GameLocation = null;
             this.SelectorControl.Location = new System.Drawing.Point(3, 3);
             this.SelectorControl.Name = "SelectorControl";
             this.SelectorControl.PlaceHolderText = "";
             this.SelectorControl.ShowButton = true;
-            this.SelectorControl.Size = new System.Drawing.Size(91, 21);
+            this.SelectorControl.Size = new System.Drawing.Size(91, 24);
             this.SelectorControl.TabIndex = 0;
             this.SelectorControl.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 

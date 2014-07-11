@@ -42,8 +42,11 @@ namespace TribalWars.Controls.Finders
 
         private bool _showButton;
 
+        private bool _receivingFocus;
         private bool _handleTextChanged = true;
         private string _placeHolderText;
+        private static readonly Font NormalFont = new Font("Microsoft Sans Serif", 10f);
+        private static readonly Font PlaceHolderFont = new Font("Microsoft Sans Serif", 8.25f);
         #endregion
 
         #region Properties
@@ -123,7 +126,7 @@ namespace TribalWars.Controls.Finders
                 if (value)
                 {
                     ButtonStyle = EditButtonStyle.Image;
-                    ButtonImageSize = new Size(15, 15);
+                    ButtonImageSize = new Size(18, 18);
                     ButtonImage = Properties.Resources.teleport;
                 }
                 else
@@ -146,6 +149,7 @@ namespace TribalWars.Controls.Finders
                 if (!string.IsNullOrWhiteSpace(value))
                 {
                     ForeColor = DisabledForeColor;
+                    Font = PlaceHolderFont;
                 }
 
                 _handleTextChanged = false;
@@ -177,8 +181,6 @@ namespace TribalWars.Controls.Finders
         }
         #endregion
 
-        private bool _receivingFocus;
-
         #region Event Handlers
         private void OnGotFocus(object sender, EventArgs e)
         {
@@ -186,6 +188,7 @@ namespace TribalWars.Controls.Finders
             {
                 ForeColor = SystemColors.WindowText;
                 Text = "";
+                Font = NormalFont;
             }
             _receivingFocus = true;
         }
@@ -197,6 +200,7 @@ namespace TribalWars.Controls.Finders
                 ForeColor = DisabledForeColor;
                 Text = PlaceHolderText;
                 BackColor = Color.White;
+                Font = PlaceHolderFont;
             }
             _receivingFocus = false;
         }
