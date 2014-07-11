@@ -125,6 +125,10 @@ namespace TribalWars.Maps.Controls
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
+            if (IsManipulatable)
+            {
+                Map.Manipulators.MouseLeave();
+            }
         }
 
         protected override void OnMouseUp(MouseEventArgs e)

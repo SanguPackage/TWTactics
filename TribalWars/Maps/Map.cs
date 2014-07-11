@@ -428,6 +428,7 @@ namespace TribalWars.Maps
         {
             if (_activeContextMenu != null && _activeContextMenu.IsVisible())
             {
+                // No tooltips when there is a contextmenu active
                 return;
             }
 

@@ -1,5 +1,6 @@
 #region Imports
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Maps.Controls;
@@ -151,6 +152,12 @@ namespace TribalWars.Maps.Manipulators
         {
             bool redraw = CurrentManipulator.MouseUpCore(new MapMouseEventArgs(e, village));
             return redraw;
+        }
+
+        public void MouseLeave()
+        {
+            // Avoid showing a tooltip outside the MapControl
+            Map.StopTooltip();
         }
 
         public bool MouseMove(MouseEventArgs e)
