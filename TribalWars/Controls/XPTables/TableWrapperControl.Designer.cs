@@ -55,6 +55,7 @@ namespace TribalWars.Controls.XPTables
             this.Table.Text = "table1";
             this.Table.ToolTipShowAlways = true;
             this.Table.UnfocusedBorderColor = System.Drawing.Color.Black;
+            this.Table.SelectionChanged += new XPTable.Events.SelectionEventHandler(this.Table_SelectionChanged);
             this.Table.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TableControl_MouseClick);
             this.Table.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TableControl_MouseDoubleClick);
             // 

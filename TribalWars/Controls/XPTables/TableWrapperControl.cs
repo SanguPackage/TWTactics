@@ -276,27 +276,6 @@ namespace TribalWars.Controls.XPTables
                     }
                 }
             }
-            else
-            {
-                // Raise the select event
-                if (Table.TableModel.Selections.SelectedItems.Length == 1)
-                {
-                    var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
-                    switch (RowSelectionAction)
-                    {
-                        case RowSelectionActionEnum.RaiseSelectEvent:
-                            if (RowSelected != null)
-                            {
-                                RowSelected(row, EventArgs.Empty);
-                            }
-                            break;
-
-                        case RowSelectionActionEnum.SelectVillage:
-                            row.DisplayDetails();
-                            break;
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -311,6 +290,28 @@ namespace TribalWars.Controls.XPTables
                 Village[] villages = row.GetVillages().ToArray();
                 World.Default.Map.EventPublisher.SelectVillages(null, villages, VillageTools.PinPoint);
                 World.Default.Map.SetCenter(villages);
+            }
+        }
+
+        private void Table_SelectionChanged(object sender, XPTable.Events.SelectionEventArgs e)
+        {
+            // Raise the select event
+            if (Table.TableModel.Selections.SelectedItems.Length == 1)
+            {
+                var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                switch (RowSelectionAction)
+                {
+                    case RowSelectionActionEnum.RaiseSelectEvent:
+                        if (RowSelected != null)
+                        {
+                            RowSelected(row, EventArgs.Empty);
+                        }
+                        break;
+
+                    case RowSelectionActionEnum.SelectVillage:
+                        row.DisplayDetails();
+                        break;
+                }
             }
         }
         #endregion
