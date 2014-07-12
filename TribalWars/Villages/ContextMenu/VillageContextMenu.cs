@@ -72,7 +72,7 @@ namespace TribalWars.Villages.ContextMenu
 
                 if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.Player != village.Player && village.PreviousVillageDetails.Player != null)
                 {
-                    _menu.AddPlayerNobledContextCommands(map, village.PreviousVillageDetails.Player, true);
+                    _menu.AddPlayerNobledContextCommands(map, World.Default.GetPlayer(village.PreviousVillageDetails.Player.Name), true);
                 }
             }
 
