@@ -57,10 +57,7 @@ namespace TribalWars.Controls.XPTables
             _map = map;
 
             // player is currently visible?
-            Cells.Add(new Cell
-            {
-                Image = GetVisibleImage()
-            });
+            Cells.Add(VillageTableRow.GetVisibleImageCell(_map, _player));
 
             Cells.Add(ColumnDisplay.CreatePlayerCell(ply));
             string tribe = ply.HasTribe ? ply.Tribe.Tag : string.Empty;
@@ -116,15 +113,6 @@ namespace TribalWars.Controls.XPTables
         #endregion
 
         #region Private
-        private Image GetVisibleImage()
-        {
-            if (_map.Display.IsVisible(_player))
-            {
-                return Properties.Resources.Visible;
-            }
-            return null;
-        }
-
         public override string ToString()
         {
             return string.Format("XPTableRow Player = {0}", _player.Name);

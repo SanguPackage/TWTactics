@@ -66,10 +66,7 @@ namespace TribalWars.Controls.XPTables
             _map = map;
 
             // Village is currently visible?
-            Cells.Add(new Cell
-                {
-                    Image = GetVisibleImage()
-                });
+            Cells.Add(GetVisibleImageCell(_map, _village));
 
             // General village info columns
             if (village.Type != VillageType.None)
@@ -159,13 +156,16 @@ namespace TribalWars.Controls.XPTables
         #endregion
 
         #region Private
-        private Image GetVisibleImage()
+        public static Cell GetVisibleImageCell(Map map, IEnumerable<Village> village)
         {
-            if (_map.Display.IsVisible(_village))
+            if (map.Display.IsVisible(village))
             {
-                return Properties.Resources.Visible;
+                return new Cell("0")
+                {
+                    Image = Properties.Resources.Visible
+                };
             }
-            return null;
+            return new Cell("1");
         }
 
         public override string ToString()

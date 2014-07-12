@@ -57,14 +57,7 @@ namespace TribalWars.Controls.XPTables
             _map = map;
 
             // player is currently visible?
-            if (map.Display.IsVisible(tribe))
-            {
-                Cells.Add(new Cell(string.Empty, Properties.Resources.Visible));
-            }
-            else
-            {
-                Cells.Add(new Cell());
-            }
+            Cells.Add(VillageTableRow.GetVisibleImageCell(_map, tribe));
 
             Cells.Add(new Cell(tribe.Rank));
             Cells.Add(new Cell(tribe.Tag));
