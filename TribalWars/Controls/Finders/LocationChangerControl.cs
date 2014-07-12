@@ -18,7 +18,7 @@ namespace TribalWars.Controls.Finders
     /// </summary>
     public partial class LocationChangerControl : UserControl
     {
-        private const string DefaultPlaceHolderText = "Center village, player, tribe...";
+        private const string DefaultPlaceHolderText = "Go to village, player, tribe...";
 
         #region Fields
         private Map _map;
