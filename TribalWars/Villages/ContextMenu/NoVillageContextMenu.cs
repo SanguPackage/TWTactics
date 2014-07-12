@@ -41,26 +41,31 @@ namespace TribalWars.Villages.ContextMenu
         private void OnBackgroundColor(object sender, Color selectedColor)
         {
             World.Default.Map.Display.Settings.BackgroundColor = selectedColor;
+            World.Default.Map.Invalidate(true);
         }
 
         private void OnMarkedOnly(object sender, CommandEventArgs e)
         {
             World.Default.Map.Display.Settings.MarkedOnly = !World.Default.Map.Display.Settings.MarkedOnly;
+            World.Default.Map.Invalidate(true);
         }
 
         private void OnHideAbandoned(object sender, CommandEventArgs e)
         {
             World.Default.Map.Display.Settings.HideAbandoned = !World.Default.Map.Display.Settings.HideAbandoned;
+            World.Default.Map.Invalidate(true);
         }
 
         private void OnContinentLines(object sender, CommandEventArgs e)
         {
             World.Default.Map.Display.Settings.ContinentLines = !World.Default.Map.Display.Settings.ContinentLines;
+            World.Default.Map.Invalidate(true);
         }
 
         private void OnProvinceLines(object sender, CommandEventArgs e)
         {
             World.Default.Map.Display.Settings.ProvinceLines = !World.Default.Map.Display.Settings.ProvinceLines;
+            World.Default.Map.Invalidate(true);
         }
 
         public void Show(Control control, Point pos)
