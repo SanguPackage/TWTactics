@@ -1,4 +1,5 @@
 #region Using
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ namespace TribalWars.Maps
         private Display _display;
         private ScrollableMapControl _control;
         private Location _location;
-        private readonly JanusSuperTip _toolTip = JanusControls.CreateTooltip();
+        private readonly JanusSuperTip _toolTip;
         private IContextMenu _activeContextMenu;
         #endregion
 
@@ -118,6 +119,7 @@ namespace TribalWars.Maps
             MarkerManager = mainMap.MarkerManager;
             Manipulators = new ManipulatorManagerController(this, mainMap);
 
+            _toolTip = JanusControls.CreateTooltip();
             SetTooltipProperties();
         }
 
@@ -130,6 +132,7 @@ namespace TribalWars.Maps
             MarkerManager = new MarkerManager();
             Manipulators = new ManipulatorManagerController(this);
 
+            _toolTip = JanusControls.CreateTooltip();
             SetTooltipProperties();
         }
 
@@ -137,6 +140,11 @@ namespace TribalWars.Maps
         {
             _toolTip.InitialDelay = 400;
             _toolTip.AutoPopDelay = 6000;
+            //_toolTip.ToolTipPopUp += (sender, args) =>
+            //    {
+            //        Debug.WriteLine("------------->" + _control.Cursor + " setting to " + _cursor);
+            //        _control.Cursor = _cursor;
+            //    };
         }
 
         public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, int zoomLevel)
@@ -235,17 +243,15 @@ namespace TribalWars.Maps
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
-        private Location GetSpan(Rectangle span)
+        public Location GetSpan(Rectangle game, int villagesExtraVisible = 5)
         {
-            const int villagesExtraVisible = 5;
-
             var middle = new Point(
-                (span.Left + span.Right) / 2, 
-                (span.Top + span.Bottom) / 2);
+                (game.Left + game.Right) / 2, 
+                (game.Top + game.Bottom) / 2);
 
             var maxVillageSize = new Size(
-                CanvasSize.Width / (span.Width + villagesExtraVisible), 
-                CanvasSize.Height / (span.Height + villagesExtraVisible));
+                CanvasSize.Width / (game.Width + villagesExtraVisible), 
+                CanvasSize.Height / (game.Height + villagesExtraVisible));
 
             int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize);
             return new Location(middle, newZoomLevel);
@@ -356,7 +362,76 @@ namespace TribalWars.Maps
         }
         #endregion
 
-        #region User Cursor
+        #region ContextMenu
+        public void ShowContextMenu(IContextMenu menu, Point mapLocation)
+        {
+            StopTooltip();
+
+            _activeContextMenu = menu;
+            menu.Show(_control, mapLocation);
+        }
+        #endregion
+
+        #region Tooltip
+        public void ShowTooltip(string title, string body)
+        {
+            if (!TooltipAllowed())
+            {
+                return;
+            }
+
+            var settings = new SuperTipSettings();
+            settings.HeaderText = title;
+            settings.Text = body;
+
+            ShowTooltip(settings);
+        }
+
+        public void ShowTooltip(Village village)
+        {
+            if (!TooltipAllowed())
+            {
+                return;
+            }
+
+            var settings = new SuperTipSettings();
+            settings.ToolTipStyle = ToolTipStyle.Standard;
+            settings.HeaderText = village.Tooltip.Title;
+            settings.Text = village.Tooltip.Text;
+            settings.Image = village.Type.GetImage(false);
+
+            if (!string.IsNullOrEmpty(village.Tooltip.Footer))
+            {
+                settings.FooterText = village.Tooltip.Footer;
+                settings.FooterImage = Other.Note;
+            }
+
+            ShowTooltip(settings);
+        }
+
+        private void ShowTooltip(SuperTipSettings settings)
+        {
+            _toolTip.Show(settings, _control);
+        }
+
+        private bool TooltipAllowed()
+        {
+            if (_activeContextMenu != null && _activeContextMenu.IsVisible())
+            {
+                // No tooltips when there is a contextmenu active
+                return false;
+            }
+
+            return true;
+        }
+
+        public void StopTooltip()
+        {
+            _toolTip.HideActiveToolTip();
+        }
+        #endregion
+
+        #region Map Cursor
         /// <summary>
         /// Resets the cursor of the map
         /// </summary>
@@ -370,7 +445,14 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCursor(Cursor cursor)
         {
-            _control.Cursor = cursor;
+            if (cursor == Cursors.Default)
+            {
+                SetCursor();
+            }
+            else
+            {
+                _control.Cursor = cursor;
+            }
         }
         #endregion
 
@@ -399,57 +481,6 @@ namespace TribalWars.Maps
                 _control.DrawToBitmap(shot, new Rectangle(new Point(0, 0), CanvasSize));
                 shot.Save(fileName);
             }
-        }
-
-        public void ShowContextMenu(IContextMenu menu, Point mapLocation)
-        {
-            StopTooltip();
-
-            _activeContextMenu = menu;
-            menu.Show(_control, mapLocation);
-        }
-
-        public void ShowTooltip(string title, string body)
-        {
-            if (_activeContextMenu != null && _activeContextMenu.IsVisible())
-            {
-                // No tooltips when there is a contextmenu active
-                return;
-            }
-
-            var settings = new SuperTipSettings();
-            settings.HeaderText = title;
-            settings.Text = body;
-
-            _toolTip.Show(settings, _control);
-        }
-
-        public void ShowTooltip(Village village)
-        {
-            if (_activeContextMenu != null && _activeContextMenu.IsVisible())
-            {
-                // No tooltips when there is a contextmenu active
-                return;
-            }
-
-            var settings = new SuperTipSettings();
-            settings.ToolTipStyle = ToolTipStyle.Standard;
-            settings.HeaderText = village.Tooltip.Title;
-            settings.Text = village.Tooltip.Text;
-            settings.Image = village.Type.GetImage(false);
-
-            if (!string.IsNullOrEmpty(village.Tooltip.Footer))
-            {
-                settings.FooterText = village.Tooltip.Footer;
-                settings.FooterImage = Other.Note;
-            }
-
-            _toolTip.Show(settings, _control);
-        }
-
-        public void StopTooltip()
-        {
-            _toolTip.HideActiveToolTip();
         }
         #endregion
     }

@@ -267,7 +267,7 @@ namespace TribalWars.Worlds
 
             displaySettings.Scenery = Settings.IconScenery;
             Map.InitializeDisplay(displaySettings, Map.HomeDisplay, Map.HomeLocation.Zoom);
-            _miniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, 1);
+            _miniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, MiniMapDrawerFactory.MaxZoomLevel);
 
             Map.SetDisplay(Map.HomeDisplay, Map.HomeLocation, true);
 

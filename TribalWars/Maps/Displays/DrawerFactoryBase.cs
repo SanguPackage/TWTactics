@@ -57,7 +57,7 @@ namespace TribalWars.Maps.Displays
                     break;
 
                 case DisplayTypes.MiniMap:
-                    drawerFactory = new MiniMapDrawerFactory();
+                    drawerFactory = new MiniMapDrawerFactory(zoomLevel);
                     break;
 
                 case DisplayTypes.Shape:

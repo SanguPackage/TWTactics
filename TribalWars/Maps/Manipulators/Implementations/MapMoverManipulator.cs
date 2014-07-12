@@ -1,4 +1,5 @@
 #region Using
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Maps.Manipulators.Helpers;
@@ -89,6 +90,9 @@ namespace TribalWars.Maps.Manipulators.Implementations
             if ((e.Village == null && e.MouseEventArgs.Button == MouseButtons.Right && RightClickToMove) ||
                 (e.MouseEventArgs.Button == MouseButtons.Left && LeftClickToMove))
             {
+                // Look at this whenever we break here.
+                // If this disappears: rename it to KeyboardMapMoverManipulator
+                Debug.Assert(false);
                 Point game = _map.Display.GetGameLocation(e.MouseEventArgs.Location);
                 _map.SetCenter(game);
                 return true;

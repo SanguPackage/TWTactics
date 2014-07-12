@@ -22,6 +22,19 @@ namespace TribalWars.Maps.Manipulators.Implementations
     public class MiniMapActiveVillageManipulator : ManipulatorBase
     {
         #region Constants
+        /// <summary>
+        /// Move the mini map whenever the middle point of the current 
+        /// main map Location is more then this distance (in game coords) 
+        /// away from the currently displayed mini map.
+        /// 
+        /// TODO: Once map drawing performance is better, this number can be
+        ///       set to 0 for having the mini map always follow the mainmap
+        /// </summary>
+        private const int MoveVisibleRectangleDistance = 100;
+        #endregion
+
+
+        #region Constants
         private const int CrossPaintOffset = 1;
         #endregion
 
@@ -30,7 +43,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
         private Rectangle _mainMapRectangle;
         private Village _mainMapSelectedVillage;
 
-        private readonly Pen _mainMapActiveBorderPen;
         private readonly Pen _mainMapSelectedVillagesPen;
         private readonly Font _continentFont;
 
@@ -53,7 +65,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
             mainMap.EventPublisher.DisplayTypeChanged += EventPublisher_MainMapDisplayTypeChanged;
             map.EventPublisher.LocationChanged += EventPublisher_OwnLocationChanged;
 
-            _mainMapActiveBorderPen = new Pen(Color.Yellow);
             _mainMapSelectedVillagesPen = new Pen(Color.White);
             _continentFont = new Font("Verdana", 18);
             _activeVillagePen = new Pen(Color.Black, 3);
@@ -91,6 +102,8 @@ namespace TribalWars.Maps.Manipulators.Implementations
                 Player player = _mainMapSelectedVillage.Player;
                 if (!_mainMapSelectedVillage.HasPlayer && _mainMapSelectedVillage.PreviousVillageDetails != null && _mainMapSelectedVillage.PreviousVillageDetails.HasPlayer)
                 {
+                    // Abandoned village with previous owner
+                    // -> show the previous owner villages
                     player = _mainMapSelectedVillage.PreviousVillageDetails.Player;
                 }
 
@@ -116,7 +129,10 @@ namespace TribalWars.Maps.Manipulators.Implementations
             // Draws the rectangle active on the mainmap
             Rectangle mainMapGameRectangle = _mainMap.Display.GetGameRectangle();
             _mainMapRectangle = _map.Display.GetMapRectangle(mainMapGameRectangle);
-            e.Graphics.DrawRectangle(_mainMapActiveBorderPen, _mainMapRectangle);
+            using (var mainMapActiveBorderPen = new Pen(Color.Yellow))
+            {
+                e.Graphics.DrawRectangle(mainMapActiveBorderPen, _mainMapRectangle);
+            }
 
             const int width = 40;
             const int height = 35;
@@ -204,11 +220,11 @@ namespace TribalWars.Maps.Manipulators.Implementations
             {
                 if (_map.Location == null)
                 {
-                    _map.SetCenter(e.NewLocation.Point, 1);
+                    _map.SetCenter(e.NewLocation.Point, GetZoomLevel());
                 }
-                else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > 100)
+                else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > MoveVisibleRectangleDistance)
                 {
-                    _map.SetCenter(e.NewLocation.Point, 1);
+                    _map.SetCenter(e.NewLocation.Point, GetZoomLevel());
                     _map.Invalidate(false);
                 }
                 else
@@ -220,6 +236,13 @@ namespace TribalWars.Maps.Manipulators.Implementations
             {
                 _map.Invalidate(false);
             }
+        }
+
+        private int GetZoomLevel()
+        {
+            var mapGameRectangle = _mainMap.Display.GetGameRectangle();
+            var loc = _map.GetSpan(mapGameRectangle, 50);
+            return loc.Zoom;
         }
 
         private void EventPublisher_MainMapDisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
@@ -246,7 +269,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
         public override void Dispose()
         {
             _continentFont.Dispose();
-            _mainMapActiveBorderPen.Dispose();
             _mainMapSelectedVillagesPen.Dispose();
             _activeVillagePen.Dispose();
             _activeVillagePen2.Dispose();

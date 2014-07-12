@@ -13,8 +13,7 @@ namespace TribalWars.Maps.Displays
     public sealed class MiniMapDrawerFactory : DrawerFactoryBase
     {
         #region Fields
-        private const int FixedZoomLevel = 3;
-        private static readonly VillageDimensions FixedDimension = new VillageDimensions(FixedZoomLevel);
+        public const int MaxZoomLevel = 3;
         #endregion
 
         #region Properties
@@ -38,8 +37,8 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Constructors
-        public MiniMapDrawerFactory()
-            : base(new ZoomInfo(1, 1, 1))
+        public MiniMapDrawerFactory(int zoomLevel)
+            : base(new ZoomInfo(1, MaxZoomLevel, zoomLevel))
         {
 
         }
@@ -51,7 +50,7 @@ namespace TribalWars.Maps.Displays
         /// </summary>
         protected override VillageDimensions CalculateVillageDimensions()
         {
-            return FixedDimension;
+            return new VillageDimensions(Zoom.Current);
         }
 
         protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)

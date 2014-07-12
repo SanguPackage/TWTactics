@@ -7,7 +7,7 @@ using System.Drawing;
 namespace TribalWars.Maps
 {
     /// <summary>
-    /// Represents the view on a map
+    /// Represents the view on a map. All coordinates are GAME coordinates.
     /// </summary>
     public sealed class Location : IEquatable<Location>
     {

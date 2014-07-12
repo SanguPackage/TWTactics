@@ -88,66 +88,6 @@ namespace TribalWars.Maps
         #endregion
 
         #region Painting
-
-        // TODO: move all painting stuff to a different class PAINTER
-
-        /// <summary>
-        /// Draws a village on the map
-        /// </summary>
-        /// <param name="g">The graphics object</param>
-        /// <param name="game">The game location of the village</param>
-        /// <param name="mapVillage">Where and how big to draw the village</param>
-        private void Paint(Graphics g, Point game, Rectangle mapVillage)
-        {
-            if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
-                return;
-
-            Village village;
-            DrawerBase finalCache = null;
-            if (World.Default.Villages.TryGetValue(game, out village))
-            {
-                Marker marker = _markers.GetMarker(Settings, village);
-                if (marker != null)
-                {
-                    // Paint village icon/shape
-                    DrawerData mainData = World.Default.GetDrawerData(village, marker.Settings.View);
-                    finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
-                    if (finalCache != null)
-                    {
-                        finalCache.PaintVillage(g, mapVillage);
-
-                        if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
-                        {
-                            // Paint extra village decorators
-                            DrawerData data = World.Default.GetDrawerData(village, "VillageType");
-                            DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
-                            if (decoratorVillageType != null)
-                            {
-                                decoratorVillageType.PaintVillage(g, mapVillage);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (finalCache == null)
-            {
-                PaintNonVillage(g, game, mapVillage);
-            }
-        }
-
-        /// <summary>
-        /// Paint grass, mountains, ...
-        /// </summary>
-        private void PaintNonVillage(Graphics g, Point game, Rectangle mapVillage)
-        {
-            DrawerBase finalCache = _drawerFactoryStrategy.CreateNonVillageDrawer(game, mapVillage);
-            if (finalCache != null)
-            {
-                finalCache.PaintVillage(g, mapVillage);
-            }
-        }
-
         /// <summary>
         /// Paints the canvas
         /// </summary>
@@ -178,7 +118,7 @@ namespace TribalWars.Maps
 
                 timing.Stop();
                 //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
-                
+
                 #region THA OLD CODE
                 //timing.Restart();
                 // x1: 0.6 secs
@@ -277,6 +217,68 @@ namespace TribalWars.Maps
                 g2.DrawImageUnscaled(_background, 0, 0);
             }
         }
+
+
+        // TODO: move all painting stuff to a different class PAINTER
+
+        /// <summary>
+        /// Draws a village on the map
+        /// </summary>
+        /// <param name="g">The graphics object</param>
+        /// <param name="game">The game location of the village</param>
+        /// <param name="mapVillage">Where and how big to draw the village</param>
+        private void Paint(Graphics g, Point game, Rectangle mapVillage)
+        {
+            if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
+                return;
+
+            Village village;
+            DrawerBase finalCache = null;
+            if (World.Default.Villages.TryGetValue(game, out village))
+            {
+                Marker marker = _markers.GetMarker(Settings, village);
+                if (marker != null)
+                {
+                    // Paint village icon/shape
+                    DrawerData mainData = World.Default.GetDrawerData(village, marker.Settings.View);
+                    finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
+                    if (finalCache != null)
+                    {
+                        finalCache.PaintVillage(g, mapVillage);
+
+                        if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
+                        {
+                            // Paint extra village decorators
+                            DrawerData data = World.Default.GetDrawerData(village, "VillageType");
+                            DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
+                            if (decoratorVillageType != null)
+                            {
+                                decoratorVillageType.PaintVillage(g, mapVillage);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (finalCache == null)
+            {
+                PaintNonVillage(g, game, mapVillage);
+            }
+        }
+
+        /// <summary>
+        /// Paint grass, mountains, ...
+        /// </summary>
+        private void PaintNonVillage(Graphics g, Point game, Rectangle mapVillage)
+        {
+            DrawerBase finalCache = _drawerFactoryStrategy.CreateNonVillageDrawer(game, mapVillage);
+            if (finalCache != null)
+            {
+                finalCache.PaintVillage(g, mapVillage);
+            }
+        }
+
+        
 
         /// <summary>
         /// Paints the villages and continent/province lines on a canvas

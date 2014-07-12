@@ -20,6 +20,14 @@ namespace TribalWars.Maps.Manipulators.Implementations
         private bool _isDragging;
         private Point _startPosition;
         private Point _lastPosition;
+
+        /// <summary>
+        /// Showing a tooltip reverted the cursor.
+        /// This is not a complete fix: if the user doesn't move 
+        /// before starting to drag, the default pointer is
+        /// shown during drag due the tooltip still popping up.
+        /// </summary>
+        private bool _wasTooltipActive;
         #endregion
 
         #region Constructors
@@ -47,19 +55,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
         }
 
         /// <summary>
-        /// Stop dragging
-        /// </summary>
-        protected internal override bool MouseUpCore(MapMouseEventArgs e)
-        {
-            if (e.MouseEventArgs.Button == MouseButtons.Left && _isDragging)
-            {
-                _isDragging = false;
-                _parent.RemoveFullControlManipulator();
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Add points to the polygon
         /// </summary>
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
@@ -76,6 +71,19 @@ namespace TribalWars.Maps.Manipulators.Implementations
             return false;
         }
 
+        /// <summary>
+        /// Stop dragging
+        /// </summary>
+        protected internal override bool MouseUpCore(MapMouseEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Left && _isDragging)
+            {
+                _isDragging = false;
+                _parent.RemoveFullControlManipulator();
+            }
+            return false;
+        }
+
         private void SetMapCenter()
         {
             Location current = _map.Location;
@@ -88,11 +96,14 @@ namespace TribalWars.Maps.Manipulators.Implementations
 
         protected internal override void SetFullControlManipulatorCore()
         {
-            _map.SetCursor(Cursors.Hand);
+            _wasTooltipActive = _map.Manipulators.CurrentManipulator.TooltipActive;
+            _map.Manipulators.CurrentManipulator.TooltipActive = false;
+            _map.SetCursor(Cursors.SizeAll);
         }
 
         protected internal override void RemoveFullControlManipulatorCore()
         {
+            _map.Manipulators.CurrentManipulator.TooltipActive = _wasTooltipActive;
             _map.SetCursor();
         }
 
