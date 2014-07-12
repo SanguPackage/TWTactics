@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using TribalWars.Maps.Displays;
+using TribalWars.Tools;
 
 namespace TribalWars.Maps
 {
@@ -61,6 +62,17 @@ namespace TribalWars.Maps
         {
             Debug.Assert(ContinentLines);
             return new Pen(Color.Black, 1);
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+                "BackColor={0}, Continent={1}, Province={2}, HideAbandoned={3}, MarkedOnly={4}", 
+                BackgroundColor.Description(), 
+                ContinentLines, 
+                ProvinceLines, 
+                HideAbandoned, 
+                MarkedOnly);
         }
     }
 }
