@@ -1,7 +1,9 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TribalWars.Browsers.Reporting;
+using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events;
@@ -18,16 +20,6 @@ namespace TribalWars.Maps
     {
         #region Fields
         private readonly Map _map;
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets the map the events get raised for
-        /// </summary>
-        public Map Map
-        {
-            get { return _map; }
-        }
         #endregion
 
         #region Events
@@ -91,18 +83,6 @@ namespace TribalWars.Maps
         }
 
         /// <summary>
-        /// Publishes an event without linked village(s)
-        /// </summary>
-        /// <remarks>Used to remove the pinpoint</remarks>
-        public void SelectVillages(object sender, VillageTools villageTools)
-        {
-            if (VillagesSelected != null)
-            {
-                VillagesSelected(sender, new VillagesEventArgs(null, villageTools));
-            }
-        }
-
-        /// <summary>
         /// Publishes an event for one tribe
         /// </summary>
         public void SelectTribe(object sender, Tribe tribe, VillageTools tool)
@@ -137,20 +117,22 @@ namespace TribalWars.Maps
         #endregion
 
         #region Action Events
+        // EditorBrowsableState.Never: A design error.
+
         /// <summary>
-        /// Publishes a map location change
+        /// Should be called only from one location: <see cref="Map"/>.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetMapCenter(object sender, MapLocationEventArgs e)
         {
-            // TODO: this one can't be called directly
-            // instead use map.SetCenter()
             if (LocationChanged != null)
                 LocationChanged(sender, e);
         }
 
         /// <summary>
-        /// Publishes a change in DisplayType
+        /// Should be called only from one location: <see cref="Map"/>
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetDisplayType(Map sender, MapDisplayTypeEventArgs e)
         {
             if (DisplayTypeChanged != null)
@@ -158,8 +140,9 @@ namespace TribalWars.Maps
         }
 
         /// <summary>
-        /// Change the active map manipulator
+        /// Should be called only from one location: <see cref="ManipulatorManagerController"/>
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeManipulator(object sender, ManipulatorEventArgs e)
         {
             if (ManipulatorChanged != null)

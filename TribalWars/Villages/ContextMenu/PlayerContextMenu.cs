@@ -41,7 +41,7 @@ namespace TribalWars.Villages.ContextMenu
 
             if (map.Display.IsVisible(player))
             {
-                _menu.AddCommand("Pinpoint", OnDetails);
+                _menu.AddCommand("Pinpoint", OnPinPoint);
             }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
@@ -137,7 +137,7 @@ namespace TribalWars.Villages.ContextMenu
         /// <summary>
         /// Open quick details for the player
         /// </summary>
-        private void OnDetails(object sender, EventArgs e)
+        private void OnPinPoint(object sender, EventArgs e)
         {
             World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
         }

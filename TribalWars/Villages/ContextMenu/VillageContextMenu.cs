@@ -8,6 +8,7 @@ using System.Drawing;
 using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
@@ -45,9 +46,10 @@ namespace TribalWars.Villages.ContextMenu
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
 
             _menu = JanusContextMenu.Create();
+            _menu.AddCommand("Attack", OnAttack, Buildings.BuildingImages.Barracks);
             if (map.Display.IsVisible(village))
             {
-                _menu.AddCommand("Pinpoint", OnDetails);
+                _menu.AddCommand("Pinpoint", OnPinPoint);
             }
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             
@@ -169,9 +171,15 @@ namespace TribalWars.Villages.ContextMenu
         /// <summary>
         /// Open quick details for the village
         /// </summary>
-        private void OnDetails(object sender, CommandEventArgs e)
+        private void OnPinPoint(object sender, CommandEventArgs e)
         {
             World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
+        }
+
+        private void OnAttack(object sender, CommandEventArgs e)
+        {
+            // TODO: need to set attacked village
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
         }
 
         private void SetClipboard(string text)

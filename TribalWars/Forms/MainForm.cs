@@ -1,5 +1,6 @@
 #region Using
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -13,6 +14,7 @@ using TribalWars.Forms.Small;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
+using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
@@ -148,13 +150,34 @@ namespace TribalWars.Forms
 
         private void EventPublisher_ManipulatorChanged(object sender, ManipulatorEventArgs e)
         {
-            ToolStripPolygonManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Polygon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripDefaultManipulator.CheckState = e.ManipulatorType == ManipulatorManagerTypes.Default ? CheckState.Checked : CheckState.Unchecked;
+            // Visual indication of current manipulator
+            var manipulators = new TupleList<ManipulatorManagerTypes, ToolStripButton>
+                {
+                    {ManipulatorManagerTypes.Default, ToolStripDefaultManipulator},
+                    {ManipulatorManagerTypes.Polygon, ToolStripPolygonManipulator},
+                    {ManipulatorManagerTypes.Attack, ToolStripAttackManipulator}
+                };
+
+            foreach (var manipulator in manipulators)
+            {
+                manipulator.Item2.Checked = manipulator.Item1 == e.ManipulatorType;
+            }
+
+            if (e.ManipulatorType == ManipulatorManagerTypes.Attack)
+            {
+                var pane = GetNavigationPane(NavigationPanes.Attack);
+                LeftNavigation.SelectNavigationPage(pane.Key);
+            }
         }
 
         private void ToolStripDefaultManipulator_Click(object sender, EventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+        }
+
+        private void ToolStripAttackManipulator_Click(object sender, EventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
         }
 
         private void ToolStripPolygonManipulator_Click(object sender, EventArgs e)
@@ -369,6 +392,18 @@ namespace TribalWars.Forms
                 }
             }
         }
+
+        private void MenuMapSetHomeLocation_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                DialogResult result = MessageBox.Show("Use the current position as your home?\n(You can use the Home key to jump to the Home location)", "Set Home Location", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    World.Default.Map.SaveHome();
+                }
+            }
+        }
         #endregion
 
         #region Small functionality
@@ -436,17 +471,5 @@ namespace TribalWars.Forms
             return LeftNavigation.NavigationPages[(int)pane];
         }
         #endregion
-
-        private void MenuMapSetHomeLocation_Click(object sender, EventArgs e)
-        {
-            if (World.Default.HasLoaded)
-            {
-                DialogResult result = MessageBox.Show("Use the current position as your home?\n(You can use the Home key to jump to the Home location)", "Set Home Location", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    World.Default.Map.SaveHome();
-                }
-            }
-        }
     }
 }

@@ -59,6 +59,8 @@ namespace TribalWars.Maps.Manipulators
         /// </summary>
         public PolygonManipulatorManager PolygonManipulator { get; set; }
 
+        public AttackManipulatorManager AttackManipulator { get; set; }
+
         /// <summary>
         /// The last village the cursor was on or is still on
         /// </summary>
@@ -99,6 +101,8 @@ namespace TribalWars.Maps.Manipulators
             _manipulators.Add(ManipulatorManagerTypes.Default, CurrentManipulator);
             PolygonManipulator = new PolygonManipulatorManager(map);
             _manipulators.Add(ManipulatorManagerTypes.Polygon, PolygonManipulator);
+            AttackManipulator = new AttackManipulatorManager(map);
+            _manipulators.Add(ManipulatorManagerTypes.Attack, AttackManipulator);
         }
         #endregion
 

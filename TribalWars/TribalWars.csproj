@@ -212,6 +212,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Villages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Manipulators\Implementations\AttackManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Managers\AttackManipulatorManager.cs" />
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
