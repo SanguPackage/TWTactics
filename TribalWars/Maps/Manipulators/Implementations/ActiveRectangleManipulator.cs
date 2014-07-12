@@ -18,7 +18,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
     internal class ActiveRectangleManipulator : ManipulatorBase
     {
         #region Fields
-        private readonly Pen _rectanglePen;
         private Size _activeRectangleSize;
         private Rectangle _activeRectangle;
         private readonly Action<bool> _releaseAction;
@@ -45,7 +44,6 @@ Press 's' to remove this tooltip.";
         public ActiveRectangleManipulator(Map map, Action<bool> releaseAction)
             : base(map)
         {
-            _rectanglePen = new Pen(Color.Yellow, 3);
             _showHelpTooltip = true;
             _releaseAction = releaseAction;
 
@@ -82,7 +80,10 @@ Press 's' to remove this tooltip.";
 
         public override void Paint(MapPaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(_rectanglePen, _activeRectangle);
+            using (var rectanglePen = new Pen(Color.FromArgb(118, 143, 219), 3))
+            {
+                e.Graphics.DrawRectangle(rectanglePen, _activeRectangle);
+            }
         }
 
         /// <summary>
@@ -175,7 +176,6 @@ Press 's' to remove this tooltip.";
         
         public override void Dispose()
         {
-            _rectanglePen.Dispose();
         }
         #endregion
 
