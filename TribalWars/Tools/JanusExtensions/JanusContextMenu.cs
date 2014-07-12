@@ -173,9 +173,20 @@ namespace TribalWars.Tools.JanusExtensions
             markerHolder.Commands.AddRange(markerContext.GetCommands().ToArray());
         }
 
+        public static void AddPlayerNobledContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
+        {
+            var playerCommand = menu.AddCommand("Nobled from " + player.Name, null, Properties.Resources.nobleman);
+            AddPlayerContextCommands(map, player, addTribeCommands, playerCommand);
+        }
+
         public static void AddPlayerContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
         {
             var playerCommand = menu.AddCommand(player.Name, null, Properties.Resources.Player);
+            AddPlayerContextCommands(map, player, addTribeCommands, playerCommand);
+        }
+
+        private static void AddPlayerContextCommands(Map map, Player player, bool addTribeCommands, UICommand playerCommand)
+        {
             playerCommand.ToolTipText = player.Tooltip;
             var playerContext = new PlayerContextMenu(map, player, addTribeCommands);
             playerCommand.Commands.AddRange(playerContext.GetCommands().ToArray());
