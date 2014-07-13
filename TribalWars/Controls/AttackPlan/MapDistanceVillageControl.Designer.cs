@@ -53,6 +53,7 @@ namespace TribalWars.Controls.AttackPlan
             this._Village.TabIndex = 0;
             this._Village.Text = "Villagename";
             this._Village.DoubleClick += new System.EventHandler(this.Village_DoubleClick);
+            this._Village.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Village_MouseClick);
             // 
             // DateRequired
             // 

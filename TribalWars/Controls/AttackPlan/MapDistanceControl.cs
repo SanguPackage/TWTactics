@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
@@ -40,11 +41,6 @@ namespace TribalWars.Controls.AttackPlan
             get { return Date.Value; }
             set { Date.Value = value; }
         }
-
-        public MapDistanceCollectionControl Collection
-        {
-            get { return _parent; }
-        }
         #endregion
 
         #region Constructors
@@ -59,9 +55,39 @@ namespace TribalWars.Controls.AttackPlan
         #endregion
 
         #region EventHandlers
-        private void Date_ValueChanged(object sender, EventArgs e)
+        private void _Village_MouseClick(object sender, MouseEventArgs e)
         {
-            CalculateVariable();
+            if (e.Button == MouseButtons.Right)
+            {
+                var cm = new VillageContextMenu(World.Default.Map, _target);
+                cm.Show(_Village, e.Location);
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                World.Default.Map.EventPublisher.SelectVillages(null, _target, VillageTools.PinPoint);
+            }
+        }
+
+        private void _Village_DoubleClick(object sender, EventArgs e)
+        {
+            World.Default.Map.EventPublisher.SelectVillages(null, _target, VillageTools.PinPoint);
+            World.Default.Map.SetCenter(_target.Location);
+        }
+
+        private void _Player_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_target.HasPlayer)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    var cm = new PlayerContextMenu(World.Default.Map, _target.Player, false);
+                    cm.Show(_Player, e.Location);
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    World.Default.Map.EventPublisher.SelectVillages(null, _target.Player, VillageTools.PinPoint);
+                }
+            }
         }
 
         private void Player_DoubleClick(object sender, EventArgs e)
@@ -69,6 +95,23 @@ namespace TribalWars.Controls.AttackPlan
             if (_target.HasPlayer)
             {
                 World.Default.Map.EventPublisher.SelectVillages(this, _target.Player, VillageTools.PinPoint);
+                World.Default.Map.SetCenter(_target.Player);
+            }
+        }
+
+        private void _Tribe_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_target.HasTribe)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    var cm = new TribeContextMenu(World.Default.Map, _target.Player.Tribe);
+                    cm.Show(_Tribe, e.Location);
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    World.Default.Map.EventPublisher.SelectVillages(null, _target.Player.Tribe, VillageTools.PinPoint);
+                }
             }
         }
 
@@ -77,6 +120,7 @@ namespace TribalWars.Controls.AttackPlan
             if (_target.HasTribe)
             {
                 World.Default.Map.EventPublisher.SelectVillages(this, _target.Player.Tribe, VillageTools.PinPoint);
+                World.Default.Map.SetCenter(_target.Player.Tribe);
             }
         }
         #endregion
@@ -90,22 +134,11 @@ namespace TribalWars.Controls.AttackPlan
                 if (distanceControl != null) distanceControl.Calculate();
             }
         }
-
-        public void CalculateVariable()
-        {
-            foreach (Control ctl in DistanceContainer.Controls)
-            {
-                var distanceControl = ctl as MapDistanceVillageControl;
-                if (distanceControl != null) distanceControl.CalculateVariable();
-            }
-        }
         #endregion
 
         #region MapDistanceVillage Control Helpers
         public MapDistanceVillageControl AddVillage(Village village)
         {
-            //Timer.Enabled = true;
-
             DistanceContainer.RowStyles[DistanceContainer.RowCount - 1] = new RowStyle(SizeType.Absolute, 60F);
             DistanceContainer.RowCount++;
             DistanceContainer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -162,7 +195,7 @@ namespace TribalWars.Controls.AttackPlan
             return GetPlan(bbCodes, true);
         }
 
-        public string GetPlan(bool bbCodes, bool standAlone)
+        private string GetPlan(bool bbCodes, bool standAlone)
         {
             Sort();
 

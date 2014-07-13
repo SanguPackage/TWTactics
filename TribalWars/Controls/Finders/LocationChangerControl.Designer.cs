@@ -57,6 +57,7 @@ namespace TribalWars.Controls.Finders
             // 
             // SelectorControl
             // 
+            this.SelectorControl.AllowCoordinates = true;
             this.SelectorControl.AllowKingdom = true;
             this.SelectorControl.AllowPlayer = true;
             this.SelectorControl.AllowTribe = true;

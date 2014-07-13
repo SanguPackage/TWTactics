@@ -199,7 +199,7 @@ namespace TribalWars.Controls.AttackPlan
             this.VillageInput.Name = "VillageInput";
             this.VillageInput.Player = null;
             this.VillageInput.ShowImage = false;
-            this.VillageInput.Size = new System.Drawing.Size(55, 23);
+            this.VillageInput.Size = new System.Drawing.Size(75, 23);
             this.VillageInput.Tribe = null;
             this.VillageInput.Village = null;
             // 
@@ -238,7 +238,7 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdFind.Image = ((System.Drawing.Image)(resources.GetObject("cmdFind.Image")));
             this.cmdFind.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdFind.Name = "cmdFind";
-            this.cmdFind.Size = new System.Drawing.Size(23, 22);
+            this.cmdFind.Size = new System.Drawing.Size(23, 20);
             this.cmdFind.Text = "Find villages";
             this.cmdFind.Click += new System.EventHandler(this.cmdFind_Click);
             // 

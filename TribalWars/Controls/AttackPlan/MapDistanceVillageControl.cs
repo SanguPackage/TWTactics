@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
@@ -26,7 +27,7 @@ namespace TribalWars.Controls.AttackPlan
         public Village Village
         {
             get { return _village; }
-            set
+            private set
             {
                 _village = value;
                 _Village.Text = _village.Name;
@@ -76,7 +77,7 @@ namespace TribalWars.Controls.AttackPlan
             }
         }
 
-        public void CalculateVariable()
+        private void CalculateVariable()
         {
             if (_unit != null)
             {
@@ -122,16 +123,29 @@ namespace TribalWars.Controls.AttackPlan
             }
         }
 
+        private void _Village_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (Village != null)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    var cm = new VillageContextMenu(World.Default.Map, Village);
+                    cm.Show(_Village, e.Location);
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    World.Default.Map.EventPublisher.SelectVillages(null, Village, VillageTools.PinPoint);
+                }
+            }
+        }
+
         private void Coords_TextChanged(object sender, EventArgs e)
         {
-            //if (Coords.Valid)
-            //{
-                Village vil = Coords.Village;
-                if (vil != null)
-                {
-                    Village = vil;
-                }
-            //}
+            Village vil = Coords.Village;
+            if (vil != null)
+            {
+                Village = vil;
+            }
         }
         #endregion
 

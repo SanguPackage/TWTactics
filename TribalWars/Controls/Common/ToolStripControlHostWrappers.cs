@@ -163,6 +163,16 @@ namespace TribalWars.Controls.Common
             get { return PlayerTribeSelector.ShowImage; }
             set { PlayerTribeSelector.ShowImage = value; }
         }
+
+        /// <summary>
+        /// Allow entering coordinates that do not map to a village
+        /// </summary>
+        [DefaultValue(false)]
+        public bool AllowCoordinates
+        {
+            get { return PlayerTribeSelector.AllowCoordinates; }
+            set { PlayerTribeSelector.AllowCoordinates = value; }
+        }
         #endregion
 
         #region Constructors

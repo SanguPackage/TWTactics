@@ -145,6 +145,12 @@ namespace TribalWars.Controls.Finders
         public bool ShowImage { get; set; }
 
         /// <summary>
+        /// Allow entering coordinates that do not map to a village
+        /// </summary>
+        [Category(PropertyGridCategory), DefaultValue(false)]
+        public bool AllowCoordinates { get; set; }
+
+        /// <summary>
         /// Show help text when there is not user entered text.
         /// </summary>
         public string PlaceHolderText
@@ -255,7 +261,8 @@ namespace TribalWars.Controls.Finders
                         Image = null;
                         found = true;
                     }
-                    if (!found)
+
+                    if (AllowCoordinates && !found)
                     {
                         Point? point = World.Default.GetCoordinates(Text);
                         if (point.HasValue)
@@ -315,7 +322,7 @@ namespace TribalWars.Controls.Finders
                 {
                     _map.SetCenterContinent(kingdom);
                 }
-                else if (AllowVillage)
+                else if (AllowCoordinates)
                 {
                     Point? point = World.Default.GetCoordinates(Text);
                     if (point.HasValue)
@@ -325,11 +332,11 @@ namespace TribalWars.Controls.Finders
                             _map.SetCenter(point.Value);
                         }
                     }
-                    else
-                    {
-                        _tooltip.ToolTipTitle = string.Empty;
-                        _tooltip.SetToolTip(this, GetEmptyTooltip());
-                    }
+                }
+                else
+                {
+                    _tooltip.ToolTipTitle = string.Empty;
+                    _tooltip.SetToolTip(this, GetEmptyTooltip());
                 }
             }
         }

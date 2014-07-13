@@ -57,6 +57,7 @@ namespace TribalWars.Controls.AttackPlan
         private void Default_SettingsLoaded(object sender, EventArgs e)
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
+            UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
 
             World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
         }
