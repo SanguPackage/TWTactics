@@ -217,13 +217,13 @@ namespace TribalWars.Villages
         #region BBCode
         public override string ToString()
         {
-            return string.Format("{0} ({1:#,0}pts|{2}vils)", Name, Points, Villages.Count);
+            return string.Format("{0} ({1}pts|{2}vils)", Name, Common.GetPrettyNumber(Points), Villages.Count);
         }
 
         public string BbCode()
         {
             string str = string.Format("[player]{0}[/player]", Name);
-            if (Villages.Count > 1) str += string.Format(" ({0:#,0}pts|{1}vils)", Points, Villages.Count);
+            if (Villages.Count > 1) str += string.Format(" ({0}pts|{1}vils)", Common.GetPrettyNumber(Points), Villages.Count);
             return str;
         }
 

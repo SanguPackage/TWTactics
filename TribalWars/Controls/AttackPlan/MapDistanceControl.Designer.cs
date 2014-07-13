@@ -34,15 +34,15 @@ namespace TribalWars.Controls.AttackPlan
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
             this._Tribe = new System.Windows.Forms.Label();
             this.DistanceContainer = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
-            this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -80,6 +80,17 @@ namespace TribalWars.Controls.AttackPlan
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(274, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // Coords
+            // 
+            this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.GameLocation = null;
+            this.Coords.Location = new System.Drawing.Point(6, 3);
+            this.Coords.Name = "Coords";
+            this.Coords.PlaceHolderText = "";
+            this.Coords.ShowImage = false;
+            this.Coords.Size = new System.Drawing.Size(50, 20);
+            this.Coords.TabIndex = 14;
             // 
             // Close
             // 
@@ -150,8 +161,8 @@ namespace TribalWars.Controls.AttackPlan
             this.DistanceContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.DistanceContainer.Name = "DistanceContainer";
             this.DistanceContainer.RowCount = 1;
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 367F));
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 367F));
+            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 368F));
+            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 368F));
             this.DistanceContainer.Size = new System.Drawing.Size(274, 360);
             this.DistanceContainer.TabIndex = 2;
             // 
@@ -166,29 +177,6 @@ namespace TribalWars.Controls.AttackPlan
             this.panel3.Size = new System.Drawing.Size(274, 30);
             this.panel3.TabIndex = 4;
             // 
-            // Coords
-            // 
-            this.Coords.BackColor = System.Drawing.Color.White;
-            this.Coords.GameLocation = null;
-            this.Coords.Location = new System.Drawing.Point(6, 3);
-            this.Coords.Name = "Coords";
-            this.Coords.PlaceHolderText = "";
-            this.Coords.ShowImage = false;
-            this.Coords.Size = new System.Drawing.Size(50, 20);
-            this.Coords.TabIndex = 14;
-            // 
-            // Date
-            // 
-            this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Date.BackColor = System.Drawing.Color.Transparent;
-            this.Date.CustomFormat = "MMM, dd yyyy HH:mm:ss";
-            this.Date.Location = new System.Drawing.Point(68, 3);
-            this.Date.Margin = new System.Windows.Forms.Padding(0);
-            this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(165, 25);
-            this.Date.TabIndex = 1;
-            this.Date.Value = new System.DateTime(2008, 4, 10, 0, 26, 44, 906);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -197,6 +185,17 @@ namespace TribalWars.Controls.AttackPlan
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Arrival time:";
+            // 
+            // Date
+            // 
+            this.Date.BackColor = System.Drawing.Color.Transparent;
+            this.Date.CustomFormat = "MMM, dd yyyy HH:mm:ss";
+            this.Date.Location = new System.Drawing.Point(68, 3);
+            this.Date.Margin = new System.Windows.Forms.Padding(0);
+            this.Date.Name = "Date";
+            this.Date.Size = new System.Drawing.Size(165, 25);
+            this.Date.TabIndex = 1;
+            this.Date.Value = new System.DateTime(2008, 4, 10, 0, 26, 44, 906);
             // 
             // MapDistanceControl
             // 

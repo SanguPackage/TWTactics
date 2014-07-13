@@ -70,11 +70,6 @@ namespace TribalWars.Controls.AttackPlan
             if (ActivePlan != null) ActivePlan.Calculate();
         }
 
-        private void AttackAllDropDown_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmdAddVillage_Click(object sender, EventArgs e)
         {
             Village village = VillageInput.Village;
@@ -132,7 +127,7 @@ namespace TribalWars.Controls.AttackPlan
         #region Public Methods
         private void AddTarget(Village vil)
         {
-            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, vil.Points.ToString("#,0")), null, SelectPlan);
+            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Tools.Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
             if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
             AttackDropDown.DropDownItems.Add(newItm);
             if (AttackDropDown.DropDownItems.Count == 1)
@@ -167,8 +162,8 @@ namespace TribalWars.Controls.AttackPlan
 
             if (ActivePlan == target)
             {
-                if (AttackDropDown.DropDownItems.Count > 2)
-                    SelectPlan(AttackDropDown.DropDownItems[2], EventArgs.Empty);
+                if (AttackDropDown.DropDownItems.Count > 0)
+                    SelectPlan(AttackDropDown.DropDownItems[0], EventArgs.Empty);
                 else
                 {
                     SelectPlan(null, EventArgs.Empty);
@@ -183,7 +178,7 @@ namespace TribalWars.Controls.AttackPlan
             // select new active plan
             if (sender != null)
             {
-                for (int i = 2; i < AttackDropDown.DropDownItems.Count; i++)
+                for (int i = 0; i < AttackDropDown.DropDownItems.Count; i++)
                 {
                     ((ToolStripMenuItem)AttackDropDown.DropDownItems[i]).Checked = false;
                 }
