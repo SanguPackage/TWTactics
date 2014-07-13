@@ -48,10 +48,15 @@ namespace TribalWars.Maps.Manipulators.Managers
         //    _bbCode.WriteXmlCore(w);
         //}
 
-        //public override IContextMenu GetContextMenu(System.Drawing.Point location, Village village)
-        //{
-        //    return new NoPolygonContextMenu(_bbCode);
-        //}
+        public override IContextMenu GetContextMenu(Point location, Village village)
+        {
+            if (village.Player == World.Default.You)
+            {
+                return null;
+            }
+            return base.GetContextMenu(location, village);
+
+        }
         #endregion
 
         private Dictionary<ToolStripMenuItem, MapDistanceControl> _plans;
@@ -62,8 +67,6 @@ namespace TribalWars.Maps.Manipulators.Managers
             _activePlanGetter = activePlanGetter;
             _plans = plans;
         }
-
-        
 
         public void Draw(Graphics g)
         {

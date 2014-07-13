@@ -156,8 +156,6 @@ namespace TribalWars.Controls.AttackPlan
             var str = new StringBuilder();
             if (Village != null)
             {
-                DateTime serverTime = World.Default.Settings.ServerTime;
-
                 if (target != null)
                 {
                     if (!bbCodes) str.AppendLine("Attack " + target);

@@ -70,15 +70,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
 
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
-            if (e.MouseEventArgs.Button == MouseButtons.Left)
-            {
-                
-            }
-            return false;
-        }
-
-        protected internal override bool MouseUpCore(MapMouseEventArgs e)
-        {
             if (e.Village != null)
             {
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
@@ -86,12 +77,18 @@ namespace TribalWars.Maps.Manipulators.Implementations
                     World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculationTarget);
                     return true;
                 }
-                else if (e.MouseEventArgs.Button == MouseButtons.Right)
+                else if (e.MouseEventArgs.Button == MouseButtons.Right && e.Village.Player == World.Default.You)
                 {
                     World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculation);
                     return true;
                 }
             }
+            return false;
+        }
+
+        protected internal override bool MouseUpCore(MapMouseEventArgs e)
+        {
+            
             return false;
         }
 
@@ -107,11 +104,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #endregion
 
         #region Public Methods
-        public override IContextMenu GetContextMenu(Point location, Village village)
-        {
-            return null;
-        }
-
         public override void Dispose()
         {
         }

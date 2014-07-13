@@ -709,7 +709,8 @@ namespace TribalWars.Forms
             this.ToolStripAttackManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
             this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks";
+            this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks (left click to add target, right click on your own village" +
+    "s to attack from)";
             this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);
             // 
             // toolStripSeparator
@@ -975,7 +976,6 @@ namespace TribalWars.Forms
             this.MapDistance.Margin = new System.Windows.Forms.Padding(0);
             this.MapDistance.Name = "MapDistance";
             this.MapDistance.Size = new System.Drawing.Size(329, 174);
-            this.MapDistance.Sound = false;
             this.MapDistance.TabIndex = 0;
             // 
             // Tabs

@@ -13,16 +13,8 @@ namespace TribalWars.Controls.AttackPlan
 {
     public partial class MapDistanceCollectionControl : UserControl
     {
-        private readonly Dictionary<ToolStripMenuItem, MapDistanceControl> _plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
-        public MapDistanceControl this[ToolStripMenuItem itm]
-        {
-            get
-            {
-                return _plans.ContainsKey(itm) ? _plans[itm] : null;
-            }
-        }
-
         #region Fields
+        private readonly Dictionary<ToolStripMenuItem, MapDistanceControl> _plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
         private MapDistanceControl _activePlan;
         #endregion
 
@@ -37,10 +29,6 @@ namespace TribalWars.Controls.AttackPlan
                 _activePlan = value;
             }
         }
-
-        public bool Sound { get; set; }
-
-        //public Panel AllPlans { get; private set; }
         #endregion
 
         #region Constructors
@@ -142,7 +130,7 @@ namespace TribalWars.Controls.AttackPlan
         #endregion
 
         #region Public Methods
-        public void AddTarget(Village vil)
+        private void AddTarget(Village vil)
         {
             var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, vil.Points.ToString("#,0")), null, SelectPlan);
             if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
