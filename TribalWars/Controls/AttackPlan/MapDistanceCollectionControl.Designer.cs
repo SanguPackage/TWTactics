@@ -46,15 +46,13 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdSort = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdClear = new System.Windows.Forms.ToolStripButton();
+            this.VillageInput = new TribalWars.Controls.Common.ToolStripVillageTextBox();
             this.cmdAddVillage = new System.Windows.Forms.ToolStripButton();
             this.cmdAddTarget = new System.Windows.Forms.ToolStripButton();
+            this.UnitInput = new TribalWars.Controls.Common.ToolStripUnitsImageCombobox();
             this.cmdFind = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdSound = new System.Windows.Forms.ToolStripButton();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.VillageInput = new ToolStripVillageTextBox();
-            this.UnitInput = new ToolStripUnitsImageCombobox();
             this.AllPlans = new System.Windows.Forms.Panel();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Collection.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -87,9 +85,7 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdAddVillage,
             this.cmdAddTarget,
             this.UnitInput,
-            this.cmdFind,
-            this.toolStripSeparator2,
-            this.cmdSound});
+            this.cmdFind});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -112,14 +108,14 @@ namespace TribalWars.Controls.AttackPlan
             // AttackAllDropDown
             // 
             this.AttackAllDropDown.Name = "AttackAllDropDown";
-            this.AttackAllDropDown.Size = new System.Drawing.Size(96, 22);
+            this.AttackAllDropDown.Size = new System.Drawing.Size(88, 22);
             this.AttackAllDropDown.Text = "All";
             this.AttackAllDropDown.Click += new System.EventHandler(this.AttackAllDropDown_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(93, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(85, 6);
             // 
             // cmdClipboard
             // 
@@ -194,6 +190,19 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdClear.Text = "Clear plan";
             this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
             // 
+            // VillageInput
+            // 
+            this.VillageInput.AutoSize = false;
+            this.VillageInput.BackColor = System.Drawing.Color.White;
+            this.VillageInput.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.VillageInput.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.VillageInput.Name = "VillageInput";
+            this.VillageInput.Player = null;
+            this.VillageInput.ShowImage = false;
+            this.VillageInput.Size = new System.Drawing.Size(55, 23);
+            this.VillageInput.Tribe = null;
+            this.VillageInput.Village = null;
+            // 
             // cmdAddVillage
             // 
             this.cmdAddVillage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -216,6 +225,13 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdAddTarget.ToolTipText = "Add target";
             this.cmdAddTarget.Click += new System.EventHandler(this.cmdAddTarget_Click);
             // 
+            // UnitInput
+            // 
+            this.UnitInput.AutoSize = false;
+            this.UnitInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
+            this.UnitInput.Name = "UnitInput";
+            this.UnitInput.Size = new System.Drawing.Size(40, 24);
+            // 
             // cmdFind
             // 
             this.cmdFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -226,51 +242,19 @@ namespace TribalWars.Controls.AttackPlan
             this.cmdFind.Text = "Find villages";
             this.cmdFind.Click += new System.EventHandler(this.cmdFind_Click);
             // 
-            // toolStripSeparator2
+            // AllPlans
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cmdSound
-            // 
-            this.cmdSound.Checked = true;
-            this.cmdSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cmdSound.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdSound.Image = ((System.Drawing.Image)(resources.GetObject("cmdSound.Image")));
-            this.cmdSound.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdSound.Name = "cmdSound";
-            this.cmdSound.Size = new System.Drawing.Size(23, 22);
-            this.cmdSound.Text = "Play warning sound";
-            this.cmdSound.Click += new System.EventHandler(this.cmdSound_Click);
-            // 
-            // Timer
-            // 
-            this.Timer.Interval = 1000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // VillageInput
-            // 
-            this.VillageInput.AutoSize = false;
-            this.VillageInput.BackColor = System.Drawing.Color.White;
-            this.VillageInput.Name = "VillageInput";
-            this.VillageInput.Size = new System.Drawing.Size(50, 20);
-            // 
-            // UnitInput
-            // 
-            this.UnitInput.AutoSize = false;
-            this.UnitInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
-            this.UnitInput.Name = "UnitInput";
-            this.UnitInput.Size = new System.Drawing.Size(40, 22);
-            // 
-            // AllContainer
-            // 
-            this.AllPlans.AutoScroll = true;
             this.AllPlans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AllPlans.Location = new System.Drawing.Point(0, 25);
             this.AllPlans.Margin = new System.Windows.Forms.Padding(0);
             this.AllPlans.Name = "AllPlans";
             this.AllPlans.Size = new System.Drawing.Size(319, 345);
             this.AllPlans.TabIndex = 5;
+            // 
+            // Timer
+            // 
+            this.Timer.Interval = 1000;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // MapDistanceCollectionControl
             // 
@@ -309,7 +293,6 @@ namespace TribalWars.Controls.AttackPlan
         private ToolStripUnitsImageCombobox UnitInput;
         private System.Windows.Forms.ToolStripButton cmdFind;
         private System.Windows.Forms.ToolStripButton cmdClear;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton cmdSound;
+        private System.Windows.Forms.Panel AllPlans;
     }
 }

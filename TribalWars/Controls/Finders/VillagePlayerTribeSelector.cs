@@ -9,6 +9,7 @@ using Janus.Windows.Common;
 using Janus.Windows.GridEX;
 using Janus.Windows.GridEX.EditControls;
 using TribalWars.Maps;
+using TribalWars.Properties;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
@@ -138,6 +139,12 @@ namespace TribalWars.Controls.Finders
         }
 
         /// <summary>
+        /// Show a village/player/tribe image
+        /// </summary>
+        [Category(PropertyGridCategory), DefaultValue(true)]
+        public bool ShowImage { get; set; }
+
+        /// <summary>
         /// Show help text when there is not user entered text.
         /// </summary>
         public string PlaceHolderText
@@ -164,6 +171,7 @@ namespace TribalWars.Controls.Finders
         {
             PlaceHolderText = "";
             AllowVillage = true;
+            ShowImage = true;
             Width = 50;
             _tooltip =  new ToolTip
                 {
@@ -400,7 +408,10 @@ namespace TribalWars.Controls.Finders
                     _handleTextChanged = true;
                 }
 
-                Image = Properties.Resources.Village;
+                if (ShowImage)
+                {
+                    Image = Resources.Village;
+                }
                 SelectionStart = Text.Length;
                 BackColor = GoodInput;
                 _tooltip.ToolTipTitle = village.Tooltip.Title;
@@ -448,7 +459,10 @@ namespace TribalWars.Controls.Finders
                     _handleTextChanged = true;
                 }
 
-                Image = Properties.Resources.Player;
+                if (ShowImage)
+                {
+                    Image = Resources.Player;
+                }
                 SelectionStart = Text.Length;
                 BackColor = GoodInput;
                 _tooltip.ToolTipTitle = player.Name;
@@ -495,7 +509,10 @@ namespace TribalWars.Controls.Finders
                     _handleTextChanged = true;
                 }
 
-                Image = Properties.Resources.Tribe;
+                if (ShowImage)
+                {
+                    Image = Resources.Tribe;
+                }
                 SelectionStart = Text.Length;
                 BackColor = GoodInput;
                 _tooltip.ToolTipTitle = tribe.Tag;

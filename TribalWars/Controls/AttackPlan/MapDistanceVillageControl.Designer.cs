@@ -38,9 +38,9 @@ namespace TribalWars.Controls.AttackPlan
             this.DateNow = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.DateSend = new System.Windows.Forms.Label();
-            this.UnitBox = new ImageCombobox();
-            this.Coords = new VillagePlayerTribeSelector();
             this.Close = new System.Windows.Forms.LinkLabel();
+            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
+            this.UnitBox = new TribalWars.Controls.Common.ImageCombobox();
             this.SuspendLayout();
             // 
             // _Village
@@ -91,29 +91,6 @@ namespace TribalWars.Controls.AttackPlan
             this.DateSend.Text = "tomorrow at 19:00:00";
             this.toolTip1.SetToolTip(this.DateSend, "Time to send to arrive at specified date");
             // 
-            // UnitBox
-            // 
-            this.UnitBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
-            this.UnitBox.DisplayMember = "ItemData";
-            this.UnitBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.UnitBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UnitBox.FormattingEnabled = true;
-            this.UnitBox.ItemHeight = 20;
-            this.UnitBox.Location = new System.Drawing.Point(5, 26);
-            this.UnitBox.Name = "UnitBox";
-            this.UnitBox.Size = new System.Drawing.Size(51, 26);
-            this.UnitBox.TabIndex = 2;
-            this.UnitBox.SelectedIndexChanged += new System.EventHandler(this.Unit_SelectedIndexChanged);
-            // 
-            // Coords
-            // 
-            this.Coords.BackColor = System.Drawing.Color.White;
-            this.Coords.Location = new System.Drawing.Point(5, 3);
-            this.Coords.Name = "Coords";
-            this.Coords.Size = new System.Drawing.Size(50, 20);
-            this.Coords.TabIndex = 5;
-            this.Coords.TextChanged += new System.EventHandler(this.Coords_TextChanged);
-            // 
             // Close
             // 
             this.Close.ActiveLinkColor = System.Drawing.Color.Black;
@@ -131,6 +108,32 @@ namespace TribalWars.Controls.AttackPlan
             this.Close.Text = "x";
             this.Close.VisitedLinkColor = System.Drawing.Color.Black;
             this.Close.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Close_LinkClicked);
+            // 
+            // Coords
+            // 
+            this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.GameLocation = null;
+            this.Coords.Location = new System.Drawing.Point(5, 3);
+            this.Coords.Name = "Coords";
+            this.Coords.PlaceHolderText = "";
+            this.Coords.ShowImage = false;
+            this.Coords.Size = new System.Drawing.Size(50, 20);
+            this.Coords.TabIndex = 5;
+            this.Coords.TextChanged += new System.EventHandler(this.Coords_TextChanged);
+            // 
+            // UnitBox
+            // 
+            this.UnitBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
+            this.UnitBox.DisplayMember = "ItemData";
+            this.UnitBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.UnitBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UnitBox.FormattingEnabled = true;
+            this.UnitBox.ItemHeight = 20;
+            this.UnitBox.Location = new System.Drawing.Point(5, 26);
+            this.UnitBox.Name = "UnitBox";
+            this.UnitBox.Size = new System.Drawing.Size(51, 26);
+            this.UnitBox.TabIndex = 2;
+            this.UnitBox.SelectedIndexChanged += new System.EventHandler(this.Unit_SelectedIndexChanged);
             // 
             // MapDistanceVillageControl
             // 

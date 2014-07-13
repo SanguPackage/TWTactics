@@ -113,7 +113,7 @@ namespace TribalWars.Controls.AttackPlan
             var ctl = new MapDistanceVillageControl(_unitImageList, village, this, DistanceContainer.RowCount - 1);
             DistanceContainer.Controls.Add(ctl, 0, DistanceContainer.RowCount - 2);
 
-            //World.Default.EventPublisher.DoPaint(false);
+            World.Default.Map.Invalidate(false);
 
             return ctl;
         }
@@ -219,6 +219,7 @@ namespace TribalWars.Controls.AttackPlan
 
         private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Bug here...
             _parent.Remove(this);
             for (int i = DistanceContainer.RowCount - 2; i >= 0 ; i--)
             {

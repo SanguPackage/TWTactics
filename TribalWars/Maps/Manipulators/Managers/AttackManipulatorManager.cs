@@ -33,6 +33,13 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region Methods
+        public void AddTarget(Village village)
+        {
+            _attacker.AddTarget(village);
+        }
+
+        
+
         //protected internal override void ReadXmlCore(XmlReader r)
         //{
         //    _bbCode.ReadXmlCore(r);

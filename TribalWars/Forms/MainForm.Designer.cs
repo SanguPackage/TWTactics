@@ -101,6 +101,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripDefaultManipulator = new System.Windows.Forms.ToolStripButton();
             this.ToolStripPolygonManipulator = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripAttackManipulator = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -125,10 +126,8 @@ namespace TribalWars.Forms
             this.Polygon = new TribalWars.Controls.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
             this.monitoringControl1 = new TribalWars.Controls.Monitoring.MonitoringControl();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.ToolStripAttackManipulator = new System.Windows.Forms.ToolStripButton();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -528,7 +527,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(463, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -702,6 +701,16 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator.Text = "Polygon";
             this.ToolStripPolygonManipulator.ToolTipText = "Draw polygons on the map (with BB code generation)";
             this.ToolStripPolygonManipulator.Click += new System.EventHandler(this.ToolStripPolygonManipulator_Click);
+            // 
+            // ToolStripAttackManipulator
+            // 
+            this.ToolStripAttackManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripAttackManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAttackManipulator.Image")));
+            this.ToolStripAttackManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
+            this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks";
+            this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);
             // 
             // toolStripSeparator
             // 
@@ -981,8 +990,7 @@ namespace TribalWars.Forms
             this.TabsMap,
             this.TabsBrowser,
             this.TabsPolygon,
-            this.TabsMonitoring,
-            this.uiTabPage1});
+            this.TabsMonitoring});
             // 
             // TabsMap
             // 
@@ -1069,14 +1077,6 @@ namespace TribalWars.Forms
             this.monitoringControl1.Size = new System.Drawing.Size(848, 583);
             this.monitoringControl1.TabIndex = 0;
             // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(848, 583);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "Testing";
-            // 
             // FormToolbarContainer
             // 
             // 
@@ -1101,16 +1101,6 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
-            // 
-            // ToolStripAttackManipulator
-            // 
-            this.ToolStripAttackManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripAttackManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAttackManipulator.Image")));
-            this.ToolStripAttackManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
-            this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks";
-            this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);
             // 
             // MainForm
             // 
@@ -1248,7 +1238,6 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuFileSynchronizeTime;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton ToolStripProgramSettings;
-        private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private System.Windows.Forms.ToolStripMenuItem MenuFileSetActivePlayer;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuHelpAbout;

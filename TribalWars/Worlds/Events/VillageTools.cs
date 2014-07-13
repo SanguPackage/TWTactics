@@ -9,15 +9,14 @@ namespace TribalWars.Worlds.Events
     /// </summary>
     public enum VillageTools
     {
-        ///// <summary>
-        ///// Adds a village as a new target for the attack planner
-        ///// </summary>
-        //DistanceCalculationTarget,
-        ///// <summary>
-        ///// Add a village to attack from for the attack planner
-        ///// </summary>
-        //DistanceCalculation,
-
+        /// <summary>
+        /// Adds a village as a new target for the attack planner
+        /// </summary>
+        DistanceCalculationTarget,
+        /// <summary>
+        /// Add a village to attack from for the attack planner
+        /// </summary>
+        DistanceCalculation,
         /// <summary>
         /// Puts the pinpoint on village(s)
         /// </summary>

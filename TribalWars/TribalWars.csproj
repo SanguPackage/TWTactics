@@ -695,6 +695,7 @@
     <None Include="Resources\VisibleNew.png" />
     <None Include="Resources\Home2.png" />
     <None Include="Resources\HomeIcon.ico" />
+    <None Include="Resources\Support.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -16,6 +16,8 @@ using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
+using TribalWars.Worlds.Events.Impls;
 
 #endregion
 
@@ -31,7 +33,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
 
         #region Fields
         private readonly DefaultManipulatorManager _parent;
-
+        private List<Village> _plans;
         #endregion
 
         #region Properties
@@ -42,6 +44,21 @@ namespace TribalWars.Maps.Manipulators.Implementations
             : base(map)
         {
             _parent = parent;
+            _plans = new List<Village>();
+
+            map.EventPublisher.VillagesSelected += EventPublisherOnVillagesSelected;
+        }
+
+        private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
+        {
+            if (e.Tool == VillageTools.DistanceCalculationTarget)
+            {
+                _plans.Add(e.FirstVillage);
+            }
+            else if (e.Tool == VillageTools.DistanceCalculation)
+            {
+                
+            }
         }
         #endregion
 
@@ -78,6 +95,12 @@ namespace TribalWars.Maps.Manipulators.Implementations
             return false;
         }
 
+        protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
+        {
+            
+            return base.OnVillageClickCore(e);
+        }
+
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
             //if (ActivePolygon != null)
@@ -103,6 +126,11 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #endregion
 
         #region Public Methods
+        public void AddTarget(Village village)
+        {
+            
+        }
+
         //public override IContextMenu GetContextMenu(Point location, Village village)
         //{
         //    Debug.Assert(ActivePolygon != null);

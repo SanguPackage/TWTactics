@@ -46,7 +46,15 @@ namespace TribalWars.Villages.ContextMenu
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
 
             _menu = JanusContextMenu.Create();
-            _menu.AddCommand("Attack", OnAttack, Buildings.BuildingImages.Barracks);
+
+            if (World.Default.You == _village.Player || (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
+            {
+                _menu.AddCommand("Defend", OnAttack, Properties.Resources.Defense);
+            }
+            else
+            {
+                _menu.AddCommand("Attack", OnAttack, Buildings.BuildingImages.Barracks);
+            }
             if (map.Display.IsVisible(village))
             {
                 _menu.AddCommand("Pinpoint", OnPinPoint);
@@ -178,8 +186,8 @@ namespace TribalWars.Villages.ContextMenu
 
         private void OnAttack(object sender, CommandEventArgs e)
         {
-            // TODO: need to set attacked village
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            World.Default.Map.EventPublisher.SelectVillages(this, _village, VillageTools.DistanceCalculationTarget);
         }
 
         private void SetClipboard(string text)

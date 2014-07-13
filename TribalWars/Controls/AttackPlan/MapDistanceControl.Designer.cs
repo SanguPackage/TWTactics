@@ -34,7 +34,7 @@ namespace TribalWars.Controls.AttackPlan
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coords = new VillagePlayerTribeSelector();
+            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@ namespace TribalWars.Controls.AttackPlan
             this.DistanceContainer = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.InfoText = new System.Windows.Forms.ComboBox();
-            this.Date = new TimeConverterControl();
+            this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -84,8 +84,11 @@ namespace TribalWars.Controls.AttackPlan
             // Coords
             // 
             this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.GameLocation = null;
             this.Coords.Location = new System.Drawing.Point(6, 3);
             this.Coords.Name = "Coords";
+            this.Coords.PlaceHolderText = "";
+            this.Coords.ShowImage = false;
             this.Coords.Size = new System.Drawing.Size(50, 20);
             this.Coords.TabIndex = 14;
             // 
@@ -154,8 +157,8 @@ namespace TribalWars.Controls.AttackPlan
             this.DistanceContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.DistanceContainer.Name = "DistanceContainer";
             this.DistanceContainer.RowCount = 1;
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
+            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 364F));
+            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 364F));
             this.DistanceContainer.Size = new System.Drawing.Size(274, 360);
             this.DistanceContainer.TabIndex = 2;
             // 

@@ -156,6 +156,13 @@ namespace TribalWars.Controls.Common
             get { return PlayerTribeSelector.AllowVillage; }
             set { PlayerTribeSelector.AllowVillage = value; }
         }
+
+        [DefaultValue(true)]
+        public bool ShowImage
+        {
+            get { return PlayerTribeSelector.ShowImage; }
+            set { PlayerTribeSelector.ShowImage = value; }
+        }
         #endregion
 
         #region Constructors
@@ -163,10 +170,10 @@ namespace TribalWars.Controls.Common
             : base(new VillagePlayerTribeSelector())
         {
             AutoSize = false;
-            Text = string.Empty;
+            //Text = string.Empty;
             ToolTipText = string.Empty;
 
-            PlayerTribeSelector.Width = 50;
+            PlayerTribeSelector.Width = 55;
             PlayerTribeSelector.Text = string.Empty;
         }
         #endregion

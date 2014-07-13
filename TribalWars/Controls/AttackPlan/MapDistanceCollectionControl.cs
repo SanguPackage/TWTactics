@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
+using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Controls.AttackPlan
 {
@@ -38,7 +40,7 @@ namespace TribalWars.Controls.AttackPlan
 
         public bool Sound { get; set; }
 
-        public Panel AllPlans { get; private set; }
+        //public Panel AllPlans { get; private set; }
         #endregion
 
         #region Constructors
@@ -47,6 +49,7 @@ namespace TribalWars.Controls.AttackPlan
             InitializeComponent();
 
             World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
+            World.Default.Map.EventPublisher.VillagesSelected += EventPublisherOnVillagesSelected;
         }
         #endregion
 
@@ -54,6 +57,21 @@ namespace TribalWars.Controls.AttackPlan
         private void Default_SettingsLoaded(object sender, EventArgs e)
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
+        }
+
+        private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
+        {
+            if (e.Tool == VillageTools.DistanceCalculationTarget)
+            {
+                AddTarget(e.FirstVillage);
+            }
+            else if (e.Tool == VillageTools.DistanceCalculation)
+            {
+                if (ActivePlan != null)
+                {
+                    ActivePlan.AddVillage(e.FirstVillage);
+                }
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -71,7 +89,7 @@ namespace TribalWars.Controls.AttackPlan
             Village village = VillageInput.Village;
             if (village != null)
             {
-                //World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculation);
+                World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculation);
             }
         }
 
@@ -80,7 +98,7 @@ namespace TribalWars.Controls.AttackPlan
             Village village = VillageInput.Village;
             if (village != null)
             {
-                //World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculationTarget);
+                World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculationTarget);
             }
         }
 
@@ -111,11 +129,6 @@ namespace TribalWars.Controls.AttackPlan
             {
                 ActivePlan.Clear();
             }
-        }
-
-        private void cmdSound_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cmdSort_Click(object sender, EventArgs e)
@@ -171,7 +184,7 @@ namespace TribalWars.Controls.AttackPlan
                 }
             }
 
-            //World.Default.Map.EventPublisher.PaintMap(false);
+            World.Default.Map.Invalidate(false);
         }
 
         private void SelectPlan(object sender, EventArgs e)
@@ -192,7 +205,7 @@ namespace TribalWars.Controls.AttackPlan
             {
                 ActivePlan = null;
             }
-            //World.Default.Map.EventPublisher.PaintMap(false);
+            World.Default.Map.Invalidate(false);
         }
 
         public void SetPlan(IEnumerable<Village> villages)
