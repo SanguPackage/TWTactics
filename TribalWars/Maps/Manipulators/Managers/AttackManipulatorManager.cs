@@ -70,21 +70,22 @@ namespace TribalWars.Maps.Manipulators.Managers
             foreach (MapDistanceControl plan in _plans.Values)
             {
                 Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
-                int size = World.Default.Map.Display.Dimensions.Size.Height;
+                Size size = World.Default.Map.Display.Dimensions.Size;
                 if (plan == _activePlanGetter())
                 {
-                    Bitmap bitmap = Properties.Resources.pin;
-                    loc.Offset(size / 2, size / 2);
+                    // The active plan attacked village
+                    loc.Offset(size.Width / 2, size.Height / 2);
                     loc.Offset(-3, -40);
-                    g.DrawImage(bitmap, loc);
+                    g.DrawImage(Properties.Resources.pin, loc);
 
                     List<MapDistanceVillageComparor> list = plan.GetVillageList();
                     if (list != null)
                     {
                         foreach (MapDistanceVillageComparor itm in list)
                         {
+                            // Villages attacking the active target village
                             loc = World.Default.Map.Display.GetMapLocation(itm.Village.Location);
-                            loc.Offset(size / 2, size / 2);
+                            loc.Offset(size.Width / 2, size.Height / 2);
                             loc.Offset(-10, -17);
                             g.DrawImage(Properties.Resources.FlagBlue, loc);
                         }
@@ -92,7 +93,8 @@ namespace TribalWars.Maps.Manipulators.Managers
                 }
                 else
                 {
-                    loc.Offset(size / 2, size / 2);
+                    // Other villages attacked but not the active plan
+                    loc.Offset(size.Width / 2, size.Height / 2);
                     loc.Offset(-3, -17);
                     g.DrawImage(Properties.Resources.PinSmall, loc);
                 }

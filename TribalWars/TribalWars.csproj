@@ -696,6 +696,9 @@
     <None Include="Resources\Home2.png" />
     <None Include="Resources\HomeIcon.ico" />
     <None Include="Resources\Support.png" />
+    <None Include="Resources\map-marker-small.png" />
+    <None Include="Resources\marker.ico" />
+    <None Include="Resources\map-marker-small-th.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
