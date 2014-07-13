@@ -32,7 +32,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #endregion
 
         #region Fields
-        private readonly DefaultManipulatorManager _parent;
+        private readonly AttackManipulatorManager _parent;
         private List<Village> _plans;
         #endregion
 
@@ -40,7 +40,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        public AttackManipulator(Map map, DefaultManipulatorManager parent)
+        public AttackManipulator(Map map, AttackManipulatorManager parent)
             : base(map)
         {
             _parent = parent;
@@ -65,7 +65,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #region Events
         public override void Paint(MapPaintEventArgs e)
         {
-            
+            _parent.Draw(e.Graphics);
         }
 
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
@@ -79,13 +79,18 @@ namespace TribalWars.Maps.Manipulators.Implementations
 
         protected internal override bool MouseUpCore(MapMouseEventArgs e)
         {
-            if (e.MouseEventArgs.Button == MouseButtons.Left)
+            if (e.Village != null)
             {
-                
-            }
-            else if (e.MouseEventArgs.Button == MouseButtons.Right)
-            {
-                
+                if (e.MouseEventArgs.Button == MouseButtons.Left)
+                {
+                    World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculationTarget);
+                    return true;
+                }
+                else if (e.MouseEventArgs.Button == MouseButtons.Right)
+                {
+                    World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculation);
+                    return true;
+                }
             }
             return false;
         }
@@ -95,47 +100,17 @@ namespace TribalWars.Maps.Manipulators.Implementations
             return false;
         }
 
-        protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
-        {
-            
-            return base.OnVillageClickCore(e);
-        }
-
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            //if (ActivePolygon != null)
-            //{
-            //    if (e.KeyEventArgs.KeyCode == Keys.Delete)
-            //    {
-            //        Delete(ActivePolygon);
-            //        return true;
-            //    }
-
-            //    if (!ActivePolygon.Drawing)
-            //    {
-            //        var polygonMove = new KeyboardInputToMovementConverter(e.KeyEventArgs.KeyData, 1, 5).GetKeyMove();
-            //        if (polygonMove.HasValue)
-            //        {
-            //            ActivePolygon.Move(polygonMove.Value);
-            //            return true;
-            //        }
-            //    }
-            //}
             return false;
         }
         #endregion
 
         #region Public Methods
-        public void AddTarget(Village village)
+        public override IContextMenu GetContextMenu(Point location, Village village)
         {
-            
+            return null;
         }
-
-        //public override IContextMenu GetContextMenu(Point location, Village village)
-        //{
-        //    Debug.Assert(ActivePolygon != null);
-        //    return new PolygonContextMenu(this);
-        //}
 
         public override void Dispose()
         {

@@ -1,11 +1,16 @@
 #region Using
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using System.Xml;
 using TribalWars.Controls;
+using TribalWars.Controls.AttackPlan;
 using TribalWars.Controls.Polygons;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 
 #endregion
 
@@ -33,13 +38,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region Methods
-        public void AddTarget(Village village)
-        {
-            _attacker.AddTarget(village);
-        }
-
-        
-
         //protected internal override void ReadXmlCore(XmlReader r)
         //{
         //    _bbCode.ReadXmlCore(r);
@@ -54,28 +52,51 @@ namespace TribalWars.Maps.Manipulators.Managers
         //{
         //    return new NoPolygonContextMenu(_bbCode);
         //}
-
-        ///// <summary>
-        ///// Gets all villages that are in the polygons
-        ///// </summary>
-        //public IEnumerable<Village> GetAllPolygonVillages()
-        //{
-        //    foreach (Polygon poly in _bbCode.Polygons)
-        //    {
-        //        foreach (Village village in poly.GetVillages())
-        //        {
-        //            yield return village;
-        //        }
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Gets all defined polygons
-        ///// </summary>
-        //public List<Polygon> GetAllPolygons()
-        //{
-        //    return _bbCode.Polygons;
-        //}
         #endregion
+
+        private Dictionary<ToolStripMenuItem, MapDistanceControl> _plans;
+        private Func<MapDistanceControl> _activePlanGetter;
+
+        public void HackTogether(Dictionary<ToolStripMenuItem, MapDistanceControl> plans, Func<MapDistanceControl> activePlanGetter)
+        {
+            _activePlanGetter = activePlanGetter;
+            _plans = plans;
+        }
+
+        
+
+        public void Draw(Graphics g)
+        {
+            foreach (MapDistanceControl plan in _plans.Values)
+            {
+                Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
+                int size = World.Default.Map.Display.Dimensions.Size.Height;
+                if (plan == _activePlanGetter())
+                {
+                    Bitmap bitmap = Properties.Resources.pin;
+                    loc.Offset(size / 2, size / 2);
+                    loc.Offset(-3, -40);
+                    g.DrawImage(bitmap, loc);
+
+                    List<MapDistanceVillageComparor> list = plan.GetVillageList();
+                    if (list != null)
+                    {
+                        foreach (MapDistanceVillageComparor itm in list)
+                        {
+                            loc = World.Default.Map.Display.GetMapLocation(itm.Village.Location);
+                            loc.Offset(size / 2, size / 2);
+                            loc.Offset(-10, -17);
+                            g.DrawImage(Properties.Resources.FlagBlue, loc);
+                        }
+                    }
+                }
+                else
+                {
+                    loc.Offset(size / 2, size / 2);
+                    loc.Offset(-3, -17);
+                    g.DrawImage(Properties.Resources.PinSmall, loc);
+                }
+            }
+        }
     }
 }

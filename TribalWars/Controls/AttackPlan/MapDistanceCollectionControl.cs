@@ -57,6 +57,8 @@ namespace TribalWars.Controls.AttackPlan
         private void Default_SettingsLoaded(object sender, EventArgs e)
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
+
+            World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
         }
 
         private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
@@ -320,41 +322,5 @@ namespace TribalWars.Controls.AttackPlan
             return str.ToString().Trim();
         }
         #endregion        
-
-        #region MapDrawing
-        public void Draw(Graphics g)
-        {
-            foreach (MapDistanceControl plan in _plans.Values)
-            {
-                Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
-                const int size = 1; // World.Default.Map.RectangleSize;
-                if (plan == _activePlan)
-                {
-                    Bitmap bitmap = Properties.Resources.pin;
-                    loc.Offset(size / 2, size / 2);
-                    loc.Offset(-3, -40);
-                    g.DrawImage(bitmap, loc);
-
-                    List<MapDistanceVillageComparor> list = plan.GetVillageList();
-                    if (list != null)
-                    {
-                        foreach (MapDistanceVillageComparor itm in list)
-                        {
-                            loc = World.Default.Map.Display.GetMapLocation(itm.Village.Location);
-                            loc.Offset(size / 2, size / 2);
-                            loc.Offset(-10, -17);
-                            g.DrawImage(Properties.Resources.FlagBlue, loc);
-                        }
-                    }
-                }
-                else
-                {
-                    loc.Offset(size / 2, size / 2);
-                    loc.Offset(-3, -17);
-                    g.DrawImage(Properties.Resources.PinSmall, loc);
-                }
-            }
-        }
-        #endregion
     }
 }
