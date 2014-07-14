@@ -34,14 +34,14 @@ namespace TribalWars.Controls.AttackPlan
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
             this._Tribe = new System.Windows.Forms.Label();
-            this.DistanceContainer = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.DistanceContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -53,8 +53,8 @@ namespace TribalWars.Controls.AttackPlan
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.DistanceContainer, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DistanceContainer, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -80,17 +80,6 @@ namespace TribalWars.Controls.AttackPlan
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(274, 40);
             this.panel1.TabIndex = 0;
-            // 
-            // Coords
-            // 
-            this.Coords.BackColor = System.Drawing.Color.White;
-            this.Coords.GameLocation = null;
-            this.Coords.Location = new System.Drawing.Point(6, 3);
-            this.Coords.Name = "Coords";
-            this.Coords.PlaceHolderText = "";
-            this.Coords.ShowImage = false;
-            this.Coords.Size = new System.Drawing.Size(50, 20);
-            this.Coords.TabIndex = 14;
             // 
             // Close
             // 
@@ -150,22 +139,6 @@ namespace TribalWars.Controls.AttackPlan
             this._Tribe.DoubleClick += new System.EventHandler(this.Tribe_DoubleClick);
             this._Tribe.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Tribe_MouseClick);
             // 
-            // DistanceContainer
-            // 
-            this.DistanceContainer.AutoScroll = true;
-            this.DistanceContainer.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.DistanceContainer.ColumnCount = 1;
-            this.DistanceContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.DistanceContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DistanceContainer.Location = new System.Drawing.Point(0, 70);
-            this.DistanceContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.DistanceContainer.Name = "DistanceContainer";
-            this.DistanceContainer.RowCount = 1;
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 368F));
-            this.DistanceContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 368F));
-            this.DistanceContainer.Size = new System.Drawing.Size(274, 360);
-            this.DistanceContainer.TabIndex = 2;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label1);
@@ -185,6 +158,29 @@ namespace TribalWars.Controls.AttackPlan
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Arrival time:";
+            // 
+            // DistanceContainer
+            // 
+            this.DistanceContainer.AutoScroll = true;
+            this.DistanceContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DistanceContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.DistanceContainer.Location = new System.Drawing.Point(0, 70);
+            this.DistanceContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.DistanceContainer.Name = "DistanceContainer";
+            this.DistanceContainer.Size = new System.Drawing.Size(274, 361);
+            this.DistanceContainer.TabIndex = 5;
+            this.DistanceContainer.WrapContents = false;
+            // 
+            // Coords
+            // 
+            this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.GameLocation = null;
+            this.Coords.Location = new System.Drawing.Point(6, 3);
+            this.Coords.Name = "Coords";
+            this.Coords.PlaceHolderText = "";
+            this.Coords.ShowImage = false;
+            this.Coords.Size = new System.Drawing.Size(50, 20);
+            this.Coords.TabIndex = 14;
             // 
             // Date
             // 
@@ -221,11 +217,11 @@ namespace TribalWars.Controls.AttackPlan
         private System.Windows.Forms.Label _Village;
         private System.Windows.Forms.Label _Tribe;
         private System.Windows.Forms.Label _Player;
-        private System.Windows.Forms.TableLayoutPanel DistanceContainer;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.LinkLabel Close;
         private TimeConverterControl Date;
         private VillagePlayerTribeSelector Coords;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel DistanceContainer;
     }
 }

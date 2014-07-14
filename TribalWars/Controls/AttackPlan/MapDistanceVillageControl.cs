@@ -20,7 +20,6 @@ namespace TribalWars.Controls.AttackPlan
         private Unit _unit;
         private TimeSpan _travelTime;
         public double TimeLeftBeforeSendTotalSeconds;
-        public readonly int Row;
         #endregion
 
         #region Properties
@@ -43,7 +42,7 @@ namespace TribalWars.Controls.AttackPlan
         #endregion
 
         #region Constructors
-        public MapDistanceVillageControl(ImageList list, Village village, MapDistanceControl parent, int row)
+        public MapDistanceVillageControl(ImageList list, Village village, MapDistanceControl parent)
         {
             InitializeComponent();
 
@@ -52,8 +51,6 @@ namespace TribalWars.Controls.AttackPlan
             TargetControl = parent;
 
             UnitBox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
-
-            Row = row;
         }
         #endregion
 

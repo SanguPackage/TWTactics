@@ -33,7 +33,6 @@ namespace TribalWars.Controls.AttackPlan
                     _Tribe.Text = value.HasTribe ? value.Player.Tribe.ToString() : "";
                 }
                 DistanceContainer.Controls.Clear();
-                DistanceContainer.RowCount = 1;
             }
         }
 
@@ -140,16 +139,12 @@ namespace TribalWars.Controls.AttackPlan
         #region MapDistanceVillage Control Helpers
         public MapDistanceVillageControl AddVillage(Village village, Unit slowestUnit = null)
         {
-            DistanceContainer.RowStyles[DistanceContainer.RowCount - 1] = new RowStyle(SizeType.Absolute, 60F);
-            DistanceContainer.RowCount++;
-            DistanceContainer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-
-            var ctl = new MapDistanceVillageControl(_unitImageList, village, this, DistanceContainer.RowCount - 1);
+            var ctl = new MapDistanceVillageControl(_unitImageList, village, this);
             if (slowestUnit != null)
             {
                 ctl.UnitSelectedIndex = slowestUnit.Position;
             }
-            DistanceContainer.Controls.Add(ctl, 0, DistanceContainer.RowCount - 2);
+            DistanceContainer.Controls.Add(ctl);
 
             World.Default.Map.Invalidate(false);
 
@@ -158,40 +153,7 @@ namespace TribalWars.Controls.AttackPlan
 
         public void Remove(MapDistanceVillageControl villageControl)
         {
-            if (villageControl.Row == DistanceContainer.RowCount - 1)
-            {
-                villageControl.Dispose();
-                DistanceContainer.Controls.Remove(villageControl);
-                if (DistanceContainer.RowCount > 1)
-                {
-                    DistanceContainer.RowCount--;
-                }
-                DistanceContainer.RowStyles[DistanceContainer.RowCount - 1] = new RowStyle(SizeType.AutoSize);
-            }
-            else
-            {
-                for (int i = villageControl.Row - 1; i < DistanceContainer.RowCount - 2; i++)
-                {
-                    var mdv1 = DistanceContainer.Controls[i] as MapDistanceVillageControl;
-                    var mdv2 = DistanceContainer.Controls[i + 1] as MapDistanceVillageControl;
-                    if (mdv1 != null)
-                    {
-                        mdv1.SetVillage(mdv2.Village, mdv2.UnitSelectedIndex);
-                    }
-
-                    if (i == DistanceContainer.RowCount - 3)
-                    {
-                        mdv2.Dispose();
-                        DistanceContainer.Controls.Remove(mdv2);
-
-                        if (DistanceContainer.RowCount > 1)
-                        {
-                            DistanceContainer.RowCount--;
-                        }
-                        DistanceContainer.RowStyles[DistanceContainer.RowCount - 1] = new RowStyle(SizeType.AutoSize);
-                    }
-                }
-            }
+            DistanceContainer.Controls.Remove(villageControl);
         }
         #endregion
 
@@ -217,7 +179,7 @@ namespace TribalWars.Controls.AttackPlan
                     str.AppendLine("Current time: " + World.Default.Settings.ServerTime.ToString(Date.CustomFormat));
                     str.AppendLine();
                 }
-                for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
+                for (int i = 0; i < DistanceContainer.Controls.Count - 1; i++)
                 {
                     var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                     if (mdv != null)
@@ -233,7 +195,7 @@ namespace TribalWars.Controls.AttackPlan
         public List<MapDistanceVillageComparor> GetVillageList()
         {
             var list = new List<MapDistanceVillageComparor>();
-            for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
+            for (int i = 0; i < DistanceContainer.Controls.Count - 1; i++)
             {
                 var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 if (mdv != null) list.Add(new MapDistanceVillageComparor(mdv, mdv.TimeLeftBeforeSendTotalSeconds));
@@ -245,7 +207,7 @@ namespace TribalWars.Controls.AttackPlan
         {
             List<MapDistanceVillageComparor> list = GetVillageList();
             list.Sort();
-            for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
+            for (int i = 0; i < DistanceContainer.Controls.Count - 1; i++)
             {
                 var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 if (mdv != null)
@@ -257,29 +219,14 @@ namespace TribalWars.Controls.AttackPlan
 
         private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Bug here...
             _parent.Remove(this);
-            for (int i = DistanceContainer.RowCount - 2; i >= 0 ; i--)
-            {
-                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
-                mdv.Dispose();
-                DistanceContainer.Controls.Remove(mdv);
-            }
+            DistanceContainer.Controls.Clear();
             Dispose();
         }
 
         public void Clear()
         {
-            //DistanceContainer.Controls.Clear();
-            //DistanceContainer.RowCount = 0;
-
-            for (int i = DistanceContainer.RowCount - 2; i >= 0; i--)
-            {
-                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
-                mdv.Dispose();
-                DistanceContainer.Controls.Remove(mdv);
-                DistanceContainer.RowStyles.Remove(DistanceContainer.RowStyles[i]);
-            }
+            DistanceContainer.Controls.Clear();
         }
 
         public AttackPlanInfo GetPlanInfo()
@@ -290,7 +237,7 @@ namespace TribalWars.Controls.AttackPlan
                     ArrivalTime = AttackDate
                 };
 
-            for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
+            for (int i = 0; i < DistanceContainer.Controls.Count - 1; i++)
             {
                 var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
                 if (mdv != null)
