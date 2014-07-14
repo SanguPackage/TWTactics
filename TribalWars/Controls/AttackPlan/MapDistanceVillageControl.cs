@@ -171,7 +171,6 @@ namespace TribalWars.Controls.AttackPlan
                     str.AppendLine(string.Format("{0} from {1}", _unit.Name, Village));
                     str.AppendLine("Send on: " + DateSend.Text);
                 }
-                if (target == null) str.AppendLine("Estimated time left: " + DateLeft.Text);
                 str.AppendLine();
             }
 
