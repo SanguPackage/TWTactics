@@ -1,0 +1,1039 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ascend</name>
+    </assembly>
+    <members>
+        <member name="T:Ascend.ExtendedColor">
+            <summary>
+            ExtendedColor allows colors to be defined/manipulated using HSL
+            color values, and provides an implicit conversion to <see cref="P:Ascend.ExtendedColor.Color"/>
+            to make its use mostly transparent
+            </summary>
+            <remarks>
+            The .NET Framework exposes HSL components of <see cref="P:Ascend.ExtendedColor.Color"/> values in
+            a read-only manner. This class allows those values to be written.
+            <para>This class is <see cref="T:System.SerializableAttribute"/> but does not implement 
+            <see cref="T:System.Runtime.Serialization.ISerializable"/></para>
+            </remarks>
+        </member>
+        <member name="F:Ascend.ExtendedColor.HueMaxValue">
+            <summary>
+            Hues are generally described as a circle, ergo 360.0d
+            </summary>
+        </member>
+        <member name="F:Ascend.ExtendedColor.SaturationMaxValue">
+            <summary>
+            Saturation values are normalized to the range 0.0 -> 1.0
+            </summary>
+        </member>
+        <member name="F:Ascend.ExtendedColor.BrightnessMaxValue">
+            <summary>
+            Brightness/Luminance values are normalized to the range 0.0 -> 1.0
+            </summary>
+        </member>
+        <member name="F:Ascend.ExtendedColor.RgbMaxValue">
+            <summary>
+            Maximum value for an RGB component (0 -> 255)
+            </summary>
+        </member>
+        <member name="F:Ascend.ExtendedColor._color">
+            <summary>
+            The current <see cref="P:Ascend.ExtendedColor.Color"/> value of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="M:Ascend.ExtendedColor.op_Implicit(Ascend.ExtendedColor)~System.Drawing.Color">
+            <summary>
+            Implicitly (without casting) converts an <c>ExtendedColor</c>
+            to a <see cref="P:Ascend.ExtendedColor.Color"/> value
+            </summary>
+            <param name="extendedColor">The <c>ExtendedColor</c> to convert</param>
+            <returns>
+            The <see cref="P:Ascend.ExtendedColor.Color"/> value for the <c>ExtendedColor</c>
+            </returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.HueToRgb(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts an intermediate Hue value to a normalized 
+            RGB value (0.0 -> 1.0)
+            </summary>
+            <param name="m1">Intermediate value 1</param>
+            <param name="m2">Intermediate value 2</param>
+            <param name="hue">The normalized hue value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.HslToRgb(System.Double,System.Double,System.Double)">
+            <summary>
+            Convert an HSL definition to its RGB equivalent
+            </summary>
+            <param name="hue">Normalized hue</param>
+            <param name="saturation">Normalized saturation</param>
+            <param name="luminance">Normalized luminance</param>
+            <returns>
+            The equivalent <see cref="P:Ascend.ExtendedColor.Color"/> value for the specified HSL definition
+            </returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.#ctor(System.Drawing.Color)">
+            <summary>
+            Create an <c>ExtendedColor</c> from the specified <see cref="P:Ascend.ExtendedColor.Color"/> value
+            </summary>
+            <param name="color">The color</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.#ctor(Ascend.ExtendedColor)">
+            <summary>
+            Create an <c>ExtendedColor</c> from another <c>ExtendedColor</c>
+            </summary>
+            <param name="extendedColor">The other <c>ExtendedColor</c></param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.#ctor(System.Drawing.Color,System.Double)">
+            <summary>
+            Create an <c>ExtendedColor</c> from the specified <see cref="P:Ascend.ExtendedColor.Color"/> value
+            and specified saturation level
+            </summary>
+            <param name="color">The color</param>
+            <param name="saturation">The new saturation value for the color</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Create an <c>ExtendedColor</c> from the specified RGB values
+            </summary>
+            <param name="red">The Red component</param>
+            <param name="green">The Green component</param>
+            <param name="blue">The Blue component</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Create an <c>ExtendedColor</c> from the specified HSL values
+            </summary>
+            <param name="hue">The hue component</param>
+            <param name="saturation">The saturation component</param>
+            <param name="luminance">The luminance component</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.CloneExtendedColor">
+            <summary>
+            Helper with correct return value
+            </summary>
+            <returns>
+            A clone of this <c>ExtendedColor</c>
+            </returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.Clone">
+            <summary>
+            Clone this <c>ExtendedColor</c>
+            </summary>
+            <returns>
+            A clone of this <c>ExtendedColor</c>
+            </returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.NonNormalizedHue(System.Double)">
+            <summary>
+            Convert a normalized hue value to its common non-normalized form
+            (0 -> 360)
+            </summary>
+            <param name="hue">The normalized hue value</param>
+            <returns>
+            The equivalent hue value in degrees
+            </returns>
+        </member>
+        <member name="M:Ascend.ExtendedColor.AdjustHue(System.Double)">
+            <summary>
+            Modify the current hue component of the <c>ExtendedColor</c> by
+            a percentage
+            </summary>
+            <param name="hueAdjustment">The percentage</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.AdjustSaturation(System.Double)">
+            <summary>
+            Modify the current saturation component of the <c>ExtendedColor</c> by
+            a percentage
+            </summary>
+            <param name="saturationAdjustment">The percentage</param>
+        </member>
+        <member name="M:Ascend.ExtendedColor.AdjustLuminance(System.Double)">
+            <summary>
+            Modify the current luminance component of the <c>ExtendedColor</c> by
+            a percentage
+            </summary>
+            <param name="luminanceAdjustment">The percentage</param>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Color">
+            <summary>
+            Get/Set the <see cref="P:Ascend.ExtendedColor.Color"/> value of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Red">
+            <summary>
+            Get/Set the Red component of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Green">
+            <summary>
+            Get/Set the Green component of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Blue">
+            <summary>
+            Get/Set the Blue component of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Alpha">
+            <summary>
+            Get/Set the Alpha component of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Hue">
+            <summary>
+            Get/Set the hue component of the <c>ExtendedColor</c>
+            </summary>
+            <remarks>
+            This value is always specified using the normalized form (0.0 -> 1.0)
+            </remarks>
+        </member>
+        <member name="P:Ascend.ExtendedColor.HueNonNormalized">
+            <summary>
+            Get/Set the hue component of the <c>ExtendedColor</c> in its
+            non-normalized form
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Saturation">
+            <summary>
+            Get/Set the saturation component of the <c>ExtendedColor</c>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.Luminance">
+            <summary>
+            Get/Set the luminance component of the <c>ExtendedColor</c>
+            </summary>
+            <remarks>
+            Internally the .NET Framework refers to this value as Brightness
+            (<see cref="M:System.Drawing.Color.GetBrightness"/>)
+            </remarks>
+        </member>
+        <member name="P:Ascend.ExtendedColor.IsEmpty">
+            <summary>
+            <see langword="true"/> if the <c>ExtendedColor</c> is <see cref="F:System.Drawing.Color.Empty"/>
+            </summary>
+        </member>
+        <member name="P:Ascend.ExtendedColor.IsTransparent">
+            <summary>
+            <see langword="true"/> if the <c>ExtendedColor</c> is <see cref="P:System.Drawing.Color.Transparent"/>
+            </summary>
+        </member>
+        <member name="T:Ascend.CornerRadiusConverter">
+            <summary>
+            Provides a type converter to convert expandable objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.#ctor">
+            <summary>
+            Initializes a new instance of the CornerRadiusConverter class.
+            </summary>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert an object of the given type to the type of this converter.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="sourceType">A Type that represents the type that you want to convert from.</param>
+            <returns>true if sourceType is a String type or a Uri type can be assigned from sourceType; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert the object to the specified type.
+            </summary>
+            <remarks>
+            Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="destinationType">A Type that represents the type you want to convert to.</param>
+            <returns>true if this converter can perform the conversion; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the given object to the type of this converter, using the specified context and culture information. 
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">The CultureInfo to use as the current culture.</param>
+            <param name="value">The Object to convert.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <remarks>
+            <para>The most common types to convert are to and from a string object. This implementation calls ToString on the object if the object is valid and if the destination type is string.</para>
+            <para>Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.</para>
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo object. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)">
+            <summary>
+            Creates an instance of the Type that this TypeConverter is associated with, using the specified context, given a set of property values for the object.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="propertyValues">An System.Collections.IDictionary of new property values.</param>
+            <returns>An System.Object representing the given System.Collections.IDictionary, or null if the object cannot be created. This method always returns null.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if changing a property on this object requires a call to System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary) to create a new value; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            Retrieves the set of properties for this type. By default, a type does not have any properties to return. An easy implementation of this method can call the TypeDescriptor.GetProperties method for the correct data type. 
+            </summary>
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <param name="value">The value of the object to get the properties for.</param>
+            <param name="attributes">An array of MemberAttribute objects that describe the properties.</param>
+            <returns>A System.ComponentModel.PropertyDescriptorCollection with the properties that are exposed for this data type, or null if there are no properties.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadiusConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if System.ComponentModel.TypeConverter.GetProperties(System.Object) should be called to find the properties of this object; otherwise, false.</returns>
+        </member>
+        <member name="T:Ascend.CornerRadius">
+            <summary>
+            Represents corner radius information associated with a user interface (UI) element.
+            </summary>
+        </member>
+        <member name="F:Ascend.CornerRadius.Empty">
+            <summary>
+            Provides a CornerRadius object with no radius.
+            </summary>
+        </member>
+        <member name="M:Ascend.CornerRadius.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the CornerRadius class using the supplied radius size for all corners.
+            </summary>
+            <param name="all">System.Int32. The number of pixels to be used the radius for all corners.</param>
+            <remarks>
+            This constructor sets the BottomLeft, BottomRight, TopLeft, TopRight and All properties to the value of the all parameter.
+            </remarks>
+        </member>
+        <member name="M:Ascend.CornerRadius.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the CornerRadius class using the supplied radius sizes for the corners.
+            </summary>
+            <param name="bottomLeft">System.Int32. The radius size, in pixels, for the bottom left corner.</param>
+            <param name="bottomRight">System.Int32. The radius size, in pixels, for the bottom right corner.</param>
+            <param name="topLeft">System.Int32. The radius size, in pixels, for the top left corner.</param>
+            <param name="topRight">System.Int32. The radius size, in pixels, for the top right corner.</param>
+            <remarks>
+            This constructor sets the BottomLeft, BottomRight, TopLeft, TopRight properties. If the parameters are all the same the All parameter is also set to the value.
+            </remarks>
+        </member>
+        <member name="M:Ascend.CornerRadius.ShouldSerializeAll">
+            <summary>
+            Returns if the All property has been used.
+            </summary>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current Object.
+            </summary>
+            <param name="obj">The Object to compare with the current Object.</param>
+            <returns>true if the specified Object is equal to the current Object; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.GetHashCode">
+            <summary>
+            Serves as a hash function for the border type, suitable for use in hashing algorithms and data structures like a hash table.
+            </summary>
+            <returns>
+            <para>
+            System.Int32
+            </para>
+            <para>
+            A hash code for the CornerRadius object.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.ToString">
+            <summary>
+            Returns a string that contains the radius values for an instance of the CornerRadius class.
+            </summary>
+            <returns>
+            <para>
+            System.String . 
+            </para>
+            <para>
+            A String that represents the current CornerRadius.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            This method returns a string containing the labeled values of the radius for all four corners.
+            </para>
+            <para>
+            This method overrides ToString.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.CornerRadius.Add(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Performs vector addition on the two specified CornerRadius objects, resulting in a new CornerRadius.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. The first CornerRadius to add.</param>
+            <param name="cornerRadius2">CornerRadius. The second CornerRadius to add.</param>
+            <returns>CornerRadius. A new CornerRadius that results from adding cornerRadius1 and cornerRadius2.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.Subtract(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Performs vector subtraction on the two specified CornerRadius objects, resulting in a new CornerRadius.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. The first CornerRadius to subtract.</param>
+            <param name="cornerRadius2">CornerRadius. The second CornerRadius to subtract.</param>
+            <returns>CornerRadius. A new CornerRadius that results from subtracting cornerRadius2 from cornerRadius1.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.op_Addition(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Performs vector addition on the two specified CornerRadius objects, resulting in a new CornerRadius.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. The first CornerRadius to add.</param>
+            <param name="cornerRadius2">CornerRadius. The second CornerRadius to add.</param>
+            <returns>Border. A new CornerRadius that results from adding cornerRadius1 and cornerRadius2.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.op_Subtraction(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Performs vector subtraction on the two specified CornerRadius objects, resulting in a new CornerRadius.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. The first CornerRadius to subtract.</param>
+            <param name="cornerRadius2">CornerRadius. The second CornerRadius to subtract.</param>
+            <returns>CornerRadius. A new CornerRadius that results from subtracting cornerRadius2 from cornerRadius1.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.op_Inequality(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Tests whether two specified CornerRadius objects are not equivalent.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. A CornerRadius to test.</param>
+            <param name="cornerRadius2">CornerRadius. A CornerRadius to test.</param>
+            <returns>System.Boolean . true if the two CornerRadius objects are different; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.CornerRadius.op_Equality(Ascend.CornerRadius,Ascend.CornerRadius)">
+            <summary>
+            Tests whether two specified CornerRadius objects are equivalent.
+            </summary>
+            <param name="cornerRadius1">CornerRadius. A CornerRadius to test.</param>
+            <param name="cornerRadius2">CornerRadius. A CornerRadius to test.</param>
+            <returns>System.Boolean . true if the two CornerRadius objects are equivalent; otherwise, false.</returns>
+        </member>
+        <member name="P:Ascend.CornerRadius.All">
+            <summary>
+            Gets or sets the radius value for all the corners.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The radius, in pixels, for all corners if the same; otherwise, -1.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.CornerRadius.BottomLeft">
+            <summary>
+            Gets or sets the radius value for the bottom left corner.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The radius, in pixels, for the bottom left corner.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.CornerRadius.BottomRight">
+            <summary>
+            Gets or sets the radius value for the bottom right corner.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The radius, in pixels, for the bottom right corner.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.CornerRadius.TopLeft">
+            <summary>
+            Gets or sets the radius value for the top left corner.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The radius, in pixels, for the left corner.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.CornerRadius.TopRight">
+            <summary>
+            Gets or sets the radius value for the top right corner.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The radius, in pixels, for the top right corner.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="T:Ascend.BorderColorConverter">
+            <summary>
+            Provides a type converter to convert expandable objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.#ctor">
+            <summary>
+            Initializes a new instance of the BorderColorConverter class.
+            </summary>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert the object to the specified type.
+            </summary>
+            <remarks>
+            Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="destinationType">A Type that represents the type you want to convert to.</param>
+            <returns>true if this converter can perform the conversion; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the given object to the type of this converter, using the specified context and culture information. 
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">The CultureInfo to use as the current culture.</param>
+            <param name="value">The Object to convert.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <remarks>
+            <para>The most common types to convert are to and from a string object. This implementation calls ToString on the object if the object is valid and if the destination type is string.</para>
+            <para>Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.</para>
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo object. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)">
+            <summary>
+            Creates an instance of the Type that this TypeConverter is associated with, using the specified context, given a set of property values for the object.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="propertyValues">An System.Collections.IDictionary of new property values.</param>
+            <returns>An System.Object representing the given System.Collections.IDictionary, or null if the object cannot be created. This method always returns null.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if changing a property on this object requires a call to System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary) to create a new value; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            Retrieves the set of properties for this type. By default, a type does not have any properties to return. An easy implementation of this method can call the TypeDescriptor.GetProperties method for the correct data type. 
+            </summary>
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <param name="value">The value of the object to get the properties for.</param>
+            <param name="attributes">An array of MemberAttribute objects that describe the properties.</param>
+            <returns>A System.ComponentModel.PropertyDescriptorCollection with the properties that are exposed for this data type, or null if there are no properties.</returns>
+        </member>
+        <member name="M:Ascend.BorderColorConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if System.ComponentModel.TypeConverter.GetProperties(System.Object) should be called to find the properties of this object; otherwise, false.</returns>
+        </member>
+        <member name="T:Ascend.Border">
+            <summary>
+            Represents border information associated with a user interface (UI) element.
+            </summary>
+        </member>
+        <member name="F:Ascend.Border.Empty">
+            <summary>
+            Provides a Border object with no borders.
+            </summary>
+        </member>
+        <member name="M:Ascend.Border.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the Border class using the supplied border size for all edges.
+            </summary>
+            <param name="all">System.Int32. The number of pixels to be used the border for all edges.</param>
+            <remarks>
+            This constructor sets the Right, Left, Bottom, Top and All properties to the value of the all parameter.
+            </remarks>
+        </member>
+        <member name="M:Ascend.Border.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the Border class using the supplied border sizes for the edges.
+            </summary>
+            <param name="left">System.Int32. The border size, in pixels, for the left edge.</param>
+            <param name="top">System.Int32. The border size, in pixels, for the top edge.</param>
+            <param name="right">System.Int32. The border size, in pixels, for the right edge.</param>
+            <param name="bottom">System.Int32. The border size, in pixels, for the bottom edge.</param>
+            <remarks>
+            This constructor sets the Right, Left, Bottom, Top properties. If the parameters are all the same the All parameter is also set to the value.
+            </remarks>
+        </member>
+        <member name="M:Ascend.Border.ShouldSerializeAll">
+            <summary>
+            Returns if the All property has been used.
+            </summary>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:Ascend.Border.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current Object.
+            </summary>
+            <param name="obj">The Object to compare with the current Object.</param>
+            <returns>true if the specified Object is equal to the current Object; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.Border.GetHashCode">
+            <summary>
+            Serves as a hash function for the border type, suitable for use in hashing algorithms and data structures like a hash table.
+            </summary>
+            <returns>
+            <para>
+            System.Int32
+            </para>
+            <para>
+            A hash code for the Border object.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Ascend.Border.ToString">
+            <summary>
+            Returns a string that contains the border values for an instance of the Border class.
+            </summary>
+            <returns>
+            <para>
+            System.String . 
+            </para>
+            <para>
+            A String that represents the current Border.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            This method returns a string containing the labeled values of the border for all four edges.
+            </para>
+            <para>
+            This method overrides ToString.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Border.Add(Ascend.Border,Ascend.Border)">
+            <summary>
+            Performs vector addition on the two specified Border objects, resulting in a new Border.
+            </summary>
+            <param name="border1">Border. The first Border to add.</param>
+            <param name="border2">Border. The second Border to add.</param>
+            <returns>Border. A new Border that results from adding border1 and border2.</returns>
+        </member>
+        <member name="M:Ascend.Border.Subtract(Ascend.Border,Ascend.Border)">
+            <summary>
+            Performs vector subtraction on the two specified Border objects, resulting in a new Border.
+            </summary>
+            <param name="border1">Border. The first Border to subtract.</param>
+            <param name="border2">Border. The second Border to subtract.</param>
+            <returns>Border. A new Border that results from subtracting border2 from border1.</returns>
+        </member>
+        <member name="M:Ascend.Border.op_Addition(Ascend.Border,Ascend.Border)">
+            <summary>
+            Performs vector addition on the two specified Border objects, resulting in a new Border.
+            </summary>
+            <param name="border1">Border. The first Border to add.</param>
+            <param name="border2">Border. The second Border to add.</param>
+            <returns>Border. A new Border that results from adding border1 and border2.</returns>
+        </member>
+        <member name="M:Ascend.Border.op_Subtraction(Ascend.Border,Ascend.Border)">
+            <summary>
+            Performs vector subtraction on the two specified Border objects, resulting in a new Border.
+            </summary>
+            <param name="border1">Border. The first Border to subtract.</param>
+            <param name="border2">Border. The second Border to subtract.</param>
+            <returns>Border. A new Border that results from subtracting border2 from border1.</returns>
+        </member>
+        <member name="M:Ascend.Border.op_Inequality(Ascend.Border,Ascend.Border)">
+            <summary>
+            Tests whether two specified Border objects are not equivalent.
+            </summary>
+            <param name="border1">Border. A Border to test.</param>
+            <param name="border2">Border. A Border to test.</param>
+            <returns>System.Boolean . true if the two Border objects are different; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.Border.op_Equality(Ascend.Border,Ascend.Border)">
+            <summary>
+            Tests whether two specified Border objects are equivalent.
+            </summary>
+            <param name="border1">Border. A Border to test.</param>
+            <param name="border2">Border. A Border to test.</param>
+            <returns>System.Boolean . true if the two Border objects are equivalent; otherwise, false.</returns>
+        </member>
+        <member name="P:Ascend.Border.All">
+            <summary>
+            Gets or sets the border value for all the edges.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The border, in pixels, for all edges if the same; otherwise, -1.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Border.Bottom">
+            <summary>
+            Gets or sets the border value for the bottom edge.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The border, in pixels, for the bottom edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.Border.Left">
+            <summary>
+            Gets or sets the border value for the left edge.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The border, in pixels, for the left edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.Border.Right">
+            <summary>
+            Gets or sets the border value for the right edge.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The border, in pixels, for the right edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.Border.Top">
+            <summary>
+            Gets or sets the border value for the top edge.
+            </summary>
+            <value>
+            <para>
+            System.Int32 . The border, in pixels, for the top edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="T:Ascend.BorderColor">
+            <summary>
+            Represents border color information associated with a user interface (UI) element.
+            </summary>
+        </member>
+        <member name="F:Ascend.BorderColor.Empty">
+            <summary>
+            Provides a BorderColor object with SystemColors.ActiveCaptionText border colors.
+            </summary>
+        </member>
+        <member name="M:Ascend.BorderColor.#ctor(System.Drawing.Color)">
+            <summary>
+            Initializes a new instance of the BorderColor class using the supplied border color for all edges.
+            </summary>
+            <param name="all">System.Drawing.Color. The color to be used the border for all edges.</param>
+            <remarks>
+            This constructor sets the Right, Left, Bottom, Top and All properties to the value of the all parameter.
+            </remarks>
+        </member>
+        <member name="M:Ascend.BorderColor.#ctor(System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Initializes a new instance of the BorderColor class using the supplied colors for the edges.
+            </summary>
+            <param name="left">System.Drawing.Color. The border color for the left edge.</param>
+            <param name="top">System.Drawing.Color. The border color for the top edge.</param>
+            <param name="right">System.Drawing.Color. The border color for the right edge.</param>
+            <param name="bottom">SSystem.Drawing.Color. The border color for the bottom edge.</param>
+            <remarks>
+            This constructor sets the Right, Left, Bottom, Top properties. If the parameters are all the same the All parameter is also set to the value.
+            </remarks>
+        </member>
+        <member name="M:Ascend.BorderColor.ShouldSerializeAll">
+            <summary>
+            Returns if the All property has been used.
+            </summary>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:Ascend.BorderColor.ToString">
+            <summary>
+            Returns a string that contains the border color values for an instance of the BorderColor class.
+            </summary>
+            <returns>
+            <para>
+            System.String . 
+            </para>
+            <para>
+            A String that represents the current BorderColor.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            This method returns a string containing the labeled values of the border color for all four edges.
+            </para>
+            <para>
+            This method overrides ToString.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.BorderColor.GetHashCode">
+            <summary>
+            Serves as a hash function for the BorderColor type, suitable for use in hashing algorithms and data structures like a hash table.
+            </summary>
+            <returns>
+            <para>
+            System.Int32
+            </para>
+            <para>
+            A hash code for the BorderColor object.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Ascend.BorderColor.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current Object.
+            </summary>
+            <param name="obj">The Object to compare with the current Object.</param>
+            <returns>true if the specified Object is equal to the current Object; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderColor.op_Equality(Ascend.BorderColor,Ascend.BorderColor)">
+            <summary>
+            Tests whether two specified BorderColor objects are equivalent.
+            </summary>
+            <param name="borderColor1">BorderColor. A Border to test.</param>
+            <param name="borderColor2">BorderColor. A Border to test.</param>
+            <returns>System.Boolean . true if the two BorderColor objects are equivalent; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderColor.op_Inequality(Ascend.BorderColor,Ascend.BorderColor)">
+            <summary>
+            Tests whether two specified Border objects are not equivalent.
+            </summary>
+            <param name="borderColor1">Border. A Border to test.</param>
+            <param name="borderColor2">Border. A Border to test.</param>
+            <returns>System.Boolean . true if the two Border objects are different; otherwise, false.</returns>
+        </member>
+        <member name="P:Ascend.BorderColor.All">
+            <summary>
+            Gets or sets the border color value for all the edges.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . The border color for all edges if the same; otherwise SystemColors.ActiveCaptionText.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.BorderColor.Bottom">
+            <summary>
+            Gets or sets the border color value for the bottom edge.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . The border color for the bottom edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.BorderColor.Left">
+            <summary>
+            Gets or sets the border color value for the left edge.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . The border color for the left edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.BorderColor.Right">
+            <summary>
+            Gets or sets the border color value for the right edge.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . The border color for the right edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="P:Ascend.BorderColor.Top">
+            <summary>
+            Gets or sets the border color value for the top edge.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . The border color for the top edge.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+            <remarks>
+            Setting this value can also alter the All property.
+            </remarks>
+        </member>
+        <member name="T:Ascend.BorderConverter">
+            <summary>
+            Provides a type converter to convert expandable objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ascend.BorderConverter.#ctor">
+            <summary>
+            Initializes a new instance of the BorderConverter class.
+            </summary>
+        </member>
+        <member name="M:Ascend.BorderConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert an object of the given type to the type of this converter.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="sourceType">A Type that represents the type that you want to convert from.</param>
+            <returns>true if sourceType is a String type or a Uri type can be assigned from sourceType; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert the object to the specified type.
+            </summary>
+            <remarks>
+            Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="destinationType">A Type that represents the type you want to convert to.</param>
+            <returns>true if this converter can perform the conversion; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the given object to the type of this converter, using the specified context and culture information. 
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">The CultureInfo to use as the current culture.</param>
+            <param name="value">The Object to convert.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <remarks>
+            <para>The most common types to convert are to and from a string object. This implementation calls ToString on the object if the object is valid and if the destination type is string.</para>
+            <para>Use the context parameter to extract additional information about the environment from which this converter is invoked. This parameter can be null, so always check it. Also, properties on the context object can return null.</para>
+            </remarks>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo object. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)">
+            <summary>
+            Creates an instance of the Type that this TypeConverter is associated with, using the specified context, given a set of property values for the object.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="propertyValues">An System.Collections.IDictionary of new property values.</param>
+            <returns>An System.Object representing the given System.Collections.IDictionary, or null if the object cannot be created. This method always returns null.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if changing a property on this object requires a call to System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary) to create a new value; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            Retrieves the set of properties for this type. By default, a type does not have any properties to return. An easy implementation of this method can call the TypeDescriptor.GetProperties method for the correct data type. 
+            </summary>
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <param name="value">The value of the object to get the properties for.</param>
+            <param name="attributes">An array of MemberAttribute objects that describe the properties.</param>
+            <returns>A System.ComponentModel.PropertyDescriptorCollection with the properties that are exposed for this data type, or null if there are no properties.</returns>
+        </member>
+        <member name="M:Ascend.BorderConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
+            <returns>true if System.ComponentModel.TypeConverter.GetProperties(System.Object) should be called to find the properties of this object; otherwise, false.</returns>
+        </member>
+        <member name="T:Ascend.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ascend.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ascend.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

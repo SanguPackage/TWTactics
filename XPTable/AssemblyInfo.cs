@@ -56,5 +56,5 @@ using System.Runtime.CompilerServices;
 //       documentation for more information on this.
 //
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile(@"..\..\XPTable.snk")]
+//[assembly: AssemblyKeyFile(@"..\..\XPTable.snk")]
 [assembly: AssemblyKeyName("")]

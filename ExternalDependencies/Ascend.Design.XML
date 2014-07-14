@@ -1,0 +1,1114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ascend.Design</name>
+    </assembly>
+    <members>
+        <member name="T:Ascend.Windows.Forms.Design.GradientCaptionActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientCaptionActionList.#ctor(Ascend.Windows.Forms.GradientCaption)">
+            <summary>
+            Initializes a new instance of the GradientCaptionActionList class.
+            </summary>
+            <param name="gradientCaption">A GradientCaption component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientCaptionActionList.GetPropertyByName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientCaptionActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.AntiAlias">
+            <summary>
+            Specifies if the control is anti-aliased when drawn.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.Font">
+            <summary>
+            The font associated with the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Font .
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.GradientHighColor">
+            <summary>
+            Gets or sets the gradient high (lighter) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient high color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.GradientLowColor">
+            <summary>
+            Gets or sets the gradient low (darker) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient low color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.Text">
+            <summary>
+            The text associated with the control.
+            </summary>
+            <value>
+            <para>
+            System.String .
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.TextAlign">
+            <summary>
+            The ContentAlignment associated with this controls text.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.ContentAlignment . The ContentAlignment associated with this controls text.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.Image">
+            <summary>
+            The image associated with the control.
+            </summary>
+            <value>
+            Image
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.ImageAlign">
+            <summary>
+            The ContentAlignment associated with this controls image.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.ContentAlignment . The ContentAlignment associated with this controls image.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.Name">
+            <summary>
+            The name of the control
+            </summary>
+            <value>
+            System.String
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionActionList.RenderMode">
+            <summary>
+            Gets or sets the painting style applied to the background in a control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientAnimationActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientAnimationActionList.#ctor(Ascend.Windows.Forms.GradientAnimation)">
+            <summary>
+            Initializes a new instance of the GradientAnimationActionList class.
+            </summary>
+            <param name="gradientAnimation">A GradientAnimation component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientAnimationActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationActionList.GradientHighColor">
+            <summary>
+            Gets or sets the gradient high (lighter) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient high color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationActionList.GradientLowColor">
+            <summary>
+            Gets or sets the gradient low (darker) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient low color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationActionList.GradientMode">
+            <summary>
+            Specifies the direction of a linear gradient.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Drawing2D.LinearGradientMode . Specifies the direction of a linear gradient.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationActionList.Name">
+            <summary>
+            Gets or sets the name of the control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientPanelActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelActionList.#ctor(Ascend.Windows.Forms.GradientPanel)">
+            <summary>
+            Initializes a new instance of the GradientPanelActionList class.
+            </summary>
+            <param name="gradientPanel">A GradientPanel component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.AntiAlias">
+            <summary>
+            Specifies if the control is anti-aliased when drawn.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.GradientHighColor">
+            <summary>
+            Gets or sets the gradient high (lighter) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient high color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.GradientLowColor">
+            <summary>
+            Gets or sets the gradient low (darker) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient low color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.GradientMode">
+            <summary>
+            Specifies the direction of a linear gradient.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Drawing2D.LinearGradientMode . Specifies the direction of a linear gradient.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.Name">
+            <summary>
+            Gets or sets the name of the control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelActionList.RenderMode">
+            <summary>
+            Gets or sets the painting style applied to the background in a control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.NavigationPaneBehavior">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneBehavior.OnMouseUp(System.Windows.Forms.Design.Behavior.Glyph,System.Windows.Forms.MouseButtons)">
+            <param name="g">A <see cref="T:System.Windows.Forms.Design.Behavior.Glyph"></see>.</param>
+            <param name="button">A <see cref="T:System.Windows.Forms.MouseButtons"></see> value indicating which button was clicked.</param>
+            <returns>true if the message was handled; otherwise, false.</returns>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.NavigationPaneActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneActionList.#ctor(Ascend.Windows.Forms.NavigationPane)">
+            <summary>
+            Initializes a new instance of the NavigationPaneActionList class.
+            </summary>
+            <param name="navigationPane">A NavigationPane component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneActionList.GetPropertyByName(System.String)">
+            <summary>
+            Returns a property descriptor for the passed property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The property descriptor.</returns>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneActionList.OnAdd">
+            <summary>
+            Adds a new navigation pane page
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneActionList.OnRemove">
+            <summary>
+            Removes a navigation pane page
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneActionList.AntiAlias">
+            <summary>
+            Specifies if the control is anti-aliased when drawn.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneActionList.Font">
+            <summary>
+            The font associated with the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Font . The base font to be inherited by child controls.
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneActionList.Name">
+            <summary>
+            Gets or sets the name of the control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneActionList.RenderMode">
+            <summary>
+            Gets or sets the painting style applied to the background in a control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientSplitBarDesigner">
+            <summary>
+            Extends the design mode behavior of the ControlDesigner.
+            </summary>
+            <remarks>
+            <para>
+            ControlDesigner provides a base class for designers of components that derive from Control. In addition to the methods and functionality inherited from the ComponentDesigner class, ControlDesigner provides additional methods to support extending and altering the behavior of an associated Control at design time.
+            </para>
+            <para>
+            You can associate a designer with a type using a DesignerAttribute. For an overview of customizing design time behavior.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientSplitBarDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientSplitBarDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientSplitBarActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientSplitBarActionList.#ctor(Ascend.Windows.Forms.GradientSplitBar)">
+            <summary>
+            Initializes a new instance of the GradientSplitBarActionList class.
+            </summary>
+            <param name="gradientSplitBar">A GradientSplitBar component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientSplitBarActionList.GetPropertyByName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientSplitBarActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.AntiAlias">
+            <summary>
+            Specifies if the control is anti-aliased when drawn.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.BumpCount">
+            <summary>
+            Specifies the number of bumps to be drawn on the split bar.
+            </summary>
+            <remarks>
+            <para>
+            Negative numbers will be converted to 0. If a bump count number is greater than the surface allows, only the amount that can be drawn will be drawn.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Int32
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.GradientHighColor">
+            <summary>
+            Gets or sets the gradient high (lighter) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient high color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.GradientLowColor">
+            <summary>
+            Gets or sets the gradient low (darker) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient low color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.Name">
+            <summary>
+            The name of the control
+            </summary>
+            <value>
+            System.String
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.Direction">
+            <summary>
+            Specifies the direction the split bar should be drawn.
+            </summary>
+            <value>
+            <para>
+            GradientSplitBarDirection
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientSplitBarActionList.RenderMode">
+            <summary>
+            Gets or sets the painting style applied to the background in a control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientPanelDesigner">
+            <summary>
+            Extends the design mode behavior of the GradientBackground.
+            </summary>
+            <remarks>
+            <para>
+            ParentControlDesigner provides a base class for designers of components that derive from ParentControlDesigner. In addition to the methods and functionality inherited from the ComponentDesigner class, ParentControlDesigner provides additional methods to support extending and altering the behavior of an associated Control at design time.
+            </para>
+            <para>
+            You can associate a designer with a type using a DesignerAttribute. For an overview of customizing design time behavior.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Receives a call when the control that the designer is managing has painted its surface so the designer can paint any additional adornments on top of the control. 
+            </summary>
+            <param name="pe">A PaintEventArgs the designer can use to draw on the control.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientPanelDesigner.DrawBorder(System.Drawing.Graphics)">
+            <summary>
+            Draws a dashed border around control at design time.
+            </summary>
+            <param name="graphics">The graphics object to use</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelDesigner.BorderPen">
+            <summary>
+            Gets the pen used to draw the design border 
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientPanelDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientCaptionDesigner">
+            <summary>
+            Extends the design mode behavior of the GradientCaptionDesigner.
+            </summary>
+            <remarks>
+            <para>
+            ControlDesigner provides a base class for designers of components that derive from Control. In addition to the methods and functionality inherited from the ComponentDesigner class, ControlDesigner provides additional methods to support extending and altering the behavior of an associated Control at design time.
+            </para>
+            <para>
+            You can associate a designer with a type using a DesignerAttribute. For an overview of customizing design time behavior.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientCaptionDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientCaptionDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientCaptionDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.NavigationPanePageActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.NavigationPanePageActionList.#ctor(Ascend.Windows.Forms.NavigationPanePage)">
+            <summary>
+            Initializes a new instance of the NavigationPanePageActionList class.
+            </summary>
+            <param name="navigationPanePage">A NavigationPanePage component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.NavigationPanePageActionList.GetPropertyByName(System.String)">
+            <summary>
+            Returns a property descriptor for the passed property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The property descriptor.</returns>
+        </member>
+        <member name="M:Ascend.Windows.Forms.NavigationPanePageActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.Font">
+            <summary>
+            The font associated with the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Font . The base font to be inherited by child controls.
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.Text">
+            <summary>
+            The text associated with the control.
+            </summary>
+            <value>
+            <para>
+            System.String .
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.TextAlign">
+            <summary>
+            The ContentAlignment associated with this controls text.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.ContentAlignment . The ContentAlignment associated with this controls text.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.Image">
+            <summary>
+            The image associated with the control.
+            </summary>
+            <value>
+            Image
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.ImageAlign">
+            <summary>
+            The ContentAlignment associated with this controls image.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.ContentAlignment . The ContentAlignment associated with this controls image.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.NavigationPanePageActionList.Name">
+            <summary>
+            Gets or sets the name of the control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientLineDesigner">
+            <summary>
+            Extends the design mode behavior of the GradientLine.
+            </summary>
+            <remarks>
+            <para>
+            ParentControlDesigner provides a base class for designers of components that derive from ParentControlDesigner. In addition to the methods and functionality inherited from the ComponentDesigner class, ParentControlDesigner provides additional methods to support extending and altering the behavior of an associated Control at design time.
+            </para>
+            <para>
+            You can associate a designer with a type using a DesignerAttribute. For an overview of customizing design time behavior.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientLineDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientLineDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.NavigationPaneDesigner">
+            <summary>
+            Designer class extending the design mode behavior of the NavigationPane.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.#ctor">
+            <summary>
+            Initializes a new instance of the NavigationPaneDesigner class.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.CanParent(System.Windows.Forms.Control)">
+            <summary>
+            Indicates whether the control managed by the specified designer can be a child of the control managed by this designer.
+            </summary>
+            <param name="control">The System.Windows.Forms.Control to test.</param>
+            <returns>
+            true if the specified control can be a child of the control managed by this designer; otherwise, false.
+            </returns>
+            <remarks>
+            This method indicates whether the control managed by this designer can parent the control of the specified ControlDesigner.
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.GetHitTest(System.Drawing.Point)">
+            <summary>
+            Indicates whether a mouse click at the specified point should be handled by the control.
+            </summary>
+            <param name="point">A System.Drawing.Point indicating the position at which the mouse was clicked, in screen coordinates.</param>
+            <returns>true if a click at the specified point is to be handled by the control; otherwise, false.</returns>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)">
+            <summary>
+            Receives a call when a drag-and-drop operation is in progress to provide visual cues based on the location of the mouse while a drag operation is in progress.
+            </summary>
+            <param name="e">A System.Windows.Forms.GiveFeedbackEventArgs that provides data for the event.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.OnDragOver(System.Windows.Forms.DragEventArgs)">
+            <summary>
+            Called when a drag-and-drop object is dragged over the control designer view. 
+            </summary>
+            <param name="de">A System.Windows.Forms.DragEventArgs that provides data for the event.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.OnDragEnter(System.Windows.Forms.DragEventArgs)">
+            <param name="de">A System.Windows.Forms.DragEventArgs that provides data for the event.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.OnRemove(System.Object,System.EventArgs)">
+            <summary>
+            Fired when the remove verb is selected.
+            </summary>
+            <param name="sender">The sending object.</param>
+            <param name="e">A System.EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.OnAdd(System.Object,System.EventArgs)">
+            <summary>
+            Fired when the add verb is selected.
+            </summary>
+            <param name="sender">The sending object.</param>
+            <param name="e">A System.EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPaneDesigner.InitializeNewComponent(System.Collections.IDictionary)">
+            <summary>
+            Initializes a newly created component.
+            </summary>
+            <param name="defaultValues">A name/value dictionary of default values to apply to properties. May be null if no default values are specified.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneDesigner.AllowControlLasso">
+            <summary>
+            Gets a value indicating whether selected controls will be re-parented.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneDesigner.DrawGrid">
+            <summary>
+            Gets or sets a value indicating whether a grid should be drawn on the control for this designer.
+            </summary>
+            <value>
+            Always false in this designer.
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPaneDesigner.Verbs">
+            <summary>
+            Gets or sets the design-time verbs supported by the designer. 
+            </summary>
+            <value>
+            An array of DesignerVerb objects supported by the designer, or null if the component has no verbs.
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientAnimationDesigner">
+            <summary>
+            Extends the design mode behavior of the GradientAnimation.
+            </summary>
+            <remarks>
+            <para>
+            ParentControlDesigner provides a base class for designers of components that derive from ParentControlDesigner. In addition to the methods and functionality inherited from the ComponentDesigner class, ParentControlDesigner provides additional methods to support extending and altering the behavior of an associated Control at design time.
+            </para>
+            <para>
+            You can associate a designer with a type using a DesignerAttribute. For an overview of customizing design time behavior.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientAnimationDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientAnimationDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientAnimationDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.NavigationPanePageDesigner">
+            <summary>
+            Designer class for extending the design mode behavior of a NavigationPanePage which should receive scroll messages.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.#ctor">
+            <summary>
+            Initializes a new instance of the NavigationPanePageDesigner class.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Receives a call when the control that the designer is managing has painted its surface so the designer can paint any additional adornments on top of the control. 
+            </summary>
+            <param name="pe">A PaintEventArgs the designer can use to draw on the control.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.DrawBorder(System.Drawing.Graphics)">
+            <summary>
+            Draws a dashed border around control at design time.
+            </summary>
+            <param name="graphics">The graphics object to use</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.PostFilterEvents(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of events that it exposes through a TypeDescriptor.
+            </summary>
+            <param name="events">The events for the class of the component.</param>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+            <value>
+            The design-time action lists supported by the component associated with the designer. 
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.BorderPen">
+            <summary>
+            Gets the pen used to draw the design border 
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.NavigationPanePageDesigner.SelectionRules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Ascend.Windows.Forms.Design.GradientLineActionList">
+            <summary>
+            Provides the base class for types that define a list of items used to create a DesignerActionPanel.
+            </summary>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientLineActionList.#ctor(Ascend.Windows.Forms.GradientLine)">
+            <summary>
+            Initializes a new instance of the GradientLineActionList class.
+            </summary>
+            <param name="gradientLine">A GradientLine component.</param>
+        </member>
+        <member name="M:Ascend.Windows.Forms.Design.GradientLineActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list. 
+            </summary>
+            <returns>A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.AntiAlias">
+            <summary>
+            Specifies if the control is anti-aliased when drawn.
+            </summary>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.Dock">
+            <summary>
+            Specifies the position and manner in which a control is docked.
+            </summary>
+            <remarks>
+            <para>
+            When a control is docked to an edge of its container, it is always positioned flush against that edge when the container is resized. If more than one control is docked to an edge, the controls appear side by side according to their z-order; controls higher in the z-order are positioned farther from the container's edge.
+            </para>
+            <para>
+            If Left, Right, Top, or Bottom is selected, the specified and opposite edges of the control are resized to the size of the containing control's corresponding edges. If Fill is selected, all four sides of the control are resized to match the containing control's edges.
+            </para>
+            </remarks>
+            <value>
+            <para>
+            System.Windows.Forms.DockStyle
+            </para>
+            <para>
+            This property is read/write.
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.GradientHighColor">
+            <summary>
+            Gets or sets the gradient high (lighter) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient high color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.GradientLowColor">
+            <summary>
+            Gets or sets the gradient low (darker) color for the control.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Color . A Color that represents the gradient low color of the control.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.GradientMode">
+            <summary>
+            Specifies the direction of a linear gradient.
+            </summary>
+            <value>
+            <para>
+            System.Drawing.Drawing2D.LinearGradientMode . Specifies the direction of a linear gradient.
+            </para>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.Name">
+            <summary>
+            Gets or sets the name of the control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+        <member name="P:Ascend.Windows.Forms.Design.GradientLineActionList.RenderMode">
+            <summary>
+            Gets or sets the painting style applied to the background in a control.
+            </summary>
+            <value>
+            <para>
+            This property is read/write. 
+            </para>
+            </value>
+        </member>
+    </members>
+</doc>

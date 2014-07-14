@@ -1,0 +1,1382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ascend.Resources</name>
+    </assembly>
+    <members>
+        <member name="T:Ascend.Resources.ResourceDisplayNameAttribute">
+            <summary>
+            Specifies the display name for a property, event, or public void method which takes no arguments. 
+            </summary>
+        </member>
+        <member name="M:Ascend.Resources.ResourceDisplayNameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ResourceDisplayNameAttribute class.
+            </summary>
+            <param name="displayName">The resouce name.</param>
+        </member>
+        <member name="P:Ascend.Resources.ResourceDisplayNameAttribute.DisplayName">
+            <summary>
+            Gets the display name for a property, event, or public void method that takes no arguments stored in this attribute.
+            </summary>
+        </member>
+        <member name="T:Ascend.Resources.DefaultResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AcceptChangesAndCloseDialogToolTip">
+            <summary>
+              Looks up a localized string similar to Accept my changes and close this dialog..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionCategory">
+            <summary>
+              Looks up a localized string similar to Action.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListAppearanceCategory">
+            <summary>
+              Looks up a localized string similar to Appearance.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListAppearanceTextItem">
+            <summary>
+              Looks up a localized string similar to Properties that affect how the control looks..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameAntiAlias">
+            <summary>
+              Looks up a localized string similar to AntiAlias.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameBumpCount">
+            <summary>
+              Looks up a localized string similar to Bump Count.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameDirection">
+            <summary>
+              Looks up a localized string similar to Direction.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameDock">
+            <summary>
+              Looks up a localized string similar to Dock.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameFont">
+            <summary>
+              Looks up a localized string similar to Font.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameGradientHighColor">
+            <summary>
+              Looks up a localized string similar to Gradient High Color.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameGradientLowColor">
+            <summary>
+              Looks up a localized string similar to Gradient Low Color.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameGradientMode">
+            <summary>
+              Looks up a localized string similar to Gradient Mode.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameImage">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameImageAlign">
+            <summary>
+              Looks up a localized string similar to Image Align.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameName">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameRenderMode">
+            <summary>
+              Looks up a localized string similar to RenderMode.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameText">
+            <summary>
+              Looks up a localized string similar to Text.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListDisplayNameTextAlign">
+            <summary>
+              Looks up a localized string similar to Text Align.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListLayoutCategory">
+            <summary>
+              Looks up a localized string similar to Layout.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActionListLayoutTextItem">
+            <summary>
+              Looks up a localized string similar to Properties that affect how the control behaves during layout..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the Active property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveDescription">
+            <summary>
+              Looks up a localized string similar to The active state of the control, draws the control with different gradient colors..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveGradientHighColorDescription">
+            <summary>
+              Looks up a localized string similar to High color of the gradient when active..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveGradientHighColorEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the ActiveGradientHighColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveGradientLowColorDescription">
+            <summary>
+              Looks up a localized string similar to Low color of the gradient when active..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveGradientLowColorEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the ActiveGradientLowColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveOnClickDescription">
+            <summary>
+              Looks up a localized string similar to Should the control become active if clicked..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ActiveOnClickEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the  ActiveOnClick property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AllowAddOrRemoveDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets if the add or remove menu item is visible on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AllowAnimationDescription">
+            <summary>
+              Looks up a localized string similar to Gets a value indicating whether the control is allowed to animate the image..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AllowOptionsDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets if the options menu item is visible on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AlphaChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the Alpha property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AlphaDescription">
+            <summary>
+              Looks up a localized string similar to The alpha level (0 - 255) of the fill of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AntiAliasChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the AntiAlias property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AntiAliasDescription">
+            <summary>
+              Looks up a localized string similar to Should the control be anti-aliased..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AppearanceCategory">
+            <summary>
+              Looks up a localized string similar to Appearance.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.AppearanceTextItem">
+            <summary>
+              Looks up a localized string similar to Properties that affect how the control looks..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BackColorDescription">
+            <summary>
+              Looks up a localized string similar to The background color of the component..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BehaviorCategory">
+            <summary>
+              Looks up a localized string similar to Behavior.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BorderChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the Border property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BorderColorChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the BorderColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BorderColorDescription">
+            <summary>
+              Looks up a localized string similar to Specifies how the control border color should appear..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BorderDescription">
+            <summary>
+              Looks up a localized string similar to Specifies how the control border width should appear..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BumpCountChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the BumpCount property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.BumpCountDescription">
+            <summary>
+              Looks up a localized string similar to The number of bumps to draw on the bar..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ButtonDescription">
+            <summary>
+              Looks up a localized string similar to Properties associated with the buttons of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ButtonFontDescription">
+            <summary>
+              Looks up a localized string similar to The font used to display text in the button of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ButtonHeightDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indicating the height of the control&apos;s buttons..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CancelChangesAndCloseDialogToolTip">
+            <summary>
+              Looks up a localized string similar to Cancel my changes and close this dialog..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CancelText">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CaptionDescription">
+            <summary>
+              Looks up a localized string similar to Properties associated with the caption of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CaptionFontDescription">
+            <summary>
+              Looks up a localized string similar to The font used to display text in the caption of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CaptionGradientModeDescription">
+            <summary>
+              Looks up a localized string similar to Specifies the direction of a linear gradient of the caption..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CaptionHeightDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indicating the height of the control&apos;s caption..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ConfigureButtonsToolTipText">
+            <summary>
+              Looks up a localized string similar to Configure buttons.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CornerRadiusChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the CornerRadius property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.CornerRadiusDescription">
+            <summary>
+              Looks up a localized string similar to Specifies how the control corner radius should appear..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DehighlightedDescription">
+            <summary>
+              Looks up a localized string similar to Occurs when a control highlight is removed..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DeselectedDescription">
+            <summary>
+              Looks up a localized string similar to Occurs when a control is deselected..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DeselectingDescription">
+            <summary>
+              Looks up a localized string similar to Occurs before a control is deselected, enabling a handler to cancel the control change..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DirectionChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the Direction property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayButtonsInThisOrderText">
+            <summary>
+              Looks up a localized string similar to Display buttons in this order.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActive">
+            <summary>
+              Looks up a localized string similar to Active.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveChanged">
+            <summary>
+              Looks up a localized string similar to ActiveChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveGradientHighColor">
+            <summary>
+              Looks up a localized string similar to ActiveGradientHighColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveGradientHighColorChanged">
+            <summary>
+              Looks up a localized string similar to ActiveGradientHighColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveGradientLowColor">
+            <summary>
+              Looks up a localized string similar to ActiveGradientLowColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveGradientLowColorChanged">
+            <summary>
+              Looks up a localized string similar to ActiveGradientLowColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveOnClick">
+            <summary>
+              Looks up a localized string similar to ActiveOnClick.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameActiveOnClickChanged">
+            <summary>
+              Looks up a localized string similar to ActiveOnClickChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAllowAddOrRemove">
+            <summary>
+              Looks up a localized string similar to AllowAddOrRemove.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAllowAnimation">
+            <summary>
+              Looks up a localized string similar to AllowAnimation.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAllowOptions">
+            <summary>
+              Looks up a localized string similar to AllowOptions.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAlpha">
+            <summary>
+              Looks up a localized string similar to Alpha.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAlphaChanged">
+            <summary>
+              Looks up a localized string similar to AlphaChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAntiAlias">
+            <summary>
+              Looks up a localized string similar to AntiAlias.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameAntiAliasChanged">
+            <summary>
+              Looks up a localized string similar to AntiAliasChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBackColor">
+            <summary>
+              Looks up a localized string similar to BackColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBorder">
+            <summary>
+              Looks up a localized string similar to Border.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBorderChanged">
+            <summary>
+              Looks up a localized string similar to BorderChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBorderColor">
+            <summary>
+              Looks up a localized string similar to BorderColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBorderColorChanged">
+            <summary>
+              Looks up a localized string similar to BorderColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBumpCount">
+            <summary>
+              Looks up a localized string similar to BumpCount.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameBumpCountChanged">
+            <summary>
+              Looks up a localized string similar to BumpCountChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameButton">
+            <summary>
+              Looks up a localized string similar to Button.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameButtonExpanding">
+            <summary>
+              Looks up a localized string similar to ButtonExpanding.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameButtonFont">
+            <summary>
+              Looks up a localized string similar to Font.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameButtonHeight">
+            <summary>
+              Looks up a localized string similar to ButtonHeight.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameButtonVisible">
+            <summary>
+              Looks up a localized string similar to ButtonVisible.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCaption">
+            <summary>
+              Looks up a localized string similar to Caption.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCaptionFont">
+            <summary>
+              Looks up a localized string similar to Font.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCaptionGradientMode">
+            <summary>
+              Looks up a localized string similar to GradientMode.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCaptionHeight">
+            <summary>
+              Looks up a localized string similar to Height.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCornerRadious">
+            <summary>
+              Looks up a localized string similar to CornerRadious.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameCornerRadiusChanged">
+            <summary>
+              Looks up a localized string similar to CornerRadiusChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameDehighlighted">
+            <summary>
+              Looks up a localized string similar to Dehighlighted.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameDeselected">
+            <summary>
+              Looks up a localized string similar to Deselected.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameDeselecting">
+            <summary>
+              Looks up a localized string similar to Deselecting.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameDirection">
+            <summary>
+              Looks up a localized string similar to Direction.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameDirectionChanged">
+            <summary>
+              Looks up a localized string similar to DirectionChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameFocusHighlight">
+            <summary>
+              Looks up a localized string similar to FocusHighlight.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameFooter">
+            <summary>
+              Looks up a localized string similar to Footer.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameFooterHeight">
+            <summary>
+              Looks up a localized string similar to FooterHeight.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameForeColor">
+            <summary>
+              Looks up a localized string similar to ForeColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientHighColor">
+            <summary>
+              Looks up a localized string similar to GradientHighColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientHighColorChanged">
+            <summary>
+              Looks up a localized string similar to GradientHighColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientLowColor">
+            <summary>
+              Looks up a localized string similar to GradientLowColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientLowColorChanged">
+            <summary>
+              Looks up a localized string similar to GradientLowColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientMode">
+            <summary>
+              Looks up a localized string similar to GradientMode.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameGradientModeChanged">
+            <summary>
+              Looks up a localized string similar to GradientModeChange.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHidePrefix">
+            <summary>
+              Looks up a localized string similar to HidePrefix.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighColorLuminance">
+            <summary>
+              Looks up a localized string similar to HighColorLuminance.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightBorder">
+            <summary>
+              Looks up a localized string similar to HighlightBorder.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlighted">
+            <summary>
+              Looks up a localized string similar to Highlighted.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightGradientHighColor">
+            <summary>
+              Looks up a localized string similar to HighlightGradientHighColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightGradientHighColorChanged">
+            <summary>
+              Looks up a localized string similar to HighlightGradientHighColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightGradientLowColor">
+            <summary>
+              Looks up a localized string similar to HighlightGradientLowColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightGradientLowColorChanged">
+            <summary>
+              Looks up a localized string similar to HighlightGradientLowColorChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameHighlightTransitionPercent">
+            <summary>
+              Looks up a localized string similar to HighlightTransitionPercent.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImage">
+            <summary>
+              Looks up a localized string similar to Image.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageAlign">
+            <summary>
+              Looks up a localized string similar to ImageAlign.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageAlignChanged">
+            <summary>
+              Looks up a localized string similar to ImageAlignChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageChanged">
+            <summary>
+              Looks up a localized string similar to ImageChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageInCaption">
+            <summary>
+              Looks up a localized string similar to DisplayImage.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageIndex">
+            <summary>
+              Looks up a localized string similar to ImageIndex.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageIndexChanged">
+            <summary>
+              Looks up a localized string similar to ImageIndexChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageIndexFooterChanged">
+            <summary>
+              Looks up a localized string similar to ImageIndexFooterChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageKey">
+            <summary>
+              Looks up a localized string similar to ImageKey.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageList">
+            <summary>
+              Looks up a localized string similar to ImageList.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameImageListFooter">
+            <summary>
+              Looks up a localized string similar to ImageListFooter.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameInterval">
+            <summary>
+              Looks up a localized string similar to Interval.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameKey">
+            <summary>
+              Looks up a localized string similar to Key.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameLowColorLuminance">
+            <summary>
+              Looks up a localized string similar to LowColorLuminance.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameMouseOverHighlight">
+            <summary>
+              Looks up a localized string similar to MouseOverHighlight.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameMouseOverHighlightChanged">
+            <summary>
+              Looks up a localized string similar to MouseOverHighlightChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameNavigationPages">
+            <summary>
+              Looks up a localized string similar to NavigationPages.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameRenderMode">
+            <summary>
+              Looks up a localized string similar to RenderMode.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSelected">
+            <summary>
+              Looks up a localized string similar to Selected.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSelectedIndexChanged">
+            <summary>
+              Looks up a localized string similar to SelectedIndexChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSelecting">
+            <summary>
+              Looks up a localized string similar to Selecting.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameShowBorderOnHighlight">
+            <summary>
+              Looks up a localized string similar to ShowBorderOnHighlight.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameShowDisabledBackgroundColor">
+            <summary>
+              Looks up a localized string similar to ShowDisabledBackgroundColor.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSpeed">
+            <summary>
+              Looks up a localized string similar to Speed.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSplitBar">
+            <summary>
+              Looks up a localized string similar to SplitBar.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameSplitBarHeight">
+            <summary>
+              Looks up a localized string similar to Height.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameStayActiveAfterClick">
+            <summary>
+              Looks up a localized string similar to StayActiveAfterClick.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameTabStop">
+            <summary>
+              Looks up a localized string similar to TabStop.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameText">
+            <summary>
+              Looks up a localized string similar to Text.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameTextAlign">
+            <summary>
+              Looks up a localized string similar to TextAlign.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameTextAlignChanged">
+            <summary>
+              Looks up a localized string similar to TextAlignChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameToolTipText">
+            <summary>
+              Looks up a localized string similar to ToolTipText.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameUseCompatibleTextRendering">
+            <summary>
+              Looks up a localized string similar to UseCompatibleTextRendering.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameVisibleButtonCount">
+            <summary>
+              Looks up a localized string similar to VisibleButtonCount.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkAlpha">
+            <summary>
+              Looks up a localized string similar to WatermarkAlpha.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkAlphaChanged">
+            <summary>
+              Looks up a localized string similar to WatermarkAlphaChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkDisplayStyle">
+            <summary>
+              Looks up a localized string similar to WatermarkDisplayStyle.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkDisplayStyleChanged">
+            <summary>
+              Looks up a localized string similar to WatermarkDisplayStyleChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkImage">
+            <summary>
+              Looks up a localized string similar to WatermarkImage.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkImageAlign">
+            <summary>
+              Looks up a localized string similar to WatermarkImageAlign.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkImageAlignChanged">
+            <summary>
+              Looks up a localized string similar to WatermarkImageAlignChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DisplayNameWatermarkImageChanged">
+            <summary>
+              Looks up a localized string similar to WatermarkImageChanged.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.DockedDescription">
+            <summary>
+              Looks up a localized string similar to Specifies the position and manner in which the control is docked..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.FailedParseFormatError">
+            <summary>
+              Looks up a localized string similar to Failed parse format error..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.FocusHighlightDescription">
+            <summary>
+              Looks up a localized string similar to Specifies if the control should highlight if it has focus..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.FontDescription">
+            <summary>
+              Looks up a localized string similar to The font used to display text in the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.FooterDescription">
+            <summary>
+              Looks up a localized string similar to Properties associated with the footer of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.FooterHeightDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indicating the height of the control&apos;s footer..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ForeColorDescription">
+            <summary>
+              Looks up a localized string similar to The foreground color of this component, wich is used to display text..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GAPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching GradientAnimation property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GCPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching GradientCaption property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GPPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching GradientPanel property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientAnimationDesription">
+            <summary>
+              Looks up a localized string similar to Gradient background with animation..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientCaptionDescription">
+            <summary>
+              Looks up a localized string similar to Caption panel with a gradient background..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientHighColorChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the GradientHighColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientHighColorDescription">
+            <summary>
+              Looks up a localized string similar to Sets the gradient high (lighter) color for the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientLineDescription">
+            <summary>
+              Looks up a localized string similar to A gradient background line..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientLowColorChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the GradientLowColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientLowColorDescription">
+            <summary>
+              Looks up a localized string similar to Sets the gradient low (darker) color for the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientModeChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the GradientMode property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientModeDescription">
+            <summary>
+              Looks up a localized string similar to Specifies the direction of a linear gradient..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientNavigationButtonDescription">
+            <summary>
+              Looks up a localized string similar to Navigation button with gradient background. Highlights on focus and mouse movement..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientPanelDescription">
+            <summary>
+              Looks up a localized string similar to Panel control with a gradient background..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientSplitBarDescription">
+            <summary>
+              Looks up a localized string similar to Split bar with gradient background and bumps..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GradientSplitBarDirectionDescription">
+            <summary>
+              Looks up a localized string similar to Direction to draw the bar..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.GSBPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching GradientSplitBar property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HidePrefixDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indication whether to hide prefix in text..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighColorLuminanceDescription">
+            <summary>
+              Looks up a localized string similar to Sets how bright the high color will be starting at the highlight transition point..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightBorderDescription">
+            <summary>
+              Looks up a localized string similar to Should the inside edge of the border be highlighted..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightedDescription">
+            <summary>
+              Looks up a localized string similar to Occurs when a control is highlighted..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightGradientHighColorDescription">
+            <summary>
+              Looks up a localized string similar to High color of the gradient when the mouse is over the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightGradientHighColorEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the  HighlightGradientHighColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightGradientLowColorDescription">
+            <summary>
+              Looks up a localized string similar to Low color of the gradient when mouse is over the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightGradientLowColorEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the  HighlightGradientLowColor property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.HighlightTransitionPercentDescription">
+            <summary>
+              Looks up a localized string similar to The location by percent(.01 to .99) of the control where the color will transition from high to low color..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageAlignChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the ImageAlign property  is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageAlignmentDescription">
+            <summary>
+              Looks up a localized string similar to Specifies alignment of image on the drawing surface of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the Image property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageDescription">
+            <summary>
+              Looks up a localized string similar to The image to display in the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageInCaptionDescription">
+            <summary>
+              Looks up a localized string similar to Should the currently active image be shown in the caption..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageIndexChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the ImageIndex property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageIndexDescription">
+            <summary>
+              Looks up a localized string similar to The index of the image in the ImageList to display in the face of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageIndexFooterChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Occurs when the ImageIndexFooter property changes..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageListDescription">
+            <summary>
+              Looks up a localized string similar to The ImageList to get the image to display in the face of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ImageListFooterDescription">
+            <summary>
+              Looks up a localized string similar to The ImageList to get the footer image to display in the face of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.IntervalDescription">
+            <summary>
+              Looks up a localized string similar to How often the animation loop should be run..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.IsAnimatingDescription">
+            <summary>
+              Looks up a localized string similar to Gets a value indicating whether the control is currently animating the image..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.KeyDescription">
+            <summary>
+              Looks up a localized string similar to The unique key associated with the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.LayoutCategory">
+            <summary>
+              Looks up a localized string similar to Layout.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.LayoutTextItem">
+            <summary>
+              Looks up a localized string similar to Properties that affect how the control behaves during layout..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.LowColorLuminanceDescription">
+            <summary>
+              Looks up a localized string similar to How bright the low color will be furthest from the highlight transition point..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MouseOverHighlightDescription">
+            <summary>
+              Looks up a localized string similar to Should the control highlight when the mouse is over it..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MouseOverHighlightEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the  MouseOverHighlight property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MoveDownText">
+            <summary>
+              Looks up a localized string similar to Move down.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MoveSelectedButtonDownInOrderToolTip">
+            <summary>
+              Looks up a localized string similar to Move the selected button item down in order..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MoveSelectedButtonUpInOrderToolTip">
+            <summary>
+              Looks up a localized string similar to Move the selected button item up in order..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.MoveUpText">
+            <summary>
+              Looks up a localized string similar to Move Up.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NameDescription">
+            <summary>
+              Looks up a localized string similar to Indicates the name used in code to identify the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NavigationPageCollectionDescription">
+            <summary>
+              Looks up a localized string similar to The collection of NavigationPages in the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NavigationPaneDescription">
+            <summary>
+              Looks up a localized string similar to Navigation pane that can contain mutiple panels..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NavigationPaneOptionsDialogAvialableListToolTip">
+            <summary>
+              Looks up a localized string similar to Available buttons.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NavigationPaneOptionsDialogTitle">
+            <summary>
+              Looks up a localized string similar to Navigation Pane Options.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPAddVerbDescription">
+            <summary>
+              Looks up a localized string similar to Adds a new navigation pane panel to the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPAddVerbText">
+            <summary>
+              Looks up a localized string similar to Add navigation page.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPMenuAddRemoveButtonsText">
+            <summary>
+              Looks up a localized string similar to &amp;Add or Remove Buttons.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPMenuOptionsText">
+            <summary>
+              Looks up a localized string similar to Na&amp;vigation Pane Options....
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPMenuShowFewerButtonsText">
+            <summary>
+              Looks up a localized string similar to Show &amp;Fewer Buttons.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPMenuShowMoreButtonsText">
+            <summary>
+              Looks up a localized string similar to Show &amp;More Buttons.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPPPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching NavigationPanePage property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPPropertyNotFoundExceptionText">
+            <summary>
+              Looks up a localized string similar to Matching NavigationPane property not found..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPRemoveVerbDescription">
+            <summary>
+              Looks up a localized string similar to Removes a navigation pane panel to the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.NPRemoveVerbText">
+            <summary>
+              Looks up a localized string similar to Remove navigation page.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.OkText">
+            <summary>
+              Looks up a localized string similar to OK.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.PropertyChangedCategory">
+            <summary>
+              Looks up a localized string similar to Property Changed.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.RenderModeDescription">
+            <summary>
+              Looks up a localized string similar to Specifies the painting style applied to the background in a control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ResetButtonOrderAndVisibilityToOriginalText">
+            <summary>
+              Looks up a localized string similar to Reset the button order and visibility to their original settings..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ResetText">
+            <summary>
+              Looks up a localized string similar to Reset.
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SelectedDescription">
+            <summary>
+              Looks up a localized string similar to Occurs when a control is selected..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SelectedIndexChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the SelectedIndex property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SelectingDescription">
+            <summary>
+              Looks up a localized string similar to Occurs before a control is selected..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ShowBorderOnHighlightDescription">
+            <summary>
+              Looks up a localized string similar to Specifies if the control should add a 1 pixel border if the control is highlighted..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ShowDisabledBackgroundColorDescription">
+            <summary>
+              Looks up a localized string similar to Specifies if the background color(s) should be shown as disabled if the control&apos;s enabled property is set to false..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SpeedDescription">
+            <summary>
+              Looks up a localized string similar to The speed (gradient offset) the animation will run..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SplitBarDescription">
+            <summary>
+              Looks up a localized string similar to Properties associated with the split bar of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.SplitBarHeightDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indicating the height of the control&apos;s splitbar..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.StayActiveAfterClickDescription">
+            <summary>
+              Looks up a localized string similar to Specifies if the button should stay active after it is clicked..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.TabStopDescription">
+            <summary>
+              Looks up a localized string similar to Gets or sets a value indicating whether the user can give the focus to this control using the TAB key..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.TextAlignChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the TextAlign property  is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.TextAlignmentDescription">
+            <summary>
+              Looks up a localized string similar to Specifies alignment of text on the drawing surface of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.TextDescription">
+            <summary>
+              Looks up a localized string similar to The text to display in the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.ToolTipDescription">
+            <summary>
+              Looks up a localized string similar to The text to display in a tooltip..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.UseCompatibleTextRenderingDescription">
+            <summary>
+              Looks up a localized string similar to Specifies whether text rendering should be compatible with previous releases ofWindows Forms..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.VisibleButtonCountDescription">
+            <summary>
+              Looks up a localized string similar to Sets the number of visible (not minimized) buttons on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkAlphaChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the WatermarkAlpha property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkAlphaDescription">
+            <summary>
+              Looks up a localized string similar to The alpha level (0 - 255) of the watermark in the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkDisplayStyleChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the WatermarkDisplayStyle property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkDisplayStyleDescription">
+            <summary>
+              Looks up a localized string similar to Specifies how the watermark image will be displayed..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkImageAlignChangedEventDescription">
+            <summary>
+              Looks up a localized string similar to Specifies alignment of the watermark image on the drawing surface of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkImageAlignmentDescription">
+            <summary>
+              Looks up a localized string similar to Specifies alignment of watermark image on the drawing surface of the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkImageChangedDescription">
+            <summary>
+              Looks up a localized string similar to Event raised when the WatermarkImage property is changed on the control..
+            </summary>
+        </member>
+        <member name="P:Ascend.Resources.DefaultResource.WatermarkImageDescription">
+            <summary>
+              Looks up a localized string similar to The watermark image to display in the control..
+            </summary>
+        </member>
+        <member name="T:Ascend.Resources.ResourceText">
+            <summary>
+            Specifies the text of the passed value.
+            </summary>
+        </member>
+        <member name="M:Ascend.Resources.ResourceText.GetLocalizedString(System.String)">
+            <summary>
+            Looks up the localized text of the specified value. 
+            </summary>
+        </member>
+        <member name="T:Ascend.Resources.ResourceDescriptionAttribute">
+            <summary>
+            Specifies a description for a property or event.
+            </summary>
+        </member>
+        <member name="M:Ascend.Resources.ResourceDescriptionAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ResourceDescriptionAttribute class.
+            </summary>
+            <param name="description">The resouce name.</param>
+        </member>
+        <member name="P:Ascend.Resources.ResourceDescriptionAttribute.Description">
+            <summary>
+            Gets the description stored in this attribute.
+            </summary>
+        </member>
+        <member name="T:Ascend.Resources.ResourceCategoryAttribute">
+            <summary>
+            Specifies the name of the category in which to group the property or event when displayed in a PropertyGrid control set to Categorized mode.
+            </summary>
+        </member>
+        <member name="M:Ascend.Resources.ResourceCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            Looks up the localized name of the specified category. 
+            </summary>
+        </member>
+        <member name="M:Ascend.Resources.ResourceCategoryAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ResourceCategoryAttribute class using the specified resource name. 
+            </summary>
+            <param name="category">The category name.</param>
+        </member>
+    </members>
+</doc>
