@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TribalWars.Villages;
@@ -46,6 +47,8 @@ namespace TribalWars.Controls.AttackPlan
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
             UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
+
+            RemoveAllPlans();
 
             var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
             foreach (AttackPlanInfo plan in plansFromXml)
@@ -182,6 +185,15 @@ namespace TribalWars.Controls.AttackPlan
             }
 
             World.Default.Map.Invalidate(false);
+        }
+
+        private void RemoveAllPlans()
+        {
+            var plans = _plans.Values.Select(x => x).ToArray();
+            foreach (var plan in plans)
+            {
+                Remove(plan);
+            }
         }
 
         private void SelectPlan(object sender, EventArgs e)
