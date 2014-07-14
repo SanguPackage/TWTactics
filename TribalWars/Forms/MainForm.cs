@@ -299,6 +299,7 @@ namespace TribalWars.Forms
 
         private void MenuFileWorldDownload_Click(object sender, EventArgs e)
         {
+            World.Default.SaveSettings();
             World.Default.Structure.DownloadNewTwSnapshot();
             World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
         }
