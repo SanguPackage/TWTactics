@@ -45,11 +45,11 @@ namespace TribalWars.Controls.Finders
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ZoomControl.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.ZoomControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.ZoomControl.Location = new System.Drawing.Point(100, 3);
+            this.ZoomControl.Location = new System.Drawing.Point(94, 3);
             this.ZoomControl.Maximum = 50;
             this.ZoomControl.Minimum = 1;
             this.ZoomControl.Name = "ZoomControl";
-            this.ZoomControl.Size = new System.Drawing.Size(36, 24);
+            this.ZoomControl.Size = new System.Drawing.Size(42, 24);
             this.ZoomControl.TabIndex = 1;
             this.toolTip1.SetToolTip(this.ZoomControl, "Change map zoom level");
             this.ZoomControl.Value = 1;
@@ -75,7 +75,7 @@ namespace TribalWars.Controls.Finders
             this.SelectorControl.Name = "SelectorControl";
             this.SelectorControl.PlaceHolderText = "";
             this.SelectorControl.ShowButton = true;
-            this.SelectorControl.Size = new System.Drawing.Size(91, 24);
+            this.SelectorControl.Size = new System.Drawing.Size(85, 24);
             this.SelectorControl.TabIndex = 0;
             this.SelectorControl.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 

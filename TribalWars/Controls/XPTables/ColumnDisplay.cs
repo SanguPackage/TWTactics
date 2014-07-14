@@ -342,6 +342,7 @@ namespace TribalWars.Controls.XPTables
         {
             if (player == null) return new Cell();
             var cell = new Cell(player.Name);
+            cell.ToolTipText = player.Tooltip;
             if (player.Equals(You))
             {
                 cell.CellStyle = YouStyle;

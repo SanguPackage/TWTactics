@@ -318,7 +318,10 @@ namespace TribalWars.Controls.Monitoring
 
             public bool IsPreviousData()
             {
-                Debug.Assert(World.Default.PreviousData.HasValue);
+                if (World.Default.PreviousData == null)
+                {
+                    return false;
+                }
                 return Value == World.Default.PreviousData.Value;
             }
 

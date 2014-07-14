@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Forms.Small;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
@@ -120,7 +121,14 @@ namespace TribalWars.Controls.AttackPlan
 
         private void cmdFind_Click(object sender, EventArgs e)
         {
-            if (ActivePlan != null && World.Default.HasLoaded && !World.Default.You.Empty)
+            if (World.Default.You.Empty)
+            {
+                if (MessageBox.Show("You have not yet selected yourself.\nSet yourself now?", "Select Active Player", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    ActivePlayerForm.UpdateDefaultWorld();    
+                }
+            }
+            else if (ActivePlan != null)
             {
                 Unit unit = UnitInput.Unit;
                 if (unit != null)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,6 +15,14 @@ namespace TribalWars.Tools
     /// </summary>
     public static class Network
     {
+        public static void PostValues(string url, NameValueCollection data)
+        {
+            using (var wb = new WebClient())
+            {
+                var response = wb.UploadValues(url, "POST", data);
+            }
+        }
+
         public static WebRequest CreateWebRequest(string url)
         {
             var client = WebRequest.Create(url);

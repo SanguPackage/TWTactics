@@ -60,7 +60,10 @@ namespace TribalWars.Controls.XPTables
             Cells.Add(VillageTableRow.GetVisibleImageCell(_map, tribe));
 
             Cells.Add(new Cell(tribe.Rank));
-            Cells.Add(new Cell(tribe.Tag));
+            Cells.Add(new Cell(tribe.Tag)
+                {
+                    ToolTipText = tribe.Tooltip
+                });
             
             Cells.Add(new Cell(tribe.Players.Count));
             Cells.Add(new Cell(tribe.PlayerDifferenceString));

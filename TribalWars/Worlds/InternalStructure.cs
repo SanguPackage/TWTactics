@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -183,7 +184,7 @@ namespace TribalWars.Worlds
 
 #if !DEBUG
                             // Redownload after x hours
-                            TimeSpan? lastDownload = DateTime.Now - CurrentData;
+                            TimeSpan? lastDownload = Default.Settings.ServerTime - CurrentData;
                             if (lastDownload.HasValue && lastDownload.Value.TotalHours >= 12)
                             {
                                 string text = string.Format("It has been {0} hours since you downloaded the latest TW data.\nDownload now?", (int)lastDownload.Value.TotalHours);
@@ -627,7 +628,7 @@ namespace TribalWars.Worlds
             public void DownloadNewTwSnapshot()
             {
                 _previousData = _currentData;
-                _currentData = DateTime.Now.ToString("yyyyMMddHH", CultureInfo.InvariantCulture);
+                _currentData = Default.Settings.ServerTime.ToString("yyyyMMddHH", CultureInfo.InvariantCulture);
                 string dirName = CurrentWorldDataDirectory + _currentData;
                 if (Directory.Exists(dirName))
                 {
@@ -642,6 +643,19 @@ namespace TribalWars.Worlds
                     DownloadFile(DownloadTribe, dirName + "\\" + FileTribeString);
                     DownloadFile(DownloadPlayer, dirName + "\\" + FilePlayerString);
                 }
+
+                // Keep statistics :)
+                UpdateCounter();
+            }
+
+            private void UpdateCounter()
+            {
+                var data = new NameValueCollection();
+                data["server"] = Default.Settings.Server.Host;
+                data["world"] = Default.Settings.Name;
+                data["player"] = Default.You.Name;
+                data["tribe"] = Default.You.HasTribe ? Default.You.Tribe.Tag : "";
+                Network.PostValues("http://sangu.be/api/twtacticsusage.php", data);
             }
 
             /// <summary>

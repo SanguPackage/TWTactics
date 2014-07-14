@@ -72,6 +72,11 @@ namespace TribalWars.Maps.Manipulators.Managers
             _activePlanGetter = activePlanGetter;
             _plans = plans;
 
+            if (_savedPlans == null)
+            {
+                _savedPlans = new List<AttackPlanInfo>();
+            }
+
             return _savedPlans;
         }
 

@@ -69,7 +69,10 @@ namespace TribalWars.Controls.XPTables
             {
                 Cells.Add(new Cell());
             }
-            Cells.Add(new Cell(tribe));
+            Cells.Add(new Cell(tribe)
+                {
+                    ToolTipText = ply.HasTribe ? ply.Tribe.Tooltip : ""
+                });
             Cells.Add(new Cell(ply.Points));
             if (ply.PreviousPlayerDetails != null)
             {
