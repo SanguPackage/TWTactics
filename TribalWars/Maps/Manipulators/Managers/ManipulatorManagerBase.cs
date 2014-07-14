@@ -1,5 +1,7 @@
 #region Using
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
@@ -30,12 +32,20 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// show up when hovering over a village
         /// </summary>
         public bool TooltipActive { get; set; }
+
+        /// <summary>
+        /// Old manipulators use XmlWriter/Reader which has its perks.
+        /// For new development, it will be easier to turn this property
+        /// off and use XDocument/Linq for persistence
+        /// </summary>
+        public bool UseLegacyXmlWriter { get; protected set; }
         #endregion
 
         #region Constructors
         protected ManipulatorManagerBase(Map map, bool showTooltip)
             : base(map)
         {
+            UseLegacyXmlWriter = true;
             _manipulators = new List<ManipulatorBase>();
             TooltipActive = showTooltip;
         }
@@ -83,32 +93,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             _map.SetCursor();
             _map.Invalidate();
-        }
-
-        /// <summary>
-        /// Saves state to stream
-        /// </summary>
-        public void WriteXml(XmlWriter w)
-        {
-            WriteXmlCore(w);
-        }
-
-        /// <summary>
-        /// Loads state from stream
-        /// </summary>
-        public void ReadXml(XmlReader r)
-        {
-            CleanUp();
-            if (r.IsEmptyElement)
-            {
-                r.Read();
-            }
-            else
-            {
-                r.ReadStartElement();
-                ReadXmlCore(r);
-                r.ReadEndElement();
-            }
         }
 
         /// <summary>
@@ -284,6 +268,45 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             _manipulators.ForEach(m => m.Dispose());
             _manipulators.Clear();
+        }
+        #endregion
+
+        #region Persistence
+        /// <summary>
+        /// The result will be Raw written to the XmlWriter
+        /// </summary>
+        public virtual string WriteXml()
+        {
+            Debug.Assert(!UseLegacyXmlWriter);
+            return "";
+        }
+
+        /// <summary>
+        /// LEGACY: Saves state to stream
+        /// </summary>
+        public void WriteXml(XmlWriter w)
+        {
+            Debug.Assert(UseLegacyXmlWriter);
+            WriteXmlCore(w);
+        }
+
+        /// <summary>
+        /// LEGACY: Loads state from stream
+        /// </summary>
+        public void ReadXml(XmlReader r)
+        {
+            //Debug.Assert(UseLegacyXmlWriter);
+            CleanUp();
+            if (r.IsEmptyElement)
+            {
+                r.Read();
+            }
+            else
+            {
+                r.ReadStartElement();
+                ReadXmlCore(r);
+                r.ReadEndElement();
+            }
         }
         #endregion
     }

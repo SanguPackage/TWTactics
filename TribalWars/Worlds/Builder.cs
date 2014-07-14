@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 using TribalWars.Controls.Monitoring;
 using TribalWars.Maps;
 using TribalWars.Maps.Displays;
@@ -127,6 +128,10 @@ namespace TribalWars.Worlds
         /// </summary>
         public static void WriteSettings(FileInfo file, Map map, Monitor monitor)
         {
+            // There is the old and the new 'way'
+            // old = XmlReader/Writer: error prone, difficult maintenance
+            // new = XDocument/Linq: easier...
+
             var sets = new XmlWriterSettings();
             sets.Indent = true;
             sets.IndentChars = " ";
@@ -167,7 +172,16 @@ namespace TribalWars.Worlds
                 {
                     w.WriteStartElement("Manipulator");
                     w.WriteAttributeString("Type", pair.Key.ToString());
-                    pair.Value.WriteXml(w);
+
+                    if (pair.Value.UseLegacyXmlWriter)
+                    {
+                        pair.Value.WriteXml(w);
+                    }
+                    else
+                    {
+                        string resultingXml = pair.Value.WriteXml();
+                        w.WriteRaw(resultingXml);
+                    }
                     w.WriteEndElement();
                 }
                 w.WriteEndElement();

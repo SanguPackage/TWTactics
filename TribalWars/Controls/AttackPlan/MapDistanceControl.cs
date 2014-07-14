@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
+using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
@@ -272,6 +273,61 @@ namespace TribalWars.Controls.AttackPlan
                 DistanceContainer.Controls.Remove(mdv);
                 DistanceContainer.RowStyles.Remove(DistanceContainer.RowStyles[i]);
             }
+        }
+
+        public AttackPlanInfo GetPlanInfo()
+        {
+            var plan = new AttackPlanInfo
+                {
+                    Target = _target,
+                    ArrivalTime = AttackDate
+                };
+
+            for (int i = 0; i < DistanceContainer.RowCount - 1; i++)
+            {
+                var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;
+                if (mdv != null)
+                {
+                    plan.Attacks.Add(new AttackPlanFrom
+                        {
+                            Attacker = mdv.Village,
+                            SlowestUnit = WorldUnits.Default[mdv.UnitSelectedIndex]
+                        });
+                }
+            }
+
+            return plan;
+        }
+    }
+
+    public class AttackPlanInfo
+    {
+        public Village Target { get; set; }
+
+        public DateTime ArrivalTime { get; set; }
+
+        public List<AttackPlanFrom> Attacks { get; private set; }
+
+        public AttackPlanInfo()
+        {
+            Attacks = new List<AttackPlanFrom>();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Target={0}, ArrivalTime={1}, Attacks={2}", Target.LocationString, ArrivalTime.ToString("dd/MM hh:mm:ss"), Attacks.Count);
+        }
+    }
+
+    public class AttackPlanFrom
+    {
+        public Village Attacker { get; set; }
+
+        public Unit SlowestUnit { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Attacker={0}, SlowestUnit={1}", Attacker.LocationString, SlowestUnit);
         }
     }
 }

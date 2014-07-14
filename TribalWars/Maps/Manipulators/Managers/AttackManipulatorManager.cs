@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using TribalWars.Controls;
 using TribalWars.Controls.AttackPlan;
 using TribalWars.Controls.Polygons;
@@ -29,6 +32,8 @@ namespace TribalWars.Maps.Manipulators.Managers
         public AttackManipulatorManager(Map map)
             : base(map)
         {
+            UseLegacyXmlWriter = false;
+
             // Active manipulators
             _attacker = new AttackManipulator(map, this);
             _manipulators.Add(_attacker);
@@ -38,15 +43,15 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region Methods
-        //protected internal override void ReadXmlCore(XmlReader r)
-        //{
-        //    _bbCode.ReadXmlCore(r);
-        //}
+        protected internal override void ReadXmlCore(XmlReader r)
+        {
+            
+        }
 
-        //protected internal override void WriteXmlCore(XmlWriter w)
-        //{
-        //    _bbCode.WriteXmlCore(w);
-        //}
+        protected internal override void WriteXmlCore(XmlWriter w)
+        {
+            
+        }
 
         public override IContextMenu GetContextMenu(Point location, Village village)
         {
@@ -55,7 +60,6 @@ namespace TribalWars.Maps.Manipulators.Managers
                 return null;
             }
             return base.GetContextMenu(location, village);
-
         }
         #endregion
 
@@ -103,5 +107,30 @@ namespace TribalWars.Maps.Manipulators.Managers
                 }
             }
         }
+
+        #region Persistence
+        public override string WriteXml()
+        {
+            var plans = new List<AttackPlanInfo>();
+            foreach (MapDistanceControl planControl in _plans.Values)
+            {
+                AttackPlanInfo plan = planControl.GetPlanInfo();
+                plans.Add(plan);
+            }
+
+            var output = new XDocument(
+                plans.Select(plan => 
+                    new XElement("Plan", 
+                        new XAttribute("Target", plan.Target.LocationString), 
+                        new XAttribute("ArrivalTime", plan.ArrivalTime.ToFileTimeUtc()),
+                        new XElement("Attackers",
+                            plan.Attacks.Select(attacker => 
+                                new XElement("Attacker",
+                                    new XAttribute("Attacker", attacker.Attacker.LocationString),
+                                    new XAttribute("SlowestUnit", attacker.SlowestUnit.Type)))))));
+                            
+            return output.ToString();
+        }
+        #endregion
     }
 }
