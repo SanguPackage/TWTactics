@@ -151,7 +151,7 @@ namespace TribalWars.Worlds
                 w.WriteAttributeString("Date", DateTime.Now.ToLongDateString());
 
                 w.WriteStartElement("You");
-                w.WriteAttributeString("Name", World.Default.You != null ? World.Default.You.Name : "");
+                w.WriteAttributeString("Name", World.Default.You.Name);
                 map.MarkerManager.WriteDefaultMarkers(w);
                 w.WriteEndElement();
 

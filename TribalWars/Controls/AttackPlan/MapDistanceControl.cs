@@ -270,6 +270,9 @@ namespace TribalWars.Controls.AttackPlan
 
         public void Clear()
         {
+            //DistanceContainer.Controls.Clear();
+            //DistanceContainer.RowCount = 0;
+
             for (int i = DistanceContainer.RowCount - 2; i >= 0; i--)
             {
                 var mdv = DistanceContainer.Controls[i] as MapDistanceVillageControl;

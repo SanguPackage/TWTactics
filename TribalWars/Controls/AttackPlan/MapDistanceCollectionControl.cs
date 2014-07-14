@@ -104,21 +104,32 @@ namespace TribalWars.Controls.AttackPlan
 
         private void cmdFind_Click(object sender, EventArgs e)
         {
-            if (ActivePlan != null && World.Default.HasLoaded && World.Default.You != null)
+            if (ActivePlan != null && World.Default.HasLoaded && !World.Default.You.Empty)
             {
-                foreach (Village village in World.Default.You)
+                Unit unit = UnitInput.Unit;
+                if (unit != null)
                 {
-                    Unit unit = UnitInput.Unit;
-                    if (unit != null)
+                    Village[] villagesAlreadyUsed = ActivePlan.GetPlanInfo().Attacks.Select(x => x.Attacker).ToArray();
+
+                    var villagesWithTimeLeft = 
+                        from village in World.Default.You
+                        where !villagesAlreadyUsed.Contains(village)
+                        let travelTime = Village.TravelTime(ActivePlan.Target, village, unit)
+                        let timeBeforeNeedToSend = ActivePlan.AttackDate - World.Default.Settings.ServerTime.Add(travelTime)
+                        where timeBeforeNeedToSend.TotalSeconds > 0
+                        select new
+                            {
+                                Village = village,
+                                TimeBeforeNeedToSend = timeBeforeNeedToSend
+                            };
+
+                    foreach (var village in villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(20))
                     {
-                        TimeSpan travelTime = Village.TravelTime(ActivePlan.Target, village, unit);
-                        TimeSpan left = ActivePlan.AttackDate - World.Default.Settings.ServerTime.Add(travelTime);
-                        if (left.TotalSeconds > 0 && left.TotalHours < 3)
-                        {
-                            MapDistanceVillageControl ctl = ActivePlan.AddVillage(village);
-                            ctl.UnitSelectedIndex = unit.Position;
-                        }
+                        MapDistanceVillageControl ctl = ActivePlan.AddVillage(village.Village);
+                        ctl.UnitSelectedIndex = unit.Position;
                     }
+
+                    ActivePlan.Sort();
                 }
             }
         }
@@ -215,46 +226,6 @@ namespace TribalWars.Controls.AttackPlan
                 ActivePlan = null;
             }
             World.Default.Map.Invalidate(false);
-        }
-
-        public void SetPlan(IEnumerable<Village> villages)
-        {
-            if (villages == null)
-            {
-                ActivePlan = null;
-            }
-            else
-            {
-                // clumsy :p
-                // should've made a new toolstripmenuitem...
-                Village last = null;
-                foreach (Village vil in villages)
-                {
-                    last = vil;
-                }
-
-                if (last != null)
-                {
-                    MapDistanceControl plan = null;
-                    foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _plans)
-                    {
-                        if (pair.Value.Target == last)
-                        {
-                            pair.Key.Checked = true;
-                            plan = pair.Value;
-                        }
-                        else
-                        {
-                            pair.Key.Checked = false;
-                        }
-                    }
-                    if (plan == null)
-                    {
-                        AddTarget(last);
-                    }
-                    //ActivePlan = plan;
-                }
-            }
         }
         #endregion
 
