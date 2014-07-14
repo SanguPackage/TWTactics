@@ -13,6 +13,7 @@ using TribalWars.Controls.Polygons;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Villages;
+using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 
 #endregion
@@ -66,10 +67,12 @@ namespace TribalWars.Maps.Manipulators.Managers
         private Dictionary<ToolStripMenuItem, MapDistanceControl> _plans;
         private Func<MapDistanceControl> _activePlanGetter;
 
-        public void HackTogether(Dictionary<ToolStripMenuItem, MapDistanceControl> plans, Func<MapDistanceControl> activePlanGetter)
+        public List<AttackPlanInfo> HackTogether(Dictionary<ToolStripMenuItem, MapDistanceControl> plans, Func<MapDistanceControl> activePlanGetter)
         {
             _activePlanGetter = activePlanGetter;
             _plans = plans;
+
+            return _savedPlans;
         }
 
         public void Draw(Graphics g)
@@ -119,17 +122,52 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
 
             var output = new XDocument(
-                plans.Select(plan => 
-                    new XElement("Plan", 
-                        new XAttribute("Target", plan.Target.LocationString), 
-                        new XAttribute("ArrivalTime", plan.ArrivalTime.ToFileTimeUtc()),
-                        new XElement("Attackers",
-                            plan.Attacks.Select(attacker => 
-                                new XElement("Attacker",
-                                    new XAttribute("Attacker", attacker.Attacker.LocationString),
-                                    new XAttribute("SlowestUnit", attacker.SlowestUnit.Type)))))));
+                new XElement("Plans",
+                    plans.Select(plan => 
+                        new XElement("Plan", 
+                            new XAttribute("Target", plan.Target.LocationString), 
+                            new XAttribute("ArrivalTime", plan.ArrivalTime.ToFileTimeUtc()),
+                            new XElement("Attackers",
+                                plan.Attacks.Select(attacker => 
+                                    new XElement("Attacker",
+                                        new XAttribute("Attacker", attacker.Attacker.LocationString),
+                                        new XAttribute("SlowestUnit", attacker.SlowestUnit.Type))))))));
                             
             return output.ToString();
+        }
+
+        private List<AttackPlanInfo> _savedPlans;
+
+        public override void ReadXml(XDocument doc)
+        {
+            _savedPlans = new List<AttackPlanInfo>();
+
+            var plans = doc.Descendants("Manipulator")
+                           .Where(manipulator => manipulator.Attribute("Type").Value == "Attack")
+                           .SelectMany(manipulator => manipulator.Descendants("Plan"));
+
+            foreach (XElement xmlPlan in plans)
+            {
+                var plan = new AttackPlanInfo
+                    {
+                        Target = World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
+                        ArrivalTime = DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value))
+                    };
+
+                foreach (var attackerXml in xmlPlan.Descendants("Attacker"))
+                {
+                    var slowestUnit = (UnitTypes)Enum.Parse(typeof(UnitTypes), attackerXml.Attribute("SlowestUnit").Value);
+                    var attacker = new AttackPlanFrom
+                        {
+                            Attacker = World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
+                            SlowestUnit = WorldUnits.Default[slowestUnit]
+                        };
+
+                    plan.Attacks.Add(attacker);
+                }
+
+                _savedPlans.Add(plan);
+            }
         }
         #endregion
     }

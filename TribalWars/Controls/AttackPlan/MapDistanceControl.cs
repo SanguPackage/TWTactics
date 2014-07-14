@@ -138,13 +138,17 @@ namespace TribalWars.Controls.AttackPlan
         #endregion
 
         #region MapDistanceVillage Control Helpers
-        public MapDistanceVillageControl AddVillage(Village village)
+        public MapDistanceVillageControl AddVillage(Village village, Unit slowestUnit = null)
         {
             DistanceContainer.RowStyles[DistanceContainer.RowCount - 1] = new RowStyle(SizeType.Absolute, 60F);
             DistanceContainer.RowCount++;
             DistanceContainer.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
             var ctl = new MapDistanceVillageControl(_unitImageList, village, this, DistanceContainer.RowCount - 1);
+            if (slowestUnit != null)
+            {
+                ctl.UnitSelectedIndex = slowestUnit.Position;
+            }
             DistanceContainer.Controls.Add(ctl, 0, DistanceContainer.RowCount - 2);
 
             World.Default.Map.Invalidate(false);

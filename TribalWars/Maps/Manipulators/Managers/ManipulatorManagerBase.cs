@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using Janus.Windows.Common;
 using TribalWars.Controls;
 using TribalWars.Maps.Manipulators.Helpers.EventArgs;
@@ -282,6 +283,14 @@ namespace TribalWars.Maps.Manipulators.Managers
         }
 
         /// <summary>
+        /// The doc is the ENTIRE settings file
+        /// </summary>
+        public virtual void ReadXml(XDocument doc)
+        {
+            Debug.Assert(!UseLegacyXmlWriter);
+        }
+
+        /// <summary>
         /// LEGACY: Saves state to stream
         /// </summary>
         public void WriteXml(XmlWriter w)
@@ -295,7 +304,7 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// </summary>
         public void ReadXml(XmlReader r)
         {
-            //Debug.Assert(UseLegacyXmlWriter);
+            Debug.Assert(UseLegacyXmlWriter);
             CleanUp();
             if (r.IsEmptyElement)
             {

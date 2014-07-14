@@ -35,7 +35,9 @@ namespace TribalWars.Worlds
         public static DisplaySettings ReadSettings(FileInfo file, Map map, Monitor monitor)
         {
             Debug.Assert(file.Exists);
-            
+
+            var newReader = XDocument.Load(file.FullName);
+
             var sets = new XmlReaderSettings();
             sets.IgnoreWhitespace = true;
             sets.CloseInput = true;
@@ -107,7 +109,15 @@ namespace TribalWars.Worlds
                     Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> dict = map.Manipulators.Manipulators;
                     if (dict.ContainsKey(manipulatorType))
                     {
-                        dict[manipulatorType].ReadXml(r);
+                        if (dict[manipulatorType].UseLegacyXmlWriter)
+                        {
+                            dict[manipulatorType].ReadXml(r);
+                        }
+                        else
+                        {
+                            r.Skip();
+                            dict[manipulatorType].ReadXml(newReader);
+                        }
                     }
                     else
                     {

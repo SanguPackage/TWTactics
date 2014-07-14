@@ -47,7 +47,18 @@ namespace TribalWars.Controls.AttackPlan
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
             UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
 
-            World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
+            var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
+            foreach (AttackPlanInfo plan in plansFromXml)
+            {
+                AddTarget(plan.Target);
+                ActivePlan.AttackDate = plan.ArrivalTime;
+
+                foreach (AttackPlanFrom attack in plan.Attacks)
+                {
+                    ActivePlan.AddVillage(attack.Attacker, attack.SlowestUnit);
+                }
+            }
+
         }
 
         private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
