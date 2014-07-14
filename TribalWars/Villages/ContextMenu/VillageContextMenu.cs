@@ -62,7 +62,7 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
             
             _menu.AddSeparator();
-            UICommand villageTypes =_menu.AddCommand("Type", null, village.Type.GetImage(true));
+            UICommand villageTypes =_menu.AddCommand("Set purpose", null, village.Type.GetImage(true));
             AddVillageTypeCommand(villageTypes, VillageType.Attack, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Defense, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Noble, village.Type);
