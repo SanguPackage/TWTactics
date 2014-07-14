@@ -227,6 +227,7 @@
     </Compile>
     <Compile Include="Tools\JanusExtensions\JanusContextMenu.cs" />
     <Compile Include="Tools\JanusExtensions\JanusGridEx.cs" />
+    <Compile Include="Tools\Linqs.cs" />
     <Compile Include="Villages\Helpers\IVisible.cs" />
     <Compile Include="Controls\Finders\AutoCompleteCache.cs" />
     <Compile Include="Controls\Monitoring\MonitoringControl.cs">

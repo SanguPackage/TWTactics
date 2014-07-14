@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
@@ -17,6 +18,8 @@ namespace TribalWars.Controls.AttackPlan
         #region Fields
         private readonly Dictionary<ToolStripMenuItem, MapDistanceControl> _plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
         private MapDistanceControl _activePlan;
+
+        private readonly ToolStripItem[] _visibleWhenNoPlans;
         #endregion
 
         #region Properties
@@ -36,6 +39,8 @@ namespace TribalWars.Controls.AttackPlan
         public MapDistanceCollectionControl()
         {
             InitializeComponent();
+
+            _visibleWhenNoPlans = new ToolStripItem[] { VillageInput, cmdAddTarget };
 
             World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
             World.Default.Map.EventPublisher.VillagesSelected += EventPublisherOnVillagesSelected;
@@ -62,6 +67,17 @@ namespace TribalWars.Controls.AttackPlan
                 }
             }
 
+            foreach (var toolbarItem in toolStrip1.Items.OfType<ToolStripItem>())
+            {
+                if (_plans.Any())
+                {
+                    toolbarItem.Visible = true;
+                }
+                else
+                {
+                    toolbarItem.Visible = _visibleWhenNoPlans.Contains(toolbarItem);
+                }
+            }
         }
 
         private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
@@ -152,6 +168,8 @@ namespace TribalWars.Controls.AttackPlan
         #region Public Methods
         private void AddTarget(Village vil)
         {
+            toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
+
             var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Tools.Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
             if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
             AttackDropDown.DropDownItems.Add(newItm);
