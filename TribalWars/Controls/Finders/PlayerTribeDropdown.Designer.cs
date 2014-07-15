@@ -43,13 +43,14 @@
             this.SelectorControl.DesignTimeLayout = SelectorControl_DesignTimeLayout;
             this.SelectorControl.DisplayMember = "Value";
             this.SelectorControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SelectorControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.55F);
             this.SelectorControl.HoverMode = Janus.Windows.GridEX.HoverMode.Highlight;
             this.SelectorControl.ImageList = this.SearchTypeImageList;
             this.SelectorControl.Location = new System.Drawing.Point(0, 0);
             this.SelectorControl.Name = "SelectorControl";
             this.SelectorControl.SelectedIndex = -1;
             this.SelectorControl.SelectedItem = null;
-            this.SelectorControl.Size = new System.Drawing.Size(133, 20);
+            this.SelectorControl.Size = new System.Drawing.Size(133, 22);
             this.SelectorControl.TabIndex = 12;
             this.SelectorControl.ValueMember = "Value";
             this.SelectorControl.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;

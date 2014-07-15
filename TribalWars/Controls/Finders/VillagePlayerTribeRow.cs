@@ -9,53 +9,45 @@ using TribalWars.Worlds;
 
 namespace TribalWars.Controls.Finders
 {
-    public class VillagePlayerTribeRow
+    public class VillagePlayerTribeRow : IEquatable<VillagePlayerTribeRow>
     {
         private IVisible _visibilityGetter;
 
-        public bool IsVillage { get; set; }
         public bool IsPlayer { get; set; }
         public bool IsTribe { get; set; }
 
         public string Value { get; set; }
         public string Text { get; set; }
 
+        public int Rank { get; set; }
+
         public int ImageIndex
         {
             get
             {
-                if (IsVillage) return 0;
                 if (IsPlayer) return 1;
                 if (IsTribe) return 2;
                 return -1;
             }
         }
 
-        public Image VisibleImage
+        public bool Visible
         {
             get
             {
-                if (_visibilityGetter.IsVisible(World.Default.Map))
-                {
-                    return Properties.Resources.Visible;
-                }
-                return null;
+                return _visibilityGetter.IsVisible(World.Default.Map);
             }
         }
 
-        public VillagePlayerTribeRow(Village village)
-        {
-            _visibilityGetter = village;
-            Value = village.LocationString;
-            Text = string.Format("{0}", village.HasPlayer ? village.Player.Name : village.Name);
-            IsTribe = true;
-        }
+        public string Tooltip { get; private set; }
 
         public VillagePlayerTribeRow(Tribe tribe)
         {
             _visibilityGetter = tribe;
             Value = tribe.Tag;
             Text = string.Format("#{1} ({0} points)", Tools.Common.GetPrettyNumber(tribe.AllPoints), tribe.Rank);
+            Tooltip = tribe.Tooltip;
+            Rank = tribe.Rank;
             IsTribe = true;
         }
 
@@ -64,7 +56,33 @@ namespace TribalWars.Controls.Finders
             _visibilityGetter = player;
             Value = player.Name;
             Text = string.Format("#{1} ({0} points)", Tools.Common.GetPrettyNumber(player.Points), player.Rank);
+            Tooltip = player.Tooltip;
+            Rank = player.Rank;
             IsPlayer = true;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Value={0}, Text={1}", Value, Text);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as VillagePlayerTribeRow);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
+        public bool Equals(VillagePlayerTribeRow other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            if (ReferenceEquals(other, this)) return false;
+            return Value == other.Value
+                   && IsPlayer == other.IsPlayer
+                   && IsTribe == other.IsTribe;
         }
     }
 }

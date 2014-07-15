@@ -61,11 +61,12 @@ namespace TribalWars.Controls.Finders
             this.Tribe.AllowPlayer = false;
             this.Tribe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Tribe.BackColor = System.Drawing.Color.Red;
+            this.Tribe.AutoOpenOnFocus = false;
+            this.Tribe.BackColor = System.Drawing.Color.Transparent;
             this.Tribe.Location = new System.Drawing.Point(90, 133);
             this.Tribe.Margin = new System.Windows.Forms.Padding(0);
             this.Tribe.Name = "Tribe";
-            this.Tribe.Size = new System.Drawing.Size(188, 20);
+            this.Tribe.Size = new System.Drawing.Size(188, 22);
             this.Tribe.TabIndex = 10;
             // 
             // label5

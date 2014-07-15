@@ -105,91 +105,99 @@ namespace TribalWars.Controls.Finders
             {
                 var data = (VillagePlayerTribeRow) e.Row.DataRow;
 
-                e.Row.Cells["Visible"].Image = data.VisibleImage;
+                if (data.Visible)
+                {
+                    e.Row.Cells["Visible"].Image = Properties.Resources.Visible;
+                }
+                
                 e.Row.Cells["Image"].ImageIndex = data.ImageIndex;
-
-                e.Row.Cells["Value"].ToolTipText = ""; // TODO: add tooltip
+                e.Row.Cells["Value"].ToolTipText = data.Tooltip;
             }
         }
 
         private void SelectorControl_TextChanged(object sender, EventArgs e)
         {
-            //var x1 = SelectorControl.NotInList;
-            //var x2 = SelectorControl.SelectedItem;
-            //var x3 = SelectorControl.Value;
+            if (_handleTextChanged)
+            {
+                bool found = false;
+                if (SelectorControl.Text.Length > 0 && string.IsNullOrEmpty(SelectorControl.SelectedText))
+                {
+                    if (AllowPlayer)
+                    {
+                        Player ply = World.Default.GetPlayer(SelectorControl.Text);
+                        if (ply != null)
+                        {
+                            found = true;
+                            SetPlayer(ply, true);
+                        }
+                    }
+                    if (AllowTribe && !found)
+                    {
+                        Tribe tribe = World.Default.GetTribe(SelectorControl.Text);
+                        if (tribe != null)
+                        {
+                            found = true;
+                            SetTribe(tribe, true);
+                        }
+                    }
+                }
 
-            //if (_handleTextChanged)
-            //{
-            //    bool found = false;
-            //    if (SelectorControl.Text.Length > 0 && string.IsNullOrEmpty(SelectorControl.SelectedText))
-            //    {
-            //        if (AllowPlayer)
-            //        {
-            //            Player ply = World.Default.GetPlayer(SelectorControl.Text);
-            //            if (ply != null)
-            //            {
-            //                found = true;
-            //                SetPlayer(ply, true);
-            //            }
-            //        }
-            //        if (AllowTribe && !found)
-            //        {
-            //            Tribe tribe = World.Default.GetTribe(SelectorControl.Text);
-            //            if (tribe != null)
-            //            {
-            //                found = true;
-            //                SetTribe(tribe, true);
-            //            }
-            //        }
-            //    }
+                if (!found && SelectorControl.BackColor != BadInput)
+                {
+                    if (SelectorControl.Text.Length == 0)
+                    {
+                        SelectorControl.BackColor = NeutralInput;
+                    }
+                    else
+                    {
+                        SelectorControl.BackColor = BadInput;
+                        _tooltip.ToolTipTitle = string.Empty;
+                        _tooltip.SetToolTip(this, GetEmptyTooltip());
+                    }
 
-            //    if (!found && SelectorControl.BackColor != BadInput)
-            //    {
-            //        if (SelectorControl.Text.Length == 0)
-            //        {
-            //            SelectorControl.BackColor = NeutralInput;
-            //        }
-            //        else
-            //        {
-            //            SelectorControl.BackColor = BadInput;
-            //            _tooltip.ToolTipTitle = string.Empty;
-            //            _tooltip.SetToolTip(this, GetEmptyTooltip());
-            //        }
+                    SelectorControl.Image = null;
+                    Tribe = null;
+                    Player = null;
+                }
+            }
+        }
 
-            //        SelectorControl.Image = null;
-            //        Tribe = null;
-            //        Player = null;
-            //    }
-            //}
+        private void SetDataSource()
+        {
+            if (SelectorControl.DataSource == null)
+            {
+                SelectorControl.DataSource = World.Default.Cache.GetPlayersAndTribes(AllowPlayer, AllowTribe);
+            }
         }
 
         private void SelectorControl_ValueChanged(object sender, EventArgs e)
         {
-            //SelectorControl.NotInList
-            //SelectorControl.SelectedItem
-            //SelectorControl.Value
-            //SelectorControl.DropDownList.
-
-            //Debug.WriteLine("SelectorControl.Value=" + SelectorControl.Value);
-
-            var selected = SelectorControl.SelectedItem as VillagePlayerTribeRow;
-            if (selected != null)
+            if (_handleTextChanged)
             {
-                if (selected.IsPlayer)
+                var selected = SelectorControl.SelectedItem as VillagePlayerTribeRow;
+                if (selected != null)
                 {
-                    Player ply = World.Default.GetPlayer(SelectorControl.Text);
-                    if (ply != null)
+                    if (selected.IsPlayer)
                     {
-                        SetPlayer(ply, true);
+                        Player ply = World.Default.GetPlayer(SelectorControl.Text);
+                        if (ply != null)
+                        {
+                            SetPlayer(ply, true);
+                        }
+                    }
+                    else if (selected.IsTribe)
+                    {
+                        var ply = World.Default.GetTribe(SelectorControl.Text);
+                        if (ply != null)
+                        {
+                            SetTribe(ply, true);
+                        }
                     }
                 }
-                else if (selected.IsTribe)
+                else
                 {
-                    var ply = World.Default.GetTribe(SelectorControl.Text);
-                    if (ply != null)
-                    {
-                        SetTribe(ply, true);
-                    }
+                    Player = null;
+                    Tribe = null;
                 }
             }
         }
@@ -204,11 +212,17 @@ namespace TribalWars.Controls.Finders
 
         private void SelectorControl_DropDown(object sender, EventArgs e)
         {
-            SelectorControl.DataSource = World.Default.Cache.GetPlayersAndTribes(AllowPlayer, AllowTribe);
+            SetDataSource();
         }
         #endregion
 
         #region Public Methods
+        public void SortOnText()
+        {
+            SelectorControl.DropDownList.SortKeys.RemoveAt(0);
+            SelectorControl.DropDownList.SortKeys.Add("Rank");
+        }
+
         /// <summary>
         /// Clears the input box
         /// </summary>
@@ -232,7 +246,6 @@ namespace TribalWars.Controls.Finders
             _handleTextChanged = oldHandleText;
         }
 
-       
         /// <summary>
         /// Sets a player in the box
         /// </summary>
@@ -244,7 +257,7 @@ namespace TribalWars.Controls.Finders
         /// <summary>
         /// Sets a player in the box
         /// </summary>
-        public void SetPlayer(Player player, bool raiseEvent)
+        private void SetPlayer(Player player, bool raiseEvent)
         {
             Player = player;
             Tribe = null;
@@ -254,6 +267,7 @@ namespace TribalWars.Controls.Finders
                 if (SelectorControl.Text != player.Name)
                 {
                     _handleTextChanged = false;
+                    SetDataSource();
                     SelectorControl.Text = player.Name;
                     _handleTextChanged = true;
                 }
@@ -284,7 +298,7 @@ namespace TribalWars.Controls.Finders
         /// <summary>
         /// Sets a tribe in the box
         /// </summary>
-        public void SetTribe(Tribe tribe, bool raiseEvent)
+        private void SetTribe(Tribe tribe, bool raiseEvent)
         {
             Player = null;
             Tribe = tribe;
@@ -294,6 +308,7 @@ namespace TribalWars.Controls.Finders
                 if (SelectorControl.Text != tribe.Tag)
                 {
                     _handleTextChanged = false;
+                    SetDataSource();
                     SelectorControl.Text = tribe.Tag;
                     _handleTextChanged = true;
                 }

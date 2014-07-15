@@ -34,6 +34,15 @@ namespace TribalWars.Forms.Small
             InitializeComponent();
         }
 
+        private void ActivePlayerForm_Load(object sender, EventArgs e)
+        {
+            if (You.Player == null || You.Player.Empty)
+            {
+                You.SelectorControl.Focus();
+                You.SelectorControl.DroppedDown = true;
+            }
+        }
+
         private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -50,16 +59,22 @@ namespace TribalWars.Forms.Small
                 youChooser.YouPlayer = World.Default.You;
                 youChooser.YourMarkerSettings = World.Default.Map.MarkerManager.YourMarkerSettings;
                 youChooser.YourTribeMarkerSettings = World.Default.Map.MarkerManager.YourTribeMarkerSettings;
+                youChooser.You.SortOnText();
                 var result = youChooser.ShowDialog();
 
                 if (result == DialogResult.OK)
                 {
-                    World.Default.You = youChooser.YouPlayer;
                     World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourMarkerSettings);
                     World.Default.Map.MarkerManager.UpdateDefaultMarker(World.Default.Map, youChooser.YourTribeMarkerSettings);
 
+                    if (World.Default.You != youChooser.YouPlayer)
+                    {
+                        World.Default.You = youChooser.YouPlayer;
+                        World.Default.Map.SetCenter(World.Default.You);
+                        World.Default.Map.SaveHome();
+                    }
+
                     World.Default.InvalidateMarkers();
-                    World.Default.Map.SetCenter(World.Default.You);
                 }
             }
         }
