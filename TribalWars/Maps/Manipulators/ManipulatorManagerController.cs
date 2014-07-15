@@ -26,6 +26,7 @@ namespace TribalWars.Maps.Manipulators
 
         #region Fields
         private readonly Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> _manipulators;
+        private ManipulatorManagerTypes? _previousType;
 
         private MouseMovedDelegate _mouseMoved;
         #endregion
@@ -121,9 +122,34 @@ namespace TribalWars.Maps.Manipulators
         /// </summary>
         public void SetManipulator(ManipulatorManagerTypes manipulator)
         {
+            if (manipulator != ManipulatorManagerTypes.Default)
+            {
+                _previousType = manipulator;
+            }
+
             CurrentManipulator = _manipulators[manipulator];
             CurrentManipulator.Initialize();
             Map.EventPublisher.ChangeManipulator(this, new ManipulatorEventArgs(manipulator));
+        }
+
+        /// <summary>
+        /// Keep track of last non-default manipulator
+        /// and switch between default and last
+        /// </summary>
+        public void SwitchManipulator()
+        {
+            if (!_previousType.HasValue)
+            {
+                SetManipulator(ManipulatorManagerTypes.Attack);
+            }
+            else if (CurrentManipulator == _manipulators[ManipulatorManagerTypes.Default])
+            {
+                SetManipulator(_previousType.Value);
+            }
+            else
+            {
+                SetManipulator(ManipulatorManagerTypes.Default);
+            }
         }
 
         public bool KeyDown(KeyEventArgs e)

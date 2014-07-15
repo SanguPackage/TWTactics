@@ -133,6 +133,12 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
+            if (e.MouseEventArgs.Button == MouseButtons.Middle)
+            {
+                _map.Manipulators.SwitchManipulator();
+                return true;
+            }
+
             if (_fullControllManipulator != null)
             {
                 return _fullControllManipulator.MouseDownCore(e);
