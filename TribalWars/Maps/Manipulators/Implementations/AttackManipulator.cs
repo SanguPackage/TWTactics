@@ -77,7 +77,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
                     World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculationTarget);
                     return true;
                 }
-                else if (e.MouseEventArgs.Button == MouseButtons.Right && e.Village.Player == World.Default.You)
+                else if (e.MouseEventArgs.Button == MouseButtons.Right && (e.Village.Player == World.Default.You || World.Default.You.Empty))
                 {
                     World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculation);
                     return true;
