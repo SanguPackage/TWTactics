@@ -58,11 +58,11 @@ namespace TribalWars.Maps.Manipulators.Implementations
                 if (_selectedVillage != e.Village)
                 {
                     _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.SelectVillage);
-                }
 
-                _selectedVillage = e.Village;
-                _unpinpointedVillage = null;
-                return true;
+                    _selectedVillage = e.Village;
+                    _unpinpointedVillage = null;
+                    return true;
+                }
             }
             if (e.Village == null && _pinPointedVillage == null && _selectedVillage != null)
             {
