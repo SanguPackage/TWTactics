@@ -184,10 +184,12 @@ namespace TribalWars.Maps.Manipulators
             return redraw;
         }
 
-        public void MouseLeave()
+        public bool MouseLeave()
         {
             // Avoid showing a tooltip outside the MapControl
             Map.StopTooltip();
+
+            return CurrentManipulator.MouseLeave();
         }
 
         public bool MouseMove(MouseEventArgs e)

@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Maps.Displays;
@@ -50,6 +51,8 @@ namespace TribalWars.Maps.Manipulators.Implementations
         private Pen _activeVillageAnimationPen;
         private readonly Pen _activeVillagePen;
         private readonly Pen _activeVillagePen2;
+
+        private Rectangle? _currentLocationMainMapRectangle;
         #endregion
 
         #region Constructors
@@ -165,6 +168,16 @@ namespace TribalWars.Maps.Manipulators.Implementations
                 e.Graphics.FillRectangle(Brushes.Black, cOff, e.FullMapRectangle.Bottom - height - cOff, width, height + cOff);
                 e.Graphics.DrawString(continentNumber, _continentFont, SystemBrushes.GradientInactiveCaption, cOff + 1, e.FullMapRectangle.Bottom - height - cOff);
             }
+
+            // Active location indicator
+            if (_currentLocationMainMapRectangle.HasValue)
+            {
+                using (var miniPen = new Pen(Color.Blue, 2))
+                {
+                    miniPen.DashStyle = DashStyle.Dot;
+                    e.Graphics.DrawRectangle(miniPen, _currentLocationMainMapRectangle.Value);
+                }
+            }
         }
 
         private static void PaintCross(Graphics g, Pen pen, Point villageLocation, Size villageSize)
@@ -199,6 +212,27 @@ namespace TribalWars.Maps.Manipulators.Implementations
                 return true;
             }
             return false;
+        }
+
+        protected internal override bool MouseLeave()
+        {
+            _currentLocationMainMapRectangle = null;
+            return true;
+        }
+
+        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        {
+            // Draw a rectangle around what would be seen on MouseDown on the mainmap
+            Rectangle mainMapGameRectangle = _mainMap.Display.GetGameRectangle();
+            _currentLocationMainMapRectangle = _map.Display.GetMapRectangle(mainMapGameRectangle);
+
+            _currentLocationMainMapRectangle = new Rectangle(
+                e.Location.X - _currentLocationMainMapRectangle.Value.Width / 2,
+                e.Location.Y - _currentLocationMainMapRectangle.Value.Height / 2,
+                _currentLocationMainMapRectangle.Value.Width,
+                _currentLocationMainMapRectangle.Value.Height);
+
+            return true;
         }
 
         private void EventPublisher_OwnLocationChanged(object sender, MapLocationEventArgs e)

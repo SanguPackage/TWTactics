@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -149,6 +150,11 @@ namespace TribalWars.Maps.Manipulators.Managers
                 foreach (ManipulatorBase m in _manipulators) redraw |= m.MouseDownCore(e);
                 return redraw;
             }
+        }
+
+        protected internal override bool MouseLeave()
+        {
+            return _manipulators.Aggregate(false, (redraw, m) => redraw | m.MouseLeave());
         }
 
         protected internal override bool MouseUpCore(MapMouseEventArgs e)

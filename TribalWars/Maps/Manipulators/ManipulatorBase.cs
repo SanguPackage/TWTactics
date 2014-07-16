@@ -65,6 +65,11 @@ namespace TribalWars.Maps.Manipulators
             return false;
         }
 
+        internal protected virtual bool MouseLeave()
+        {
+            return false;
+        }
+
         public virtual IContextMenu GetContextMenu(Point location, Village village)
         {
             if (village != null)
