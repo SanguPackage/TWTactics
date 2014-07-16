@@ -19,6 +19,7 @@ namespace TribalWars.Tools
         {
             using (var wb = new WebClient())
             {
+                wb.Proxy = WebRequest.GetSystemWebProxy();
                 var response = wb.UploadValues(url, "POST", data);
             }
         }

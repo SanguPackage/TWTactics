@@ -191,7 +191,7 @@ namespace TribalWars.Worlds
                                 DialogResult doDownload = MessageBox.Show(text, "Download latest data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (doDownload == DialogResult.Yes)
                                 {
-                                    Download();
+                                    DownloadNewTwSnapshot();
                                 }
                             }
 #endif
