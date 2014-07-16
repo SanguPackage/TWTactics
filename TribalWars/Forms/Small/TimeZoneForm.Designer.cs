@@ -41,6 +41,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TimeDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.CloseButton = new Janus.Windows.EditControls.UIButton();
+            ((System.ComponentModel.ISupportInitialize)(this.gbTimeZome)).BeginInit();
             this.gbTimeZome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffset)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +60,6 @@
             this.gbTimeZome.Name = "gbTimeZome";
             this.gbTimeZome.Size = new System.Drawing.Size(242, 234);
             this.gbTimeZome.TabIndex = 13;
-            this.gbTimeZome.TabStop = false;
             // 
             // label3
             // 
@@ -175,8 +175,9 @@
             this.Name = "TimeZoneForm";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Synchronize Server Time";
+            ((System.ComponentModel.ISupportInitialize)(this.gbTimeZome)).EndInit();
             this.gbTimeZome.ResumeLayout(false);
             this.gbTimeZome.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffset)).EndInit();

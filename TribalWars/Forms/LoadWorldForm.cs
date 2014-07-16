@@ -117,6 +117,9 @@ namespace TribalWars.Forms
             string world = AvailableWorlds.SelectedItem.ToString();
             string path = World.InternalStructure.WorldDataDirectory + world;
             var server = (World.InternalStructure.ServerInfo) Servers.SelectedItem;
+
+            Hide();
+
             World.CreateNewWorld(path, server);
             World.Default.LoadWorld(path);
 
@@ -127,8 +130,6 @@ namespace TribalWars.Forms
             Properties.Settings.Default.DefaultServer = server.ServerUrl;
             Properties.Settings.Default.Save();
 
-            Close();
-
             string selectYouLater = "";
             if (World.Default.You.Empty)
             {
@@ -138,6 +139,8 @@ namespace TribalWars.Forms
             MessageBox.Show(@"A new world has been created!
 
 Right click a village if you don't know where to start." + selectYouLater, "World Created!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            Close();
         }
 
         private void Servers_SelectedIndexChanged(object sender, EventArgs e)
