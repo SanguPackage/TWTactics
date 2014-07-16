@@ -229,7 +229,7 @@ namespace TribalWars.Maps
         /// <param name="mapVillage">Where and how big to draw the village</param>
         private void Paint(Graphics g, Point game, Rectangle mapVillage)
         {
-            if (!(game.X > 0 && game.X < 1000 && game.Y > 0 && game.Y < 1000))
+            if (!(game.X >= 0 && game.X < 1000 && game.Y >= 0 && game.Y < 1000))
                 return;
 
             Village village;
