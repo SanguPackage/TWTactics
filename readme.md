@@ -7,14 +7,13 @@
 The first beta release for the 'general public' can (probably) be expected somewhere end July 2014.
 
 ### Building the source ###
-The entire program should compile in one go in both VisualStudio 2010 and 2012.
+Due to a dependency on the Janus WinForms suite, you need to start Visual Studio as Administrator if you want to open a form in design mode. 
 
-Should you get **Access to the registry key '...' is denied when opening the WinForms designer**, then restart VisualStudio as Administrator.  
-`(TODO: Check if starting as Admin is only required the first time)` 
+The error you get is: **Access to the registry key '...' is denied** whenever you try to open the WinForms designer.
 
 ### Contributing ###
 
-Contributing is not only possible but the main reason the project is here on GitHub. It's probably a good idea to contact me first before implementing any major new features though.  
+Contributing is not only possible but the main reason the project is hosted here on GitHub. It's probably a good idea to contact me before implementing any major new features though.  
 
 ### License ###
 

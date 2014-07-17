@@ -112,56 +112,10 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #region Persistence
         protected internal override void WriteXmlCore(XmlWriter w)
         {
-            //if (Polygons.Count > 0)
-            //{
-            //    w.WriteStartElement("BBCodeManipulator");
-            //    foreach (Polygon poly in Polygons)
-            //    {
-            //        w.WriteStartElement("Polygon");
-            //        w.WriteAttributeString("ID", poly.Name);
-            //        w.WriteAttributeString("Visible", poly.Visible.ToString());
-            //        w.WriteAttributeString("Color", XmlHelper.SetColor(poly.LineColor));
-            //        w.WriteAttributeString("Group", poly.Group);
-            //        foreach (Point p in poly.List)
-            //        {
-            //            w.WriteStartElement("Point");
-            //            w.WriteAttributeString("X", p.X.ToString(CultureInfo.InvariantCulture));
-            //            w.WriteAttributeString("Y", p.Y.ToString(CultureInfo.InvariantCulture));
-            //            w.WriteEndElement();
-            //        }
-            //        w.WriteEndElement();
-            //    }
-            //    w.WriteEndElement();
-            //}
         }
 
         protected internal override void ReadXmlCore(XmlReader r)
         {
-            //if (r.IsStartElement("BBCodeManipulator") && !r.IsEmptyElement)
-            //{
-            //    r.ReadStartElement();
-            //    while (r.IsStartElement("Polygon"))
-            //    {
-            //        string id = r.GetAttribute("ID");
-            //        bool visible = Convert.ToBoolean(r.GetAttribute("Visible"));
-            //        Color color = XmlHelper.GetColor(r.GetAttribute("Color"), Color.White);
-            //        string group = r.GetAttribute("Group");
-
-            //        var points = new List<Point>();
-            //        r.ReadStartElement();
-            //        while (r.IsStartElement("Point"))
-            //        {
-            //            int x = Convert.ToInt32(r.GetAttribute("X"));
-            //            int y = Convert.ToInt32(r.GetAttribute("Y"));
-            //            points.Add(new Point(x, y));
-            //            r.Read();
-            //        }
-            //        var poly = new Polygon(id, visible, color, group, points);
-            //        Polygons.Add(poly);
-            //        r.ReadEndElement();
-            //    }
-            //    r.ReadEndElement();
-            //}
         }
 
         /// <summary>

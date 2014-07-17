@@ -44,16 +44,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region Methods
-        protected internal override void ReadXmlCore(XmlReader r)
-        {
-            
-        }
-
-        protected internal override void WriteXmlCore(XmlWriter w)
-        {
-            
-        }
-
         public override IContextMenu GetContextMenu(Point location, Village village)
         {
             if (village.Player == World.Default.You)
