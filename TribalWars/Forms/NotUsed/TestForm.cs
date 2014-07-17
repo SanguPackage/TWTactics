@@ -30,8 +30,8 @@ namespace TribalWars.Forms.NotUsed
             multiColumnCombo1.DisplayMember = "Value";
 
             var col2 =
-                World.Default.Tribes.Select(x => new VillagePlayerTribeRow(x))
-                .Union(World.Default.Players.Select(x => new VillagePlayerTribeRow(x)))
+                World.Default.Tribes.Select(x => new PlayerOrTribeRow(x))
+                .Union(World.Default.Players.Select(x => new PlayerOrTribeRow(x)))
                 .OrderBy(x => x.Value)
                 .ToArray();
 
@@ -48,7 +48,7 @@ namespace TribalWars.Forms.NotUsed
         {
             if (e.Row.RowType == RowType.Record)
             {
-                e.Row.Cells["Image"].ImageIndex = ((VillagePlayerTribeRow)e.Row.DataRow).ImageIndex;
+                e.Row.Cells["Image"].ImageIndex = ((PlayerOrTribeRow)e.Row.DataRow).ImageIndex;
             }
         }
 

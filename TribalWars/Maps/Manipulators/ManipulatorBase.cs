@@ -3,7 +3,7 @@ using System.Drawing;
 using TribalWars.Controls;
 using System.Xml;
 using TribalWars.Maps.Controls;
-using TribalWars.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;

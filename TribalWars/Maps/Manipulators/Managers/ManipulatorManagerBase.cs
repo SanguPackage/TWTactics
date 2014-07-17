@@ -9,7 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Janus.Windows.Common;
 using TribalWars.Controls;
-using TribalWars.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;

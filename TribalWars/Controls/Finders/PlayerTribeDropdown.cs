@@ -103,7 +103,7 @@ namespace TribalWars.Controls.Finders
         {
             if (e.Row.RowType == RowType.Record)
             {
-                var data = (VillagePlayerTribeRow) e.Row.DataRow;
+                var data = (PlayerOrTribeRow) e.Row.DataRow;
 
                 if (data.Visible)
                 {
@@ -174,7 +174,7 @@ namespace TribalWars.Controls.Finders
         {
             if (_handleTextChanged)
             {
-                var selected = SelectorControl.SelectedItem as VillagePlayerTribeRow;
+                var selected = SelectorControl.SelectedItem as PlayerOrTribeRow;
                 if (selected != null)
                 {
                     if (selected.IsPlayer)

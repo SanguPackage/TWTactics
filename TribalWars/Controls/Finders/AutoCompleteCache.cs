@@ -11,13 +11,13 @@ namespace TribalWars.Controls.Finders
     public class AutoCompleteCache
     {
         #region Fields
-        private IEnumerable<VillagePlayerTribeRow> _playerAutoComplete;
-        private IEnumerable<VillagePlayerTribeRow> _tribeAutoComplete;
+        private IEnumerable<PlayerOrTribeRow> _playerAutoComplete;
+        private IEnumerable<PlayerOrTribeRow> _tribeAutoComplete;
         #endregion
 
-        public VillagePlayerTribeRow[] GetPlayersAndTribes(bool players, bool tribes)
+        public PlayerOrTribeRow[] GetPlayersAndTribes(bool players, bool tribes)
         {
-            var dataSource = Enumerable.Empty<VillagePlayerTribeRow>();
+            var dataSource = Enumerable.Empty<PlayerOrTribeRow>();
             if (players)
             {
                 dataSource = dataSource.Concat(_playerAutoComplete);
@@ -31,14 +31,14 @@ namespace TribalWars.Controls.Finders
 
         public AutoCompleteCache()
         {
-            _playerAutoComplete = Enumerable.Empty<VillagePlayerTribeRow>();
-            _tribeAutoComplete = Enumerable.Empty<VillagePlayerTribeRow>();
+            _playerAutoComplete = Enumerable.Empty<PlayerOrTribeRow>();
+            _tribeAutoComplete = Enumerable.Empty<PlayerOrTribeRow>();
         }
 
         public AutoCompleteCache(Dictionary<string, Player> players, Dictionary<string, Tribe> tribes)
         {
-            _playerAutoComplete = players.Values.Select(x => new VillagePlayerTribeRow(x));
-            _tribeAutoComplete = tribes.Values.Select(x => new VillagePlayerTribeRow(x));
+            _playerAutoComplete = players.Values.Select(x => new PlayerOrTribeRow(x));
+            _tribeAutoComplete = tribes.Values.Select(x => new PlayerOrTribeRow(x));
         }
 
         public override string ToString()

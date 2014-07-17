@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TribalWars.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events;
 using TribalWars.Worlds.Events.Impls;

@@ -1,7 +1,7 @@
 #region Using
 using System.Drawing;
 using System.Windows.Forms;
-using TribalWars.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Worlds;
 

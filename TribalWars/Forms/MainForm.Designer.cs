@@ -1,10 +1,10 @@
 using TribalWars.Browsers.Control;
 using TribalWars.Controls.AccordeonDetails;
 using TribalWars.Controls.AccordeonLocation;
-using TribalWars.Controls.AttackPlan;
-using TribalWars.Controls.Monitoring;
-using TribalWars.Controls.Polygons;
 using TribalWars.Maps.Controls;
+using TribalWars.Maps.Manipulators.AttackPlans;
+using TribalWars.Maps.Manipulators.Monitoring;
+using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Maps.Markers;
 
 namespace TribalWars.Forms
@@ -116,16 +116,16 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this.MapDistance = new TribalWars.Controls.AttackPlan.MapDistanceCollectionControl();
+            this.MapDistance = new MapDistanceCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Browsers.Control.BrowserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new TribalWars.Controls.Polygons.PolygonControl();
+            this.Polygon = new PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new TribalWars.Controls.Monitoring.MonitoringControl();
+            this.monitoringControl1 = new MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             panel1 = new System.Windows.Forms.Panel();

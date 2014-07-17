@@ -131,7 +131,7 @@
     <Compile Include="Controls\Finders\LocationChangerControl.Designer.cs">
       <DependentUpon>LocationChangerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Finders\VillagePlayerTribeRow.cs" />
+    <Compile Include="Controls\Finders\PlayerOrTribeRow.cs" />
     <Compile Include="Controls\Finders\PlayerTribeDropdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,7 +161,9 @@
     <Compile Include="Controls\XPTables\PlayerTableRow.cs" />
     <Compile Include="Controls\XPTables\TribeTableRow.cs" />
     <Compile Include="Controls\XPTables\VillageTableRow.cs" />
-    <Compile Include="Controls\AttackPlan\MapdistanceVillageComparor.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanInfo.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\MapdistanceVillageComparor.cs" />
     <Compile Include="Controls\Common\ImageCombobox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -234,8 +236,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Villages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\Implementations\AttackManipulator.cs" />
-    <Compile Include="Maps\Manipulators\Managers\AttackManipulatorManager.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulator.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulatorManager.cs" />
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -248,25 +250,25 @@
     <Compile Include="Tools\Linqs.cs" />
     <Compile Include="Villages\Helpers\IVisible.cs" />
     <Compile Include="Controls\Finders\AutoCompleteCache.cs" />
-    <Compile Include="Controls\Monitoring\MonitoringControl.cs">
+    <Compile Include="Maps\Manipulators\Monitoring\MonitoringControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Monitoring\MonitoringControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\Monitoring\MonitoringControl.Designer.cs">
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Polygons\PolygonDataSet.cs">
+    <Compile Include="Maps\Manipulators\Polygons\PolygonDataSet.cs">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Polygons\PolygonDataSet.Designer.cs">
+    <Compile Include="Maps\Manipulators\Polygons\PolygonDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Maps\Markers\MarkerContextMenu.cs" />
     <Compile Include="Villages\ContextMenu\NoVillageContextMenu.cs" />
-    <Compile Include="Controls\Polygons\PolygonContextMenu.cs" />
-    <Compile Include="Controls\Polygons\NoPolygonContextMenu.cs" />
+    <Compile Include="Maps\Manipulators\Polygons\PolygonContextMenu.cs" />
+    <Compile Include="Maps\Manipulators\Polygons\NoPolygonContextMenu.cs" />
     <Compile Include="Maps\Controls\MiniMapControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -292,10 +294,10 @@
     </Compile>
     <Compile Include="Villages\Buildings\BuildingTypes.cs" />
     <Compile Include="Browsers\BrowserEventArgs.cs" />
-    <Compile Include="Controls\Polygons\PolygonControl.cs">
+    <Compile Include="Maps\Manipulators\Polygons\PolygonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Polygons\PolygonControl.designer.cs">
+    <Compile Include="Maps\Manipulators\Polygons\PolygonControl.designer.cs">
       <DependentUpon>PolygonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Browsers\Control\BrowserControl.cs">
@@ -310,22 +312,22 @@
     <Compile Include="Maps\Controls\MapControl.designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceControl.Designer.cs">
       <DependentUpon>MapDistanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceCollectionControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceCollectionControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.Designer.cs">
       <DependentUpon>MapDistanceCollectionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceVillageControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AttackPlan\MapDistanceVillageControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.Designer.cs">
       <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AccordeonLocation\LocationFinderControl.cs">
@@ -365,27 +367,27 @@
     <Compile Include="Maps\Drawers\VillageDrawers\IconOrientation.cs" />
     <Compile Include="Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
     <Compile Include="Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapKeyEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapMouseEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapMouseMoveEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapPaintEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapTimerPaintEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\EventArgs\MapVillageEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\KeyboardInputToMovementConverter.cs" />
-    <Compile Include="Maps\Manipulators\Implementations\ActiveRectangleManipulator.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapKeyEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapMouseEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapMouseMoveEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapPaintEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapTimerPaintEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\EventArg\MapVillageEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\KeyboardInputToMovementConverter.cs" />
+    <Compile Include="Maps\Manipulators\Monitoring\ActiveRectangleManipulator.cs" />
     <Compile Include="Maps\Manipulators\Managers\DefaultManipulatorManager.cs" />
     <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerBase.cs" />
-    <Compile Include="Maps\Manipulators\Helpers\Polygon.cs" />
+    <Compile Include="Maps\Manipulators\Polygons\Polygon.cs" />
     <Compile Include="Maps\Manipulators\Implementations\ActiveVillageManipulator.cs" />
     <Compile Include="Maps\Manipulators\Implementations\MapDraggerManipulator.cs" />
     <Compile Include="Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
     <Compile Include="Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
     <Compile Include="Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
-    <Compile Include="Maps\Manipulators\Implementations\BbCodeManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Polygons\BbCodeManipulator.cs" />
     <Compile Include="Maps\Manipulators\ManipulatorBase.cs" />
     <Compile Include="Maps\Manipulators\ManipulatorManagerController.cs" />
     <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
-    <Compile Include="Maps\Manipulators\Managers\PolygonManipulatorManager.cs" />
+    <Compile Include="Maps\Manipulators\Polygons\PolygonManipulatorManager.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="Maps\Display.cs" />
     <Compile Include="Maps\Markers\MarkerSettings.cs" />
@@ -488,7 +490,7 @@
     <Compile Include="Tools\PropertyGrid\Players\PlayerDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Tribes\TribeDescriptor.cs" />
     <Compile Include="Tools\PropertyGrid\Villages\VillageDescriptor.cs" />
-    <Compile Include="Controls\Monitoring\Monitor.cs" />
+    <Compile Include="Maps\Manipulators\Monitoring\Monitor.cs" />
     <Compile Include="Villages\Tribe.cs" />
     <Compile Include="Villages\Buildings\Building.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -549,11 +551,11 @@
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Monitoring\MonitoringControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Polygons\PolygonControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\Polygons\PolygonControl.resx">
       <DependentUpon>PolygonControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -565,15 +567,15 @@
       <DependentUpon>MapControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\AttackPlan\MapDistanceControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MapDistanceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\AttackPlan\MapDistanceCollectionControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MapDistanceCollectionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\AttackPlan\MapDistanceVillageControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -732,15 +734,15 @@
     <Content Include="WorldTemplate\WorldSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Controls\Polygons\PolygonDataSet.xsc">
+    <None Include="Maps\Manipulators\Polygons\PolygonDataSet.xsc">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Controls\Polygons\PolygonDataSet.xsd">
+    <None Include="Maps\Manipulators\Polygons\PolygonDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PolygonDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Controls\Polygons\PolygonDataSet.xss">
+    <None Include="Maps\Manipulators\Polygons\PolygonDataSet.xss">
       <DependentUpon>PolygonDataSet.xsd</DependentUpon>
     </None>
     <None Include="Resources\pin.gif" />

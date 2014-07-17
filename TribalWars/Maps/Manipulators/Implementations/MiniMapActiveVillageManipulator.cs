@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Maps.Displays;
-using TribalWars.Maps.Manipulators.Helpers.EventArgs;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events;
