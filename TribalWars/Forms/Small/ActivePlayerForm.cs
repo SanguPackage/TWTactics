@@ -50,7 +50,7 @@ namespace TribalWars.Forms.Small
         }
 
         /// <summary>
-        /// Show the form as a dialog and update World.Default after closing
+        /// Show the form as a dialog and update World.Default.You after closing
         /// </summary>
         public static void UpdateDefaultWorld()
         {

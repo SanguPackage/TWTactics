@@ -43,7 +43,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _visibleWhenNoPlans = new ToolStripItem[] { VillageInput, cmdAddTarget };
 
             World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
-            World.Default.Map.EventPublisher.VillagesSelected += EventPublisherOnVillagesSelected;
+            World.Default.Map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
+        }
+
+        private void EventPublisherOnTargetAdded(object sender, AttackEventArgs e)
+        {
+            AddTarget(e.Plan);
         }
         #endregion
 
@@ -55,10 +60,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             RemoveAllPlans();
 
-            var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.HackTogether(_plans, () => _activePlan);
+            var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.GetPlans();
             foreach (AttackPlanInfo plan in plansFromXml)
             {
-                AddTarget(plan.Target);
+                AddTarget(plan);
                 ActivePlan.AttackDate = plan.ArrivalTime;
 
                 foreach (AttackPlanFrom attack in plan.Attacks)
@@ -105,7 +110,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             Village village = VillageInput.Village;
             if (village != null)
             {
-                World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculation);
+                World.Default.Map.EventPublisher.AttackAddTarget(this, village);
             }
         }
 
@@ -173,8 +178,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Public Methods
-        private void AddTarget(Village vil)
+        private void AddTarget(AttackPlanInfo plan)
         {
+            var vil = plan.Target;
+
             toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
 
             var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Tools.Common.GetPrettyNumber(vil.Points)), null, SelectPlan);

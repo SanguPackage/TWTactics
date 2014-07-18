@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TribalWars.Browsers.Reporting;
 using TribalWars.Maps.Manipulators;
+using TribalWars.Maps.Manipulators.AttackPlans;
 using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Villages;
@@ -35,7 +36,7 @@ namespace TribalWars.Maps
         public event EventHandler<MapDisplayTypeEventArgs> DisplayTypeChanged;
         public event EventHandler<ManipulatorEventArgs> ManipulatorChanged;
 
-        public event EventHandler<VillageEventArgs> TargetAdded;
+        public event EventHandler<AttackEventArgs> TargetAdded;
         #endregion
 
         #region Constructors
@@ -120,10 +121,10 @@ namespace TribalWars.Maps
         #endregion
 
         #region Attack Events
-        internal void AttackAddTarget(object sender, MapLocationEventArgs e)
+        internal void AttackAddTarget(object sender, AttackEventArgs e)
         {
             if (TargetAdded != null)
-                TargetAdded(sender, null);
+                TargetAdded(sender, e);
         }
         #endregion
 

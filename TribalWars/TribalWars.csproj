@@ -161,6 +161,7 @@
     <Compile Include="Controls\XPTables\PlayerTableRow.cs" />
     <Compile Include="Controls\XPTables\TribeTableRow.cs" />
     <Compile Include="Controls\XPTables\VillageTableRow.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackEventArgs.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanInfo.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\MapdistanceVillageComparor.cs" />
