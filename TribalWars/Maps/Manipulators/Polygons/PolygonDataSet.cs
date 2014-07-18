@@ -1,7 +1,6 @@
 ﻿#region Using
 using System.Collections.Generic;
 using System.Globalization;
-using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 

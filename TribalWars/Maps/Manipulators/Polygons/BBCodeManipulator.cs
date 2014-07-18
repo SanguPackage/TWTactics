@@ -10,7 +10,7 @@ using System.Xml;
 using TribalWars.Controls;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.EventArg;
-using TribalWars.Maps.Manipulators.Helpers;
+using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Villages;

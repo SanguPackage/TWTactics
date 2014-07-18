@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace TribalWars.Maps.Manipulators.Helpers
+namespace TribalWars.Maps.Manipulators.Implementations
 {
     /// <summary>
     /// Convert user entered movement keys (arrows, ...) to an XY modifier

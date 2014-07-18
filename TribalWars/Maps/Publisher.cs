@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TribalWars.Browsers.Reporting;
 using TribalWars.Maps.Manipulators;
-using TribalWars.Maps.Manipulators.Helpers;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events;

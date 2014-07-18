@@ -160,26 +160,26 @@ namespace TribalWars.Browsers.Reporting
             bool scout = false, scout_failed = false, noble = false, noble_failed = false;
             foreach (ReportUnit unit in report.Attack.Values)
             {
-                if (unit.Unit.Type == UnitTypes.Spy)
+                switch (unit.Unit.Type)
                 {
-                    if (unit.AmountStart > 0)
-                    {
-                        scout = true;
-                        if (unit.AmountEnd == 0) scout_failed = true;
-                    }
-                }
-                else if (unit.Unit.Type == UnitTypes.Snob)
-                {
-                    if (unit.AmountStart > 0)
-                    {
-                        noble = true;
-                        if (unit.AmountEnd == 0) noble_failed = true;
-                    }
-                }
-                else
-                {
-                    attack += unit.AmountStart;
-                    attack_lost += unit.AmountLost;
+                    case UnitTypes.Spy:
+                        if (unit.AmountStart > 0)
+                        {
+                            scout = true;
+                            if (unit.AmountEnd == 0) scout_failed = true;
+                        }
+                        break;
+                    case UnitTypes.Snob:
+                        if (unit.AmountStart > 0)
+                        {
+                            noble = true;
+                            if (unit.AmountEnd == 0) noble_failed = true;
+                        }
+                        break;
+                    default:
+                        attack += unit.AmountStart;
+                        attack_lost += unit.AmountLost;
+                        break;
                 }
             }
             foreach (ReportUnit unit in report.Defense.Values)
