@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TribalWars</RootNamespace>
-    <AssemblyName>TribalWars</AssemblyName>
+    <AssemblyName>TWTactics</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -891,7 +891,18 @@
     <None Include="Resources\Pencil.cur" />
     <None Include="Resources\WorldBackgroundData.dat" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PublishFile Include="Microsoft.VisualBasic.PowerPacks.Vs">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
