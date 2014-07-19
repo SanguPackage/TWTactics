@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Maps.Manipulators.EventArg;
-using TribalWars.Maps.Manipulators.Helpers;
+using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Worlds;
 
 #endregion

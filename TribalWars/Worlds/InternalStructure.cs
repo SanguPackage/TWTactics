@@ -768,7 +768,6 @@ namespace TribalWars.Worlds
             /// <summary>
             /// Load previous data async
             /// </summary>
-            /// <param name="previousPath">The directory name with the previous data to download</param>
             public void LoadPreviousTwSnapshot(string previousPath, WorldVillagesCollection villages, Dictionary<string, Player> players, Dictionary<string, Tribe> tribes)
             {
                 bool load = true;

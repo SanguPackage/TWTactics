@@ -78,8 +78,6 @@ namespace TribalWars.Browsers.Parsers
         /// <summary>
         /// Parses the details from the village match
         /// </summary>
-        /// <param name="match">Match with village production details</param>
-        /// <param name="serverTime">Time the page was generated</param>
         private void HandleMatch(Dictionary<int, Village> ownVillages, Match match, DateTime serverTime)
         {
             Village vil = World.Default.GetVillage(match.Groups["village"].Value);

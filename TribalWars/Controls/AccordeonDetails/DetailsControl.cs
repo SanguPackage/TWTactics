@@ -271,7 +271,6 @@ namespace TribalWars.Controls.AccordeonDetails
         /// <summary>
         /// Prepares the user control for village details viewing
         /// </summary>
-        /// <param name="village">The village we want to see the details for</param>
         private void SetQuickFinder(Village village, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, village, tool));
@@ -280,7 +279,6 @@ namespace TribalWars.Controls.AccordeonDetails
         /// <summary>
         /// Prepares the user control for player details viewing
         /// </summary>
-        /// <param name="player">The player we want to see the details for</param>
         private void SetQuickFinder(Player player, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, player, tool));
@@ -289,7 +287,6 @@ namespace TribalWars.Controls.AccordeonDetails
         /// <summary>
         /// Prepares the user control for tribe details viewing
         /// </summary>
-        /// <param name="tribe">The tribe we want to see the details for</param>
         private void SetQuickFinder(Tribe tribe, VillageTools tool)
         {
             SetQuickFinder(new DetailsCommand(_current.Display, tribe, tool));
