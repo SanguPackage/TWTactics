@@ -29,5 +29,24 @@ namespace TribalWars.Tools
                 action();
             }
         }
+
+        /// <summary>
+        /// Put given text onto the clipboard
+        /// </summary>
+        /// <remarks>
+        /// Returns true if the operation succeeded
+        /// </remarks>
+        public static bool ToClipboard(string content)
+        {
+            try
+            {
+                Clipboard.SetText(content);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

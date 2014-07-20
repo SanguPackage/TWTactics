@@ -114,7 +114,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnToClipboard(object sender, EventArgs e)
         {
-            SetClipboard(_tribe.Tag);
+            WinForms.ToClipboard(_tribe.Tag);
         }
 
         /// <summary>
@@ -122,21 +122,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnBbCode(object sender, EventArgs e)
         {
-            SetClipboard(_tribe.BbCode());
-        }
-        #endregion
-
-        #region Private
-        private void SetClipboard(string text)
-        {
-            try
-            {
-                Clipboard.SetText(text);
-            }
-            catch (Exception)
-            {
-
-            }
+            WinForms.ToClipboard(_tribe.BbCode());
         }
         #endregion
     }

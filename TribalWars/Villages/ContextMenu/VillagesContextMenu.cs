@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Tools;
 
 #endregion
 
@@ -61,14 +62,7 @@ namespace TribalWars.Villages.ContextMenu
                     str.AppendFormat("{0}{1}", village.BbCode(), Environment.NewLine);
                 }
 
-                try
-                {
-                    Clipboard.SetText(str.ToString());
-                }
-                catch (Exception)
-                {
-                    
-                }
+                WinForms.ToClipboard(str.ToString());
             }
         }
         #endregion

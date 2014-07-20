@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using TribalWars.Controls.XPTables;
 using TribalWars.Maps.Manipulators.Managers;
+using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
@@ -167,14 +168,9 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 }
             }
 
-            try
+            if (WinForms.ToClipboard(str.ToString().Trim()))
             {
-                Clipboard.SetText(str.ToString().Trim());
                 MessageBox.Show(string.Format("BBCodes for {0} villages have been placed on the clipboard!", villagesExported), "BBCodes on clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch
-            {
-
             }
         }
 

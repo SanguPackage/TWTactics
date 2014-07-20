@@ -15,15 +15,8 @@ namespace TribalWars.Tools.PropertyGrid
         #region Overriden Methods
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
-            try
-            {
-                Debug.Assert(value != null, "value != null");
-                System.Windows.Forms.Clipboard.SetText(value.ToString());
-            }
-            catch
-            {
-
-            }
+            Debug.Assert(value != null, "value != null");
+            WinForms.ToClipboard(value.ToString());
             return base.EditValue(context, provider, value);
         }
 

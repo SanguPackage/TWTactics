@@ -158,7 +158,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnToClipboard(object sender, CommandEventArgs e)
         {
-            SetClipboard(_village.LocationString);
+            WinForms.ToClipboard(_village.LocationString);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnBbCode(object sender, CommandEventArgs e)
         {
-            SetClipboard(_village.BbCode());
+            WinForms.ToClipboard(_village.BbCode());
         }
 
         /// <summary>
@@ -189,18 +189,6 @@ namespace TribalWars.Villages.ContextMenu
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
             World.Default.Map.EventPublisher.AttackAddTarget(this, _village);
-        }
-
-        private void SetClipboard(string text)
-        {
-            try
-            {
-                Clipboard.SetText(text);
-            }
-            catch (Exception)
-            {
-
-            }
         }
         #endregion
     }

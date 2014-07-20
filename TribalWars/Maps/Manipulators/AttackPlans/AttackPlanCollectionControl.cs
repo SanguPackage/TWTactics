@@ -281,54 +281,30 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region TextOutput
         private void cmdClipboardText_Click(object sender, EventArgs e)
         {
-            try
+            if (ActivePlan != null)
             {
-                if (ActivePlan != null)
-                    Clipboard.SetText(ActivePlan.GetExport(false));
-            }
-            catch
-            {
-                
+                WinForms.ToClipboard(ActivePlan.GetExport(false));
             }
         }
 
         private void cmdClipboardBBCode_Click(object sender, EventArgs e)
         {
-            try
+            if (ActivePlan != null)
             {
-                if (ActivePlan != null)
-                    Clipboard.SetText(ActivePlan.GetExport(true));
-            }
-            catch
-            {
-
+                WinForms.ToClipboard(ActivePlan.GetExport(true));
             }
         }
 
         private void cmdClipboardTextAll_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string str = GetPlans(false);
-                if (str.Length != 0) Clipboard.SetText(str);
-            }
-            catch
-            {
-                
-            }
+            string str = GetPlans(false);
+            if (str.Length != 0) WinForms.ToClipboard(str);
         }
 
         private void cmdClipboardBBCodeAll_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string str = GetPlans(true);
-                if (str.Length != 0) Clipboard.SetText(str);
-            }
-            catch
-            {
-                
-            }
+            string str = GetPlans(true);
+            if (str.Length != 0) WinForms.ToClipboard(str);
         }
 
         private string GetPlans(bool bbCodes)

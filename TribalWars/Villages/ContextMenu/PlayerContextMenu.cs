@@ -99,7 +99,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnToClipboard(object sender, EventArgs e)
         {
-            SetClipboard(_player.Name);
+            WinForms.ToClipboard(_player.Name);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnBbCode(object sender, EventArgs e)
         {
-            SetClipboard(_player.BbCode());
+            WinForms.ToClipboard(_player.BbCode());
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnBbCodeOperation(object sender, EventArgs e)
         {
-            SetClipboard(_player.BbCodeMatt());
+            WinForms.ToClipboard(_player.BbCodeMatt());
         }
 
         /// <summary>
@@ -140,18 +140,6 @@ namespace TribalWars.Villages.ContextMenu
         private void OnPinPoint(object sender, EventArgs e)
         {
             World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
-        }
-
-        private void SetClipboard(string text)
-        {
-            try
-            {
-                Clipboard.SetText(text);
-            }
-            catch (Exception)
-            {
-
-            }
         }
         #endregion
     }
