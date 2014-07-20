@@ -46,12 +46,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Persistence
-        public override string WriteXml()
+        protected override string WriteXmlCore()
         {
             return _attacker.WriteXml();
         }
 
-        public override void ReadXml(XDocument doc)
+        protected override void ReadXmlCore(XDocument doc)
         {
             _attacker.ReadXml(doc);
         }

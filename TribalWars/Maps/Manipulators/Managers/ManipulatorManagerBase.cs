@@ -288,18 +288,35 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// <summary>
         /// The result will be Raw written to the XmlWriter
         /// </summary>
-        public virtual string WriteXml()
+        public string WriteXml()
         {
             Debug.Assert(!UseLegacyXmlWriter);
+            return WriteXmlCore();
+        }
+
+        /// <summary>
+        /// The result will be Raw written to the XmlWriter
+        /// </summary>
+        protected virtual string WriteXmlCore()
+        {
             return "";
         }
 
         /// <summary>
         /// The doc is the ENTIRE settings file
         /// </summary>
-        public virtual void ReadXml(XDocument doc)
+        public void ReadXml(XDocument doc)
         {
             Debug.Assert(!UseLegacyXmlWriter);
+            CleanUp();
+            ReadXmlCore(doc);
+        }
+
+        /// <summary>
+        /// The doc is the ENTIRE settings file
+        /// </summary>
+        protected virtual void ReadXmlCore(XDocument doc)
+        {
         }
 
         /// <summary>
