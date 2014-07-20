@@ -129,7 +129,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region TextOutput
         public override string ToString()
         {
-            return Attacker.GetExport(false, true);
+            return Attacker.ToString();
         }
         #endregion
     }

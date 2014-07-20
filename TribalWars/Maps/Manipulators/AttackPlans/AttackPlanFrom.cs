@@ -57,35 +57,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             return Plan.ArrivalTime - World.Default.Settings.ServerTime - TravelTime;
         }
 
-        /// <summary>
-        /// Export as text or bbcodes
-        /// </summary>
-        public string GetExport(bool bbCodes, bool isStandAloneOutput)
-        {
-            var str = new StringBuilder();
-            if (Attacker != null)
-            {
-                if (isStandAloneOutput)
-                {
-                    if (!bbCodes) str.AppendLine("Attack " + Plan.Target);
-                    else str.AppendLine("Attack " + Plan.Target.BbCode());
-                }
-                if (bbCodes)
-                {
-                    str.AppendLine(string.Format("{0} from {1}", SlowestUnit.BbCodeImage, Attacker.BbCode()));
-                    str.AppendLine("Send on: [b]" + FormattedSendDate() + "[/b]");
-                }
-                else
-                {
-                    str.AppendLine(string.Format("{0} from {1}", SlowestUnit.Name, Attacker));
-                    str.AppendLine("Send on: " + FormattedSendDate());
-                }
-                str.AppendLine();
-            }
-
-            return str.ToString();
-        }
-
         public override string ToString()
         {
             return string.Format("Attacker={0}, SlowestUnit={1}", Attacker.LocationString, SlowestUnit);

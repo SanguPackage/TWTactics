@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TribalWars.Villages;
 using TribalWars.Worlds;
+using System.Linq;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {

@@ -194,40 +194,5 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
         }
         #endregion
-
-        #region Export
-        public string GetExport(bool bbCodes)
-        {
-            return GetExport(bbCodes, true);
-        }
-
-        private string GetExport(bool bbCodes, bool standAlone)
-        {
-            SortOnTimeLeft();
-
-            if (Plan.Target != null)
-            {
-                var str = new StringBuilder();
-                if (standAlone)
-                {
-                    str.AppendLine("*** Attack Plan ***");
-                    str.AppendLine(!bbCodes ? Plan.Target.ToString() : Plan.Target.BbCode());
-                    str.AppendLine();
-
-                    str.AppendLine("Arrival time: " + Date.Value.ToString(Date.CustomFormat));
-                    str.AppendLine("Current time: " + World.Default.Settings.ServerTime.ToString(Date.CustomFormat));
-                    str.AppendLine();
-                }
-
-                foreach (var control in DistanceContainer.Controls.OfType<AttackPlanFromControl>())
-                {
-                    str.Append(control.Attacker.GetExport(bbCodes, standAlone));
-                }
-                   
-                return str.ToString().Trim();
-            }
-            return string.Empty;
-        }
-        #endregion
     }
 }

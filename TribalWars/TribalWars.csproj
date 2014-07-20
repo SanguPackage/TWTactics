@@ -179,6 +179,7 @@
       <DependentUpon>NewWorldForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Manipulators\AttackPlans\AttackEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanExporter.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlan.cs" />
     <Compile Include="Controls\Common\ImageCombobox.cs">

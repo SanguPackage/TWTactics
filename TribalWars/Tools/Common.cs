@@ -133,6 +133,13 @@ namespace TribalWars.Tools
         }
         #endregion
 
+        #region StringBuilder
+        public static void AppendLineFormat(this StringBuilder str, string format, object p1)
+        {
+            str.AppendLine(string.Format(format, p1));
+        }
+        #endregion
+
         #region Change Width PropertyGrid
         public static void MoveSplitter(System.Windows.Forms.PropertyGrid propertyGrid, int width)
         {

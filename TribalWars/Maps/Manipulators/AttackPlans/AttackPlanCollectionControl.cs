@@ -283,7 +283,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             if (ActivePlan != null)
             {
-                WinForms.ToClipboard(ActivePlan.GetExport(false));
+                string export = AttackPlanExporter.GetSinglePlanTextExport(ActivePlan.Plan);
+                WinForms.ToClipboard(export);
             }
         }
 
@@ -291,33 +292,28 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             if (ActivePlan != null)
             {
-                WinForms.ToClipboard(ActivePlan.GetExport(true));
+                string export = AttackPlanExporter.GetSinglePlanBbCodeExport(ActivePlan.Plan);
+                WinForms.ToClipboard(export);
             }
         }
 
         private void cmdClipboardTextAll_Click(object sender, EventArgs e)
         {
-            string str = GetPlans(false);
-            if (str.Length != 0) WinForms.ToClipboard(str);
+            IEnumerable<AttackPlanFrom> plans = GetAllAttacks();
+            string export = AttackPlanExporter.GetMultiPlanTextExport(plans);
+            WinForms.ToClipboard(export);
         }
 
         private void cmdClipboardBBCodeAll_Click(object sender, EventArgs e)
         {
-            string str = GetPlans(true);
-            if (str.Length != 0) WinForms.ToClipboard(str);
+            IEnumerable<AttackPlanFrom> plans = GetAllAttacks();
+            string export = AttackPlanExporter.GetMultiPlanBbCodeExport(plans);
+            WinForms.ToClipboard(export);
         }
 
-        private string GetPlans(bool bbCodes)
+        private IEnumerable<AttackPlanFrom> GetAllAttacks()
         {
-            var list = _plans.Keys.SelectMany(x => x.Attacks)
-                             .OrderBy(x => x.GetTimeLeftBeforeSendDate());
-
-            var str = new StringBuilder();
-            foreach (AttackPlanFrom comp in list)
-            {
-                str.Append(comp.GetExport(bbCodes, false));
-            }
-            return str.ToString().Trim();
+            return _plans.Keys.SelectMany(x => x.Attacks);
         }
         #endregion        
     }
