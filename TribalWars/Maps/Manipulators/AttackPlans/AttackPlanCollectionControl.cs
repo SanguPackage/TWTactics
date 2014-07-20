@@ -17,6 +17,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public partial class AttackPlanCollectionControl : UserControl
     {
+        #region Constants
+        /// <summary>
+        /// When searching for the fastest villages that can still make it for
+        /// the given travel time, add this many possible attackers per click
+        /// </summary>
+        private const int AutoFindAmountOfAttackers = 10;
+        #endregion
+
         #region Fields
         private readonly Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>> _plans = 
             new Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>>();
@@ -202,7 +210,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                                 TimeBeforeNeedToSend = timeBeforeNeedToSend
                             };
 
-                    foreach (var village in villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(20))
+                    foreach (var village in villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackers))
                     {
                         var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village.Village, UnitInput.Unit));
                         World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
