@@ -18,15 +18,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackManipulator : ManipulatorBase
     {
-        #region Constants
-        #endregion
-
         #region Fields
         private readonly List<AttackPlan> _plans;
         private AttackPlan _activePlan;
-        #endregion
-
-        #region Properties
         #endregion
 
         #region Constructors
@@ -40,7 +34,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             map.EventPublisher.TargetSelected += EventPublisherOnTargetSelected;
             map.EventPublisher.TargetRemoved += EventPublisherOnTargetRemoved;
         }
+        #endregion
 
+        #region AttackPlan Events
         private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
         {
             _plans.Remove(e.Plan);
@@ -58,9 +54,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _activePlan = e.Plan;
             _map.Invalidate(false);
         }
-        #endregion
 
-        #region Events
         private void EventPublisherOnTargetAdded(object sender, AttackEventArgs e)
         {
             Debug.Assert(!_plans.Contains(e.Plan));
@@ -95,7 +89,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
             World.Default.Map.Invalidate(false);
         }
+        #endregion
 
+        #region Map Events
         public override void Paint(MapPaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -135,7 +131,15 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             {
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
-                    _map.EventPublisher.AttackAddTarget(this, e.Village);
+                    var existingPlan = _plans.FirstOrDefault(x => x.Target == e.Village);
+                    if (existingPlan == null)
+                    {
+                        _map.EventPublisher.AttackAddTarget(this, e.Village);
+                    }
+                    else
+                    {
+                        _map.EventPublisher.AttackSelect(this, existingPlan);
+                    }
                     return true;
                 }
                 else if (e.MouseEventArgs.Button == MouseButtons.Right && (e.Village.Player == World.Default.You || World.Default.You.Empty))
@@ -229,9 +233,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _plans.Clear();
             _activePlan = null;
         }
-        #endregion
-
-        #region Private Implementation
         #endregion
     }
 }
