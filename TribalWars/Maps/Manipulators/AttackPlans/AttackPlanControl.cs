@@ -15,7 +15,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     {
         #region Fields
         private readonly ImageList _unitImageList;
-        private readonly bool _settingControlValues;
+        private bool _settingControlValues;
         #endregion
 
         #region Properties
@@ -29,14 +29,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _unitImageList = imageList;
 
             Plan = plan;
-
-            _settingControlValues = true;
-            Date.Value = plan.ArrivalTime;
-            Coords.Text = plan.Target.LocationString;
-            _Village.Text = plan.Target.Name;
-            _Player.Text = plan.Target.HasPlayer ? plan.Target.Player.ToString() : "";
-            _Tribe.Text = plan.Target.HasTribe ? plan.Target.Player.Tribe.ToString() : "";
-            _settingControlValues = false;
+            SetControlProperties();
         }
         #endregion
 
@@ -60,6 +53,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             if (!_settingControlValues)
             {
                 Plan.Target = e.FirstVillage;
+                SetControlProperties();
                 World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.Update());
             }
         }
@@ -165,6 +159,17 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     mdv.SetVillage(list[i]);
                 }
             }
+        }
+
+        private void SetControlProperties()
+        {
+            _settingControlValues = true;
+            Date.Value = Plan.ArrivalTime;
+            Coords.Text = Plan.Target.LocationString;
+            _Village.Text = Plan.Target.Name;
+            _Player.Text = Plan.Target.HasPlayer ? Plan.Target.Player.ToString() : "";
+            _Tribe.Text = Plan.Target.HasTribe ? Plan.Target.Player.Tribe.ToString() : "";
+            _settingControlValues = false;
         }
         #endregion
 

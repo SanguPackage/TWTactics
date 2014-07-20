@@ -47,7 +47,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // 
             this._Village.AutoSize = true;
             this._Village.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._Village.Location = new System.Drawing.Point(61, 7);
+            this._Village.Location = new System.Drawing.Point(86, 6);
             this._Village.Name = "_Village";
             this._Village.Size = new System.Drawing.Size(75, 13);
             this._Village.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // 
             // DateRequired
             // 
-            this.DateRequired.Location = new System.Drawing.Point(62, 25);
+            this.DateRequired.Location = new System.Drawing.Point(86, 25);
             this.DateRequired.Name = "DateRequired";
             this.DateRequired.Size = new System.Drawing.Size(75, 18);
             this.DateRequired.TabIndex = 3;
@@ -66,7 +66,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // 
             // DateLeft
             // 
-            this.DateLeft.Location = new System.Drawing.Point(62, 43);
+            this.DateLeft.Location = new System.Drawing.Point(86, 43);
             this.DateLeft.Name = "DateLeft";
             this.DateLeft.Size = new System.Drawing.Size(78, 18);
             this.DateLeft.TabIndex = 3;
@@ -113,12 +113,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // Coords
             // 
             this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.DisplayVillagePurposeImage = true;
             this.Coords.GameLocation = null;
             this.Coords.Location = new System.Drawing.Point(5, 3);
             this.Coords.Name = "Coords";
             this.Coords.PlaceHolderText = "";
-            this.Coords.ShowImage = false;
-            this.Coords.Size = new System.Drawing.Size(50, 20);
+            this.Coords.Size = new System.Drawing.Size(75, 20);
             this.Coords.TabIndex = 5;
             this.Coords.TextChanged += new System.EventHandler(this.Coords_TextChanged);
             // 
@@ -132,11 +132,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.UnitBox.ItemHeight = 20;
             this.UnitBox.Location = new System.Drawing.Point(5, 26);
             this.UnitBox.Name = "UnitBox";
-            this.UnitBox.Size = new System.Drawing.Size(51, 26);
+            this.UnitBox.Size = new System.Drawing.Size(75, 26);
             this.UnitBox.TabIndex = 2;
             this.UnitBox.SelectedIndexChanged += new System.EventHandler(this.Unit_SelectedIndexChanged);
             // 
-            // MapDistanceVillageControl
+            // AttackPlanFromControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -40,7 +40,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             Attacker = attacker;
 
             Coords.SetVillage(attacker.Attacker);
-            _Village.Text = Attacker.Attacker.Name;
             UnitBox.SelectedIndex = attacker.SlowestUnit.Position;
 
             _changingAttacker = false;
@@ -52,6 +51,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// </summary>
         public void UpdateDisplay()
         {
+            _Village.Text = Attacker.Attacker.Name;
+
             DateRequired.Text = Attacker.TravelTime.ToString();
             DateSend.Text = Attacker.FormattedSendDate();
             DateNow.Text = Tools.Common.GetPrettyDate(World.Default.Settings.ServerTime + Attacker.TravelTime);
@@ -93,6 +94,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             if (Attacker.Attacker != null)
             {
+                World.Default.Map.SetCenter(Attacker.Attacker);
                 World.Default.Map.EventPublisher.SelectVillages(this, Attacker.Attacker, VillageTools.PinPoint);
             }
         }
@@ -118,6 +120,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             if (!_changingAttacker && Coords.Village != null)
             {
                 Attacker.Attacker = Coords.Village;
+                UpdateDisplay();
                 World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.UpdateAttackFrom(Attacker));
             }
         }

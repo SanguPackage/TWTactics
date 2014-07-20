@@ -170,6 +170,9 @@ namespace TribalWars.Controls.Finders
                 _handleTextChanged = true;
             }
         }
+
+        [Category(PropertyGridCategory)]
+        public bool DisplayVillagePurposeImage { get; set; }
         #endregion
 
         #region Constructors
@@ -178,6 +181,7 @@ namespace TribalWars.Controls.Finders
             PlaceHolderText = "";
             AllowVillage = true;
             ShowImage = true;
+            DisplayVillagePurposeImage = true;
             Width = 50;
             _tooltip =  new ToolTip
                 {
@@ -417,7 +421,14 @@ namespace TribalWars.Controls.Finders
 
                 if (ShowImage)
                 {
-                    Image = Resources.Village;
+                    if (DisplayVillagePurposeImage && village.Type != VillageType.None)
+                    {
+                        Image = village.Type.GetImage(true);
+                    }
+                    else
+                    {
+                        Image = Resources.Village;
+                    }
                 }
                 SelectionStart = Text.Length;
                 BackColor = GoodInput;
