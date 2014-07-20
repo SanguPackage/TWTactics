@@ -49,6 +49,7 @@ namespace TribalWars.Controls.TimeConverter
             this.Date.ShowUpDown = true;
             this.Date.Size = new System.Drawing.Size(153, 20);
             this.Date.TabIndex = 2;
+            this.Date.ValueChanged += new System.EventHandler(this.Date_ValueChanged);
             // 
             // DateText
             // 

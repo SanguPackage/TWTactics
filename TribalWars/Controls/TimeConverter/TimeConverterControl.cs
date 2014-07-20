@@ -9,6 +9,11 @@ namespace TribalWars.Controls.TimeConverter
     /// </summary>
     public partial class TimeConverterControl : UserControl
     {
+        /// <summary>
+        /// Event whenever the selected DateTime changes
+        /// </summary>
+        public event EventHandler<DateEventArgs> DateSelected;
+
         #region Constructors
         public TimeConverterControl()
         {
@@ -37,6 +42,14 @@ namespace TribalWars.Controls.TimeConverter
         #endregion
 
         #region Event Handlers
+        private void Date_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateSelected != null)
+            {
+                DateSelected(sender, new DateEventArgs(Date.Value));
+            }
+        }
+
         /// <summary>
         /// Parses the current text on the clipboard and puts the date it in the DateTimePicker
         /// </summary>

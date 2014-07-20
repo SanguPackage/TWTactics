@@ -9,8 +9,6 @@ using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
-using TribalWars.Worlds.Events;
-using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
@@ -54,14 +52,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             World.Default.Map.EventPublisher.TargetSelected += EventPublisherOnTargetSelected;
             World.Default.Map.EventPublisher.TargetRemoved += EventPublisherOnTargetRemoved;
         }
-
-        private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
-        {
-            Remove(e.Plan);
-        }
         #endregion
 
-        #region Event Handlers
+        #region World/Map Event Handlers
         private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
         {
             foreach (var attackDropDownItem in AttackDropDown.DropDownItems.OfType<ToolStripMenuItem>())
@@ -93,15 +86,28 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     e.AttackFrom.ForEach(x => ActivePlan.RemoveAttacker(x));
                     break;
 
+                case AttackUpdateEventArgs.ActionKind.Update:
+                    if (ActivePlan != null)
+                    {
+                        Debug.Assert(!e.AttackFrom.Any() || ActivePlan.Plan == e.AttackFrom.First().Plan);
+                        ActivePlan.UpdateDisplay();
+                    }
+                    break;
+
                 default:
                     Debug.Assert(false);
                     break;
             }
         }
 
+        private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
+        {
+            RemovePlan(e.Plan);
+        }
+
         private void EventPublisherOnTargetAdded(object sender, AttackEventArgs e)
         {
-            AddTarget(e.Plan);
+            AddPlan(e.Plan);
         }
 
         private void Default_SettingsLoaded(object sender, EventArgs e)
@@ -117,7 +123,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.GetPlans();
             foreach (AttackPlan plan in plansFromXml)
             {
-                AddTarget(plan);
+                AddPlan(plan);
             }
             if (_plans.Any())
             {
@@ -136,7 +142,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 }
             }
         }
+        #endregion
 
+        #region Local Event Handlers
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (ActivePlan != null) ActivePlan.UpdateDisplay();
@@ -209,7 +217,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             if (ActivePlan != null)
             {
-                ActivePlan.Clear();
+                World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.DeleteAttacksFrom(ActivePlan.Plan.Attacks));
             }
         }
 
@@ -220,8 +228,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         }
         #endregion
 
-        #region Public Methods
-        private void AddTarget(AttackPlan plan)
+        #region AttackPlans
+        private void AddPlan(AttackPlan plan)
         {
             toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
 
@@ -243,7 +251,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             Timer.Enabled = true;
         }
 
-        private void Remove(AttackPlan plan)
+        private void RemovePlan(AttackPlan plan)
         {
             var attackControls = _plans[plan];
 

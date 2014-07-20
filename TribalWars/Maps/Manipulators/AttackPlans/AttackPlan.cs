@@ -10,10 +10,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackPlan
     {
+        #region Properties
         /// <summary>
         /// The village we will attack (or defend)
         /// </summary>
-        public Village Target { get; private set; }
+        public Village Target { get; set; }
 
         /// <summary>
         /// Arrival time for the troops
@@ -24,9 +25,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// Villages attacking the target village
         /// </summary>
         public List<AttackPlanFrom> Attacks { get; private set; }
+        #endregion
 
+        #region Constructors
         public AttackPlan(Village target, DateTime? arrivalTime)
-            : this()
         {
             Target = target;
             if (arrivalTime.HasValue)
@@ -37,12 +39,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             {
                 ArrivalTime = World.Default.Settings.ServerTime.AddHours(8);
             }
-        }
-
-        private AttackPlan()
-        {
             Attacks = new List<AttackPlanFrom>();
         }
+        #endregion
 
         public override string ToString()
         {

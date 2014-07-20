@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TribalWars.Tools;
-using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
-using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
@@ -19,6 +15,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     {
         #region Fields
         private readonly ImageList _unitImageList;
+        private readonly bool _settingControlValues;
         #endregion
 
         #region Properties
@@ -32,15 +29,41 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _unitImageList = imageList;
 
             Plan = plan;
+
+            _settingControlValues = true;
             Date.Value = plan.ArrivalTime;
             Coords.Text = plan.Target.LocationString;
             _Village.Text = plan.Target.Name;
             _Player.Text = plan.Target.HasPlayer ? plan.Target.Player.ToString() : "";
             _Tribe.Text = plan.Target.HasTribe ? plan.Target.Player.Tribe.ToString() : "";
+            _settingControlValues = false;
         }
         #endregion
 
         #region EventHandlers
+        private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            World.Default.Map.EventPublisher.AttackRemoveTarget(this, Plan);
+        }
+
+        private void Date_DateSelected(object sender, TribalWars.Controls.TimeConverter.DateEventArgs e)
+        {
+            if (!_settingControlValues)
+            {
+                Plan.ArrivalTime = e.SelectedDate;
+                World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.Update());
+            }
+        }
+
+        private void Coords_VillageSelected(object sender, Worlds.Events.Impls.VillageEventArgs e)
+        {
+            if (!_settingControlValues)
+            {
+                Plan.Target = e.FirstVillage;
+                World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.Update());
+            }
+        }
+
         private void _Village_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -117,10 +140,30 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// </summary>
         public void UpdateDisplay()
         {
-            foreach (Control ctl in DistanceContainer.Controls)
+            foreach (var attackFrom in DistanceContainer.Controls.OfType<AttackPlanFromControl>())
             {
-                var distanceControl = ctl as AttackPlanFromControl;
-                if (distanceControl != null) distanceControl.UpdateDisplay();
+                attackFrom.UpdateDisplay();
+            }
+        }
+
+        /// <summary>
+        /// Sort attackers, with attackers that need to be send first on top
+        /// </summary>
+        public void SortOnTimeLeft()
+        {
+            var list = DistanceContainer.Controls
+                .OfType<AttackPlanFromControl>()
+                .Select(x => x.Attacker)
+                .OrderBy(x => x.GetTimeLeftBeforeSendDate())
+                .ToArray();
+
+            for (int i = 0; i < DistanceContainer.Controls.Count; i++)
+            {
+                var mdv = DistanceContainer.Controls[i] as AttackPlanFromControl;
+                if (mdv != null)
+                {
+                    mdv.SetVillage(list[i]);
+                }
             }
         }
         #endregion
@@ -128,9 +171,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Attacker Changes
         public AttackPlanFromControl AddAttacker(AttackPlanFrom attackFrom)
         {
-            var ctl = new AttackPlanFromControl(_unitImageList, Plan, attackFrom);
+            var ctl = new AttackPlanFromControl(_unitImageList, attackFrom);
             DistanceContainer.Controls.Add(ctl);
-
             return ctl;
         }
 
@@ -182,34 +224,5 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             return string.Empty;
         }
         #endregion
-
-        public void SortOnTimeLeft()
-        {
-            var list = DistanceContainer.Controls
-                .OfType<AttackPlanFromControl>()
-                .Select(x => x.Attacker)
-                .OrderBy(x => x.GetTimeLeftBeforeSendDate())
-                .ToArray();
-
-            for (int i = 0; i < DistanceContainer.Controls.Count - 1; i++)
-            {
-                var mdv = DistanceContainer.Controls[i] as AttackPlanFromControl;
-                if (mdv != null)
-                {
-                    mdv.SetVillage(list[i]);
-                }
-            }
-        }
-
-        private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            World.Default.Map.EventPublisher.AttackRemoveTarget(this, Plan);
-        }
-
-        public void Clear()
-        {
-            // TODO: raise event instead
-            DistanceContainer.Controls.Clear();
-        }
     }
 }

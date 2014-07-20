@@ -5,16 +5,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Linq;
 using TribalWars.Maps.Manipulators.EventArg;
-using TribalWars.Maps.Manipulators.Managers;
-using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
-using TribalWars.Worlds.Events;
-using TribalWars.Worlds.Events.Impls;
-
 #endregion
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
@@ -75,19 +69,23 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         private void EventPublisherOnTargetUpdated(object sender, AttackUpdateEventArgs e)
         {
-            foreach (AttackPlanFrom attacker in e.AttackFrom)
+            foreach (AttackPlanFrom attacker in e.AttackFrom.ToArray())
             {
                 Debug.Assert(_plans.Contains(attacker.Plan));
+                AttackPlan plan = _plans.Single(x => x == attacker.Plan);
                 switch (e.Action)
                 {
                     case AttackUpdateEventArgs.ActionKind.Add:
-                        Debug.Assert(!attacker.Plan.Attacks.Contains(attacker));
-                        attacker.Plan.Attacks.Add(attacker);
+                        Debug.Assert(!plan.Attacks.Contains(attacker));
+                        plan.Attacks.Add(attacker);
                         break;
                         
                    case AttackUpdateEventArgs.ActionKind.Delete:
-                        Debug.Assert(attacker.Plan.Attacks.Contains(attacker));
-                        attacker.Plan.Attacks.Remove(attacker);
+                        Debug.Assert(plan.Attacks.Contains(attacker));
+                        plan.Attacks.Remove(attacker);
+                        break;
+
+                   case AttackUpdateEventArgs.ActionKind.Update:
                         break;
 
                     default:

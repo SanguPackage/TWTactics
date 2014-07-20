@@ -148,6 +148,7 @@
     <Compile Include="Controls\Finders\PlayerTribeDropdown.Designer.cs">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TimeConverter\DateEventArgs.cs" />
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,9 +1,6 @@
 using System;
 using System.Drawing;
-using System.Globalization;
-using System.Text;
 using System.Windows.Forms;
-using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
@@ -18,11 +15,15 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     public partial class AttackPlanFromControl : UserControl
     {
         #region Fields
+        private bool _changingAttacker;
+        #endregion
+
+        #region Properties
         public AttackPlanFrom Attacker { get; private set; }
         #endregion
 
         #region Constructors
-        public AttackPlanFromControl(ImageList list, AttackPlan plan, AttackPlanFrom attacker)
+        public AttackPlanFromControl(ImageList list, AttackPlanFrom attacker)
         {
             InitializeComponent();
 
@@ -35,11 +36,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Public Methods
         public void SetVillage(AttackPlanFrom attacker)
         {
+            _changingAttacker = true;
             Attacker = attacker;
 
             Coords.SetVillage(attacker.Attacker);
             _Village.Text = Attacker.Attacker.Name;
             UnitBox.SelectedIndex = attacker.SlowestUnit.Position;
+
+            _changingAttacker = false;
             UpdateDisplay();
         }
 
@@ -72,8 +76,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region EventHandlers
         private void Unit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Attacker.SlowestUnit = WorldUnits.Default[UnitBox.SelectedIndex];
-            UpdateDisplay();
+            if (!_changingAttacker)
+            {
+                Attacker.SlowestUnit = WorldUnits.Default[UnitBox.SelectedIndex];
+                UpdateDisplay();
+            }
         }
 
         private void Close_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -108,10 +115,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         private void Coords_TextChanged(object sender, EventArgs e)
         {
-            if (Coords.Village != null)
+            if (!_changingAttacker && Coords.Village != null)
             {
                 Attacker.Attacker = Coords.Village;
-                UpdateDisplay();
+                World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.UpdateAttackFrom(Attacker));
             }
         }
         #endregion
