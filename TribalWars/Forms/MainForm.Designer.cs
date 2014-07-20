@@ -116,7 +116,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this.MapDistance = new MapDistanceCollectionControl();
+            this._attackPlan = new AttackPlanCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();
@@ -945,7 +945,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.AutoScroll = true;
             this.LeftNavigation_Distance.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.LeftNavigation_Distance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_Distance.Controls.Add(this.MapDistance);
+            this.LeftNavigation_Distance.Controls.Add(this._attackPlan);
             this.LeftNavigation_Distance.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LeftNavigation_Distance.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.LeftNavigation_Distance.HighlightGradientHighColor = System.Drawing.Color.White;
@@ -970,13 +970,12 @@ namespace TribalWars.Forms
             // 
             // MapDistance
             // 
-            this.MapDistance.ActivePlan = null;
-            this.MapDistance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapDistance.Location = new System.Drawing.Point(0, 0);
-            this.MapDistance.Margin = new System.Windows.Forms.Padding(0);
-            this.MapDistance.Name = "MapDistance";
-            this.MapDistance.Size = new System.Drawing.Size(329, 174);
-            this.MapDistance.TabIndex = 0;
+            this._attackPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._attackPlan.Location = new System.Drawing.Point(0, 0);
+            this._attackPlan.Margin = new System.Windows.Forms.Padding(0);
+            this._attackPlan.Name = "_attackPlan";
+            this._attackPlan.Size = new System.Drawing.Size(329, 174);
+            this._attackPlan.TabIndex = 0;
             // 
             // Tabs
             // 
@@ -1196,7 +1195,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripDropDownButton ToolStripSettings;
         //private Controls.YouTreeold YouTree;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Distance;
-        private MapDistanceCollectionControl MapDistance;
+        private AttackPlanCollectionControl _attackPlan;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem MenuFileWorldDownload;
         private Ascend.Windows.Forms.NavigationPanePage LeftNavigation_Location;

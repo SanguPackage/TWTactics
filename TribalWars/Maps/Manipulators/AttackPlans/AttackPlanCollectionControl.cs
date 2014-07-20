@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -13,17 +14,22 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
-    public partial class MapDistanceCollectionControl : UserControl
+    /// <summary>
+    /// Control with all <see cref="AttackPlan" />s
+    /// </summary>
+    public partial class AttackPlanCollectionControl : UserControl
     {
         #region Fields
-        private readonly Dictionary<ToolStripMenuItem, MapDistanceControl> _plans = new Dictionary<ToolStripMenuItem, MapDistanceControl>();
-        private MapDistanceControl _activePlan;
+        private readonly Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>> _plans = 
+            new Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>>();
+
+        private AttackPlanControl _activePlan;
 
         private readonly ToolStripItem[] _visibleWhenNoPlans;
         #endregion
 
         #region Properties
-        public MapDistanceControl ActivePlan
+        private AttackPlanControl ActivePlan
         {
             get { return _activePlan; }
             set
@@ -36,7 +42,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Constructors
-        public MapDistanceCollectionControl()
+        public AttackPlanCollectionControl()
         {
             InitializeComponent();
 
@@ -44,32 +50,78 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
             World.Default.Map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
+            World.Default.Map.EventPublisher.TargetUpdated += EventPublisherOnTargetUpdated;
+            World.Default.Map.EventPublisher.TargetSelected += EventPublisherOnTargetSelected;
+            World.Default.Map.EventPublisher.TargetRemoved += EventPublisherOnTargetRemoved;
+        }
+
+        private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
+        {
+            Remove(e.Plan);
+        }
+        #endregion
+
+        #region Event Handlers
+        private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
+        {
+            foreach (var attackDropDownItem in AttackDropDown.DropDownItems.OfType<ToolStripMenuItem>())
+            {
+                attackDropDownItem.Checked = false;
+            }
+
+            if (e.Plan != null)
+            {
+                var selectedPlan = _plans[e.Plan];
+                selectedPlan.Item1.Checked = true;
+                ActivePlan = selectedPlan.Item2;
+            }
+            else
+            {
+                ActivePlan = null;
+            }
+        }
+
+        private void EventPublisherOnTargetUpdated(object sender, AttackUpdateEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case AttackUpdateEventArgs.ActionKind.Add:
+                    e.AttackFrom.ForEach(x => ActivePlan.AddAttacker(x));
+                    break;
+
+                case AttackUpdateEventArgs.ActionKind.Delete:
+                    e.AttackFrom.ForEach(x => ActivePlan.RemoveAttacker(x));
+                    break;
+
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
         }
 
         private void EventPublisherOnTargetAdded(object sender, AttackEventArgs e)
         {
             AddTarget(e.Plan);
         }
-        #endregion
 
-        #region Event Handlers
         private void Default_SettingsLoaded(object sender, EventArgs e)
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
             UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
 
-            RemoveAllPlans();
+            _plans.Clear();
+            AttackDropDown.DropDownItems.Clear();
+            ActivePlan = null;
+            AllPlans.Controls.Clear();
 
             var plansFromXml = World.Default.Map.Manipulators.AttackManipulator.GetPlans();
-            foreach (AttackPlanInfo plan in plansFromXml)
+            foreach (AttackPlan plan in plansFromXml)
             {
                 AddTarget(plan);
-                ActivePlan.AttackDate = plan.ArrivalTime;
-
-                foreach (AttackPlanFrom attack in plan.Attacks)
-                {
-                    ActivePlan.AddVillage(attack.Attacker, attack.SlowestUnit);
-                }
+            }
+            if (_plans.Any())
+            {
+                World.Default.Map.EventPublisher.AttackSelect(this, _plans.Select(x => x.Key).First());
             }
 
             foreach (var toolbarItem in toolStrip1.Items.OfType<ToolStripItem>())
@@ -85,24 +137,9 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
         }
 
-        private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
-        {
-            if (e.Tool == VillageTools.DistanceCalculationTarget)
-            {
-                AddTarget(e.FirstVillage);
-            }
-            else if (e.Tool == VillageTools.DistanceCalculation)
-            {
-                if (ActivePlan != null)
-                {
-                    ActivePlan.AddVillage(e.FirstVillage);
-                }
-            }
-        }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (ActivePlan != null) ActivePlan.Calculate();
+            if (ActivePlan != null) ActivePlan.UpdateDisplay();
         }
 
         private void cmdAddVillage_Click(object sender, EventArgs e)
@@ -110,7 +147,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             Village village = VillageInput.Village;
             if (village != null)
             {
-                World.Default.Map.EventPublisher.AttackAddTarget(this, village);
+                var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village, WorldUnits.Default[UnitTypes.Ram]));
+                World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
             }
         }
 
@@ -119,7 +157,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             Village village = VillageInput.Village;
             if (village != null)
             {
-                World.Default.Map.EventPublisher.SelectVillages(this, village, VillageTools.DistanceCalculationTarget);
+                World.Default.Map.EventPublisher.AttackAddTarget(this, village);
             }
         }
 
@@ -127,23 +165,28 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             if (World.Default.You.Empty)
             {
-                if (MessageBox.Show("You have not yet selected yourself.\nSet yourself now?", "Select Active Player", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show(
+                    "You have not yet selected yourself.\nSet yourself now?", 
+                    "Select Active Player", 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     ActivePlayerForm.UpdateDefaultWorld();    
                 }
             }
             else if (ActivePlan != null)
             {
-                Unit unit = UnitInput.Unit;
-                if (unit != null)
+                if (UnitInput.Unit != null)
                 {
-                    Village[] villagesAlreadyUsed = ActivePlan.GetPlanInfo().Attacks.Select(x => x.Attacker).ToArray();
+                    Village[] villagesAlreadyUsed = _plans.Keys.SelectMany(x => x.Attacks)
+                                                          .Select(x => x.Attacker)
+                                                          .ToArray();
 
                     var villagesWithTimeLeft = 
                         from village in World.Default.You
                         where !villagesAlreadyUsed.Contains(village)
-                        let travelTime = Village.TravelTime(ActivePlan.Target, village, unit)
-                        let timeBeforeNeedToSend = ActivePlan.AttackDate - World.Default.Settings.ServerTime.Add(travelTime)
+                        let travelTime = Village.TravelTime(ActivePlan.Plan.Target, village, UnitInput.Unit)
+                        let timeBeforeNeedToSend = ActivePlan.Plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
                         where timeBeforeNeedToSend.TotalSeconds > 0
                         select new
                             {
@@ -153,11 +196,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
                     foreach (var village in villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(20))
                     {
-                        MapDistanceVillageControl ctl = ActivePlan.AddVillage(village.Village);
-                        ctl.UnitSelectedIndex = unit.Position;
+                        var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village.Village, UnitInput.Unit));
+                        World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                     }
 
-                    ActivePlan.Sort();
+                    ActivePlan.SortOnTimeLeft();
                 }
             }
         }
@@ -173,91 +216,57 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private void cmdSort_Click(object sender, EventArgs e)
         {
             if (ActivePlan != null)
-                ActivePlan.Sort();
+                ActivePlan.SortOnTimeLeft();
         }
         #endregion
 
         #region Public Methods
-        private void AddTarget(AttackPlanInfo plan)
+        private void AddTarget(AttackPlan plan)
         {
-            var vil = plan.Target;
-
             toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
 
-            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Tools.Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
+            Village vil = plan.Target;
+            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
             if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
             AttackDropDown.DropDownItems.Add(newItm);
-            if (AttackDropDown.DropDownItems.Count == 1)
-                newItm.Checked = true;
 
-            var distance = new MapDistanceControl(this, WorldUnits.Default.ImageList);
-            distance.Target = vil;
+            var distance = new AttackPlanControl(WorldUnits.Default.ImageList, plan);
             distance.Dock = DockStyle.Fill;
-            _plans.Add(newItm, distance);
+            _plans.Add(plan, new Tuple<ToolStripMenuItem, AttackPlanControl>(newItm, distance));
             AllPlans.Controls.Add(distance);
 
-            SelectPlan(AttackDropDown.DropDownItems[AttackDropDown.DropDownItems.Count - 1], EventArgs.Empty);
+            foreach (AttackPlanFrom attack in plan.Attacks)
+            {
+                distance.AddAttacker(attack);
+            }
+
             Timer.Enabled = true;
         }
 
-        public void Remove(MapDistanceControl target)
+        private void Remove(AttackPlan plan)
         {
-            Collection.Controls.Remove(target);
-            ToolStripMenuItem menuItm = null;
-            foreach (KeyValuePair<ToolStripMenuItem, MapDistanceControl> pair in _plans)
-            {
-                if (pair.Value == target)
-                {
-                    menuItm = pair.Key;
-                }
-            }
-            if (menuItm != null)
-            {
-                _plans.Remove(menuItm);
-                AttackDropDown.DropDownItems.Remove(menuItm);
-            }
+            var attackControls = _plans[plan];
 
-            if (ActivePlan == target)
+            AllPlans.Controls.Remove(attackControls.Item2);
+            AttackDropDown.DropDownItems.Remove(attackControls.Item1);
+
+            if (ActivePlan == attackControls.Item2)
             {
                 if (AttackDropDown.DropDownItems.Count > 0)
+                {
                     SelectPlan(AttackDropDown.DropDownItems[0], EventArgs.Empty);
+                }
                 else
                 {
                     SelectPlan(null, EventArgs.Empty);
                 }
             }
-
-            World.Default.Map.Invalidate(false);
-        }
-
-        private void RemoveAllPlans()
-        {
-            var plans = _plans.Values.Select(x => x).ToArray();
-            foreach (var plan in plans)
-            {
-                Remove(plan);
-            }
         }
 
         private void SelectPlan(object sender, EventArgs e)
         {
-            // select new active plan
-            if (sender != null)
-            {
-                for (int i = 0; i < AttackDropDown.DropDownItems.Count; i++)
-                {
-                    ((ToolStripMenuItem)AttackDropDown.DropDownItems[i]).Checked = false;
-                }
-
-                var selectedItem = (ToolStripMenuItem)sender;
-                selectedItem.Checked = true;
-                ActivePlan = _plans[selectedItem];
-            }
-            else
-            {
-                ActivePlan = null;
-            }
-            World.Default.Map.Invalidate(false);
+            var selectedPlan =_plans.Where(x => x.Value.Item1 == sender).ToArray();
+            World.Default.Map.EventPublisher.AttackSelect(this, !selectedPlan.Any() ? null : selectedPlan.First().Key);
         }
         #endregion
 
@@ -267,7 +276,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             try
             {
                 if (ActivePlan != null)
-                    Clipboard.SetText(ActivePlan.GetPlan(false));
+                    Clipboard.SetText(ActivePlan.GetExport(false));
             }
             catch
             {
@@ -280,7 +289,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             try
             {
                 if (ActivePlan != null)
-                    Clipboard.SetText(ActivePlan.GetPlan(true));
+                    Clipboard.SetText(ActivePlan.GetExport(true));
             }
             catch
             {
@@ -316,18 +325,13 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         private string GetPlans(bool bbCodes)
         {
-            var list = new List<MapDistanceVillageComparor>();
-            foreach (MapDistanceControl distance in _plans.Values)
-            {
-                if (distance != null)
-                    list.AddRange(distance.GetVillageList());
-            }
-            list.Sort();
+            var list = _plans.Keys.SelectMany(x => x.Attacks)
+                             .OrderBy(x => x.GetTimeLeftBeforeSendDate());
 
             var str = new StringBuilder();
-            foreach (MapDistanceVillageComparor comp in list)
+            foreach (AttackPlanFrom comp in list)
             {
-                str.Append(comp.MapDistanceVillage.ToString(bbCodes, comp.MapDistanceVillage.TargetControl.Target));
+                str.Append(comp.GetExport(bbCodes, false));
             }
             return str.ToString().Trim();
         }

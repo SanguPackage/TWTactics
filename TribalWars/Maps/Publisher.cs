@@ -36,6 +36,9 @@ namespace TribalWars.Maps
         public event EventHandler<ManipulatorEventArgs> ManipulatorChanged;
 
         public event EventHandler<AttackEventArgs> TargetAdded;
+        public event EventHandler<AttackUpdateEventArgs> TargetUpdated;
+        public event EventHandler<AttackEventArgs> TargetRemoved;
+        public event EventHandler<AttackEventArgs> TargetSelected;
         #endregion
 
         #region Constructors
@@ -120,10 +123,42 @@ namespace TribalWars.Maps
         #endregion
 
         #region Attack Events
-        internal void AttackAddTarget(object sender, AttackEventArgs e)
+        public void AttackAddTarget(object sender, Village village, DateTime? arrivalTime = null)
+        {
+           AddTarget(sender, new AttackEventArgs(new AttackPlan(village, arrivalTime)));
+        }
+
+        public void AttackUpdateTarget(object sender, AttackUpdateEventArgs e)
+        {
+            if (TargetUpdated != null)
+                TargetUpdated(sender, e);
+        }
+
+        private void AddTarget(object sender, AttackEventArgs e)
         {
             if (TargetAdded != null)
                 TargetAdded(sender, e);
+
+            AttackSelect(sender, e);
+        }
+
+        public void AttackRemoveTarget(object sender, AttackPlan plan)
+        {
+            var e = new AttackEventArgs(plan);
+            if (TargetRemoved != null)
+                TargetRemoved(sender, e);
+        }
+
+        public void AttackSelect(object sender, AttackPlan plan)
+        {
+            var e = new AttackEventArgs(plan);
+            AttackSelect(sender, e);
+        }
+
+        private void AttackSelect(object sender, AttackEventArgs e)
+        {
+            if (TargetSelected != null)
+                TargetSelected(sender, e);
         }
         #endregion
 

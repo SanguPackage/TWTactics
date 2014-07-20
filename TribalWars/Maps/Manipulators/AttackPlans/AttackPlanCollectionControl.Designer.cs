@@ -2,7 +2,7 @@ using TribalWars.Controls.Common;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
-    partial class MapDistanceCollectionControl
+    partial class AttackPlanCollectionControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapDistanceCollectionControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackPlanCollectionControl));
             this.Collection = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.AttackDropDown = new System.Windows.Forms.ToolStripDropDownButton();
@@ -253,7 +253,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Collection);
-            this.Name = "MapDistanceCollectionControl";
+            this.Name = "AttackPlanCollectionControl";
             this.Size = new System.Drawing.Size(319, 370);
             this.Collection.ResumeLayout(false);
             this.Collection.PerformLayout();

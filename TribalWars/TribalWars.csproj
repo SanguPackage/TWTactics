@@ -173,8 +173,7 @@
     <Compile Include="Controls\XPTables\VillageTableRow.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackEventArgs.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanInfo.cs" />
-    <Compile Include="Maps\Manipulators\AttackPlans\MapdistanceVillageComparor.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlan.cs" />
     <Compile Include="Controls\Common\ImageCombobox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -249,6 +248,7 @@
     </Compile>
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulator.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulatorManager.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackUpdateEventArgs.cs" />
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -323,23 +323,23 @@
     <Compile Include="Maps\Controls\MapControl.designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceControl.Designer.cs">
-      <DependentUpon>MapDistanceControl.cs</DependentUpon>
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanControl.Designer.cs">
+      <DependentUpon>AttackPlanControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.Designer.cs">
-      <DependentUpon>MapDistanceCollectionControl.cs</DependentUpon>
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.Designer.cs">
+      <DependentUpon>AttackPlanCollectionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.Designer.cs">
-      <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.Designer.cs">
+      <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AccordeonLocation\LocationFinderControl.cs">
       <SubType>UserControl</SubType>
@@ -578,17 +578,17 @@
       <DependentUpon>MapControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanControl.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MapDistanceControl.cs</DependentUpon>
+      <DependentUpon>AttackPlanControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceCollectionControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MapDistanceCollectionControl.cs</DependentUpon>
+      <DependentUpon>AttackPlanCollectionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\MapDistanceVillageControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MapDistanceVillageControl.cs</DependentUpon>
+      <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AccordeonLocation\LocationFinderControl.resx">
       <SubType>Designer</SubType>

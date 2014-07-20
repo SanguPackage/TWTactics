@@ -3,7 +3,7 @@ using TribalWars.Controls.TimeConverter;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
-    partial class MapDistanceControl
+    partial class AttackPlanControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -198,7 +198,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "MapDistanceControl";
+            this.Name = "AttackPlanControl";
             this.Size = new System.Drawing.Size(274, 431);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

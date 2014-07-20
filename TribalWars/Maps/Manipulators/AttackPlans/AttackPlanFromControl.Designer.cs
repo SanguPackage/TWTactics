@@ -3,7 +3,7 @@ using TribalWars.Controls.Finders;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
-    partial class MapDistanceVillageControl
+    partial class AttackPlanFromControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -150,7 +150,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.Controls.Add(this.UnitBox);
             this.Controls.Add(this._Village);
             this.Margin = new System.Windows.Forms.Padding(1, 0, 0, 1);
-            this.Name = "MapDistanceVillageControl";
+            this.Name = "AttackPlanFromControl";
             this.Size = new System.Drawing.Size(311, 60);
             this.ResumeLayout(false);
             this.PerformLayout();

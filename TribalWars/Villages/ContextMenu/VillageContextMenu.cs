@@ -188,7 +188,7 @@ namespace TribalWars.Villages.ContextMenu
         private void OnAttack(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-            World.Default.Map.EventPublisher.SelectVillages(this, _village, VillageTools.DistanceCalculationTarget);
+            World.Default.Map.EventPublisher.AttackAddTarget(this, _village);
         }
 
         private void SetClipboard(string text)

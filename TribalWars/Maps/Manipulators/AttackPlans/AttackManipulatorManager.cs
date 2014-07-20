@@ -31,7 +31,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             UseLegacyXmlWriter = false;
 
             // Active manipulators
-            _attacker = new AttackManipulator(map, this);
+            _attacker = new AttackManipulator(map);
             _manipulators.Add(_attacker);
 
             MapMover.RightClickToMove = false;
@@ -41,7 +41,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Methods
         public override IContextMenu GetContextMenu(Point location, Village village)
         {
-            if (village.Player == World.Default.You)
+            if (village != null && village.Player == World.Default.You)
             {
                 return null;
             }
@@ -61,7 +61,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         }
         #endregion
 
-        public IEnumerable<AttackPlanInfo> GetPlans()
+        public IEnumerable<AttackPlan> GetPlans()
         {
             return _attacker.GetPlans();
         }

@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -27,58 +28,76 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Fields
-        private readonly AttackManipulatorManager _parent;
-
-        private readonly List<AttackPlanInfo> _plans;
-        private AttackPlanInfo _activePlan;
+        private readonly List<AttackPlan> _plans;
+        private AttackPlan _activePlan;
         #endregion
-
-        
-
-        //private Dictionary<ToolStripMenuItem, MapDistanceControl> _plans;
-        //private Func<MapDistanceControl> _activePlanGetter;
-
-        //public List<AttackPlanInfo> HackTogether(Dictionary<ToolStripMenuItem, MapDistanceControl> plans, Func<MapDistanceControl> activePlanGetter)
-        //{
-        //    _activePlanGetter = activePlanGetter;
-        //    _plans = plans;
-
-        //    if (_savedPlans == null)
-        //    {
-        //        _savedPlans = new List<AttackPlanInfo>();
-        //    }
-
-        //    return _savedPlans;
-        //}
-
 
         #region Properties
         #endregion
 
         #region Constructors
-        public AttackManipulator(Map map, AttackManipulatorManager parent)
+        public AttackManipulator(Map map)
             : base(map)
         {
-            _parent = parent;
-            _plans = new List<AttackPlanInfo>();
+            _plans = new List<AttackPlan>();
 
-            //map.EventPublisher.VillagesSelected += EventPublisherOnVillagesSelected;
+            map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
+            map.EventPublisher.TargetUpdated += EventPublisherOnTargetUpdated;
+            map.EventPublisher.TargetSelected += EventPublisherOnTargetSelected;
+            map.EventPublisher.TargetRemoved += EventPublisherOnTargetRemoved;
         }
 
-        //private void EventPublisherOnVillagesSelected(object sender, VillagesEventArgs e)
-        //{
-        //    if (e.Tool == VillageTools.DistanceCalculationTarget)
-        //    {
-        //        _plans.Add(e.FirstVillage);
-        //    }
-        //    else if (e.Tool == VillageTools.DistanceCalculation)
-        //    {
-                
-        //    }
-        //}
+        private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
+        {
+            _plans.Remove(e.Plan);
+
+            if (_activePlan == e.Plan)
+            {
+                _map.EventPublisher.AttackSelect(sender, _plans.FirstOrDefault());
+            }
+
+            _map.Invalidate(false);
+        }
+
+        private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
+        {
+            _activePlan = e.Plan;
+            _map.Invalidate(false);
+        }
         #endregion
 
         #region Events
+        private void EventPublisherOnTargetAdded(object sender, AttackEventArgs e)
+        {
+            Debug.Assert(!_plans.Contains(e.Plan));
+            _plans.Add(e.Plan);
+        }
+
+        private void EventPublisherOnTargetUpdated(object sender, AttackUpdateEventArgs e)
+        {
+            foreach (AttackPlanFrom attacker in e.AttackFrom)
+            {
+                Debug.Assert(_plans.Contains(attacker.Plan));
+                switch (e.Action)
+                {
+                    case AttackUpdateEventArgs.ActionKind.Add:
+                        Debug.Assert(!attacker.Plan.Attacks.Contains(attacker));
+                        attacker.Plan.Attacks.Add(attacker);
+                        break;
+                        
+                   case AttackUpdateEventArgs.ActionKind.Delete:
+                        Debug.Assert(attacker.Plan.Attacks.Contains(attacker));
+                        attacker.Plan.Attacks.Remove(attacker);
+                        break;
+
+                    default:
+                        Debug.Assert(false);
+                        break;
+                }
+            }
+            World.Default.Map.Invalidate(false);
+        }
+
         public override void Paint(MapPaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -118,12 +137,13 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             {
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
-                    World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculationTarget);
+                    _map.EventPublisher.AttackAddTarget(this, e.Village);
                     return true;
                 }
                 else if (e.MouseEventArgs.Button == MouseButtons.Right && (e.Village.Player == World.Default.You || World.Default.You.Empty))
                 {
-                    World.Default.Map.EventPublisher.SelectVillages(this, e.Village, VillageTools.DistanceCalculation);
+                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(_activePlan, e.Village, WorldUnits.Default[UnitTypes.Ram]));
+                    _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                     return true;
                 }
             }
@@ -148,7 +168,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Public Methods
-        public IEnumerable<AttackPlanInfo> GetPlans()
+        public IEnumerable<AttackPlan> GetPlans()
         {
             return _plans;
         }
@@ -184,20 +204,17 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             foreach (XElement xmlPlan in plans)
             {
-                var plan = new AttackPlanInfo
-                {
-                    Target = World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
-                    ArrivalTime = DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value))
-                };
+                var plan = new AttackPlan(
+                    World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
+                    DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value)));
 
                 foreach (var attackerXml in xmlPlan.Descendants("Attacker"))
                 {
                     var slowestUnit = (UnitTypes)Enum.Parse(typeof(UnitTypes), attackerXml.Attribute("SlowestUnit").Value);
-                    var attacker = new AttackPlanFrom
-                    {
-                        Attacker = World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
-                        SlowestUnit = WorldUnits.Default[slowestUnit]
-                    };
+                    var attacker = new AttackPlanFrom(
+                        plan,
+                        World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
+                        WorldUnits.Default[slowestUnit]);
 
                     plan.Attacks.Add(attacker);
                 }
