@@ -250,10 +250,13 @@ namespace TribalWars.Maps
                         {
                             // Paint extra village decorators
                             DrawerData data = World.Default.GetDrawerData(village, "VillageType");
-                            DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
-                            if (decoratorVillageType != null)
+                            if (data != null)
                             {
-                                decoratorVillageType.PaintVillage(g, mapVillage);
+                                DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
+                                if (decoratorVillageType != null)
+                                {
+                                    decoratorVillageType.PaintVillage(g, mapVillage);
+                                }
                             }
                         }
                     }

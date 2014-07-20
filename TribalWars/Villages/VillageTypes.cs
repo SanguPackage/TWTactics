@@ -39,7 +39,11 @@ namespace TribalWars.Villages
         /// <summary>
         /// A village with user-defined comments
         /// </summary>
-        Comments = 32
+        Comments = 32,
+        /// <summary>
+        /// Offense village with catapults
+        /// </summary>
+        Catapult = 64
     }
 
     public static class VillageTypeHelper
@@ -55,6 +59,9 @@ namespace TribalWars.Villages
 
             if (type.HasFlag(VillageType.Attack))
                 return UnitImages.Axe;
+
+            if (type.HasFlag(VillageType.Catapult))
+                return UnitImages.Catapult;
 
             if (type.HasFlag(VillageType.Defense))
                 return Properties.Resources.Defense;
@@ -81,6 +88,9 @@ namespace TribalWars.Villages
 
             if (type.HasFlag(VillageType.Attack))
                 return "Offensive";
+
+            if (type.HasFlag(VillageType.Catapult))
+                return "Catapults";
 
             if (type.HasFlag(VillageType.Defense))
                 return "Defensive";

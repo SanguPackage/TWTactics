@@ -64,6 +64,7 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddSeparator();
             UICommand villageTypes =_menu.AddCommand("Set purpose", null, village.Type.GetImage(true));
             AddVillageTypeCommand(villageTypes, VillageType.Attack, village.Type);
+            AddVillageTypeCommand(villageTypes, VillageType.Catapult, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Defense, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Noble, village.Type);
             AddVillageTypeCommand(villageTypes, VillageType.Scout, village.Type);

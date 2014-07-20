@@ -61,6 +61,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.FarmFlag = new System.Windows.Forms.ToolStripButton();
             this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
+            this.CatapultFlag = new System.Windows.Forms.ToolStripButton();
             this.QuickFinderLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -314,8 +315,8 @@ namespace TribalWars.Controls.AccordeonDetails
             // 
             // ContextStripPanel
             // 
-            this.ContextStripPanel.Controls.Add(this.MarkPlayerOrTribe);
             this.ContextStripPanel.Controls.Add(this.ContextStrip);
+            this.ContextStripPanel.Controls.Add(this.MarkPlayerOrTribe);
             this.ContextStripPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContextStripPanel.Location = new System.Drawing.Point(0, 25);
             this.ContextStripPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -344,6 +345,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ContextStrip.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AttackFlag,
+            this.CatapultFlag,
             this.DefenseFlag,
             this.NobleFlag,
             this.ScoutFlag,
@@ -423,6 +425,17 @@ namespace TribalWars.Controls.AccordeonDetails
             this.VillageCurrentSituation.Visible = false;
             this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
             // 
+            // CatapultFlag
+            // 
+            this.CatapultFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CatapultFlag.Image = global::TribalWars.Properties.Resources.catapult;
+            this.CatapultFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatapultFlag.Name = "CatapultFlag";
+            this.CatapultFlag.Size = new System.Drawing.Size(23, 22);
+            this.CatapultFlag.Text = "toolStripButton1";
+            this.CatapultFlag.ToolTipText = "Mark this village as offensive with catapults";
+            this.CatapultFlag.Click += new System.EventHandler(this.CatapultFlag_Click);
+            // 
             // DetailsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,5 +494,6 @@ namespace TribalWars.Controls.AccordeonDetails
         private System.Windows.Forms.ToolStripSeparator VillageSeperator;
         private System.Windows.Forms.ToolStripButton VillageCurrentSituation;
         private Maps.Markers.MarkerSettingsControl MarkPlayerOrTribe;
+        private System.Windows.Forms.ToolStripButton CatapultFlag;
     }
 }

@@ -747,6 +747,7 @@
     <None Include="Resources\map-marker-small.png" />
     <None Include="Resources\marker.ico" />
     <None Include="Resources\map-marker-small-th.png" />
+    <None Include="Resources\Catapult2.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

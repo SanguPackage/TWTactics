@@ -409,6 +409,7 @@ namespace TribalWars.Controls.AccordeonDetails
             FarmFlag.Checked = (type & VillageType.Farm) != 0;
             NobleFlag.Checked = (type & VillageType.Noble) != 0;
             ScoutFlag.Checked = (type & VillageType.Scout) != 0;
+            CatapultFlag.Checked = (type & VillageType.Catapult) != 0;
         }
 
         /// <summary>
@@ -432,6 +433,11 @@ namespace TribalWars.Controls.AccordeonDetails
         private void DefenseFlag_Click(object sender, EventArgs e)
         {
             FlagSwitcher(VillageType.Defense, DefenseFlag);
+        }
+
+        private void CatapultFlag_Click(object sender, EventArgs e)
+        {
+            FlagSwitcher(VillageType.Catapult, CatapultFlag);
         }
 
         private void AttackFlag_Click(object sender, EventArgs e)

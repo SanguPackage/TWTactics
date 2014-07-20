@@ -130,6 +130,12 @@
           <ExtraValue>Transparant</ExtraValue>
           <Value>16</Value>
         </Drawer>
+        <Drawer>
+          <Type>BorderDrawer</Type>
+          <Icon>Catapult</Icon>
+          <ExtraValue>Yellow</ExtraValue>
+          <Value>64</Value>
+        </Drawer>
       </Drawers>
     </View>
   </Views>
