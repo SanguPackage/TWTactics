@@ -116,16 +116,16 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this._attackPlan = new AttackPlanCollectionControl();
+            this._attackPlan = new TribalWars.Maps.Manipulators.AttackPlans.AttackPlanCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Browsers.Control.BrowserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new PolygonControl();
+            this.Polygon = new TribalWars.Maps.Manipulators.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new MonitoringControl();
+            this.monitoringControl1 = new TribalWars.Maps.Manipulators.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             panel1 = new System.Windows.Forms.Panel();
@@ -527,7 +527,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(463, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -538,7 +538,7 @@ namespace TribalWars.Forms
             this.ToolstripButtonCreateWorld.Name = "ToolstripButtonCreateWorld";
             this.ToolstripButtonCreateWorld.Size = new System.Drawing.Size(23, 22);
             this.ToolstripButtonCreateWorld.ToolTipText = "Create a new world";
-            this.ToolstripButtonCreateWorld.Click += new System.EventHandler(this.ToolStripOpen_Click);
+            this.ToolstripButtonCreateWorld.Click += new System.EventHandler(this.ToolstripButtonCreateWorld_Click);
             // 
             // ToolStripOpen
             // 
@@ -968,7 +968,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LeftNavigation_Distance.ToolTipText = null;
             // 
-            // MapDistance
+            // _attackPlan
             // 
             this._attackPlan.Dock = System.Windows.Forms.DockStyle.Fill;
             this._attackPlan.Location = new System.Drawing.Point(0, 0);

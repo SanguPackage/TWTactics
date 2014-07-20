@@ -79,9 +79,9 @@ namespace TribalWars.Forms
             if (!World.Default.LoadWorld(lastWorld, lastSettings))
             {
                 // Here begins the wizard for creating a new world...
-                using (var loadForm = new LoadWorldForm())
+                using (var createForm = new NewWorldForm())
                 {
-                    loadForm.ShowDialog();
+                    createForm.ShowDialog();
                 }
             }
 
@@ -281,7 +281,7 @@ namespace TribalWars.Forms
         {
             World.Default.SaveSettings();
 
-            var frm = new LoadWorldForm();
+            var frm = new NewWorldForm();
             frm.ShowDialog();
         }
 
@@ -327,8 +327,16 @@ namespace TribalWars.Forms
         private void ToolStripOpen_Click(object sender, EventArgs e)
         {
             World.Default.SaveSettings();
-
             using (var frm = new LoadWorldForm())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void ToolstripButtonCreateWorld_Click(object sender, EventArgs e)
+        {
+            World.Default.SaveSettings();
+            using (var frm = new NewWorldForm())
             {
                 frm.ShowDialog();
             }

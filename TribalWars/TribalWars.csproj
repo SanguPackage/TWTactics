@@ -172,6 +172,12 @@
     <Compile Include="Controls\XPTables\PlayerTableRow.cs" />
     <Compile Include="Controls\XPTables\TribeTableRow.cs" />
     <Compile Include="Controls\XPTables\VillageTableRow.cs" />
+    <Compile Include="Forms\NewWorldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewWorldForm.Designer.cs">
+      <DependentUpon>NewWorldForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maps\Manipulators\AttackPlans\AttackEventArgs.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlan.cs" />
@@ -553,6 +559,10 @@
     <EmbeddedResource Include="Controls\TimeConverter\TimeConverterCalculatorControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewWorldForm.resx">
+      <DependentUpon>NewWorldForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
