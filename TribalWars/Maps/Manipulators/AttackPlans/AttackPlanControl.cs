@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -134,6 +135,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// </summary>
         public void UpdateDisplay()
         {
+            AttackCountLabel.Text = Plan.Attacks.Count().ToString(CultureInfo.InvariantCulture);
             foreach (var attackFrom in DistanceContainer.Controls.OfType<AttackPlanFromControl>())
             {
                 attackFrom.UpdateDisplay();

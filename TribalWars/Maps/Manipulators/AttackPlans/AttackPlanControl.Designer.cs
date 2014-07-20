@@ -31,6 +31,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
@@ -39,9 +40,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this._Village = new System.Windows.Forms.Label();
             this._Tribe = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.AttackCountLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.DistanceContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -83,6 +86,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // Coords
             // 
             this.Coords.BackColor = System.Drawing.Color.White;
+            this.Coords.DisplayVillagePurposeImage = true;
             this.Coords.GameLocation = null;
             this.Coords.Location = new System.Drawing.Point(6, 3);
             this.Coords.Name = "Coords";
@@ -107,6 +111,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.Close.TabIndex = 13;
             this.Close.TabStop = true;
             this.Close.Text = "x";
+            this.toolTip1.SetToolTip(this.Close, "Delete this plan");
             this.Close.VisitedLinkColor = System.Drawing.Color.Black;
             this.Close.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Close_LinkClicked);
             // 
@@ -152,6 +157,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.AttackCountLabel);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.Date);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -160,6 +166,19 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(274, 30);
             this.panel3.TabIndex = 4;
+            // 
+            // AttackCountLabel
+            // 
+            this.AttackCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AttackCountLabel.AutoSize = true;
+            this.AttackCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AttackCountLabel.Location = new System.Drawing.Point(251, 6);
+            this.AttackCountLabel.Name = "AttackCountLabel";
+            this.AttackCountLabel.Size = new System.Drawing.Size(16, 16);
+            this.AttackCountLabel.TabIndex = 3;
+            this.AttackCountLabel.Text = "0";
+            this.AttackCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.AttackCountLabel, "Amount of attacks");
             // 
             // label1
             // 
@@ -179,6 +198,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(165, 25);
             this.Date.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.Date, "Set the time the attacks should reach the target");
             this.Date.Value = new System.DateTime(2008, 4, 10, 0, 26, 44, 906);
             this.Date.DateSelected += new System.EventHandler<TribalWars.Controls.TimeConverter.DateEventArgs>(this.Date_DateSelected);
             // 
@@ -224,5 +244,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private VillagePlayerTribeSelector Coords;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel DistanceContainer;
+        private System.Windows.Forms.Label AttackCountLabel;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
