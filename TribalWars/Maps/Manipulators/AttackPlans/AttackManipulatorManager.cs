@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Linq;
 using TribalWars.Controls;
+using TribalWars.Maps.Manipulators.AttackPlans.Controls;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages;
@@ -18,6 +19,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     {
         #region Fields
         private readonly AttackManipulator _attacker;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Global attack planner configuration
+        /// </summary>
+        public AttackManipulator.SettingsInfo Settings
+        {
+            get { return _attacker.Settings; }
+        }
         #endregion
 
         #region Constructors
@@ -38,12 +49,23 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Methods
+        public IEnumerable<AttackPlan> GetPlans()
+        {
+            return _attacker.GetPlans();
+        }
+
         public override IContextMenu GetContextMenu(Point location, Village village)
         {
-            if (village != null && village.Player == World.Default.You)
+            if (village == null)
+            {
+                return new NoVillageAttackContextMenu(this);
+            }
+
+            if (village.Player == World.Default.You)
             {
                 return null;
             }
+
             return base.GetContextMenu(location, village);
         }
         #endregion
@@ -59,10 +81,5 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _attacker.ReadXml(doc);
         }
         #endregion
-
-        public IEnumerable<AttackPlan> GetPlans()
-        {
-            return _attacker.GetPlans();
-        }
     }
 }

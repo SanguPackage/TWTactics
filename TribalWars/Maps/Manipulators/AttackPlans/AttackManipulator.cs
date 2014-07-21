@@ -38,11 +38,17 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         #region Fields
         private readonly List<AttackPlan> _plans;
-        //private readonly List<Village> _doublyUsedVillages;
         private Village _hoverVillage;
 
         private AttackPlan ActivePlan { get; set; }
         private AttackPlanFrom ActiveAttacker { get; set; }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Global attack planner configuration
+        /// </summary>
+        public SettingsInfo Settings { get; private set; }
         #endregion
 
         #region Constructors
@@ -50,7 +56,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             : base(map)
         {
             _plans = new List<AttackPlan>();
-            //_doublyUsedVillages = new List<Village>();
+            Settings = new SettingsInfo();
 
             map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
             map.EventPublisher.TargetUpdated += EventPublisherOnTargetUpdated;
@@ -130,6 +136,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Map Events
         public override void Paint(MapPaintEventArgs e)
         {
+            if (!Settings.ShowIfNotActiveManipulator && !e.IsActiveManipulator)
+            {
+                return;
+            }
+
             Size villageSize = _map.Display.Dimensions.Size;
             if (villageSize.Width < MinVillageWidthToShowMarkers)
             {
@@ -193,38 +204,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 }
             }
 
-            foreach (var plan in _plans)
-            {
-                Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
-                
-                if (plan != ActivePlan)
-                {
-                    // Other villages attacked but not the active plan
-                    loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                    loc.Offset(-5, -27); // more - means to the top or the left
-                    g.DrawImage(AttackIcons.FlagBlue25, loc);
-
-                    foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(plan.Attacks, gameSize))
-                    {
-                        // Villages attacking other target villages
-                        loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
-                        loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
-
-                        if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
-                        {
-                            Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagBlue;
-                            loc.Offset(-10, -17);
-                            g.DrawImage(smallAttackerImage, loc);
-                        }
-                        else
-                        {
-                            Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinBlue20;
-                            loc.Offset(-6, -25);
-                            g.DrawImage(biggerAttackerImage, loc);
-                        }
-                    }
-                }
-            }
+            PaintNonActivePlans(villageSize, g, gameSize);
 
             if (ActivePlan != null)
             {
@@ -257,12 +237,50 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
         }
 
-        /// <summary>
-        /// Filter out all attacks that don't need drawing
-        /// </summary>
-        private IEnumerable<AttackPlanFrom> FilterAttacksForDrawing(IEnumerable<AttackPlanFrom> attacks, Rectangle gameSize)
+        private void PaintNonActivePlans(Size villageSize, Graphics g, Rectangle gameSize)
         {
-            return attacks.Where(attack => gameSize.Contains(attack.Attacker.Location));
+            if (!Settings.ShowOtherTargets && !Settings.ShowOtherAttackers)
+            {
+                return;
+            }
+
+            foreach (var plan in _plans)
+            {
+                Point loc = _map.Display.GetMapLocation(plan.Target.Location);
+                if (plan != ActivePlan)
+                {
+                    // Other villages attacked but not the active plan
+                    if (Settings.ShowOtherTargets)
+                    {
+                        loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                        loc.Offset(-5, -27); // more - means to the top or the left
+                        g.DrawImage(AttackIcons.FlagBlue25, loc);
+                    }
+
+                    if (Settings.ShowOtherAttackers)
+                    {
+                        foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(plan.Attacks, gameSize))
+                        {
+                            // Villages attacking other target villages
+                            loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                            loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+
+                            if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
+                            {
+                                Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagBlue;
+                                loc.Offset(-10, -17);
+                                g.DrawImage(smallAttackerImage, loc);
+                            }
+                            else
+                            {
+                                Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinBlue20;
+                                loc.Offset(-6, -25);
+                                g.DrawImage(biggerAttackerImage, loc);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
@@ -413,6 +431,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village) > 1;
         }
+
+        /// <summary>
+        /// Filter out all attacks that don't need drawing
+        /// </summary>
+        private IEnumerable<AttackPlanFrom> FilterAttacksForDrawing(IEnumerable<AttackPlanFrom> attacks, Rectangle gameSize)
+        {
+            return attacks.Where(attack => gameSize.Contains(attack.Attacker.Location));
+        }
         #endregion
 
         #region Public Methods
@@ -427,10 +453,49 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Persistence
+        /// <summary>
+        /// Global settings for <see cref="AttackManipulator"/>.
+        /// Add something, also update Write/ReadXml for it to be persisted
+        /// </summary>
+        public class SettingsInfo
+        {
+            #region Properties
+            /// <summary>
+            /// True: Shows all targets
+            /// False: Show only actively selected target.
+            /// </summary>
+            public bool ShowOtherTargets { get; set; }
+
+            /// <summary>
+            /// True: Show all attacking villages.
+            /// False: Show only actively selected target attackers.
+            /// </summary>
+            public bool ShowOtherAttackers { get; set; }
+
+            /// <summary>
+            /// True: Show the targets/attackers even when we're not in AttackManipulator modus.
+            /// False: Only show when the AttackManipulator is the CurrentManipulator.
+            /// </summary>
+            public bool ShowIfNotActiveManipulator { get; set; }
+            #endregion
+
+            #region Constructors
+            public SettingsInfo()
+            {
+                ShowOtherTargets = true;
+                ShowOtherAttackers = true;
+                ShowIfNotActiveManipulator = true;
+            }
+            #endregion
+        }
+
         public string WriteXml()
         {
             var output = new XDocument(
                 new XElement("Plans",
+                    new XAttribute("ShowOtherTargets", Settings.ShowOtherTargets),
+                    new XAttribute("ShowOtherAttackers", Settings.ShowOtherAttackers),
+                    new XAttribute("ShowIfNotActiveManipulator", Settings.ShowIfNotActiveManipulator),
                     _plans.Select(plan =>
                         new XElement("Plan",
                             new XAttribute("Target", plan.Target.LocationString),
@@ -446,30 +511,54 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         public void ReadXml(XDocument doc)
         {
-            var plans = doc.Descendants("Manipulator")
-                           .Where(manipulator => manipulator.Attribute("Type").Value == "Attack")
-                           .SelectMany(manipulator => manipulator.Descendants("Plan"));
+            XElement attackManipulator = 
+                doc.Descendants("Manipulator")
+                   .SingleOrDefault(manipulator => manipulator.Attribute("Type").Value == "Attack");
 
-            foreach (XElement xmlPlan in plans)
+            if (attackManipulator != null)
             {
-                var plan = new AttackPlan(
-                    World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
-                    DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value)));
-
-                if (plan.Target != null)
+                // Settings
+                var settingsNode = attackManipulator.Element("Plans");
+                Debug.Assert(settingsNode != null);
+                var showOtherTargets = settingsNode.Attribute("ShowOtherTargets");
+                if (showOtherTargets != null)
                 {
-                    foreach (var attackerXml in xmlPlan.Descendants("Attacker"))
+                    Settings.ShowOtherTargets = Convert.ToBoolean(showOtherTargets.Value);
+                }
+                var showOtherAttackers = settingsNode.Attribute("ShowOtherAttackers");
+                if (showOtherAttackers != null)
+                {
+                    Settings.ShowOtherAttackers = Convert.ToBoolean(showOtherAttackers.Value);
+                }
+                var showIfNotActiveManipulator = settingsNode.Attribute("ShowIfNotActiveManipulator");
+                if (showIfNotActiveManipulator != null)
+                {
+                    Settings.ShowIfNotActiveManipulator = Convert.ToBoolean(showIfNotActiveManipulator.Value);
+                }
+
+                // AttackPlans
+                var plans = attackManipulator.Descendants("Plan");
+                foreach (XElement xmlPlan in plans)
+                {
+                    var plan = new AttackPlan(
+                        World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
+                        DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value)));
+
+                    if (plan.Target != null)
                     {
-                        var slowestUnit = (UnitTypes)Enum.Parse(typeof(UnitTypes), attackerXml.Attribute("SlowestUnit").Value);
-                        var attacker = new AttackPlanFrom(
-                            plan,
-                            World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
-                            WorldUnits.Default[slowestUnit]);
+                        foreach (var attackerXml in xmlPlan.Descendants("Attacker"))
+                        {
+                            var slowestUnit = (UnitTypes)Enum.Parse(typeof(UnitTypes), attackerXml.Attribute("SlowestUnit").Value);
+                            var attacker = new AttackPlanFrom(
+                                plan,
+                                World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
+                                WorldUnits.Default[slowestUnit]);
 
-                        plan.AddAttacker(attacker);
+                            plan.AddAttacker(attacker);
+                        }
+
+                        _plans.Add(plan);
                     }
-
-                    _plans.Add(plan);
                 }
             }
         }

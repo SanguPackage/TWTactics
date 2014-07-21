@@ -183,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AttackIcons.resx</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\NoVillageAttackContextMenu.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\EventArg\AttackEventArgs.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanExporter.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
