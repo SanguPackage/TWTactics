@@ -288,25 +288,43 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             if (e.Village != null)
             {
                 AttackPlan existingPlan = GetExistingPlan(e.Village);
-                AttackPlanFrom existingAttack = GetAttacker(e.Village);
+                AttackPlanFrom[] existingAttacks = GetAttackers(e.Village).ToArray();
 
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
                     if (existingPlan == null)
                     {
-                        if (existingAttack == null)
+                        if (!existingAttacks.Any())
                         {
                             _map.EventPublisher.AttackAddTarget(this, e.Village);
                         }
                         else
                         {
-                            if (existingAttack != ActiveAttacker)
+                            if (!existingAttacks.Contains(ActiveAttacker))
                             {
-                                _map.EventPublisher.AttackSelect(this, existingAttack);
+                                _map.EventPublisher.AttackSelect(this, existingAttacks.First());
                             }
                             else
                             {
-                                return false;
+                                // Already selected village is perhaps used in multiple plans
+                                if (existingAttacks.Length == 1)
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    // Cycle through the attackers
+                                    AttackPlanFrom selectAttacker;
+                                    if (ActiveAttacker == null || !existingAttacks.Contains(ActiveAttacker) || existingAttacks.Last() == ActiveAttacker)
+                                    {
+                                        selectAttacker = existingAttacks.First();
+                                    }
+                                    else
+                                    {
+                                        selectAttacker = existingAttacks.SkipWhile(x => x != ActiveAttacker).Take(2).Last();
+                                    }
+                                    _map.EventPublisher.AttackSelect(this, selectAttacker);
+                                }
                             }
                         }
                     }
@@ -314,6 +332,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     {
                         if (existingPlan == ActivePlan && ActivePlan != null)
                         {
+                            var existingAttack = existingAttacks.FirstOrDefault();
                             if (existingAttack != ActiveAttacker)
                             {
                                 if (existingAttack == null)
@@ -421,9 +440,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             return existingPlan;
         }
 
+        private IEnumerable<AttackPlanFrom> GetAttackers(Village village)
+        {
+            return _plans.SelectMany(plan => plan.Attacks).Where(attack => attack.Attacker == village);
+        }
+
         private AttackPlanFrom GetAttacker(Village village)
         {
-            AttackPlanFrom existingAttack = _plans.SelectMany(plan => plan.Attacks).FirstOrDefault(attack => attack.Attacker == village);
+            AttackPlanFrom existingAttack = GetAttackers(village).FirstOrDefault();
             return existingAttack;
         }
 
