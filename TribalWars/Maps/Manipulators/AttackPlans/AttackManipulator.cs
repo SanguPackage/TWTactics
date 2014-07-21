@@ -168,10 +168,18 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             {
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
-                    var existingPlan = _plans.FirstOrDefault(x => x.Target == e.Village);
+                    AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == e.Village);
                     if (existingPlan == null)
                     {
-                        _map.EventPublisher.AttackAddTarget(this, e.Village);
+                        AttackPlan existingAttack = _plans.FirstOrDefault(plan => plan.Attacks.Any(attack => attack.Attacker == e.Village));
+                        if (existingAttack == null)
+                        {
+                            _map.EventPublisher.AttackAddTarget(this, e.Village);
+                        }
+                        else
+                        {
+                            _map.EventPublisher.AttackSelect(this, existingAttack);
+                        }
                     }
                     else
                     {
