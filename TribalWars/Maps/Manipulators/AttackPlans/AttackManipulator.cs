@@ -13,6 +13,8 @@ using TribalWars.Properties;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
+
 #endregion
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
@@ -36,10 +38,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         #region Fields
         private readonly List<AttackPlan> _plans;
+        private Village _hoverVillage;
 
         public AttackPlan ActivePlan { get; private set; }
 
-        public Village SelectedVillage { get; private set; }
+        public AttackPlanFrom ActiveAttacker { get; private set; }
         #endregion
 
         #region Constructors
@@ -70,6 +73,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
         {
+            ActiveAttacker = null;
             ActivePlan = e.Plan;
             _map.Invalidate(false);
         }
@@ -90,11 +94,13 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 {
                     case AttackUpdateEventArgs.ActionKind.Add:
                         Debug.Assert(!plan.Attacks.Contains(attacker));
+                        ActiveAttacker = attacker;
                         plan.Attacks.Add(attacker);
                         break;
                         
                    case AttackUpdateEventArgs.ActionKind.Delete:
                         Debug.Assert(plan.Attacks.Contains(attacker));
+                        ActiveAttacker = null;
                         plan.Attacks.Remove(attacker);
                         break;
 
@@ -119,7 +125,51 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 return;
             }
 
+            Rectangle gameSize = _map.Display.GetGameRectangle();
             Graphics g = e.Graphics;
+            
+            if (e.IsActiveManipulator && ActivePlan != null)
+            {
+                using (var activeTargetPen = new Pen(Color.Yellow, 2))
+                {
+                    if (gameSize.Contains(ActivePlan.Target.Location))
+                    {
+                        Point villageLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                        g.DrawEllipse(
+                            activeTargetPen,
+                            villageLocation.X,
+                            villageLocation.Y,
+                            villageSize.Width,
+                            villageSize.Height);
+
+                        g.DrawEllipse(
+                            activeTargetPen,
+                            villageLocation.X - 4,
+                            villageLocation.Y - 4,
+                            villageSize.Width + 8,
+                            villageSize.Height + 8);
+                    }
+                }
+
+                using (var activeAttackersPen = new Pen(Color.Yellow, 1))
+                using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
+                {
+                    foreach (AttackPlanFrom attacker in ActivePlan.Attacks)
+                    {
+                        if (gameSize.Contains(attacker.Attacker.Location))
+                        {
+                            Point villageLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
+                            g.DrawEllipse(
+                                ActiveAttacker == attacker ? selectedActiveAttackersPen : activeAttackersPen,
+                                villageLocation.X,
+                                villageLocation.Y,
+                                villageSize.Width,
+                                villageSize.Height);
+                        }
+                    }
+                }
+            }
+
             foreach (var plan in _plans)
             {
                 Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
@@ -153,28 +203,28 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             if (ActivePlan != null)
             {
-                Point loc = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
+                Point activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
 
                 // The active plan attacked village
-                loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                loc.Offset(-8, -48); // more - means to the top or the left
-                g.DrawImage(AttackIcons.FlagGreen, loc);
+                activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
+                g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
 
                 foreach (AttackPlanFrom attacker in ActivePlan.Attacks)
                 {
                     // Villages attacking the active target village
-                    loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
-                    loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                    activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
 
                     if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
                     {
-                        loc.Offset(-10, -17);
-                        g.DrawImage(Resources.FlagGreen, loc);
+                        activePlanTargetLocation.Offset(-10, -17);
+                        g.DrawImage(Resources.FlagGreen, activePlanTargetLocation);
                     }
                     else
                     {
-                        loc.Offset(-6, -25);
-                        g.DrawImage(AttackIcons.PinGreen20, loc);
+                        activePlanTargetLocation.Offset(-6, -25);
+                        g.DrawImage(AttackIcons.PinGreen20, activePlanTargetLocation);
                     }
                 }
             }
@@ -234,11 +284,46 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
+            // This is for the MiniMap:
+            // Inform the MiniMap that the selected village changed so that
+            // the minimap still pinpoints what we hover while the main map
+            // keeps track of just the AttackPlans
+            if (e.Village != null)
+            {
+                if (_hoverVillage != e.Village)
+                {
+                    _map.EventPublisher.SelectVillages(this, e.Village, VillageTools.SelectVillage);
+
+                    _hoverVillage = e.Village;
+                    return true;
+                }
+            }
+            if (e.Village == null && _hoverVillage != null)
+            {
+                _map.EventPublisher.Deselect(this);
+
+                _hoverVillage = null;
+                return true;
+            }
             return false;
         }
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
+            switch (e.KeyEventArgs.KeyCode)
+            {
+                case Keys.Delete:
+                    if (ActiveAttacker != null)
+                    {
+                        _map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.DeleteAttackFrom(ActiveAttacker));
+                    }
+                    else if (ActivePlan != null)
+                    {
+                        _map.EventPublisher.AttackRemoveTarget(this, ActivePlan);
+                    }
+                    break;
+            }
+
             return false;
         }
         #endregion
