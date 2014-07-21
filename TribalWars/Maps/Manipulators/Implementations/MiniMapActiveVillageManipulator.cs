@@ -1,4 +1,5 @@
 #region Using
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -60,6 +61,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
             : base(map)
         {
             _mainMap = mainMap;
+            mainMap.EventPublisher.VillagesDeselected += EventPublisher_MainMapVillagesDeselected;
             mainMap.EventPublisher.VillagesSelected += EventPublisher_MainMapVillagesSelected;
             mainMap.EventPublisher.PlayerSelected += EventPublisher_MainMapVillagesSelected;
             mainMap.EventPublisher.TribeSelected += EventPublisher_MainMapVillagesSelected;
@@ -282,6 +284,12 @@ namespace TribalWars.Maps.Manipulators.Implementations
         private void EventPublisher_MainMapDisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
         {
             _map.Invalidate();
+        }
+
+        private void EventPublisher_MainMapVillagesDeselected(object sender, EventArgs e)
+        {
+            _mainMapSelectedVillage = null;
+            _map.Invalidate(false);
         }
 
         private void EventPublisher_MainMapVillagesSelected(object sender, VillagesEventArgs e)

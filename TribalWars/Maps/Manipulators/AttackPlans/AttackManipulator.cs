@@ -200,7 +200,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     }
                     else
                     {
-                        _map.EventPublisher.AttackSelect(this, existingPlan);
+                        if (existingPlan == ActivePlan)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            _map.EventPublisher.AttackSelect(this, existingPlan);
+                        }
                     }
                     return true;
                 }

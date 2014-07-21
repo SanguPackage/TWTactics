@@ -129,6 +129,8 @@ namespace TribalWars.Maps.Manipulators
                 _previousType = manipulator;
             }
 
+            Map.EventPublisher.Deselect(this);
+
             CurrentManipulator = _manipulators[manipulator];
             CurrentManipulator.Initialize();
             Map.EventPublisher.ChangeManipulator(this, new ManipulatorEventArgs(manipulator));

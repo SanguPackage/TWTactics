@@ -5,6 +5,7 @@ using System.ComponentModel;
 using TribalWars.Browsers.Reporting;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.AttackPlans;
+using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Villages;
 using TribalWars.Worlds.Events;
@@ -24,6 +25,7 @@ namespace TribalWars.Maps
         #endregion
 
         #region Events
+        public event EventHandler<EventArgs> VillagesDeselected;
         public event EventHandler<VillagesEventArgs> VillagesSelected;
         public event EventHandler<PlayerEventArgs> PlayerSelected;
         public event EventHandler<TribeEventArgs> TribeSelected;
@@ -50,6 +52,17 @@ namespace TribalWars.Maps
 
         #region Publish Methods
         #region Selection Events
+        /// <summary>
+        /// Deselect villages previously selected with SelectVillages events
+        /// </summary>
+        public void Deselect(object sender)
+        {
+            if (VillagesDeselected != null)
+            {
+                VillagesDeselected(sender, EventArgs.Empty);
+            }
+        }
+
         /// <summary>
         /// Publishes an event for several villages
         /// </summary>

@@ -7,7 +7,6 @@ using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
-
 #endregion
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
@@ -28,12 +27,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             UseLegacyXmlWriter = false;
 
             // Active manipulators
-            var activeVillage = new ActiveVillageManipulator(map);
+            //var activeVillage = new ActiveVillageManipulator(map);
             var mover = new MapMoverManipulator(map, false, false, true);
             var dragger = new MapDraggerManipulator(map, this);
             _attacker = new AttackManipulator(map);
 
-            _manipulators.Add(activeVillage);
+            //_manipulators.Add(activeVillage);
             _manipulators.Add(mover);
             _manipulators.Add(dragger);
             _manipulators.Add(_attacker);

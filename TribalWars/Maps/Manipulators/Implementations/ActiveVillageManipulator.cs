@@ -130,6 +130,9 @@ namespace TribalWars.Maps.Manipulators.Implementations
                     _pinPointedVillage = null;
                     _selectedVillage = null;
                     _lockPinpointedVillage = false;
+
+                    _map.EventPublisher.Deselect(this);
+
                     return true;
                 }
                 else if (_lockPinpointedVillage)
