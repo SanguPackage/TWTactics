@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
+using TribalWars.Maps.Manipulators.Managers;
+using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
@@ -17,6 +21,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         #region Fields
         private readonly ImageList _unitImageList;
         private bool _settingControlValues;
+        private AttackPlanFromControl _activeAttacker;
         #endregion
 
         #region Properties
@@ -68,14 +73,17 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             }
             else if (e.Button == MouseButtons.Left)
             {
-                World.Default.Map.EventPublisher.SelectVillages(null, Plan.Target, VillageTools.PinPoint);
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+                World.Default.Map.EventPublisher.AttackSelect(this, Plan);
             }
         }
 
         private void _Village_DoubleClick(object sender, EventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(null, Plan.Target, VillageTools.PinPoint);
-            World.Default.Map.SetCenter(Plan.Target.Location);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            var villages = Plan.Attacks.SelectMany(x => x.Attacker).Union(Plan.Target).ToArray();
+            World.Default.Map.EventPublisher.SelectVillages(null, villages, VillageTools.SelectVillage);
+            World.Default.Map.SetCenter(villages);
         }
 
         private void _Player_MouseClick(object sender, MouseEventArgs e)
@@ -89,6 +97,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
                 }
                 else if (e.Button == MouseButtons.Left)
                 {
+                    World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
                     World.Default.Map.EventPublisher.SelectVillages(null, Plan.Target.Player, VillageTools.PinPoint);
                 }
             }
@@ -98,6 +107,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         {
             if (Plan.Target.HasPlayer)
             {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
                 World.Default.Map.EventPublisher.SelectVillages(this, Plan.Target.Player, VillageTools.PinPoint);
                 World.Default.Map.SetCenter(Plan.Target.Player);
             }
@@ -114,6 +124,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
                 }
                 else if (e.Button == MouseButtons.Left)
                 {
+                    World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
                     World.Default.Map.EventPublisher.SelectVillages(null, Plan.Target.Player.Tribe, VillageTools.PinPoint);
                 }
             }
@@ -123,6 +134,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         {
             if (Plan.Target.HasTribe)
             {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
                 World.Default.Map.EventPublisher.SelectVillages(this, Plan.Target.Player.Tribe, VillageTools.PinPoint);
                 World.Default.Map.SetCenter(Plan.Target.Player.Tribe);
             }
@@ -176,6 +188,25 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         #endregion
 
         #region Attacker Changes
+        /// <summary>
+        /// Visual indication of currently selected attacker in the plan
+        /// </summary>
+        public void SetActiveAttacker(AttackPlanFrom activeAttacker)
+        {
+            if (_activeAttacker != null)
+            {
+                _activeAttacker.BackColor = SystemColors.Control;
+            }
+
+            AttackPlanFromControl attackerControl = GetControlForAttackPlan(activeAttacker);
+            if (attackerControl != null)
+            {
+                attackerControl.BackColor = SystemColors.ControlDark;
+                _activeAttacker = attackerControl;
+                DistanceContainer.ScrollControlIntoView(_activeAttacker);
+            }
+        }
+
         public AttackPlanFromControl AddAttacker(AttackPlanFrom attackFrom)
         {
             var ctl = new AttackPlanFromControl(_unitImageList, attackFrom);
@@ -185,15 +216,24 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 
         public void RemoveAttacker(AttackPlanFrom attacker)
         {
-            AttackPlanFromControl villageControl =
+            AttackPlanFromControl attackerControl = GetControlForAttackPlan(attacker);
+            if (attackerControl != null)
+            {
+                DistanceContainer.Controls.Remove(attackerControl);
+            }
+        }
+
+        /// <summary>
+        /// Gets the UI control that represents the parameter
+        /// </summary>
+        private AttackPlanFromControl GetControlForAttackPlan(AttackPlanFrom attacker)
+        {
+            AttackPlanFromControl attackerControl =
                 DistanceContainer.Controls
                                  .OfType<AttackPlanFromControl>()
                                  .SingleOrDefault(x => x.Attacker == attacker);
-            
-            if (villageControl != null)
-            {
-                DistanceContainer.Controls.Remove(villageControl);
-            }
+
+            return attackerControl;
         }
         #endregion
 

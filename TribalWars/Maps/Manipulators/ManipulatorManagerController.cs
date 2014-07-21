@@ -124,6 +124,11 @@ namespace TribalWars.Maps.Manipulators
         /// </summary>
         public void SetManipulator(ManipulatorManagerTypes manipulator)
         {
+            if (CurrentManipulator == _manipulators[manipulator])
+            {
+                return;
+            }
+
             if (manipulator != ManipulatorManagerTypes.Default)
             {
                 _previousType = manipulator;

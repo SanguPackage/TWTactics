@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans.EventArg
 {
@@ -7,10 +8,20 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.EventArg
     /// </summary>
     public class AttackEventArgs : EventArgs
     {
+        /// <summary>
+        /// The selected plan
+        /// </summary>
         public AttackPlan Plan { get; private set; }
 
-        public AttackEventArgs(AttackPlan plan)
+        /// <summary>
+        /// The selected attack within the plan
+        /// </summary>
+        public AttackPlanFrom Attacker { get; private set; }
+
+        public AttackEventArgs(AttackPlan plan, AttackPlanFrom attacker)
         {
+            Debug.Assert(attacker == null || attacker.Plan == plan);
+            Attacker = attacker;
             Plan = plan;
         }
     }

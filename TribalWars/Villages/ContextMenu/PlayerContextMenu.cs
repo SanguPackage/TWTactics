@@ -10,6 +10,7 @@ using Janus.Windows.UI.CommandBars;
 using TribalWars.Browsers.Control;
 using TribalWars.Controls;
 using TribalWars.Maps;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -43,7 +44,7 @@ namespace TribalWars.Villages.ContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnPinPoint);
             }
-            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
             var markerContext = new MarkerContextMenu(map, player);
@@ -88,10 +89,20 @@ namespace TribalWars.Villages.ContextMenu
         /// <summary>
         /// Pinpoints and centers the target player
         /// </summary>
-        private void OnCenter(object sender, EventArgs e)
+        private void OnPinpointAndCenter(object sender, EventArgs e)
         {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
             World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
             World.Default.Map.SetCenter(_player);
+        }
+
+        /// <summary>
+        /// Open quick details for the player
+        /// </summary>
+        private void OnPinPoint(object sender, EventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
         }
 
         /// <summary>
@@ -132,14 +143,6 @@ namespace TribalWars.Villages.ContextMenu
         private void OnTwGuest(object sender, EventArgs e)
         {
             World.Default.EventPublisher.BrowseUri(null, DestinationEnum.GuestPlayer, _player.Id.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Open quick details for the player
-        /// </summary>
-        private void OnPinPoint(object sender, EventArgs e)
-        {
-            World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
         }
         #endregion
     }

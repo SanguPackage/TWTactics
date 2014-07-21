@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
@@ -91,16 +92,19 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
         }
 
-        private void Village_DoubleClick(object sender, EventArgs e)
+        private void AttackPlanFromControl_DoubleClick(object sender, EventArgs e)
         {
             if (Attacker.Attacker != null)
             {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
                 World.Default.Map.SetCenter(Attacker.Attacker);
-                World.Default.Map.EventPublisher.SelectVillages(this, Attacker.Attacker, VillageTools.PinPoint);
+                World.Default.Map.EventPublisher.SelectVillages(this, Attacker.Attacker, VillageTools.SelectVillage);
+                World.Default.Map.EventPublisher.AttackSelect(null, Attacker);
+                World.Default.Map.GiveFocus();
             }
         }
 
-        private void _Village_MouseClick(object sender, MouseEventArgs e)
+        private void AttackPlanFromControl_MouseClick(object sender, MouseEventArgs e)
         {
             if (Attacker.Attacker != null)
             {
@@ -111,7 +115,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
                 }
                 else if (e.Button == MouseButtons.Left)
                 {
-                    World.Default.Map.EventPublisher.SelectVillages(null, Attacker.Attacker, VillageTools.PinPoint);
+                    World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+                    World.Default.Map.EventPublisher.SelectVillages(null, Attacker.Attacker, VillageTools.SelectVillage);
+                    World.Default.Map.EventPublisher.AttackSelect(null, Attacker);
+                    World.Default.Map.GiveFocus();
                 }
             }
         }
@@ -132,6 +139,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         {
             return Attacker.ToString();
         }
-        #endregion
+        #endregion        
     }
 }

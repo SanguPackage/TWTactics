@@ -36,6 +36,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             new Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>>();
 
         private AttackPlanControl _activePlan;
+        private AttackPlanFrom _activeAttacker;
 
         private readonly ToolStripItem[] _visibleWhenNoPlans;
         #endregion
@@ -46,9 +47,19 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             get { return _activePlan; }
             set
             {
-                if (_activePlan != null) _activePlan.Visible = false;
-                if (value != null) value.Visible = true;
-                _activePlan = value;
+                if (_activePlan != value)
+                {
+                    if (_activePlan != null)
+                    {
+                        _activePlan.SetActiveAttacker(null);
+                        _activePlan.Visible = false;
+                    }
+                    if (value != null)
+                    {
+                        value.Visible = true;
+                    }
+                    _activePlan = value;
+                }
             }
         }
         #endregion
@@ -71,20 +82,28 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
         #region World/Map Event Handlers
         private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
         {
-            foreach (var attackDropDownItem in AttackDropDown.DropDownItems.OfType<ToolStripMenuItem>())
+            if (ActivePlan == null || ActivePlan.Plan != e.Plan)
             {
-                attackDropDownItem.Checked = false;
+                foreach (var attackDropDownItem in AttackDropDown.DropDownItems.OfType<ToolStripMenuItem>())
+                {
+                    attackDropDownItem.Checked = false;
+                }
+
+                if (e.Plan != null)
+                {
+                    var selectedPlan = _plans[e.Plan];
+                    selectedPlan.Item1.Checked = true;
+                    ActivePlan = selectedPlan.Item2;
+                }
+                else
+                {
+                    ActivePlan = null;
+                }
             }
 
-            if (e.Plan != null)
+            if (ActivePlan != null)
             {
-                var selectedPlan = _plans[e.Plan];
-                selectedPlan.Item1.Checked = true;
-                ActivePlan = selectedPlan.Item2;
-            }
-            else
-            {
-                ActivePlan = null;
+                ActivePlan.SetActiveAttacker(e.Attacker);
             }
         }
 

@@ -139,7 +139,7 @@ namespace TribalWars.Maps
         #region Attack Events
         public void AttackAddTarget(object sender, Village village, DateTime? arrivalTime = null)
         {
-           AddTarget(sender, new AttackEventArgs(new AttackPlan(village, arrivalTime)));
+           AddTarget(sender, new AttackEventArgs(new AttackPlan(village, arrivalTime), null));
         }
 
         public void AttackUpdateTarget(object sender, AttackUpdateEventArgs e)
@@ -158,14 +158,20 @@ namespace TribalWars.Maps
 
         public void AttackRemoveTarget(object sender, AttackPlan plan)
         {
-            var e = new AttackEventArgs(plan);
+            var e = new AttackEventArgs(plan, null);
             if (TargetRemoved != null)
                 TargetRemoved(sender, e);
         }
 
         public void AttackSelect(object sender, AttackPlan plan)
         {
-            var e = new AttackEventArgs(plan);
+            var e = new AttackEventArgs(plan, null);
+            AttackSelect(sender, e);
+        }
+
+        public void AttackSelect(object sender, AttackPlanFrom attacker)
+        {
+            var e = new AttackEventArgs(attacker.Plan, attacker);
             AttackSelect(sender, e);
         }
 

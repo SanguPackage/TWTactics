@@ -73,7 +73,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         private void EventPublisherOnTargetSelected(object sender, AttackEventArgs e)
         {
-            ActiveAttacker = null;
+            ActiveAttacker = e.Attacker;
             ActivePlan = e.Plan;
             _map.Invalidate(false);
         }
@@ -119,7 +119,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Map Events
         public override void Paint(MapPaintEventArgs e)
         {
-            Size villageSize = World.Default.Map.Display.Dimensions.Size;
+            Size villageSize = _map.Display.Dimensions.Size;
             if (villageSize.Width < MinVillageWidthToShowMarkers)
             {
                 return;
@@ -130,6 +130,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             
             if (e.IsActiveManipulator && ActivePlan != null)
             {
+                // Paint circles around the active plan
                 using (var activeTargetPen = new Pen(Color.Yellow, 2))
                 {
                     if (gameSize.Contains(ActivePlan.Target.Location))
@@ -154,6 +155,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 using (var activeAttackersPen = new Pen(Color.Yellow, 1))
                 using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
                 {
+                    // cirkels for the active plan attackers
                     foreach (AttackPlanFrom attacker in ActivePlan.Attacks)
                     {
                         if (gameSize.Contains(attacker.Attacker.Location))
@@ -235,7 +237,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             if (e.Village != null)
             {
                 AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == e.Village);
-                AttackPlan existingAttack = _plans.FirstOrDefault(plan => plan.Attacks.Any(attack => attack.Attacker == e.Village));
+                AttackPlanFrom existingAttack = _plans.SelectMany(plan => plan.Attacks).FirstOrDefault(attack => attack.Attacker == e.Village);
 
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
@@ -247,14 +249,35 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                         }
                         else
                         {
-                            _map.EventPublisher.AttackSelect(this, existingAttack);
+                            if (existingAttack != ActiveAttacker)
+                            {
+                                _map.EventPublisher.AttackSelect(this, existingAttack);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                     }
                     else
                     {
-                        if (existingPlan == ActivePlan)
+                        if (existingPlan == ActivePlan && ActivePlan != null)
                         {
-                            return false;
+                            if (existingAttack != ActiveAttacker)
+                            {
+                                if (existingAttack == null)
+                                {
+                                    _map.EventPublisher.AttackSelect(this, ActivePlan);
+                                }
+                                else
+                                {
+                                    _map.EventPublisher.AttackSelect(this, existingAttack);
+                                }
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         else
                         {
@@ -394,6 +417,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             _plans.Clear();
             ActivePlan = null;
+            ActiveAttacker = null;
         }
         #endregion
     }

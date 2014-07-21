@@ -59,7 +59,7 @@ namespace TribalWars.Villages.ContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnPinPoint);
             }
-            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             
             _menu.AddSeparator();
             UICommand villageTypes =_menu.AddCommand("Set purpose", null, village.Type.GetImage(true));
@@ -148,10 +148,20 @@ namespace TribalWars.Villages.ContextMenu
         /// <summary>
         /// Pinpoints and centers the target village
         /// </summary>
-        private void OnCenter(object sender, CommandEventArgs e)
+        private void OnPinpointAndCenter(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            World.Default.Map.EventPublisher.SelectVillages(sender, _village, VillageTools.PinPoint);
             World.Default.Map.SetCenter(_village.Location);
+        }
+
+        /// <summary>
+        /// Open quick details for the village
+        /// </summary>
+        private void OnPinPoint(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            World.Default.Map.EventPublisher.SelectVillages(sender, _village, VillageTools.PinPoint);
         }
 
         /// <summary>
@@ -176,14 +186,6 @@ namespace TribalWars.Villages.ContextMenu
         private void OnTwStats(object sender, CommandEventArgs e)
         {
             World.Default.EventPublisher.BrowseUri(null, DestinationEnum.TwStatsVillage, _village.Id.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Open quick details for the village
-        /// </summary>
-        private void OnPinPoint(object sender, CommandEventArgs e)
-        {
-            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
         }
 
         private void OnAttack(object sender, CommandEventArgs e)

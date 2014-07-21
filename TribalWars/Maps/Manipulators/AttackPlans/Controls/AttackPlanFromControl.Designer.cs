@@ -52,8 +52,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this._Village.Size = new System.Drawing.Size(75, 13);
             this._Village.TabIndex = 0;
             this._Village.Text = "Villagename";
-            this._Village.DoubleClick += new System.EventHandler(this.Village_DoubleClick);
-            this._Village.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Village_MouseClick);
+            this._Village.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this._Village.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
             // DateRequired
             // 
@@ -63,6 +63,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.DateRequired.TabIndex = 3;
             this.DateRequired.Text = "01:33:45";
             this.toolTip1.SetToolTip(this.DateRequired, "Travel time");
+            this.DateRequired.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this.DateRequired.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
             // DateLeft
             // 
@@ -72,6 +74,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.DateLeft.TabIndex = 3;
             this.DateLeft.Text = "1.22:10:15";
             this.toolTip1.SetToolTip(this.DateLeft, "Time left before sending to arrive at specified date");
+            this.DateLeft.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this.DateLeft.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
             // DateNow
             // 
@@ -81,6 +85,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.DateNow.TabIndex = 3;
             this.DateNow.Text = "tomorrow at 24:55:45";
             this.toolTip1.SetToolTip(this.DateNow, "Arrival time when sent NOW");
+            this.DateNow.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this.DateNow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
             // DateSend
             // 
@@ -91,6 +97,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.DateSend.TabIndex = 3;
             this.DateSend.Text = "tomorrow at 19:00:00";
             this.toolTip1.SetToolTip(this.DateSend, "Time to send to arrive at specified date");
+            this.DateSend.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this.DateSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
             // Close
             // 
@@ -140,6 +148,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.Coords);
             this.Controls.Add(this.Close);
@@ -152,6 +161,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.Margin = new System.Windows.Forms.Padding(1, 0, 0, 1);
             this.Name = "AttackPlanFromControl";
             this.Size = new System.Drawing.Size(311, 60);
+            this.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 

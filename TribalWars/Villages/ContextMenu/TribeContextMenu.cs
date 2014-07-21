@@ -8,6 +8,7 @@ using Janus.Windows.UI.CommandBars;
 using TribalWars.Browsers.Control;
 using TribalWars.Controls;
 using TribalWars.Maps;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -38,7 +39,7 @@ namespace TribalWars.Villages.ContextMenu
             {
                 _menu.AddCommand("Pinpoint", OnPinPoint);
             }
-            _menu.AddCommand("Pinpoint && Center", OnCenter, Properties.Resources.TeleportIcon);
+            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
             var markerContext = new MarkerContextMenu(map, tribe);
@@ -81,14 +82,16 @@ namespace TribalWars.Villages.ContextMenu
         /// </summary>
         private void OnPinPoint(object sender, EventArgs e)
         {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
             World.Default.Map.EventPublisher.SelectTribe(VillageContextMenu.OnDetailsHack, _tribe, VillageTools.PinPoint);
         }
 
         /// <summary>
         /// Pinpoints and centers the target tribe
         /// </summary>
-        private void OnCenter(object sender, EventArgs e)
+        private void OnPinpointAndCenter(object sender, EventArgs e)
         {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
             World.Default.Map.EventPublisher.SelectVillages(VillageContextMenu.OnDetailsHack, _tribe, VillageTools.PinPoint);
             World.Default.Map.SetCenter(_tribe);
         }
