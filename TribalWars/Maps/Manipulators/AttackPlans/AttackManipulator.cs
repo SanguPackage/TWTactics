@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using TribalWars.Maps.Manipulators.EventArg;
+using TribalWars.Properties;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 #endregion
@@ -94,33 +95,69 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #region Map Events
         public override void Paint(MapPaintEventArgs e)
         {
+            Size villageSize = World.Default.Map.Display.Dimensions.Size;
+            if (villageSize.Width < 5)
+            {
+                return;
+            }
+
             Graphics g = e.Graphics;
             foreach (var plan in _plans)
             {
                 Point loc = World.Default.Map.Display.GetMapLocation(plan.Target.Location);
-                Size size = World.Default.Map.Display.Dimensions.Size;
-                if (plan == _activePlan)
-                {
-                    // The active plan attacked village
-                    loc.Offset(size.Width / 2, size.Height / 2);
-                    loc.Offset(-3, -40);
-                    g.DrawImage(Properties.Resources.pin, loc);
-
-                    foreach (AttackPlanFrom attacker in _activePlan.Attacks)
-                    {
-                        // Villages attacking the active target village
-                        loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
-                        loc.Offset(size.Width / 2, size.Height / 2);
-                        loc.Offset(-10, -17);
-                        g.DrawImage(Properties.Resources.FlagBlue, loc);
-                    }
-                }
-                else
+                
+                if (plan != _activePlan)
                 {
                     // Other villages attacked but not the active plan
-                    loc.Offset(size.Width / 2, size.Height / 2);
-                    loc.Offset(-3, -17);
-                    g.DrawImage(Properties.Resources.PinSmall, loc);
+                    loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                    loc.Offset(-5, -27); // more - means to the top or the left
+                    g.DrawImage(AttackIcons.FlagBlue25, loc);
+
+                    foreach (AttackPlanFrom attacker in plan.Attacks)
+                    {
+                        // Villages attacking other target villages
+                        loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                        loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+
+                        if (villageSize.Width < 30)
+                        {
+                            loc.Offset(-10, -17);
+                            g.DrawImage(Resources.FlagBlue, loc);
+                        }
+                        else
+                        {
+                            loc.Offset(-6, -25);
+                            g.DrawImage(AttackIcons.PinBlue20, loc);
+                        }
+                    }
+                }
+            }
+
+            if (_activePlan != null)
+            {
+                Point loc = World.Default.Map.Display.GetMapLocation(_activePlan.Target.Location);
+
+                // The active plan attacked village
+                loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                loc.Offset(-8, -48); // more - means to the top or the left
+                g.DrawImage(AttackIcons.FlagGreen, loc);
+
+                foreach (AttackPlanFrom attacker in _activePlan.Attacks)
+                {
+                    // Villages attacking the active target village
+                    loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                    loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+
+                    if (villageSize.Width < 30)
+                    {
+                        loc.Offset(-10, -17);
+                        g.DrawImage(Resources.FlagGreen, loc);
+                    }
+                    else
+                    {
+                        loc.Offset(-6, -25);
+                        g.DrawImage(AttackIcons.PinGreen20, loc);
+                    }
                 }
             }
         }

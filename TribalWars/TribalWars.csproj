@@ -257,6 +257,11 @@
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulator.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulatorManager.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackUpdateEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\AttackIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttackIcons.resx</DependentUpon>
+    </Compile>
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -571,6 +576,10 @@
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AttackIcons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -749,6 +758,12 @@
     <None Include="Resources\marker.ico" />
     <None Include="Resources\map-marker-small-th.png" />
     <None Include="Resources\Catapult2.png" />
+    <None Include="Resources\FlagBlue.png" />
+    <None Include="Resources\PinBlue.png" />
+    <None Include="Resources\PinBlue20.png" />
+    <None Include="Resources\FlagGreen.png" />
+    <None Include="Resources\PinGreen20.png" />
+    <None Include="Resources\FlagBlue25.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
