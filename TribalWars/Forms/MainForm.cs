@@ -128,6 +128,9 @@ namespace TribalWars.Forms
             ToolStripIconDisplay.CheckState = e.DisplayType == DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
             ToolStripShapeDisplay.CheckState = e.DisplayType == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
 
+            MenuMapIconDisplay.CheckState = ToolStripIconDisplay.CheckState;
+            MenuMapShapeDisplay.CheckState = ToolStripShapeDisplay.CheckState;
+
             _isInShapeDisplay = e.DisplayType == DisplayTypes.Shape;
         }
 
