@@ -23,6 +23,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// the given travel time, add this many possible attackers per click
         /// </summary>
         private const int AutoFindAmountOfAttackers = 10;
+
+        /// <summary>
+        /// Auto find functionality: only add attackers that have
+        /// more then this amount in seconds left before 'send time'
+        /// </summary>
+        private const int AutoFindMinimumAmountOfSecondsLeft = 0;
         #endregion
 
         #region Fields
@@ -203,7 +209,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                         where !villagesAlreadyUsed.Contains(village)
                         let travelTime = Village.TravelTime(ActivePlan.Plan.Target, village, UnitInput.Unit)
                         let timeBeforeNeedToSend = ActivePlan.Plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
-                        where timeBeforeNeedToSend.TotalSeconds > 0
+                        where timeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft
                         select new
                             {
                                 Village = village,
@@ -242,18 +248,19 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
 
             Village vil = plan.Target;
-            var newItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
-            if (vil.HasPlayer) newItm.Text += " (" + vil.Player.Name + ")";
-            AttackDropDown.DropDownItems.Add(newItm);
+            var newPlanDropdownItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
+            if (vil.HasPlayer) newPlanDropdownItm.Text += " (" + vil.Player.Name + ")";
+            AttackDropDown.DropDownItems.Add(newPlanDropdownItm);
 
-            var distance = new AttackPlanControl(WorldUnits.Default.ImageList, plan);
-            distance.Dock = DockStyle.Fill;
-            _plans.Add(plan, new Tuple<ToolStripMenuItem, AttackPlanControl>(newItm, distance));
-            AllPlans.Controls.Add(distance);
+            var newPlan = new AttackPlanControl(WorldUnits.Default.ImageList, plan);
+            newPlan.Visible = false;
+            newPlan.Dock = DockStyle.Fill;
+            _plans.Add(plan, new Tuple<ToolStripMenuItem, AttackPlanControl>(newPlanDropdownItm, newPlan));
+            AllPlans.Controls.Add(newPlan);
 
             foreach (AttackPlanFrom attack in plan.Attacks)
             {
-                distance.AddAttacker(attack);
+                newPlan.AddAttacker(attack);
             }
 
             Timer.Enabled = true;

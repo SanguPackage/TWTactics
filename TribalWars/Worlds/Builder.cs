@@ -102,11 +102,13 @@ namespace TribalWars.Worlds
                 map.MarkerManager.ReadUserDefinedMarkers(r);
 
                 // MainMap: Manipulators
+                Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> dict = map.Manipulators.Manipulators;
+                dict.ForEach(d => d.Value.CleanUp());
+
                 r.ReadToFollowing("Manipulator");
                 while (r.IsStartElement("Manipulator"))
                 {
                     var manipulatorType = (ManipulatorManagerTypes)Enum.Parse(typeof(ManipulatorManagerTypes), r.GetAttribute("Type"));
-                    Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> dict = map.Manipulators.Manipulators;
                     if (dict.ContainsKey(manipulatorType))
                     {
                         if (dict[manipulatorType].UseLegacyXmlWriter)

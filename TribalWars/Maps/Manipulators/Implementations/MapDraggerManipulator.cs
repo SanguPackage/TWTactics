@@ -15,7 +15,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
     public class MapDraggerManipulator : ManipulatorBase
     {
         #region Fields
-        private readonly DefaultManipulatorManager _parent;
+        private readonly ManipulatorManagerBase _parent;
 
         private bool _isDragging;
         private Point _startPosition;
@@ -31,7 +31,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #endregion
 
         #region Constructors
-        public MapDraggerManipulator(Map map, DefaultManipulatorManager parent)
+        public MapDraggerManipulator(Map map, ManipulatorManagerBase parent)
             : base(map)
         {
             _parent = parent;

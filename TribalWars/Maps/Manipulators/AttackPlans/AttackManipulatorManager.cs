@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Linq;
 using TribalWars.Controls;
+using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
@@ -14,7 +15,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// <summary>
     /// The managing attackmanipulator
     /// </summary>
-    public class AttackManipulatorManager : DefaultManipulatorManager
+    public class AttackManipulatorManager : ManipulatorManagerBase
     {
         #region Fields
         private readonly AttackManipulator _attacker;
@@ -22,15 +23,20 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         #region Constructors
         public AttackManipulatorManager(Map map)
-            : base(map)
+            : base(map, true)
         {
             UseLegacyXmlWriter = false;
 
             // Active manipulators
+            var activeVillage = new ActiveVillageManipulator(map);
+            var mover = new MapMoverManipulator(map, false, false, true);
+            var dragger = new MapDraggerManipulator(map, this);
             _attacker = new AttackManipulator(map);
-            _manipulators.Add(_attacker);
 
-            MapMover.RightClickToMove = false;
+            _manipulators.Add(activeVillage);
+            _manipulators.Add(mover);
+            _manipulators.Add(dragger);
+            _manipulators.Add(_attacker);
         }
         #endregion
 

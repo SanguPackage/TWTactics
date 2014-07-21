@@ -93,6 +93,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PinBlack20 {
+            get {
+                object obj = ResourceManager.GetObject("PinBlack20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PinBlue {
             get {
                 object obj = ResourceManager.GetObject("PinBlue", resourceCulture);

@@ -764,6 +764,7 @@
     <None Include="Resources\FlagGreen.png" />
     <None Include="Resources\PinGreen20.png" />
     <None Include="Resources\FlagBlue25.png" />
+    <None Include="Resources\PinBlack20.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

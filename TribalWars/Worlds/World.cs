@@ -14,6 +14,7 @@ using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawers;
 using TribalWars.Maps.Views;
 using TribalWars.Villages;
+using TribalWars.WorldTemplate;
 using Monitor = TribalWars.Maps.Manipulators.Monitoring.Monitor;
 
 #endregion
@@ -286,15 +287,18 @@ namespace TribalWars.Worlds
         /// </summary>
         public void SaveSettings()
         {
-            // .sets file
-            SaveSettings(SettingsName);
+            if (HasLoaded)
+            {
+                // .sets file
+                SaveSettings(SettingsName);
 
-            // world.xml
-            Debug.Assert(Settings.ServerOffset.Hours == (int)Settings.ServerOffset.TotalHours);
+                // world.xml
+                Debug.Assert(Settings.ServerOffset.Hours == (int)Settings.ServerOffset.TotalHours);
 
-            var worldSettings = WorldTemplate.WorldConfiguration.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
-            worldSettings.Offset = Settings.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
-            worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
+                var worldSettings = WorldConfiguration.LoadFromFile(Structure.CurrentWorldXmlPath.FullName);
+                worldSettings.Offset = Settings.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                worldSettings.SaveToFile(Structure.CurrentWorldXmlPath.FullName);
+            }
         }
 
         /// <summary>
@@ -303,10 +307,13 @@ namespace TribalWars.Worlds
         /// <param name="settingsName">Just the settings file name, no path information</param>
         public void SaveSettings(string settingsName)
         {
-            var sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + settingsName);
-            Builder.WriteSettings(sets, Map, Monitor);
+            if (!string.IsNullOrWhiteSpace(settingsName))
+            {
+                var sets = new FileInfo(Structure.CurrentWorldSettingsDirectory + settingsName);
+                Builder.WriteSettings(sets, Map, Monitor);
 
-            SettingsName = new FileInfo(settingsName).Name;
+                SettingsName = new FileInfo(settingsName).Name;
+            }
         }
         #endregion
 

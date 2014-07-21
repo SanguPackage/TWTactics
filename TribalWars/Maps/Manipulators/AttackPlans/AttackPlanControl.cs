@@ -196,5 +196,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
         }
         #endregion
+
+        public override string ToString()
+        {
+            return Plan.ToString();
+        }
     }
 }

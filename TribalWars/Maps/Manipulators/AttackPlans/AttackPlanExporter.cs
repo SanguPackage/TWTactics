@@ -15,14 +15,21 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     {
         #region Constants
         /// <summary>
-        /// When two attacks are less then
+        /// Amount of attacks to trigger the _warnFor
         /// </summary>
-        private readonly TimeSpan WarnFor = new TimeSpan(0, 1, 0);
+        private const int AmountOfAttacksInQuickSuccessionForWarn = 3;
 
         /// <summary>
-        /// 
+        /// When <see cref="AmountOfAttacksInQuickSuccessionForWarn"/> attacks
+        /// need to be sent in this timespan, add a warning
         /// </summary>
-        private readonly TimeSpan WarnForCritical = new TimeSpan(0, 0, 30);
+        private readonly TimeSpan _warnFor = new TimeSpan(0, 1, 0);
+
+        /// <summary>
+        /// Add a critical warning when the next attack needs to be sent
+        /// in under less then this amount of time
+        /// </summary>
+        private readonly TimeSpan _warnForCritical = new TimeSpan(0, 0, 30);
         #endregion
 
         #region Fields
@@ -157,16 +164,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     AttackPlanFrom = x,
                     TimeBetween = currentTravelTime - x.TravelTime
                 })
-                .Where(x => x.TimeBetween < WarnFor)
+                .Where(x => x.TimeBetween < _warnFor)
                 .ToArray();
 
             if (attacksInQuickSuccession.Any())
             {
-                if (attacksInQuickSuccession.Length > 2)
+                if (attacksInQuickSuccession.Length >= AmountOfAttacksInQuickSuccessionForWarn)
                 {
                     _str.AppendLineFormat("ATTN: {0} more attacks coming up soon!", attacksInQuickSuccession.Count());
                 }
-                else if (attacksInQuickSuccession.First().TimeBetween < WarnForCritical)
+                else if (attacksInQuickSuccession.First().TimeBetween < _warnForCritical)
                 {
                     _str.AppendLineFormat("ATTN: Another attack coming up {0} seconds later!", attacksInQuickSuccession.First().TimeBetween.TotalSeconds);
                 }

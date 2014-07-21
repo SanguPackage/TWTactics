@@ -97,12 +97,18 @@ namespace TribalWars.Forms
 
         private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
+            }
         }
 
         private void ToolStripIconDisplay_Click(object sender, EventArgs e)
         {
-            World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
+            }
         }
         
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
@@ -173,17 +179,26 @@ namespace TribalWars.Forms
 
         private void ToolStripDefaultManipulator_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            }
         }
 
         private void ToolStripAttackManipulator_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            }
         }
 
         private void ToolStripPolygonManipulator_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+            }
         }
         #endregion
 
@@ -300,28 +315,37 @@ namespace TribalWars.Forms
 
         private void MenuFileWorldDownload_Click(object sender, EventArgs e)
         {
-            World.Default.SaveSettings();
-            World.Default.Structure.DownloadNewTwSnapshot();
-            World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
+            if (World.Default.HasLoaded)
+            {
+                World.Default.SaveSettings();
+                World.Default.Structure.DownloadNewTwSnapshot();
+                World.Default.LoadWorld(World.Default.Structure.CurrentWorldDirectory, World.Default.SettingsName);
+            }
         }
 
         private void MenuFileSynchronizeTime_Click(object sender, EventArgs e)
         {
-            using (var timeSetter = new TimeZoneForm())
+            if (World.Default.HasLoaded)
             {
-                timeSetter.ServerOffset = World.Default.Settings.ServerOffset;
-                var result = timeSetter.ShowDialog();
-                if (result == DialogResult.OK)
+                using (var timeSetter = new TimeZoneForm())
                 {
-                    World.Default.Settings.ServerOffset = timeSetter.ServerOffset;
-                    World.Default.SaveSettings();
+                    timeSetter.ServerOffset = World.Default.Settings.ServerOffset;
+                    var result = timeSetter.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        World.Default.Settings.ServerOffset = timeSetter.ServerOffset;
+                        World.Default.SaveSettings();
+                    }
                 }
             }
         }
 
         private void MenuFileSetActivePlayer_Click(object sender, EventArgs e)
         {
-            ActivePlayerForm.UpdateDefaultWorld();
+            if (World.Default.HasLoaded)
+            {
+                ActivePlayerForm.UpdateDefaultWorld();
+            }
         }
 
         private void ToolStripOpen_Click(object sender, EventArgs e)
@@ -424,19 +448,25 @@ namespace TribalWars.Forms
 
         private void MenuMapScreenshot_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            string lFile = string.Format(@"{0}TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
-            while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
-            lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
+            if (World.Default.HasLoaded)
+            {
+                int i = 0;
+                string lFile = string.Format(@"{0}TW{1:yyyyMMdd}-", World.Default.Structure.CurrentWorldScreenshotDirectory, DateTime.Now);
+                while (File.Exists(lFile + i.ToString(CultureInfo.InvariantCulture) + ".png")) i++;
+                lFile += i.ToString(CultureInfo.InvariantCulture) + ".png";
 
-            World.Default.Map.Screenshot(lFile);
+                World.Default.Map.Screenshot(lFile);
 
-            StatusMessage.Text = "Screenshot saved as " + lFile;
+                StatusMessage.Text = "Screenshot saved as " + lFile;
+            }
         }
 
         private void MenuMapSeeScreenshots_Click(object sender, EventArgs e)
         {
-            Process.Start(World.Default.Structure.CurrentWorldScreenshotDirectory);
+            if (World.Default.HasLoaded)
+            {
+                Process.Start(World.Default.Structure.CurrentWorldScreenshotDirectory);
+            }
         }
 
         private void MenuHelpAbout_Click(object sender, EventArgs e)

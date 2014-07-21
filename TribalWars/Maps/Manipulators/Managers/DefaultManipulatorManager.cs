@@ -1,6 +1,5 @@
 #region Using
 using TribalWars.Maps.Manipulators.Implementations;
-
 #endregion
 
 namespace TribalWars.Maps.Manipulators.Managers

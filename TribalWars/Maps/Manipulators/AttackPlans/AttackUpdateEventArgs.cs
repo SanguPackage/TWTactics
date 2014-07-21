@@ -9,17 +9,31 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackUpdateEventArgs : EventArgs
     {
+        #region Action Enum
         public enum ActionKind
         {
+            /// <summary>
+            /// Add an attacker
+            /// </summary>
             Add,
+            /// <summary>
+            /// Delete an attacker
+            /// </summary>
             Delete,
+            /// <summary>
+            /// Update an attacker or the AttackPlan itself
+            /// </summary>
             Update
         }
+        #endregion
 
+        #region Properties
         public IEnumerable<AttackPlanFrom> AttackFrom { get; private set; }
 
         public ActionKind Action { get; private set; }
+        #endregion
 
+        #region Constructors
         public static AttackUpdateEventArgs UpdateAttackFrom(AttackPlanFrom attackFrom)
         {
             return new AttackUpdateEventArgs(new[] { attackFrom }, ActionKind.Update);
@@ -50,12 +64,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             AttackFrom = attackFrom.ToArray();
             Action = action;
         }
+        #endregion
 
         public override string ToString()
         {
             return string.Format("{0}, AttackFromCount={1}", Action, AttackFrom.Count());
         }
-
-        
     }
 }

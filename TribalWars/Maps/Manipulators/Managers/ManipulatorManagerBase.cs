@@ -308,7 +308,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         public void ReadXml(XDocument doc)
         {
             Debug.Assert(!UseLegacyXmlWriter);
-            CleanUp();
             ReadXmlCore(doc);
         }
 
@@ -334,7 +333,6 @@ namespace TribalWars.Maps.Manipulators.Managers
         public void ReadXml(XmlReader r)
         {
             Debug.Assert(UseLegacyXmlWriter);
-            CleanUp();
             if (r.IsEmptyElement)
             {
                 r.Read();
