@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.EventArg
 {
     /// <summary>
     /// Update an existing <see cref="AttackPlan" />

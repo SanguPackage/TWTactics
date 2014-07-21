@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using TribalWars.Maps.Manipulators.AttackPlans.Controls;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Properties;
 using TribalWars.Villages;

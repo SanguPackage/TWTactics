@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TribalWars.Forms.Small;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     /// <summary>
     /// Control with all <see cref="AttackPlan" />s

@@ -178,7 +178,12 @@
     <Compile Include="Forms\NewWorldForm.Designer.cs">
       <DependentUpon>NewWorldForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttackIcons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\Manipulators\AttackPlans\EventArg\AttackEventArgs.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanExporter.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFrom.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackPlan.cs" />
@@ -256,12 +261,7 @@
     </Compile>
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulator.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\AttackManipulatorManager.cs" />
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackUpdateEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackIcons.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AttackIcons.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Maps\Manipulators\AttackPlans\EventArg\AttackUpdateEventArgs.cs" />
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -336,22 +336,22 @@
     <Compile Include="Maps\Controls\MapControl.designer.cs">
       <DependentUpon>MapControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanControl.Designer.cs">
       <DependentUpon>AttackPlanControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanCollectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanCollectionControl.Designer.cs">
       <DependentUpon>AttackPlanCollectionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanFromControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.Designer.cs">
+    <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanFromControl.Designer.cs">
       <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AccordeonLocation\LocationFinderControl.cs">
@@ -576,8 +576,9 @@
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackIcons.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\Controls\AttackIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>AttackIcons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
@@ -599,15 +600,15 @@
       <DependentUpon>MapControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AttackPlanControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanCollectionControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanCollectionControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AttackPlanCollectionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\AttackPlanFromControl.resx">
+    <EmbeddedResource Include="Maps\Manipulators\AttackPlans\Controls\AttackPlanFromControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
     </EmbeddedResource>

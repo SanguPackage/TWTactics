@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.EventArg
 {
     /// <summary>
     /// Add, Remove or Select an attackplan

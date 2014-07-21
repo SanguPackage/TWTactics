@@ -1,13 +1,13 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     /// <summary>
     /// Control with for one <see cref="AttackPlan" />

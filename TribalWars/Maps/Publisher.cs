@@ -5,6 +5,7 @@ using System.ComponentModel;
 using TribalWars.Browsers.Reporting;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.AttackPlans;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Villages;

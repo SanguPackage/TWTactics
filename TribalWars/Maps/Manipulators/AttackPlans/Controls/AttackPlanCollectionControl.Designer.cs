@@ -1,6 +1,6 @@
 using TribalWars.Controls.Common;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     partial class AttackPlanCollectionControl
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TribalWars.Maps.Manipulators.AttackPlans {
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TribalWars.Maps.Manipulators.AttackPlans.AttackIcons", typeof(AttackIcons).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TribalWars.Maps.Manipulators.AttackPlans.Controls.AttackIcons", typeof(AttackIcons).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

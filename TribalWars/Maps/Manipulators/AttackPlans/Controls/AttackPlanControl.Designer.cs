@@ -1,7 +1,7 @@
 using TribalWars.Controls.Finders;
 using TribalWars.Controls.TimeConverter;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     partial class AttackPlanControl
     {

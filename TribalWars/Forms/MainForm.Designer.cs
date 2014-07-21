@@ -3,6 +3,7 @@ using TribalWars.Controls.AccordeonDetails;
 using TribalWars.Controls.AccordeonLocation;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Manipulators.AttackPlans;
+using TribalWars.Maps.Manipulators.AttackPlans.Controls;
 using TribalWars.Maps.Manipulators.Monitoring;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Maps.Markers;
@@ -116,7 +117,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this._attackPlan = new TribalWars.Maps.Manipulators.AttackPlans.AttackPlanCollectionControl();
+            this._attackPlan = new AttackPlanCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();

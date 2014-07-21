@@ -1,12 +1,13 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     /// <summary>
     /// Control for one attacker. 

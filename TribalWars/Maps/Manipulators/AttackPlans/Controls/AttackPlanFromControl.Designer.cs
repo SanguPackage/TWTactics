@@ -1,7 +1,7 @@
 using TribalWars.Controls.Common;
 using TribalWars.Controls.Finders;
 
-namespace TribalWars.Maps.Manipulators.AttackPlans
+namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 {
     partial class AttackPlanFromControl
     {
