@@ -80,10 +80,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
 
         private void _Village_DoubleClick(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-            var villages = Plan.Attacks.SelectMany(x => x.Attacker).Union(Plan.Target).ToArray();
-            World.Default.Map.EventPublisher.SelectVillages(null, villages, VillageTools.SelectVillage);
-            World.Default.Map.SetCenter(villages);
+            Plan.Pinpoint(null);
         }
 
         private void _Player_MouseClick(object sender, MouseEventArgs e)

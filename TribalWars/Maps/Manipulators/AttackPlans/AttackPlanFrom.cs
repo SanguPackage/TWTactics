@@ -11,6 +11,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackPlanFrom
     {
+        #region Properties
         /// <summary>
         /// The plan this attack is part of
         /// </summary>
@@ -33,14 +34,18 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             get { return Village.TravelTime(Plan.Target, Attacker, SlowestUnit); }
         }
+        #endregion
 
+        #region Constructors
         public AttackPlanFrom(AttackPlan plan, Village attacker, Unit slowestUnit)
         {
             Plan = plan;
             Attacker = attacker;
             SlowestUnit = slowestUnit;
         }
+        #endregion
 
+        #region Methods
         /// <summary>
         /// The date the attack needs to be sent to arrive at the specified time
         /// </summary>
@@ -61,5 +66,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         {
             return string.Format("Attacker={0}, SlowestUnit={1}", Attacker.LocationString, SlowestUnit);
         }
+        #endregion
     }
 }

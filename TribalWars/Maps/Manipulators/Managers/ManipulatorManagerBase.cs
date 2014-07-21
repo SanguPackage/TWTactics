@@ -189,14 +189,16 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             if (_fullControllManipulator != null)
             {
-                return _fullControllManipulator.OnVillageDoubleClickCore(e);
+                // TODO: this isHandled is actually "mustRedraw"
+                //       these should return void and have EventArgs.Redraw and .Handled props
+                var isHandled = _fullControllManipulator.OnVillageDoubleClickCore(e);
+                if (isHandled)
+                    return true;
             }
-            else
-            {
-                bool redraw = false;
-                foreach (ManipulatorBase m in _manipulators) redraw |= m.OnVillageDoubleClickCore(e);
-                return redraw;
-            }
+
+            bool redraw = false;
+            foreach (ManipulatorBase m in _manipulators) redraw |= m.OnVillageDoubleClickCore(e);
+            return redraw;
         }
 
         protected internal override bool OnVillageClickCore(MapVillageEventArgs e)

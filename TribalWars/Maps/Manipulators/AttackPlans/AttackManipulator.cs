@@ -38,6 +38,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
         #region Fields
         private readonly List<AttackPlan> _plans;
+        //private readonly List<Village> _doublyUsedVillages;
         private Village _hoverVillage;
 
         private AttackPlan ActivePlan { get; set; }
@@ -49,6 +50,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             : base(map)
         {
             _plans = new List<AttackPlan>();
+            //_doublyUsedVillages = new List<Village>();
 
             map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
             map.EventPublisher.TargetUpdated += EventPublisherOnTargetUpdated;
@@ -92,15 +94,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 switch (e.Action)
                 {
                     case AttackUpdateEventArgs.ActionKind.Add:
-                        Debug.Assert(!plan.Attacks.Contains(attacker));
-                        ActiveAttacker = attacker;
-                        plan.Attacks.Add(attacker);
+                        AddAttacker(plan, attacker);
                         break;
                         
                    case AttackUpdateEventArgs.ActionKind.Delete:
-                        Debug.Assert(plan.Attacks.Contains(attacker));
-                        ActiveAttacker = null;
-                        plan.Attacks.Remove(attacker);
+                        RemoveAttacker(plan, attacker);
                         break;
 
                    case AttackUpdateEventArgs.ActionKind.Update:
@@ -112,6 +110,20 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 }
             }
             World.Default.Map.Invalidate(false);
+        }
+
+        private void RemoveAttacker(AttackPlan plan, AttackPlanFrom attacker)
+        {
+            Debug.Assert(plan.Attacks.Contains(attacker));
+            ActiveAttacker = null;
+            plan.RemoveAttack(attacker);
+        }
+
+        private void AddAttacker(AttackPlan plan, AttackPlanFrom attacker)
+        {
+            Debug.Assert(!plan.Attacks.Contains(attacker));
+            ActiveAttacker = attacker;
+            plan.AddAttacker(attacker);
         }
         #endregion
 
@@ -152,21 +164,31 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 }
 
                 using (var activeAttackersPen = new Pen(Color.Yellow, 1))
+                using (var warningAttackersPen = new Pen(Color.Red, 1))
                 using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
+                using (var selectedWarningAttackersPen = new Pen(Color.Red, 3))
                 {
                     // cirkels for the active plan attackers
-                    foreach (AttackPlanFrom attacker in ActivePlan.Attacks)
+                    foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                     {
-                        if (gameSize.Contains(attacker.Attacker.Location))
+                        var isAlreadyUsed = IsVillageUsedMultipleTimes(attacker.Attacker);
+                        Pen penToUse;
+                        if (isAlreadyUsed)
                         {
-                            Point villageLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
-                            g.DrawEllipse(
-                                ActiveAttacker == attacker ? selectedActiveAttackersPen : activeAttackersPen,
-                                villageLocation.X,
-                                villageLocation.Y,
-                                villageSize.Width,
-                                villageSize.Height);
+                            penToUse = ActiveAttacker == attacker ? selectedWarningAttackersPen : warningAttackersPen;
                         }
+                        else
+                        {
+                            penToUse = ActiveAttacker == attacker ? selectedActiveAttackersPen : activeAttackersPen;
+                        }
+
+                        Point villageLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
+                        g.DrawEllipse(
+                            penToUse,
+                            villageLocation.X,
+                            villageLocation.Y,
+                            villageSize.Width,
+                            villageSize.Height);
                     }
                 }
             }
@@ -182,7 +204,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     loc.Offset(-5, -27); // more - means to the top or the left
                     g.DrawImage(AttackIcons.FlagBlue25, loc);
 
-                    foreach (AttackPlanFrom attacker in plan.Attacks)
+                    foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(plan.Attacks, gameSize))
                     {
                         // Villages attacking other target villages
                         loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
@@ -190,13 +212,15 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
                         if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
                         {
+                            Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagBlue;
                             loc.Offset(-10, -17);
-                            g.DrawImage(Resources.FlagBlue, loc);
+                            g.DrawImage(smallAttackerImage, loc);
                         }
                         else
                         {
+                            Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinBlue20;
                             loc.Offset(-6, -25);
-                            g.DrawImage(AttackIcons.PinBlue20, loc);
+                            g.DrawImage(biggerAttackerImage, loc);
                         }
                     }
                 }
@@ -211,7 +235,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
                 g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
 
-                foreach (AttackPlanFrom attacker in ActivePlan.Attacks)
+                foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                 {
                     // Villages attacking the active target village
                     activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
@@ -219,11 +243,13 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
                     if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
                     {
+                        //Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagGreen;
                         activePlanTargetLocation.Offset(-10, -17);
                         g.DrawImage(Resources.FlagGreen, activePlanTargetLocation);
                     }
                     else
                     {
+                        //Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinGreen20;
                         activePlanTargetLocation.Offset(-6, -25);
                         g.DrawImage(AttackIcons.PinGreen20, activePlanTargetLocation);
                     }
@@ -231,12 +257,20 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
         }
 
+        /// <summary>
+        /// Filter out all attacks that don't need drawing
+        /// </summary>
+        private IEnumerable<AttackPlanFrom> FilterAttacksForDrawing(IEnumerable<AttackPlanFrom> attacks, Rectangle gameSize)
+        {
+            return attacks.Where(attack => gameSize.Contains(attack.Attacker.Location));
+        }
+
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
             if (e.Village != null)
             {
-                AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == e.Village);
-                AttackPlanFrom existingAttack = _plans.SelectMany(plan => plan.Attacks).FirstOrDefault(attack => attack.Attacker == e.Village);
+                AttackPlan existingPlan = GetExistingPlan(e.Village);
+                AttackPlanFrom existingAttack = GetAttacker(e.Village);
 
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
                 {
@@ -342,6 +376,43 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             return false;
         }
+
+        protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
+        {
+            AttackPlan existingPlan = GetExistingPlan(e.Village);
+            if (existingPlan != null)
+            {
+                existingPlan.Pinpoint(null);
+                return true;
+            }
+            else
+            {
+                AttackPlanFrom existingAttack = GetAttacker(e.Village);
+                if (existingAttack != null)
+                {
+                    existingAttack.Plan.Pinpoint(existingAttack);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private AttackPlan GetExistingPlan(Village village)
+        {
+            AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == village);
+            return existingPlan;
+        }
+
+        private AttackPlanFrom GetAttacker(Village village)
+        {
+            AttackPlanFrom existingAttack = _plans.SelectMany(plan => plan.Attacks).FirstOrDefault(attack => attack.Attacker == village);
+            return existingAttack;
+        }
+
+        private bool IsVillageUsedMultipleTimes(Village village)
+        {
+            return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village) > 1;
+        }
         #endregion
 
         #region Public Methods
@@ -395,7 +466,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                             World.Default.GetVillage(attackerXml.Attribute("Attacker").Value),
                             WorldUnits.Default[slowestUnit]);
 
-                        plan.Attacks.Add(attacker);
+                        plan.AddAttacker(attacker);
                     }
 
                     _plans.Add(plan);

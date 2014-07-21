@@ -63,6 +63,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Flag_redHS {
+            get {
+                object obj = ResourceManager.GetObject("Flag_redHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FlagBlue {
             get {
                 object obj = ResourceManager.GetObject("FlagBlue", resourceCulture);
@@ -126,6 +136,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls {
         internal static System.Drawing.Bitmap PinGreen20 {
             get {
                 object obj = ResourceManager.GetObject("PinGreen20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PinRed20 {
+            get {
+                object obj = ResourceManager.GetObject("PinRed20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

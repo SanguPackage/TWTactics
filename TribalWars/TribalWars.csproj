@@ -766,6 +766,12 @@
     <None Include="Resources\PinGreen20.png" />
     <None Include="Resources\FlagBlue25.png" />
     <None Include="Resources\PinBlack20.png" />
+    <None Include="Resources\PinOrange20.png" />
+    <None Include="Resources\PinRed20.png" />
+    <None Include="Resources\Flag_redHS.gif" />
+    <None Include="Resources\flag_red.png" />
+    <None Include="Resources\Flag_redHS.bmp" />
+    <None Include="Resources\Flag_redHS.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

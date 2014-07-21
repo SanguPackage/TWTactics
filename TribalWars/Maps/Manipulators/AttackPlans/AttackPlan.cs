@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 using System.Linq;
+using TribalWars.Worlds.Events;
 
 namespace TribalWars.Maps.Manipulators.AttackPlans
 {
@@ -12,6 +14,10 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackPlan
     {
+        #region Fields
+        private readonly List<AttackPlanFrom> _attacks;
+        #endregion
+
         #region Properties
         /// <summary>
         /// The village we will attack (or defend)
@@ -26,12 +32,16 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// <summary>
         /// Villages attacking the target village
         /// </summary>
-        public List<AttackPlanFrom> Attacks { get; private set; }
+        public IEnumerable<AttackPlanFrom> Attacks
+        {
+            get { return _attacks; }
+        }
         #endregion
 
         #region Constructors
         public AttackPlan(Village target, DateTime? arrivalTime)
         {
+            _attacks = new List<AttackPlanFrom>();
             Target = target;
             if (arrivalTime.HasValue)
             {
@@ -41,13 +51,42 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             {
                 ArrivalTime = World.Default.Settings.ServerTime.AddHours(8);
             }
-            Attacks = new List<AttackPlanFrom>();
         }
         #endregion
 
+        #region Methods
+        /// <summary>
+        /// Pinpoint the plan on the main map
+        /// </summary>
+        public void Pinpoint(AttackPlanFrom activeAttacker)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            var villages = Attacks.SelectMany(x => x.Attacker).Union(Target).ToArray();
+            if (activeAttacker != null)
+            {
+                World.Default.Map.EventPublisher.AttackSelect(this, activeAttacker);
+            }
+            else
+            {
+                World.Default.Map.EventPublisher.AttackSelect(this, this);
+            }
+            World.Default.Map.SetCenter(villages);
+        }
+
+        public void AddAttacker(AttackPlanFrom attacker)
+        {
+            _attacks.Add(attacker);
+        }
+
+        public void RemoveAttack(AttackPlanFrom attacker)
+        {
+            _attacks.Remove(attacker);
+        }
+
         public override string ToString()
         {
-            return string.Format("Target={0}, ArrivalTime={1}, Attacks={2}", Target.LocationString, ArrivalTime.ToString("dd/MM hh:mm:ss"), Attacks.Count);
+            return string.Format("Target={0}, ArrivalTime={1}, Attacks={2}", Target.LocationString, ArrivalTime.ToString("dd/MM hh:mm:ss"), Attacks.Count());
         }
+        #endregion
     }
 }
