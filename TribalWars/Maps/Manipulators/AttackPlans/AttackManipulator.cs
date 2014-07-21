@@ -40,9 +40,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private readonly List<AttackPlan> _plans;
         private Village _hoverVillage;
 
-        public AttackPlan ActivePlan { get; private set; }
-
-        public AttackPlanFrom ActiveAttacker { get; private set; }
+        private AttackPlan ActivePlan { get; set; }
+        private AttackPlanFrom ActiveAttacker { get; set; }
         #endregion
 
         #region Constructors
@@ -296,12 +295,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     }
                 }
             }
-            return false;
-        }
-
-        protected internal override bool MouseUpCore(MapMouseEventArgs e)
-        {
-            
             return false;
         }
 

@@ -36,8 +36,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             new Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>>();
 
         private AttackPlanControl _activePlan;
-        private AttackPlanFrom _activeAttacker;
-
         private readonly ToolStripItem[] _visibleWhenNoPlans;
         #endregion
 
@@ -120,16 +118,18 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
                     break;
 
                 case AttackUpdateEventArgs.ActionKind.Update:
-                    if (ActivePlan != null)
-                    {
-                        Debug.Assert(!e.AttackFrom.Any() || ActivePlan.Plan == e.AttackFrom.First().Plan);
-                        ActivePlan.UpdateDisplay();
-                    }
                     break;
 
                 default:
                     Debug.Assert(false);
                     break;
+            }
+
+            if (ActivePlan != null)
+            {
+                Debug.Assert(!e.AttackFrom.Any() || ActivePlan.Plan == e.AttackFrom.First().Plan);
+                ActivePlan.SetActiveAttacker(e.AttackFrom.FirstOrDefault());
+                ActivePlan.UpdateDisplay();
             }
         }
 
