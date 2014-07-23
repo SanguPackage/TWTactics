@@ -1,6 +1,7 @@
 #region Imports
 using System;
 using System.Drawing;
+using TribalWars.Maps.Displays;
 
 #endregion
 
@@ -48,17 +49,22 @@ namespace TribalWars.Maps
         {
             get { return _zoom; }
         }
+
+        /// <summary>
+        /// Shape or Icon display
+        /// </summary>
+        public DisplayTypes Display { get; private set; }
         #endregion
 
         #region Constructors
-        public Location(int x, int y, int zoom)
+        public Location(DisplayTypes display, int x, int y, int zoom)
+            : this(display, new Point(x, y), zoom)
         {
-            _point = new Point(x, y);
-            _zoom = zoom;
         }
 
-        public Location(Point loc, int zoom)
+        public Location(DisplayTypes display, Point loc, int zoom)
         {
+            Display = display;
             _point = loc;
             _zoom = zoom;
         }
@@ -67,14 +73,14 @@ namespace TribalWars.Maps
         #region Public Methods
         public override string ToString()
         {
-            return string.Format("{0}|{1} (X{2})", X, Y, Zoom);
+            return string.Format("{0} - {1}|{2} (X{3})", Display, X, Y, Zoom);
         }
         #endregion
 
         #region IEquatable<MapLocation> Members
         public override int GetHashCode()
         {
-            return (Point.X + Point.Y + _zoom).GetHashCode();
+            return ((int)Display + Point.X + Point.Y + _zoom).GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -85,7 +91,7 @@ namespace TribalWars.Maps
         public bool Equals(Location obj)
         {
             if (obj == null) return false;
-            return _point == obj.Point && Zoom == obj.Zoom;
+            return Display == obj.Display && _point == obj.Point && Zoom == obj.Zoom;
         }
 
         public static bool operator ==(Location left, Location right)

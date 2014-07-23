@@ -267,10 +267,15 @@ namespace TribalWars.Worlds
             InvalidateMarkers();
 
             displaySettings.Scenery = Settings.IconScenery;
-            Map.InitializeDisplay(displaySettings, Map.HomeDisplay, Map.HomeLocation.Zoom);
+            Map.InitializeDisplay(displaySettings, Map.HomeLocation.Display, Map.HomeLocation.Zoom);
             _miniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, MiniMapDrawerFactory.MaxZoomLevel);
 
-            Map.SetDisplay(Map.HomeDisplay, Map.HomeLocation, true);
+            //Map.SetDisplay(Map.HomeLocation.Display, Map.HomeLocation, true);
+
+            Map.SetCenter(Map.HomeLocation);
+
+
+
 
             if (publishLoad)
             {

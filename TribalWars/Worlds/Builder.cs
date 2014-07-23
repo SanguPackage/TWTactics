@@ -81,8 +81,7 @@ namespace TribalWars.Worlds
                 int z = Convert.ToInt32(r.GetAttribute("Zoom"));
                 var displayType = (DisplayTypes)Enum.Parse(typeof(DisplayTypes), r.GetAttribute("Display"), true);
                 if (displayType == DisplayTypes.None) displayType = DisplayTypes.Icon;
-                map.HomeLocation = new Location(x, y, z);
-                map.HomeDisplay = displayType;
+                map.HomeLocation = new Location(displayType, x, y, z);
 
                 // MainMap: Display
                 r.ReadStartElement();
@@ -161,7 +160,7 @@ namespace TribalWars.Worlds
 
                 w.WriteStartElement("MainMap");
                 w.WriteStartElement("Location");
-                w.WriteAttributeString("Display", map.HomeDisplay.ToString());
+                w.WriteAttributeString("Display", map.HomeLocation.Display.ToString());
                 w.WriteAttributeString("XY", map.HomeLocation.X + "|" + map.HomeLocation.Y);
                 w.WriteAttributeString("Zoom", map.HomeLocation.Zoom.ToString(CultureInfo.InvariantCulture));
                 w.WriteEndElement();

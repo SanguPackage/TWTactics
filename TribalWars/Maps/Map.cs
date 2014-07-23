@@ -16,6 +16,7 @@ using TribalWars.Maps.Markers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 using TribalWars.Worlds.Events.Impls;
 
@@ -98,11 +99,6 @@ namespace TribalWars.Maps
         public Location HomeLocation { get; set; }
 
         /// <summary>
-        /// Gets the home icon/shape display on the map
-        /// </summary>
-        public DisplayTypes HomeDisplay { get; set; }
-
-        /// <summary>
         /// Only after a map was painted, start reacting to events etc
         /// </summary>
         public bool HasPainted
@@ -117,6 +113,8 @@ namespace TribalWars.Maps
         /// </summary>
         public Map(Map mainMap)
         {
+            _location = new Location(DisplayTypes.MiniMap, 500, 500, 3);
+
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
             Manipulators = new ManipulatorManagerController(this, mainMap);
@@ -185,7 +183,7 @@ namespace TribalWars.Maps
             {
                 int x = continent % 10 * 100 + 50;
                 int y = (continent - continent % 10) * 10 + 50;
-                SetCenter(this, new Location(x, y, Location.Zoom), false);
+                SetCenter(this, new Location(Location.Display, x, y, Location.Zoom), false);
             }
         }
 
@@ -194,7 +192,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetZoomLevel(int zoom)
         {
-            SetCenter(this, new Location(Location.X, Location.Y, zoom), false);
+            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, zoom), false);
         }
 
         /// <summary>
@@ -203,7 +201,7 @@ namespace TribalWars.Maps
         public void IncreaseZoomLevel(int amount)
         {
             if (Display.Type == DisplayTypes.Icon) amount *= -1;
-            SetCenter(this, new Location(Location.X, Location.Y, Location.Zoom + amount), false);
+            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, Location.Zoom + amount), false);
         }
 
         /// <summary>
@@ -211,7 +209,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCenter(Point point)
         {
-            SetCenter(this, new Location(point.X, point.Y, Location.Zoom), false);
+            SetCenter(this, new Location(Location.Display, point.X, point.Y, Location.Zoom), false);
         }
 
         /// <summary>
@@ -256,7 +254,7 @@ namespace TribalWars.Maps
                 CanvasSize.Height / (game.Height + villagesExtraVisible));
 
             int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize);
-            return new Location(middle, newZoomLevel);
+            return new Location(Location.Display, middle, newZoomLevel);
         }
 
         /// <summary>
@@ -264,7 +262,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCenter(Point loc, int zoom)
         {
-            SetCenter(this, new Location(loc, zoom), false);
+            SetCenter(this, new Location(Location.Display, loc, zoom), false);
         }
 
         /// <summary>
@@ -293,11 +291,11 @@ namespace TribalWars.Maps
                 DrawerFactoryBase.ZoomInfo info = Display.Zoom;
                 if (value.Zoom < info.Minimum)
                 {
-                    value = new Location(value.Point, info.Minimum);
+                    value = new Location(Location.Display, value.Point, info.Minimum);
                 }
                 else if (value.Zoom > info.Maximum)
                 {
-                    value = new Location(value.Point, info.Maximum);
+                    value = new Location(Location.Display, value.Point, info.Maximum);
                 }
 
                 if (!value.Equals(Location) || forceRaiseEvent)
@@ -314,44 +312,37 @@ namespace TribalWars.Maps
             }
         }
 
-        /// <summary>
-        /// Resets the map to allow loading of new settings
-        /// </summary>
-        /// <remarks>Resets the minipulators and display</remarks>
-        public void SetDisplay(DisplayTypes display, int zoom)
-        {
-            SetDisplay(display, new Location(Location.Point, zoom));
-        }
+        ///// <summary>
+        ///// Resets the map to allow loading of new settings
+        ///// </summary>
+        ///// <remarks>Resets the minipulators and display</remarks>
+        //public void SetDisplay(DisplayTypes display, int zoom)
+        //{
+        //    SetDisplay(display, new Location(Location.Display, Location.Point, zoom));
+        //}
 
-        /// <summary>
-        /// Resets the map to allow loading of new settings
-        /// </summary>
-        /// <remarks>Resets the minipulators and display</remarks>
-        public void SetDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
-        {
-            if (forceDisplay || Display.Type != display)
-            {
-                Display = new Display(Display.Settings, this, display, location.Zoom);
+        ///// <summary>
+        ///// Resets the map to allow loading of new settings
+        ///// </summary>
+        ///// <remarks>Resets the minipulators and display</remarks>
+        //public void SetDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
+        //{
+        //    if (forceDisplay || Display.Type != display)
+        //    {
+        //        Display = new Display(Display.Settings, this, display, location.Zoom);
 
-                EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
+        //        EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
 
-                SetCenter(this, location, true);
-            }
-        }
+        //        SetCenter(this, location, true);
+        //    }
+        //}
 
         /// <summary>
         /// Center on home location
         /// </summary>
         public void GoHome()
         {
-            if (HomeDisplay != Display.Type)
-            {
-                SetDisplay(HomeDisplay, HomeLocation);
-            }
-            else
-            {
-                SetCenter(HomeLocation);
-            }
+            SetCenter(HomeLocation);
         }
 
         /// <summary>
@@ -360,7 +351,6 @@ namespace TribalWars.Maps
         public void SaveHome()
         {
             HomeLocation = Location;
-            HomeDisplay = Display.Type;
         }
         #endregion
 

@@ -91,7 +91,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
             int x = _startPosition.X - _lastPosition.X;
             int y = _startPosition.Y - _lastPosition.Y;
 
-            _map.SetCenter(new Location(current.X + x, current.Y + y, current.Zoom));
+            _map.SetCenter(new Location(current.Display, current.X + x, current.Y + y, current.Zoom));
         }
 
         protected internal override void SetFullControlManipulatorCore()

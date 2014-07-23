@@ -99,7 +99,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
+                //World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
             }
         }
 
@@ -107,7 +107,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
+               // World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
             }
         }
         
