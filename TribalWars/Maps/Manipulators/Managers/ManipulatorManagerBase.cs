@@ -217,16 +217,41 @@ namespace TribalWars.Maps.Manipulators.Managers
 
         public bool MouseWheel(MouseEventArgs e)
         {
+            // TODO we zaten hier
+            //from d in mouseDowns.Timestamp()
+            //from p in pointChanges
+            //    .TakeUntil(mouseUps)
+            //    .SkipUntil(Observable.Timer(d.Timestamp + TimeSpan.FromSeconds(1.0)))
+            //select p;
+
+
             _map.IncreaseZoomLevel(e.Delta > 0 ? 1 : -1);
             return true;
         }
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
-            if (e.KeyEventArgs.KeyCode == Keys.T)
+            switch (e.KeyEventArgs.KeyCode)
             {
-                TooltipActive = !TooltipActive;
-                return false;
+                case Keys.T:
+                    TooltipActive = !TooltipActive;
+                    return false;
+
+                case Keys.Tab:
+
+                    // TODO: ok we zijn er: 
+                    // Location en Display worden best samengevoegd
+                    // er zit code in MainForm die dit min of meer doet... :(
+                    // samen met auto change display bij SetCenter
+                    // ChangeDisplay() event volledig weg dus? 
+
+                    //_map.Display.SwitchDisplay();
+                    //_map.SetDisplay();
+                    return false;
+
+                case Keys.Back:
+                    // TODO: return to previous location
+                    break;
             }
 
             if (_fullControllManipulator != null)
