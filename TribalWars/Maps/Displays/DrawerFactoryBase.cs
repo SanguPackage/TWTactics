@@ -174,10 +174,28 @@ namespace TribalWars.Maps.Displays
             }
             #endregion
 
+            /// <summary>
+            /// Returns the <see cref="Location"/> parameter or a updated
+            /// one if the zoom level is invalid for the <see cref="Display"/>
+            /// </summary>
+            public Location Validate(Location location)
+            {
+                if (location.Zoom < Minimum)
+                {
+                    return new Location(location.Display, location.Point, Minimum);
+                }
+                if (location.Zoom > Maximum)
+                {
+                    return new Location(location.Display, location.Point, Maximum);
+                }
+                return location;
+            }
+
             public override string ToString()
             {
                 return string.Format("Min={0}, Max={1}, Current={2}", Minimum, Maximum, Current);
             }
+
         }
         #endregion
     }

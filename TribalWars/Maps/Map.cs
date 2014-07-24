@@ -296,21 +296,12 @@ namespace TribalWars.Maps
         {
             if (location != null)
             {
-                
-                //if (location.Zoom < info.Minimum)
-                //{
-                //    location = new Location(Location.Display, location.Point, info.Minimum);
-                //}
-                //else if (location.Zoom > info.Maximum)
-                //{
-                //    location = new Location(Location.Display, location.Point, info.Maximum);
-                //}
-
                 if (Display == null || forceRaiseEvent || Display.Type != location.Display)
                 {
                     Display = new Display(_displaysettings, this, location.Display, location.Zoom);
                 }
 
+                location = Display.Zoom.Validate(location);
                 if (!location.Equals(Location) || forceRaiseEvent)
                 {
                     Location oldLocation = Location;
