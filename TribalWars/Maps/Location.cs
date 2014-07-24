@@ -106,5 +106,10 @@ namespace TribalWars.Maps
             return !(left == right);
         }
         #endregion
+
+        public Location ChangeShapeAndZoom(DisplayTypes displayType, int zoom)
+        {
+            return new Location(displayType, _point, zoom);
+        }
     }
 }

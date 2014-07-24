@@ -113,6 +113,7 @@ namespace TribalWars.Maps
         /// </summary>
         public Map(Map mainMap)
         {
+            // TODO: check this. MiniMapActiveVillageManipulator needs to know an initial DisplayType
             _location = new Location(DisplayTypes.MiniMap, 500, 500, 3);
 
             EventPublisher = new Publisher(this);
@@ -150,6 +151,15 @@ namespace TribalWars.Maps
         public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, int zoomLevel)
         {
             Display = new Display(settings, this, type, zoomLevel);
+        }
+
+        private DisplaySettings _displaysettings;
+
+        public void InitializeDisplay(DisplaySettings displaySettings, Maps.Location location)
+        {
+            _displaysettings = displaySettings;
+           // SetCenter(this, location, true);
+            
         }
 
         /// <summary>
@@ -284,30 +294,36 @@ namespace TribalWars.Maps
         /// <summary>
         /// Changes the center of the map
         /// </summary>
-        private void SetCenter(object sender, Location value, bool forceRaiseEvent)
+        private void SetCenter(object sender, Location location, bool forceRaiseEvent)
         {
-            if (value != null)
+            if (location != null)
             {
-                DrawerFactoryBase.ZoomInfo info = Display.Zoom;
-                if (value.Zoom < info.Minimum)
+                
+                //if (location.Zoom < info.Minimum)
+                //{
+                //    location = new Location(Location.Display, location.Point, info.Minimum);
+                //}
+                //else if (location.Zoom > info.Maximum)
+                //{
+                //    location = new Location(Location.Display, location.Point, info.Maximum);
+                //}
+
+                if (Display == null || forceRaiseEvent || Display.Type != location.Display)
                 {
-                    value = new Location(Location.Display, value.Point, info.Minimum);
-                }
-                else if (value.Zoom > info.Maximum)
-                {
-                    value = new Location(Location.Display, value.Point, info.Maximum);
+                    Display = new Display(_displaysettings, this, location.Display, location.Zoom);
                 }
 
-                if (!value.Equals(Location) || forceRaiseEvent)
+                if (!location.Equals(Location) || forceRaiseEvent)
                 {
                     Location oldLocation = Location;
-                    Location = value;
+                    Location = location;
 
-                    EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(value, oldLocation, info));
+                    EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(location, oldLocation, Display.Zoom));
                 }
             }
             else
             {
+                Debug.Assert(false, "setting location to null... let's not go there");
                 Location = null;
             }
         }

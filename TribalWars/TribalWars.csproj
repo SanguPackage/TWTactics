@@ -301,7 +301,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Worlds\Events\Impls\ManipulatorEventArgs.cs" />
-    <Compile Include="Worlds\Events\Impls\MapDisplayTypeEventArgs.cs" />
     <Compile Include="Worlds\Events\Impls\PolygonEventArgs.cs" />
     <Compile Include="Maps\DisplaySettings.cs" />
     <Compile Include="Maps\Displays\MiniMapDrawerFactory.cs" />

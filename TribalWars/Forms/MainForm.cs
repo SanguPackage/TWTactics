@@ -64,7 +64,6 @@ namespace TribalWars.Forms
 
             World.Default.EventPublisher.Loaded += OnWorldLoaded;
             World.Default.EventPublisher.SettingsLoaded += OnWorldSettingsLoaded;
-            World.Default.Map.EventPublisher.DisplayTypeChanged += EventPublisher_DisplayTypeChanged;
             World.Default.Map.EventPublisher.ManipulatorChanged += EventPublisher_ManipulatorChanged;
             World.Default.Map.EventPublisher.PolygonActivated += EventPublisher_PolygonActivated;
             World.Default.Map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
@@ -99,7 +98,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                //World.Default.Map.SetDisplay(DisplayTypes.Shape, _lastShapeZoom ?? 10);
+                World.Default.Map.SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Shape, _lastShapeZoom ?? 10));
             }
         }
 
@@ -107,12 +106,24 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-               // World.Default.Map.SetDisplay(DisplayTypes.Icon, _lastIconZoom ?? 1);
+                World.Default.Map.SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Icon, _lastIconZoom ?? 1));
             }
         }
         
         private void EventPublisher_LocationChanged(object sender, MapLocationEventArgs e)
         {
+            if (e.IsDisplayChange)
+            {
+                ToolStripIconDisplay.CheckState = e.NewLocation.Display == DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
+                ToolStripShapeDisplay.CheckState = e.NewLocation.Display == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
+
+                MenuMapIconDisplay.CheckState = ToolStripIconDisplay.CheckState;
+                MenuMapShapeDisplay.CheckState = ToolStripShapeDisplay.CheckState;
+
+                _isInShapeDisplay = e.NewLocation.Display == DisplayTypes.Shape;
+            }
+
+
             if (_isInShapeDisplay)
             {
                 _lastShapeZoom = e.NewLocation.Zoom;
@@ -121,17 +132,6 @@ namespace TribalWars.Forms
             {
                 _lastIconZoom = e.NewLocation.Zoom;
             }
-        }
-
-        private void EventPublisher_DisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
-        {
-            ToolStripIconDisplay.CheckState = e.DisplayType == DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
-            ToolStripShapeDisplay.CheckState = e.DisplayType == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
-
-            MenuMapIconDisplay.CheckState = ToolStripIconDisplay.CheckState;
-            MenuMapShapeDisplay.CheckState = ToolStripShapeDisplay.CheckState;
-
-            _isInShapeDisplay = e.DisplayType == DisplayTypes.Shape;
         }
 
         private void Map_MouseMoved(MouseEventArgs e, Point mapLocation, Village village, Point activeLocation, Point activeVillage)

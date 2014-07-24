@@ -67,7 +67,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
             mainMap.EventPublisher.TribeSelected += EventPublisher_MainMapVillagesSelected;
 
             mainMap.EventPublisher.LocationChanged += EventPublisher_MainMapLocationChanged;
-            mainMap.EventPublisher.DisplayTypeChanged += EventPublisher_MainMapDisplayTypeChanged;
             map.EventPublisher.LocationChanged += EventPublisher_OwnLocationChanged;
 
             _mainMapSelectedVillagesPen = new Pen(Color.White);
@@ -280,11 +279,6 @@ namespace TribalWars.Maps.Manipulators.Implementations
             var mapGameRectangle = _mainMap.Display.GetGameRectangle();
             var loc = _map.GetSpan(mapGameRectangle, 50);
             return loc.Zoom;
-        }
-
-        private void EventPublisher_MainMapDisplayTypeChanged(object sender, MapDisplayTypeEventArgs e)
-        {
-            _map.Invalidate();
         }
 
         private void EventPublisher_MainMapVillagesDeselected(object sender, EventArgs e)

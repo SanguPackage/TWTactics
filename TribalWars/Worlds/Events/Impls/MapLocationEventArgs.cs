@@ -10,7 +10,6 @@ namespace TribalWars.Worlds.Events.Impls
     public class MapLocationEventArgs : EventArgs
     {
         #region Properties
-
         /// <summary>
         /// Gets the new map location
         /// </summary>
@@ -27,6 +26,17 @@ namespace TribalWars.Worlds.Events.Impls
         /// </summary>
         public DrawerFactoryBase.ZoomInfo ZoomInfo { get; private set; }
 
+        /// <summary>
+        /// Returns true if we switched Icon/Shape Display
+        /// </summary>
+        public bool IsDisplayChange
+        {
+            get
+            {
+                if (OldLocation == null) return true;
+                return NewLocation.Display != OldLocation.Display;
+            }
+        }
         #endregion
 
         #region Constructors

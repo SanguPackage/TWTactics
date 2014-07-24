@@ -35,7 +35,6 @@ namespace TribalWars.Maps
         public event EventHandler<PolygonEventArgs> PolygonActivated;
 
         public event EventHandler<MapLocationEventArgs> LocationChanged;
-        public event EventHandler<MapDisplayTypeEventArgs> DisplayTypeChanged;
         public event EventHandler<ManipulatorEventArgs> ManipulatorChanged;
 
         public event EventHandler<AttackEventArgs> TargetAdded;
@@ -193,16 +192,6 @@ namespace TribalWars.Maps
         {
             if (LocationChanged != null)
                 LocationChanged(sender, e);
-        }
-
-        /// <summary>
-        /// Should be called only from one location: <see cref="Map"/>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void SetDisplayType(Map sender, MapDisplayTypeEventArgs e)
-        {
-            if (DisplayTypeChanged != null)
-                DisplayTypeChanged(sender, e);
         }
 
         /// <summary>
