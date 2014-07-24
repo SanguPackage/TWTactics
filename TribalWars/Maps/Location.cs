@@ -71,6 +71,11 @@ namespace TribalWars.Maps
         #endregion
 
         #region Public Methods
+        public Location ChangeShapeAndZoom(DisplayTypes displayType, int zoom)
+        {
+            return new Location(displayType, _point, zoom);
+        }
+
         public override string ToString()
         {
             return string.Format("{0} - {1}|{2} (X{3})", Display, X, Y, Zoom);
@@ -106,10 +111,5 @@ namespace TribalWars.Maps
             return !(left == right);
         }
         #endregion
-
-        public Location ChangeShapeAndZoom(DisplayTypes displayType, int zoom)
-        {
-            return new Location(displayType, _point, zoom);
-        }
     }
 }

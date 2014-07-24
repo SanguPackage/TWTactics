@@ -56,10 +56,6 @@ namespace TribalWars.Maps.Displays
                     drawerFactory = new IconDrawerFactory(zoomLevel, scenery);
                     break;
 
-                case DisplayTypes.MiniMap:
-                    drawerFactory = new MiniMapDrawerFactory(zoomLevel);
-                    break;
-
                 case DisplayTypes.Shape:
                     drawerFactory = new ShapeDrawerFactory(zoomLevel);
                     break;

@@ -13,7 +13,7 @@ namespace TribalWars.Maps.Displays
     public sealed class MiniMapDrawerFactory : DrawerFactoryBase
     {
         #region Fields
-        public const int MaxZoomLevel = 3;
+        private const int MaxZoomLevel = 3;
         #endregion
 
         #region Properties
@@ -32,15 +32,15 @@ namespace TribalWars.Maps.Displays
 
         public override DisplayTypes Type
         {
-            get { return DisplayTypes.MiniMap; }
+            get { return DisplayTypes.Shape; }
         }
         #endregion
 
         #region Constructors
-        public MiniMapDrawerFactory(int zoomLevel)
-            : base(new ZoomInfo(1, MaxZoomLevel, zoomLevel))
+        public MiniMapDrawerFactory()
+            : base(new ZoomInfo(1, MaxZoomLevel, MaxZoomLevel))
         {
-
+            // MaxZoomLevel is the default zoom
         }
         #endregion
 

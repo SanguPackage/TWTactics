@@ -61,12 +61,23 @@ namespace TribalWars.Maps
 
         #region Constructors
         public Display(DisplaySettings settings, Map map, DisplayTypes displayType, int zoomLevel)
+            : this(settings, map)
+        {
+            _drawerFactoryStrategy = DrawerFactoryBase.Create(displayType, zoomLevel, settings.Scenery);
+        }
+
+        private Display(DisplaySettings settings, Map map)
         {
             _settings = settings;
             _map = map;
             _markers = map.MarkerManager;
+        }
 
-            _drawerFactoryStrategy = DrawerFactoryBase.Create(displayType, zoomLevel, settings.Scenery);
+        public static Display CreateMiniMapDisplay(DisplaySettings settings, Map map)
+        {
+            var display = new Display(settings, map);
+            display._drawerFactoryStrategy = new MiniMapDrawerFactory();
+            return display;
         }
         #endregion
 

@@ -19,11 +19,7 @@ namespace TribalWars.Maps.Displays
         /// <summary>
         /// Display the TW images
         /// </summary>
-        Icon,
-        /// <summary>
-        /// Displays all rectangles
-        /// </summary>
-        MiniMap
+        Icon
     }
     #endregion
 }

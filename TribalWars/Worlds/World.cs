@@ -267,14 +267,8 @@ namespace TribalWars.Worlds
             InvalidateMarkers();
 
             displaySettings.Scenery = Settings.IconScenery;
-            //Map.InitializeDisplay(displaySettings, Map.HomeLocation.Display, Map.HomeLocation.Zoom);
-            _miniMap.InitializeDisplay(displaySettings, DisplayTypes.MiniMap, MiniMapDrawerFactory.MaxZoomLevel);
-
-            // TODO: we zaten hier:
-            // -> Move to one InitializeDisplay for _miniMap
-
-            Map.InitializeDisplay(displaySettings, Map.HomeLocation);
-            _miniMap.InitializeDisplay(displaySettings, Map.HomeLocation);
+            Map.SetDisplaySettings(displaySettings);
+            _miniMap.InitializeMiniMapDisplay(displaySettings);
             Map.SetCenter(Map.HomeLocation);
 
             if (publishLoad)

@@ -35,6 +35,7 @@ namespace TribalWars.Maps
         private Location _location;
         private readonly JanusSuperTip _toolTip;
         private IContextMenu _activeContextMenu;
+        private DisplaySettings _displaysettings;
         #endregion
 
         #region Properties
@@ -114,7 +115,7 @@ namespace TribalWars.Maps
         public Map(Map mainMap)
         {
             // TODO: check this. MiniMapActiveVillageManipulator needs to know an initial DisplayType
-            _location = new Location(DisplayTypes.MiniMap, 500, 500, 3);
+            _location = new Location(DisplayTypes.Shape, 500, 500, 3);
 
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
@@ -148,18 +149,15 @@ namespace TribalWars.Maps
             //    };
         }
 
-        public void InitializeDisplay(DisplaySettings settings, DisplayTypes type, int zoomLevel)
+        public void InitializeMiniMapDisplay(DisplaySettings settings)
         {
-            Display = new Display(settings, this, type, zoomLevel);
+            _displaysettings = settings;
+            Display = Display.CreateMiniMapDisplay(settings, this);
         }
 
-        private DisplaySettings _displaysettings;
-
-        public void InitializeDisplay(DisplaySettings displaySettings, Maps.Location location)
+        public void SetDisplaySettings(DisplaySettings settings)
         {
-            _displaysettings = displaySettings;
-           // SetCenter(this, location, true);
-            
+            _displaysettings = settings;
         }
 
         /// <summary>
@@ -327,31 +325,6 @@ namespace TribalWars.Maps
                 Location = null;
             }
         }
-
-        ///// <summary>
-        ///// Resets the map to allow loading of new settings
-        ///// </summary>
-        ///// <remarks>Resets the minipulators and display</remarks>
-        //public void SetDisplay(DisplayTypes display, int zoom)
-        //{
-        //    SetDisplay(display, new Location(Location.Display, Location.Point, zoom));
-        //}
-
-        ///// <summary>
-        ///// Resets the map to allow loading of new settings
-        ///// </summary>
-        ///// <remarks>Resets the minipulators and display</remarks>
-        //public void SetDisplay(DisplayTypes display, Location location, bool forceDisplay = false)
-        //{
-        //    if (forceDisplay || Display.Type != display)
-        //    {
-        //        Display = new Display(Display.Settings, this, display, location.Zoom);
-
-        //        EventPublisher.SetDisplayType(this, new MapDisplayTypeEventArgs(display));
-
-        //        SetCenter(this, location, true);
-        //    }
-        //}
 
         /// <summary>
         /// Center on home location
