@@ -77,10 +77,21 @@ namespace TribalWars.Forms
             string lastSettings = Properties.Settings.Default.LastSettings;
             if (!World.Default.LoadWorld(lastWorld, lastSettings))
             {
-                // Here begins the wizard for creating a new world...
-                using (var createForm = new NewWorldForm())
+                if (Directory.GetDirectories(World.InternalStructure.WorldDataDirectory).Length > 0)
                 {
-                    createForm.ShowDialog();
+                    // Load an existing world
+                    using (var loadForm = new LoadWorldForm())
+                    {
+                        loadForm.ShowDialog();
+                    }
+                }
+                else
+                {
+                    // Here begins the wizard for creating a new world...
+                    using (var createForm = new NewWorldForm())
+                    {
+                        createForm.ShowDialog();
+                    }
                 }
             }
 
@@ -114,15 +125,14 @@ namespace TribalWars.Forms
         {
             if (e.IsDisplayChange)
             {
-                ToolStripIconDisplay.CheckState = e.NewLocation.Display == DisplayTypes.Icon ? CheckState.Checked : CheckState.Unchecked;
-                ToolStripShapeDisplay.CheckState = e.NewLocation.Display == DisplayTypes.Shape ? CheckState.Checked : CheckState.Unchecked;
+                _isInShapeDisplay = e.NewLocation.Display == DisplayTypes.Shape;
+
+                ToolStripIconDisplay.CheckState = !_isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
+                ToolStripShapeDisplay.CheckState = _isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
 
                 MenuMapIconDisplay.CheckState = ToolStripIconDisplay.CheckState;
                 MenuMapShapeDisplay.CheckState = ToolStripShapeDisplay.CheckState;
-
-                _isInShapeDisplay = e.NewLocation.Display == DisplayTypes.Shape;
             }
-
 
             if (_isInShapeDisplay)
             {

@@ -29,9 +29,14 @@ namespace TribalWars.Maps.Displays
 
         #region Constructors
         public ShapeDrawerFactory(int zoomLevel)
-            : base(new ZoomInfo(1, 25, zoomLevel))
+            : base(CreateZoom(zoomLevel))
         {
 
+        }
+
+        public static ZoomInfo CreateZoom(int zoomLevel)
+        {
+            return new ZoomInfo(1, 25, zoomLevel);
         }
         #endregion
 

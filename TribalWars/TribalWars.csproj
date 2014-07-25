@@ -178,6 +178,7 @@
     <Compile Include="Forms\NewWorldForm.Designer.cs">
       <DependentUpon>NewWorldForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Displays\ZoomInfo.cs" />
     <Compile Include="Maps\Manipulators\AttackPlans\Controls\AttackIcons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

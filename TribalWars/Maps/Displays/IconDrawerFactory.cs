@@ -17,7 +17,7 @@ using TribalWars.Villages;
 namespace TribalWars.Maps.Displays
 {
     /// <summary>
-    /// Create and cache IconDrawers
+    /// Create and cache TW image IconDrawers
     /// </summary>
     public sealed class IconDrawerFactory : DrawerFactoryBase
     {
@@ -105,7 +105,7 @@ namespace TribalWars.Maps.Displays
         }
 
         public IconDrawerFactory(int zoomLevel, Scenery scenery)
-            : base(new ZoomInfo(1, VillageSizes.Count - 1, zoomLevel))
+            : base(CreateZoom(zoomLevel))
         {
             if (scenery == Scenery.Old)
             {
@@ -116,6 +116,11 @@ namespace TribalWars.Maps.Displays
                 Debug.Assert(scenery == Scenery.New);
                 _activeBackground = _background2;
             }
+        }
+
+        public static ZoomInfo CreateZoom(int zoomLevel)
+        {
+            return new ZoomInfo(1, VillageSizes.Count - 1, zoomLevel);
         }
         #endregion
 

@@ -13,7 +13,7 @@ namespace TribalWars.Maps.Displays
     public sealed class MiniMapDrawerFactory : DrawerFactoryBase
     {
         #region Fields
-        private const int MaxZoomLevel = 3;
+        public const int MaxZoomLevel = 3;
         #endregion
 
         #region Properties

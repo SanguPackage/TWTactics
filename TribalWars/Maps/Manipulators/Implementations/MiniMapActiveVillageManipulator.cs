@@ -240,7 +240,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         {
             if (sender != _map)
             {
-                _mainMap.SetCenter(this, new Location(e.NewLocation.Display, e.NewLocation.Point, _mainMap.Location.Zoom));
+                _mainMap.SetCenter(new Location(e.NewLocation.Display, e.NewLocation.Point, _mainMap.Location.Zoom));
                 _map.Invalidate(false);
             }
             else
@@ -256,7 +256,8 @@ namespace TribalWars.Maps.Manipulators.Implementations
                 if (e.OldLocation == null)
                 {
                     // First time the main map has been set
-                    _map.SetCenter(e.NewLocation.Point, GetZoomLevel());
+                    var miniMapStart = new Location(DisplayTypes.Shape, e.NewLocation.Point, MiniMapDrawerFactory.MaxZoomLevel);
+                    _map.SetCenter(miniMapStart);
                 }
                 else if (e.NewLocation.Zoom != e.OldLocation.Zoom || GetDistance(e.NewLocation, _map.Location) > MoveVisibleRectangleDistance)
                 {

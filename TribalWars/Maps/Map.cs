@@ -114,9 +114,6 @@ namespace TribalWars.Maps
         /// </summary>
         public Map(Map mainMap)
         {
-            // TODO: check this. MiniMapActiveVillageManipulator needs to know an initial DisplayType
-            _location = new Location(DisplayTypes.Shape, 500, 500, 3);
-
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
             Manipulators = new ManipulatorManagerController(this, mainMap);
@@ -191,7 +188,7 @@ namespace TribalWars.Maps
             {
                 int x = continent % 10 * 100 + 50;
                 int y = (continent - continent % 10) * 10 + 50;
-                SetCenter(this, new Location(Location.Display, x, y, Location.Zoom), false);
+                SetCenter(this, new Location(Location.Display, x, y, Location.Zoom));
             }
         }
 
@@ -200,7 +197,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetZoomLevel(int zoom)
         {
-            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, zoom), false);
+            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, zoom));
         }
 
         /// <summary>
@@ -209,7 +206,7 @@ namespace TribalWars.Maps
         public void IncreaseZoomLevel(int amount)
         {
             if (Display.Type == DisplayTypes.Icon) amount *= -1;
-            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, Location.Zoom + amount), false);
+            SetCenter(this, new Location(Location.Display, Location.X, Location.Y, Location.Zoom + amount));
         }
 
         /// <summary>
@@ -217,7 +214,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCenter(Point point)
         {
-            SetCenter(this, new Location(Location.Display, point.X, point.Y, Location.Zoom), false);
+            SetCenter(this, new Location(Location.Display, point.X, point.Y, Location.Zoom));
         }
 
         /// <summary>
@@ -270,7 +267,7 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCenter(Point loc, int zoom)
         {
-            SetCenter(this, new Location(Location.Display, loc, zoom), false);
+            SetCenter(this, new Location(Location.Display, loc, zoom));
         }
 
         /// <summary>
@@ -278,31 +275,24 @@ namespace TribalWars.Maps
         /// </summary>
         public void SetCenter(Location loc)
         {
-            SetCenter(this, loc, false);
+            SetCenter(this, loc);
         }
 
         /// <summary>
         /// Changes the center of the map
         /// </summary>
-        public void SetCenter(object sender, Location loc)
-        {
-            SetCenter(sender, loc, false);
-        }
-
-        /// <summary>
-        /// Changes the center of the map
-        /// </summary>
-        private void SetCenter(object sender, Location location, bool forceRaiseEvent)
+        private void SetCenter(object sender, Location location)
         {
             if (location != null)
             {
-                if (Display == null || forceRaiseEvent || Display.Type != location.Display)
+                if (Display == null || Display.Type != location.Display || !Display.CanHandleZoom(location.Zoom))
                 {
-                    Display = new Display(_displaysettings, this, location.Display, location.Zoom);
+
+
+                    Display = new Display(_displaysettings, this, ref location);
                 }
 
-                location = Display.Zoom.Validate(location);
-                if (!location.Equals(Location) || forceRaiseEvent)
+                if (!location.Equals(Location))
                 {
                     Location oldLocation = Location;
                     Location = location;
@@ -453,6 +443,11 @@ namespace TribalWars.Maps
                 _control.DrawToBitmap(shot, new Rectangle(new Point(0, 0), CanvasSize));
                 shot.Save(fileName);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("ControlName={0}, Loc={1}", _control.Name, Location);
         }
         #endregion
     }

@@ -24,7 +24,7 @@ namespace TribalWars.Worlds.Events.Impls
         /// Gets data for the zoom level of the
         /// new location
         /// </summary>
-        public DrawerFactoryBase.ZoomInfo ZoomInfo { get; private set; }
+        public ZoomInfo ZoomInfo { get; private set; }
 
         /// <summary>
         /// Returns true if we switched Icon/Shape Display
@@ -40,7 +40,7 @@ namespace TribalWars.Worlds.Events.Impls
         #endregion
 
         #region Constructors
-        public MapLocationEventArgs(Location newLocation, Location oldLocation, DrawerFactoryBase.ZoomInfo zoom)
+        public MapLocationEventArgs(Location newLocation, Location oldLocation, ZoomInfo zoom)
         {
             NewLocation = newLocation;
             OldLocation = oldLocation;

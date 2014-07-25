@@ -11,7 +11,7 @@ using TribalWars.Villages;
 namespace TribalWars.Maps.Displays
 {
     /// <summary>
-    /// Base class for the MiniMap, Shape and IconDisplay factories
+    /// Base class for the Shape and IconDisplay factories
     /// </summary>
     public abstract class DrawerFactoryBase
     {
@@ -47,6 +47,26 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Constructors
+        public static ZoomInfo CreateZoom(DisplayTypes displayType, int zoomLevel)
+        {
+            ZoomInfo zoom;
+            switch (displayType)
+            {
+                case DisplayTypes.Icon:
+                    zoom = IconDrawerFactory.CreateZoom(zoomLevel);
+                    break;
+
+                case DisplayTypes.Shape:
+                    zoom = ShapeDrawerFactory.CreateZoom(zoomLevel);
+                    break;
+
+                default:
+                    throw new Exception("oeps");
+            }
+
+            return zoom;
+        }
+
         public static DrawerFactoryBase Create(DisplayTypes displayType, int zoomLevel, IconDrawerFactory.Scenery scenery)
         {
             DrawerFactoryBase drawerFactory;
@@ -78,7 +98,14 @@ namespace TribalWars.Maps.Displays
         public virtual int GetMinimumZoomLevel(Size maxVillageSize)
         {
             var newZoom = Math.Min(maxVillageSize.Width, maxVillageSize.Height);
-            return Math.Min(newZoom, Zoom.Current);
+
+            // Try to stay in current zoom level
+            newZoom = Math.Min(newZoom, Zoom.Current);
+
+            // Always return valid zoom
+            if (newZoom < Zoom.Minimum) return Zoom.Current;
+            Debug.Assert(newZoom <= Zoom.Maximum);
+            return newZoom;
         }
 
         /// <summary>
@@ -135,68 +162,6 @@ namespace TribalWars.Maps.Displays
         protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, Marker marker);
 
         protected abstract DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData);
-        #endregion
-
-        #region ZoomInfo
-        /// <summary>
-        /// Encapsulates the current zoom level
-        /// and the zoom boundries
-        /// </summary>
-        public class ZoomInfo
-        {
-            #region Properties
-            /// <summary>
-            /// Gets the minimum zoom level
-            /// </summary>
-            public int Minimum { get; private set; }
-
-            /// <summary>
-            /// Gets the maximum zoom level
-            /// </summary>
-            public int Maximum { get; private set; }
-
-            /// <summary>
-            /// Gets or sets the zoom level that will be used
-            /// when the user switches back to this displaytype
-            /// </summary>
-            public int Current { get; private set; }
-            #endregion
-
-            #region Constructors
-            public ZoomInfo(int min, int max, int current)
-            {
-                Debug.Assert(current >= min);
-                Debug.Assert(current <= max);
-
-                Minimum = min;
-                Maximum = max;
-                Current = current;
-            }
-            #endregion
-
-            /// <summary>
-            /// Returns the <see cref="Location"/> parameter or a updated
-            /// one if the zoom level is invalid for the <see cref="Display"/>
-            /// </summary>
-            public Location Validate(Location location)
-            {
-                if (location.Zoom < Minimum)
-                {
-                    return new Location(location.Display, location.Point, Minimum);
-                }
-                if (location.Zoom > Maximum)
-                {
-                    return new Location(location.Display, location.Point, Maximum);
-                }
-                return location;
-            }
-
-            public override string ToString()
-            {
-                return string.Format("Min={0}, Max={1}, Current={2}", Minimum, Maximum, Current);
-            }
-
-        }
         #endregion
     }
 }
