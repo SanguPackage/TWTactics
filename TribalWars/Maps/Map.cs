@@ -268,6 +268,7 @@ namespace TribalWars.Maps
                 CanvasSize.Width / (game.Width + villagesExtraVisible), 
                 CanvasSize.Height / (game.Height + villagesExtraVisible));
 
+            // HACK: Auto switch from Icon to Shape display when using for example Center&Pinpoint
             bool couldSatisfy;
             int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);
             if (!couldSatisfy)

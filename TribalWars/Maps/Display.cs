@@ -97,6 +97,7 @@ namespace TribalWars.Maps
             if (location.Zoom > zoom.Maximum)
             {
                 // Swap to Shape/Icon
+                // If this changes also check the hack in Map.GetSpan
                 if (location.Display == DisplayTypes.Icon)
                 {
                     return new Location(DisplayTypes.Shape, location.Point, IconDrawerFactory.MinVillageSide);
@@ -531,6 +532,8 @@ namespace TribalWars.Maps
         /// Gets the minimum zoom level that can display villages as big as the parameter.
         /// But only change zoom when villages don't fit with current zoom.
         /// </summary>
+        /// <param name="maxVillageSize">Get the zoom for villages this big</param>
+        /// <param name="couldSatisfy">HACK to get an IconDisplay to switch to ShapeDisplay with Map.GetSpan</param>
         public int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfy)
         {
             return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);

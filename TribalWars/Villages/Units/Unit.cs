@@ -116,9 +116,12 @@ namespace TribalWars.Villages.Units
         /// <summary>
         /// Gets the speed of the unit on the currently loaded world
         /// </summary>
+        /// <remarks>
+        /// World.UnitSpeed is already taken into account
+        /// </remarks>
         public float Speed
         {
-            get { return _speed /* World.Default.UnitSpeed*/; } // TODO: World.UnitSpeed is now already calculated in the speed
+            get { return _speed; }
         }
         #endregion
 

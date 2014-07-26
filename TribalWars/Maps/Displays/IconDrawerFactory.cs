@@ -155,9 +155,8 @@ namespace TribalWars.Maps.Displays
             if (newZoom == 0)
             {
                 couldSatisfyVillageSize = false;
-                bool blah;
-                return base.GetMinimumZoomLevel(maxVillageSize, out blah);
-                //return  VillageSizes.Count - 1
+                bool hackForToShapeDisplaySwitching;
+                return base.GetMinimumZoomLevel(maxVillageSize, out hackForToShapeDisplaySwitching);
             }
 
             couldSatisfyVillageSize = true;

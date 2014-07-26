@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -32,9 +33,6 @@ namespace TribalWars.Maps.Displays
         #region Constructors
         public ZoomInfo(int min, int max, int current)
         {
-            //Debug.Assert(current >= min); // TODO: remove?
-            //Debug.Assert(current <= max);
-
             Minimum = min;
             Maximum = max;
             Current = current;
