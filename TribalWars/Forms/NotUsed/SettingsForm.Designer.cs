@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.CancelButton = new Janus.Windows.EditControls.UIButton();
+            this.CancelBtn = new Janus.Windows.EditControls.UIButton();
             this.OkButton = new Janus.Windows.EditControls.UIButton();
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.ConnectedDirect = new Janus.Windows.EditControls.UIRadioButton();
-            this.ConnectedProxy = new Janus.Windows.EditControls.UIRadioButton();
             this.ConnectedProxyGroupbox = new Janus.Windows.EditControls.UIGroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.editBox2 = new Janus.Windows.GridEX.EditControls.EditBox();
             this.editBox1 = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.editBox2 = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ConnectedProxy = new Janus.Windows.EditControls.UIRadioButton();
+            this.ConnectedDirect = new Janus.Windows.EditControls.UIRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
             this.uiTab1.SuspendLayout();
             this.uiTabPage1.SuspendLayout();
@@ -50,16 +50,16 @@
             this.ConnectedProxyGroupbox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // CancelButton
+            // CancelBtn
             // 
-            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(496, 410);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 2;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelBtn.Location = new System.Drawing.Point(496, 410);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.TabIndex = 2;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OkButton
             // 
@@ -105,26 +105,6 @@
             this.uiGroupBox1.Size = new System.Drawing.Size(549, 362);
             this.uiGroupBox1.TabIndex = 0;
             // 
-            // ConnectedDirect
-            // 
-            this.ConnectedDirect.Checked = true;
-            this.ConnectedDirect.Location = new System.Drawing.Point(15, 32);
-            this.ConnectedDirect.Name = "ConnectedDirect";
-            this.ConnectedDirect.Size = new System.Drawing.Size(248, 23);
-            this.ConnectedDirect.TabIndex = 0;
-            this.ConnectedDirect.TabStop = true;
-            this.ConnectedDirect.Text = "I am connected directly to the internet";
-            this.ConnectedDirect.CheckedChanged += new System.EventHandler(this.ConnectedDirect_CheckedChanged);
-            // 
-            // ConnectedProxy
-            // 
-            this.ConnectedProxy.Location = new System.Drawing.Point(15, 61);
-            this.ConnectedProxy.Name = "ConnectedProxy";
-            this.ConnectedProxy.Size = new System.Drawing.Size(248, 23);
-            this.ConnectedProxy.TabIndex = 1;
-            this.ConnectedProxy.Text = "I connect with the internet through a proxy";
-            this.ConnectedProxy.CheckedChanged += new System.EventHandler(this.ConnectedProxy_CheckedChanged);
-            // 
             // ConnectedProxyGroupbox
             // 
             this.ConnectedProxyGroupbox.Controls.Add(this.editBox2);
@@ -138,14 +118,12 @@
             this.ConnectedProxyGroupbox.TabIndex = 2;
             this.ConnectedProxyGroupbox.Text = "Proxy settings";
             // 
-            // label1
+            // editBox2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Address:";
+            this.editBox2.Location = new System.Drawing.Point(308, 23);
+            this.editBox2.Name = "editBox2";
+            this.editBox2.Size = new System.Drawing.Size(47, 20);
+            this.editBox2.TabIndex = 2;
             // 
             // editBox1
             // 
@@ -163,23 +141,45 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Port:";
             // 
-            // editBox2
+            // label1
             // 
-            this.editBox2.Location = new System.Drawing.Point(308, 23);
-            this.editBox2.Name = "editBox2";
-            this.editBox2.Size = new System.Drawing.Size(47, 20);
-            this.editBox2.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Address:";
+            // 
+            // ConnectedProxy
+            // 
+            this.ConnectedProxy.Location = new System.Drawing.Point(15, 61);
+            this.ConnectedProxy.Name = "ConnectedProxy";
+            this.ConnectedProxy.Size = new System.Drawing.Size(248, 23);
+            this.ConnectedProxy.TabIndex = 1;
+            this.ConnectedProxy.Text = "I connect with the internet through a proxy";
+            this.ConnectedProxy.CheckedChanged += new System.EventHandler(this.ConnectedProxy_CheckedChanged);
+            // 
+            // ConnectedDirect
+            // 
+            this.ConnectedDirect.Checked = true;
+            this.ConnectedDirect.Location = new System.Drawing.Point(15, 32);
+            this.ConnectedDirect.Name = "ConnectedDirect";
+            this.ConnectedDirect.Size = new System.Drawing.Size(248, 23);
+            this.ConnectedDirect.TabIndex = 0;
+            this.ConnectedDirect.TabStop = true;
+            this.ConnectedDirect.Text = "I am connected directly to the internet";
+            this.ConnectedDirect.CheckedChanged += new System.EventHandler(this.ConnectedDirect_CheckedChanged);
             // 
             // SettingsForm
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton;
+            this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(583, 439);
             this.Controls.Add(this.uiTab1);
             this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CancelBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
@@ -199,7 +199,7 @@
 
         #endregion
 
-        private Janus.Windows.EditControls.UIButton CancelButton;
+        private Janus.Windows.EditControls.UIButton CancelBtn;
         private Janus.Windows.EditControls.UIButton OkButton;
         private Janus.Windows.UI.Tab.UITab uiTab1;
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;

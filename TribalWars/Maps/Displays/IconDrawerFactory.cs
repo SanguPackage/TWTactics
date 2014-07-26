@@ -26,6 +26,18 @@ namespace TribalWars.Maps.Displays
         private const int StandardIconHeight = 38;
 
         /// <summary>
+        /// When zooming out on IconDisplay after reaching MaxZoomLevel
+        /// auto switch to Icon display with this rectangle size
+        /// </summary>
+        public const int MinVillageSide = 11;
+
+        /// <summary>
+        /// When zooming in on ShapeDisplay after reaching MaxZoomLevel
+        /// auto switch to Shape index with this index in VillageSizes
+        /// </summary>
+        public const int AutoSwitchFromShapeIndex = 4;
+
+        /// <summary>
         /// Width x Height on different zoom levels (index is zoom level)
         /// </summary>
         private static readonly List<Tuple<int, int>> VillageSizes = new TupleList<int, int>
@@ -37,7 +49,7 @@ namespace TribalWars.Maps.Displays
                 {30, 22},
                 {25, 18},
                 {20, 14},
-                {15, 11}
+                {15, MinVillageSide}
             };
 
         private static readonly MemoryStream _background;
@@ -125,7 +137,7 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Public Methods
-        public override int GetMinimumZoomLevel(Size maxVillageSize)
+        public override int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfyVillageSize)
         {
             int newZoom = 0;
 
@@ -142,9 +154,13 @@ namespace TribalWars.Maps.Displays
 
             if (newZoom == 0)
             {
-                return VillageSizes.Count - 1;
+                couldSatisfyVillageSize = false;
+                bool blah;
+                return base.GetMinimumZoomLevel(maxVillageSize, out blah);
+                //return  VillageSizes.Count - 1
             }
 
+            couldSatisfyVillageSize = true;
             return Math.Max(newZoom, Zoom.Current);
         }
 

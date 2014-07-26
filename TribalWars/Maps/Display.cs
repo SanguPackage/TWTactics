@@ -74,7 +74,7 @@ namespace TribalWars.Maps
             else
             {
                 ZoomInfo zoom = DrawerFactoryBase.CreateZoom(location.Display, location.Zoom);
-                location = zoom.Validate(location);
+                location = ValidateZoom(zoom, location);
 
                 _drawerFactoryStrategy = DrawerFactoryBase.Create(location.Display, location.Zoom, settings.Scenery);
             }
@@ -82,6 +82,33 @@ namespace TribalWars.Maps
             // TODO: make this lazy. Setting here = crash
             // Is fixed by calling UpdateLocation after Map.Location is set
             //_visibleRectangle = GetGameRectangle();
+        }
+
+        /// <summary>
+        /// Returns the <see cref="Location"/> parameter or an updated
+        /// one if the zoom level is invalid for the <see cref="Display"/>
+        /// </summary>
+        private Location ValidateZoom(ZoomInfo zoom, Location location)
+        {
+            if (location.Zoom < zoom.Minimum)
+            {
+                return new Location(location.Display, location.Point, zoom.Minimum);
+            }
+            if (location.Zoom > zoom.Maximum)
+            {
+                // Swap to Shape/Icon
+                if (location.Display == DisplayTypes.Icon)
+                {
+                    return new Location(DisplayTypes.Shape, location.Point, IconDrawerFactory.MinVillageSide);
+                }
+                if (location.Display == DisplayTypes.Shape)
+                {
+                    return new Location(DisplayTypes.Icon, location.Point, IconDrawerFactory.AutoSwitchFromShapeIndex);
+                }
+
+                return new Location(location.Display, location.Point, zoom.Maximum);
+            }
+            return location;
         }
 
         private Display(DisplaySettings settings, Map map)
@@ -504,9 +531,9 @@ namespace TribalWars.Maps
         /// Gets the minimum zoom level that can display villages as big as the parameter.
         /// But only change zoom when villages don't fit with current zoom.
         /// </summary>
-        public int GetMinimumZoomLevel(Size maxVillageSize)
+        public int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfy)
         {
-            return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize);
+            return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);
         }
 
         /// <summary>

@@ -49,14 +49,10 @@ namespace TribalWars.Maps.Displays
         {
             if (location.Zoom < Minimum)
             {
-                //
-
                 return new Location(location.Display, location.Point, Minimum);
             }
             if (location.Zoom > Maximum)
             {
-                //if (location.Display == DisplayTypes.
-
                 return new Location(location.Display, location.Point, Maximum);
             }
             return location;

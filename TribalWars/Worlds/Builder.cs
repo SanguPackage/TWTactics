@@ -80,7 +80,6 @@ namespace TribalWars.Worlds
                 }
                 int z = Convert.ToInt32(r.GetAttribute("Zoom"));
                 var displayType = (DisplayTypes)Enum.Parse(typeof(DisplayTypes), r.GetAttribute("Display"), true);
-                if (displayType == DisplayTypes.None) displayType = DisplayTypes.Icon;
                 map.HomeLocation = new Location(displayType, x, y, z);
 
                 // MainMap: Display

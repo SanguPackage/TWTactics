@@ -268,7 +268,12 @@ namespace TribalWars.Maps
                 CanvasSize.Width / (game.Width + villagesExtraVisible), 
                 CanvasSize.Height / (game.Height + villagesExtraVisible));
 
-            int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize);
+            bool couldSatisfy;
+            int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);
+            if (!couldSatisfy)
+            {
+                return new Location(DisplayTypes.Shape, middle, newZoomLevel);
+            }
             return new Location(Location.Display, middle, newZoomLevel);
         }
 

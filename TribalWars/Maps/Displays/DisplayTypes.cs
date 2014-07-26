@@ -8,11 +8,6 @@ namespace TribalWars.Maps.Displays
     public enum DisplayTypes
     {
         /// <summary>
-        /// Wait for the DisplayType to be read
-        /// from the settings file
-        /// </summary>
-        None,
-        /// <summary>
         /// Display rectangles etc
         /// </summary>
         Shape,
