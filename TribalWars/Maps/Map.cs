@@ -32,10 +32,10 @@ namespace TribalWars.Maps
         #region Fields
         private Display _display;
         private ScrollableMapControl _control;
-        private Location _location;
         private readonly JanusSuperTip _toolTip;
         private IContextMenu _activeContextMenu;
         private DisplaySettings _displaysettings;
+        private readonly bool _isMiniMap;
         #endregion
 
         #region Properties
@@ -81,18 +81,7 @@ namespace TribalWars.Maps
         /// <summary>
         /// Gets or sets the Map location &amp; zoom level
         /// </summary>
-        public Location Location
-        {
-            get { return _location; }
-            private set
-            {
-                if (_location != value)
-                {
-                    _location = value;
-                    Display.UpdateLocation(value);
-                }
-            }
-        }
+        public Location Location { get; private set; }
 
         /// <summary>
         /// Gets or sets the home position of the map
@@ -112,8 +101,10 @@ namespace TribalWars.Maps
         /// <summary>
         /// Creates a new MiniMap
         /// </summary>
-        public Map(Map mainMap)
+        private Map(Map mainMap)
         {
+            _isMiniMap = true;
+
             EventPublisher = new Publisher(this);
             MarkerManager = mainMap.MarkerManager;
             Manipulators = new ManipulatorManagerController(this, mainMap);
@@ -125,14 +116,26 @@ namespace TribalWars.Maps
         /// <summary>
         /// Creates a new Map
         /// </summary>
-        public Map()
+        private Map()
         {
+            _isMiniMap = false;
+
             EventPublisher = new Publisher(this);
             MarkerManager = new MarkerManager();
             Manipulators = new ManipulatorManagerController(this);
 
             _toolTip = JanusControls.CreateTooltip();
             SetTooltipProperties();
+        }
+
+        public static Map CreateMap()
+        {
+            return new Map();
+        }
+
+        public static Map CreateMiniMap(Map mainMap)
+        {
+            return new Map(mainMap);
         }
 
         private void SetTooltipProperties()
@@ -148,20 +151,26 @@ namespace TribalWars.Maps
 
         public void InitializeMiniMapDisplay(DisplaySettings settings)
         {
+            Debug.Assert(_isMiniMap);
             _displaysettings = settings;
-            Display = Display.CreateMiniMapDisplay(settings, this);
+
+            Location = new Location(DisplayTypes.Shape, 500, 500, MiniMapDrawerFactory.MaxZoomLevel);
+            var loc = Location;
+            Display = new Display(settings, true, this, ref loc);
         }
 
         public void SetDisplaySettings(DisplaySettings settings)
         {
+            Debug.Assert(!_isMiniMap);
             _displaysettings = settings;
         }
 
         /// <summary>
         /// Sets the UserControl for the Map Class
         /// </summary>
-        public void InitializeMap(MapControl map)
+        public void SetMapControl(MapControl map)
         {
+            Debug.Assert(!_isMiniMap);
             _control = map.ScrollableMap;
             _control.SetMap(this);
             map.SetMap(this);
@@ -170,8 +179,9 @@ namespace TribalWars.Maps
         /// <summary>
         /// Sets the UserControl for the Map Class and start it as a minimap
         /// </summary>
-        public void InitializeMap(MiniMapControl miniMap, Map mainMap)
+        public void SetMiniMapControls(MiniMapControl miniMap, Map mainMap)
         {
+            Debug.Assert(_isMiniMap);
             _control = miniMap;
             _control.SetMap(this);
             miniMap.SetMap(this, mainMap);
@@ -285,17 +295,17 @@ namespace TribalWars.Maps
         {
             if (location != null)
             {
-                if (Display == null || Display.Type != location.Display || !Display.CanHandleZoom(location.Zoom))
+                if (Display == null || Display.Type != location.Display || Display.Zoom.Current != location.Zoom)
                 {
-
-
-                    Display = new Display(_displaysettings, this, ref location);
+                    Display = new Display(_displaysettings, _isMiniMap, this, ref location);
                 }
 
-                if (!location.Equals(Location))
+                if (location != Location)
                 {
                     Location oldLocation = Location;
+                    
                     Location = location;
+                    Display.UpdateLocation();
 
                     EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(location, oldLocation, Display.Zoom));
                 }

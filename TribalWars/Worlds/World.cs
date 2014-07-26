@@ -166,8 +166,8 @@ namespace TribalWars.Worlds
             Settings = new WorldSettings();
             EventPublisher = new Publisher();
 
-            Map = new Map();
-            _miniMap = new Map(Map);
+            Map = Map.CreateMap();
+            _miniMap = Map.CreateMiniMap(Map);
 
             _players = new Dictionary<string, Player>();
             _tribes = new Dictionary<string, Tribe>();
@@ -399,8 +399,8 @@ namespace TribalWars.Worlds
 
         public void InitializeMaps(MapControl mapControl, MiniMapControl miniMapControl)
         {
-            Map.InitializeMap(mapControl);
-            _miniMap.InitializeMap(miniMapControl, Map);
+            Map.SetMapControl(mapControl);
+            _miniMap.SetMiniMapControls(miniMapControl, Map);
         }
 
         /// <summary>

@@ -37,10 +37,15 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Constructors
-        public MiniMapDrawerFactory()
-            : base(new ZoomInfo(1, MaxZoomLevel, MaxZoomLevel))
+        public MiniMapDrawerFactory(int currentZoom)
+            : base(CreateZoom(currentZoom))
         {
-            // MaxZoomLevel is the default zoom
+            
+        }
+
+        public static ZoomInfo CreateZoom(int zoom)
+        {
+            return new ZoomInfo(1, MaxZoomLevel, zoom);
         }
         #endregion
 

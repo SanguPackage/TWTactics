@@ -67,6 +67,18 @@ namespace TribalWars.Maps.Displays
             return zoom;
         }
 
+        public static ZoomInfo CreateMiniMapZoom(int zoom)
+        {
+            return MiniMapDrawerFactory.CreateZoom(zoom);
+        }
+
+        public static MiniMapDrawerFactory CreateMiniMap(int zoom)
+        {
+            var factory = new MiniMapDrawerFactory(zoom);
+            factory.SetVillageDimensions();
+            return factory;
+        }
+
         public static DrawerFactoryBase Create(DisplayTypes displayType, int zoomLevel, IconDrawerFactory.Scenery scenery)
         {
             DrawerFactoryBase drawerFactory;

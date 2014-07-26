@@ -28,7 +28,7 @@ namespace TribalWars.Maps
         private Bitmap _background; // TODO: private PainterCache _cache?
         private Painter _painter;
 
-        private DrawerFactoryBase _drawerFactoryStrategy;
+        private readonly DrawerFactoryBase _drawerFactoryStrategy;
         private readonly DisplaySettings _settings;
         #endregion
 
@@ -60,17 +60,28 @@ namespace TribalWars.Maps
         #endregion
 
         #region Constructors
-        public Display(DisplaySettings settings, Map map, ref Location location)
+        public Display(DisplaySettings settings, bool isMiniMap, Map map, ref Location location)
             : this(settings, map)
         {
-            // TODO: The MiniMap.SetCenter gets here, thinks it is Shape display and creates wrong ZoomInfo
-            // (allowing one to zoom deeper then the MaxZoomLevel of 3)
-
             // Validate zoom or we have a potential divide by zero etc
-            ZoomInfo zoom = DrawerFactoryBase.CreateZoom(location.Display, location.Zoom);
-            location = zoom.Validate(location);
+            if (isMiniMap)
+            {
+                ZoomInfo zoom = DrawerFactoryBase.CreateMiniMapZoom(location.Zoom);
+                location = zoom.Validate(location);
 
-            _drawerFactoryStrategy = DrawerFactoryBase.Create(location.Display, location.Zoom, settings.Scenery);
+                _drawerFactoryStrategy = DrawerFactoryBase.CreateMiniMap(location.Zoom);
+            }
+            else
+            {
+                ZoomInfo zoom = DrawerFactoryBase.CreateZoom(location.Display, location.Zoom);
+                location = zoom.Validate(location);
+
+                _drawerFactoryStrategy = DrawerFactoryBase.Create(location.Display, location.Zoom, settings.Scenery);
+            }
+
+            // TODO: make this lazy. Setting here = crash
+            // Is fixed by calling UpdateLocation after Map.Location is set
+            //_visibleRectangle = GetGameRectangle();
         }
 
         private Display(DisplaySettings settings, Map map)
@@ -79,20 +90,12 @@ namespace TribalWars.Maps
             _map = map;
             _markers = map.MarkerManager;
         }
-
-        public static Display CreateMiniMapDisplay(DisplaySettings settings, Map map)
-        {
-            var display = new Display(settings, map);
-            display._drawerFactoryStrategy = new MiniMapDrawerFactory();
-            return display;
-        }
         #endregion
 
         #region Reset Cache
-        public void UpdateLocation(Location location)
+        public void UpdateLocation()
         {
             ResetCache();
-            _drawerFactoryStrategy = DrawerFactoryBase.Create(_drawerFactoryStrategy.Type, location.Zoom, _settings.Scenery);
             _visibleRectangle = GetGameRectangle();
         }
 
@@ -497,13 +500,6 @@ namespace TribalWars.Maps
         #endregion
 
         #region Game from/to Map Converters
-        public bool CanHandleZoom(int zoom)
-        {
-            if (Zoom.Maximum < zoom) return false;
-            if (Zoom.Minimum > zoom) return false;
-            return true;
-        }
-
         /// <summary>
         /// Gets the minimum zoom level that can display villages as big as the parameter.
         /// But only change zoom when villages don't fit with current zoom.
