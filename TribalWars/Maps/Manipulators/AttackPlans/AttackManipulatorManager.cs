@@ -54,6 +54,15 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             return _attacker.GetPlans();
         }
 
+        /// <summary>
+        /// Gets the first plan where the village is either the target
+        /// or one of the attackers
+        /// </summary>
+        public AttackPlan GetPlan(Village village)
+        {
+            return _attacker.GetPlan(village);
+        }
+
         public override IContextMenu GetContextMenu(Point location, Village village)
         {
             if (village == null)

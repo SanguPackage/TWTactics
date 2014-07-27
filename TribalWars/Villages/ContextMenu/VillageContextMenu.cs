@@ -8,6 +8,7 @@ using System.Drawing;
 using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
+using TribalWars.Maps.Manipulators.AttackPlans;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -36,6 +37,7 @@ namespace TribalWars.Villages.ContextMenu
         private readonly UIContextMenu _menu;
         private readonly Map _map;
         private readonly Action _onVillageTypeChangeDelegate;
+        private readonly AttackPlan _attackPlan;
         #endregion
 
         #region Constructors
@@ -47,14 +49,23 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu = JanusContextMenu.Create();
 
+            _attackPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(village);
+            if (_attackPlan != null)
+            {
+                _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
+            }
+
             if (World.Default.You == _village.Player || (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
             {
-                _menu.AddCommand("Defend", OnAttack, Properties.Resources.Defense);
+                _menu.AddCommand("New attack plan", OnAttack, Properties.Resources.Defense);
             }
             else
             {
-                _menu.AddCommand("Attack", OnAttack, Buildings.BuildingImages.Barracks);
+                _menu.AddCommand("New attack plan", OnAttack, Buildings.BuildingImages.Barracks);
             }
+
+            _menu.AddSeparator();
+
             if (map.Display.IsVisible(village))
             {
                 _menu.AddCommand("Pinpoint", OnPinPoint);
@@ -192,6 +203,12 @@ namespace TribalWars.Villages.ContextMenu
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
             World.Default.Map.EventPublisher.AttackAddTarget(this, _village);
+        }
+
+        private void OnSelectAttackPlan(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            World.Default.Map.EventPublisher.AttackSelect(this, _attackPlan);
         }
         #endregion
     }

@@ -433,7 +433,31 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             }
             return false;
         }
+        #endregion
 
+        #region Public Methods
+        public IEnumerable<AttackPlan> GetPlans()
+        {
+            return _plans;
+        }
+
+        public AttackPlan GetPlan(Village village)
+        {
+            AttackPlan asTarget = GetExistingPlan(village);
+            if (asTarget != null) return asTarget;
+
+            AttackPlanFrom asAttacker = GetAttacker(village);
+            if (asAttacker != null) return asAttacker.Plan;
+
+            return null;
+        }
+
+        public override void Dispose()
+        {
+        }
+        #endregion
+
+        #region Private
         private AttackPlan GetExistingPlan(Village village)
         {
             AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == village);
@@ -462,17 +486,6 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private IEnumerable<AttackPlanFrom> FilterAttacksForDrawing(IEnumerable<AttackPlanFrom> attacks, Rectangle gameSize)
         {
             return attacks.Where(attack => gameSize.Contains(attack.Attacker.Location));
-        }
-        #endregion
-
-        #region Public Methods
-        public IEnumerable<AttackPlan> GetPlans()
-        {
-            return _plans;
-        }
-
-        public override void Dispose()
-        {
         }
         #endregion
 
