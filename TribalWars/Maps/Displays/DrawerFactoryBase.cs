@@ -119,11 +119,10 @@ namespace TribalWars.Maps.Displays
             }
 
             // Always return valid zoom
-            if (newZoom < Zoom.Minimum)
+            if (newZoom < Zoom.Minimum || newZoom > Zoom.Maximum)
             {
                 return Zoom.Current;
             }
-            Debug.Assert(newZoom <= Zoom.Maximum);
             return newZoom;
         }
 

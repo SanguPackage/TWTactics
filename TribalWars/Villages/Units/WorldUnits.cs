@@ -88,8 +88,9 @@ namespace TribalWars.Villages.Units
         #endregion
 
         #region Public Methods
-        public void SetBuildings(Dictionary<UnitTypes, Unit> units)
+        public void SetUnits(Dictionary<UnitTypes, Unit> units)
         {
+            _list = null;
             _units = units;
         }
         #endregion

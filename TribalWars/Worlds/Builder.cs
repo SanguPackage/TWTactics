@@ -250,7 +250,7 @@ namespace TribalWars.Worlds
             World.Default.SetViews(views);
 
             WorldBuildings.Default.SetBuildings(ReadWorldBuildings(info.Buildings));
-            WorldUnits.Default.SetBuildings(ReadWorldUnits(info.Units));
+            WorldUnits.Default.SetUnits(ReadWorldUnits(info.Units));
         }
 
         /// <summary>
