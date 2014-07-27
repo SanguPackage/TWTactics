@@ -107,13 +107,16 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Public Methods
-        public virtual int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfyVillageSize)
+        public virtual int GetMinimumZoomLevel(Size maxVillageSize, bool tryStayInCurrentZoom, out bool couldSatisfyVillageSize)
         {
             couldSatisfyVillageSize = true;
             var newZoom = Math.Min(maxVillageSize.Width, maxVillageSize.Height);
 
             // Try to stay in current zoom level
-            newZoom = Math.Min(newZoom, Zoom.Current);
+            if (tryStayInCurrentZoom)
+            {
+                newZoom = Math.Min(newZoom, Zoom.Current);
+            }
 
             // Always return valid zoom
             if (newZoom < Zoom.Minimum)

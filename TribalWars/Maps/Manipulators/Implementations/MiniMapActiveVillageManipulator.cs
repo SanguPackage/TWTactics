@@ -278,7 +278,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         private int GetZoomLevel()
         {
             var mapGameRectangle = _mainMap.Display.GetGameRectangle();
-            var loc = _map.GetSpan(mapGameRectangle, 50);
+            var loc = _map.GetSpan(mapGameRectangle, true, 50);
             return loc.Zoom;
         }
 

@@ -533,10 +533,11 @@ namespace TribalWars.Maps
         /// But only change zoom when villages don't fit with current zoom.
         /// </summary>
         /// <param name="maxVillageSize">Get the zoom for villages this big</param>
+        /// <param name="tryStayInCurrentZoom">True: Try to respect the current zoom level and only change zoom level when really required</param>
         /// <param name="couldSatisfy">HACK to get an IconDisplay to switch to ShapeDisplay with Map.GetSpan</param>
-        public int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfy)
+        public int GetMinimumZoomLevel(Size maxVillageSize, bool tryStayInCurrentZoom, out bool couldSatisfy)
         {
-            return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);
+            return _drawerFactoryStrategy.GetMinimumZoomLevel(maxVillageSize, tryStayInCurrentZoom, out couldSatisfy);
         }
 
         /// <summary>
@@ -613,5 +614,10 @@ namespace TribalWars.Maps
         {
         }
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("Map={0}, Visible={1}, VillageSize={2}", _map, _visibleRectangle, _drawerFactoryStrategy != null ? Dimensions.Size.ToString() : "NotInited");
+        }
     }
 }

@@ -137,7 +137,7 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Public Methods
-        public override int GetMinimumZoomLevel(Size maxVillageSize, out bool couldSatisfyVillageSize)
+        public override int GetMinimumZoomLevel(Size maxVillageSize, bool tryStayInCurrentZoom, out bool couldSatisfyVillageSize)
         {
             int newZoom = 0;
 
@@ -156,7 +156,7 @@ namespace TribalWars.Maps.Displays
             {
                 couldSatisfyVillageSize = false;
                 bool hackForToShapeDisplaySwitching;
-                return base.GetMinimumZoomLevel(maxVillageSize, out hackForToShapeDisplaySwitching);
+                return base.GetMinimumZoomLevel(maxVillageSize, tryStayInCurrentZoom, out hackForToShapeDisplaySwitching);
             }
 
             couldSatisfyVillageSize = true;

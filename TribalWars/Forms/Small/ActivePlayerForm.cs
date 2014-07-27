@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
+using TribalWars.Worlds.Events;
 
 namespace TribalWars.Forms.Small
 {
@@ -70,7 +71,8 @@ namespace TribalWars.Forms.Small
                     if (World.Default.You != youChooser.YouPlayer)
                     {
                         World.Default.You = youChooser.YouPlayer;
-                        World.Default.Map.SetCenter(World.Default.You);
+                        World.Default.Map.SetCenter(World.Default.You, false);
+                        World.Default.Map.EventPublisher.SelectPlayer(youChooser, World.Default.You, VillageTools.PinPoint);
                         World.Default.Map.SaveHome();
                     }
 

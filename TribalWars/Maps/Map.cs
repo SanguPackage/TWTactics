@@ -251,18 +251,17 @@ namespace TribalWars.Maps
         /// <summary>
         /// Changes center so that all villages are visible
         /// </summary>
-        public void SetCenter(IEnumerable<Village> villages)
+        public void SetCenter(IEnumerable<Village> villages, bool tryStayInCurrentZoom = true)
         {
             Debug.Assert(villages != null);
-            Location location = GetSpan(villages);
+            Location location = GetSpan(villages, tryStayInCurrentZoom);
             SetCenter(location);
         }
 
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
-        /// <param name="vils">Villages that have to be visible</param>
-        private Location GetSpan(IEnumerable<Village> vils)
+        private Location GetSpan(IEnumerable<Village> vils, bool tryStayInCurrentZoom = true)
         {
             int leftX = 999, topY = 999, rightX = 0, bottomY = 0;
             foreach (Village vil in vils)
@@ -273,13 +272,13 @@ namespace TribalWars.Maps
                 if (vil.Y > bottomY) bottomY = vil.Y;
             }
 
-            return GetSpan(new Rectangle(leftX, topY, rightX - leftX, bottomY - topY));
+            return GetSpan(new Rectangle(leftX, topY, rightX - leftX, bottomY - topY), tryStayInCurrentZoom);
         }
 
         /// <summary>
         /// Calculates the coordinates and zoom level so all villages are visible
         /// </summary>
-        public Location GetSpan(Rectangle game, int villagesExtraVisible = 5)
+        public Location GetSpan(Rectangle game, bool tryStayInCurrentZoom = true, int villagesExtraVisible = 5)
         {
             var middle = new Point(
                 (game.Left + game.Right) / 2, 
@@ -291,7 +290,7 @@ namespace TribalWars.Maps
 
             // HACK: Auto switch from Icon to Shape display when using for example Center&Pinpoint
             bool couldSatisfy;
-            int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, out couldSatisfy);
+            int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, tryStayInCurrentZoom, out couldSatisfy);
             if (!couldSatisfy)
             {
                 return new Location(DisplayTypes.Shape, middle, newZoomLevel);
