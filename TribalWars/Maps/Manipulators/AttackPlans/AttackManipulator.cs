@@ -356,7 +356,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                     }
                     return true;
                 }
-                else if (e.MouseEventArgs.Button == MouseButtons.Right)
+                else if (e.MouseEventArgs.Button == MouseButtons.Right && ActivePlan != null)
                 {
                     if (e.Village.Player == World.Default.You || World.Default.You.Empty)
                     {
