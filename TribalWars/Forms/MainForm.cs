@@ -101,15 +101,11 @@ namespace TribalWars.Forms
         #endregion
 
         #region Switching Location & Map Display
-        private int? _lastShapeZoom;
-        private int? _lastIconZoom;
-        private bool _isInShapeDisplay;
-
         private void ToolStripShapeDisplay_Click(object sender, EventArgs e)
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Shape, _lastShapeZoom ?? 10));
+                World.Default.Map.SwitchDisplay();
             }
         }
 
@@ -117,7 +113,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                World.Default.Map.SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Icon, _lastIconZoom ?? 1));
+                World.Default.Map.SwitchDisplay();
             }
         }
         
@@ -125,22 +121,13 @@ namespace TribalWars.Forms
         {
             if (e.IsDisplayChange)
             {
-                _isInShapeDisplay = e.NewLocation.Display == DisplayTypes.Shape;
+                bool isInShapeDisplay = e.NewLocation.Display == DisplayTypes.Shape;
 
-                ToolStripIconDisplay.CheckState = !_isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
-                ToolStripShapeDisplay.CheckState = _isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
+                ToolStripIconDisplay.CheckState = !isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
+                ToolStripShapeDisplay.CheckState = isInShapeDisplay ? CheckState.Checked : CheckState.Unchecked;
 
                 MenuMapIconDisplay.CheckState = ToolStripIconDisplay.CheckState;
                 MenuMapShapeDisplay.CheckState = ToolStripShapeDisplay.CheckState;
-            }
-
-            if (_isInShapeDisplay)
-            {
-                _lastShapeZoom = e.NewLocation.Zoom;
-            }
-            else
-            {
-                _lastIconZoom = e.NewLocation.Zoom;
             }
         }
 

@@ -134,6 +134,15 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// </summary>
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
+            if (e.MouseEventArgs.Button == MouseButtons.XButton1)
+            {
+                // TODO: back
+            }
+            if (e.MouseEventArgs.Button == MouseButtons.XButton2)
+            {
+                // TODO: forward
+            }
+
             if (e.MouseEventArgs.Button == MouseButtons.Middle)
             {
                 _map.Manipulators.SwitchManipulator();
@@ -237,16 +246,11 @@ namespace TribalWars.Maps.Manipulators.Managers
                     TooltipActive = !TooltipActive;
                     return false;
 
-                case Keys.Tab:
-
-                    // TODO: ok we zijn er: 
-                    // Location en Display worden best samengevoegd
-                    // er zit code in MainForm die dit min of meer doet... :(
-                    // samen met auto change display bij SetCenter
-                    // ChangeDisplay() event volledig weg dus? 
-
-                    //_map.Display.SwitchDisplay();
-                    //_map.SetDisplay();
+                case Keys.D:
+                    if (e.KeyEventArgs.Modifiers.HasFlag(Keys.Alt))
+                    {
+                        _map.SwitchDisplay();
+                    }
                     return false;
 
                 case Keys.Back:

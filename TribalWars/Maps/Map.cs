@@ -189,6 +189,27 @@ namespace TribalWars.Maps
         #endregion
 
         #region Change Map Center
+        private int? _lastShapeZoom;
+        private int? _lastIconZoom;
+
+        /// <summary>
+        /// Switch between Icon and Shape displays
+        /// </summary>
+        public void SwitchDisplay()
+        {
+            bool isInShapeDisplay = _display.Type == DisplayTypes.Shape;
+            if (isInShapeDisplay)
+            {
+                _lastShapeZoom = _display.Zoom.Current;
+                SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Icon, _lastIconZoom ?? 1));
+            }
+            else
+            {
+                _lastIconZoom = _display.Zoom.Current;
+                SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Shape, _lastShapeZoom ?? 10));
+            }
+        }
+
         /// <summary>
         /// Center on middle of a continent
         /// </summary>
