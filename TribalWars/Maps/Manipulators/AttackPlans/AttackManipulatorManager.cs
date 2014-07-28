@@ -76,6 +76,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
 
             if (village.Player == World.Default.You)
             {
+                // Right click on a village you own = add new attacker
                 return null;
             }
 

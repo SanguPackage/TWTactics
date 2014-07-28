@@ -217,14 +217,15 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
 
                 activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
+                activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
                 using (var font = new Font("Verdana", 10, FontStyle.Bold))
                 {
                     g.DrawString(
                         ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
                         font,
                         Brushes.Black,
-                        activePlanTargetLocation.X + 27,
-                        activePlanTargetLocation.Y - 22);
+                        activePlanTargetLocation.X + 1,
+                        activePlanTargetLocation.Y - 40);
                 }
 
                 foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
