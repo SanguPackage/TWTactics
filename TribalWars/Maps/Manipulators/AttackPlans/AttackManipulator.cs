@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -214,6 +215,17 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
                 activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
                 activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
                 g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
+
+                activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
+                using (var font = new Font("Verdana", 10, FontStyle.Bold))
+                {
+                    g.DrawString(
+                        ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
+                        font,
+                        Brushes.Black,
+                        activePlanTargetLocation.X + 27,
+                        activePlanTargetLocation.Y - 22);
+                }
 
                 foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                 {
