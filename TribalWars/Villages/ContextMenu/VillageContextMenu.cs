@@ -1,5 +1,6 @@
 #region Using
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using TribalWars.Browsers.Control;
@@ -9,6 +10,7 @@ using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.Manipulators.AttackPlans;
+using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -19,6 +21,11 @@ using TribalWars.Worlds.Events;
 
 namespace TribalWars.Villages.ContextMenu
 {
+    public interface IVillageContextMenuCreator
+    {
+        UICommand AddItems(Village village);
+    }
+
     /// <summary>
     /// ContextMenu with general Village operations
     /// </summary>
@@ -38,6 +45,8 @@ namespace TribalWars.Villages.ContextMenu
         private readonly Map _map;
         private readonly Action _onVillageTypeChangeDelegate;
         private readonly AttackPlan _attackPlan;
+        private readonly AttackPlanFrom _attacker;
+        private readonly bool _isActiveAttackPlan;
         #endregion
 
         #region Constructors
@@ -46,14 +55,11 @@ namespace TribalWars.Villages.ContextMenu
             _village = village;
             _map = map;
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
+            _attackPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(_village, out _isActiveAttackPlan, out _attacker);
 
             _menu = JanusContextMenu.Create();
 
-            _attackPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(village);
-            if (_attackPlan != null)
-            {
-                _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
-            }
+            AddAttackPlanItems();
 
             if (World.Default.You == _village.Player || (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
             {
@@ -63,7 +69,6 @@ namespace TribalWars.Villages.ContextMenu
             {
                 _menu.AddCommand("New attack plan", OnAttack, Buildings.BuildingImages.Barracks);
             }
-
             _menu.AddSeparator();
 
             if (map.Display.IsVisible(village))
@@ -103,6 +108,28 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("TWStats", OnTwStats);
             _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+        }
+
+        private void AddAttackPlanItems()
+        {
+            if (_attackPlan != null)
+            {
+                if (_isActiveAttackPlan)
+                {
+                    if (_attacker == null)
+                    {
+                        _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
+                    }
+                    else
+                    {
+                        _menu.AddCommand("Delete from plan", OnDeleteAttacker, Properties.Resources.Delete);
+                    }
+                }
+                else
+                {
+                    _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
+                }
+            }
         }
 
         /// <summary>
@@ -203,6 +230,19 @@ namespace TribalWars.Villages.ContextMenu
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
             World.Default.Map.EventPublisher.AttackAddTarget(this, _village);
+        }
+
+        private void OnDeleteAttackPlan(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            World.Default.Map.EventPublisher.AttackRemoveTarget(this, _attackPlan);
+        }
+
+        private void OnDeleteAttacker(object sender, CommandEventArgs e)
+        {
+            Debug.Assert(_attacker != null);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.DeleteAttackFrom(_attacker));
         }
 
         private void OnSelectAttackPlan(object sender, CommandEventArgs e)

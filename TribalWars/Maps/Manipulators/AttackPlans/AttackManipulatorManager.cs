@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Linq;
+using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
 using TribalWars.Maps.Manipulators.AttackPlans.Controls;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
+using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 #endregion
@@ -58,9 +60,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         /// Gets the first plan where the village is either the target
         /// or one of the attackers
         /// </summary>
-        public AttackPlan GetPlan(Village village)
+        public AttackPlan GetPlan(Village village, out bool isActivePlan, out AttackPlanFrom attacker)
         {
-            return _attacker.GetPlan(village);
+            var plan = _attacker.GetPlan(village, out attacker);
+            isActivePlan = plan == _attacker.ActivePlan;
+            return plan;
         }
 
         public override IContextMenu GetContextMenu(Point location, Village village)

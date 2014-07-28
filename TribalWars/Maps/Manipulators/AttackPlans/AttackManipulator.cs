@@ -41,7 +41,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         private readonly List<AttackPlan> _plans;
         private Village _hoverVillage;
 
-        private AttackPlan ActivePlan { get; set; }
+        public AttackPlan ActivePlan { get; private set; }
         private AttackPlanFrom ActiveAttacker { get; set; }
         #endregion
 
@@ -453,14 +453,23 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             return _plans;
         }
 
-        public AttackPlan GetPlan(Village village)
+        public AttackPlan GetPlan(Village village, out AttackPlanFrom attacker)
         {
             AttackPlan asTarget = GetExistingPlan(village);
-            if (asTarget != null) return asTarget;
+            if (asTarget != null)
+            {
+                attacker = null;
+                return asTarget;
+            }
 
             AttackPlanFrom asAttacker = GetAttacker(village);
-            if (asAttacker != null) return asAttacker.Plan;
+            if (asAttacker != null)
+            {
+                attacker = asAttacker;
+                return asAttacker.Plan;
+            }
 
+            attacker = null;
             return null;
         }
 
