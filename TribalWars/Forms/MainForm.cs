@@ -498,6 +498,12 @@ namespace TribalWars.Forms
         #endregion
 
         #region General Pane Stuff
+        private void MenuMapSelectPane_Click(object sender, EventArgs e)
+        {
+            var paneIndex = int.Parse(((ToolStripMenuItem) sender).Tag.ToString());
+            LeftNavigation.SelectNavigationPage(paneIndex);
+        }
+
         private enum NavigationPanes
         {
             Location = 0,

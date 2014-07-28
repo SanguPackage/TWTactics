@@ -77,6 +77,11 @@ namespace TribalWars.Forms
             this.MenuMapShapeDisplay = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapSetHomeLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuMapSelectPane0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSelectPane1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSelectPane2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSelectPane3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
@@ -403,6 +408,7 @@ namespace TribalWars.Forms
             // 
             // MenuFileSetActivePlayer
             // 
+            this.MenuFileSetActivePlayer.Image = global::TribalWars.Properties.Resources.Player;
             this.MenuFileSetActivePlayer.Name = "MenuFileSetActivePlayer";
             this.MenuFileSetActivePlayer.Size = new System.Drawing.Size(306, 22);
             this.MenuFileSetActivePlayer.Text = "Set Active Player";
@@ -434,6 +440,11 @@ namespace TribalWars.Forms
             this.MenuMapShapeDisplay,
             this.toolStripMenuItem3,
             this.MenuMapSetHomeLocation,
+            this.toolStripMenuItem5,
+            this.MenuMapSelectPane0,
+            this.MenuMapSelectPane1,
+            this.MenuMapSelectPane2,
+            this.MenuMapSelectPane3,
             this.toolStripMenuItem2,
             this.MenuMapScreenshot,
             this.MenuMapSeeScreenshots});
@@ -470,6 +481,43 @@ namespace TribalWars.Forms
             this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(189, 22);
             this.MenuMapSetHomeLocation.Text = "Set as Home Location";
             this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(186, 6);
+            // 
+            // MenuMapSelectPane0
+            // 
+            this.MenuMapSelectPane0.Name = "MenuMapSelectPane0";
+            this.MenuMapSelectPane0.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane0.Tag = "0";
+            this.MenuMapSelectPane0.Text = "Location Options";
+            this.MenuMapSelectPane0.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
+            // 
+            // MenuMapSelectPane1
+            // 
+            this.MenuMapSelectPane1.Name = "MenuMapSelectPane1";
+            this.MenuMapSelectPane1.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane1.Tag = "1";
+            this.MenuMapSelectPane1.Text = "Quick Details";
+            this.MenuMapSelectPane1.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
+            // 
+            // MenuMapSelectPane2
+            // 
+            this.MenuMapSelectPane2.Name = "MenuMapSelectPane2";
+            this.MenuMapSelectPane2.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane2.Tag = "2";
+            this.MenuMapSelectPane2.Text = "Map Markers";
+            this.MenuMapSelectPane2.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
+            // 
+            // MenuMapSelectPane3
+            // 
+            this.MenuMapSelectPane3.Name = "MenuMapSelectPane3";
+            this.MenuMapSelectPane3.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane3.Tag = "3";
+            this.MenuMapSelectPane3.Text = "Plan Attacks";
+            this.MenuMapSelectPane3.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -555,7 +603,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(463, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -638,7 +686,7 @@ namespace TribalWars.Forms
             this.ToolStripSave.Name = "ToolStripSave";
             this.ToolStripSave.Size = new System.Drawing.Size(23, 22);
             this.ToolStripSave.Text = "&Save";
-            this.ToolStripSave.ToolTipText = "Save settings";
+            this.ToolStripSave.ToolTipText = "Save settings (markers, attack plans, polygons, ...)";
             this.ToolStripSave.Click += new System.EventHandler(this.ToolStripSave_Click);
             // 
             // toolStripSeparator4
@@ -1275,6 +1323,11 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuMapIconDisplay;
         private System.Windows.Forms.ToolStripMenuItem MenuMapShapeDisplay;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane0;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane1;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane2;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane3;
     }
 }
 
