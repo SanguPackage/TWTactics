@@ -82,7 +82,7 @@ namespace TribalWars.Tools
         /// <summary>
         /// Formats a date as on the Tribal Wars server
         /// </summary>
-        public static string GetPrettyDate(DateTime date)
+        public static string GetPrettyDate(this DateTime date)
         {
             return GetPrettyDate(date, false);
         }
@@ -92,7 +92,7 @@ namespace TribalWars.Tools
         /// </summary>
         /// <param name="date">The date to format</param>
         /// <param name="shortFormat">Removes 'on'</param>
-        public static string GetPrettyDate(DateTime date, bool shortFormat)
+        public static string GetPrettyDate(this DateTime date, bool shortFormat)
         {
             DateTime serverTime = World.Default.Settings.ServerTime;
             if (date.DayOfYear == serverTime.DayOfYear)
@@ -113,7 +113,7 @@ namespace TribalWars.Tools
         /// <summary>
         /// Short Tribal Wars server date format
         /// </summary>
-        public static string GetShortPrettyDate(DateTime date)
+        public static string GetShortPrettyDate(this DateTime date)
         {
             return string.Format("{0} {1}", date.ToString("dd.MM."), date.ToLongTimeString());
         }

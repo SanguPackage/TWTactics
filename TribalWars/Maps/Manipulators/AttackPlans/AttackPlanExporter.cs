@@ -85,8 +85,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
             _str.AppendLine(target);
             _str.AppendLine();
 
-            _str.AppendLine("Arrival time: " + arrivalTime);
-            _str.AppendLine("Export time: " + PrintDate(World.Default.Settings.ServerTime));
+            _str.AppendLine("Arrival time: " + PrintDate(arrivalTime));
+            _str.AppendLine("Export time : " + PrintDate(World.Default.Settings.ServerTime));
             _str.AppendLineFormat("Total attacks: {0}", _attacks.Count());
             _str.AppendLine();
         }

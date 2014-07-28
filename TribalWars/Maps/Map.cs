@@ -373,11 +373,6 @@ namespace TribalWars.Maps
         #region Tooltip
         public void ShowTooltip(string title, string body)
         {
-            if (!TooltipAllowed())
-            {
-                return;
-            }
-
             var settings = new SuperTipSettings();
             settings.HeaderText = title;
             settings.Text = body;
@@ -385,30 +380,13 @@ namespace TribalWars.Maps
             ShowTooltip(settings);
         }
 
-        public void ShowTooltip(Village village)
+        public void ShowTooltip(SuperTipSettings settings)
         {
             if (!TooltipAllowed())
             {
                 return;
             }
 
-            var settings = new SuperTipSettings();
-            settings.ToolTipStyle = ToolTipStyle.Standard;
-            settings.HeaderText = village.Tooltip.Title;
-            settings.Text = village.Tooltip.Text;
-            settings.Image = village.Type.GetImage(false);
-
-            if (!string.IsNullOrEmpty(village.Tooltip.Footer))
-            {
-                settings.FooterText = village.Tooltip.Footer;
-                settings.FooterImage = Other.Note;
-            }
-
-            ShowTooltip(settings);
-        }
-
-        private void ShowTooltip(SuperTipSettings settings)
-        {
             _toolTip.Show(settings, _control);
         }
 

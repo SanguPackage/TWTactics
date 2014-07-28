@@ -36,6 +36,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             _manipulator = manipulator;
 
             _menu = JanusContextMenu.Create();
+
             _menu.AddToggleCommand("Show non-active plan targets", _manipulator.Settings.ShowOtherTargets, OnShowOtherTargets);
             _menu.AddToggleCommand("Show non-active plan attackers", _manipulator.Settings.ShowOtherAttackers, OnShowOtherAttackers);
             _menu.AddSeparator();

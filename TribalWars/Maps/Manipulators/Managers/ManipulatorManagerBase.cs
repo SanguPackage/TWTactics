@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Janus.Windows.Common;
 using TribalWars.Controls;
+using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -85,8 +86,24 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             if (TooltipActive)
             {
-                _map.ShowTooltip(village);
+                _map.ShowTooltip(BuildTooltip(village));
             }
+        }
+
+        protected virtual SuperTipSettings BuildTooltip(Village village)
+        {
+            var settings = new SuperTipSettings();
+            settings.ToolTipStyle = ToolTipStyle.Standard;
+            settings.HeaderText = village.Tooltip.Title;
+            settings.Text = village.Tooltip.Text;
+            settings.Image = village.Type.GetImage(false);
+
+            if (!string.IsNullOrEmpty(village.Tooltip.Footer))
+            {
+                settings.FooterText = village.Tooltip.Footer;
+                settings.FooterImage = Other.Note;
+            }
+            return settings;
         }
         #endregion
 
