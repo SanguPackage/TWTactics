@@ -137,6 +137,7 @@ namespace TribalWars.Forms
             this.monitoringControl1 = new TribalWars.Maps.Manipulators.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.MenuHelpReportBug = new System.Windows.Forms.ToolStripMenuItem();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -542,6 +543,7 @@ namespace TribalWars.Forms
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuHelpReportBug,
             this.MenuHelpAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -550,7 +552,7 @@ namespace TribalWars.Forms
             // MenuHelpAbout
             // 
             this.MenuHelpAbout.Name = "MenuHelpAbout";
-            this.MenuHelpAbout.Size = new System.Drawing.Size(107, 22);
+            this.MenuHelpAbout.Size = new System.Drawing.Size(152, 22);
             this.MenuHelpAbout.Text = "About";
             this.MenuHelpAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
             // 
@@ -603,7 +605,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(463, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -1177,6 +1179,14 @@ namespace TribalWars.Forms
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
+            // MenuHelpReportBug
+            // 
+            this.MenuHelpReportBug.Image = ((System.Drawing.Image)(resources.GetObject("MenuHelpReportBug.Image")));
+            this.MenuHelpReportBug.Name = "MenuHelpReportBug";
+            this.MenuHelpReportBug.Size = new System.Drawing.Size(152, 22);
+            this.MenuHelpReportBug.Text = "Report a bug";
+            this.MenuHelpReportBug.Click += new System.EventHandler(this.MenuHelpReportBug_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1328,6 +1338,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane1;
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane2;
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane3;
+        private System.Windows.Forms.ToolStripMenuItem MenuHelpReportBug;
     }
 }
 

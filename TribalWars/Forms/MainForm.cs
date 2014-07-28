@@ -469,6 +469,11 @@ namespace TribalWars.Forms
             }
         }
 
+        private void MenuHelpReportBug_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/SanguPackage/TWTactics/issues");
+        }
+
         private void MenuHelpAbout_Click(object sender, EventArgs e)
         {
             using (var about = new AboutForm())
