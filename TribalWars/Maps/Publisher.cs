@@ -9,6 +9,7 @@ using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Polygons;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 using TribalWars.Worlds.Events.Impls;
 
@@ -136,9 +137,10 @@ namespace TribalWars.Maps
         #endregion
 
         #region Attack Events
-        public void AttackAddTarget(object sender, Village village, DateTime? arrivalTime = null)
+        public void AttackAddTarget(object sender, Village village)
         {
-           AddTarget(sender, new AttackEventArgs(new AttackPlan(village, arrivalTime), null));
+            DateTime arrivalTime = World.Default.Map.Manipulators.AttackManipulator.GetDefaultArrivalTime();
+            AddTarget(sender, new AttackEventArgs(new AttackPlan(village, arrivalTime), null));
         }
 
         public void AttackUpdateTarget(object sender, AttackUpdateEventArgs e)

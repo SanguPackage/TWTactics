@@ -39,18 +39,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Constructors
-        public AttackPlan(Village target, DateTime? arrivalTime)
+        public AttackPlan(Village target, DateTime arrivalTime)
         {
             _attacks = new List<AttackPlanFrom>();
             Target = target;
-            if (arrivalTime.HasValue)
-            {
-                ArrivalTime = arrivalTime.Value;
-            }
-            else
-            {
-                ArrivalTime = World.Default.Settings.ServerTime.AddHours(8);
-            }
+            ArrivalTime = arrivalTime;
         }
         #endregion
 

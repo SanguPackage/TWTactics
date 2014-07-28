@@ -1,4 +1,5 @@
 #region Using
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Linq;
@@ -19,6 +20,8 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
     /// </summary>
     public class AttackManipulatorManager : ManipulatorManagerBase
     {
+        private const int DefaultArrivalTimeServerOffset = 8;
+
         #region Fields
         private readonly AttackManipulator _attacker;
         #endregion
@@ -51,6 +54,18 @@ namespace TribalWars.Maps.Manipulators.AttackPlans
         #endregion
 
         #region Methods
+        public DateTime GetDefaultArrivalTime()
+        {
+            if (_attacker.ActivePlan == null)
+            {
+                return World.Default.Settings.ServerTime.AddHours(DefaultArrivalTimeServerOffset);
+            }
+            else
+            {
+                return _attacker.ActivePlan.ArrivalTime;
+            }
+        }
+
         public IEnumerable<AttackPlan> GetPlans()
         {
             return _attacker.GetPlans();
