@@ -21,11 +21,6 @@ using TribalWars.Worlds.Events;
 
 namespace TribalWars.Villages.ContextMenu
 {
-    public interface IVillageContextMenuCreator
-    {
-        UICommand AddItems(Village village);
-    }
-
     /// <summary>
     /// ContextMenu with general Village operations
     /// </summary>
@@ -78,13 +73,7 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             
             _menu.AddSeparator();
-            UICommand villageTypes =_menu.AddCommand("Set purpose", null, village.Type.GetImage(true));
-            AddVillageTypeCommand(villageTypes, VillageType.Attack, village.Type);
-            AddVillageTypeCommand(villageTypes, VillageType.Catapult, village.Type);
-            AddVillageTypeCommand(villageTypes, VillageType.Defense, village.Type);
-            AddVillageTypeCommand(villageTypes, VillageType.Noble, village.Type);
-            AddVillageTypeCommand(villageTypes, VillageType.Scout, village.Type);
-            AddVillageTypeCommand(villageTypes, VillageType.Farm, village.Type);
+            _menu.AddSetVillageTypeCommand(OnVillageTypeChange, village);
 
             if (village.HasPlayer)
             {
@@ -131,40 +120,6 @@ namespace TribalWars.Villages.ContextMenu
                 }
             }
         }
-
-        /// <summary>
-        /// Allow change between VillageTypes (Offensive, Defensive, Nobles, ...)
-        /// </summary>
-        private void AddVillageTypeCommand(UICommand menu, VillageType typeToSet, VillageType typeCurrent)
-        {
-            bool isCurrentlySet = typeCurrent.HasFlag(typeToSet);
-
-            var command = new UICommand("", typeToSet.GetDescription());
-            command.Tag = typeToSet;
-            command.Image = typeToSet.GetImage(true);
-            command.Checked = isCurrentlySet ? InheritableBoolean.True : InheritableBoolean.False;
-            command.Click += OnVillageTypeChange;
-            menu.Commands.Add(command);
-        }
-
-        private void OnVillageTypeChange(object sender, CommandEventArgs e)
-        {
-            var changeTo = (VillageType) e.Command.Tag;
-            if (_village.Type.HasFlag(changeTo))
-            {
-                _village.Type -= changeTo;
-            }
-            else
-            {
-                _village.Type |= changeTo;
-            }
-            _map.Invalidate();
-
-            if (_onVillageTypeChangeDelegate != null)
-            {
-                _onVillageTypeChangeDelegate();
-            }
-        }
         #endregion
 
         #region Public Methods
@@ -183,6 +138,25 @@ namespace TribalWars.Villages.ContextMenu
         #endregion
 
         #region EventHandlers
+        private void OnVillageTypeChange(object sender, CommandEventArgs e)
+        {
+            var changeTo = (VillageType)e.Command.Tag;
+            if (_village.Type.HasFlag(changeTo))
+            {
+                _village.Type -= changeTo;
+            }
+            else
+            {
+                _village.Type |= changeTo;
+            }
+            _map.Invalidate();
+
+            if (_onVillageTypeChangeDelegate != null)
+            {
+                _onVillageTypeChangeDelegate();
+            }
+        }
+
         /// <summary>
         /// Pinpoints and centers the target village
         /// </summary>

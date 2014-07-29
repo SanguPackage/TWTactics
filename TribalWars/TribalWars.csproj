@@ -274,6 +274,7 @@
     <Compile Include="Tools\JanusExtensions\JanusContextMenu.cs" />
     <Compile Include="Tools\JanusExtensions\JanusGridEx.cs" />
     <Compile Include="Tools\Linqs.cs" />
+    <Compile Include="Villages\ContextMenu\VillagesContextMenu.cs" />
     <Compile Include="Villages\Helpers\IVisible.cs" />
     <Compile Include="Controls\Finders\AutoCompleteCache.cs" />
     <Compile Include="Maps\Manipulators\Monitoring\MonitoringControl.cs">
@@ -309,9 +310,6 @@
     <Compile Include="Maps\Drawers\DrawerData.cs" />
     <Compile Include="Maps\Drawers\DrawerBase.cs" />
     <Compile Include="Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
-    <Compile Include="Villages\ContextMenu\VillagesContextMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Villages\Buildings\BuildingImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

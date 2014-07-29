@@ -256,13 +256,20 @@ namespace TribalWars.Controls.XPTables
                 if (Table.TableModel.Selections.SelectedItems.Length > 1)
                 {
                     // Show context menu for multiple villages
-                    var menu = new VillagesContextMenu();
                     var vils = new List<Village>();
                     foreach (Row row in Table.TableModel.Selections.SelectedItems)
                     {
                         vils.AddRange(((ITwContextMenu)row).GetVillages());
                     }
-                    menu.Show(Table, e.Location, vils);
+
+                    var menu = new VillagesContextMenu(_map, vils, (villageTypeSetTo) =>
+                        {
+                            foreach (Row row in Table.TableModel.Selections.SelectedItems)
+                            {
+                                row.Cells[1].Image = villageTypeSetTo.GetImage(true);
+                            }
+                        });
+                    menu.Show(Table, e.Location);
                 }
                 else
                 {

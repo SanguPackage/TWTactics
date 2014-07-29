@@ -129,6 +129,35 @@ namespace TribalWars.Tools.JanusExtensions
         }
         #endregion
 
+        #region SetVillageType
+        public static void AddSetVillageTypeCommand(this UIContextMenu menu, CommandEventHandler onVillageTypeChange, Village village)
+        {
+            VillageType currentVillageType = village == null ? VillageType.None : village.Type;
+            UICommand villageTypes = menu.AddCommand("Set purpose", null, currentVillageType.GetImage(true));
+            AddVillageTypeCommand(villageTypes, VillageType.Attack, currentVillageType, onVillageTypeChange);
+            AddVillageTypeCommand(villageTypes, VillageType.Catapult, currentVillageType, onVillageTypeChange);
+            AddVillageTypeCommand(villageTypes, VillageType.Defense, currentVillageType, onVillageTypeChange);
+            AddVillageTypeCommand(villageTypes, VillageType.Noble, currentVillageType, onVillageTypeChange);
+            AddVillageTypeCommand(villageTypes, VillageType.Scout, currentVillageType, onVillageTypeChange);
+            AddVillageTypeCommand(villageTypes, VillageType.Farm, currentVillageType, onVillageTypeChange);
+        }
+
+        /// <summary>
+        /// Allow change between VillageTypes (Offensive, Defensive, Nobles, ...)
+        /// </summary>
+        private static void AddVillageTypeCommand(UICommand menu, VillageType typeToSet, VillageType typeCurrent, CommandEventHandler onVillageTypeChange)
+        {
+            bool isCurrentlySet = typeCurrent.HasFlag(typeToSet);
+
+            var command = new UICommand("", typeToSet.GetDescription());
+            command.Tag = typeToSet;
+            command.Image = typeToSet.GetImage(true);
+            command.Checked = isCurrentlySet ? InheritableBoolean.True : InheritableBoolean.False;
+            command.Click += onVillageTypeChange;
+            menu.Commands.Add(command);
+        }
+        #endregion
+
         #region Other Commands
         public static void AddTextBoxCommand(this UIContextMenu menu, string text, string defaultTextBoxValue, EventHandler handler)
         {

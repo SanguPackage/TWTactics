@@ -294,8 +294,6 @@ namespace TribalWars.Maps.Manipulators.Managers
             else
             {
                 // Zoom in
-                Debug.WriteLine("MouseWheel: " + DateTime.Now.ToLongTimeString());
-
                 Point location;
                 if (_lastMouseWheel != null && _lastMouseWheel.IsRelevant())
                 {
@@ -307,7 +305,6 @@ namespace TribalWars.Maps.Manipulators.Managers
                 }
                 _lastMouseWheel = new MouseWheelInfo(location);
 
-                Debug.WriteLine("Zooming at: " + location);
                 _map.IncreaseZoomLevel(location, MouseWheelInfo.ToTilt(e.Delta));
             }
             
