@@ -889,7 +889,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance});
             this.LeftNavigation.Size = new System.Drawing.Size(337, 407);
             this.LeftNavigation.TabIndex = 0;
-            this.LeftNavigation.VisibleButtonCount = 4;
+            this.LeftNavigation.VisibleButtonCount = 0;
             // 
             // LeftNavigation_Location
             // 
