@@ -69,7 +69,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.Collection.RowCount = 2;
             this.Collection.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.Collection.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Collection.Size = new System.Drawing.Size(319, 370);
+            this.Collection.Size = new System.Drawing.Size(319, 95);
             this.Collection.TabIndex = 0;
             // 
             // toolStrip1
@@ -236,11 +236,12 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             // 
             // AllPlans
             // 
+            this.AllPlans.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AllPlans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AllPlans.Location = new System.Drawing.Point(0, 25);
             this.AllPlans.Margin = new System.Windows.Forms.Padding(0);
             this.AllPlans.Name = "AllPlans";
-            this.AllPlans.Size = new System.Drawing.Size(319, 345);
+            this.AllPlans.Size = new System.Drawing.Size(319, 70);
             this.AllPlans.TabIndex = 5;
             // 
             // Timer
@@ -248,13 +249,14 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.Timer.Interval = 1000;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
-            // MapDistanceCollectionControl
+            // AttackPlanCollectionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.Collection);
             this.Name = "AttackPlanCollectionControl";
-            this.Size = new System.Drawing.Size(319, 370);
+            this.Size = new System.Drawing.Size(319, 95);
             this.Collection.ResumeLayout(false);
             this.Collection.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

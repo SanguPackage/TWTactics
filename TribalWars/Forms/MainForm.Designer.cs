@@ -211,7 +211,7 @@ namespace TribalWars.Forms
             // StatusMessage
             // 
             this.StatusMessage.Name = "StatusMessage";
-            this.StatusMessage.Size = new System.Drawing.Size(501, 19);
+            this.StatusMessage.Size = new System.Drawing.Size(532, 19);
             this.StatusMessage.Spring = true;
             this.StatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -934,6 +934,7 @@ namespace TribalWars.Forms
             // 
             // locationControl1
             // 
+            this.locationControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.locationControl1.BackColor = System.Drawing.Color.Transparent;
             this.locationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationControl1.Location = new System.Drawing.Point(0, 0);
@@ -1015,6 +1016,7 @@ namespace TribalWars.Forms
             // 
             // markersContainerControl1
             // 
+            this.markersContainerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.markersContainerControl1.BackColor = System.Drawing.Color.Transparent;
             this.markersContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.markersContainerControl1.Location = new System.Drawing.Point(0, 0);
@@ -1056,6 +1058,7 @@ namespace TribalWars.Forms
             // 
             // _attackPlan
             // 
+            this._attackPlan.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._attackPlan.Dock = System.Windows.Forms.DockStyle.Fill;
             this._attackPlan.Location = new System.Drawing.Point(0, 0);
             this._attackPlan.Margin = new System.Windows.Forms.Padding(0);

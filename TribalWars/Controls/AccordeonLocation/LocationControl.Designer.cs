@@ -32,9 +32,9 @@ namespace TribalWars.Controls.AccordeonLocation
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PlayerTribeSelectorButton = new Janus.Windows.EditControls.UIButton();
-            this._locationFinderControl1 = new TribalWars.Controls.AccordeonLocation.LocationFinderControl();
             this.PlayerTribeSelector = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -54,8 +54,18 @@ namespace TribalWars.Controls.AccordeonLocation
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 324);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 262);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // _locationFinderControl1
+            // 
+            this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
+            this._locationFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._locationFinderControl1.Location = new System.Drawing.Point(2, 50);
+            this._locationFinderControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this._locationFinderControl1.Name = "_locationFinderControl1";
+            this._locationFinderControl1.Size = new System.Drawing.Size(300, 210);
+            this._locationFinderControl1.TabIndex = 7;
             // 
             // groupBox1
             // 
@@ -81,16 +91,6 @@ namespace TribalWars.Controls.AccordeonLocation
             this.PlayerTribeSelectorButton.ToolTipText = "Center and pinpoint or right click for more options";
             this.PlayerTribeSelectorButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PlayerTribeSelectorButton_MouseClick);
             // 
-            // _locationFinderControl1
-            // 
-            this._locationFinderControl1.BackColor = System.Drawing.Color.Transparent;
-            this._locationFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._locationFinderControl1.Location = new System.Drawing.Point(2, 50);
-            this._locationFinderControl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
-            this._locationFinderControl1.Name = "_locationFinderControl1";
-            this._locationFinderControl1.Size = new System.Drawing.Size(300, 272);
-            this._locationFinderControl1.TabIndex = 7;
-            // 
             // PlayerTribeSelector
             // 
             this.PlayerTribeSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -110,7 +110,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "LocationControl";
-            this.Size = new System.Drawing.Size(304, 324);
+            this.Size = new System.Drawing.Size(304, 262);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

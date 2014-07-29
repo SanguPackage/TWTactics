@@ -52,6 +52,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
@@ -66,7 +67,7 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 431);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 173);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -205,12 +206,13 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             // DistanceContainer
             // 
             this.DistanceContainer.AutoScroll = true;
+            this.DistanceContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.DistanceContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DistanceContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.DistanceContainer.Location = new System.Drawing.Point(0, 70);
             this.DistanceContainer.Margin = new System.Windows.Forms.Padding(0);
             this.DistanceContainer.Name = "DistanceContainer";
-            this.DistanceContainer.Size = new System.Drawing.Size(274, 361);
+            this.DistanceContainer.Size = new System.Drawing.Size(274, 103);
             this.DistanceContainer.TabIndex = 5;
             this.DistanceContainer.WrapContents = false;
             // 
@@ -218,10 +220,11 @@ namespace TribalWars.Maps.Manipulators.AttackPlans.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AttackPlanControl";
-            this.Size = new System.Drawing.Size(274, 431);
+            this.Size = new System.Drawing.Size(274, 173);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

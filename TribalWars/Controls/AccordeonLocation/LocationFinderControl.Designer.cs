@@ -48,7 +48,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 263);
+            this.groupBox1.Size = new System.Drawing.Size(296, 213);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Extended player, tribe or village search";
@@ -66,7 +66,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.MainTable.RowCount = 2;
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.MainTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MainTable.Size = new System.Drawing.Size(290, 244);
+            this.MainTable.Size = new System.Drawing.Size(290, 194);
             this.MainTable.TabIndex = 3;
             // 
             // SearchPanel
@@ -81,10 +81,9 @@ namespace TribalWars.Controls.AccordeonLocation
             // 
             // Options
             // 
-            this.Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Options.BackColor = System.Drawing.Color.Transparent;
             this.Options.Buttonsvisible = true;
+            this.Options.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Options.Expanded = true;
             this.Options.LimitResultsValue = new decimal(new int[] {
             100,
@@ -111,7 +110,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
             this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
-            this.Table.Size = new System.Drawing.Size(290, 86);
+            this.Table.Size = new System.Drawing.Size(290, 36);
             this.Table.TabIndex = 4;
             this.Table.VisiblePlayerFields = TribalWars.Controls.XPTables.PlayerFields.None;
             this.Table.VisibleReportFields = TribalWars.Controls.XPTables.ReportFields.None;
@@ -123,7 +122,7 @@ namespace TribalWars.Controls.AccordeonLocation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "LocationFinderControl";
-            this.Size = new System.Drawing.Size(296, 263);
+            this.Size = new System.Drawing.Size(296, 213);
             this.groupBox1.ResumeLayout(false);
             this.MainTable.ResumeLayout(false);
             this.SearchPanel.ResumeLayout(false);
