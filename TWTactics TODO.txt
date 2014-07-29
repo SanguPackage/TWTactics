@@ -1,0 +1,68 @@
+
+MapDragger: Don't wait for entire game diff before redrawing the map
+
+Undo/Redo MapLocation changes
+
+GridEx.SaveSettings = true;
+
+
+
+world.dat???
+http://forum.tribalwars.net/showthread.php?253942-World-dat
+
+--> http://nl39.tribalwars.nl/interface.php?func=get_config and check for "legacy_scenery"
+
+http://forum.die-staemme.de/showthread.php?71112-Weltdaten-und-Interface
+
+
+['gras1.png', 'gras2.png', 'gras3.png', 'gras4.png', 'v1_left.png', 'v1.png', 'v2_left.png', 'v2.png', 'v3_left.png', 'v3.png', 'v4_left.png', 'v4.png', 'v5_left.png', 'v5.png', 'v6_left.png', 'v6.png', 'b1_left.png', 'b1.png', 'b2_left.png', 'b2.png', 'b3_left.png', 'b3.png', 'b4_left.png', 'b4.png', 'b5_left.png', 'b5.png', 'b6_left.png', 'b6.png', 'berg1.png', 'berg2.png', 'berg3.png', 'berg4.png', 'forest0000.png', 'forest0001.png', 'forest0010.png', 'forest0011.png', 'forest0100.png', 'forest0101.png', 'forest0110.png', 'forest0111.png', 'forest1000.png', 'forest1001.png', 'forest1010.png', 'forest1011.png', 'forest1100.png', 'forest1101.png', 'forest1110.png', 'forest1111.png', 'see.png', 'event_xmas.png', 'event_easter.png', 'ghost.png', 'event_merchant.png', 'event_wizard.png', 'event_easter2014.png']
+
+
+
+http://en12.tribalwars.net/graphic/unit/unit_spear.png
+
+village.txt : RANK (last) = bonus village
+0 no
+1 10% more wood production
+2 10% more clay production
+3 10% more iron production
+4 10% more people
+5 10% faster production in the barracks
+6 10% faster production in the stable
+7 10% faster production in the workshop
+8 3% more raw material production (all commodities)
+
+
+
+Tips & Hints:
+-------------
+Use Control to increase the effect of other keys (movement arrows, ...)
+
+Use middle mouse button to switch between default and polygon or attack mode.
+
+Use Alt + D to switch between TW village icon and rectangle shape displays
+
+Use Home to return to your home
+
+You can move the map by 
+- left clicking somewhere on the minimap
+- the arrow keys (hold control to move more)
+- dragging the map
+- right click and selecting one of the Center/Pinpoint options
+- mousewheel or +/- to increase/decrease zoom level
+
+The Delete key works for Polygons and Attack Plans
+
+Use L to lock the pinned village
+
+Polygon drawing: Hold control for fixed horizontal drawing. Shift for fixed vertical drawing.
+
+
+
+
+
+
+
+
+
+
