@@ -376,7 +376,7 @@ namespace TribalWars.Forms
             }
 
             Debug.WriteLine("LeftNavPane: " + LeftNavigation.Height);
-            Debug.WriteLine("LeftNavPaneParent: " + LeftNavigationTable.Height);
+            //Debug.WriteLine("LeftNavPaneParent: " + LeftNavigationTable.Height);
             Debug.WriteLine("MiniMap: " + MiniMap.Height);
         }
 
