@@ -241,6 +241,15 @@ namespace TribalWars.Maps
         }
 
         /// <summary>
+        /// Changes the zoom level
+        /// </summary>
+        public void IncreaseZoomLevel(Point location, int amount)
+        {
+            if (Display.Type == DisplayTypes.Icon) amount *= -1;
+            SetCenter(this, new Location(Location.Display, location.X, location.Y, Location.Zoom + amount));
+        }
+
+        /// <summary>
         /// Changes the x and y coordinates
         /// </summary>
         public void SetCenter(Point point)

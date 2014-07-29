@@ -241,19 +241,79 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
+        #region MouseWheel
+        private MouseWheelInfo _lastMouseWheel;
+
+        /// <summary>
+        /// Zoom in fast with mousewheel: 
+        /// remember at what game location
+        /// zooming started
+        /// </summary>
+        private class MouseWheelInfo
+        {
+            private readonly DateTime _occuredAt;
+
+            public Point GameLocation { get; private set; }
+
+            public MouseWheelInfo(Point gameLocation)
+            {
+                GameLocation = gameLocation;
+                _occuredAt = DateTime.Now;
+            }
+
+            /// <summary>
+            /// If it's too long ago that the previous scroll happened
+            /// don't take its gameLocation into account anymore
+            /// </summary>
+            public bool IsRelevant()
+            {
+                return DateTime.Now - _occuredAt < new TimeSpan(0, 0, 1);
+            }
+
+            /// <summary>
+            /// Convert MouseWheel delta to a 1 increase/decrease of zoom level
+            /// </summary>
+            public static int ToTilt(int delta)
+            {
+                return delta > 0 ? 1 : -1;
+            }
+
+            public override string ToString()
+            {
+                return string.Format("At={0}, Loc={1}, StillRelevant={2}", _occuredAt, GameLocation, IsRelevant());
+            }
+        }
+
         public bool MouseWheel(MouseEventArgs e)
         {
-            // TODO we zaten hier
-            //from d in mouseDowns.Timestamp()
-            //from p in pointChanges
-            //    .TakeUntil(mouseUps)
-            //    .SkipUntil(Observable.Timer(d.Timestamp + TimeSpan.FromSeconds(1.0)))
-            //select p;
+            if (e.Delta < 0)
+            {
+                // Zoom out (don't move map center)
+                _map.IncreaseZoomLevel(MouseWheelInfo.ToTilt(e.Delta));
+            }
+            else
+            {
+                // Zoom in
+                Debug.WriteLine("MouseWheel: " + DateTime.Now.ToLongTimeString());
 
+                Point location;
+                if (_lastMouseWheel != null && _lastMouseWheel.IsRelevant())
+                {
+                    location = _lastMouseWheel.GameLocation;
+                }
+                else
+                {
+                    location = _map.Display.GetGameLocation(e.Location);
+                }
+                _lastMouseWheel = new MouseWheelInfo(location);
 
-            _map.IncreaseZoomLevel(e.Delta > 0 ? 1 : -1);
+                Debug.WriteLine("Zooming at: " + location);
+                _map.IncreaseZoomLevel(location, MouseWheelInfo.ToTilt(e.Delta));
+            }
+            
             return true;
         }
+        #endregion
 
         protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
         {
