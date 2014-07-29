@@ -455,11 +455,14 @@ namespace TribalWars.Worlds
                 // world.xml
                 var worldInfo = WorldConfiguration.LoadFromFile(Path.Combine(WorldTemplateDirectory, WorldXmlTemplateString));
                 worldInfo.Name = worldName;
-                using (var timeZoneSetter = new TimeZoneForm())
+                if (server.TwStatsPrefix.ToLowerInvariant() != System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
                 {
-                    if (timeZoneSetter.ShowDialog() == DialogResult.OK)
+                    using (var timeZoneSetter = new TimeZoneForm())
                     {
-                        worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                        if (timeZoneSetter.ShowDialog() == DialogResult.OK)
+                        {
+                            worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                        }
                     }
                 }
 
