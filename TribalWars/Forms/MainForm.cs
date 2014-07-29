@@ -26,6 +26,9 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Forms
 {
+    /// <summary>
+    /// This is the form where it's all happening
+    /// </summary>
     public partial class MainForm : Form
     {
         #region Fields
@@ -95,7 +98,11 @@ namespace TribalWars.Forms
                 }
             }
 
-
+            // If user has big enough screen, show the 4 Outlook pane buttons
+            if (LeftNavigation.Height > 400)
+            {
+                LeftNavigation.VisibleButtonCount = 4;
+            }
 
             Polygon.Initialize();
             ToolStripDefaultManipulator.CheckState = CheckState.Checked;
@@ -374,10 +381,6 @@ namespace TribalWars.Forms
             {
                 World.Default.SaveSettings();
             }
-
-            Debug.WriteLine("LeftNavPane: " + LeftNavigation.Height);
-            //Debug.WriteLine("LeftNavPaneParent: " + LeftNavigationTable.Height);
-            Debug.WriteLine("MiniMap: " + MiniMap.Height);
         }
 
         private void ToolStripProgramSettings_Click(object sender, EventArgs e)
