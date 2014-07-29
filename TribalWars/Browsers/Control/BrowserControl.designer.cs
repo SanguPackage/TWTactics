@@ -63,7 +63,7 @@ namespace TribalWars.Browsers.Control
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(634, 542);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(313, 162);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -78,7 +78,7 @@ namespace TribalWars.Browsers.Control
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(634, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(313, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -150,7 +150,7 @@ namespace TribalWars.Browsers.Control
             this.Browser.Location = new System.Drawing.Point(3, 53);
             this.Browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.Browser.Name = "Browser";
-            this.Browser.Size = new System.Drawing.Size(628, 486);
+            this.Browser.Size = new System.Drawing.Size(307, 106);
             this.Browser.TabIndex = 1;
             this.Browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.Browser_DocumentCompleted);
             this.Browser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Browser_Navigating);
@@ -165,7 +165,7 @@ namespace TribalWars.Browsers.Control
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(634, 25);
+            this.panel1.Size = new System.Drawing.Size(313, 25);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -187,7 +187,7 @@ namespace TribalWars.Browsers.Control
             this.Url.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.AllUrl;
             this.Url.Location = new System.Drawing.Point(57, 3);
             this.Url.Name = "Url";
-            this.Url.Size = new System.Drawing.Size(553, 20);
+            this.Url.Size = new System.Drawing.Size(232, 20);
             this.Url.TabIndex = 4;
             this.Url.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Url_KeyDown);
             // 
@@ -197,7 +197,7 @@ namespace TribalWars.Browsers.Control
             this.GoButton.FlatAppearance.BorderSize = 0;
             this.GoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GoButton.Image = ((System.Drawing.Image)(resources.GetObject("GoButton.Image")));
-            this.GoButton.Location = new System.Drawing.Point(608, 2);
+            this.GoButton.Location = new System.Drawing.Point(287, 2);
             this.GoButton.Name = "GoButton";
             this.GoButton.Size = new System.Drawing.Size(23, 19);
             this.GoButton.TabIndex = 5;
@@ -211,7 +211,7 @@ namespace TribalWars.Browsers.Control
             this.ParseResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParseResultLabel.Location = new System.Drawing.Point(3, 3);
             this.ParseResultLabel.Name = "ParseResultLabel";
-            this.ParseResultLabel.Size = new System.Drawing.Size(118, 20);
+            this.ParseResultLabel.Size = new System.Drawing.Size(48, 20);
             this.ParseResultLabel.TabIndex = 6;
             this.ParseResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ParseResultLabel.Visible = false;
@@ -222,7 +222,7 @@ namespace TribalWars.Browsers.Control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BrowserControl";
-            this.Size = new System.Drawing.Size(634, 542);
+            this.Size = new System.Drawing.Size(313, 162);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

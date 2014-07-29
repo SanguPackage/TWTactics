@@ -95,6 +95,8 @@ namespace TribalWars.Forms
                 }
             }
 
+
+
             Polygon.Initialize();
             ToolStripDefaultManipulator.CheckState = CheckState.Checked;
         }
@@ -372,6 +374,10 @@ namespace TribalWars.Forms
             {
                 World.Default.SaveSettings();
             }
+
+            Debug.WriteLine("LeftNavPane: " + LeftNavigation.Height);
+            Debug.WriteLine("LeftNavPaneParent: " + LeftNavigationTable.Height);
+            Debug.WriteLine("MiniMap: " + MiniMap.Height);
         }
 
         private void ToolStripProgramSettings_Click(object sender, EventArgs e)
