@@ -86,6 +86,7 @@ namespace TribalWars.Forms
             this.MenuMapScreenshot = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuHelpReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -137,7 +138,6 @@ namespace TribalWars.Forms
             this.monitoringControl1 = new TribalWars.Maps.Manipulators.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.MenuHelpReportBug = new System.Windows.Forms.ToolStripMenuItem();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             this.Status.SuspendLayout();
@@ -211,7 +211,7 @@ namespace TribalWars.Forms
             // StatusMessage
             // 
             this.StatusMessage.Name = "StatusMessage";
-            this.StatusMessage.Size = new System.Drawing.Size(539, 19);
+            this.StatusMessage.Size = new System.Drawing.Size(501, 19);
             this.StatusMessage.Spring = true;
             this.StatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -223,7 +223,7 @@ namespace TribalWars.Forms
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusXY.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusXY.Name = "StatusXY";
-            this.StatusXY.Size = new System.Drawing.Size(50, 19);
+            this.StatusXY.Size = new System.Drawing.Size(57, 19);
             this.StatusXY.Text = "X|Y";
             // 
             // StatusVillage
@@ -549,10 +549,18 @@ namespace TribalWars.Forms
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // MenuHelpReportBug
+            // 
+            this.MenuHelpReportBug.Image = ((System.Drawing.Image)(resources.GetObject("MenuHelpReportBug.Image")));
+            this.MenuHelpReportBug.Name = "MenuHelpReportBug";
+            this.MenuHelpReportBug.Size = new System.Drawing.Size(142, 22);
+            this.MenuHelpReportBug.Text = "Report a bug";
+            this.MenuHelpReportBug.Click += new System.EventHandler(this.MenuHelpReportBug_Click);
+            // 
             // MenuHelpAbout
             // 
             this.MenuHelpAbout.Name = "MenuHelpAbout";
-            this.MenuHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this.MenuHelpAbout.Size = new System.Drawing.Size(142, 22);
             this.MenuHelpAbout.Text = "About";
             this.MenuHelpAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
             // 
@@ -1178,14 +1186,6 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
-            // 
-            // MenuHelpReportBug
-            // 
-            this.MenuHelpReportBug.Image = ((System.Drawing.Image)(resources.GetObject("MenuHelpReportBug.Image")));
-            this.MenuHelpReportBug.Name = "MenuHelpReportBug";
-            this.MenuHelpReportBug.Size = new System.Drawing.Size(152, 22);
-            this.MenuHelpReportBug.Text = "Report a bug";
-            this.MenuHelpReportBug.Click += new System.EventHandler(this.MenuHelpReportBug_Click);
             // 
             // MainForm
             // 
