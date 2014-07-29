@@ -446,7 +446,7 @@ namespace TribalWars.Forms
             // 
             this.MenuMapIconDisplay.Image = global::TribalWars.Properties.Resources.Village;
             this.MenuMapIconDisplay.Name = "MenuMapIconDisplay";
-            this.MenuMapIconDisplay.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapIconDisplay.Size = new System.Drawing.Size(205, 22);
             this.MenuMapIconDisplay.Text = "Display tw images";
             this.MenuMapIconDisplay.Click += new System.EventHandler(this.ToolStripIconDisplay_Click);
             // 
@@ -454,57 +454,65 @@ namespace TribalWars.Forms
             // 
             this.MenuMapShapeDisplay.Image = global::TribalWars.Properties.Resources.shapes;
             this.MenuMapShapeDisplay.Name = "MenuMapShapeDisplay";
-            this.MenuMapShapeDisplay.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapShapeDisplay.Size = new System.Drawing.Size(205, 22);
             this.MenuMapShapeDisplay.Text = "Display rectangles";
             this.MenuMapShapeDisplay.Click += new System.EventHandler(this.ToolStripShapeDisplay_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(202, 6);
             // 
             // MenuMapSetHomeLocation
             // 
             this.MenuMapSetHomeLocation.Image = global::TribalWars.Properties.Resources.Home2;
             this.MenuMapSetHomeLocation.ImageTransparentColor = System.Drawing.Color.Black;
             this.MenuMapSetHomeLocation.Name = "MenuMapSetHomeLocation";
-            this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSetHomeLocation.Text = "Set as Home Location";
             this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(202, 6);
             // 
             // MenuMapSelectPane0
             // 
+            this.MenuMapSelectPane0.Image = ((System.Drawing.Image)(resources.GetObject("MenuMapSelectPane0.Image")));
             this.MenuMapSelectPane0.Name = "MenuMapSelectPane0";
-            this.MenuMapSelectPane0.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane0.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.MenuMapSelectPane0.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSelectPane0.Tag = "0";
             this.MenuMapSelectPane0.Text = "Location Options";
             this.MenuMapSelectPane0.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
             // 
             // MenuMapSelectPane1
             // 
+            this.MenuMapSelectPane1.Image = ((System.Drawing.Image)(resources.GetObject("MenuMapSelectPane1.Image")));
             this.MenuMapSelectPane1.Name = "MenuMapSelectPane1";
-            this.MenuMapSelectPane1.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.MenuMapSelectPane1.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSelectPane1.Tag = "1";
             this.MenuMapSelectPane1.Text = "Quick Details";
             this.MenuMapSelectPane1.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
             // 
             // MenuMapSelectPane2
             // 
+            this.MenuMapSelectPane2.Image = ((System.Drawing.Image)(resources.GetObject("MenuMapSelectPane2.Image")));
             this.MenuMapSelectPane2.Name = "MenuMapSelectPane2";
-            this.MenuMapSelectPane2.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.MenuMapSelectPane2.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSelectPane2.Tag = "2";
             this.MenuMapSelectPane2.Text = "Map Markers";
             this.MenuMapSelectPane2.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
             // 
             // MenuMapSelectPane3
             // 
+            this.MenuMapSelectPane3.Image = ((System.Drawing.Image)(resources.GetObject("MenuMapSelectPane3.Image")));
             this.MenuMapSelectPane3.Name = "MenuMapSelectPane3";
-            this.MenuMapSelectPane3.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSelectPane3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.MenuMapSelectPane3.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSelectPane3.Tag = "3";
             this.MenuMapSelectPane3.Text = "Plan Attacks";
             this.MenuMapSelectPane3.Click += new System.EventHandler(this.MenuMapSelectPane_Click);
@@ -512,20 +520,21 @@ namespace TribalWars.Forms
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 6);
             // 
             // MenuMapScreenshot
             // 
             this.MenuMapScreenshot.Name = "MenuMapScreenshot";
-            this.MenuMapScreenshot.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.MenuMapScreenshot.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapScreenshot.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.P)));
+            this.MenuMapScreenshot.Size = new System.Drawing.Size(205, 22);
             this.MenuMapScreenshot.Text = "Screenshot";
             this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
             // 
             // MenuMapSeeScreenshots
             // 
             this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
-            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(189, 22);
+            this.MenuMapSeeScreenshots.Size = new System.Drawing.Size(205, 22);
             this.MenuMapSeeScreenshots.Text = "See screenshots";
             this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
             // 
@@ -915,7 +924,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Location.Key = "LeftNavigation_Location";
             this.LeftNavigation_Location.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Location.Name = "LeftNavigation_Location";
-            this.LeftNavigation_Location.Size = new System.Drawing.Size(335, 214);
+            this.LeftNavigation_Location.Size = new System.Drawing.Size(335, 342);
             this.LeftNavigation_Location.TabIndex = 1;
             this.LeftNavigation_Location.Text = "Location Options";
             this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -929,7 +938,7 @@ namespace TribalWars.Forms
             this.locationControl1.Location = new System.Drawing.Point(0, 0);
             this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
             this.locationControl1.Name = "locationControl1";
-            this.locationControl1.Size = new System.Drawing.Size(335, 214);
+            this.locationControl1.Size = new System.Drawing.Size(335, 342);
             this.locationControl1.TabIndex = 0;
             // 
             // LeftNavigation_QuickFind
@@ -956,7 +965,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
             this.LeftNavigation_QuickFind.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
-            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(335, 214);
+            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(335, 342);
             this.LeftNavigation_QuickFind.TabIndex = 4;
             this.LeftNavigation_QuickFind.Text = "Quick Details";
             this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -970,7 +979,7 @@ namespace TribalWars.Forms
             this.detailsControl1.Location = new System.Drawing.Point(0, 0);
             this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
             this.detailsControl1.Name = "detailsControl1";
-            this.detailsControl1.Size = new System.Drawing.Size(335, 214);
+            this.detailsControl1.Size = new System.Drawing.Size(335, 342);
             this.detailsControl1.TabIndex = 1;
             // 
             // LeftNavigation_Markers
@@ -997,7 +1006,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
             this.LeftNavigation_Markers.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
-            this.LeftNavigation_Markers.Size = new System.Drawing.Size(335, 214);
+            this.LeftNavigation_Markers.Size = new System.Drawing.Size(335, 342);
             this.LeftNavigation_Markers.TabIndex = 3;
             this.LeftNavigation_Markers.Text = "Map Markers";
             this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1012,7 +1021,7 @@ namespace TribalWars.Forms
             this.markersContainerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.markersContainerControl1.Name = "markersContainerControl1";
             this.markersContainerControl1.Padding = new System.Windows.Forms.Padding(2);
-            this.markersContainerControl1.Size = new System.Drawing.Size(335, 214);
+            this.markersContainerControl1.Size = new System.Drawing.Size(335, 342);
             this.markersContainerControl1.TabIndex = 1;
             // 
             // LeftNavigation_Distance
@@ -1039,7 +1048,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
             this.LeftNavigation_Distance.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
-            this.LeftNavigation_Distance.Size = new System.Drawing.Size(335, 214);
+            this.LeftNavigation_Distance.Size = new System.Drawing.Size(335, 342);
             this.LeftNavigation_Distance.TabIndex = 6;
             this.LeftNavigation_Distance.Text = "Plan Attacks";
             this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1052,7 +1061,7 @@ namespace TribalWars.Forms
             this._attackPlan.Location = new System.Drawing.Point(0, 0);
             this._attackPlan.Margin = new System.Windows.Forms.Padding(0);
             this._attackPlan.Name = "_attackPlan";
-            this._attackPlan.Size = new System.Drawing.Size(335, 214);
+            this._attackPlan.Size = new System.Drawing.Size(335, 342);
             this._attackPlan.TabIndex = 0;
             // 
             // Tabs
