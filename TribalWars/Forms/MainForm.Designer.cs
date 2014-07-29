@@ -115,16 +115,7 @@ namespace TribalWars.Forms
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.FormSplitter = new System.Windows.Forms.SplitContainer();
-            this.Tabs = new Janus.Windows.UI.Tab.UITab();
-            this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
-            this.Map = new TribalWars.Maps.Controls.MapControl();
-            this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
-            this.browserControl1 = new TribalWars.Browsers.Control.BrowserControl();
-            this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new TribalWars.Maps.Manipulators.Polygons.PolygonControl();
-            this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new TribalWars.Maps.Manipulators.Monitoring.MonitoringControl();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
+            this.LeftSplitter = new System.Windows.Forms.SplitContainer();
             this.LeftNavigation = new Ascend.Windows.Forms.NavigationPane();
             this.LeftNavigation_Location = new Ascend.Windows.Forms.NavigationPanePage();
             this.locationControl1 = new TribalWars.Controls.AccordeonLocation.LocationControl();
@@ -134,10 +125,18 @@ namespace TribalWars.Forms
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
             this._attackPlan = new TribalWars.Maps.Manipulators.AttackPlans.Controls.AttackPlanCollectionControl();
+            this.Tabs = new Janus.Windows.UI.Tab.UITab();
+            this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
+            this.Map = new TribalWars.Maps.Controls.MapControl();
+            this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
+            this.browserControl1 = new TribalWars.Browsers.Control.BrowserControl();
+            this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
+            this.Polygon = new TribalWars.Maps.Manipulators.Polygons.PolygonControl();
+            this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
+            this.monitoringControl1 = new TribalWars.Maps.Manipulators.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.uiPanelManager1 = new Janus.Windows.UI.Dock.UIPanelManager(this.components);
-            this.LeftSplitter = new System.Windows.Forms.SplitContainer();
             this.Status.SuspendLayout();
             this.MenuBar.SuspendLayout();
             this.ToolStrip.SuspendLayout();
@@ -145,25 +144,25 @@ namespace TribalWars.Forms
             this.FormSplitter.Panel1.SuspendLayout();
             this.FormSplitter.Panel2.SuspendLayout();
             this.FormSplitter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LeftSplitter)).BeginInit();
+            this.LeftSplitter.Panel1.SuspendLayout();
+            this.LeftSplitter.Panel2.SuspendLayout();
+            this.LeftSplitter.SuspendLayout();
+            this.LeftNavigation.SuspendLayout();
+            this.LeftNavigation_Location.SuspendLayout();
+            this.LeftNavigation_QuickFind.SuspendLayout();
+            this.LeftNavigation_Markers.SuspendLayout();
+            this.LeftNavigation_Distance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).BeginInit();
             this.Tabs.SuspendLayout();
             this.TabsMap.SuspendLayout();
             this.TabsBrowser.SuspendLayout();
             this.TabsPolygon.SuspendLayout();
             this.TabsMonitoring.SuspendLayout();
-            this.uiTabPage1.SuspendLayout();
-            this.LeftNavigation.SuspendLayout();
-            this.LeftNavigation_Location.SuspendLayout();
-            this.LeftNavigation_QuickFind.SuspendLayout();
-            this.LeftNavigation_Markers.SuspendLayout();
-            this.LeftNavigation_Distance.SuspendLayout();
             this.FormToolbarContainer.ContentPanel.SuspendLayout();
             this.FormToolbarContainer.TopToolStripPanel.SuspendLayout();
             this.FormToolbarContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPanelManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LeftSplitter)).BeginInit();
-            this.LeftSplitter.Panel1.SuspendLayout();
-            this.LeftSplitter.SuspendLayout();
             this.SuspendLayout();
             // 
             // MiniMap
@@ -172,7 +171,7 @@ namespace TribalWars.Forms
             this.MiniMap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MiniMap.Location = new System.Drawing.Point(0, 0);
             this.MiniMap.Name = "MiniMap";
-            this.MiniMap.Size = new System.Drawing.Size(337, 190);
+            this.MiniMap.Size = new System.Drawing.Size(337, 230);
             this.MiniMap.TabIndex = 1;
             this.MiniMap.Text = "miniMapControl1";
             // 
@@ -189,7 +188,7 @@ namespace TribalWars.Forms
             this.StatusWorld,
             this.StatusServerTime,
             this.toolStripStatusLabel5});
-            this.Status.Location = new System.Drawing.Point(0, 535);
+            this.Status.Location = new System.Drawing.Point(0, 696);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(877, 24);
             this.Status.TabIndex = 17;
@@ -830,24 +829,247 @@ namespace TribalWars.Forms
             this.FormSplitter.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.FormSplitter.Panel2.Controls.Add(this.Tabs);
             this.FormSplitter.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.FormSplitter.Size = new System.Drawing.Size(871, 480);
+            this.FormSplitter.Size = new System.Drawing.Size(871, 641);
             this.FormSplitter.SplitterDistance = 340;
             this.FormSplitter.TabIndex = 0;
+            this.FormSplitter.TabStop = false;
+            // 
+            // LeftSplitter
+            // 
+            this.LeftSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.LeftSplitter.Location = new System.Drawing.Point(3, 3);
+            this.LeftSplitter.Margin = new System.Windows.Forms.Padding(0);
+            this.LeftSplitter.Name = "LeftSplitter";
+            this.LeftSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // LeftSplitter.Panel1
+            // 
+            this.LeftSplitter.Panel1.Controls.Add(this.MiniMap);
+            // 
+            // LeftSplitter.Panel2
+            // 
+            this.LeftSplitter.Panel2.Controls.Add(this.LeftNavigation);
+            this.LeftSplitter.Size = new System.Drawing.Size(337, 635);
+            this.LeftSplitter.SplitterDistance = 230;
+            this.LeftSplitter.TabIndex = 0;
+            this.LeftSplitter.TabStop = false;
+            // 
+            // LeftNavigation
+            // 
+            this.LeftNavigation.ButtonActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
+            this.LeftNavigation.ButtonActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation.ButtonBorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.LeftNavigation.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation.ButtonGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation.ButtonGradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation.ButtonHighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation.ButtonHighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation.CaptionBorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LeftNavigation.CaptionFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation.CaptionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LeftNavigation.CaptionGradientHighColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation.CaptionGradientLowColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LeftNavigation.Controls.Add(this.LeftNavigation_Location);
+            this.LeftNavigation.Controls.Add(this.LeftNavigation_QuickFind);
+            this.LeftNavigation.Controls.Add(this.LeftNavigation_Markers);
+            this.LeftNavigation.Controls.Add(this.LeftNavigation_Distance);
+            this.LeftNavigation.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LeftNavigation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftNavigation.FooterGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation.FooterGradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation.FooterHeight = 30;
+            this.LeftNavigation.FooterHighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation.FooterHighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation.Location = new System.Drawing.Point(0, 0);
+            this.LeftNavigation.Name = "LeftNavigation";
+            this.LeftNavigation.NavigationPages.AddRange(new Ascend.Windows.Forms.NavigationPanePage[] {
+            this.LeftNavigation_Location,
+            this.LeftNavigation_QuickFind,
+            this.LeftNavigation_Markers,
+            this.LeftNavigation_Distance});
+            this.LeftNavigation.Size = new System.Drawing.Size(337, 401);
+            this.LeftNavigation.TabIndex = 0;
+            this.LeftNavigation.VisibleButtonCount = 4;
+            // 
+            // LeftNavigation_Location
+            // 
+            this.LeftNavigation_Location.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
+            this.LeftNavigation_Location.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Location.AutoScroll = true;
+            this.LeftNavigation_Location.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation_Location.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_Location.Controls.Add(this.locationControl1);
+            this.LeftNavigation_Location.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation_Location.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation_Location.HighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation_Location.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Location.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Location.Image")));
+            this.LeftNavigation_Location.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Location.ImageFooter = null;
+            this.LeftNavigation_Location.ImageIndex = -1;
+            this.LeftNavigation_Location.ImageIndexFooter = -1;
+            this.LeftNavigation_Location.ImageKey = "";
+            this.LeftNavigation_Location.ImageKeyFooter = "";
+            this.LeftNavigation_Location.ImageList = null;
+            this.LeftNavigation_Location.ImageListFooter = null;
+            this.LeftNavigation_Location.Key = "LeftNavigation_Location";
+            this.LeftNavigation_Location.Location = new System.Drawing.Point(1, 27);
+            this.LeftNavigation_Location.Name = "LeftNavigation_Location";
+            this.LeftNavigation_Location.Size = new System.Drawing.Size(335, 208);
+            this.LeftNavigation_Location.TabIndex = 1;
+            this.LeftNavigation_Location.Text = "Location Options";
+            this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Location.ToolTipText = null;
+            // 
+            // locationControl1
+            // 
+            this.locationControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.locationControl1.BackColor = System.Drawing.Color.Transparent;
+            this.locationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationControl1.Location = new System.Drawing.Point(0, 0);
+            this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.locationControl1.Name = "locationControl1";
+            this.locationControl1.Size = new System.Drawing.Size(335, 208);
+            this.locationControl1.TabIndex = 0;
+            // 
+            // LeftNavigation_QuickFind
+            // 
+            this.LeftNavigation_QuickFind.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
+            this.LeftNavigation_QuickFind.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_QuickFind.AutoScroll = true;
+            this.LeftNavigation_QuickFind.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation_QuickFind.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_QuickFind.Controls.Add(this.detailsControl1);
+            this.LeftNavigation_QuickFind.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation_QuickFind.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation_QuickFind.HighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation_QuickFind.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_QuickFind.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_QuickFind.Image")));
+            this.LeftNavigation_QuickFind.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_QuickFind.ImageFooter = null;
+            this.LeftNavigation_QuickFind.ImageIndex = -1;
+            this.LeftNavigation_QuickFind.ImageIndexFooter = -1;
+            this.LeftNavigation_QuickFind.ImageKey = "";
+            this.LeftNavigation_QuickFind.ImageKeyFooter = "";
+            this.LeftNavigation_QuickFind.ImageList = null;
+            this.LeftNavigation_QuickFind.ImageListFooter = null;
+            this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
+            this.LeftNavigation_QuickFind.Location = new System.Drawing.Point(1, 27);
+            this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
+            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(335, 208);
+            this.LeftNavigation_QuickFind.TabIndex = 4;
+            this.LeftNavigation_QuickFind.Text = "Quick Details";
+            this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_QuickFind.ToolTipText = null;
+            // 
+            // detailsControl1
+            // 
+            this.detailsControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
+            this.detailsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailsControl1.Location = new System.Drawing.Point(0, 0);
+            this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.detailsControl1.Name = "detailsControl1";
+            this.detailsControl1.Size = new System.Drawing.Size(335, 208);
+            this.detailsControl1.TabIndex = 1;
+            // 
+            // LeftNavigation_Markers
+            // 
+            this.LeftNavigation_Markers.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
+            this.LeftNavigation_Markers.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Markers.AutoScroll = true;
+            this.LeftNavigation_Markers.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation_Markers.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_Markers.Controls.Add(this.markersContainerControl1);
+            this.LeftNavigation_Markers.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation_Markers.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation_Markers.HighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation_Markers.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Markers.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Markers.Image")));
+            this.LeftNavigation_Markers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Markers.ImageFooter = null;
+            this.LeftNavigation_Markers.ImageIndex = -1;
+            this.LeftNavigation_Markers.ImageIndexFooter = -1;
+            this.LeftNavigation_Markers.ImageKey = "";
+            this.LeftNavigation_Markers.ImageKeyFooter = "";
+            this.LeftNavigation_Markers.ImageList = null;
+            this.LeftNavigation_Markers.ImageListFooter = null;
+            this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
+            this.LeftNavigation_Markers.Location = new System.Drawing.Point(1, 27);
+            this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
+            this.LeftNavigation_Markers.Size = new System.Drawing.Size(335, 208);
+            this.LeftNavigation_Markers.TabIndex = 3;
+            this.LeftNavigation_Markers.Text = "Map Markers";
+            this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Markers.ToolTipText = null;
+            // 
+            // markersContainerControl1
+            // 
+            this.markersContainerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.markersContainerControl1.BackColor = System.Drawing.Color.Transparent;
+            this.markersContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.markersContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.markersContainerControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.markersContainerControl1.Name = "markersContainerControl1";
+            this.markersContainerControl1.Padding = new System.Windows.Forms.Padding(2);
+            this.markersContainerControl1.Size = new System.Drawing.Size(335, 208);
+            this.markersContainerControl1.TabIndex = 1;
+            // 
+            // LeftNavigation_Distance
+            // 
+            this.LeftNavigation_Distance.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
+            this.LeftNavigation_Distance.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Distance.AutoScroll = true;
+            this.LeftNavigation_Distance.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LeftNavigation_Distance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
+            this.LeftNavigation_Distance.Controls.Add(this._attackPlan);
+            this.LeftNavigation_Distance.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.LeftNavigation_Distance.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.LeftNavigation_Distance.HighlightGradientHighColor = System.Drawing.Color.White;
+            this.LeftNavigation_Distance.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+            this.LeftNavigation_Distance.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Distance.Image")));
+            this.LeftNavigation_Distance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Distance.ImageFooter = null;
+            this.LeftNavigation_Distance.ImageIndex = -1;
+            this.LeftNavigation_Distance.ImageIndexFooter = -1;
+            this.LeftNavigation_Distance.ImageKey = "";
+            this.LeftNavigation_Distance.ImageKeyFooter = "";
+            this.LeftNavigation_Distance.ImageList = null;
+            this.LeftNavigation_Distance.ImageListFooter = null;
+            this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
+            this.LeftNavigation_Distance.Location = new System.Drawing.Point(1, 27);
+            this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
+            this.LeftNavigation_Distance.Size = new System.Drawing.Size(335, 208);
+            this.LeftNavigation_Distance.TabIndex = 6;
+            this.LeftNavigation_Distance.Text = "Plan Attacks";
+            this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LeftNavigation_Distance.ToolTipText = null;
+            // 
+            // _attackPlan
+            // 
+            this._attackPlan.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this._attackPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._attackPlan.Location = new System.Drawing.Point(0, 0);
+            this._attackPlan.Margin = new System.Windows.Forms.Padding(0);
+            this._attackPlan.Name = "_attackPlan";
+            this._attackPlan.Size = new System.Drawing.Size(335, 208);
+            this._attackPlan.TabIndex = 0;
             // 
             // Tabs
             // 
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.InputFocusTab = this.uiTabPage1;
+            this.Tabs.InputFocusTab = this.TabsMap;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
-            this.Tabs.Size = new System.Drawing.Size(524, 477);
+            this.Tabs.Size = new System.Drawing.Size(524, 638);
             this.Tabs.TabIndex = 1;
             this.Tabs.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.TabsMap,
             this.TabsBrowser,
             this.TabsPolygon,
-            this.TabsMonitoring,
-            this.uiTabPage1});
+            this.TabsMonitoring});
             // 
             // TabsMap
             // 
@@ -856,7 +1078,7 @@ namespace TribalWars.Forms
             this.TabsMap.Key = "Map";
             this.TabsMap.Location = new System.Drawing.Point(1, 23);
             this.TabsMap.Name = "TabsMap";
-            this.TabsMap.Size = new System.Drawing.Size(520, 451);
+            this.TabsMap.Size = new System.Drawing.Size(520, 612);
             this.TabsMap.TabStop = true;
             this.TabsMap.Text = "Map";
             // 
@@ -867,7 +1089,7 @@ namespace TribalWars.Forms
             this.Map.Location = new System.Drawing.Point(0, 0);
             this.Map.Margin = new System.Windows.Forms.Padding(0);
             this.Map.Name = "Map";
-            this.Map.Size = new System.Drawing.Size(520, 451);
+            this.Map.Size = new System.Drawing.Size(520, 612);
             this.Map.TabIndex = 0;
             // 
             // TabsBrowser
@@ -919,7 +1141,7 @@ namespace TribalWars.Forms
             this.TabsMonitoring.Key = "Monitoring";
             this.TabsMonitoring.Location = new System.Drawing.Point(1, 23);
             this.TabsMonitoring.Name = "TabsMonitoring";
-            this.TabsMonitoring.Size = new System.Drawing.Size(526, 457);
+            this.TabsMonitoring.Size = new System.Drawing.Size(520, 612);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             this.TabsMonitoring.ToolTipText = "Check what is happening in your monitoring area, the world or in your tribe.";
@@ -931,218 +1153,8 @@ namespace TribalWars.Forms
             this.monitoringControl1.Location = new System.Drawing.Point(0, 0);
             this.monitoringControl1.Margin = new System.Windows.Forms.Padding(0);
             this.monitoringControl1.Name = "monitoringControl1";
-            this.monitoringControl1.Size = new System.Drawing.Size(526, 457);
+            this.monitoringControl1.Size = new System.Drawing.Size(520, 612);
             this.monitoringControl1.TabIndex = 0;
-            // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Controls.Add(this.LeftNavigation);
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(520, 451);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "New Tab";
-            // 
-            // LeftNavigation
-            // 
-            this.LeftNavigation.ButtonActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation.ButtonActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation.ButtonBorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.LeftNavigation.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation.ButtonGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation.ButtonGradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation.ButtonHighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation.ButtonHighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation.CaptionBorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LeftNavigation.CaptionFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation.CaptionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LeftNavigation.CaptionGradientHighColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation.CaptionGradientLowColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_Location);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_QuickFind);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_Markers);
-            this.LeftNavigation.Controls.Add(this.LeftNavigation_Distance);
-            this.LeftNavigation.Cursor = System.Windows.Forms.Cursors.Default;
-            this.LeftNavigation.FooterGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation.FooterGradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation.FooterHeight = 30;
-            this.LeftNavigation.FooterHighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation.FooterHighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation.Location = new System.Drawing.Point(0, 0);
-            this.LeftNavigation.Name = "LeftNavigation";
-            this.LeftNavigation.NavigationPages.AddRange(new Ascend.Windows.Forms.NavigationPanePage[] {
-            this.LeftNavigation_Location,
-            this.LeftNavigation_QuickFind,
-            this.LeftNavigation_Markers,
-            this.LeftNavigation_Distance});
-            this.LeftNavigation.Size = new System.Drawing.Size(300, 450);
-            this.LeftNavigation.TabIndex = 0;
-            this.LeftNavigation.VisibleButtonCount = 4;
-            // 
-            // LeftNavigation_Location
-            // 
-            this.LeftNavigation_Location.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_Location.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Location.AutoScroll = true;
-            this.LeftNavigation_Location.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_Location.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_Location.Controls.Add(this.locationControl1);
-            this.LeftNavigation_Location.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_Location.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_Location.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_Location.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Location.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Location.Image")));
-            this.LeftNavigation_Location.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Location.ImageFooter = null;
-            this.LeftNavigation_Location.ImageIndex = -1;
-            this.LeftNavigation_Location.ImageIndexFooter = -1;
-            this.LeftNavigation_Location.ImageKey = "";
-            this.LeftNavigation_Location.ImageKeyFooter = "";
-            this.LeftNavigation_Location.ImageList = null;
-            this.LeftNavigation_Location.ImageListFooter = null;
-            this.LeftNavigation_Location.Key = "LeftNavigation_Location";
-            this.LeftNavigation_Location.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_Location.Name = "LeftNavigation_Location";
-            this.LeftNavigation_Location.Size = new System.Drawing.Size(298, 257);
-            this.LeftNavigation_Location.TabIndex = 1;
-            this.LeftNavigation_Location.Text = "Location Options";
-            this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Location.ToolTipText = null;
-            // 
-            // locationControl1
-            // 
-            this.locationControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.locationControl1.BackColor = System.Drawing.Color.Transparent;
-            this.locationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationControl1.Location = new System.Drawing.Point(0, 0);
-            this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.locationControl1.Name = "locationControl1";
-            this.locationControl1.Size = new System.Drawing.Size(298, 257);
-            this.locationControl1.TabIndex = 0;
-            // 
-            // LeftNavigation_QuickFind
-            // 
-            this.LeftNavigation_QuickFind.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_QuickFind.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_QuickFind.AutoScroll = true;
-            this.LeftNavigation_QuickFind.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_QuickFind.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_QuickFind.Controls.Add(this.detailsControl1);
-            this.LeftNavigation_QuickFind.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_QuickFind.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_QuickFind.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_QuickFind.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_QuickFind.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_QuickFind.Image")));
-            this.LeftNavigation_QuickFind.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_QuickFind.ImageFooter = null;
-            this.LeftNavigation_QuickFind.ImageIndex = -1;
-            this.LeftNavigation_QuickFind.ImageIndexFooter = -1;
-            this.LeftNavigation_QuickFind.ImageKey = "";
-            this.LeftNavigation_QuickFind.ImageKeyFooter = "";
-            this.LeftNavigation_QuickFind.ImageList = null;
-            this.LeftNavigation_QuickFind.ImageListFooter = null;
-            this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
-            this.LeftNavigation_QuickFind.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
-            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(298, 257);
-            this.LeftNavigation_QuickFind.TabIndex = 4;
-            this.LeftNavigation_QuickFind.Text = "Quick Details";
-            this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_QuickFind.ToolTipText = null;
-            // 
-            // detailsControl1
-            // 
-            this.detailsControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
-            this.detailsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.detailsControl1.Location = new System.Drawing.Point(0, 0);
-            this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.detailsControl1.Name = "detailsControl1";
-            this.detailsControl1.Size = new System.Drawing.Size(298, 257);
-            this.detailsControl1.TabIndex = 1;
-            // 
-            // LeftNavigation_Markers
-            // 
-            this.LeftNavigation_Markers.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_Markers.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Markers.AutoScroll = true;
-            this.LeftNavigation_Markers.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_Markers.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_Markers.Controls.Add(this.markersContainerControl1);
-            this.LeftNavigation_Markers.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_Markers.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_Markers.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_Markers.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Markers.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Markers.Image")));
-            this.LeftNavigation_Markers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Markers.ImageFooter = null;
-            this.LeftNavigation_Markers.ImageIndex = -1;
-            this.LeftNavigation_Markers.ImageIndexFooter = -1;
-            this.LeftNavigation_Markers.ImageKey = "";
-            this.LeftNavigation_Markers.ImageKeyFooter = "";
-            this.LeftNavigation_Markers.ImageList = null;
-            this.LeftNavigation_Markers.ImageListFooter = null;
-            this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
-            this.LeftNavigation_Markers.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
-            this.LeftNavigation_Markers.Size = new System.Drawing.Size(298, 257);
-            this.LeftNavigation_Markers.TabIndex = 3;
-            this.LeftNavigation_Markers.Text = "Map Markers";
-            this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Markers.ToolTipText = null;
-            // 
-            // markersContainerControl1
-            // 
-            this.markersContainerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.markersContainerControl1.BackColor = System.Drawing.Color.Transparent;
-            this.markersContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.markersContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.markersContainerControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.markersContainerControl1.Name = "markersContainerControl1";
-            this.markersContainerControl1.Padding = new System.Windows.Forms.Padding(2);
-            this.markersContainerControl1.Size = new System.Drawing.Size(298, 257);
-            this.markersContainerControl1.TabIndex = 1;
-            // 
-            // LeftNavigation_Distance
-            // 
-            this.LeftNavigation_Distance.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
-            this.LeftNavigation_Distance.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Distance.AutoScroll = true;
-            this.LeftNavigation_Distance.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LeftNavigation_Distance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
-            this.LeftNavigation_Distance.Controls.Add(this._attackPlan);
-            this.LeftNavigation_Distance.GradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.LeftNavigation_Distance.GradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.LeftNavigation_Distance.HighlightGradientHighColor = System.Drawing.Color.White;
-            this.LeftNavigation_Distance.HighlightGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
-            this.LeftNavigation_Distance.Image = ((System.Drawing.Image)(resources.GetObject("LeftNavigation_Distance.Image")));
-            this.LeftNavigation_Distance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Distance.ImageFooter = null;
-            this.LeftNavigation_Distance.ImageIndex = -1;
-            this.LeftNavigation_Distance.ImageIndexFooter = -1;
-            this.LeftNavigation_Distance.ImageKey = "";
-            this.LeftNavigation_Distance.ImageKeyFooter = "";
-            this.LeftNavigation_Distance.ImageList = null;
-            this.LeftNavigation_Distance.ImageListFooter = null;
-            this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
-            this.LeftNavigation_Distance.Location = new System.Drawing.Point(1, 27);
-            this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
-            this.LeftNavigation_Distance.Size = new System.Drawing.Size(298, 257);
-            this.LeftNavigation_Distance.TabIndex = 6;
-            this.LeftNavigation_Distance.Text = "Plan Attacks";
-            this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LeftNavigation_Distance.ToolTipText = null;
-            // 
-            // _attackPlan
-            // 
-            this._attackPlan.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._attackPlan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._attackPlan.Location = new System.Drawing.Point(0, 0);
-            this._attackPlan.Margin = new System.Windows.Forms.Padding(0);
-            this._attackPlan.Name = "_attackPlan";
-            this._attackPlan.Size = new System.Drawing.Size(298, 257);
-            this._attackPlan.TabIndex = 0;
             // 
             // FormToolbarContainer
             // 
@@ -1151,11 +1163,11 @@ namespace TribalWars.Forms
             // 
             this.FormToolbarContainer.ContentPanel.Controls.Add(this.FormSplitter);
             this.FormToolbarContainer.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.FormToolbarContainer.ContentPanel.Size = new System.Drawing.Size(871, 480);
+            this.FormToolbarContainer.ContentPanel.Size = new System.Drawing.Size(871, 641);
             this.FormToolbarContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FormToolbarContainer.Location = new System.Drawing.Point(3, 27);
             this.FormToolbarContainer.Name = "FormToolbarContainer";
-            this.FormToolbarContainer.Size = new System.Drawing.Size(871, 505);
+            this.FormToolbarContainer.Size = new System.Drawing.Size(871, 666);
             this.FormToolbarContainer.TabIndex = 26;
             this.FormToolbarContainer.Text = "toolStripContainer1";
             // 
@@ -1173,26 +1185,11 @@ namespace TribalWars.Forms
             // 
             this.uiPanelManager1.ContainerControl = this;
             // 
-            // LeftSplitter
-            // 
-            this.LeftSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftSplitter.Location = new System.Drawing.Point(3, 3);
-            this.LeftSplitter.Margin = new System.Windows.Forms.Padding(0);
-            this.LeftSplitter.Name = "LeftSplitter";
-            this.LeftSplitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // LeftSplitter.Panel1
-            // 
-            this.LeftSplitter.Panel1.Controls.Add(this.MiniMap);
-            this.LeftSplitter.Size = new System.Drawing.Size(337, 474);
-            this.LeftSplitter.SplitterDistance = 190;
-            this.LeftSplitter.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 559);
+            this.ClientSize = new System.Drawing.Size(877, 720);
             this.Controls.Add(this.FormToolbarContainer);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.MenuBar);
@@ -1214,27 +1211,27 @@ namespace TribalWars.Forms
             this.FormSplitter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FormSplitter)).EndInit();
             this.FormSplitter.ResumeLayout(false);
+            this.LeftSplitter.Panel1.ResumeLayout(false);
+            this.LeftSplitter.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LeftSplitter)).EndInit();
+            this.LeftSplitter.ResumeLayout(false);
+            this.LeftNavigation.ResumeLayout(false);
+            this.LeftNavigation_Location.ResumeLayout(false);
+            this.LeftNavigation_QuickFind.ResumeLayout(false);
+            this.LeftNavigation_Markers.ResumeLayout(false);
+            this.LeftNavigation_Distance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Tabs)).EndInit();
             this.Tabs.ResumeLayout(false);
             this.TabsMap.ResumeLayout(false);
             this.TabsBrowser.ResumeLayout(false);
             this.TabsPolygon.ResumeLayout(false);
             this.TabsMonitoring.ResumeLayout(false);
-            this.uiTabPage1.ResumeLayout(false);
-            this.LeftNavigation.ResumeLayout(false);
-            this.LeftNavigation_Location.ResumeLayout(false);
-            this.LeftNavigation_QuickFind.ResumeLayout(false);
-            this.LeftNavigation_Markers.ResumeLayout(false);
-            this.LeftNavigation_Distance.ResumeLayout(false);
             this.FormToolbarContainer.ContentPanel.ResumeLayout(false);
             this.FormToolbarContainer.TopToolStripPanel.ResumeLayout(false);
             this.FormToolbarContainer.TopToolStripPanel.PerformLayout();
             this.FormToolbarContainer.ResumeLayout(false);
             this.FormToolbarContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPanelManager1)).EndInit();
-            this.LeftSplitter.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LeftSplitter)).EndInit();
-            this.LeftSplitter.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1341,7 +1338,6 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane2;
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane3;
         private System.Windows.Forms.ToolStripMenuItem MenuHelpReportBug;
-        private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private Janus.Windows.UI.Dock.UIPanelManager uiPanelManager1;
         private System.Windows.Forms.SplitContainer LeftSplitter;
     }
