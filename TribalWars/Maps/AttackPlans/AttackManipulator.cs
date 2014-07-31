@@ -117,7 +117,7 @@ namespace TribalWars.Maps.AttackPlans
                         break;
                 }
             }
-            World.Default.Map.Invalidate(false);
+            _map.Invalidate(false);
         }
 
         private void RemoveAttacker(AttackPlan plan, AttackPlanFrom attacker)
@@ -154,25 +154,28 @@ namespace TribalWars.Maps.AttackPlans
             
             if (e.IsActiveManipulator && ActivePlan != null)
             {
-                // Paint circles around the active plan
-                using (var activeTargetPen = new Pen(Color.Yellow, 2))
+                if (_map.Display.IsVisible(ActivePlan.Target))
                 {
-                    if (gameSize.Contains(ActivePlan.Target.Location))
+                    // Paint circles around the active plan
+                    using (var activeTargetPen = new Pen(Color.Yellow, 2))
                     {
-                        Point villageLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
-                        g.DrawEllipse(
-                            activeTargetPen,
-                            villageLocation.X,
-                            villageLocation.Y,
-                            villageSize.Width,
-                            villageSize.Height);
+                        if (gameSize.Contains(ActivePlan.Target.Location))
+                        {
+                            Point villageLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                            g.DrawEllipse(
+                                activeTargetPen,
+                                villageLocation.X,
+                                villageLocation.Y,
+                                villageSize.Width,
+                                villageSize.Height);
 
-                        g.DrawEllipse(
-                            activeTargetPen,
-                            villageLocation.X - 4,
-                            villageLocation.Y - 4,
-                            villageSize.Width + 8,
-                            villageSize.Height + 8);
+                            g.DrawEllipse(
+                                activeTargetPen,
+                                villageLocation.X - 4,
+                                villageLocation.Y - 4,
+                                villageSize.Width + 8,
+                                villageSize.Height + 8);
+                        }
                     }
                 }
 
@@ -210,29 +213,32 @@ namespace TribalWars.Maps.AttackPlans
 
             if (ActivePlan != null)
             {
-                Point activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
+                Point activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
 
-                // The active plan attacked village
-                activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
-                g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
-
-                activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(ActivePlan.Target.Location);
-                activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                using (var font = new Font("Verdana", 10, FontStyle.Bold))
+                if (_map.Display.IsVisible(ActivePlan.Target))
                 {
-                    g.DrawString(
-                        ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
-                        font,
-                        Brushes.Black,
-                        activePlanTargetLocation.X + 1,
-                        activePlanTargetLocation.Y - 40);
+                    // The active plan attacked village
+                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                    activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
+                    g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
+
+                    activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                    using (var font = new Font("Verdana", 10, FontStyle.Bold))
+                    {
+                        g.DrawString(
+                            ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
+                            font,
+                            Brushes.Black,
+                            activePlanTargetLocation.X + 1,
+                            activePlanTargetLocation.Y - 40);
+                    }
                 }
 
                 foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                 {
                     // Villages attacking the active target village
-                    activePlanTargetLocation = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                    activePlanTargetLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
                     activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
 
                     if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
@@ -276,7 +282,7 @@ namespace TribalWars.Maps.AttackPlans
                         foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(plan.Attacks, gameSize))
                         {
                             // Villages attacking other target villages
-                            loc = World.Default.Map.Display.GetMapLocation(attacker.Attacker.Location);
+                            loc = _map.Display.GetMapLocation(attacker.Attacker.Location);
                             loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
 
                             if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
