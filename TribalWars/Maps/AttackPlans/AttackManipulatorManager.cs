@@ -118,7 +118,16 @@ namespace TribalWars.Maps.AttackPlans
                 str.Append(Environment.NewLine);
                 if (!plan.Attacks.Any())
                 {
-                    str.AppendFormat("Right click on your own villages to add them as attacking (or defending) villages.{0}Or easier: use the search function in the attack panel on the left!", Environment.NewLine);
+                    str.AppendFormat("Right click on your own villages to add them as attacking (or defending) villages.");
+                    str.AppendLine();
+                    str.AppendFormat("Or easier: use the search function (binoculars icon) in the 'Plan Attacks' panel on the left!");
+
+                    if (World.Default.You.Empty)
+                    {
+                        str.AppendLine();
+                        str.AppendLine();
+                        str.Append("You have not yet set who you are so right click wont work! You can do so using the menu 'World' -> 'Set Active Player'");
+                    }
                 }
                 else
                 {

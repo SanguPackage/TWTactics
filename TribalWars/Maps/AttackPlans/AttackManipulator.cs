@@ -370,9 +370,9 @@ namespace TribalWars.Maps.AttackPlans
                     }
                     return true;
                 }
-                else if (e.MouseEventArgs.Button == MouseButtons.Right && ActivePlan != null)
+                else if (e.MouseEventArgs.Button == MouseButtons.Right)
                 {
-                    if (e.Village.Player == World.Default.You || World.Default.You.Empty)
+                    if (e.Village.Player == World.Default.You && ActivePlan != null)
                     {
                         var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[UnitTypes.Ram]));
                         _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
