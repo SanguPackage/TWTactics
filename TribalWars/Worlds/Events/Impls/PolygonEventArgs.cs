@@ -1,7 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
-using TribalWars.Maps.Manipulators.Polygons;
+using TribalWars.Maps.Polygons;
 
 #endregion
 

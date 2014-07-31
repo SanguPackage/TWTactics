@@ -15,7 +15,7 @@ using TribalWars.Maps.Drawers;
 using TribalWars.Maps.Views;
 using TribalWars.Villages;
 using TribalWars.WorldTemplate;
-using Monitor = TribalWars.Maps.Manipulators.Monitoring.Monitor;
+using Monitor = TribalWars.Maps.Monitoring.Monitor;
 
 #endregion
 

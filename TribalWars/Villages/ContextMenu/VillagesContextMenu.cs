@@ -12,8 +12,6 @@ using System.Drawing;
 using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
-using TribalWars.Maps.Manipulators.AttackPlans;
-using TribalWars.Maps.Manipulators.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;

@@ -14,7 +14,7 @@ using TribalWars.Forms.Small;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
-using TribalWars.Maps.Manipulators.Monitoring;
+using TribalWars.Maps.Monitoring;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;

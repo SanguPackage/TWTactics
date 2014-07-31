@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using TribalWars.Maps;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Manipulators.Managers;
-using TribalWars.Maps.Manipulators.Monitoring;
+using TribalWars.Maps.Monitoring;
 using TribalWars.Maps.Views;
 using TribalWars.Tools;
 using System.Globalization;
