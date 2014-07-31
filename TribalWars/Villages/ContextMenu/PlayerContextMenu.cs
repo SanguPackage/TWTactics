@@ -47,6 +47,12 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
+            if (World.Default.You.Empty)
+            {
+                _menu.AddCommand("This is me!", OnPlayerYouSet, Properties.Resources.Player);
+                _menu.AddSeparator();
+            }
+
             var markerContext = new MarkerContextMenu(map, player);
             _menu.AddMarkerContextCommands(markerContext);
 
@@ -103,6 +109,13 @@ namespace TribalWars.Villages.ContextMenu
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
             World.Default.Map.EventPublisher.SelectPlayer(VillageContextMenu.OnDetailsHack, _player, VillageTools.PinPoint);
+        }
+
+        private void OnPlayerYouSet(object sender, EventArgs e)
+        {
+            World.Default.You = _player;
+            World.Default.Map.MarkerManager.InvalidateMarkers();
+            World.Default.Map.Invalidate(true);
         }
 
         /// <summary>

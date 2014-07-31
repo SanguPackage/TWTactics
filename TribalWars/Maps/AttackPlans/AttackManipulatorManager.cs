@@ -137,18 +137,7 @@ namespace TribalWars.Maps.AttackPlans
                     if (plan.Attacks.Any(x => x.SlowestUnit.Type == UnitTypes.Snob))
                     {
                         settings.Image = WorldUnits.Default[UnitTypes.Snob].Image;
-
                         unitsSent = attacks.GroupBy(x => x.SlowestUnit);
-
-                        // Hmm this list could become pretty long like this:
-                        // (nobles can be send one at a time with many clears before each)
-                        //var beforeNobles = attacks.TakeWhile(x => x.SlowestUnit.Type != UnitTypes.Snob).GroupBy(x => x.SlowestUnit);
-                        //var nobles = attacks.SkipWhile().TakeWhile(x => x.SlowestUnit.Type == UnitTypes.Snob);
-                        //var afterNobles = attacks;
-                        //unitsSent =
-                        //    beforeNobles.GroupBy(x => x.SlowestUnit)
-                        //                .Concat(nobles.GroupBy(x => x.SlowestUnit))
-                        //                .Concat(afterNobles.GroupBy(x => x.SlowestUnit));
                     }
                     else
                     {
