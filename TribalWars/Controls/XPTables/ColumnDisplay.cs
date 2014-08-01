@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 using XPTable.Models;
@@ -109,6 +111,32 @@ namespace TribalWars.Controls.XPTables
 
             public const string PlayerName = "The owner of the village";
             public const string TribeTag = "The tribe of the player";
+
+            public static string GetTooltip(VillageFields type)
+            {
+                switch (type)
+                {
+                    case VillageFields.Coordinates:
+                        return Location;
+
+                   case VillageFields.Kingdom:
+                        return Kingdom;
+
+                   case VillageFields.Name:
+                        return Name;
+
+                    case VillageFields.Points:
+                        return Points;
+
+                    case VillageFields.Visible:
+                        return Visible;
+
+                    case VillageFields.Type:
+                        return Type;
+                }
+
+                throw new Exception("Add new header text here...");
+            }
         }
 
         /// <summary>

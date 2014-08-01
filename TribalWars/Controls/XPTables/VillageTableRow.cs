@@ -36,7 +36,8 @@ namespace TribalWars.Controls.XPTables
         TribeRank = 8192,
         Default = 127,
         All = 16383,
-        You = Type | Coordinates | Name | Points
+        Kingdom,
+        Visible
     }
     #endregion
 

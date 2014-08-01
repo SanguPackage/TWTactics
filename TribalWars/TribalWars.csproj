@@ -149,11 +149,12 @@
     <Compile Include="Controls\Finders\PlayerTribeDropdown.Designer.cs">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GridExs\VillageGridExData.cs" />
     <Compile Include="Controls\TimeConverter\DateEventArgs.cs" />
-    <Compile Include="Controls\VillagesGridControl.cs">
+    <Compile Include="Controls\GridExs\VillagesGridControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\VillagesGridControl.Designer.cs">
+    <Compile Include="Controls\GridExs\VillagesGridControl.Designer.cs">
       <DependentUpon>VillagesGridControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
@@ -576,7 +577,7 @@
     <EmbeddedResource Include="Controls\Finders\PlayerTribeDropdown.resx">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\VillagesGridControl.resx">
+    <EmbeddedResource Include="Controls\GridExs\VillagesGridControl.resx">
       <DependentUpon>VillagesGridControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
@@ -959,12 +960,12 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.VisualBasic.PowerPacks.Vs">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

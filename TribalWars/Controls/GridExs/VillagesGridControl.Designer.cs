@@ -52,6 +52,7 @@
             this.GridExVillage.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
             this.GridExVillage.FocusCellDisplayMode = Janus.Windows.GridEX.FocusCellDisplayMode.UseSelectedFormatStyle;
             this.GridExVillage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.GridExVillage.GroupByBoxVisible = false;
             this.GridExVillage.HideColumnsWhenGrouped = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
             this.GridExVillage.Location = new System.Drawing.Point(0, 0);
@@ -63,6 +64,11 @@
             this.GridExVillage.TabIndex = 2;
             this.GridExVillage.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.GridExVillage.UseGroupRowSelector = true;
+            this.GridExVillage.RowDoubleClick += new Janus.Windows.GridEX.RowActionEventHandler(this.GridExVillage_RowDoubleClick);
+            this.GridExVillage.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_FormattingRow);
+            this.GridExVillage.LoadingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_LoadingRow);
+            this.GridExVillage.CurrentCellChanging += new Janus.Windows.GridEX.CurrentCellChangingEventHandler(this.GridExVillage_CurrentCellChanging);
+            this.GridExVillage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridExVillage_MouseClick);
             // 
             // VillagesGridControl
             // 

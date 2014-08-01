@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Janus.Windows.EditControls;
 using Janus.Windows.GridEX;
+using TextAlignment = Janus.Windows.GridEX.TextAlignment;
 
 namespace TribalWars.Tools.JanusExtensions
 {
@@ -87,6 +88,11 @@ namespace TribalWars.Tools.JanusExtensions
                     cell.ToolTipText = cell.Text;
                 }
             };
+        }
+
+        public static void ConfigureAsNumeric(this GridEXColumn column)
+        {
+            column.TextAlignment = TextAlignment.Far;
         }
 
         /// <summary>
