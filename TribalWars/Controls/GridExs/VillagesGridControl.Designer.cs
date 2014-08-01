@@ -40,9 +40,6 @@
             this.GridExVillage.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.AlternatingColors = true;
             this.GridExVillage.AutoEdit = true;
-            this.GridExVillage.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><EmptyGridInfo>Click \'" +
-    "Load Polygon Data\' to load all villages inside your polygons.</EmptyGridInfo></L" +
-    "ocalizableData>";
             this.GridExVillage.ColumnAutoResize = true;
             this.GridExVillage.DataMember = "VILLAGE";
             GridExVillage_DesignTimeLayout.LayoutString = resources.GetString("GridExVillage_DesignTimeLayout.LayoutString");

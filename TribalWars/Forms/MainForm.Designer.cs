@@ -123,18 +123,20 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers = new Ascend.Windows.Forms.NavigationPanePage();
             this.markersContainerControl1 = new TribalWars.Maps.Markers.MarkersControl();
             this.LeftNavigation_Distance = new Ascend.Windows.Forms.NavigationPanePage();
-            this._attackPlan = new AttackPlanCollectionControl();
+            this._attackPlan = new TribalWars.Maps.AttackPlans.Controls.AttackPlanCollectionControl();
             this.Tabs = new Janus.Windows.UI.Tab.UITab();
             this.TabsMap = new Janus.Windows.UI.Tab.UITabPage();
             this.Map = new TribalWars.Maps.Controls.MapControl();
             this.TabsBrowser = new Janus.Windows.UI.Tab.UITabPage();
             this.browserControl1 = new TribalWars.Browsers.Control.BrowserControl();
             this.TabsPolygon = new Janus.Windows.UI.Tab.UITabPage();
-            this.Polygon = new PolygonControl();
+            this.Polygon = new TribalWars.Maps.Polygons.PolygonControl();
             this.TabsMonitoring = new Janus.Windows.UI.Tab.UITabPage();
-            this.monitoringControl1 = new MonitoringControl();
+            this.monitoringControl1 = new TribalWars.Maps.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuWindowsManageYourVillages = new System.Windows.Forms.ToolStripMenuItem();
             this.Status.SuspendLayout();
             this.MenuBar.SuspendLayout();
             this.ToolStrip.SuspendLayout();
@@ -309,6 +311,7 @@ namespace TribalWars.Forms
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
             this.mapToolStripMenuItem,
+            this.windowsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
@@ -550,14 +553,14 @@ namespace TribalWars.Forms
             // 
             this.MenuHelpReportBug.Image = ((System.Drawing.Image)(resources.GetObject("MenuHelpReportBug.Image")));
             this.MenuHelpReportBug.Name = "MenuHelpReportBug";
-            this.MenuHelpReportBug.Size = new System.Drawing.Size(142, 22);
+            this.MenuHelpReportBug.Size = new System.Drawing.Size(152, 22);
             this.MenuHelpReportBug.Text = "Report a bug";
             this.MenuHelpReportBug.Click += new System.EventHandler(this.MenuHelpReportBug_Click);
             // 
             // MenuHelpAbout
             // 
             this.MenuHelpAbout.Name = "MenuHelpAbout";
-            this.MenuHelpAbout.Size = new System.Drawing.Size(142, 22);
+            this.MenuHelpAbout.Size = new System.Drawing.Size(152, 22);
             this.MenuHelpAbout.Text = "About";
             this.MenuHelpAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
             // 
@@ -1187,6 +1190,21 @@ namespace TribalWars.Forms
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
+            // windowsToolStripMenuItem
+            // 
+            this.windowsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuWindowsManageYourVillages});
+            this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
+            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.windowsToolStripMenuItem.Text = "Windows";
+            // 
+            // MenuWindowsManageYourVillages
+            // 
+            this.MenuWindowsManageYourVillages.Name = "MenuWindowsManageYourVillages";
+            this.MenuWindowsManageYourVillages.Size = new System.Drawing.Size(186, 22);
+            this.MenuWindowsManageYourVillages.Text = "Manage your villages";
+            this.MenuWindowsManageYourVillages.Click += new System.EventHandler(this.MenuWindowsManageYourVillages_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1340,6 +1358,8 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuMapSelectPane3;
         private System.Windows.Forms.ToolStripMenuItem MenuHelpReportBug;
         private System.Windows.Forms.SplitContainer LeftSplitter;
+        private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuWindowsManageYourVillages;
     }
 }
 

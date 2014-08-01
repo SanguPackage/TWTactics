@@ -385,6 +385,7 @@ namespace TribalWars.Forms
 
         private void ToolStripProgramSettings_Click(object sender, EventArgs e)
         {
+            // This is the debug window
             //var settings = new SettingsForm();
             //settings.Show();
 
@@ -531,5 +532,10 @@ namespace TribalWars.Forms
             return LeftNavigation.NavigationPages[(int)pane];
         }
         #endregion
+
+        private void MenuWindowsManageYourVillages_Click(object sender, EventArgs e)
+        {
+            YourVillagesForm.ShowForm();
+        }
     }
 }

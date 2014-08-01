@@ -28,20 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.villagesGridControl1 = new TribalWars.Controls.VillagesGridControl();
             this.SuspendLayout();
+            // 
+            // villagesGridControl1
+            // 
+            this.villagesGridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.villagesGridControl1.Location = new System.Drawing.Point(9, 9);
+            this.villagesGridControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.villagesGridControl1.Name = "villagesGridControl1";
+            this.villagesGridControl1.Size = new System.Drawing.Size(441, 521);
+            this.villagesGridControl1.TabIndex = 0;
             // 
             // YourVillagesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 549);
+            this.ClientSize = new System.Drawing.Size(459, 539);
+            this.Controls.Add(this.villagesGridControl1);
             this.Name = "YourVillagesForm";
-            this.Text = "YourVillagesForm";
+            this.Text = "Manage your villages";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Controls.VillagesGridControl villagesGridControl1;
 
     }
 }

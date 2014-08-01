@@ -206,14 +206,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             if (World.Default.You.Empty)
             {
-                if (MessageBox.Show(
-                    "You have not yet selected yourself.\nSet yourself now?", 
-                    "Select Active Player", 
-                    MessageBoxButtons.YesNo, 
-                    MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    ActivePlayerForm.UpdateDefaultWorld();    
-                }
+                ActivePlayerForm.AskToSetSelf();
             }
             else if (ActivePlan != null)
             {

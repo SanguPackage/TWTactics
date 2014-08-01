@@ -11,6 +11,7 @@ using Janus.Windows.GridEX;
 using TribalWars.Controls.GridExs;
 using TribalWars.Controls.XPTables;
 using TribalWars.Tools.JanusExtensions;
+using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
@@ -106,7 +107,51 @@ namespace TribalWars.Controls
 
         private void GridExVillage_FormattingRow(object sender, RowLoadEventArgs e)
         {
+            if (e.Row.RowType == RowType.Record)
+            {
+                var record = GetVillageRow(e.Row);
 
+                // SetVillageVisibility()
+                if (record.Visible)
+                {
+                    e.Row.Cells["Visible"].Image = Properties.Resources.Visible;
+                    e.Row.Cells["Visible"].ToolTipText = "Currently visible on the map";
+                }
+
+                // SetVillageType()
+                if (record.Village.Type != VillageType.None)
+                {
+                    e.Row.Cells["Type"].Image = record.Village.Type.GetImage(true);
+                    if (record.Village.Type.HasFlag(VillageType.Comments))
+                    {
+                        e.Row.Cells["Type"].ToolTipText = record.Village.Comments;
+                    }
+                    else
+                    {
+                        e.Row.Cells["Type"].ToolTipText = record.Village.Type.GetDescription();
+                    }
+                }
+
+                // Display You and your tribe in special color
+                //if (record.Village.HasPlayer)
+                //{
+                //    var you = World.Default.You;
+                //    if (record.Village.Player == you)
+                //    {
+                //        var style = new GridEXFormatStyle();
+                //        style.ForeColor = Color.Red;
+                //        style.FontBold = TriState.True;
+                //        e.Row.Cells["PLAYER"].FormatStyle = style;
+                //    }
+                //    else if (you != null && record.Village.Player.Tribe == you.Tribe)
+                //    {
+                //        var style = new GridEXFormatStyle();
+                //        style.ForeColor = Color.Blue;
+                //        style.FontBold = TriState.True;
+                //        e.Row.Cells["PLAYER"].FormatStyle = style;
+                //    }
+                //}
+            }
         }
 
         private void GridExVillage_LoadingRow(object sender, RowLoadEventArgs e)
@@ -123,5 +168,10 @@ namespace TribalWars.Controls
         }
         #endregion
 
+        public void Bind(IList<VillageGridExData> villages)
+        {
+            GridExVillage.DataSource = villages;
+            GridExVillage.MoveFirst();
+        }
     }
 }
