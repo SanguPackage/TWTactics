@@ -9,18 +9,17 @@ using TribalWars.Villages;
 namespace TribalWars.Controls.GridExs
 {
     /// <summary>
-    /// The data for a villagerow in the <see cref="VillagesGridControl"/>
+    /// The data for a villagerow in the <see cref="VillagesGridExControl"/>
     /// </summary>
-    public class VillageGridExData
+    public class VillageGridExRow
     {
-        private Map _map;
-        private Point _location;
+        private readonly Map _map;
 
         public Village Village { get; set; }
 
         public bool Visible
         {
-            get { return true; }
+            get { return _map.Display.IsVisible(Village); }
         }
 
         public string Coordinates { get; set; }
@@ -29,24 +28,23 @@ namespace TribalWars.Controls.GridExs
 
         public int Kingdom { get; set; }
 
-        public VillageType Type { get; set; }
+        public int Type { get; set; }
 
         public Image TypeImage
         {
-            get { return Type.GetImage(true); }
+            get { return Village.Type.GetImage(true); }
         }
 
         public int Points { get; set; }
 
-        public VillageGridExData(Map map, Village village)
+        public VillageGridExRow(Map map, Village village)
         {
             _map = map;
-            _location = village.Location;
             Village = village;
             Coordinates = village.LocationString;
             Name = village.Name;
             Kingdom = village.Kingdom;
-            Type = village.Type;
+            Type = (int)village.Type;
             Points = village.Points;
         }
     }

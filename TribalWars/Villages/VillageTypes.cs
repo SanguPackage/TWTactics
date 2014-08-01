@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using TribalWars.Maps.Icons;
 using TribalWars.Villages.Buildings;
 using TribalWars.Villages.Units;
@@ -48,6 +51,21 @@ namespace TribalWars.Villages
 
     public static class VillageTypeHelper
     {
+        /// <summary>
+        /// VillageType imagelist for an ImageCombobox
+        /// </summary>
+        public static ImageList GetImageList()
+        {
+            var enumValues = ((VillageType[])Enum.GetValues(typeof (VillageType)));
+            IEnumerable<Image> images = new Image[] { new Bitmap(18, 18) };
+            images = images.Concat(enumValues.Select(x => x.GetImage(true)).Where(x => x != null));
+
+
+            var list = new ImageList();
+            list.Images.AddRange(images.ToArray());
+            return list;
+        }
+
         /// <summary>
         /// Gets the most important image
         /// (in case multiple flags are active)

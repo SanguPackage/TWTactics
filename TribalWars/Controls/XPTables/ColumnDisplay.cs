@@ -102,7 +102,7 @@ namespace TribalWars.Controls.XPTables
         public static class VillageHeaderTooltips
         {
             public const string Visible = "Show image if village is currently visible on the main map";
-            public const string Type = "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details')";
+            public const string Type = "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details' or by using the right click contextmenu)";
             public const string Location = "Coordinates of the village";
             public const string Name = "Name of the village";
             public const string Points = "Points of the village";

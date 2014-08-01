@@ -1,42 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
-using TribalWars.Controls.GridExs;
+using TribalWars.Controls.Common;
 using TribalWars.Controls.XPTables;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
 using TribalWars.Villages.ContextMenu;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
-using XPTable.Models;
-using XPTable.Sorting;
+using TribalWars.Worlds.Events.Impls;
 
-namespace TribalWars.Controls
+namespace TribalWars.Controls.GridExs
 {
     /// <summary>
     /// The Janus replacement for <see cref="XPTable "/> <see cref="TribalWars.Controls.XPTables.VillageTableRow"/>
     /// </summary>
-    public partial class VillagesGridControl : UserControl
+    public partial class VillagesGridExControl : UserControl
     {
         #region Fields
         private readonly Dictionary<VillageFields, GridEXColumn> _columns;
+        private readonly ImageCombobox _villageTypeBox;
         #endregion
 
         #region Properties
         #endregion
 
         #region Constructor
-        public VillagesGridControl()
+        public VillagesGridExControl()
         {
             _columns = new Dictionary<VillageFields, GridEXColumn>();
             InitializeComponent();
+
+            _villageTypeBox = new ImageCombobox();
+            _villageTypeBox.ImageList = VillageTypeHelper.GetImageList();
         }
 
         private void VillagesGridControl_Load(object sender, EventArgs e)
@@ -53,6 +52,13 @@ namespace TribalWars.Controls
 
             _columns[VillageFields.Points].ConfigureAsNumeric();
             _columns[VillageFields.Kingdom].ConfigureAsNumeric();
+
+            World.Default.Map.EventPublisher.LocationChanged += EventPublisherOnLocationChanged;
+        }
+
+        private void EventPublisherOnLocationChanged(object sender, MapLocationEventArgs mapLocationEventArgs)
+        {
+            GridExVillage.Refresh();
         }
 
         private VillageFields GetVillageColumnType(GridEXColumn column)
@@ -71,7 +77,7 @@ namespace TribalWars.Controls
         {
             if (e.Row != null && e.Row.RowType == RowType.Record)
             {
-                VillageGridExData row = GetVillageRow(e.Row);
+                VillageGridExRow row = GetVillageRow(e.Row);
                 World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
             }
             else
@@ -84,12 +90,23 @@ namespace TribalWars.Controls
         {
             if (e.Button == MouseButtons.Right)
             {
-                var row = GridExVillage.CurrentRow;
-                if (row != null && row.RowType == RowType.Record)
+                var rowCount = GridExVillage.SelectedItems.Count;
+                if (rowCount == 1)
                 {
-                    VillageGridExData record = GetVillageRow(row);
+                    var row = GridExVillage.CurrentRow;
+                    if (row != null && row.RowType == RowType.Record)
+                    {
+                        VillageGridExRow record = GetVillageRow(row);
 
-                    var contextMenu = new VillageContextMenu(World.Default.Map, record.Village, () => GridExVillage.Refresh());
+                        var contextMenu = new VillageContextMenu(World.Default.Map, record.Village, () => GridExVillage.Refresh());
+                        contextMenu.Show(GridExVillage, e.Location);
+                    }
+                }
+                else if (rowCount > 1)
+                {
+                    IEnumerable<Village> villages = GridExVillage.SelectedItems.GetRows<VillageGridExRow>().Select(x => x.Village);
+
+                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages, type => GridExVillage.Refresh());
                     contextMenu.Show(GridExVillage, e.Location);
                 }
             }
@@ -131,26 +148,6 @@ namespace TribalWars.Controls
                         e.Row.Cells["Type"].ToolTipText = record.Village.Type.GetDescription();
                     }
                 }
-
-                // Display You and your tribe in special color
-                //if (record.Village.HasPlayer)
-                //{
-                //    var you = World.Default.You;
-                //    if (record.Village.Player == you)
-                //    {
-                //        var style = new GridEXFormatStyle();
-                //        style.ForeColor = Color.Red;
-                //        style.FontBold = TriState.True;
-                //        e.Row.Cells["PLAYER"].FormatStyle = style;
-                //    }
-                //    else if (you != null && record.Village.Player.Tribe == you.Tribe)
-                //    {
-                //        var style = new GridEXFormatStyle();
-                //        style.ForeColor = Color.Blue;
-                //        style.FontBold = TriState.True;
-                //        e.Row.Cells["PLAYER"].FormatStyle = style;
-                //    }
-                //}
             }
         }
 
@@ -159,19 +156,54 @@ namespace TribalWars.Controls
 
         }
 
-        
+        private void GridExVillage_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Select all rows
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                for (int i = 0; i < GridExVillage.RowCount; i++)
+                {
+                    GridExVillage.SelectedItems.Add(i);
+                }
+            }
+        }
 
-        private VillageGridExData GetVillageRow(GridEXRow row)
+        private VillageGridExRow GetVillageRow(GridEXRow row)
         {
             Debug.Assert(row.RowType == RowType.Record);
-            return (VillageGridExData) row.DataRow;
+            return (VillageGridExRow) row.DataRow;
         }
         #endregion
 
-        public void Bind(IList<VillageGridExData> villages)
+        public void Bind(IList<VillageGridExRow> villages)
         {
             GridExVillage.DataSource = villages;
             GridExVillage.MoveFirst();
+        }
+
+        private void GridExVillage_InitCustomEdit(object sender, InitCustomEditEventArgs e)
+        {
+            if (e.Column == _columns[VillageFields.Type] && e.Row.RowType == RowType.FilterRow)
+            {
+                e.EditControl = _villageTypeBox;
+            }
+        }
+
+        private void GridExVillage_EndCustomEdit(object sender, EndCustomEditEventArgs e)
+        {
+            if (e.Column == _columns[VillageFields.Type])
+            {
+                int selected = _villageTypeBox.SelectedIndex;
+                if (selected != 0)
+                {
+                    e.Value = selected;
+                }
+                else
+                {
+                    e.Value = null;
+                }
+                e.DataChanged = true;
+            }
         }
     }
 }

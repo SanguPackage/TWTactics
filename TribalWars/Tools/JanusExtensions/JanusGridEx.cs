@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -95,12 +96,33 @@ namespace TribalWars.Tools.JanusExtensions
             column.TextAlignment = TextAlignment.Far;
         }
 
+        public static IEnumerable<T> GetRows<T>(this GridEXSelectedItemCollection selectedItems)
+        {
+            for (int i = 0; i < selectedItems.Count; i++)
+            {
+                var gridRow = selectedItems[i].GetRow();
+                Debug.Assert(gridRow.RowType == RowType.Record);
+                yield return (T)gridRow.DataRow;
+            }
+        }
+
+        public static IEnumerable<T> GetDataSetRows<T>(this GridEXSelectedItemCollection selectedItems) where T : DataRow
+        {
+            for (int i = 0; i < selectedItems.Count; i++)
+            {
+                var gridRow = selectedItems[i].GetRow();
+                Debug.Assert(gridRow.RowType == RowType.Record);
+
+                yield return gridRow.GetDataRow<T>();
+            }
+        }
+
         /// <summary>
         /// Get DataRow when bound to DataSet
         /// </summary>
-        public static DataRow GetDataRow(this GridEXRow row)
+        public static T GetDataRow<T>(this GridEXRow row) where T : DataRow
         {
-            return ((DataRowView)row.DataRow).Row;
+            return (T)((DataRowView)row.DataRow).Row;
         }
         #endregion
     }

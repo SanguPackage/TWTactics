@@ -1,6 +1,6 @@
-﻿namespace TribalWars.Controls
+﻿namespace TribalWars.Controls.GridExs
 {
-    partial class VillagesGridControl
+    partial class VillagesGridExControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,9 +29,13 @@
         private void InitializeComponent()
         {
             Janus.Windows.GridEX.GridEXLayout GridExVillage_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VillagesGridControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VillagesGridExControl));
             this.GridExVillage = new Janus.Windows.GridEX.GridEX();
+            this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
+            this.uiGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // GridExVillage
@@ -39,12 +43,14 @@
             this.GridExVillage.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.AlternatingColors = true;
+            this.GridExVillage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GridExVillage.AutoEdit = true;
             this.GridExVillage.ColumnAutoResize = true;
             this.GridExVillage.DataMember = "VILLAGE";
             GridExVillage_DesignTimeLayout.LayoutString = resources.GetString("GridExVillage_DesignTimeLayout.LayoutString");
             this.GridExVillage.DesignTimeLayout = GridExVillage_DesignTimeLayout;
-            this.GridExVillage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridExVillage.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
             this.GridExVillage.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
             this.GridExVillage.FocusCellDisplayMode = Janus.Windows.GridEX.FocusCellDisplayMode.UseSelectedFormatStyle;
@@ -52,12 +58,12 @@
             this.GridExVillage.GroupByBoxVisible = false;
             this.GridExVillage.HideColumnsWhenGrouped = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExVillage.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.GridExVillage.Location = new System.Drawing.Point(0, 0);
+            this.GridExVillage.Location = new System.Drawing.Point(3, 91);
             this.GridExVillage.Margin = new System.Windows.Forms.Padding(0);
             this.GridExVillage.Name = "GridExVillage";
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
             this.GridExVillage.SettingsKey = "PolygonVillage3";
-            this.GridExVillage.Size = new System.Drawing.Size(450, 228);
+            this.GridExVillage.Size = new System.Drawing.Size(378, 151);
             this.GridExVillage.TabIndex = 2;
             this.GridExVillage.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.GridExVillage.UseGroupRowSelector = true;
@@ -65,18 +71,46 @@
             this.GridExVillage.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_FormattingRow);
             this.GridExVillage.LoadingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_LoadingRow);
             this.GridExVillage.CurrentCellChanging += new Janus.Windows.GridEX.CurrentCellChangingEventHandler(this.GridExVillage_CurrentCellChanging);
+            this.GridExVillage.InitCustomEdit += new Janus.Windows.GridEX.InitCustomEditEventHandler(this.GridExVillage_InitCustomEdit);
+            this.GridExVillage.EndCustomEdit += new Janus.Windows.GridEX.EndCustomEditEventHandler(this.GridExVillage_EndCustomEdit);
+            this.GridExVillage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridExVillage_KeyDown);
             this.GridExVillage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridExVillage_MouseClick);
+            // 
+            // uiGroupBox1
+            // 
+            this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiGroupBox1.Controls.Add(this.label1);
+            this.uiGroupBox1.Controls.Add(this.GridExVillage);
+            this.uiGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiGroupBox1.Location = new System.Drawing.Point(3, 3);
+            this.uiGroupBox1.Name = "uiGroupBox1";
+            this.uiGroupBox1.Size = new System.Drawing.Size(384, 245);
+            this.uiGroupBox1.TabIndex = 3;
+            this.uiGroupBox1.Text = "Set the purpose of your villages";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(371, 71);
+            this.label1.TabIndex = 3;
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // VillagesGridControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.GridExVillage);
+            this.Controls.Add(this.uiGroupBox1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "VillagesGridControl";
-            this.Size = new System.Drawing.Size(450, 228);
+            this.Size = new System.Drawing.Size(392, 254);
             this.Load += new System.EventHandler(this.VillagesGridControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
+            this.uiGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -84,5 +118,7 @@
         #endregion
 
         private Janus.Windows.GridEX.GridEX GridExVillage;
+        private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

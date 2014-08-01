@@ -1,4 +1,6 @@
-﻿namespace TribalWars.Forms
+﻿using TribalWars.Controls.GridExs;
+
+namespace TribalWars.Forms
 {
     partial class YourVillagesForm
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.villagesGridControl1 = new TribalWars.Controls.VillagesGridControl();
+            this.villagesGridControl1 = new VillagesGridExControl();
             this.SuspendLayout();
             // 
             // villagesGridControl1
@@ -50,13 +52,14 @@
             this.Controls.Add(this.villagesGridControl1);
             this.Name = "YourVillagesForm";
             this.Text = "Manage your villages";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Controls.VillagesGridControl villagesGridControl1;
+        private VillagesGridExControl villagesGridControl1;
 
     }
 }

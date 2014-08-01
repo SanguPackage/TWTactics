@@ -181,7 +181,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         {
             if (e.Row != null && e.Row.RowType == RowType.Record)
             {
-                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                var row = e.Row.GetDataRow<PolygonDataSet.VILLAGERow>();
                 World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
             }
             else
@@ -197,12 +197,23 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         {
             if (e.Button == MouseButtons.Right)
             {
-                var row = GridExVillage.CurrentRow;
-                if (row != null && row.RowType == RowType.Record)
+                var rowCount = GridExVillage.SelectedItems.Count;
+                if (rowCount == 1)
                 {
-                    PolygonDataSet.VILLAGERow record = GetVillageRow(row);
+                    var row = GridExVillage.CurrentRow;
+                    if (row != null && row.RowType == RowType.Record)
+                    {
+                        var record = row.GetDataRow<PolygonDataSet.VILLAGERow>();
 
-                    var contextMenu = new VillageContextMenu(World.Default.Map, record.Village, () => GridExVillage.Refresh());
+                        var contextMenu = new VillageContextMenu(World.Default.Map, record.Village, () => GridExVillage.Refresh());
+                        contextMenu.Show(GridExVillage, e.Location);
+                    }
+                }
+                else if (rowCount > 1)
+                {
+                    IEnumerable<Village> villages = GridExVillage.SelectedItems.GetDataSetRows<PolygonDataSet.VILLAGERow>().Select(x => x.Village);
+
+                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages, type => GridExVillage.Refresh());
                     contextMenu.Show(GridExVillage, e.Location);
                 }
             }
@@ -215,7 +226,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         {
             if (e.Row.RowType == RowType.Record)
             {
-                PolygonDataSet.VILLAGERow row = GetVillageRow(e.Row);
+                var row = e.Row.GetDataRow<PolygonDataSet.VILLAGERow>();
                 World.Default.Map.EventPublisher.SelectVillages(null, row.Village, VillageTools.PinPoint);
                 World.Default.Map.SetCenter(row.Village.Location);
             }
@@ -232,7 +243,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             // Normal Rows
             if (e.Row.RowType == RowType.Record)
             {
-                PolygonDataSet.VILLAGERow record = GetVillageRow(e.Row);
+                var record = e.Row.GetDataRow<PolygonDataSet.VILLAGERow>();
 
                 // SetVillageVisibility()
                 if (record.ISVISIBLE)
@@ -317,7 +328,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 GridEXRow row = e.Row.GetChildRecords().FirstOrDefault();
                 if (row != null)
                 {
-                    var polygon = GetVillageRow(row).Polygon;
+                    var polygon = row.GetDataRow<PolygonDataSet.VILLAGERow>().Polygon;
                     if (polygon.Visible)
                     {
                         e.Row.CheckState = RowCheckState.Checked;
@@ -332,15 +343,6 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         private void GridExVillageShowFieldChooser_Click(object sender, System.EventArgs e)
         {
             GridExVillage.ShowFieldChooser();
-        }
-
-        /// <summary>
-        /// Cast GridEx row to TypedDataSet row
-        /// </summary>
-        private PolygonDataSet.VILLAGERow GetVillageRow(GridEXRow row)
-        {
-            Debug.Assert(row.RowType == RowType.Record);
-            return (PolygonDataSet.VILLAGERow)row.GetDataRow();
         }
 
         /// <summary>
