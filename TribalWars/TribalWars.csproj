@@ -150,6 +150,12 @@
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TimeConverter\DateEventArgs.cs" />
+    <Compile Include="Controls\VillagesGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VillagesGridControl.Designer.cs">
+      <DependentUpon>VillagesGridControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +184,18 @@
     </Compile>
     <Compile Include="Forms\NewWorldForm.Designer.cs">
       <DependentUpon>NewWorldForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VillageCoordinatesImporterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VillageCoordinatesImporterForm.Designer.cs">
+      <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\YourVillagesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\YourVillagesForm.Designer.cs">
+      <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\AttackPlans\Controls\AttackIcons.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -558,6 +576,9 @@
     <EmbeddedResource Include="Controls\Finders\PlayerTribeDropdown.resx">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VillagesGridControl.resx">
+      <DependentUpon>VillagesGridControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TableWrapperControl.cs</DependentUpon>
@@ -575,6 +596,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.resx">
+      <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\YourVillagesForm.resx">
+      <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -35,7 +35,8 @@ namespace TribalWars.Controls.XPTables
         Tribe = 4096,
         TribeRank = 8192,
         Default = 127,
-        All = 16383
+        All = 16383,
+        You = Type | Coordinates | Name | Points
     }
     #endregion
 
