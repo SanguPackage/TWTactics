@@ -28,7 +28,10 @@ namespace TribalWars.Controls.GridExs
 
         public int Kingdom { get; set; }
 
-        public int Type { get; set; }
+        public int Type
+        {
+            get { return (int)Village.Type; }
+        }
 
         public string Player
         {
@@ -49,7 +52,6 @@ namespace TribalWars.Controls.GridExs
             Coordinates = village.LocationString;
             Name = village.Name;
             Kingdom = village.Kingdom;
-            Type = (int)village.Type;
             Points = village.Points;
         }
     }

@@ -52,6 +52,15 @@ namespace TribalWars.Villages
     public static class VillageTypeHelper
     {
         /// <summary>
+        /// Convert the imageList index back to a VillageType
+        /// </summary>
+        public static VillageType GetVillageType(int imageListIndex)
+        {
+            var enumValues = ((VillageType[])Enum.GetValues(typeof(VillageType)));
+            return enumValues[imageListIndex]; // This breaks if GetImageList changes!
+        }
+
+        /// <summary>
         /// VillageType imagelist for an ImageCombobox
         /// </summary>
         public static ImageList GetImageList()
@@ -59,7 +68,6 @@ namespace TribalWars.Villages
             var enumValues = ((VillageType[])Enum.GetValues(typeof (VillageType)));
             IEnumerable<Image> images = new Image[] { new Bitmap(18, 18) };
             images = images.Concat(enumValues.Select(x => x.GetImage(true)).Where(x => x != null));
-
 
             var list = new ImageList();
             list.Images.AddRange(images.ToArray());

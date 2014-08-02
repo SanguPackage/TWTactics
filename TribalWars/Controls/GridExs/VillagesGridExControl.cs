@@ -24,20 +24,19 @@ namespace TribalWars.Controls.GridExs
         #region Fields
         private readonly Dictionary<VillageFields, GridEXColumn> _columns;
         private readonly ImageCombobox _villageTypeBox;
-        private bool _showPlayer = true;
         #endregion
 
         #region Properties
-        public bool ShowPlayer
-        {
-            get { return _showPlayer; }
-            set { _showPlayer = value; }
-        }
+        /// <summary>
+        /// Show/Hide the Player name column
+        /// </summary>
+        public bool ShowPlayer { get; set; }
         #endregion
 
         #region Constructor
         public VillagesGridExControl()
         {
+            ShowPlayer = true;
             _columns = new Dictionary<VillageFields, GridEXColumn>();
             InitializeComponent();
 
@@ -59,6 +58,8 @@ namespace TribalWars.Controls.GridExs
 
             _columns[VillageFields.Points].ConfigureAsNumeric();
             _columns[VillageFields.Kingdom].ConfigureAsNumeric();
+
+            _columns[VillageFields.Player].Visible = ShowPlayer;
 
             World.Default.Map.EventPublisher.LocationChanged += EventPublisherOnLocationChanged;
         }
@@ -205,9 +206,10 @@ namespace TribalWars.Controls.GridExs
         }
         #endregion
 
-        public void Bind(IList<VillageGridExRow> villages)
+        public void Bind(IEnumerable<Village> villages)
         {
-            GridExVillage.DataSource = villages;
+            IEnumerable<VillageGridExRow> villageRows = villages.Select(x => new VillageGridExRow(World.Default.Map, x));
+            GridExVillage.DataSource = villageRows.ToList();
             GridExVillage.MoveFirst();
         }
 
@@ -226,7 +228,7 @@ namespace TribalWars.Controls.GridExs
                 int selected = _villageTypeBox.SelectedIndex;
                 if (selected != 0)
                 {
-                    e.Value = selected;
+                    e.Value = (int)VillageTypeHelper.GetVillageType(selected);
                 }
                 else
                 {

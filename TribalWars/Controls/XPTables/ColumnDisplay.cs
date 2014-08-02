@@ -133,9 +133,12 @@ namespace TribalWars.Controls.XPTables
 
                     case VillageFields.Type:
                         return Type;
+
+                    case VillageFields.Player:
+                        return PlayerName;
                 }
 
-                throw new Exception("Add new header text here...");
+                throw new Exception("Add new header text here... (go to ColumnDisplay class)");
             }
         }
 

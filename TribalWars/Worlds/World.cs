@@ -464,6 +464,30 @@ namespace TribalWars.Worlds
         }
 
         /// <summary>
+        /// Gets all villages in the input string
+        /// </summary>
+        public IEnumerable<Village> GetVillages(string input)
+        {
+            MatchCollection matches = VillagePattern.Matches(input.Trim());
+            foreach (var match in matches.OfType<Match>())
+            {
+                if (match.Success)
+                {
+                    int x;
+                    int y;
+                    if (int.TryParse(match.Groups[1].Value, out x) && int.TryParse(match.Groups[2].Value, out y))
+                    {
+                        var loc = new Point(x, y);
+                        if (Default.Villages.ContainsKey(loc))
+                        {
+                            yield return Default.Villages[loc];
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the village at the specified location
         /// </summary>
         public Village GetVillage(Point location)

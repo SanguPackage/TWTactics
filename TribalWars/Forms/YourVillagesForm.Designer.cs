@@ -47,6 +47,7 @@ namespace TribalWars.Forms
             this.villagesGridControl1.Location = new System.Drawing.Point(3, 134);
             this.villagesGridControl1.Margin = new System.Windows.Forms.Padding(0);
             this.villagesGridControl1.Name = "villagesGridControl1";
+            this.villagesGridControl1.ShowPlayer = false;
             this.villagesGridControl1.Size = new System.Drawing.Size(432, 331);
             this.villagesGridControl1.TabIndex = 0;
             // 

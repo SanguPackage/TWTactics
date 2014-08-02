@@ -36,9 +36,7 @@ namespace TribalWars.Forms
             {
                 var form = new YourVillagesForm();
                 form._player = World.Default.You;
-
-                IEnumerable<VillageGridExRow> villageRows = World.Default.You.Villages.Select(x => new VillageGridExRow(World.Default.Map, x));
-                form.villagesGridControl1.Bind(villageRows.ToList());
+                form.villagesGridControl1.Bind(World.Default.You);
 
                 form.Show();
             }
