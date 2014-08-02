@@ -95,6 +95,11 @@ namespace TribalWars.Maps
         {
             get { return Location != null; }
         }
+
+        private int LastShapeZoom
+        {
+            get { return _lastShapeZoom ?? 10; }
+        }
         #endregion
 
         #region Constructors
@@ -206,7 +211,7 @@ namespace TribalWars.Maps
             else
             {
                 _lastIconZoom = _display.Zoom.Current;
-                SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Shape, _lastShapeZoom ?? 10));
+                SetCenter(World.Default.Map.Location.ChangeShapeAndZoom(DisplayTypes.Shape, LastShapeZoom));
             }
         }
 
@@ -300,8 +305,14 @@ namespace TribalWars.Maps
             // HACK: Auto switch from Icon to Shape display when using for example Center&Pinpoint
             bool couldSatisfy;
             int newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, tryStayInCurrentZoom, out couldSatisfy);
-            if (!couldSatisfy)
+            if (!couldSatisfy && Display.Type == DisplayTypes.Icon)
             {
+                _lastIconZoom = _display.Zoom.Current;
+
+                var location = new Location(DisplayTypes.Shape, middle, LastShapeZoom);
+                Display = new Display(_displaysettings, _isMiniMap, this, ref location);
+
+                newZoomLevel = Display.GetMinimumZoomLevel(maxVillageSize, tryStayInCurrentZoom, out couldSatisfy);
                 return new Location(DisplayTypes.Shape, middle, newZoomLevel);
             }
             return new Location(Location.Display, middle, newZoomLevel);
