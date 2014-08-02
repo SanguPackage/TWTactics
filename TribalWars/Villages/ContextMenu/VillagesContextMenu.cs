@@ -45,6 +45,14 @@ namespace TribalWars.Villages.ContextMenu
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
 
             _menu = JanusContextMenu.Create();
+            // TODO: hehe, the ActiveVillageManipulator takes the first player and selects all his villages...
+            //if (map.Display.IsVisible(_villages))
+            //{
+            //    _menu.AddCommand("Pinpoint", OnPinPoint);
+            //}
+            //_menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
+            //_menu.AddSeparator();
+
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
 
             _menu.AddSeparator();
@@ -62,6 +70,21 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddSeparator();
 
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+        }
+        #endregion
+
+        #region Event Handlers
+        private void OnPinpointAndCenter(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
+            World.Default.Map.SetCenter(_villages);
+        }
+
+        private void OnPinPoint(object sender, CommandEventArgs e)
+        {
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
         }
 
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
