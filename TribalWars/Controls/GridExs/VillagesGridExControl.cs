@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
@@ -23,9 +24,15 @@ namespace TribalWars.Controls.GridExs
         #region Fields
         private readonly Dictionary<VillageFields, GridEXColumn> _columns;
         private readonly ImageCombobox _villageTypeBox;
+        private bool _showPlayer = true;
         #endregion
 
         #region Properties
+        public bool ShowPlayer
+        {
+            get { return _showPlayer; }
+            set { _showPlayer = value; }
+        }
         #endregion
 
         #region Constructor
@@ -146,6 +153,29 @@ namespace TribalWars.Controls.GridExs
                     else
                     {
                         e.Row.Cells["Type"].ToolTipText = record.Village.Type.GetDescription();
+                    }
+                }
+
+                // Display You and your tribe in special color
+                if (ShowPlayer)
+                {
+                    if (record.Village.HasPlayer)
+                    {
+                        var you = World.Default.You;
+                        if (record.Village.Player == you)
+                        {
+                            var style = new GridEXFormatStyle();
+                            style.ForeColor = Color.Red;
+                            style.FontBold = TriState.True;
+                            e.Row.Cells["Player"].FormatStyle = style;
+                        }
+                        else if (you != null && record.Village.Player.Tribe == you.Tribe)
+                        {
+                            var style = new GridEXFormatStyle();
+                            style.ForeColor = Color.Blue;
+                            style.FontBold = TriState.True;
+                            e.Row.Cells["Player"].FormatStyle = style;
+                        }
                     }
                 }
             }

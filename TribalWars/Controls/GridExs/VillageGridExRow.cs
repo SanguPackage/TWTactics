@@ -30,6 +30,11 @@ namespace TribalWars.Controls.GridExs
 
         public int Type { get; set; }
 
+        public string Player
+        {
+            get { return Village.Player == null ? "" : Village.Player.Name; }
+        }
+
         public Image TypeImage
         {
             get { return Village.Type.GetImage(true); }

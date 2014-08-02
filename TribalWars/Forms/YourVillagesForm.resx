@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>After having (temporarily hopefully!) given your villages secret names describing their troopcount, you can use the filters in the grid to find those villages and set their purpose by selecting them and using the right click contextmenu. You can use Control + A to select all filtered villages. Or use Shift or Control to select a range of rows.</value>
+  </data>
 </root>

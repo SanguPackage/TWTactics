@@ -537,5 +537,11 @@ namespace TribalWars.Forms
         {
             YourVillagesForm.ShowForm();
         }
+
+        private void MenuWindowsImportVillageCoordinates_Click(object sender, EventArgs e)
+        {
+            var frm = new VillageCoordinatesImporterForm();
+            frm.Show();
+        }
     }
 }
