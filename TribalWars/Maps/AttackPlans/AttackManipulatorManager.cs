@@ -1,8 +1,10 @@
 #region Using
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using Janus.Windows.Common;
 using TribalWars.Controls;
@@ -24,7 +26,21 @@ namespace TribalWars.Maps.AttackPlans
     /// </summary>
     public class AttackManipulatorManager : ManipulatorManagerBase
     {
+        #region Constants
+        /// <summary>
+        /// When searching for the fastest villages that can still make it for
+        /// the given travel time, add this many possible attackers per click
+        /// </summary>
+        private const int AutoFindAmountOfAttackers = 10;
+
         private const int DefaultArrivalTimeServerOffset = 8;
+
+        /// <summary>
+        /// Auto find functionality: only add attackers that have
+        /// more then this amount in seconds left before 'send time'
+        /// </summary>
+        private const int AutoFindMinimumAmountOfSecondsLeft = 0;
+        #endregion
 
         #region Fields
         private readonly AttackManipulator _attacker;
@@ -38,12 +54,19 @@ namespace TribalWars.Maps.AttackPlans
         {
             get { return _attacker.Settings; }
         }
+
+        public bool IsAttackersPoolEmpty
+        {
+            get { return !_attackersPool.Any(); }
+        }
         #endregion
 
         #region Constructors
         public AttackManipulatorManager(Map map)
             : base(map, true)
         {
+            _attackersPool = new List<Village>();
+
             UseLegacyXmlWriter = false;
 
             // Active manipulators
@@ -190,5 +213,49 @@ namespace TribalWars.Maps.AttackPlans
             _attacker.ReadXml(doc);
         }
         #endregion
+
+        private readonly List<Village> _attackersPool;
+
+        public void AddToAttackersPool(IEnumerable<Village> villages)
+        {
+            villages = villages.Where(x => !_attackersPool.Contains(x));
+            _attackersPool.AddRange(villages.Distinct());
+        }
+
+        public IEnumerable<Village> GetAttackersFromYou(AttackPlan plan, Unit slowestUnit)
+        {
+            return GetAttackers(World.Default.You, plan, slowestUnit);
+        }
+
+        public IEnumerable<Village> GetAttackersFromPool(AttackPlan plan, Unit slowestUnit, out bool depleted)
+        {
+            Village[] attackers = GetAttackers(_attackersPool, plan, slowestUnit).ToArray();
+            _attackersPool.RemoveAll(attackers.Contains);
+
+            depleted = !_attackersPool.Any();
+            return attackers;
+        }
+
+        private IEnumerable<Village> GetAttackers(IEnumerable<Village> searchIn, AttackPlan plan, Unit slowestUnit)
+        {
+            Village[] villagesAlreadyUsed = GetPlans().SelectMany(x => x.Attacks)
+                                      .Select(x => x.Attacker)
+                                      .ToArray();
+
+            var villagesWithTimeLeft =
+                from village in searchIn
+                where !villagesAlreadyUsed.Contains(village)
+                let travelTime = Village.TravelTime(plan.Target, village, slowestUnit)
+                let timeBeforeNeedToSend = plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
+                where timeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft
+                select new
+                {
+                    Village = village,
+                    TimeBeforeNeedToSend = timeBeforeNeedToSend
+                };
+
+            Village[] villagesFound = villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackers).Select(x => x.Village).ToArray();
+            return villagesFound;
+        }
     }
 }

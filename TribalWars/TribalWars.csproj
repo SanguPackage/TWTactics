@@ -151,11 +151,11 @@
     </Compile>
     <Compile Include="Controls\GridExs\VillageGridExRow.cs" />
     <Compile Include="Controls\TimeConverter\DateEventArgs.cs" />
-    <Compile Include="Controls\GridExs\VillagesGridControl.cs">
+    <Compile Include="Controls\GridExs\VillagesGridExControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\GridExs\VillagesGridControl.Designer.cs">
-      <DependentUpon>VillagesGridControl.cs</DependentUpon>
+    <Compile Include="Controls\GridExs\VillagesGridExControl.Designer.cs">
+      <DependentUpon>VillagesGridExControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\XPTables\TableWrapperControl.cs">
       <SubType>UserControl</SubType>
@@ -577,8 +577,8 @@
     <EmbeddedResource Include="Controls\Finders\PlayerTribeDropdown.resx">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\GridExs\VillagesGridControl.resx">
-      <DependentUpon>VillagesGridControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\GridExs\VillagesGridExControl.resx">
+      <DependentUpon>VillagesGridExControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\XPTables\TableWrapperControl.resx">
       <SubType>Designer</SubType>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,20 +18,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
     /// </summary>
     public partial class AttackPlanCollectionControl : UserControl
     {
-        #region Constants
-        /// <summary>
-        /// When searching for the fastest villages that can still make it for
-        /// the given travel time, add this many possible attackers per click
-        /// </summary>
-        private const int AutoFindAmountOfAttackers = 10;
-
-        /// <summary>
-        /// Auto find functionality: only add attackers that have
-        /// more then this amount in seconds left before 'send time'
-        /// </summary>
-        private const int AutoFindMinimumAmountOfSecondsLeft = 0;
-        #endregion
-
         #region Fields
         private readonly Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>> _plans = 
             new Dictionary<AttackPlan, Tuple<ToolStripMenuItem, AttackPlanControl>>();
@@ -208,34 +195,41 @@ namespace TribalWars.Maps.AttackPlans.Controls
             {
                 ActivePlayerForm.AskToSetSelf();
             }
-            else if (ActivePlan != null)
+            else if (ActivePlan != null && UnitInput.Unit != null)
             {
-                if (UnitInput.Unit != null)
+                IEnumerable<Village> searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromYou(ActivePlan.Plan, UnitInput.Unit);
+                foreach (var village in searchIn)
                 {
-                    Village[] villagesAlreadyUsed = _plans.Keys.SelectMany(x => x.Attacks)
-                                                          .Select(x => x.Attacker)
-                                                          .ToArray();
-
-                    var villagesWithTimeLeft = 
-                        from village in World.Default.You
-                        where !villagesAlreadyUsed.Contains(village)
-                        let travelTime = Village.TravelTime(ActivePlan.Plan.Target, village, UnitInput.Unit)
-                        let timeBeforeNeedToSend = ActivePlan.Plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
-                        where timeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft
-                        select new
-                            {
-                                Village = village,
-                                TimeBeforeNeedToSend = timeBeforeNeedToSend
-                            };
-
-                    foreach (var village in villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackers))
-                    {
-                        var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village.Village, UnitInput.Unit));
-                        World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
-                    }
-
-                    ActivePlan.SortOnTimeLeft();
+                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village, UnitInput.Unit));
+                    World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                 }
+
+                ActivePlan.SortOnTimeLeft();
+            }
+        }
+
+        private void cmdFindPool_Click(object sender, EventArgs e)
+        {
+            if (World.Default.Map.Manipulators.AttackManipulator.IsAttackersPoolEmpty)
+            {
+                MessageBox.Show("Open Windows > 'Manage your villages' to create an attackers pool!", "Attackers pool");
+            }
+            else if (ActivePlan != null && UnitInput.Unit != null)
+            {
+                bool depleted;
+                IEnumerable<Village> searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, out depleted);
+                if (depleted)
+                {
+                    MessageBox.Show("Attackers pool depleted!", "Attackers pool");
+                }
+
+                foreach (var village in searchIn)
+                {
+                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village, UnitInput.Unit));
+                    World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
+                }
+
+                ActivePlan.SortOnTimeLeft();
             }
         }
 

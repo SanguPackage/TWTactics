@@ -106,7 +106,7 @@ namespace TribalWars.Controls.GridExs
                 {
                     IEnumerable<Village> villages = GridExVillage.SelectedItems.GetRows<VillageGridExRow>().Select(x => x.Village);
 
-                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages, type => GridExVillage.Refresh());
+                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages.ToArray(), type => GridExVillage.Refresh());
                     contextMenu.Show(GridExVillage, e.Location);
                 }
             }

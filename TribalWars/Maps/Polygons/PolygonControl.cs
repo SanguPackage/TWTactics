@@ -213,7 +213,7 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
                 {
                     IEnumerable<Village> villages = GridExVillage.SelectedItems.GetDataSetRows<PolygonDataSet.VILLAGERow>().Select(x => x.Village);
 
-                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages, type => GridExVillage.Refresh());
+                    var contextMenu = new VillagesContextMenu(World.Default.Map, villages.ToArray(), type => GridExVillage.Refresh());
                     contextMenu.Show(GridExVillage, e.Location);
                 }
             }

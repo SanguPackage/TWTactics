@@ -27,6 +27,8 @@ namespace TribalWars.Villages.ContextMenu
     /// </summary>
     public class VillagesContextMenu : IContextMenu
     {
+        private const int WarnWhenAddingMoreTargets = 10;
+
         #region Fields
         private readonly IEnumerable<Village> _villages;
 
@@ -36,7 +38,7 @@ namespace TribalWars.Villages.ContextMenu
         #endregion
 
         #region Constructors
-        public VillagesContextMenu(Map map, IEnumerable<Village> villages, Action<VillageType> onVillageTypeChangeDelegate = null)
+        public VillagesContextMenu(Map map, ICollection<Village> villages, Action<VillageType> onVillageTypeChangeDelegate = null)
         {
             _villages = villages;
             _map = map;
@@ -44,6 +46,21 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu = JanusContextMenu.Create();
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
+
+            _menu.AddSeparator();
+            if (!World.Default.You.Empty && villages.All(x => x.Player == World.Default.You))
+            {
+                _menu.AddCommand("Defend these villages", OnAddTargets, Properties.Resources.swordsman);
+
+                var cmd = _menu.AddCommand("Add to attackers pool", OnAddAttackers, Properties.Resources.FlagGreen);
+                cmd.ToolTipText = "When using the attack plan search function, don't search through all your villages but only select villages from those added to the 'pool'.";
+            }
+            else
+            {
+                _menu.AddCommand("Attack these villages", OnAddTargets, Properties.Resources.barracks);
+            }
+            _menu.AddSeparator();
+
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
 
@@ -87,6 +104,29 @@ namespace TribalWars.Villages.ContextMenu
             }
 
             WinForms.ToClipboard(str.ToString());
+        }
+
+        private void OnAddAttackers(object sender, EventArgs e)
+        {
+            World.Default.Map.Manipulators.AttackManipulator.AddToAttackersPool(_villages);
+        }
+
+        private void OnAddTargets(object sender, EventArgs e)
+        {
+            if (_villages.Count() > WarnWhenAddingMoreTargets)
+            {
+                var result = MessageBox.Show(string.Format("You are about to add {0} villages as attack targets. Continue?", _villages.Count()), "Attack villages", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            foreach (Village village in _villages)
+            {
+                _map.EventPublisher.AttackAddTarget(sender, village);
+            }
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
         }
         #endregion
 

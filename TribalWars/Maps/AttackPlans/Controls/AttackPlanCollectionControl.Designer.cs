@@ -50,6 +50,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.UnitInput = new TribalWars.Controls.Common.ToolStripUnitsImageCombobox();
             this.cmdFind = new System.Windows.Forms.ToolStripButton();
+            this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
             this.AllPlans = new System.Windows.Forms.Panel();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Collection.SuspendLayout();
@@ -85,7 +86,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdAddTarget,
             this.toolStripSeparator2,
             this.UnitInput,
-            this.cmdFind});
+            this.cmdFind,
+            this.cmdFindPool});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -234,6 +236,18 @@ namespace TribalWars.Maps.AttackPlans.Controls
     "eed";
             this.cmdFind.Click += new System.EventHandler(this.cmdFind_Click);
             // 
+            // cmdFindPool
+            // 
+            this.cmdFindPool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cmdFindPool.Image = ((System.Drawing.Image)(resources.GetObject("cmdFindPool.Image")));
+            this.cmdFindPool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdFindPool.Name = "cmdFindPool";
+            this.cmdFindPool.Size = new System.Drawing.Size(23, 20);
+            this.cmdFindPool.ToolTipText = "Find villages inside the attackers pool that can still reach the target at the ar" +
+    "rival time at the given speed. Add villages to the attack pool in the \'Manage yo" +
+    "ur villages\' Window.";
+            this.cmdFindPool.Click += new System.EventHandler(this.cmdFindPool_Click);
+            // 
             // AllPlans
             // 
             this.AllPlans.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -287,5 +301,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private System.Windows.Forms.ToolStripButton cmdClear;
         private System.Windows.Forms.Panel AllPlans;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton cmdFindPool;
     }
 }

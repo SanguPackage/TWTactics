@@ -77,6 +77,7 @@ namespace TribalWars.Forms
             if (World.Default.You.Empty)
             {
                 selectYouLater = Environment.NewLine + Environment.NewLine + "You can later still specify yourself through the World -> 'Select Active Player' menu.";
+                selectYouLater += Environment.NewLine + Environment.NewLine + "Note that for example planning attacks will work much easier when you have selected yourself.";
             }
 
             MessageBox.Show(@"A new world has been created!
