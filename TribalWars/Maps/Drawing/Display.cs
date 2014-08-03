@@ -609,15 +609,15 @@ namespace TribalWars.Maps
         }
         #endregion
 
-        #region IDisposable
+        #region Other
         public void Dispose()
         {
         }
-        #endregion
 
         public override string ToString()
         {
             return string.Format("Map={0}, Visible={1}, VillageSize={2}", _map, _visibleRectangle, _drawerFactoryStrategy != null ? Dimensions.Size.ToString() : "NotInited");
         }
+        #endregion
     }
 }

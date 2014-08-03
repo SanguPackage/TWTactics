@@ -324,12 +324,12 @@
     </Compile>
     <Compile Include="Worlds\Events\Impls\ManipulatorEventArgs.cs" />
     <Compile Include="Worlds\Events\Impls\PolygonEventArgs.cs" />
-    <Compile Include="Maps\DisplaySettings.cs" />
+    <Compile Include="Maps\Drawing\DisplaySettings.cs" />
     <Compile Include="Maps\Displays\MiniMapDrawerFactory.cs" />
     <Compile Include="Maps\Displays\VillageDimensions.cs" />
-    <Compile Include="Maps\Drawers\DrawerData.cs" />
-    <Compile Include="Maps\Drawers\DrawerBase.cs" />
-    <Compile Include="Maps\Drawers\OtherDrawers\BackgroundDrawer.cs" />
+    <Compile Include="Maps\Drawing\Drawers\DrawerData.cs" />
+    <Compile Include="Maps\Drawing\Drawers\DrawerBase.cs" />
+    <Compile Include="Maps\Drawing\Drawers\OtherDrawers\BackgroundDrawer.cs" />
     <Compile Include="Villages\Buildings\BuildingImages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -404,12 +404,12 @@
     <Compile Include="Worlds\Events\Impls\PlayersEventArgs.cs" />
     <Compile Include="Worlds\Events\Impls\ReportEventArgs.cs" />
     <Compile Include="Worlds\Events\Impls\TribesEventArgs.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\BorderDrawer.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\ShapeDrawer.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\IconDrawer.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\IconOrientation.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\MiniMapDrawer.cs" />
-    <Compile Include="Maps\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\BorderDrawer.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\ShapeDrawer.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\IconDrawer.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\IconOrientation.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\MiniMapDrawer.cs" />
+    <Compile Include="Maps\Drawing\Drawers\VillageDrawers\IconDrawerDecorator.cs" />
     <Compile Include="Maps\Manipulators\EventArg\MapKeyEventArgs.cs" />
     <Compile Include="Maps\Manipulators\EventArg\MapMouseEventArgs.cs" />
     <Compile Include="Maps\Manipulators\EventArg\MapMouseMoveEventArgs.cs" />
@@ -432,18 +432,18 @@
     <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />
     <Compile Include="Maps\Polygons\PolygonManipulatorManager.cs" />
     <Compile Include="Maps\Map.cs" />
-    <Compile Include="Maps\Display.cs" />
+    <Compile Include="Maps\Drawing\Display.cs" />
     <Compile Include="Maps\Markers\MarkerSettings.cs" />
     <Compile Include="Maps\Publisher.cs" />
     <Compile Include="Maps\Displays\DisplayTypes.cs" />
     <Compile Include="Maps\Displays\IconDrawerFactory.cs" />
     <Compile Include="Maps\Displays\ShapeDrawerFactory.cs" />
-    <Compile Include="Maps\Views\ViewBase.cs" />
+    <Compile Include="Maps\Drawing\Views\ViewBase.cs" />
     <Compile Include="Maps\Displays\DrawerFactoryBase.cs" />
     <Compile Include="Maps\Markers\Marker.cs" />
     <Compile Include="Maps\Markers\MarkerManager.cs" />
-    <Compile Include="Maps\Views\PointsView.cs" />
-    <Compile Include="Maps\Views\VillageTypeView.cs" />
+    <Compile Include="Maps\Drawing\Views\PointsView.cs" />
+    <Compile Include="Maps\Drawing\Views\VillageTypeView.cs" />
     <Compile Include="Browsers\Reporting\CurrentSituation.cs" />
     <Compile Include="Browsers\Reporting\HtmlReport.cs" />
     <Compile Include="Browsers\Reporting\Images.Designer.cs">
