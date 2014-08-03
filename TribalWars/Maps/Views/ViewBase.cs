@@ -1,7 +1,9 @@
 #region Imports
+using System;
 using System.Collections.Generic;
 using TribalWars.Maps.Drawers;
 using TribalWars.Villages;
+using TribalWars.WorldTemplate;
 
 #endregion
 
@@ -14,10 +16,6 @@ namespace TribalWars.Maps.Views
     /// <remarks>Views are used to display a Marker on the map</remarks>
     public abstract class ViewBase
     {
-        #region Fields
-        protected readonly Dictionary<ViewData, DrawerData> _drawers;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets or sets the name of the view
@@ -44,7 +42,6 @@ namespace TribalWars.Maps.Views
         {
             Name = name;
             Decorator = decorator;
-            _drawers = new Dictionary<ViewData, DrawerData>();
         }
         #endregion
 
@@ -57,11 +54,7 @@ namespace TribalWars.Maps.Views
         /// <summary>
         /// Adds a new Drawer to the collection
         /// </summary>
-        public virtual void AddDrawer(string drawerType, string drawerIcon, string drawerBonusIcon, int value, object extraValues)
-        {
-            var viewData = new ViewData(value, extraValues);
-            _drawers.Add(viewData, new DrawerData(drawerType, drawerIcon, drawerBonusIcon, extraValues));
-        }
+        public abstract void AddDrawer(WorldConfigurationViewsViewDrawersDrawer drawer);
 
         public override string ToString()
         {

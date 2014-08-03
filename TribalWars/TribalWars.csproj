@@ -440,7 +440,6 @@
     <Compile Include="Maps\Displays\ShapeDrawerFactory.cs" />
     <Compile Include="Maps\Views\ViewBase.cs" />
     <Compile Include="Maps\Displays\DrawerFactoryBase.cs" />
-    <Compile Include="Maps\Views\ViewData.cs" />
     <Compile Include="Maps\Markers\Marker.cs" />
     <Compile Include="Maps\Markers\MarkerManager.cs" />
     <Compile Include="Maps\Views\PointsView.cs" />

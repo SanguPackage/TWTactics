@@ -114,27 +114,27 @@
         </Drawer>
         <Drawer>
           <Type>BorderDrawer</Type>
+          <Icon>Catapult</Icon>
+          <ExtraValue>Yellow</ExtraValue>
+          <Value>Catapult</Value>
+        </Drawer>
+        <Drawer>
+          <Type>BorderDrawer</Type>
           <Icon>Defense</Icon>
           <ExtraValue>White</ExtraValue>
-          <Value>2</Value>
+          <Value>Defense</Value>
         </Drawer>
         <Drawer>
           <Type>BorderDrawer</Type>
           <Icon>Scout</Icon>
           <ExtraValue>Transparant</ExtraValue>
-          <Value>8</Value>
+          <Value>Scout</Value>
         </Drawer>
         <Drawer>
           <Type>BorderDrawer</Type>
           <Icon>Farm</Icon>
           <ExtraValue>Transparant</ExtraValue>
-          <Value>16</Value>
-        </Drawer>
-        <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Catapult</Icon>
-          <ExtraValue>Yellow</ExtraValue>
-          <Value>64</Value>
+          <Value>Farm</Value>
         </Drawer>
       </Drawers>
     </View>

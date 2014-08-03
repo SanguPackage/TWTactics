@@ -241,9 +241,9 @@ namespace TribalWars.Worlds
             foreach (var view in info.Views)
             {
                 ViewBase viewToAdd = CreateView(view.Name, view.Type);
-                foreach (var drawer in view.Drawers)
+                foreach (WorldConfigurationViewsViewDrawersDrawer drawer in view.Drawers)
                 {
-                    viewToAdd.AddDrawer(drawer.Type, drawer.Icon, drawer.BonusIcon, Convert.ToInt32(drawer.Value), drawer.ExtraValue);
+                    viewToAdd.AddDrawer(drawer);
                 }
                 views.Add(viewToAdd);
             }

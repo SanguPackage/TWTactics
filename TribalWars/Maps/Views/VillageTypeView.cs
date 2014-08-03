@@ -1,8 +1,10 @@
 #region Using
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Drawers.VillageDrawers;
 using TribalWars.Tools;
 using TribalWars.Villages;
 
@@ -16,6 +18,15 @@ namespace TribalWars.Maps.Views
     public class VillageTypeView : ViewBase
     {
         #region Fields
+        // High zoom: verschillende IconOrientation
+        // Low zoom: just one with FillMiddle
+        // Each orientation has sortedenumerable of villageType & DrawerData
+        // --> first defined in xml = first come
+        // 
+        // SupportDecorators depends on VillageSize
+        //   
+        private Dictionary<IconOrientation, IEnumerable<DrawerData>> _drawers;
+
         private readonly Dictionary<VillageType, DrawerData> _cache;
         private readonly VillageType[] _importance;
         #endregion
@@ -25,11 +36,12 @@ namespace TribalWars.Maps.Views
             : base(name, true)
         {
             _cache = new Dictionary<VillageType, DrawerData>();
-            _importance = new[] {VillageType.Attack, VillageType.Defense, VillageType.Scout, VillageType.Farm };
+            _importance = new[] {VillageType.Attack, VillageType.Catapult, VillageType.Defense, VillageType.Scout, VillageType.Farm };
         }
         #endregion
 
         #region Public Methods
+        // TODO: Pass the village dimensions here?
         public override DrawerData GetDrawerData(Village village)
         {
             DrawerData data;
@@ -51,12 +63,12 @@ namespace TribalWars.Maps.Views
             return data;
         }
 
-        public override void AddDrawer(string drawerType, string drawerIcon, string drawerBonusIcon, int value, object extraValues)
+        public override void AddDrawer(WorldTemplate.WorldConfigurationViewsViewDrawersDrawer drawer)
         {
-            // Value=VillageType, extraValues=Color for BorderDrawer
-            var type = (VillageType)value;
-            Color color = XmlHelper.GetColor(extraValues.ToString());
-            _cache.Add(type, new DrawerData(drawerType, drawerIcon, drawerBonusIcon, color, value));
+            var villageType = (VillageType) Enum.Parse(typeof (VillageType), drawer.Value);
+
+            Color color = XmlHelper.GetColor(drawer.ExtraValue);
+            _cache.Add(villageType, new DrawerData(drawer.Type, drawer.Icon, drawer.BonusIcon, color, villageType));
         }
         #endregion
     }
