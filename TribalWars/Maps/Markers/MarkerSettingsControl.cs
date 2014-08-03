@@ -215,7 +215,7 @@ namespace TribalWars.Maps.Markers
         {
             _settingProperties = true;
 
-            MarkerView.DataSource = World.Default.GetBackgroundViews(AllowBarbarianViews).ToArray();
+            MarkerView.DataSource = World.Default.Views.GetBackgroundViews(AllowBarbarianViews).ToArray();
             MarkerView.SelectedValue = settings.View;
 
             MarkerActive.Checked = settings.Enabled;

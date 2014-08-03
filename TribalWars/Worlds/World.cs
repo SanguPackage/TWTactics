@@ -41,6 +41,8 @@ namespace TribalWars.Worlds
         #endregion
 
         #region Properties
+        public ViewsCollection Views { get; set; }
+
         /// <summary>
         /// Cache for Players and Tribes Autocomplete
         /// </summary>
@@ -174,10 +176,8 @@ namespace TribalWars.Worlds
             _tribes = new Dictionary<string, Tribe>();
             _villages = new WorldVillagesCollection();
 
-            _backgroundViews = new Dictionary<string, IBackgroundView>();
-            _decorators = new List<IDecoratorView>();
-
             Cache = new AutoCompleteCache();
+            Views = new ViewsCollection();
 
             You = new Player();
         }
@@ -330,65 +330,6 @@ namespace TribalWars.Worlds
         public static void CreateNewWorld(string path, InternalStructure.ServerInfo server)
         {
             InternalStructure.CreateWorld(path, server);
-        }
-        #endregion
-
-        #region Display Views
-        // This View stuff should go into a new Map.Views class...
-
-        private Dictionary<string, IBackgroundView> _backgroundViews;
-        private List<IDecoratorView> _decorators;
-
-        /// <summary>
-        /// Views should be owned by Display but at the time the Builder 
-        /// reads the views, Display is not yet instantiated.
-        /// </summary>
-        public void SetViews(IEnumerable<IBackgroundView> backgroundViews, IEnumerable<IDecoratorView> decorators)
-        {
-            _backgroundViews = backgroundViews.ToDictionary(x => x.Name);
-            _decorators = decorators.ToList();
-        }
-
-        public BackgroundDrawerData GetBackgroundDrawerData(Village village, Marker marker)
-        {
-            BackgroundDrawerData data = _backgroundViews[marker.Settings.View].GetBackgroundDrawer(village);
-            return data;
-        }
-
-        public string WriteViews()
-        {
-            IEnumerable<IView> views = _backgroundViews.Values.OfType<IView>().Union(_decorators);
-
-            var output = new XDocument(
-                new XElement("Views",
-                    views.Select(view => new XElement("View",
-                            new XAttribute("Type", view.Type),
-                            new XAttribute("Name", view.Name),
-                            new XElement("Drawers", view.WriteDrawerXml())))));
-
-            return output.ToString();
-        }
-
-        public IEnumerable<DrawerBase> GetDecoratorDrawers(DrawerFactoryBase drawerFactory, Village village, BackgroundDrawerData mainData)
-        {
-            foreach (IDecoratorView decorators in _decorators)
-            {
-                var drawer = decorators.GetDecoratorDrawer(drawerFactory, village, mainData);
-                if (drawer != null)
-                {
-                    yield return drawer;
-                }
-            }
-        }
-
-        public IEnumerable<string> GetBackgroundViews(bool alsoGetBarbarianViews)
-        {
-            var views = _backgroundViews.Select(x => x.Value);
-            if (!alsoGetBarbarianViews)
-            {
-                views = views.Where(x => x.Name != "Abandoned");
-            }
-            return views.Select(x => x.Name);
         }
         #endregion
 

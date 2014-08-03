@@ -289,7 +289,7 @@ namespace TribalWars.Maps.Drawing
                 if (marker != null)
                 {
                     // Paint village icon/shape
-                    BackgroundDrawerData mainData = World.Default.GetBackgroundDrawerData(village, marker);
+                    BackgroundDrawerData mainData = World.Default.Views.GetBackgroundDrawerData(village, marker);
                     finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
                     if (finalCache != null)
                     {
@@ -298,7 +298,7 @@ namespace TribalWars.Maps.Drawing
                         if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
                         {
                             // Paint extra village decorators
-                            foreach (DrawerBase decorator in World.Default.GetDecoratorDrawers(_drawerFactoryStrategy, village, mainData))
+                            foreach (DrawerBase decorator in World.Default.Views.GetDecoratorDrawers(_drawerFactoryStrategy, village, mainData))
                             {
                                 decorator.PaintVillage(g, mapVillage);
                             }

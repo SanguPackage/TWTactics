@@ -10,6 +10,7 @@ using System.Drawing;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawing;
+using TribalWars.Maps.Drawing.Views;
 using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.Managers;

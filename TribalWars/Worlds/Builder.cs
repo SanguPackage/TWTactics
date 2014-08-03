@@ -101,7 +101,7 @@ namespace TribalWars.Worlds
                 var displaySettings = new DisplaySettings(backgroundColor, continentLines, provinceLines, hideAbandoned, markedOnly);
 
                 // Views
-                ReadViews(newReader);
+                World.Default.Views = ReadViews(newReader);
 
                 // MainMap: Markers
                 r.ReadStartElement();
@@ -141,7 +141,7 @@ namespace TribalWars.Worlds
             }
         }
 
-        private static void ReadViews(XDocument xSets)
+        private static ViewsCollection ReadViews(XDocument xSets)
         {
             var xml =
                 xSets.Descendants("Views")
@@ -175,7 +175,7 @@ namespace TribalWars.Worlds
                     decoratorViews.Add(viewToAdd as IDecoratorView);
                 }
             }
-            World.Default.SetViews(backgroundViews, decoratorViews);
+            return new ViewsCollection(backgroundViews, decoratorViews);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace TribalWars.Worlds
                 w.WriteElementString("HideAbandoned", map.Display.Settings.HideAbandoned.ToString());
                 w.WriteElementString("MarkedOnly", map.Display.Settings.MarkedOnly.ToString());
 
-                w.WriteRaw(World.Default.WriteViews());
+                w.WriteRaw(World.Default.Views.WriteViews());
 
                 w.WriteEndElement();
 
