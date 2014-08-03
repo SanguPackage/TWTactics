@@ -105,16 +105,16 @@
     </View>
     <View>
       <Type>VillageType</Type>
-      <Name>VillageType</Name>
+      <Name>TopRightImages</Name>
       <Drawers>
         <Drawer>
           <ShapeDrawer>BorderDrawer</ShapeDrawer>
           <ShapeDrawerColor>Yellow</ShapeDrawerColor>
-          
+
           <IconDrawer>Attack</IconDrawer>
           <IconOrientation>TopRight</IconOrientation>
           <IconBackground>Blue</IconBackground>
-          
+
           <Value>Attack</Value>
         </Drawer>
         <Drawer>
@@ -124,7 +124,7 @@
           <IconDrawer>Catapult</IconDrawer>
           <IconOrientation>TopRight</IconOrientation>
           <IconBackground>Blue</IconBackground>
-          
+
           <Value>Catapult</Value>
         </Drawer>
         <Drawer>
@@ -134,7 +134,7 @@
           <IconDrawer>Defense</IconDrawer>
           <IconOrientation>TopRight</IconOrientation>
           <IconBackground>Blue</IconBackground>
-          
+
           <Value>Defense</Value>
         </Drawer>
         <Drawer>
@@ -144,7 +144,7 @@
           <IconDrawer>Scout</IconDrawer>
           <IconOrientation>TopRight</IconOrientation>
           <IconBackground></IconBackground>
-          
+
           <Value>Scout</Value>
         </Drawer>
         <Drawer>
@@ -154,10 +154,15 @@
           <IconDrawer>Farm</IconDrawer>
           <IconOrientation>TopRight</IconOrientation>
           <IconBackground></IconBackground>
-          
+
           <Value>Farm</Value>
         </Drawer>
-
+      </Drawers>
+    </View>
+    <View>
+      <Type>VillageType</Type>
+      <Name>Noble</Name>
+      <Drawers>
         <Drawer>
           <ShapeDrawer>BorderDrawer</ShapeDrawer>
           <ShapeDrawerColor>Transparant</ShapeDrawerColor>
@@ -168,6 +173,12 @@
 
           <Value>Noble</Value>
         </Drawer>
+      </Drawers>
+    </View>
+    <View>
+      <Type>VillageType</Type>
+      <Name>Comments</Name>
+      <Drawers>
         <Drawer>
           <ShapeDrawer>BorderDrawer</ShapeDrawer>
           <ShapeDrawerColor>Transparant</ShapeDrawerColor>
