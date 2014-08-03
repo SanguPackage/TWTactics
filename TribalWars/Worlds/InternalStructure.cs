@@ -159,7 +159,7 @@ namespace TribalWars.Worlds
             /// Reads world.xml
             /// Downloads the data if necessary
             /// </summary>
-            public bool SetPath(string world)
+            public void SetPath(string world)
             {
                 try
                 {
@@ -232,8 +232,6 @@ namespace TribalWars.Worlds
                     MessageBox.Show(ex.Message + Environment.NewLine + "Loading world: " + world);
                     throw;
                 }
-
-                return _currentData != string.Empty;
             }
 
             /// <summary>

@@ -14,27 +14,27 @@ namespace TribalWars.Maps.Drawers.VillageDrawers
     public sealed class IconDrawerDecorator : DrawerBase
     {
         #region Fields
-        private readonly Bitmap _bitmap;
-        private readonly bool _comments;
-        private readonly bool _nobles;
+        private readonly Image _image;
+        //private readonly bool _comments;
+        //private readonly bool _nobles;
 
-        private static readonly Bitmap CommentsBitmap;
-        private static readonly Bitmap NoblesBitmap;
+        //private static readonly Bitmap CommentsBitmap;
+        //private static readonly Bitmap NoblesBitmap;
         #endregion
 
         #region Constructors
-        public IconDrawerDecorator(VillageType type, Bitmap icon)
+        public IconDrawerDecorator(DecoratorDrawerData.IconData data)
         {
-            _bitmap = icon;
-            if ((type & VillageType.Comments) == VillageType.Comments) _comments = true;
-            if ((type & VillageType.Noble) == VillageType.Noble) _nobles = true;
+            _image = data.Icon;
+            //if ((type & VillageType.Comments) == VillageType.Comments) _comments = true;
+            //if ((type & VillageType.Noble) == VillageType.Noble) _nobles = true;
         }
 
-        static IconDrawerDecorator()
-        {
-            CommentsBitmap = Other.Note;
-            NoblesBitmap = Other.Noble;
-        }
+        //static IconDrawerDecorator()
+        //{
+        //    CommentsBitmap = Other.Note;
+        //    NoblesBitmap = Other.Noble;
+        //}
         #endregion
 
         #region Public Methods
@@ -43,31 +43,20 @@ namespace TribalWars.Maps.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (_bitmap != null)
+            if (_image != null)
             {
-                g.DrawImage(_bitmap, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
+                g.DrawImage(_image, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
             }
 
-            if (_comments)
-            {
-                g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
-            }
+            //if (_comments)
+            //{
+            //    g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
+            //}
 
-            if (_nobles)
-            {
-                g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
-            }
-        }
-
-        /// <summary>
-        /// Dispose of unmanaged resources
-        /// </summary>
-        public override void Dispose(bool disposing)
-        {
-            if (_bitmap != null)
-            {
-                _bitmap.Dispose();
-            }
+            //if (_nobles)
+            //{
+            //    g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
+            //}
         }
         #endregion
     }

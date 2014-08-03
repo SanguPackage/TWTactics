@@ -12,6 +12,7 @@ using TribalWars.Maps;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Markers;
 using TribalWars.Maps.Views;
 using TribalWars.Villages;
 using TribalWars.WorldTemplate;
@@ -21,6 +22,16 @@ using Monitor = TribalWars.Maps.Monitoring.Monitor;
 
 namespace TribalWars.Worlds
 {
+    public interface IBackgroundView : IView
+    {
+        BackgroundDrawerData GetBackgroundDrawer(Village village);
+    }
+
+    public interface IDecoratorView : IView
+    {
+        DrawerBase GetDecoratorDrawer(DrawerFactoryBase drawerFactory, Village village, BackgroundDrawerData mainData);
+    }
+
     /// <summary>
     /// Defines a TW world
     /// </summary>
@@ -34,7 +45,6 @@ namespace TribalWars.Worlds
 
         private FileStream _villageTypes;
         private readonly Map _miniMap;
-        private Dictionary<string, ViewBase> _views;
 
         private static Regex _villagePattern;
         #endregion
@@ -173,7 +183,8 @@ namespace TribalWars.Worlds
             _tribes = new Dictionary<string, Tribe>();
             _villages = new WorldVillagesCollection();
 
-            _views = new Dictionary<string, ViewBase>();
+            _backgroundViews = new Dictionary<string, IBackgroundView>();
+            _decorators = new List<IDecoratorView>();
 
             Cache = new AutoCompleteCache();
 
@@ -332,31 +343,48 @@ namespace TribalWars.Worlds
         #endregion
 
         #region Display Views
-        /// <summary>
-        /// Gets all map views
-        /// </summary>
-        private IEnumerable<ViewBase> Views
-        {
-            get { return _views.Values; }
-        }
+        private Dictionary<string, IBackgroundView> _backgroundViews;
+        private List<IDecoratorView> _decorators;
+
+        ///// <summary>
+        ///// Gets all map views
+        ///// </summary>
+        //private IEnumerable<ViewBase> Views
+        //{
+        //    get { return _views.Values; }
+        //}
 
         /// <summary>
         /// Views should be owned by Display but at the time the Builder 
         /// reads the views, Display is not yet instantiated.
         /// </summary>
-        public void SetViews(IEnumerable<ViewBase> views)
+        public void SetViews(IEnumerable<IBackgroundView> backgroundViews, IEnumerable<IDecoratorView> decorators)
         {
-            _views = views.ToDictionary(x => x.Name);
+            _backgroundViews = backgroundViews.ToDictionary(x => x.Name);
+            _decorators = decorators.ToList();
         }
 
-        public DrawerData GetDrawerData(Village village, string view)
+        public BackgroundDrawerData GetBackgroundDrawerData(Village village, Marker marker)
         {
-            return _views[view].GetDrawerData(village);
+            BackgroundDrawerData data = _backgroundViews[marker.Settings.View].GetBackgroundDrawer(village);
+            return data;
+        }
+
+        public IEnumerable<DrawerBase> GetDecoratorDrawers(DrawerFactoryBase drawerFactory, Village village, BackgroundDrawerData mainData)
+        {
+            foreach (IDecoratorView decorators in _decorators)
+            {
+                var drawer = decorators.GetDecoratorDrawer(drawerFactory, village, mainData);
+                if (drawer != null)
+                {
+                    yield return drawer;
+                }
+            }
         }
 
         public IEnumerable<string> GetBackgroundViews(bool alsoGetBarbarianViews)
         {
-            var views = Views.Where(x => x.Background);
+            var views = _backgroundViews.Select(x => x.Value);
             if (!alsoGetBarbarianViews)
             {
                 views = views.Where(x => x.Name != "Abandoned");

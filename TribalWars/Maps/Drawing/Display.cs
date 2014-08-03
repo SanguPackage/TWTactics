@@ -289,7 +289,8 @@ namespace TribalWars.Maps
                 if (marker != null)
                 {
                     // Paint village icon/shape
-                    DrawerData mainData = World.Default.GetDrawerData(village, marker.Settings.View);
+                    BackgroundDrawerData mainData = World.Default.GetBackgroundDrawerData(village, marker);
+                    //finalCache = World.Default.GetBackgroundDrawerData(_drawerFactoryStrategy, village, marker);
                     finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
                     if (finalCache != null)
                     {
@@ -298,15 +299,20 @@ namespace TribalWars.Maps
                         if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
                         {
                             // Paint extra village decorators
-                            DrawerData data = World.Default.GetDrawerData(village, "TopRight");
-                            if (data != null)
+                            foreach (DrawerBase decorator in World.Default.GetDecoratorDrawers(_drawerFactoryStrategy, village, mainData))
                             {
-                                DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
-                                if (decoratorVillageType != null)
-                                {
-                                    decoratorVillageType.PaintVillage(g, mapVillage);
-                                }
+                                decorator.PaintVillage(g, mapVillage);
                             }
+
+                            //DrawerData data = World.Default.GetDrawerData(village, "TopRight");
+                            //if (data != null)
+                            //{
+                            //    DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
+                            //    if (decoratorVillageType != null)
+                            //    {
+                            //        decoratorVillageType.PaintVillage(g, mapVillage);
+                            //    }
+                            //}
                         }
                     }
                 }

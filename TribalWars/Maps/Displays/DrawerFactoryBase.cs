@@ -132,7 +132,7 @@ namespace TribalWars.Maps.Displays
         /// <param name="bonusType">Bonus villages have a different icon</param>
         /// <param name="data">The shape of the drawer</param>
         /// <param name="colors">The colors for the drawer</param>
-        public DrawerBase CreateVillageDrawer(Village.BonusType bonusType, DrawerData data, Marker colors)
+        public DrawerBase CreateVillageDrawer(Village.BonusType bonusType, BackgroundDrawerData data, Marker colors)
         {
             DrawerBase drawer = CreateVillageDrawerCore(bonusType, data, colors);
             return drawer;
@@ -144,10 +144,10 @@ namespace TribalWars.Maps.Displays
         /// <param name="data">The shape of the drawer</param>
         /// <param name="colors">The colors for the drawer</param>
         /// <param name="mainData">The data for the main drawer (used for BorderDrawer)</param>
-        public DrawerBase CreateVillageDecoratorDrawer(DrawerData data, Marker colors, DrawerData mainData)
+        public DrawerBase CreateVillageDecoratorDrawer(DecoratorDrawerData data, BackgroundDrawerData mainData)
         {
             Debug.Assert(SupportDecorators);
-            DrawerBase drawer = CreateVillageDecoratorDrawerCore(data, colors, mainData);
+            DrawerBase drawer = CreateVillageDecoratorDrawerCore(data, mainData);
             return drawer;
         }
 
@@ -177,9 +177,9 @@ namespace TribalWars.Maps.Displays
         /// </summary>
         protected abstract VillageDimensions CalculateVillageDimensions();
 
-        protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, DrawerData data, Marker marker);
+        protected abstract DrawerBase CreateVillageDrawerCore(Village.BonusType bonusType, BackgroundDrawerData data, Marker marker);
 
-        protected abstract DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData);
+        protected abstract DrawerBase CreateVillageDecoratorDrawerCore(DecoratorDrawerData data, BackgroundDrawerData mainData);
         #endregion
     }
 }

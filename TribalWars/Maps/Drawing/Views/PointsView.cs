@@ -2,8 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Xml.Linq;
+using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Markers;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 
 #endregion
 
@@ -12,34 +16,42 @@ namespace TribalWars.Maps.Views
     /// <summary>
     /// Display villages based on the amount of points
     /// </summary>
-    public sealed class PointsView : ViewBase
+    public sealed class PointsView : ViewBase, IBackgroundView
     {
         #region Fields
-        private readonly Dictionary<int, DrawerData> _drawers;
+        private readonly Dictionary<int, BackgroundDrawerData> _drawers;
         #endregion
 
         #region Constructors
         public PointsView(string name)
-            : base(name, false)
+            : base(name)
         {
-            _drawers = new Dictionary<int, DrawerData>();
+            _drawers = new Dictionary<int, BackgroundDrawerData>();
         }
         #endregion
 
         #region Public Methods
-        public override DrawerData GetDrawerData(Village village)
+        public BackgroundDrawerData GetBackgroundDrawer(Village village)
         {
-            foreach (KeyValuePair<int, DrawerData> pair in _drawers)
+            foreach (KeyValuePair<int, BackgroundDrawerData> pair in _drawers)
             {
-                if (village.Points < pair.Key) return pair.Value;
+                if (village.Points < pair.Key)
+                {
+                    return pair.Value;
+                }
             }
             return null;
         }
 
-        public override void AddDrawer(WorldTemplate.WorldConfigurationViewsViewDrawersDrawer drawer)
+        public override void ReadDrawerXml(XElement drawer)
         {
-            Debug.Assert(drawer.ShapeDrawerColor == null, "Should always be null for PointsViews");
-            _drawers.Add(Convert.ToInt32(drawer.Value), new DrawerData(drawer.ShapeDrawer, drawer.IconDrawer, drawer.BonusIconDrawer, null));
+            int pointsTreshold = int.Parse(drawer.Attribute("VillagePoints").Value);
+            var data = new BackgroundDrawerData(
+                drawer.Attribute("ShapeDrawer").Value,
+                drawer.Attribute("IconDrawer").Value,
+                drawer.Attribute("BonusIconDrawer").Value);
+
+            _drawers.Add(pointsTreshold, data);
         }
         #endregion
     }

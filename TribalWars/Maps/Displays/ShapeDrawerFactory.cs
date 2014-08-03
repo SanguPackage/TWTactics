@@ -41,7 +41,7 @@ namespace TribalWars.Maps.Displays
         #endregion
 
         #region Public Methods
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, BackgroundDrawerData data, Marker marker)
         {
             switch (data.ShapeDrawer)
             {
@@ -56,14 +56,13 @@ namespace TribalWars.Maps.Displays
             }
         }
 
-        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData)
+        protected override DrawerBase CreateVillageDecoratorDrawerCore(DecoratorDrawerData data, BackgroundDrawerData mainData)
         {
-            switch (data.ShapeDrawer)
+            switch (data.Shape.Drawer)
             {
                 case "BorderDrawer":
-                    var color = (Color)data.ExtraDrawerInfo;
                     var drawer = mainData.ShapeDrawer == "EllipseDrawer" ? BorderDrawer.EllipseDrawer : BorderDrawer.RectangleDrawer;
-                    return new BorderDrawer(color, drawer);
+                    return new BorderDrawer(data.Shape.Color, drawer);
 
                 default:
                     return null;

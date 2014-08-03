@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using TribalWars.Maps;
@@ -91,9 +92,15 @@ namespace TribalWars.Worlds
                 bool provinceLines = Convert.ToBoolean(r.ReadElementString("LinesProvince"));
                 bool hideAbandoned = Convert.ToBoolean(r.ReadElementString("HideAbandoned"));
                 bool markedOnly = Convert.ToBoolean(r.ReadElementString("MarkedOnly"));
+
+                r.Skip();
+
                 r.ReadEndElement();
 
                 var displaySettings = new DisplaySettings(backgroundColor, continentLines, provinceLines, hideAbandoned, markedOnly);
+
+                // Views
+                ReadViews(newReader);
 
                 // MainMap: Markers
                 r.ReadStartElement();
@@ -131,6 +138,43 @@ namespace TribalWars.Worlds
 
                 return displaySettings;
             }
+        }
+
+        private static void ReadViews(XDocument xSets)
+        {
+            var xml =
+                xSets.Descendants("Views")
+                     .First()
+                     .Elements("View")
+                     .Select(view => new
+                         {
+                             Type = view.Attribute("Type").Value,
+                             Name = view.Attribute("Name").Value,
+                             Drawers = view.Element("Drawers").Elements()
+                         });
+
+            var backgroundViews = new List<IBackgroundView>();
+            var decoratorViews = new List<IDecoratorView>();
+            foreach (var view in xml)
+            {
+                ViewBase viewToAdd = CreateView(view.Name, view.Type);
+                foreach (var drawer in view.Drawers)
+                {
+                    viewToAdd.ReadDrawerXml(drawer);
+                }
+
+                var toAddAsBackground = viewToAdd as IBackgroundView;
+                if (toAddAsBackground != null)
+                {
+                    backgroundViews.Add(toAddAsBackground);
+                }
+                else
+                {
+                    Debug.Assert(viewToAdd is IDecoratorView);
+                    decoratorViews.Add(viewToAdd as IDecoratorView);
+                }
+            }
+            World.Default.SetViews(backgroundViews, decoratorViews);
         }
 
         /// <summary>
@@ -212,7 +256,7 @@ namespace TribalWars.Worlds
         public static void ReadWorld(string worldXmlPath)
         {
             World w = World.Default;
-            var info = WorldTemplate.WorldConfiguration.LoadFromFile(worldXmlPath);
+            var info = WorldConfiguration.LoadFromFile(worldXmlPath);
 
             w.Settings.Server = new Uri(info.Server);
             w.Settings.Name = info.Name;
@@ -236,18 +280,6 @@ namespace TribalWars.Worlds
             w.Settings.TwStats.TribeGraph = info.TWStatsTribeGraph;
 
             w.Settings.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
-
-            var views = new List<ViewBase>();
-            foreach (var view in info.Views)
-            {
-                ViewBase viewToAdd = CreateView(view.Name, view.Type);
-                foreach (WorldConfigurationViewsViewDrawersDrawer drawer in view.Drawers)
-                {
-                    viewToAdd.AddDrawer(drawer);
-                }
-                views.Add(viewToAdd);
-            }
-            World.Default.SetViews(views);
 
             WorldBuildings.Default.SetBuildings(ReadWorldBuildings(info.Buildings));
             WorldUnits.Default.SetUnits(ReadWorldUnits(info.Units));

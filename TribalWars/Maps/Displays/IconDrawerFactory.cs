@@ -163,7 +163,7 @@ namespace TribalWars.Maps.Displays
             return Math.Max(newZoom, Zoom.Current);
         }
 
-        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, DrawerData data, Marker marker)
+        protected override DrawerBase CreateVillageDrawerCore(Village.BonusType villageBonus, BackgroundDrawerData data, Marker marker)
         {
             string iconName = villageBonus == Village.BonusType.None ? data.IconDrawer : data.BonusIconDrawer;
             if (string.IsNullOrEmpty(iconName))
@@ -179,19 +179,14 @@ namespace TribalWars.Maps.Displays
         /// <summary>
         /// A VillageType decorator (off, def, ... icons)
         /// </summary>
-        protected override DrawerBase CreateVillageDecoratorDrawerCore(DrawerData data, Marker colors, DrawerData mainData)
+        protected override DrawerBase CreateVillageDecoratorDrawerCore(DecoratorDrawerData data, BackgroundDrawerData mainData)
         {
-            if ((VillageType)data.Value == VillageType.None || Zoom.Current != 1)
+            if (Zoom.Current > 2)
             {
                 return null;
             }
 
-            Bitmap icon = null;
-            if (!string.IsNullOrEmpty(data.IconDrawer))
-            {
-                icon = (Bitmap)Icons.Other.ResourceManager.GetObject(data.IconDrawer);
-            }
-            return new IconDrawerDecorator((VillageType)data.Value, icon);
+            return new IconDrawerDecorator(data.Icon);
         }
 
         /// <summary>
