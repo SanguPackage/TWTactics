@@ -162,11 +162,21 @@
           <ShapeDrawer>BorderDrawer</ShapeDrawer>
           <ShapeDrawerColor>Transparant</ShapeDrawerColor>
 
-          <IconDrawer>Farm</IconDrawer>
-          <IconOrientation>TopRight</IconOrientation>
+          <IconDrawer>Noble</IconDrawer>
+          <IconOrientation>BottomRight</IconOrientation>
+          <IconBackground>Yellow</IconBackground>
+
+          <Value>Noble</Value>
+        </Drawer>
+        <Drawer>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Transparant</ShapeDrawerColor>
+
+          <IconDrawer>Note</IconDrawer>
+          <IconOrientation>BottomLeft</IconOrientation>
           <IconBackground></IconBackground>
 
-          <Value>Farm</Value>
+          <Value>Comments</Value>
         </Drawer>
 
       </Drawers>

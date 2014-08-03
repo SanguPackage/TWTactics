@@ -18,7 +18,7 @@ namespace TribalWars.Maps.Views
     public class VillageTypeView : ViewBase
     {
         #region Fields
-        // High zoom: verschillende IconOrientation
+        // TODO: High zoom: verschillende IconOrientation
         // Low zoom: just one with FillMiddle
         // Each orientation has sortedenumerable of villageType & DrawerData
         // --> first defined in xml = first come
@@ -65,6 +65,10 @@ namespace TribalWars.Maps.Views
 
         public override void AddDrawer(WorldTemplate.WorldConfigurationViewsViewDrawersDrawer drawer)
         {
+            // TODO:
+            //drawer.IconOrientation
+            //drawer.IconBackground
+
             var villageType = (VillageType) Enum.Parse(typeof (VillageType), drawer.Value);
 
             Color color = XmlHelper.GetColor(drawer.ShapeDrawerColor);

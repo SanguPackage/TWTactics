@@ -597,6 +597,9 @@ namespace TribalWars.WorldTemplate
         private string iconOrientationField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        private string iconBackgroundField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private string bonusIconDrawerField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -611,6 +614,8 @@ namespace TribalWars.WorldTemplate
         public string IconDrawer { get; set; }
 
         public string IconOrientation { get; set; }
+
+        public string IconBackground { get; set; }
 
         public string BonusIconDrawer { get; set; }
 

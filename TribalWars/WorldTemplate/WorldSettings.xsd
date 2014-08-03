@@ -39,6 +39,7 @@
                                 <xs:element name="ShapeDrawerColor" type="xs:string" minOccurs="0" />
                                 <xs:element name="IconDrawer" type="xs:string" minOccurs="0" />
                                 <xs:element name="IconOrientation" type="xs:string" minOccurs="0" />
+                                <xs:element name="IconBackground" type="xs:string" minOccurs="0" />
                                 <xs:element name="BonusIconDrawer" type="xs:string" minOccurs="0" />
                                 <xs:element name="Value" type="xs:string" minOccurs="0" />
                               </xs:sequence>
