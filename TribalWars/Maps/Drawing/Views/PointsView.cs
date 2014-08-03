@@ -1,18 +1,14 @@
 #region Using
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
-using TribalWars.Maps.Displays;
-using TribalWars.Maps.Drawers;
-using TribalWars.Maps.Markers;
+using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
 #endregion
 
-namespace TribalWars.Maps.Views
+namespace TribalWars.Maps.Drawing.Views
 {
     /// <summary>
     /// Display villages based on the amount of points

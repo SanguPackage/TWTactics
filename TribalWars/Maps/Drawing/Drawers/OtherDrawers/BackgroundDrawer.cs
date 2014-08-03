@@ -3,7 +3,7 @@ using System.Drawing;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.OtherDrawers
+namespace TribalWars.Maps.Drawing.Drawers.OtherDrawers
 {
     /// <summary>
     /// Draws a bitmap to the map

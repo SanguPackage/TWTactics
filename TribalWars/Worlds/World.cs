@@ -12,9 +12,9 @@ using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Displays;
-using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Drawing.Drawers;
+using TribalWars.Maps.Drawing.Views;
 using TribalWars.Maps.Markers;
-using TribalWars.Maps.Views;
 using TribalWars.Villages;
 using TribalWars.WorldTemplate;
 using Monitor = TribalWars.Maps.Monitoring.Monitor;
@@ -23,16 +23,6 @@ using Monitor = TribalWars.Maps.Monitoring.Monitor;
 
 namespace TribalWars.Worlds
 {
-    public interface IBackgroundView : IView
-    {
-        BackgroundDrawerData GetBackgroundDrawer(Village village);
-    }
-
-    public interface IDecoratorView : IView
-    {
-        DrawerBase GetDecoratorDrawer(DrawerFactoryBase drawerFactory, Village village, BackgroundDrawerData mainData);
-    }
-
     /// <summary>
     /// Defines a TW world
     /// </summary>
@@ -344,7 +334,7 @@ namespace TribalWars.Worlds
         #endregion
 
         #region Display Views
-        // This View stuff should go into Map.View...
+        // This View stuff should go into a new Map.Views class...
 
         private Dictionary<string, IBackgroundView> _backgroundViews;
         private List<IDecoratorView> _decorators;

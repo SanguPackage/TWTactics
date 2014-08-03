@@ -14,6 +14,64 @@
    <LinesProvince>True</LinesProvince>
    <HideAbandoned>False</HideAbandoned>
    <MarkedOnly>False</MarkedOnly>
+    <Views>
+      <View Type="Points" Name="Default">
+        <Drawers>
+          <Drawer VillagePoints="300" ShapeDrawer="EllipseDrawer" IconDrawer="village1" BonusIconDrawer="bvillage1" />
+          <Drawer VillagePoints="1000" ShapeDrawer="EllipseDrawer" IconDrawer="village2" BonusIconDrawer="bvillage2" />
+          <Drawer VillagePoints="3000" ShapeDrawer="EllipseDrawer" IconDrawer="village3" BonusIconDrawer="bvillage3" />
+          <Drawer VillagePoints="9000" ShapeDrawer="RectangleDrawer" IconDrawer="village4" BonusIconDrawer="bvillage4" />
+          <Drawer VillagePoints="12000" ShapeDrawer="RectangleDrawer" IconDrawer="village5" BonusIconDrawer="bvillage5" />
+          <Drawer VillagePoints="99999" ShapeDrawer="RectangleDrawer" IconDrawer="village6" BonusIconDrawer="bvillage6" />
+        </Drawers>
+      </View>
+      <View Type="Points" Name="Abandoned">
+        <Drawers>
+          <Drawer VillagePoints="300" ShapeDrawer="EllipseDrawer" IconDrawer="barbarian1" BonusIconDrawer="bbarbarian1" />
+          <Drawer VillagePoints="1000" ShapeDrawer="EllipseDrawer" IconDrawer="barbarian2" BonusIconDrawer="bbarbarian2" />
+          <Drawer VillagePoints="3000" ShapeDrawer="EllipseDrawer" IconDrawer="barbarian3" BonusIconDrawer="bbarbarian3" />
+          <Drawer VillagePoints="9000" ShapeDrawer="RectangleDrawer" IconDrawer="barbarian4" BonusIconDrawer="bbarbarian4" />
+          <Drawer VillagePoints="12000" ShapeDrawer="RectangleDrawer" IconDrawer="barbarian5" BonusIconDrawer="bbarbarian5" />
+          <Drawer VillagePoints="99999" ShapeDrawer="RectangleDrawer" IconDrawer="barbarian6" BonusIconDrawer="bbarbarian6" />
+        </Drawers>
+      </View>
+      <View Type="VillageType" Name="TopRight">
+        <Drawers>
+          <Drawer VillageType="Attack">
+            <Shape Drawer="BorderDrawer" Color="Yellow" />
+            <Icon Icon="Attack" Orientation="TopRight" Background="Blue" />
+          </Drawer>
+          <Drawer VillageType="Catapult">
+            <Shape Drawer="BorderDrawer" Color="Yellow" />
+            <Icon Icon="Catapult" Orientation="TopRight" Background="Blue" />
+          </Drawer>
+          <Drawer VillageType="Defense">
+            <Shape Drawer="BorderDrawer" Color="Yellow" />
+            <Icon Icon="Defense" Orientation="TopRight" Background="Blue" />
+          </Drawer>
+          <Drawer VillageType="Scout">
+            <Icon Icon="Scout" Orientation="TopRight" />
+          </Drawer>
+          <Drawer VillageType="Farm">
+            <Icon Icon="Farm" Orientation="TopRight" />
+          </Drawer>
+        </Drawers>
+      </View>
+      <View Type="VillageType" Name="Noble">
+        <Drawers>
+          <Drawer VillageType="Noble">
+            <Icon Icon="Noble" Orientation="BottomRight" />
+          </Drawer>
+        </Drawers>
+      </View>
+      <View Type="VillageType" Name="Comments">
+        <Drawers>
+          <Drawer VillageType="Comments">
+            <Icon Icon="Note" Orientation="BottomLeft" />
+          </Drawer>
+        </Drawers>
+      </View>
+    </Views>
   </Display>
   <Markers>
     

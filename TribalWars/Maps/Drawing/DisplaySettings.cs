@@ -3,7 +3,7 @@ using System.Drawing;
 using TribalWars.Maps.Displays;
 using TribalWars.Tools;
 
-namespace TribalWars.Maps
+namespace TribalWars.Maps.Drawing
 {
     /// <summary>
     /// Settings for Display

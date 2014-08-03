@@ -4,7 +4,7 @@ using System.Drawing;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers
+namespace TribalWars.Maps.Drawing.Drawers
 {
     /// <summary>
     /// Base class for map drawers

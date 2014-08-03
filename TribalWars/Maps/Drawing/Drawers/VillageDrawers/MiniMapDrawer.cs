@@ -3,7 +3,7 @@ using System.Drawing;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.VillageDrawers
+namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws village rectangles

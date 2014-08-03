@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
 

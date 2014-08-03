@@ -6,7 +6,7 @@ using TribalWars.Maps.Markers;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.VillageDrawers
+namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws village ellipses with optional extra marking

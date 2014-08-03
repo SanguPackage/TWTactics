@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
+using TribalWars.Maps.Drawing;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;

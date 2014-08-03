@@ -266,6 +266,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Drawing\Drawers\BackgroundDrawerData.cs" />
+    <Compile Include="Maps\Drawing\Views\IView.cs" />
     <Compile Include="Maps\Icons\Background.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -327,7 +329,7 @@
     <Compile Include="Maps\Drawing\DisplaySettings.cs" />
     <Compile Include="Maps\Displays\MiniMapDrawerFactory.cs" />
     <Compile Include="Maps\Displays\VillageDimensions.cs" />
-    <Compile Include="Maps\Drawing\Drawers\DrawerData.cs" />
+    <Compile Include="Maps\Drawing\Drawers\DecoratorDrawerData.cs" />
     <Compile Include="Maps\Drawing\Drawers\DrawerBase.cs" />
     <Compile Include="Maps\Drawing\Drawers\OtherDrawers\BackgroundDrawer.cs" />
     <Compile Include="Villages\Buildings\BuildingImages.Designer.cs">

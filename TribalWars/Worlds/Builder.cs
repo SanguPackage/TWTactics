@@ -9,9 +9,10 @@ using System.Xml;
 using System.Xml.Linq;
 using TribalWars.Maps;
 using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing;
+using TribalWars.Maps.Drawing.Views;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Monitoring;
-using TribalWars.Maps.Views;
 using TribalWars.Tools;
 using System.Globalization;
 using TribalWars.Villages;
@@ -215,9 +216,7 @@ namespace TribalWars.Worlds
                 w.WriteElementString("HideAbandoned", map.Display.Settings.HideAbandoned.ToString());
                 w.WriteElementString("MarkedOnly", map.Display.Settings.MarkedOnly.ToString());
 
-                //w.WriteStartElement("Views");
                 w.WriteRaw(World.Default.WriteViews());
-                //w.WriteEndElement();
 
                 w.WriteEndElement();
 

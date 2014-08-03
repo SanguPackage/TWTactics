@@ -1,57 +1,43 @@
-#region Using
-
-#endregion
-
 using System.Drawing;
-using TribalWars.Maps.Drawers.VillageDrawers;
-using TribalWars.Villages;
+using TribalWars.Maps.Drawing.Drawers.VillageDrawers;
 
-namespace TribalWars.Maps.Drawers
+namespace TribalWars.Maps.Drawing.Drawers
 {
     /// <summary>
     /// Holds the data for creating a DrawerBase
     /// </summary>
-    public sealed class BackgroundDrawerData
+    public sealed class DecoratorDrawerData
     {
         #region Properties
         /// <summary>
-        /// Gets or sets which shapedrawer to use
+        /// The data for shapes display (rectangles)
         /// </summary>
-        public string ShapeDrawer { get; private set; }
+        public ShapeData Shape { get; set; }
 
         /// <summary>
-        /// Gets or sets which icondrawer to use
+        /// The data for tw icon display
         /// </summary>
-        public string IconDrawer { get; private set; }
-
-        /// <summary>
-        /// Gets or sets which icondrawer to use when it is a bonus village
-        /// </summary>
-        public string BonusIconDrawer { get; private set; }
+        public IconData Icon { get; set; }
         #endregion
 
         #region Constructors
-        public BackgroundDrawerData(string shape, string icon, string bonusIcon)
+        public DecoratorDrawerData(ShapeData shape, IconData icon)
         {
-            ShapeDrawer = shape;
-            IconDrawer = icon;
-            BonusIconDrawer = bonusIcon;
+            Shape = shape;
+            Icon = icon;
         }
         #endregion
 
         #region Public Methods
         public override string ToString()
         {
-            return string.Format("Shape:{0}, Icon:{1}", ShapeDrawer, IconDrawer);
+            return string.Format("Shape=({0}) | Icon=({1})", Shape, Icon);
         }
         #endregion
-    }
 
-    /// <summary>
-    /// Holds the data for creating a DrawerBase
-    /// </summary>
-    public sealed class DecoratorDrawerData
-    {
+        /// <summary>
+        /// The data when in rectangle display
+        /// </summary>
         public class ShapeData
         {
             public string Drawer { get; set; }
@@ -70,6 +56,9 @@ namespace TribalWars.Maps.Drawers
             }
         }
 
+        /// <summary>
+        /// The data when in TW images display
+        /// </summary>
         public class IconData
         {
             public Image Icon { get; set; }
@@ -94,26 +83,5 @@ namespace TribalWars.Maps.Drawers
                 return string.Format("{0}, Orientation={1}, Background={2}", Icon, Orientation, Background);
             }
         }
-
-        #region Properties
-        public ShapeData Shape { get; set; }
-
-        public IconData Icon { get; set; }
-        #endregion
-
-        #region Constructors
-        public DecoratorDrawerData(ShapeData shape, IconData icon)
-        {
-            Shape = shape;
-            Icon = icon;
-        }
-        #endregion
-
-        #region Public Methods
-        public override string ToString()
-        {
-            return string.Format("Shape=({0}) | Icon=({1})", Shape, Icon);
-        }
-        #endregion
     }
 }

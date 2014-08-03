@@ -4,7 +4,7 @@ using System.Drawing;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.VillageDrawers
+namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws a border around a ShapeDrawer

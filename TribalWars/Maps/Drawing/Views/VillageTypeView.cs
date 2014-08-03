@@ -5,16 +5,15 @@ using System.Drawing;
 using System.Linq;
 using System.Xml.Linq;
 using TribalWars.Maps.Displays;
-using TribalWars.Maps.Drawers;
-using TribalWars.Maps.Drawers.VillageDrawers;
-using TribalWars.Maps.Markers;
+using TribalWars.Maps.Drawing.Drawers;
+using TribalWars.Maps.Drawing.Drawers.VillageDrawers;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
 #endregion
 
-namespace TribalWars.Maps.Views
+namespace TribalWars.Maps.Drawing.Views
 {
     /// <summary>
     /// Village decorator to add an image indicating the village type (Def, Off, ...)
@@ -22,9 +21,6 @@ namespace TribalWars.Maps.Views
     public class VillageTypeView : ViewBase, IDecoratorView
     {
         #region Fields
-        // TODO: High zoom: verschillende IconOrientation
-        // Low zoom: just one with FillMiddle
-
         private readonly Dictionary<VillageType, DecoratorDrawerData> _cache;
         #endregion
 
@@ -70,7 +66,7 @@ namespace TribalWars.Maps.Views
             var xIcon = drawer.Element("Icon");
             if (xIcon != null)
             {
-                Color backgroundColor = null;
+                Color? backgroundColor = null;
                 var xBackgroundColor = xIcon.Attribute("Background");
                 if (xBackgroundColor != null)
                 {
@@ -118,7 +114,7 @@ namespace TribalWars.Maps.Views
                 list.Add(drawer);
             }
 
-            return list/*.Cast<object>()*/.ToArray();
+            return list.ToArray();
         }
         #endregion
     }

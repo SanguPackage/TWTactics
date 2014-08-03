@@ -1,28 +1,9 @@
 #region Imports
-using System;
-using System.Collections.Generic;
 using System.Xml.Linq;
-using TribalWars.Maps.Displays;
-using TribalWars.Maps.Drawers;
-using TribalWars.Maps.Markers;
-using TribalWars.Villages;
-using TribalWars.WorldTemplate;
-
 #endregion
 
-namespace TribalWars.Maps.Views
+namespace TribalWars.Maps.Drawing.Views
 {
-    public interface IView
-    {
-        string Name { get; set; }
-
-        string Type { get; set; }
-
-        void ReadDrawerXml(XElement drawer);
-
-        object[] WriteDrawerXml();
-    }
-
     /// <summary>
     /// The base class for a representation (or view)
     /// of the map

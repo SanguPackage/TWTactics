@@ -21,39 +21,6 @@
         <xs:element name="TWStatsPlayerGraph" type="xs:string" minOccurs="0" />
         <xs:element name="TWStatsTribeGraph" type="xs:string" minOccurs="0" />
         <xs:element name="WorldDatScenery" type="xs:string" minOccurs="0" />
-        <xs:element name="Views" minOccurs="0" maxOccurs="unbounded">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="View" minOccurs="0" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="Type" type="xs:string" minOccurs="0" />
-                    <xs:element name="Name" type="xs:string" minOccurs="0" />
-                    <xs:element name="Drawers" minOccurs="0" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="Drawer" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ShapeDrawer" type="xs:string" minOccurs="0" />
-                                <xs:element name="ShapeDrawerColor" type="xs:string" minOccurs="0" />
-                                <xs:element name="IconDrawer" type="xs:string" minOccurs="0" />
-                                <xs:element name="IconOrientation" type="xs:string" minOccurs="0" />
-                                <xs:element name="IconBackground" type="xs:string" minOccurs="0" />
-                                <xs:element name="BonusIconDrawer" type="xs:string" minOccurs="0" />
-                                <xs:element name="Value" type="xs:string" minOccurs="0" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="Buildings" minOccurs="0" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>

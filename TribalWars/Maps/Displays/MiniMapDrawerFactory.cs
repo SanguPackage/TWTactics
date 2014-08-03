@@ -1,7 +1,7 @@
 #region Using
 using System.Drawing;
-using TribalWars.Maps.Drawers;
-using TribalWars.Maps.Drawers.VillageDrawers;
+using TribalWars.Maps.Drawing.Drawers;
+using TribalWars.Maps.Drawing.Drawers.VillageDrawers;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
 using TribalWars.Worlds;

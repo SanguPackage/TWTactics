@@ -5,14 +5,14 @@ using System.Linq;
 using System.Drawing;
 using System.Diagnostics;
 using TribalWars.Maps.Displays;
-using TribalWars.Maps.Drawers;
+using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
 #endregion
 
-namespace TribalWars.Maps
+namespace TribalWars.Maps.Drawing
 {
     /// <summary>
     /// Manages the painting of a TW map
@@ -290,7 +290,6 @@ namespace TribalWars.Maps
                 {
                     // Paint village icon/shape
                     BackgroundDrawerData mainData = World.Default.GetBackgroundDrawerData(village, marker);
-                    //finalCache = World.Default.GetBackgroundDrawerData(_drawerFactoryStrategy, village, marker);
                     finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
                     if (finalCache != null)
                     {
@@ -303,16 +302,6 @@ namespace TribalWars.Maps
                             {
                                 decorator.PaintVillage(g, mapVillage);
                             }
-
-                            //DrawerData data = World.Default.GetDrawerData(village, "TopRight");
-                            //if (data != null)
-                            //{
-                            //    DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
-                            //    if (decoratorVillageType != null)
-                            //    {
-                            //        decoratorVillageType.PaintVillage(g, mapVillage);
-                            //    }
-                            //}
                         }
                     }
                 }

@@ -2,7 +2,7 @@
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.VillageDrawers
+namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
 {
     /// <summary>
     /// Gets the different locations a village bitmap

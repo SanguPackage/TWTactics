@@ -1,11 +1,9 @@
 #region Using
 using System.Drawing;
-using TribalWars.Maps.Icons;
-using TribalWars.Villages;
 
 #endregion
 
-namespace TribalWars.Maps.Drawers.VillageDrawers
+namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
 {
     /// <summary>
     /// Draws an extra icon (Attack, Defense, ...)
