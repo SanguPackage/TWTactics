@@ -585,29 +585,34 @@ namespace TribalWars.WorldTemplate
     {
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string typeField;
+        private string shapeDrawerField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string iconField;
+        private string shapeDrawerColorField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string extraValueField;
+        private string iconDrawerField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private string bonusIconField;
+        private string iconOrientationField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private string bonusIconDrawerField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         private string valueField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
-        public string Type { get; set; }
+        public string ShapeDrawer { get; set; }
 
-        public string Icon { get; set; }
+        public string ShapeDrawerColor { get; set; }
 
-        public string ExtraValue { get; set; }
+        public string IconDrawer { get; set; }
 
-        public string BonusIcon { get; set; }
+        public string IconOrientation { get; set; }
+
+        public string BonusIconDrawer { get; set; }
 
         public string Value { get; set; }
 

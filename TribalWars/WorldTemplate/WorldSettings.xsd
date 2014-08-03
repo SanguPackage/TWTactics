@@ -35,10 +35,11 @@
                           <xs:element name="Drawer" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="Type" type="xs:string" minOccurs="0" />
-                                <xs:element name="Icon" type="xs:string" minOccurs="0" />
-                                <xs:element name="ExtraValue" type="xs:string" minOccurs="0" />
-                                <xs:element name="BonusIcon" type="xs:string" minOccurs="0" />
+                                <xs:element name="ShapeDrawer" type="xs:string" minOccurs="0" />
+                                <xs:element name="ShapeDrawerColor" type="xs:string" minOccurs="0" />
+                                <xs:element name="IconDrawer" type="xs:string" minOccurs="0" />
+                                <xs:element name="IconOrientation" type="xs:string" minOccurs="0" />
+                                <xs:element name="BonusIconDrawer" type="xs:string" minOccurs="0" />
                                 <xs:element name="Value" type="xs:string" minOccurs="0" />
                               </xs:sequence>
                             </xs:complexType>

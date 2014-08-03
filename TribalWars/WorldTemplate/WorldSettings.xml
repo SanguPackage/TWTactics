@@ -24,38 +24,39 @@
       <Name>Default</Name>
       <Drawers>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>village1</Icon>
-          <BonusIcon>bvillage1</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>village1</IconDrawer>
+          <BonusIconDrawer>bvillage1</BonusIconDrawer>
           <Value>300</Value>
         </Drawer>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>village2</Icon>
-          <BonusIcon>bvillage2</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>village2</IconDrawer>
+          <BonusIconDrawer>bvillage2</BonusIconDrawer>
           <Value>1000</Value>
         </Drawer>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>village3</Icon>
-          <BonusIcon>bvillage3</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>village3</IconDrawer>
+          <BonusIconDrawer>bvillage3</BonusIconDrawer>
           <Value>3000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>village4</Icon>
-          <BonusIcon>bvillage4</BonusIcon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>village4</IconDrawer>
+          <BonusIconDrawer>bvillage4</BonusIconDrawer>
           <Value>9000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>village5</Icon>
-          <BonusIcon>bvillage5</BonusIcon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>village5</IconDrawer>
+          <BonusIconDrawer>bvillage5</BonusIconDrawer>
           <Value>12000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>village6</Icon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>village6</IconDrawer>
+          <BonusIconDrawer>bvillage6</BonusIconDrawer>
           <Value>99999</Value>
         </Drawer>
       </Drawers>
@@ -65,39 +66,39 @@
       <Name>Abandoned</Name>
       <Drawers>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>barbarian1</Icon>
-          <BonusIcon>bbarbarian1</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>barbarian1</IconDrawer>
+          <BonusIconDrawer>bbarbarian1</BonusIconDrawer>
           <Value>300</Value>
         </Drawer>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>barbarian2</Icon>
-          <BonusIcon>bbarbarian2</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>barbarian2</IconDrawer>
+          <BonusIconDrawer>bbarbarian2</BonusIconDrawer>
           <Value>1000</Value>
         </Drawer>
         <Drawer>
-          <Type>EllipseDrawer</Type>
-          <Icon>barbarian3</Icon>
-          <BonusIcon>bbarbarian3</BonusIcon>
+          <ShapeDrawer>EllipseDrawer</ShapeDrawer>
+          <IconDrawer>barbarian3</IconDrawer>
+          <BonusIconDrawer>bbarbarian3</BonusIconDrawer>
           <Value>3000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>barbarian4</Icon>
-          <BonusIcon>bbarbarian4</BonusIcon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>barbarian4</IconDrawer>
+          <BonusIconDrawer>bbarbarian4</BonusIconDrawer>
           <Value>9000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>barbarian5</Icon>
-          <BonusIcon>bbarbarian5</BonusIcon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>barbarian5</IconDrawer>
+          <BonusIconDrawer>bbarbarian5</BonusIconDrawer>
           <Value>12000</Value>
         </Drawer>
         <Drawer>
-          <Type>RectangleDrawer</Type>
-          <Icon>barbarian6</Icon>
-          <BonusIcon>bbarbarian6</BonusIcon>
+          <ShapeDrawer>RectangleDrawer</ShapeDrawer>
+          <IconDrawer>barbarian6</IconDrawer>
+          <BonusIconDrawer>bbarbarian6</BonusIconDrawer>
           <Value>99999</Value>
         </Drawer>
       </Drawers>
@@ -107,35 +108,67 @@
       <Name>VillageType</Name>
       <Drawers>
         <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Attack</Icon>
-          <ExtraValue>Yellow</ExtraValue>
-          <Value>1</Value>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Yellow</ShapeDrawerColor>
+          
+          <IconDrawer>Attack</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground>Blue</IconBackground>
+          
+          <Value>Attack</Value>
         </Drawer>
         <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Catapult</Icon>
-          <ExtraValue>Yellow</ExtraValue>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Yellow</ShapeDrawerColor>
+
+          <IconDrawer>Catapult</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground>Blue</IconBackground>
+          
           <Value>Catapult</Value>
         </Drawer>
         <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Defense</Icon>
-          <ExtraValue>White</ExtraValue>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>White</ShapeDrawerColor>
+
+          <IconDrawer>Defense</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground>Blue</IconBackground>
+          
           <Value>Defense</Value>
         </Drawer>
         <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Scout</Icon>
-          <ExtraValue>Transparant</ExtraValue>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Transparant</ShapeDrawerColor>
+
+          <IconDrawer>Scout</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground></IconBackground>
+          
           <Value>Scout</Value>
         </Drawer>
         <Drawer>
-          <Type>BorderDrawer</Type>
-          <Icon>Farm</Icon>
-          <ExtraValue>Transparant</ExtraValue>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Transparant</ShapeDrawerColor>
+
+          <IconDrawer>Farm</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground></IconBackground>
+          
           <Value>Farm</Value>
         </Drawer>
+
+        <Drawer>
+          <ShapeDrawer>BorderDrawer</ShapeDrawer>
+          <ShapeDrawerColor>Transparant</ShapeDrawerColor>
+
+          <IconDrawer>Farm</IconDrawer>
+          <IconOrientation>TopRight</IconOrientation>
+          <IconBackground></IconBackground>
+
+          <Value>Farm</Value>
+        </Drawer>
+
       </Drawers>
     </View>
   </Views>

@@ -67,8 +67,8 @@ namespace TribalWars.Maps.Views
         {
             var villageType = (VillageType) Enum.Parse(typeof (VillageType), drawer.Value);
 
-            Color color = XmlHelper.GetColor(drawer.ExtraValue);
-            _cache.Add(villageType, new DrawerData(drawer.Type, drawer.Icon, drawer.BonusIcon, color, villageType));
+            Color color = XmlHelper.GetColor(drawer.ShapeDrawerColor);
+            _cache.Add(villageType, new DrawerData(drawer.ShapeDrawer, drawer.IconDrawer, drawer.BonusIconDrawer, color, villageType));
         }
         #endregion
     }

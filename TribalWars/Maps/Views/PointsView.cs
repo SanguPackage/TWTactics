@@ -38,8 +38,8 @@ namespace TribalWars.Maps.Views
 
         public override void AddDrawer(WorldTemplate.WorldConfigurationViewsViewDrawersDrawer drawer)
         {
-            Debug.Assert(drawer.ExtraValue == null, "Should always be null for PointsViews");
-            _drawers.Add(Convert.ToInt32(drawer.Value), new DrawerData(drawer.Type, drawer.Icon, drawer.BonusIcon, drawer.ExtraValue));
+            Debug.Assert(drawer.ShapeDrawerColor == null, "Should always be null for PointsViews");
+            _drawers.Add(Convert.ToInt32(drawer.Value), new DrawerData(drawer.ShapeDrawer, drawer.IconDrawer, drawer.BonusIconDrawer, null));
         }
         #endregion
     }
