@@ -298,7 +298,7 @@ namespace TribalWars.Maps
                         if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
                         {
                             // Paint extra village decorators
-                            DrawerData data = World.Default.GetDrawerData(village, "VillageType");
+                            DrawerData data = World.Default.GetDrawerData(village, "TopRight");
                             if (data != null)
                             {
                                 DrawerBase decoratorVillageType = _drawerFactoryStrategy.CreateVillageDecoratorDrawer(data, marker, mainData);
