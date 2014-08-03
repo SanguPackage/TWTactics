@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using TribalWars.Maps.Drawing.Drawers.VillageDrawers;
 
@@ -81,6 +82,36 @@ namespace TribalWars.Maps.Drawing.Drawers
             public override string ToString()
             {
                 return string.Format("{0}, Orientation={1}, Background={2}", Icon, Orientation, Background);
+            }
+
+            public Point GetOffset()
+            {
+                switch (Orientation)
+                {
+                    case IconOrientation.TopRight:
+                        return new Point(35, 0);
+
+                    case IconOrientation.BottomLeft:
+                        return new Point(9, 20);
+
+                    case IconOrientation.BottomRight:
+                        return new Point(35, 19);
+
+                }
+                throw new Exception("Orientation not yet implemented " + Orientation.ToString());
+
+                //g.DrawImage(_image, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
+                //    g.DrawImage(_image, new Point(village.X + _offset.X, village.Y + _offset.Y)); // 16x16 (farm) and 18x18
+
+                //if (_comments)
+                //{
+                //    g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
+                //}
+
+                //if (_nobles)
+                //{
+                //    g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
+                //}
             }
         }
     }

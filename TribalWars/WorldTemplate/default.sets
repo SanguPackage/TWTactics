@@ -50,17 +50,17 @@
             <Icon Icon="Defense" Orientation="TopRight" Background="Blue" />
           </Drawer>
           <Drawer VillageType="Scout">
-            <Icon Icon="Scout" Orientation="TopRight" />
+            <Icon Icon="Scout" Orientation="TopRight" Background="Blue" />
           </Drawer>
           <Drawer VillageType="Farm">
-            <Icon Icon="Farm" Orientation="TopRight" />
+            <Icon Icon="Farm" Orientation="TopRight" Background="Blue" />
           </Drawer>
         </Drawers>
       </View>
       <View Type="VillageType" Name="Noble">
         <Drawers>
           <Drawer VillageType="Noble">
-            <Icon Icon="Noble" Orientation="BottomRight" />
+            <Icon Icon="Noble" Orientation="BottomRight" Background="Yellow" />
           </Drawer>
         </Drawers>
       </View>

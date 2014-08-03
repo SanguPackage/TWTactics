@@ -47,7 +47,9 @@ namespace TribalWars.Maps.Drawing.Views
 
             return drawerFactory.CreateVillageDecoratorDrawer(data, mainData);
         }
+        #endregion
 
+        #region Persistence
         public override void ReadDrawerXml(XElement drawer)
         {
             DecoratorDrawerData.IconData icon = null;

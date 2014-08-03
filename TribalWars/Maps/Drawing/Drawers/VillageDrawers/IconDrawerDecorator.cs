@@ -12,27 +12,16 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
     public sealed class IconDrawerDecorator : DrawerBase
     {
         #region Fields
-        private readonly Image _image;
-        //private readonly bool _comments;
-        //private readonly bool _nobles;
-
-        //private static readonly Bitmap CommentsBitmap;
-        //private static readonly Bitmap NoblesBitmap;
+        private readonly DecoratorDrawerData.IconData _data;
+        private readonly Point _offset;
         #endregion
 
         #region Constructors
         public IconDrawerDecorator(DecoratorDrawerData.IconData data)
         {
-            _image = data.Icon;
-            //if ((type & VillageType.Comments) == VillageType.Comments) _comments = true;
-            //if ((type & VillageType.Noble) == VillageType.Noble) _nobles = true;
+            _data = data;
+            _offset = data.GetOffset();
         }
-
-        //static IconDrawerDecorator()
-        //{
-        //    CommentsBitmap = Other.Note;
-        //    NoblesBitmap = Other.Noble;
-        //}
         #endregion
 
         #region Public Methods
@@ -41,20 +30,16 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
-            if (_image != null)
+            if (_data.Background.HasValue)
             {
-                g.DrawImage(_image, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
+                using (var brush = new SolidBrush(_data.Background.Value))
+                {
+                    // TODO: bug: village.Height is not correct!
+                    g.FillRectangle(brush, village.X + _offset.X, village.Y + _offset.Y, village.Width, village.Height);
+                }
             }
 
-            //if (_comments)
-            //{
-            //    g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
-            //}
-
-            //if (_nobles)
-            //{
-            //    g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
-            //}
+            g.DrawImage(_data.Icon, new Point(village.X + _offset.X, village.Y + _offset.Y));
         }
         #endregion
     }
