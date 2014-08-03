@@ -74,16 +74,16 @@ namespace TribalWars.Maps.Drawers
         {
             public Image Icon { get; set; }
 
+            public string IconName { get; set; }
+
             public IconOrientation Orientation { get; set; }
 
             public Color? Background { get; set; }
 
             public IconData(string icon, IconOrientation orientation, Color? background)
             {
-                if (!string.IsNullOrEmpty(icon))
-                {
-                    Icon = (Image)Icons.Other.ResourceManager.GetObject(icon);
-                }
+                IconName = icon;
+                Icon = (Image)Icons.Other.ResourceManager.GetObject(icon);
 
                 Orientation = orientation;
                 Background = background;

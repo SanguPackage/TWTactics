@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml.Linq;
 using TribalWars.Maps.Displays;
 using TribalWars.Maps.Drawers;
@@ -24,7 +25,7 @@ namespace TribalWars.Maps.Views
 
         #region Constructors
         public PointsView(string name)
-            : base(name)
+            : base(name, "Points")
         {
             _drawers = new Dictionary<int, BackgroundDrawerData>();
         }
@@ -52,6 +53,18 @@ namespace TribalWars.Maps.Views
                 drawer.Attribute("BonusIconDrawer").Value);
 
             _drawers.Add(pointsTreshold, data);
+        }
+
+        public override object[] WriteDrawerXml()
+        {
+            var drawers = _drawers.Select(x => 
+                new XElement("Drawer",
+                    new XAttribute("VillagePoints", x.Key),
+                    new XAttribute("ShapeDrawer", x.Value.ShapeDrawer),
+                    new XAttribute("IconDrawer", x.Value.IconDrawer),
+                    new XAttribute("BonusIconDrawer", x.Value.BonusIconDrawer)));
+
+            return drawers.Cast<object>().ToArray();
         }
         #endregion
     }

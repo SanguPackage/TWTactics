@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Controls;
@@ -343,16 +344,10 @@ namespace TribalWars.Worlds
         #endregion
 
         #region Display Views
+        // This View stuff should go into Map.View...
+
         private Dictionary<string, IBackgroundView> _backgroundViews;
         private List<IDecoratorView> _decorators;
-
-        ///// <summary>
-        ///// Gets all map views
-        ///// </summary>
-        //private IEnumerable<ViewBase> Views
-        //{
-        //    get { return _views.Values; }
-        //}
 
         /// <summary>
         /// Views should be owned by Display but at the time the Builder 
@@ -368,6 +363,20 @@ namespace TribalWars.Worlds
         {
             BackgroundDrawerData data = _backgroundViews[marker.Settings.View].GetBackgroundDrawer(village);
             return data;
+        }
+
+        public string WriteViews()
+        {
+            IEnumerable<IView> views = _backgroundViews.Values.OfType<IView>().Union(_decorators);
+
+            var output = new XDocument(
+                new XElement("Views",
+                    views.Select(view => new XElement("View",
+                            new XAttribute("Type", view.Type),
+                            new XAttribute("Name", view.Name),
+                            new XElement("Drawers", view.WriteDrawerXml())))));
+
+            return output.ToString();
         }
 
         public IEnumerable<DrawerBase> GetDecoratorDrawers(DrawerFactoryBase drawerFactory, Village village, BackgroundDrawerData mainData)

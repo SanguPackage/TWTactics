@@ -58,6 +58,11 @@ namespace TribalWars.Maps.Displays
 
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DecoratorDrawerData data, BackgroundDrawerData mainData)
         {
+            if (data.Shape == null)
+            {
+                return null;
+            }
+
             switch (data.Shape.Drawer)
             {
                 case "BorderDrawer":
@@ -65,7 +70,7 @@ namespace TribalWars.Maps.Displays
                     return new BorderDrawer(data.Shape.Color, drawer);
 
                 default:
-                    return null;
+                    throw new Exception("Not implemented: " + data.Shape.Drawer);
             }
         }
 

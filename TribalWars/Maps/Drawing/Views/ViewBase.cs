@@ -16,6 +16,11 @@ namespace TribalWars.Maps.Views
     {
         string Name { get; set; }
 
+        string Type { get; set; }
+
+        void ReadDrawerXml(XElement drawer);
+
+        object[] WriteDrawerXml();
     }
 
     /// <summary>
@@ -30,12 +35,15 @@ namespace TribalWars.Maps.Views
         /// Gets or sets the name of the view
         /// </summary>
         public string Name { get; set; }
+
+        public string Type { get; set; }
         #endregion
 
         #region Constructors
-        protected ViewBase(string name)
+        protected ViewBase(string name, string type)
         {
             Name = name;
+            Type = type;
         }
         #endregion
 
@@ -44,6 +52,8 @@ namespace TribalWars.Maps.Views
         /// Adds a new Drawer to the collection
         /// </summary>
         public abstract void ReadDrawerXml(XElement drawer);
+
+        public abstract object[] WriteDrawerXml();
 
         public override string ToString()
         {

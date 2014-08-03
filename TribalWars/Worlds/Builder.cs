@@ -214,6 +214,11 @@ namespace TribalWars.Worlds
                 w.WriteElementString("LinesProvince", map.Display.Settings.ProvinceLines.ToString());
                 w.WriteElementString("HideAbandoned", map.Display.Settings.HideAbandoned.ToString());
                 w.WriteElementString("MarkedOnly", map.Display.Settings.MarkedOnly.ToString());
+
+                //w.WriteStartElement("Views");
+                w.WriteRaw(World.Default.WriteViews());
+                //w.WriteEndElement();
+
                 w.WriteEndElement();
 
                 w.WriteStartElement("Markers");

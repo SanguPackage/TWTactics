@@ -30,7 +30,7 @@ namespace TribalWars.Maps.Views
 
         #region Constructors
         public VillageTypeView(string name)
-            : base(name)
+            : base(name, "VillageType")
         {
             _cache = new Dictionary<VillageType, DecoratorDrawerData>();
         }
@@ -50,40 +50,7 @@ namespace TribalWars.Maps.Views
             }
 
             return drawerFactory.CreateVillageDecoratorDrawer(data, mainData);
-
-
-            //DecoratorDrawerData data;
-            //if (!_cache.TryGetValue(village.Type, out data))
-            //{
-            //    // When there are combined village types, we take the most important one
-            //    data = _importance.Where(t => village.Type.HasFlag(t)).Select(t => _cache[t]).FirstOrDefault();
-            //    if (data != null)
-            //    {
-            //        data = new DecoratorDrawerData(data.ShapeDrawer, data.IconDrawer, data.BonusIconDrawer, data.ExtraDrawerInfo, village.Type);
-            //    }
-            //    else
-            //    {
-            //        if (village.Type.HasFlag(VillageType.Noble) || village.Type.HasFlag(VillageType.Comments))
-            //            data = new DecoratorDrawerData(null, null, null, null, village.Type);
-            //    }
-            //    _cache.Add(village.Type, data);
-            //}
-            //return data;
         }
-
-        //public override void AddDrawer(WorldTemplate.WorldConfigurationViewsViewDrawersDrawer drawer)
-        //{
-        //    // TODO:
-        //    //drawer.IconOrientation
-        //    //drawer.IconBackground
-
-        //    var villageType = (VillageType) Enum.Parse(typeof (VillageType), drawer.Value);
-
-        //    Color color = XmlHelper.GetColor(drawer.ShapeDrawerColor);
-        //    _cache.Add(villageType, new DrawerData(drawer.ShapeDrawer, drawer.IconDrawer, drawer.BonusIconDrawer, color, villageType));
-        //}
-
-        
 
         public override void ReadDrawerXml(XElement drawer)
         {
@@ -103,7 +70,7 @@ namespace TribalWars.Maps.Views
             var xIcon = drawer.Element("Icon");
             if (xIcon != null)
             {
-                Color backgroundColor = Color.Transparent;
+                Color backgroundColor = null;
                 var xBackgroundColor = xIcon.Attribute("Background");
                 if (xBackgroundColor != null)
                 {
@@ -118,6 +85,40 @@ namespace TribalWars.Maps.Views
 
             var data = new DecoratorDrawerData(shape, icon);
             _cache.Add(villageType, data);
+        }
+
+        public override object[] WriteDrawerXml()
+        {
+            var list = new List<object>();
+            foreach (KeyValuePair<VillageType, DecoratorDrawerData> cache in _cache)
+            {
+                var drawer = new XElement("Drawer", new XAttribute("VillageType", cache.Key.ToString()));
+                if (cache.Value.Shape != null)
+                {
+                    var shape = cache.Value.Shape;
+                    drawer.Add(new XElement("Shape",
+                        new XAttribute("Drawer", shape.Drawer),
+                        new XAttribute("Color", XmlHelper.SetColor(shape.Color))));
+                }
+
+                if (cache.Value.Icon != null)
+                {
+                    var icon = cache.Value.Icon;
+                    var xIcon = new XElement("Icon",
+                        new XAttribute("Icon", icon.IconName),
+                        new XAttribute("Orientation", icon.Orientation.ToString()));
+
+                    if (icon.Background.HasValue)
+                    {
+                        xIcon.Add(new XAttribute("Background", XmlHelper.SetColor(icon.Background.Value)));
+                    }
+                    drawer.Add(xIcon);
+                }
+
+                list.Add(drawer);
+            }
+
+            return list/*.Cast<object>()*/.ToArray();
         }
         #endregion
     }
