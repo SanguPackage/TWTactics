@@ -38,7 +38,10 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
                 }
             }
 
-            g.DrawImage(_data.Icon, village.X + offset.X, village.Y + offset.Y, offset.Width, offset.Height);
+            if (village.Width > 20)
+            {
+                g.DrawImage(_data.Icon, village.X + offset.X, village.Y + offset.Y, offset.Width, offset.Height);
+            }
         }
         #endregion
     }

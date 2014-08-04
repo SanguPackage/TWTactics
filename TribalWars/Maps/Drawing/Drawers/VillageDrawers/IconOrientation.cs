@@ -11,7 +11,6 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
     public enum IconOrientation
     {
         TopRight,
-        Middle,
         BottomLeft,
         BottomRight
     }

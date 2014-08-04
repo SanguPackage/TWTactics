@@ -84,44 +84,51 @@ namespace TribalWars.Maps.Drawing.Drawers
                 return string.Format("{0}, Orientation={1}, Background={2}", Icon, Orientation, Background);
             }
 
-            public Rectangle GetOffset(Rectangle village)
+            private static Size ScaleSize(Size from, int? maxWidth, int? maxHeight)
             {
-                Point point;
+                double? widthScale = null;
+                double? heightScale = null;
+
+                if (maxWidth.HasValue)
+                {
+                    widthScale = maxWidth.Value / (double)from.Width;
+                }
+                if (maxHeight.HasValue)
+                {
+                    heightScale = maxHeight.Value / (double)from.Height;
+                }
+
+                double scale = Math.Min((double)(widthScale ?? heightScale),
+                                         (double)(heightScale ?? widthScale));
+
+                return new Size((int)Math.Floor(from.Width * scale), (int)Math.Ceiling(from.Height * scale));
+            }
+
+            public RectangleF GetOffset(Rectangle village)
+            {
+                SizeF size = ScaleSize(Icon.Size, village.Width / 2, village.Height / 2);
                 switch (Orientation)
                 {
                     case IconOrientation.TopRight:
-                        //point = new Point(35, 0);
-                        point = new Point(village.Width / 2, 0);
-                        break;
-
+                        {
+                            var point = new Point(village.Width - (int) size.Width, 0);
+                            return new RectangleF(point, size);
+                        }
                     case IconOrientation.BottomLeft:
-                        point = new Point(9, 20);
-                        break;
+                        {
+                            var point = new Point(0, village.Height - (int)size.Height);
+                            return new RectangleF(point, size);
+                        }
 
                     case IconOrientation.BottomRight:
-                        point = new Point(35, 19);
-                        break;
+                        {
+                            var point = new Point(village.Width - (int)size.Width, village.Height - (int)size.Height);
+                            return new RectangleF(point, size);
+                        }
 
                     default:
                         throw new Exception("Orientation not yet implemented " + Orientation);
                 }
-
-                return new Rectangle(point, Icon.Size);
-
-                
-
-                //g.DrawImage(_image, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
-                //    g.DrawImage(_image, new Point(village.X + _offset.X, village.Y + _offset.Y)); // 16x16 (farm) and 18x18
-
-                //if (_comments)
-                //{
-                //    g.DrawImage(CommentsBitmap, new Point(village.X + 9, village.Y + 20)); // 15x15
-                //}
-
-                //if (_nobles)
-                //{
-                //    g.DrawImage(NoblesBitmap, new Point(village.X + 35, village.Y + 19)); //18x18
-                //}
             }
         }
     }

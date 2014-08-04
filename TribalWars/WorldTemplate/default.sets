@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settings Date="{SettingsDate}">
  <You Name="{YourName}">
-  <Marker Name="You" Enabled="True" Color="Black" ExtraColor="Blue" View="Default" />
+  <Marker Name="You" Enabled="True" Color="Black" ExtraColor="Yellow" View="Default" />
   <Marker Name="Your Tribe" Enabled="True" Color="Black" ExtraColor="Transparent" View="Default" />
   <Marker Name="Enemy" Enabled="True" Color="Red" ExtraColor="Transparent" View="Default" />
   <Marker Name="Abandoned" Enabled="True" Color="Olive" ExtraColor="Transparent" View="Abandoned" />
@@ -38,28 +38,29 @@
       <View Type="VillageType" Name="TopRight">
         <Drawers>
           <Drawer VillageType="Attack">
-            <Shape Drawer="BorderDrawer" Color="Yellow" />
-            <Icon Icon="Attack" Orientation="TopRight" Background="Blue" />
+            <Shape Drawer="BorderDrawer" Color="Red" />
+            <Icon Icon="Attack" Orientation="TopRight" Background="Red" />
           </Drawer>
           <Drawer VillageType="Catapult">
-            <Shape Drawer="BorderDrawer" Color="Yellow" />
-            <Icon Icon="Catapult" Orientation="TopRight" Background="Blue" />
+            <Shape Drawer="BorderDrawer" Color="Red" />
+            <Icon Icon="Catapult" Orientation="TopRight" Background="Red" />
           </Drawer>
           <Drawer VillageType="Defense">
-            <Shape Drawer="BorderDrawer" Color="Yellow" />
+            <Shape Drawer="BorderDrawer" Color="Blue" />
             <Icon Icon="Defense" Orientation="TopRight" Background="Blue" />
           </Drawer>
           <Drawer VillageType="Scout">
-            <Icon Icon="Scout" Orientation="TopRight" Background="Blue" />
+            <Icon Icon="Scout" Orientation="TopRight" Background="White" />
           </Drawer>
           <Drawer VillageType="Farm">
-            <Icon Icon="Farm" Orientation="TopRight" Background="Blue" />
+            <Icon Icon="Farm" Orientation="TopRight" Background="White" />
           </Drawer>
         </Drawers>
       </View>
       <View Type="VillageType" Name="Noble">
         <Drawers>
           <Drawer VillageType="Noble">
+            <Shape Drawer="BorderDrawer" Color="Orange" />
             <Icon Icon="Noble" Orientation="BottomRight" Background="Yellow" />
           </Drawer>
         </Drawers>
