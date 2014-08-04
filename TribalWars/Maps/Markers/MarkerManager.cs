@@ -122,8 +122,7 @@ namespace TribalWars.Maps.Markers
                     break;
             }
 
-            InvalidateMarkers();
-            map.Invalidate();
+            World.Default.InvalidateMarkers();
         }
 
         /// <summary>
@@ -142,8 +141,7 @@ namespace TribalWars.Maps.Markers
                 _markers.Add(new Marker(player, settings));
             }
 
-            InvalidateMarkers();
-            map.Invalidate();
+            World.Default.InvalidateMarkers();
         }
 
         /// <summary>
@@ -162,24 +160,21 @@ namespace TribalWars.Maps.Markers
                 _markers.Add(new Marker(tribe, settings));
             }
 
-            InvalidateMarkers();
-            map.Invalidate();
+            World.Default.InvalidateMarkers();
         }
 
         public void RemoveMarker(Map map, Player player)
         {
             _markers.RemoveAll(x => x.Player == player);
 
-            InvalidateMarkers();
-            map.Invalidate();
+            World.Default.InvalidateMarkers();
         }
 
         public void RemoveMarker(Map map, Tribe tribe)
         {
             _markers.RemoveAll(x => x.Tribe == tribe);
 
-            InvalidateMarkers();
-            map.Invalidate();
+            World.Default.InvalidateMarkers();
         }
 
         /// <summary>
@@ -280,7 +275,8 @@ namespace TribalWars.Maps.Markers
         }
 
         /// <summary>
-        /// Rebuild marker cache
+        /// Rebuild marker cache, this will not automatically redraw maps
+        /// Call World.Default.InvalidateMarkers() for that
         /// </summary>
         public void InvalidateMarkers()
         {

@@ -340,9 +340,10 @@ namespace TribalWars.Worlds
         public void InvalidateMarkers()
         {
             Map.MarkerManager.InvalidateMarkers();
+            Map.Invalidate(true);
 
             Debug.Assert(ReferenceEquals(Map.MarkerManager, _miniMap.MarkerManager));
-            //_miniMap.MarkerManager.CacheSpecialMarkers();
+            _miniMap.Invalidate(true);
         }
 
         /// <summary>

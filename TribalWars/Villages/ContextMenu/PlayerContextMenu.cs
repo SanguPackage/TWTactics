@@ -114,8 +114,7 @@ namespace TribalWars.Villages.ContextMenu
         private void OnPlayerYouSet(object sender, EventArgs e)
         {
             World.Default.You = _player;
-            World.Default.Map.MarkerManager.InvalidateMarkers();
-            World.Default.Map.Invalidate(true);
+            World.Default.InvalidateMarkers();
         }
 
         /// <summary>
