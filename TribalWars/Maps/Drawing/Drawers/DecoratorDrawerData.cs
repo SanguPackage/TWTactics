@@ -84,21 +84,31 @@ namespace TribalWars.Maps.Drawing.Drawers
                 return string.Format("{0}, Orientation={1}, Background={2}", Icon, Orientation, Background);
             }
 
-            public Point GetOffset()
+            public Rectangle GetOffset(Rectangle village)
             {
+                Point point;
                 switch (Orientation)
                 {
                     case IconOrientation.TopRight:
-                        return new Point(35, 0);
+                        //point = new Point(35, 0);
+                        point = new Point(village.Width / 2, 0);
+                        break;
 
                     case IconOrientation.BottomLeft:
-                        return new Point(9, 20);
+                        point = new Point(9, 20);
+                        break;
 
                     case IconOrientation.BottomRight:
-                        return new Point(35, 19);
+                        point = new Point(35, 19);
+                        break;
 
+                    default:
+                        throw new Exception("Orientation not yet implemented " + Orientation);
                 }
-                throw new Exception("Orientation not yet implemented " + Orientation.ToString());
+
+                return new Rectangle(point, Icon.Size);
+
+                
 
                 //g.DrawImage(_image, new Point(village.X + 35, village.Y)); // 16x16 (farm) and 18x18
                 //    g.DrawImage(_image, new Point(village.X + _offset.X, village.Y + _offset.Y)); // 16x16 (farm) and 18x18

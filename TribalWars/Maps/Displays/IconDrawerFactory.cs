@@ -181,7 +181,7 @@ namespace TribalWars.Maps.Displays
         /// </summary>
         protected override DrawerBase CreateVillageDecoratorDrawerCore(DecoratorDrawerData data, BackgroundDrawerData mainData)
         {
-            if (Zoom.Current > 1)
+            if (Zoom.Current > 5)
             {
                 return null;
             }

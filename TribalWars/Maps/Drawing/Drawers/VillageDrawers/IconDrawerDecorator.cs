@@ -13,14 +13,12 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
     {
         #region Fields
         private readonly DecoratorDrawerData.IconData _data;
-        private readonly Point _offset;
         #endregion
 
         #region Constructors
         public IconDrawerDecorator(DecoratorDrawerData.IconData data)
         {
             _data = data;
-            _offset = data.GetOffset();
         }
         #endregion
 
@@ -30,16 +28,17 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
         /// </summary>
         protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
+            var offset = _data.GetOffset(village);
+
             if (_data.Background.HasValue)
             {
                 using (var brush = new SolidBrush(_data.Background.Value))
                 {
-                    // TODO: bug: village.Height is not correct!
-                    g.FillRectangle(brush, village.X + _offset.X, village.Y + _offset.Y, village.Width, village.Height);
+                    g.FillRectangle(brush, village.X + offset.X, village.Y + offset.Y, offset.Width, offset.Height);
                 }
             }
 
-            g.DrawImage(_data.Icon, new Point(village.X + _offset.X, village.Y + _offset.Y));
+            g.DrawImage(_data.Icon, village.X + offset.X, village.Y + offset.Y, offset.Width, offset.Height);
         }
         #endregion
     }
