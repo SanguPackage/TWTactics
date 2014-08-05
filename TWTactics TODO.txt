@@ -1,4 +1,3 @@
-
 MapDragger: Don't wait for entire game diff before redrawing the map
 
 Undo/Redo MapLocation changes
