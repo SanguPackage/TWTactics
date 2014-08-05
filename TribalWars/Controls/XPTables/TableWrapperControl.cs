@@ -275,11 +275,14 @@ namespace TribalWars.Controls.XPTables
                 {
                     // Display context menu for one village, player or tribe
                     Table.TableModel.Selections.Clear();
-                    Table.TableModel.Selections.SelectCells(Table.RowIndexAt(e.Location), 0, Table.RowIndexAt(e.Location), Table.ColumnModel.Columns.Count - 1);
-                    if (Table.TableModel.Selections.SelectedItems.Length == 1)
+                    if (Table.ColumnModel != null)
                     {
-                        var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
-                        row.ShowContext(e.Location);
+                        Table.TableModel.Selections.SelectCells(Table.RowIndexAt(e.Location), 0, Table.RowIndexAt(e.Location), Table.ColumnModel.Columns.Count - 1);
+                        if (Table.TableModel.Selections.SelectedItems.Length == 1)
+                        {
+                            var row = (ITwContextMenu)Table.TableModel.Selections.SelectedItems[0];
+                            row.ShowContext(e.Location);
+                        }
                     }
                 }
             }
