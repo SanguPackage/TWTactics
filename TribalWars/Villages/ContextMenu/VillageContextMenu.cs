@@ -163,7 +163,7 @@ namespace TribalWars.Villages.ContextMenu
         private void OnPinpointAndCenter(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
-            World.Default.Map.EventPublisher.SelectVillages(sender, _village, VillageTools.PinPoint);
+            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
             World.Default.Map.SetCenter(_village.Location);
         }
 
@@ -173,7 +173,7 @@ namespace TribalWars.Villages.ContextMenu
         private void OnPinPoint(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
-            World.Default.Map.EventPublisher.SelectVillages(sender, _village, VillageTools.PinPoint);
+            World.Default.Map.EventPublisher.SelectVillages(OnDetailsHack, _village, VillageTools.PinPoint);
         }
 
         /// <summary>
