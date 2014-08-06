@@ -226,7 +226,7 @@ namespace TribalWars.Controls.GridExs
             if (e.Column == _columns[VillageFields.Type])
             {
                 int selected = _villageTypeBox.SelectedIndex;
-                if (selected != 0)
+                if (selected > 0)
                 {
                     e.Value = (int)VillageTypeHelper.GetVillageType(selected);
                 }

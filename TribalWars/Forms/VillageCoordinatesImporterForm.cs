@@ -34,5 +34,11 @@ namespace TribalWars.Forms
                 + Environment.NewLine + Environment.NewLine + "You can find more information at Windows > 'Manage your villages' :)",
                 "Import village coordinates?");
         }
+
+        private void playerTribeDropdown1_PlayerSelected(object sender, Worlds.Events.Impls.PlayerEventArgs e)
+        {
+            var villages = playerTribeDropdown1.Player;
+            villagesGridExControl1.Bind(villages);
+        }
     }
 }

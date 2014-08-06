@@ -55,6 +55,8 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
 
+            // TODO: clear purpose!
+
             _menu.AddSeparator();
             if (!World.Default.You.Empty && villages.All(x => x.Player == World.Default.You))
             {
