@@ -28,7 +28,6 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Janus.Windows.GridEX.GridEXLayout GridExVillage_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolygonControl));
             Janus.Windows.GridEX.GridEXLayout GridExPolygon_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -36,7 +35,7 @@ namespace TribalWars.Maps.Polygons
             this.LoadPolygonData = new Janus.Windows.EditControls.UIButton();
             this.GridExVillageShowFieldChooser = new Janus.Windows.EditControls.UIButton();
             this.GridExVillage = new Janus.Windows.GridEX.GridEX();
-            this.polygonDataSet1 = new PolygonDataSet();
+            this.polygonDataSet1 = new TribalWars.Maps.Polygons.PolygonDataSet();
             this.ModusPolygon = new Janus.Windows.EditControls.UIButton();
             this.GeneratorActions = new Janus.Windows.EditControls.UIGroupBox();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
@@ -121,9 +120,9 @@ namespace TribalWars.Maps.Polygons
             this.GridExVillage.RowCheckStateChanged += new Janus.Windows.GridEX.RowCheckStateChangeEventHandler(this.GridExVillage_RowCheckStateChanged);
             this.GridExVillage.RowDoubleClick += new Janus.Windows.GridEX.RowActionEventHandler(this.GridExVillage_RowDoubleClick);
             this.GridExVillage.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_FormattingRow);
-            this.GridExVillage.LoadingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.GridExVillage_LoadingRow);
             this.GridExVillage.GroupsChanging += new Janus.Windows.GridEX.GroupsChangingEventHandler(this.GridExVillage_GroupsChanging);
             this.GridExVillage.CurrentCellChanging += new Janus.Windows.GridEX.CurrentCellChangingEventHandler(this.GridExVillage_CurrentCellChanging);
+            this.GridExVillage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridExVillage_KeyDown);
             this.GridExVillage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridExVillage_MouseClick);
             // 
             // polygonDataSet1
@@ -174,7 +173,6 @@ namespace TribalWars.Maps.Polygons
             // 
             // GridExPolygon
             // 
-            this.GridExPolygon.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True;
             this.GridExPolygon.AlternatingColors = true;
             this.GridExPolygon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 

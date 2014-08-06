@@ -288,23 +288,68 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
             }
         }
 
+        private void GridExVillage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                foreach (var row in GridExVillage.SelectedItems.GetGridRows())
+                {
+                    row.IsChecked = !row.IsChecked;
+                }
+            }
+        }
+
         /// <summary>
         /// Update group header totals
         /// </summary>
         private void GridExVillage_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
         {
             GridEXRow groupToUpdate = e.Row;
+            if (groupToUpdate == null)
+            {
+                // Column header checkbox click
+                foreach (var row in GridExVillage.GetRows())
+                {
+                    UpdateGroupRecordText(row);
+                }
+                return;
+            }
+
             if (e.Row.RowType == RowType.Record)
             {
+                // Normal row
                 groupToUpdate = e.Row.Parent;
             }
 
             if (groupToUpdate.RowType == RowType.GroupHeader)
             {
-                UpdateGroupRecordText(groupToUpdate);
                 if (groupToUpdate.Parent != null)
                 {
                     UpdateGroupRecordText(groupToUpdate.Parent);
+                }
+                else
+                {
+                    UpdateGroupRecordText(groupToUpdate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update the group text with the amount of checked villages / total villages
+        /// </summary>
+        private void UpdateGroupRecordText(GridEXRow row)
+        {
+            if (row.RowType == RowType.GroupHeader)
+            {
+                // Set group totals
+                int totalRecords = row.GetRecordCount();
+                int totalChecked = row.GetChildRecords().Count(x => x.CheckState == RowCheckState.Checked);
+                row.GroupCaption = string.Format("{0} ({1} / {2} villages)", row.GroupValue, totalChecked, totalRecords);
+
+                GridEXRow[] children = row.GetChildRows();
+                foreach (var child in children)
+                {
+                    UpdateGroupRecordText(child);
                 }
             }
         }
@@ -319,44 +364,11 @@ Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.
         }
 
         /// <summary>
-        /// Check visible polygons by default
-        /// </summary>
-        private void GridExVillage_LoadingRow(object sender, RowLoadEventArgs e)
-        {
-            if (e.Row.RowType == RowType.GroupHeader && e.Row.Parent != null)
-            {
-                GridEXRow row = e.Row.GetChildRecords().FirstOrDefault();
-                if (row != null)
-                {
-                    var polygon = row.GetDataRow<PolygonDataSet.VILLAGERow>().Polygon;
-                    if (polygon.Visible)
-                    {
-                        e.Row.CheckState = RowCheckState.Checked;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Column chooser
         /// </summary>
         private void GridExVillageShowFieldChooser_Click(object sender, System.EventArgs e)
         {
             GridExVillage.ShowFieldChooser();
-        }
-
-        /// <summary>
-        /// Update the group text with the amount of checked villages / total villages
-        /// </summary>
-        private void UpdateGroupRecordText(GridEXRow row)
-        {
-            if (row.RowType == RowType.GroupHeader)
-            {
-                // Set group totals
-                int totalRecords = row.GetRecordCount();
-                int totalChecked = row.GetChildRecords().Count(x => x.CheckState == RowCheckState.Checked);
-                row.GroupCaption = string.Format("{0} ({1} / {2} villages)", row.GroupValue, totalChecked, totalRecords);
-            }
         }
 
         private void SetGridExVillageTooltips()

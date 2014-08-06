@@ -407,24 +407,11 @@ namespace TribalWars.Maps.Polygons
         }
 
         /// <summary>
-        /// If the polygon has no surface, we will not add it to the collection
+        /// If the polygon has no villages, we will not add it to the collection
         /// </summary>
         private void DeleteIfEmpty(Polygon polygon)
         {
-            int leftX = 1000;
-            int rightX = 0;
-            int topY = 1000;
-            int bottomY = 0;
-
-            foreach (Point p in polygon.List)
-            {
-                if (p.X > rightX) rightX = p.X;
-                if (p.X < leftX) leftX = p.X;
-                if (p.Y > bottomY) bottomY = p.Y;
-                if (p.Y < topY) topY = p.Y;
-            }
-
-            if (leftX >= rightX || topY >= bottomY)
+            if (!polygon.GetVillages().Any())
             {
                 Delete(polygon);
             }

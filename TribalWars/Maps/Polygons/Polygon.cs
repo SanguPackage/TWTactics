@@ -108,7 +108,8 @@ namespace TribalWars.Maps.Polygons
         public bool IsHitIn(Point loc)
         {
             Region areaRegion = GetRegion();
-            return areaRegion.IsVisible(GetPoint(loc));
+            Point gameLoc = GetPoint(loc);
+            return areaRegion.IsVisible(gameLoc);
         }
 
         /// <summary>

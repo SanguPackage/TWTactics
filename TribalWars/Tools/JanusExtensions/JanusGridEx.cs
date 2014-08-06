@@ -96,6 +96,14 @@ namespace TribalWars.Tools.JanusExtensions
             column.TextAlignment = TextAlignment.Far;
         }
 
+        public static IEnumerable<GridEXRow> GetGridRows(this GridEXSelectedItemCollection selectedItems)
+        {
+            for (int i = 0; i < selectedItems.Count; i++)
+            {
+                yield return selectedItems[i].GetRow();
+            }
+        }
+
         public static IEnumerable<T> GetRows<T>(this GridEXSelectedItemCollection selectedItems)
         {
             for (int i = 0; i < selectedItems.Count; i++)
