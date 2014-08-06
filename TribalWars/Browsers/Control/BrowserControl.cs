@@ -69,6 +69,7 @@ namespace TribalWars.Browsers.Control
 
             Browser.CanGoForwardChanged += Browser_CanGoForwardChanged;
             Browser.CanGoBackChanged += Browser_CanGoBackChanged;
+            Browser.ScriptErrorsSuppressed = true;
 
             World.Default.EventPublisher.Browse += OnBrowseEvent;
             World.Default.EventPublisher.SettingsLoaded += OnSettingsLoaded;
