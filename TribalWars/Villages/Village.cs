@@ -251,26 +251,38 @@ namespace TribalWars.Villages
             get { return Type.HasFlag(VillageType.Comments); }
         }
 
-        /// <summary>
-        /// Set the purpose of the village
-        /// </summary>
+        public void RemovePurpose()
+        {
+            Type = VillageType.None;
+        }
+
+        public void SetPurpose(VillageType changeTo)
+        {
+            AllowOnlyOnePrimaryPurpose(changeTo);
+            Type |= changeTo;
+        }
+
         public void TogglePurpose(VillageType changeTo)
         {
             if (Type.HasFlag(changeTo))
             {
-                Type -= changeTo;
+                Type &= ~changeTo;
             }
             else
             {
-                if (changeTo == VillageType.Attack || changeTo == VillageType.Catapult || changeTo == VillageType.Defense)
-                {
-                    // Only allow one of these at the same time
-                    if (Type.HasFlag(VillageType.Attack)) Type &= ~VillageType.Attack;
-                    if (Type.HasFlag(VillageType.Catapult)) Type &= ~VillageType.Catapult;
-                    if (Type.HasFlag(VillageType.Defense)) Type &= ~VillageType.Defense;
-                }
-
+                AllowOnlyOnePrimaryPurpose(changeTo);
                 Type |= changeTo;
+            }
+        }
+
+        private void AllowOnlyOnePrimaryPurpose(VillageType changeTo)
+        {
+            if (changeTo == VillageType.Attack || changeTo == VillageType.Catapult || changeTo == VillageType.Defense)
+            {
+                // Only allow one of these at the same time
+                if (Type.HasFlag(VillageType.Attack)) Type &= ~VillageType.Attack;
+                if (Type.HasFlag(VillageType.Catapult)) Type &= ~VillageType.Catapult;
+                if (Type.HasFlag(VillageType.Defense)) Type &= ~VillageType.Defense;
             }
         }
         #endregion

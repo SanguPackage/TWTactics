@@ -54,8 +54,8 @@ namespace TribalWars.Villages.ContextMenu
             //_menu.AddSeparator();
 
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
-
-            // TODO: clear purpose!
+            _menu.AddCommand("Remove purpose", OnRemovePurpose);
+           
 
             _menu.AddSeparator();
             if (!World.Default.You.Empty && villages.All(x => x.Player == World.Default.You))
@@ -89,6 +89,26 @@ namespace TribalWars.Villages.ContextMenu
             World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
         }
 
+        private void OnRemovePurpose(object sender, CommandEventArgs e)
+        {
+            string text = string.Format("Do you want to remove all existing purpose of {0} villages?\nThis action cannot be undone!", _villages.Count());
+            if (_villages.Count() > 1 && MessageBox.Show(text, "Set purpose", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+            {
+                return;
+            }
+
+            foreach (Village village in _villages)
+            {
+                village.RemovePurpose();
+            }
+            _map.Invalidate();
+
+            if (_onVillageTypeChangeDelegate != null)
+            {
+                _onVillageTypeChangeDelegate(VillageType.None);
+            }
+        }
+
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
         {
             var changeTo = (VillageType) e.Command.Tag;
@@ -100,7 +120,7 @@ namespace TribalWars.Villages.ContextMenu
 
             foreach (Village village in _villages)
             {
-                village.TogglePurpose(changeTo);
+                village.SetPurpose(changeTo);
             }
             _map.Invalidate();
 
