@@ -137,6 +137,7 @@ namespace TribalWars.Tools.JanusExtensions
             AddVillageTypeCommand(villageTypes, VillageType.Attack, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Catapult, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Defense, currentVillageType, onVillageTypeChange);
+            villageTypes.Commands.AddSeparator();
             AddVillageTypeCommand(villageTypes, VillageType.Noble, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Scout, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Farm, currentVillageType, onVillageTypeChange);

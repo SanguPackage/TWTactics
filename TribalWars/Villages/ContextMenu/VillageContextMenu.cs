@@ -141,14 +141,7 @@ namespace TribalWars.Villages.ContextMenu
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
         {
             var changeTo = (VillageType)e.Command.Tag;
-            if (_village.Type.HasFlag(changeTo))
-            {
-                _village.Type -= changeTo;
-            }
-            else
-            {
-                _village.Type |= changeTo;
-            }
+            _village.TogglePurpose(changeTo);
             _map.Invalidate();
 
             if (_onVillageTypeChangeDelegate != null)

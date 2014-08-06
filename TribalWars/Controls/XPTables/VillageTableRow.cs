@@ -74,7 +74,7 @@ namespace TribalWars.Controls.XPTables
             if (village.Type != VillageType.None)
             {
                 var cell = new Cell(string.Empty, village.Type.GetImage(true));
-                if (village.Type.HasFlag(VillageType.Comments))
+                if (village.HasComments)
                 {
                     cell.ToolTipText = village.Comments;
                 }

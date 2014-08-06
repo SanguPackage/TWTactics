@@ -147,7 +147,7 @@ namespace TribalWars.Controls.GridExs
                 if (record.Village.Type != VillageType.None)
                 {
                     e.Row.Cells["Type"].Image = record.Village.Type.GetImage(true);
-                    if (record.Village.Type.HasFlag(VillageType.Comments))
+                    if (record.Village.HasComments)
                     {
                         e.Row.Cells["Type"].ToolTipText = record.Village.Comments;
                     }

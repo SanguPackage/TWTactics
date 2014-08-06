@@ -54,7 +54,7 @@ namespace TribalWars.Villages
         {
             get
             {
-                if (Type.HasFlag(VillageType.Comments) && string.IsNullOrWhiteSpace(_comments))
+                if (HasComments && string.IsNullOrWhiteSpace(_comments))
                 {
                     LoadReports();
                 }
@@ -66,9 +66,9 @@ namespace TribalWars.Villages
                 {
                     _comments = value;
                     if (string.IsNullOrEmpty(value))
-                        Type = _type & ~ VillageType.Comments;
+                        Type = Type & ~ VillageType.Comments;
                     else
-                        Type = _type | VillageType.Comments;
+                        Type = Type | VillageType.Comments;
 
                     Reports.SaveComments();
                 }
@@ -191,6 +191,11 @@ namespace TribalWars.Villages
         /// <summary>
         /// Gets or sets the purpose of a village
         /// </summary>
+        /// <remarks>
+        /// Hiding the VillageType beneath another class VillagePurpose
+        /// would avoid all the nastiness of the Flags Enum that really
+        /// isn't one(Comments that have little to do with purpose etc)
+        /// </remarks>
         public VillageType Type
         {
             get
@@ -217,6 +222,8 @@ namespace TribalWars.Villages
         { 
             get { return new VillageTooltip(this); }
         }
+
+        
         #endregion
 
         #region Constructors
@@ -234,6 +241,36 @@ namespace TribalWars.Villages
             if (_location.IsValidGameCoordinate())
             {
                 _kingdom = _location.Kingdom();
+            }
+        }
+        #endregion
+
+        #region Purpose
+        public bool HasComments
+        {
+            get { return Type.HasFlag(VillageType.Comments); }
+        }
+
+        /// <summary>
+        /// Set the purpose of the village
+        /// </summary>
+        public void TogglePurpose(VillageType changeTo)
+        {
+            if (Type.HasFlag(changeTo))
+            {
+                Type -= changeTo;
+            }
+            else
+            {
+                if (changeTo == VillageType.Attack || changeTo == VillageType.Catapult || changeTo == VillageType.Defense)
+                {
+                    // Only allow one of these at the same time
+                    if (Type.HasFlag(VillageType.Attack)) Type &= ~VillageType.Attack;
+                    if (Type.HasFlag(VillageType.Catapult)) Type &= ~VillageType.Catapult;
+                    if (Type.HasFlag(VillageType.Defense)) Type &= ~VillageType.Defense;
+                }
+
+                Type |= changeTo;
             }
         }
         #endregion

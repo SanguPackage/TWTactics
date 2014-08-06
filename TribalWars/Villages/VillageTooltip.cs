@@ -128,7 +128,7 @@ namespace TribalWars.Villages
         {
             get
             {
-                if (_village.Type.HasFlag(VillageType.Comments))
+                if (_village.HasComments)
                 {
                     var str = new StringBuilder();
                     str.AppendLine("Comments:");

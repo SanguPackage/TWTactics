@@ -98,14 +98,7 @@ namespace TribalWars.Villages.ContextMenu
 
             foreach (Village village in _villages)
             {
-                if (village.Type.HasFlag(changeTo))
-                {
-                    village.Type -= changeTo;
-                }
-                else
-                {
-                    village.Type |= changeTo;
-                }
+                village.TogglePurpose(changeTo);
             }
             _map.Invalidate();
 

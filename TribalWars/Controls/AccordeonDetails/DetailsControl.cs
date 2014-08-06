@@ -239,7 +239,7 @@ namespace TribalWars.Controls.AccordeonDetails
         /// </summary>
         private void Comments_TextChanged(object sender, EventArgs e)
         {
-            bool hadComment = _current.Village.Type.HasFlag(VillageType.Comments);
+            bool hadComment = _current.Village.HasComments;
             _current.Village.Comments = Comments.Text;
             if ((hadComment && string.IsNullOrWhiteSpace(Comments.Text))
                 || (!hadComment && !string.IsNullOrWhiteSpace(Comments.Text)))
