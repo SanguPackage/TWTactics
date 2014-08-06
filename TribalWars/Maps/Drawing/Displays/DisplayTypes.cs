@@ -1,4 +1,4 @@
-namespace TribalWars.Maps.Displays
+namespace TribalWars.Maps.Drawing.Displays
 {
     #region Enums
     /// <summary>

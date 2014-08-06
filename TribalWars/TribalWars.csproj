@@ -203,7 +203,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AttackIcons.resx</DependentUpon>
     </Compile>
-    <Compile Include="Maps\Displays\ZoomInfo.cs" />
+    <Compile Include="Maps\Drawing\Displays\WorldData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorldData.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\Drawing\Displays\ZoomInfo.cs" />
     <Compile Include="Maps\AttackPlans\Controls\NoVillageAttackContextMenu.cs" />
     <Compile Include="Maps\AttackPlans\EventArg\AttackEventArgs.cs" />
     <Compile Include="Maps\AttackPlans\AttackPlanExporter.cs" />
@@ -260,11 +265,6 @@
     </Compile>
     <Compile Include="Forms\Small\ActivePlayerForm.Designer.cs">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Maps\Displays\WorldData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WorldData.resx</DependentUpon>
     </Compile>
     <Compile Include="Maps\Drawing\Drawers\BackgroundDrawerData.cs" />
     <Compile Include="Maps\Drawing\Views\IView.cs" />
@@ -328,8 +328,8 @@
     <Compile Include="Worlds\Events\Impls\ManipulatorEventArgs.cs" />
     <Compile Include="Worlds\Events\Impls\PolygonEventArgs.cs" />
     <Compile Include="Maps\Drawing\DisplaySettings.cs" />
-    <Compile Include="Maps\Displays\MiniMapDrawerFactory.cs" />
-    <Compile Include="Maps\Displays\VillageDimensions.cs" />
+    <Compile Include="Maps\Drawing\Displays\MiniMapDrawerFactory.cs" />
+    <Compile Include="Maps\Drawing\Displays\VillageDimensions.cs" />
     <Compile Include="Maps\Drawing\Drawers\DecoratorDrawerData.cs" />
     <Compile Include="Maps\Drawing\Drawers\DrawerBase.cs" />
     <Compile Include="Maps\Drawing\Drawers\OtherDrawers\BackgroundDrawer.cs" />
@@ -438,11 +438,11 @@
     <Compile Include="Maps\Drawing\Display.cs" />
     <Compile Include="Maps\Markers\MarkerSettings.cs" />
     <Compile Include="Maps\Publisher.cs" />
-    <Compile Include="Maps\Displays\DisplayTypes.cs" />
-    <Compile Include="Maps\Displays\IconDrawerFactory.cs" />
-    <Compile Include="Maps\Displays\ShapeDrawerFactory.cs" />
+    <Compile Include="Maps\Drawing\Displays\DisplayTypes.cs" />
+    <Compile Include="Maps\Drawing\Displays\IconDrawerFactory.cs" />
+    <Compile Include="Maps\Drawing\Displays\ShapeDrawerFactory.cs" />
     <Compile Include="Maps\Drawing\Views\ViewBase.cs" />
-    <Compile Include="Maps\Displays\DrawerFactoryBase.cs" />
+    <Compile Include="Maps\Drawing\Displays\DrawerFactoryBase.cs" />
     <Compile Include="Maps\Markers\Marker.cs" />
     <Compile Include="Maps\Markers\MarkerManager.cs" />
     <Compile Include="Maps\Drawing\Views\PointsView.cs" />
@@ -659,8 +659,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>BuildingImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\Displays\WorldData.resx">
+    <EmbeddedResource Include="Maps\Drawing\Displays\WorldData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>WorldData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Icons\Background.resx">

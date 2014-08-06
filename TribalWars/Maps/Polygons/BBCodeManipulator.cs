@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using TribalWars.Controls;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Maps.Manipulators.Implementations;

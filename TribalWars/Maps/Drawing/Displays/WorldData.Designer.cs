@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TribalWars.Maps.Displays {
+namespace TribalWars.Maps.Drawing.Displays {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TribalWars.Maps.Displays {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TribalWars.Maps.Displays.WorldData", typeof(WorldData).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TribalWars.Maps.Drawing.Displays.WorldData", typeof(WorldData).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

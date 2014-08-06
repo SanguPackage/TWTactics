@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Controls;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Maps.Drawing.Views;
 using TribalWars.Maps.Markers;

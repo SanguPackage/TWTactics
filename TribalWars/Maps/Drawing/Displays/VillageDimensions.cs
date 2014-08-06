@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 
-namespace TribalWars.Maps.Displays
+namespace TribalWars.Maps.Drawing.Displays
 {
     /// <summary>
     /// The dimensions of the village

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;

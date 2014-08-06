@@ -13,7 +13,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TribalWars.Forms;
 using TribalWars.Forms.Small;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Tools;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;

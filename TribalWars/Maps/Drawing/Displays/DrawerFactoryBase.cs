@@ -8,7 +8,7 @@ using TribalWars.Villages;
 
 #endregion
 
-namespace TribalWars.Maps.Displays
+namespace TribalWars.Maps.Drawing.Displays
 {
     /// <summary>
     /// Base class for the Shape and IconDisplay factories

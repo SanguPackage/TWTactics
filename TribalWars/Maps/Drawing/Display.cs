@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using System.Diagnostics;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;

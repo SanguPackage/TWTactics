@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Tools;
 
 namespace TribalWars.Maps.Drawing

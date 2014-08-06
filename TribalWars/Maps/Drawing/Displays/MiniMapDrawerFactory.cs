@@ -8,7 +8,7 @@ using TribalWars.Worlds;
 
 #endregion
 
-namespace TribalWars.Maps.Displays
+namespace TribalWars.Maps.Drawing.Displays
 {
     public sealed class MiniMapDrawerFactory : DrawerFactoryBase
     {

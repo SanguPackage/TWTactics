@@ -11,7 +11,7 @@ using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
 using TribalWars.Forms.NotUsed;
 using TribalWars.Forms.Small;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Manipulators.Implementations;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Monitoring;

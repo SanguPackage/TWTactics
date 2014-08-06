@@ -8,7 +8,7 @@ using TribalWars.Villages;
 
 #endregion
 
-namespace TribalWars.Maps.Displays
+namespace TribalWars.Maps.Drawing.Displays
 {
     /// <summary>
     /// Create and cache ShapeDrawers

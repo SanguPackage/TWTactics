@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using TribalWars.Maps.Drawing;
-
-namespace TribalWars.Maps.Displays
+﻿namespace TribalWars.Maps.Drawing.Displays
 {
     /// <summary>
     /// Encapsulates the current zoom level

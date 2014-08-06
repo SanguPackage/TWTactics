@@ -1,5 +1,5 @@
 using System.Xml.Linq;
-using TribalWars.Maps.Displays;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Drawers;
 using TribalWars.Villages;
 
