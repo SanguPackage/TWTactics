@@ -33,6 +33,13 @@ namespace TribalWars.Maps.AttackPlans
         /// </summary>
         private const int AutoFindAmountOfAttackers = 10;
 
+        /// <summary>
+        /// When searching for the fastest villages that can still make it for
+        /// the given travel time, add this many possible attackers per click
+        /// when none are found that can still reach in time
+        /// </summary>
+        private const int AutoFindAmountOfAttackersWhenNone = 3;
+
         private const int DefaultArrivalTimeServerOffset = 8;
 
         /// <summary>
@@ -243,19 +250,26 @@ namespace TribalWars.Maps.AttackPlans
                                       .ToArray();
 
             var villagesWithTimeLeft =
-                from village in searchIn
+               (from village in searchIn
                 where !villagesAlreadyUsed.Contains(village)
                 let travelTime = Village.TravelTime(plan.Target, village, slowestUnit)
                 let timeBeforeNeedToSend = plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
-                where timeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft
                 select new
                 {
                     Village = village,
                     TimeBeforeNeedToSend = timeBeforeNeedToSend
-                };
+                })
+                .OrderBy(x => x.TimeBeforeNeedToSend)
+                .ToArray();
 
-            Village[] villagesFound = villagesWithTimeLeft.OrderBy(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackers).Select(x => x.Village).ToArray();
-            return villagesFound;
+            if (!villagesWithTimeLeft.Any(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft))
+            {
+                return villagesWithTimeLeft.OrderByDescending(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackersWhenNone).Select(x => x.Village);
+            }
+            else
+            {
+                return villagesWithTimeLeft.Where(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft).Take(AutoFindAmountOfAttackers).Select(x => x.Village);
+            }
         }
     }
 }
