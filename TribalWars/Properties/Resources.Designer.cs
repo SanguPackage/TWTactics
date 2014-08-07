@@ -133,6 +133,16 @@ namespace TribalWars.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Church {
+            get {
+                object obj = ResourceManager.GetObject("Church", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clay {
             get {
                 object obj = ResourceManager.GetObject("clay", resourceCulture);

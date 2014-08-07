@@ -555,7 +555,7 @@ namespace TribalWars.Maps.AttackPlans
             #endregion
         }
 
-        public string WriteXml()
+        public override string WriteXml()
         {
             var output = new XDocument(
                 new XElement("Plans",
@@ -575,7 +575,7 @@ namespace TribalWars.Maps.AttackPlans
             return output.ToString();
         }
 
-        public void ReadXml(XDocument doc)
+        public override void ReadXml(XDocument doc)
         {
             XElement attackManipulator = 
                 doc.Descendants("Manipulator")

@@ -1,9 +1,13 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Xml.Linq;
 using TribalWars.Maps.Manipulators.EventArg;
+using TribalWars.Tools;
 using TribalWars.Villages;
+using TribalWars.Worlds;
 
 #endregion
 
@@ -45,6 +49,39 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
         }
         #endregion
 
+        #region Persistence
+        public override void ReadXml(XDocument doc)
+        {
+            var churchesContainer = doc.Descendants("ChurchesManipulator").FirstOrDefault();
+            if (churchesContainer != null)
+            {
+                var churches = churchesContainer.Elements().Select(x => new ChurchInfo(
+                    World.Default.GetVillage(x.Attribute("Village").Value),
+                    Convert.ToInt32(x.Attribute("Level").Value),
+                    XmlHelper.GetColor(x.Attribute("Color").Value)));
+
+                _churches.AddRange(churches);
+            }
+        }
+
+        public override string WriteXml()
+        {
+            if (World.Default.Settings.Church)
+            {
+                var churches =
+                    new XElement("ChurchesManipulator",
+                        _churches.Select(x =>
+                            new XElement("Church",
+                                new XAttribute("Village", x.Village.LocationString),
+                                new XAttribute("Level", x.ChurchLevel),
+                                new XAttribute("Color", XmlHelper.SetColor(x.Color)))));
+
+                return churches.ToString();
+            }
+            return "";
+        }
+        #endregion
+
         #region Methods
         public ChurchInfo GetChurch(Village village)
         {
@@ -53,7 +90,14 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
 
         public override void Paint(MapPaintEventArgs e)
         {
-
+            foreach (ChurchInfo church in _churches)
+            {
+                Point mapLocation = _map.Display.GetMapLocation(church.Village.Location);
+                using (var brush = new SolidBrush(church.Color))
+                {
+                    e.Graphics.FillRectangle(brush, mapLocation.X, mapLocation.Y, 100, 100);
+                }
+            }
         }
 
         protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
@@ -75,6 +119,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
 
         protected internal override void CleanUp()
         {
+            _churches.Clear();
         }
 
         public override void TimerPaint(MapTimerPaintEventArgs e)

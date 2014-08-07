@@ -110,7 +110,10 @@ namespace TribalWars.Villages.ContextMenu
                 var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
 
                 string commandText = "Church" + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
-                var containerCommand = new UICommand(commandText);
+                var containerCommand = new UICommand("", commandText)
+                    {
+                        Image = Properties.Resources.Church
+                    };
                 containerCommand.Commands.AddRange(CreateChurchLevelCommands(church));
                 _menu.Commands.Add(containerCommand);
             }
@@ -192,6 +195,10 @@ namespace TribalWars.Villages.ContextMenu
             if (church == null)
             {
                 church = new ChurchInfo(_village, level);
+            }
+            else
+            {
+                church.ChurchLevel = level;
             }
             _map.EventPublisher.ChurchChange(sender, church);
         }

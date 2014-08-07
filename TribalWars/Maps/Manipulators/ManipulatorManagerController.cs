@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using TribalWars.Maps.AttackPlans;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Manipulators.EventArg;
@@ -180,7 +182,14 @@ namespace TribalWars.Maps.Manipulators
 
         public string GetRoamingXml()
         {
-            return ""; //_churchManipulator.Write
+            var str = new StringBuilder();
+            str.Append(ChurchManipulator.WriteXml());
+            return str.ToString();
+        }
+
+        public void ReadRoamingXml(XDocument newReader)
+        {
+            ChurchManipulator.ReadXml(newReader);
         }
 
         public void ToggleChurchManipulator()

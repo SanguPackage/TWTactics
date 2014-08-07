@@ -808,6 +808,7 @@
     <None Include="Resources\Flag_redHS.bmp" />
     <None Include="Resources\Flag_redHS.png" />
     <None Include="Resources\Delete.ico" />
+    <None Include="Resources\Church.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

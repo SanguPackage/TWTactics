@@ -1,5 +1,6 @@
 #region Using
 using System.Drawing;
+using System.Xml.Linq;
 using TribalWars.Controls;
 using System.Xml;
 using TribalWars.Maps.Controls;
@@ -92,7 +93,7 @@ namespace TribalWars.Maps.Manipulators
         }
 
         /// <summary>
-        /// Saves state to stream
+        /// LEGACY: Saves state to stream
         /// </summary>
         internal protected virtual void WriteXmlCore(XmlWriter w)
         {
@@ -100,11 +101,27 @@ namespace TribalWars.Maps.Manipulators
         }
 
         /// <summary>
-        /// Loads state from stream
+        /// LEGACY: Loads state from stream
         /// </summary>
         internal protected virtual void ReadXmlCore(XmlReader r)
         {
 
+        }
+
+        /// <summary>
+        /// The NEW XDocument powered persistence
+        /// </summary>
+        public virtual string WriteXml()
+        {
+            return "";
+        }
+
+        /// <summary>
+        /// The NEW XDocument powered persistence
+        /// </summary>
+        public virtual void ReadXml(XDocument doc)
+        {
+            
         }
 
         /// <summary>

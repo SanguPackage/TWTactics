@@ -134,6 +134,13 @@ namespace TribalWars.Worlds
                 }
                 r.ReadEndElement();
 
+                if (r.IsStartElement("RoamingManipulators"))
+                {
+                    r.Skip();
+
+                    map.Manipulators.ReadRoamingXml(newReader);
+                }
+
                 // End Main Map
                 r.ReadEndElement();
 
@@ -244,9 +251,9 @@ namespace TribalWars.Worlds
                 }
                 w.WriteEndElement();
 
-                //w.WriteStartElement("RoamingManipulators");
-                //w.WriteRaw(map.Manipulators.GetRoamingXml());
-                //w.WriteEndElement();
+                w.WriteStartElement("RoamingManipulators");
+                w.WriteRaw(map.Manipulators.GetRoamingXml());
+                w.WriteEndElement();
 
                 // end MainMap
                 w.WriteEndElement();

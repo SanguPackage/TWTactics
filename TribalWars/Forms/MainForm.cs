@@ -255,6 +255,10 @@ namespace TribalWars.Forms
             _locationChanger.LocationChanger.Initialize(World.Default.Map);
 
             ToolStripChurchManipulator.Visible = World.Default.Settings.Church;
+            if (ToolStripChurchManipulator.Visible && !ToolStripChurchManipulator.Checked)
+            {
+                ToolStripChurchManipulator.PerformClick();
+            }
 
             World.Default.Map.Manipulators.AddMouseMoved(Map_MouseMoved);
         }
@@ -545,6 +549,7 @@ namespace TribalWars.Forms
         }
         #endregion
 
+        #region Other Windows
         private void MenuWindowsManageYourVillages_Click(object sender, EventArgs e)
         {
             YourVillagesForm.ShowForm();
@@ -555,5 +560,6 @@ namespace TribalWars.Forms
             var frm = new VillageCoordinatesImporterForm();
             frm.Show();
         }
+        #endregion
     }
 }

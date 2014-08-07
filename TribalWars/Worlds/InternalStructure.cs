@@ -515,7 +515,7 @@ namespace TribalWars.Worlds
 
                 bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "1";
 
-                bool hasChurch = xdoc.Root.Element("Game").Element("church").Value == "1";
+                bool hasChurch = xdoc.Root.Element("game").Element("church").Value == "1";
 
                 return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery, hasChurch);
             }

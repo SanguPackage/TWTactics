@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using TribalWars.Tools;
 using TribalWars.Villages;
 
 namespace TribalWars.Maps.Manipulators.Implementations.Church
@@ -30,11 +31,24 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
         #endregion
 
         #region Constructors
-        public ChurchInfo(Village village, int churchLevel)
+        public ChurchInfo(Village village, int churchLevel, Color color)
         {
             Village = village;
             ChurchLevel = churchLevel;
-            Color = Color.Yellow;
+            Color = color;
+        }
+
+        public ChurchInfo(Village village, int churchLevel)
+            : this(village, churchLevel, Color.Yellow)
+        {
+            
+        }
+        #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return string.Format("Village={0}, Level={1}, Color={2}", Village.LocationString, ChurchLevel, Color.Description());
         }
         #endregion
     }
