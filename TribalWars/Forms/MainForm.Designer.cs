@@ -85,6 +85,7 @@ namespace TribalWars.Forms
             this.MenuMapSeeScreenshots = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsManageYourVillages = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuWindowsImportVillageCoordinates = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuHelpReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,7 +138,7 @@ namespace TribalWars.Forms
             this.monitoringControl1 = new TribalWars.Maps.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.MenuWindowsImportVillageCoordinates = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripChurchManipulator = new System.Windows.Forms.ToolStripButton();
             this.Status.SuspendLayout();
             this.MenuBar.SuspendLayout();
             this.ToolStrip.SuspendLayout();
@@ -557,6 +558,13 @@ namespace TribalWars.Forms
             this.MenuWindowsManageYourVillages.Text = "Manage your villages";
             this.MenuWindowsManageYourVillages.Click += new System.EventHandler(this.MenuWindowsManageYourVillages_Click);
             // 
+            // MenuWindowsImportVillageCoordinates
+            // 
+            this.MenuWindowsImportVillageCoordinates.Name = "MenuWindowsImportVillageCoordinates";
+            this.MenuWindowsImportVillageCoordinates.Size = new System.Drawing.Size(212, 22);
+            this.MenuWindowsImportVillageCoordinates.Text = "Import village coordinates";
+            this.MenuWindowsImportVillageCoordinates.Click += new System.EventHandler(this.MenuWindowsImportVillageCoordinates_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -621,10 +629,11 @@ namespace TribalWars.Forms
             this.ToolStripDefaultManipulator,
             this.ToolStripPolygonManipulator,
             this.ToolStripAttackManipulator,
+            this.ToolStripChurchManipulator,
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(432, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -1207,12 +1216,15 @@ namespace TribalWars.Forms
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
-            // MenuWindowsImportVillageCoordinates
+            // ToolStripChurchManipulator
             // 
-            this.MenuWindowsImportVillageCoordinates.Name = "MenuWindowsImportVillageCoordinates";
-            this.MenuWindowsImportVillageCoordinates.Size = new System.Drawing.Size(212, 22);
-            this.MenuWindowsImportVillageCoordinates.Text = "Import village coordinates";
-            this.MenuWindowsImportVillageCoordinates.Click += new System.EventHandler(this.MenuWindowsImportVillageCoordinates_Click);
+            this.ToolStripChurchManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripChurchManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripChurchManipulator.Image")));
+            this.ToolStripChurchManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripChurchManipulator.Name = "ToolStripChurchManipulator";
+            this.ToolStripChurchManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripChurchManipulator.ToolTipText = "Display the radius of your churches";
+            this.ToolStripChurchManipulator.Click += new System.EventHandler(this.ToolStripChurchManipulator_Click);
             // 
             // MainForm
             // 
@@ -1370,6 +1382,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsManageYourVillages;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsImportVillageCoordinates;
+        private System.Windows.Forms.ToolStripButton ToolStripChurchManipulator;
     }
 }
 

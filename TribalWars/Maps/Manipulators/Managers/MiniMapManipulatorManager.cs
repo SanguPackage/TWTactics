@@ -21,7 +21,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             : base(map, false)
         {
             _activeVillage = new MiniMapActiveVillageManipulator(map, mainMap);
-            _manipulators.Add(_activeVillage);
+            AddManipulator(_activeVillage);
         }
         #endregion
 

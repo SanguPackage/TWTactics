@@ -35,9 +35,9 @@ namespace TribalWars.Maps.Manipulators.Managers
             MapMover = new MapMoverManipulator(map);
             MapDragger = new MapDraggerManipulator(map, this);
 
-            _manipulators.Add(ActiveVillageManipulator);
-            _manipulators.Add(MapMover);
-            _manipulators.Add(MapDragger);
+            AddManipulator(ActiveVillageManipulator);
+            AddManipulator(MapMover);
+            AddManipulator(MapDragger);
         }
         #endregion
     }

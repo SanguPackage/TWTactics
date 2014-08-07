@@ -209,6 +209,23 @@ namespace TribalWars.Forms
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
             }
         }
+
+        private void ToolStripChurchManipulator_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                ToolStripChurchManipulator.Checked = !ToolStripChurchManipulator.Checked;
+
+                if (ToolStripChurchManipulator.Checked)
+                {
+                    //World.Default.Map.Manipulators.CurrentManipulator.A
+                }
+                else
+                {
+                    
+                }
+            }
+        }
         #endregion
 
         #region Settings Loading & Saving
@@ -243,6 +260,8 @@ namespace TribalWars.Forms
         private void OnWorldLoaded(object sender, EventArgs e)
         {
             _locationChanger.LocationChanger.Initialize(World.Default.Map);
+
+            ToolStripChurchManipulator.Visible = World.Default.Settings.Church;
 
             World.Default.Map.Manipulators.AddMouseMoved(Map_MouseMoved);
         }

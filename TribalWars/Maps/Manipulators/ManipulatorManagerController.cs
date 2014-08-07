@@ -60,9 +60,9 @@ namespace TribalWars.Maps.Manipulators
         /// <summary>
         /// Gets the polygon manipulator
         /// </summary>
-        public PolygonManipulatorManager PolygonManipulator { get; set; }
+        public PolygonManipulatorManager PolygonManipulator { get; private set; }
 
-        public AttackManipulatorManager AttackManipulator { get; set; }
+        public AttackManipulatorManager AttackManipulator { get; private set; }
 
         /// <summary>
         /// The last village the cursor was on or is still on
@@ -159,6 +159,11 @@ namespace TribalWars.Maps.Manipulators
             {
                 SetManipulator(ManipulatorManagerTypes.Default);
             }
+        }
+
+        public void AddRoamingManipulator()
+        {
+            
         }
 
         public bool KeyDown(KeyEventArgs e)

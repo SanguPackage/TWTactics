@@ -468,6 +468,7 @@ namespace TribalWars.Worlds
                 worldInfo.Speed = twWorldSettings.Speed.ToString(CultureInfo.InvariantCulture);
                 worldInfo.UnitSpeed = twWorldSettings.UnitSpeed.ToString(CultureInfo.InvariantCulture);
                 worldInfo.WorldDatScenery = ((int)twWorldSettings.MapScenery).ToString(CultureInfo.InvariantCulture);
+                worldInfo.Church = twWorldSettings.Church ? "1" : "0";
 
                 // Fix URIs
                 worldInfo.Server = ReplaceServerAndWorld(worldInfo.Server, worldName, server);
@@ -506,6 +507,7 @@ namespace TribalWars.Worlds
             /// </summary>
             private static TwWorldSettings DownloadWorldSettings(string worldName, string worldServer)
             {
+                // http://nl2.tribalwars.nl/interface.php?func=get_config
                 var xdoc = Network.DownloadXml(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
                 Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
@@ -513,7 +515,9 @@ namespace TribalWars.Worlds
 
                 bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "1";
 
-                return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery);
+                bool hasChurch = xdoc.Root.Element("Game").Element("church").Value == "1";
+
+                return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery, hasChurch);
             }
 
             /// <summary>
@@ -524,16 +528,19 @@ namespace TribalWars.Worlds
                 public float Speed { get; private set; }
                 public float UnitSpeed { get; private set; }
 
+                public bool Church { get; private set; }
+
                 /// <summary>
                 /// Gets a value indicating which world.dat to use
                 /// </summary>
                 public IconDrawerFactory.Scenery MapScenery { get; private set; }
 
-                public TwWorldSettings(float worldSpeed, float worldUnitSpeed, bool isOldScenery)
+                public TwWorldSettings(float worldSpeed, float worldUnitSpeed, bool isOldScenery, bool hasChurch)
                 {
                     Speed = worldSpeed;
                     UnitSpeed = worldUnitSpeed;
                     MapScenery = isOldScenery ? IconDrawerFactory.Scenery.Old : IconDrawerFactory.Scenery.New;
+                    Church = hasChurch;
                 }
             }
 
@@ -578,6 +585,7 @@ namespace TribalWars.Worlds
 
             private static IEnumerable<TwUnit> DownloadWorldUnitSettings(string worldName, string serverName)
             {
+                // http://nl2.tribalwars.nl/interface.php?func=get_unit_info
                 var xdoc = Network.DownloadXml(string.Format(ServerSettingsUrl, worldName, serverName, "get_unit_info"));
 
                 var list = new List<TwUnit>();

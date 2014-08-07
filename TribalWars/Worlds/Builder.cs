@@ -284,6 +284,7 @@ namespace TribalWars.Worlds
             w.Settings.TwStats.TribeGraph = info.TWStatsTribeGraph;
 
             w.Settings.IconScenery = (IconDrawerFactory.Scenery)Convert.ToInt32(info.WorldDatScenery);
+            w.Settings.Church = info.Church == "1";
 
             WorldBuildings.Default.SetBuildings(ReadWorldBuildings(info.Buildings));
             WorldUnits.Default.SetUnits(ReadWorldUnits(info.Units));

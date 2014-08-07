@@ -25,8 +25,8 @@ namespace TribalWars.Maps.Manipulators.Managers
     public abstract class ManipulatorManagerBase : ManipulatorBase
     {
         #region Fields
-        protected readonly List<ManipulatorBase> _manipulators;
-        protected ManipulatorBase _fullControllManipulator;
+        private readonly List<ManipulatorBase> _manipulators;
+        private ManipulatorBase _fullControllManipulator;
         #endregion
 
         #region Properties
@@ -104,6 +104,16 @@ namespace TribalWars.Maps.Manipulators.Managers
                 settings.FooterImage = Other.Note;
             }
             return settings;
+        }
+
+        public void AddManipulator(ManipulatorBase manipulator)
+        {
+            _manipulators.Add(manipulator);
+        }
+
+        public void RemoveManipulator(ManipulatorBase manipulator)
+        {
+            _manipulators.Remove(manipulator);
         }
         #endregion
 

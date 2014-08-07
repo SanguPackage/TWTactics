@@ -75,6 +75,9 @@ namespace TribalWars.WorldTemplate
         private string worldDatSceneryField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        private string churchField;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         private List<WorldConfigurationBuildingsBuilding> buildingsField;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -117,6 +120,8 @@ namespace TribalWars.WorldTemplate
         public string TWStatsTribeGraph { get; set; }
 
         public string WorldDatScenery { get; set; }
+
+        public string Church { get; set; }
 
 
         public WorldConfiguration()

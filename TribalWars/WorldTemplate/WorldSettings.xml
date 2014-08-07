@@ -18,6 +18,7 @@
   <TWStatsPlayerGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=playerssgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsPlayerGraph>
   <TWStatsTribeGraph>http://{TWStatsPrefix}.twstats.com/image.php?type=tribessgraph&amp;id={0}&amp;s={WorldName}&amp;graph={1}</TWStatsTribeGraph>
   <WorldDatScenery>0</WorldDatScenery>
+  <Church>0</Church>
   <Buildings>
     <Building>
       <Name>Hoofdgebouw</Name>

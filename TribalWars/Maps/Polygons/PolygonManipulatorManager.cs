@@ -24,7 +24,7 @@ namespace TribalWars.Maps.Polygons
         {
             // Active manipulators
             _bbCode = new BbCodeManipulator(map, this);
-            _manipulators.Add(_bbCode);
+            AddManipulator(_bbCode);
 
             MapMover.RightClickToMove = false;
         }

@@ -81,9 +81,9 @@ namespace TribalWars.Maps.AttackPlans
             var dragger = new MapDraggerManipulator(map, this);
             _attacker = new AttackManipulator(map);
 
-            _manipulators.Add(_attacker);
-            _manipulators.Add(mover);
-            _manipulators.Add(dragger);
+            AddManipulator(_attacker);
+            AddManipulator(mover);
+            AddManipulator(dragger);
         }
         #endregion
 

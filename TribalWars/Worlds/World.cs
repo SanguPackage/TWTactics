@@ -716,6 +716,11 @@ namespace TribalWars.Worlds
             /// <remarks>Replace {0} by tribe id</remarks>
             public string GuestTribeLink { get; set; }
 
+            /// <summary>
+            /// True if churches are enabled on the world
+            /// </summary>
+            public bool Church { get; set; }
+
             public WorldSettings()
             {
                 UnitSpeed = 1;
