@@ -1,47 +1,65 @@
 #region Using
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Villages;
-using TribalWars.Worlds.Events;
-using TribalWars.Worlds.Events.Impls;
 
 #endregion
 
-namespace TribalWars.Maps.Manipulators.Implementations
+namespace TribalWars.Maps.Manipulators.Implementations.Church
 {
     /// <summary>
     /// Display the radius of the churches
     /// </summary>
-    internal class ChurchManipulator : ManipulatorBase
+    public class ChurchManipulator : ManipulatorBase
     {
         #region Fields
+        private readonly List<ChurchInfo> _churches;
         #endregion
 
         #region Constructors
         public ChurchManipulator(Map map)
             : base(map)
         {
+            _churches = new List<ChurchInfo>();
+            _map.EventPublisher.ChurchChanged += EventPublisherOnChurchChanged;
+        }
 
-            //_map.EventPublisher.VillagesSelected += EventPublisher_VillagesSelected;
-            //_map.EventPublisher.PlayerSelected += EventPublisher_VillagesSelected;
-            //_map.EventPublisher.TribeSelected += EventPublisher_VillagesSelected;
+        private void EventPublisherOnChurchChanged(object sender, ChurchEventArgs e)
+        {
+            if (e.Church.ChurchLevel == 0)
+            {
+                if (_churches.Contains(e.Church))
+                {
+                    _churches.Remove(e.Church);
+                }
+            }
+            else
+            {
+                if (!_churches.Contains(e.Church))
+                {
+                    _churches.Add(e.Church);
+                }
+            }
         }
         #endregion
 
         #region Methods
-        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        public ChurchInfo GetChurch(Village village)
         {
-            
-            return false;
+            return _churches.FirstOrDefault(x => x.Village == village);
         }
 
         public override void Paint(MapPaintEventArgs e)
         {
+
+        }
+
+        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        {
             
+            return false;
         }
 
         protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
@@ -73,5 +91,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
         #region Privates
         
         #endregion
+
+        
     }
 }

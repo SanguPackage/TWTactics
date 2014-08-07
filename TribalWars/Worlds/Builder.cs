@@ -244,6 +244,10 @@ namespace TribalWars.Worlds
                 }
                 w.WriteEndElement();
 
+                //w.WriteStartElement("RoamingManipulators");
+                //w.WriteRaw(map.Manipulators.GetRoamingXml());
+                //w.WriteEndElement();
+
                 // end MainMap
                 w.WriteEndElement();
 

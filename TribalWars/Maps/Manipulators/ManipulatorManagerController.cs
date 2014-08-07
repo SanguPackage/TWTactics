@@ -1,4 +1,5 @@
 #region Imports
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 using TribalWars.Maps.AttackPlans;
 using TribalWars.Maps.Controls;
 using TribalWars.Maps.Manipulators.EventArg;
+using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Polygons;
 using TribalWars.Tools;
@@ -161,9 +163,41 @@ namespace TribalWars.Maps.Manipulators
             }
         }
 
-        public void AddRoamingManipulator()
+        private readonly List<ManipulatorBase> _roaming = new List<ManipulatorBase>();
+        private ChurchManipulator _churchManipulator;
+
+        public ChurchManipulator ChurchManipulator
         {
-            
+            get
+            {
+                if (_churchManipulator == null)
+                {
+                    _churchManipulator = new ChurchManipulator(Map);
+                }
+                return _churchManipulator;
+            }
+        }
+
+        public string GetRoamingXml()
+        {
+            return ""; //_churchManipulator.Write
+        }
+
+        public void ToggleChurchManipulator()
+        {
+            ToggleRoamingManipulator(ChurchManipulator);
+        }
+
+        private void ToggleRoamingManipulator(ManipulatorBase manipulator)
+        {
+            if (_roaming.Contains(manipulator))
+            {
+                _roaming.Remove(manipulator);
+            }
+            else
+            {
+                _roaming.Add(manipulator);
+            }
         }
 
         public bool KeyDown(KeyEventArgs e)
@@ -188,7 +222,7 @@ namespace TribalWars.Maps.Manipulators
             {
                 redraw = CurrentManipulator.OnVillageClickCore(new MapVillageEventArgs(e, village));
             }
-            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(e, village)) 
+            return CurrentManipulator.MouseDownCore(new MapMouseEventArgs(e, village))
                 || redraw;
         }
 
@@ -244,8 +278,15 @@ namespace TribalWars.Maps.Manipulators
 
         public void Paint(Graphics graphics, Rectangle fullMap)
         {
+            foreach (ManipulatorBase roaming in _roaming)
+            {
+                roaming.Paint(new MapPaintEventArgs(graphics, fullMap, false));
+            }
+
             foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
+            {
                 manipulator.Paint(new MapPaintEventArgs(graphics, fullMap, manipulator == CurrentManipulator));
+            }
         }
 
         public void TimerPaint(ScrollableMapControl mapPicture, Rectangle fullMap)

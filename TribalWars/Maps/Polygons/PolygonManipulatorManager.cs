@@ -34,7 +34,7 @@ namespace TribalWars.Maps.Polygons
         /// <summary>
         /// Loads state from stream
         /// </summary>
-        protected internal override void ReadXmlCore(XmlReader r)
+        protected override void ReadXmlCore(XmlReader r)
         {
             _bbCode.ReadXmlCore(r);
         }
@@ -42,7 +42,7 @@ namespace TribalWars.Maps.Polygons
         /// <summary>
         /// Saves state to stream
         /// </summary>
-        protected internal override void WriteXmlCore(XmlWriter w)
+        protected override void WriteXmlCore(XmlWriter w)
         {
             _bbCode.WriteXmlCore(w);
         }

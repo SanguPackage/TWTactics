@@ -13,6 +13,7 @@ using TribalWars.Forms.NotUsed;
 using TribalWars.Forms.Small;
 using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Manipulators.Implementations;
+using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Monitoring;
 using TribalWars.Tools;
@@ -215,15 +216,7 @@ namespace TribalWars.Forms
             if (World.Default.HasLoaded)
             {
                 ToolStripChurchManipulator.Checked = !ToolStripChurchManipulator.Checked;
-
-                if (ToolStripChurchManipulator.Checked)
-                {
-                    //World.Default.Map.Manipulators.CurrentManipulator.A
-                }
-                else
-                {
-                    
-                }
+                World.Default.Map.Manipulators.ToggleChurchManipulator();
             }
         }
         #endregion

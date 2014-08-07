@@ -1,5 +1,6 @@
 #region Using
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.AttackPlans;
 using TribalWars.Maps.AttackPlans.EventArg;
+using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -75,6 +77,8 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddSeparator();
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, village);
 
+            AddChurchCommands();
+
             if (village.HasPlayer)
             {
                 _menu.AddSeparator();
@@ -99,6 +103,19 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
 
+        private void AddChurchCommands()
+        {
+            if (World.Default.Settings.Church)
+            {
+                var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
+
+                string commandText = "Church" + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
+                var containerCommand = new UICommand(commandText);
+                containerCommand.Commands.AddRange(CreateChurchLevelCommands(church));
+                _menu.Commands.Add(containerCommand);
+            }
+        }
+
         private void AddAttackPlanItems()
         {
             if (_attackPlan != null)
@@ -120,6 +137,36 @@ namespace TribalWars.Villages.ContextMenu
                 }
             }
         }
+
+        private UICommand[] CreateChurchLevelCommands(ChurchInfo church)
+        {
+            var churchLevelCommands = new List<UICommand>();
+            if (church != null)
+            {
+                churchLevelCommands.Add(CreateChurchLevelCommand(0, church));
+            }
+            for (int i = 1; i <= 3; i++)
+            {
+                churchLevelCommands.Add(CreateChurchLevelCommand(i, church));
+            }
+
+            return churchLevelCommands.ToArray();
+        }
+
+        private UICommand CreateChurchLevelCommand(int level, ChurchInfo church)
+        {
+            string text = level == 0 ? "No church" : string.Format("Level {0}", level);
+            var cmd = new UICommand("", text)
+            {
+                IsChecked = level == (church == null ? 0 : church.ChurchLevel),
+                Tag = level
+            };
+
+            cmd.Click += ChurchChange_Click;
+
+            return cmd;
+        }
+
         #endregion
 
         #region Public Methods
@@ -138,6 +185,17 @@ namespace TribalWars.Villages.ContextMenu
         #endregion
 
         #region EventHandlers
+        private void ChurchChange_Click(object sender, CommandEventArgs e)
+        {
+            var level = (int) e.Command.Tag;
+            var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
+            if (church == null)
+            {
+                church = new ChurchInfo(_village, level);
+            }
+            _map.EventPublisher.ChurchChange(sender, church);
+        }
+
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
         {
             var changeTo = (VillageType)e.Command.Tag;

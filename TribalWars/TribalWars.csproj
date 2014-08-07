@@ -287,7 +287,10 @@
     <Compile Include="Maps\AttackPlans\AttackManipulator.cs" />
     <Compile Include="Maps\AttackPlans\AttackManipulatorManager.cs" />
     <Compile Include="Maps\AttackPlans\EventArg\AttackUpdateEventArgs.cs" />
-    <Compile Include="Maps\Manipulators\Implementations\ChurchManipulator.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\Church\ChurchEventArgs.cs" />
+    <Compile Include="Maps\Manipulators\IContextMenuProvider.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\Church\ChurchInfo.cs" />
+    <Compile Include="Maps\Manipulators\Implementations\Church\ChurchManipulator.cs" />
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>

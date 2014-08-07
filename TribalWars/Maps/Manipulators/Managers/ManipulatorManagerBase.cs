@@ -14,6 +14,8 @@ using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
+using TribalWars.Worlds;
 
 #endregion
 
@@ -22,9 +24,10 @@ namespace TribalWars.Maps.Manipulators.Managers
     /// <summary>
     /// The base class for a manipulator manager
     /// </summary>
-    public abstract class ManipulatorManagerBase : ManipulatorBase
+    public abstract class ManipulatorManagerBase : IContextMenuProvider, IDisposable
     {
         #region Fields
+        private readonly Map _map;
         private readonly List<ManipulatorBase> _manipulators;
         private ManipulatorBase _fullControllManipulator;
         #endregion
@@ -46,8 +49,8 @@ namespace TribalWars.Maps.Manipulators.Managers
 
         #region Constructors
         protected ManipulatorManagerBase(Map map, bool showTooltip)
-            : base(map)
         {
+            _map = map;
             UseLegacyXmlWriter = true;
             _manipulators = new List<ManipulatorBase>();
             TooltipActive = showTooltip;
@@ -115,9 +118,7 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             _manipulators.Remove(manipulator);
         }
-        #endregion
 
-        #region Event Handlers
         public void Initialize()
         {
             _map.SetCursor();
@@ -127,16 +128,27 @@ namespace TribalWars.Maps.Manipulators.Managers
         /// <summary>
         /// Cleanup before reinitializing
         /// </summary>
-        protected internal override void CleanUp()
+        public void CleanUp()
         {
             foreach (var manipulator in _manipulators)
             {
                 manipulator.CleanUp();
             }
         }
+
+        public void Dispose()
+        {
+            _manipulators.ForEach(m => m.Dispose());
+            _manipulators.Clear();
+        }
         #endregion
 
-        #region IMapManipulator Members
+        #region Context Menu
+        public virtual IContextMenu GetContextMenu(Point location, Village village)
+        {
+            return ContextMenuProvider.DefaultProvider(_map, location, village);
+        }
+
         public void ShowContextMenu(Point location, Village village)
         {
             IContextMenu contextMenu;
@@ -154,12 +166,14 @@ namespace TribalWars.Maps.Manipulators.Managers
                 _map.ShowContextMenu(contextMenu, location);
             }
         }
+        #endregion
 
+        #region Event Handlers
         /// <summary>
         /// Informs all the manipulators the user
         /// has clicked the map
         /// </summary>
-        protected internal override bool MouseDownCore(MapMouseEventArgs e)
+        public bool MouseDownCore(MapMouseEventArgs e)
         {
             if (e.MouseEventArgs.Button == MouseButtons.XButton1)
             {
@@ -188,12 +202,12 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
-        protected internal override bool MouseLeave()
+        public bool MouseLeave()
         {
             return _manipulators.Aggregate(false, (redraw, m) => redraw | m.MouseLeave());
         }
 
-        protected internal override bool MouseUpCore(MapMouseEventArgs e)
+        public bool MouseUpCore(MapMouseEventArgs e)
         {
             if (_fullControllManipulator != null)
             {
@@ -207,7 +221,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
-        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
+        public bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
             if (_fullControllManipulator != null)
             {
@@ -221,7 +235,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
-        protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
+        public bool OnVillageDoubleClickCore(MapVillageEventArgs e)
         {
             if (_fullControllManipulator != null)
             {
@@ -237,7 +251,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             return redraw;
         }
 
-        protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
+        public bool OnVillageClickCore(MapVillageEventArgs e)
         {
             if (_fullControllManipulator != null)
             {
@@ -322,7 +336,7 @@ namespace TribalWars.Maps.Manipulators.Managers
         }
         #endregion
 
-        protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
+        public bool OnKeyDownCore(MapKeyEventArgs e)
         {
             switch (e.KeyEventArgs.KeyCode)
             {
@@ -354,7 +368,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             }
         }
 
-        protected internal override bool OnKeyUpCore(MapKeyEventArgs e)
+        public bool OnKeyUpCore(MapKeyEventArgs e)
         {
             if (_fullControllManipulator != null)
             {
@@ -370,7 +384,7 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region IMapDrawer Members
-        public override void Paint(MapPaintEventArgs e)
+        public void Paint(MapPaintEventArgs e)
         {
             if (_fullControllManipulator != null && !_manipulators.Contains(_fullControllManipulator))
             {
@@ -381,7 +395,7 @@ namespace TribalWars.Maps.Manipulators.Managers
                 manipulator.Paint(e);
         }
 
-        public override void TimerPaint(MapTimerPaintEventArgs e)
+        public void TimerPaint(MapTimerPaintEventArgs e)
         {
             if (_fullControllManipulator != null && !_manipulators.Contains(_fullControllManipulator))
             {
@@ -390,12 +404,6 @@ namespace TribalWars.Maps.Manipulators.Managers
 
             foreach (ManipulatorBase manipulator in _manipulators)
                 manipulator.TimerPaint(e);
-        }
-
-        public override void Dispose()
-        {
-            _manipulators.ForEach(m => m.Dispose());
-            _manipulators.Clear();
         }
         #endregion
 
@@ -458,6 +466,16 @@ namespace TribalWars.Maps.Manipulators.Managers
                 ReadXmlCore(r);
                 r.ReadEndElement();
             }
+        }
+
+        protected virtual void ReadXmlCore(XmlReader r)
+        {
+            
+        }
+
+        protected virtual void WriteXmlCore(XmlWriter w)
+        {
+            
         }
         #endregion
     }

@@ -51,6 +51,7 @@ namespace TribalWars.Maps.AttackPlans
 
         #region Fields
         private readonly AttackManipulator _attacker;
+        private readonly List<Village> _attackersPool;
         #endregion
 
         #region Properties
@@ -221,8 +222,7 @@ namespace TribalWars.Maps.AttackPlans
         }
         #endregion
 
-        private readonly List<Village> _attackersPool;
-
+        #region Finding Attackers
         public void AddToAttackersPool(IEnumerable<Village> villages)
         {
             villages = villages.Where(x => !_attackersPool.Contains(x));
@@ -271,5 +271,6 @@ namespace TribalWars.Maps.AttackPlans
                 return villagesWithTimeLeft.Where(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft).Take(AutoFindAmountOfAttackers).Select(x => x.Village);
             }
         }
+        #endregion
     }
 }

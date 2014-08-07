@@ -7,6 +7,7 @@ using TribalWars.Maps.AttackPlans;
 using TribalWars.Maps.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.Implementations;
+using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Maps.Polygons;
 using TribalWars.Villages;
 using TribalWars.Worlds;
@@ -42,6 +43,8 @@ namespace TribalWars.Maps
         public event EventHandler<AttackUpdateEventArgs> TargetUpdated;
         public event EventHandler<AttackEventArgs> TargetRemoved;
         public event EventHandler<AttackEventArgs> TargetSelected;
+
+        public event EventHandler<ChurchEventArgs> ChurchChanged;
         #endregion
 
         #region Constructors
@@ -52,6 +55,16 @@ namespace TribalWars.Maps
         #endregion
 
         #region Publish Methods
+        #region Church
+        public void ChurchChange(object sender, ChurchInfo church)
+        {
+            if (ChurchChanged != null)
+            {
+                ChurchChanged(sender, new ChurchEventArgs(church));
+            }
+        }
+        #endregion
+
         #region Selection Events
         /// <summary>
         /// Deselect villages previously selected with SelectVillages events

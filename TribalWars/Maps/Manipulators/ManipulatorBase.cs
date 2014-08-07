@@ -16,7 +16,7 @@ namespace TribalWars.Maps.Manipulators
     /// Base class for a simple manipulator implementation (MapMover, ...)
     /// but also for the manipulator managers (DefaultManipulator, ...)
     /// </summary>
-    public abstract class ManipulatorBase
+    public abstract class ManipulatorBase : IContextMenuProvider
     {
         #region Fields
         protected readonly Map _map;
@@ -30,6 +30,11 @@ namespace TribalWars.Maps.Manipulators
         #endregion
 
         #region IManipulator Members
+        public virtual IContextMenu GetContextMenu(Point location, Village village)
+        {
+            return ContextMenuProvider.DefaultProvider(_map, location, village);
+        }
+
         internal protected virtual bool MouseMoveCore(MapMouseMoveEventArgs e)
         {
             return false;
@@ -69,17 +74,7 @@ namespace TribalWars.Maps.Manipulators
         {
             return false;
         }
-
-        public virtual IContextMenu GetContextMenu(Point location, Village village)
-        {
-            if (village != null)
-            {
-                return new VillageContextMenu(_map, village);
-            }
-            Point gameLocation = World.Default.Map.Display.GetGameLocation(location);
-            return new NoVillageContextMenu(gameLocation);
-        }
-
+        
         /// <summary>
         /// Triggered when this Manipulator gains full control
         /// </summary>
