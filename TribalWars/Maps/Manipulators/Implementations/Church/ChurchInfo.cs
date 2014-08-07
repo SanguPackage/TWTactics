@@ -28,6 +28,13 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
         }
 
         public Color Color { get; set; }
+
+        public int Transparancy { get; set; }
+
+        public static Color DefaultColor
+        {
+            get { return Color.Yellow; }
+        }
         #endregion
 
         #region Constructors
@@ -36,10 +43,11 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             Village = village;
             ChurchLevel = churchLevel;
             Color = color;
+            Transparancy = 50;
         }
 
         public ChurchInfo(Village village, int churchLevel)
-            : this(village, churchLevel, Color.Yellow)
+            : this(village, churchLevel, DefaultColor)
         {
             
         }

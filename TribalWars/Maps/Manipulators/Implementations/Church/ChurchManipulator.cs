@@ -32,19 +32,10 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
 
         private void EventPublisherOnChurchChanged(object sender, ChurchEventArgs e)
         {
-            if (e.Church.ChurchLevel == 0)
+            _churches.RemoveAll(x => x.Village == e.Church.Village);
+            if (e.Church.ChurchLevel != 0)
             {
-                if (_churches.Contains(e.Church))
-                {
-                    _churches.Remove(e.Church);
-                }
-            }
-            else
-            {
-                if (!_churches.Contains(e.Church))
-                {
-                    _churches.Add(e.Church);
-                }
+                _churches.Add(e.Church);
             }
         }
         #endregion
@@ -93,7 +84,8 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             foreach (ChurchInfo church in _churches)
             {
                 Point mapLocation = _map.Display.GetMapLocation(church.Village.Location);
-                using (var brush = new SolidBrush(church.Color))
+                Color color = Color.FromArgb(church.Transparancy, church.Color);
+                using (var brush = new SolidBrush(color))
                 {
                     e.Graphics.FillRectangle(brush, mapLocation.X, mapLocation.Y, 100, 100);
                 }

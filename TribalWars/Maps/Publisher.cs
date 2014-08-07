@@ -56,11 +56,21 @@ namespace TribalWars.Maps
 
         #region Publish Methods
         #region Church
-        public void ChurchChange(object sender, ChurchInfo church)
+        public void ChurchChange(Village village, int level)
         {
             if (ChurchChanged != null)
             {
-                ChurchChanged(sender, new ChurchEventArgs(church));
+                var church = _map.Manipulators.ChurchManipulator.GetChurch(village);
+                if (church == null)
+                {
+                    church = new ChurchInfo(village, level);
+                }
+                else
+                {
+                    church.ChurchLevel = level;
+                }
+
+                ChurchChanged(null, new ChurchEventArgs(church));
             }
         }
         #endregion

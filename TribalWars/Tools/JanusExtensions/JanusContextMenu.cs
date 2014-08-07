@@ -27,10 +27,15 @@ namespace TribalWars.Tools.JanusExtensions
 
         #region UIContextMenu
         #region Regular Commands
+        public static void AddSeparator(this UICommandCollection commands)
+        {
+            var sep = new UICommand("", string.Empty, CommandType.Separator);
+            commands.Add(sep);
+        }
+
         public static void AddSeparator(this UIContextMenu menu)
         {
-            var sep = new UICommand("SEP", string.Empty, CommandType.Separator);
-            menu.Commands.Add(sep);
+            menu.Commands.AddSeparator();
         }
 
         public static UICommand AddCommand(this UIContextMenu menu, string text, CommandEventHandler handler, Image image)
@@ -67,7 +72,7 @@ namespace TribalWars.Tools.JanusExtensions
             menu.AddChangeColorCommand(text, defaultSelectedColor, defaultSelectedColor, handler);
         }
 
-        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, Color automaticColor, Action<object, Color> handler)
+        public static void AddChangeColorCommand(this UICommandCollection menu, string text, Color defaultSelectedColor, Color automaticColor, Action<object, Color> handler)
         {
             var cmd = new UICommand("", text, CommandType.ColorPickerCommand);
 
@@ -91,7 +96,12 @@ namespace TribalWars.Tools.JanusExtensions
 
             cmd.Control = colorPicker;
             cmd.Image = DrawContextIcon(defaultSelectedColor);
-            menu.Commands.Add(cmd);
+            menu.Add(cmd);
+        }
+
+        public static void AddChangeColorCommand(this UIContextMenu menu, string text, Color defaultSelectedColor, Color automaticColor, Action<object, Color> handler)
+        {
+            menu.Commands.AddChangeColorCommand(text, defaultSelectedColor, automaticColor, handler);
         }
 
         /// <summary>

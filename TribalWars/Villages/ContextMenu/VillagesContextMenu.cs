@@ -55,7 +55,11 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
             _menu.AddCommand("Remove purpose", OnRemovePurpose);
-           
+
+            if (World.Default.Settings.Church)
+            {
+                VillageContextMenu.AddChurchCommands(_menu, null, ChurchChange_Click);
+            }
 
             _menu.AddSeparator();
             if (!World.Default.You.Empty && villages.All(x => x.Player == World.Default.You))
@@ -76,6 +80,15 @@ namespace TribalWars.Villages.ContextMenu
         #endregion
 
         #region Event Handlers
+        private void ChurchChange_Click(object sender, CommandEventArgs e)
+        {
+            var level = (int)e.Command.Tag;
+            foreach (Village village in _villages)
+            {
+                _map.EventPublisher.ChurchChange(village, level);
+            }
+        }
+
         private void OnPinpointAndCenter(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);

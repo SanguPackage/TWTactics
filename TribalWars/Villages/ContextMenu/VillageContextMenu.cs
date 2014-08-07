@@ -77,7 +77,11 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddSeparator();
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, village);
 
-            AddChurchCommands();
+            if (World.Default.Settings.Church)
+            {
+                var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
+                AddChurchCommands(_menu, church, ChurchChange_Click);
+            }
 
             if (village.HasPlayer)
             {
@@ -103,22 +107,6 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
 
-        private void AddChurchCommands()
-        {
-            if (World.Default.Settings.Church)
-            {
-                var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
-
-                string commandText = "Church" + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
-                var containerCommand = new UICommand("", commandText)
-                    {
-                        Image = Properties.Resources.Church
-                    };
-                containerCommand.Commands.AddRange(CreateChurchLevelCommands(church));
-                _menu.Commands.Add(containerCommand);
-            }
-        }
-
         private void AddAttackPlanItems()
         {
             if (_attackPlan != null)
@@ -141,22 +129,41 @@ namespace TribalWars.Villages.ContextMenu
             }
         }
 
-        private UICommand[] CreateChurchLevelCommands(ChurchInfo church)
+        public static void AddChurchCommands(UIContextMenu menu, ChurchInfo church, CommandEventHandler handler)
+        {
+            Debug.Assert(World.Default.Settings.Church);
+            string commandText = "Church" + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
+            var containerCommand = new UICommand("", commandText)
+                {
+                    Image = Properties.Resources.Church
+                };
+            containerCommand.Commands.AddRange(CreateChurchLevelCommands(handler, church));
+
+            if (church != null)
+            {
+                containerCommand.Commands.AddSeparator();
+                containerCommand.Commands.AddChangeColorCommand("Color", church.Color, ChurchInfo.DefaultColor, (sender, selectedColor) => church.Color = selectedColor);
+            }
+
+            menu.Commands.Add(containerCommand);
+        }
+
+        private static UICommand[] CreateChurchLevelCommands(CommandEventHandler handler, ChurchInfo church)
         {
             var churchLevelCommands = new List<UICommand>();
             if (church != null)
             {
-                churchLevelCommands.Add(CreateChurchLevelCommand(0, church));
+                churchLevelCommands.Add(CreateChurchLevelCommand(handler, 0, church));
             }
             for (int i = 1; i <= 3; i++)
             {
-                churchLevelCommands.Add(CreateChurchLevelCommand(i, church));
+                churchLevelCommands.Add(CreateChurchLevelCommand(handler, i, church));
             }
 
             return churchLevelCommands.ToArray();
         }
 
-        private UICommand CreateChurchLevelCommand(int level, ChurchInfo church)
+        private static UICommand CreateChurchLevelCommand(CommandEventHandler handler, int level, ChurchInfo church)
         {
             string text = level == 0 ? "No church" : string.Format("Level {0}", level);
             var cmd = new UICommand("", text)
@@ -165,7 +172,7 @@ namespace TribalWars.Villages.ContextMenu
                 Tag = level
             };
 
-            cmd.Click += ChurchChange_Click;
+            cmd.Click += handler;
 
             return cmd;
         }
@@ -191,16 +198,7 @@ namespace TribalWars.Villages.ContextMenu
         private void ChurchChange_Click(object sender, CommandEventArgs e)
         {
             var level = (int) e.Command.Tag;
-            var church = _map.Manipulators.ChurchManipulator.GetChurch(_village);
-            if (church == null)
-            {
-                church = new ChurchInfo(_village, level);
-            }
-            else
-            {
-                church.ChurchLevel = level;
-            }
-            _map.EventPublisher.ChurchChange(sender, church);
+            _map.EventPublisher.ChurchChange(_village, level);
         }
 
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
