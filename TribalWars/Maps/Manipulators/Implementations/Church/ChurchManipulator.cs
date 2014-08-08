@@ -84,6 +84,42 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             foreach (ChurchInfo church in _churches)
             {
                 Point mapLocation = _map.Display.GetMapLocation(church.Village.Location);
+
+                var villageSize = _map.Display.Dimensions.Size;
+                if (villageSize.Width > 30)
+                {
+                    using (var levelBackground = new SolidBrush(Color.Red))
+                    using (var levelTextBrush = new SolidBrush(Color.Yellow))
+                    using (var levelFont = new Font("Verdana", 10, FontStyle.Bold))
+                    {
+                        e.Graphics.FillEllipse(
+                            levelBackground,
+                            mapLocation.X + villageSize.Width / 2 - 6,
+                            mapLocation.Y + villageSize.Height / 3 - 3,
+                            12, 
+                            15);
+
+                        e.Graphics.DrawString(
+                            church.ChurchLevel.ToString(), 
+                            levelFont, 
+                            levelTextBrush,
+                            mapLocation.X + villageSize.Width / 2 - 6,
+                            mapLocation.Y + villageSize.Height / 3 - 3);
+                    }
+                }
+                else if (villageSize.Width > 20)
+                {
+                    using (var levelBackground = new SolidBrush(Color.Red))
+                    {
+                        e.Graphics.FillRectangle(
+                            levelBackground,
+                            mapLocation.X + villageSize.Width / 2 - villageSize.Width / 4,
+                            mapLocation.Y + villageSize.Height / 2 - villageSize.Width / 4,
+                            villageSize.Width / 4,
+                            villageSize.Width / 4);
+                    }
+                }
+
                 Color color = Color.FromArgb(church.Transparancy, church.Color);
                 using (var brush = new SolidBrush(color))
                 {
