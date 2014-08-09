@@ -48,19 +48,39 @@ namespace TribalWars.Maps.Drawing.Drawers.VillageDrawers
         protected override void PaintVillageCore(Graphics g, Rectangle village)
         {
             g.DrawImage(Bitmap, village);
-            
+
+            int size;
+            float xOffset;
             if (village.Width < 31)
             {
-                g.FillEllipse(ExtraColorBrush ?? ColorBrush, village.X + 0.5f, village.Y + 0.5f, 4, 4);
+                size = 4;
+                xOffset = 5f;
+            }
+            else if (village.Width > 35)
+            {
+                size = 7;
+                xOffset = 10f;
             }
             else
             {
-                int size = village.Width > 35 ? 7 : 5;
+                size = 5;
+                xOffset = 6f;
+            }
+
+            if (village.Width > 30)
+            {
                 g.FillEllipse(ColorBrush, village.X + 0.5f, village.Y + 0.5f, size, size);
-                if (ExtraColorBrush != null && village.Width > 20)
+                if (ExtraColorBrush != null)
                 {
-                    float xOffset = village.Width > 35 ? 10f : 6f;
                     g.FillEllipse(ExtraColorBrush, village.X + xOffset, village.Y + 0.5f, size, size);
+                }
+            }
+            else
+            {
+                g.FillRectangle(ColorBrush, village.X + 0.5f, village.Y + 0.5f, size, size);
+                if (ExtraColorBrush != null)
+                {
+                    g.FillRectangle(ExtraColorBrush, village.X + xOffset, village.Y + 0.5f, size, size);
                 }
             }
         }
