@@ -15,7 +15,7 @@ namespace TribalWars.Maps.Polygons
     public class PolygonManipulatorManager : DefaultManipulatorManager
     {
         #region Fields
-        private readonly BbCodeManipulator _bbCode;
+        private readonly PolygonDrawerManipulator _polygonDrawer;
         #endregion
 
         #region Constructors
@@ -23,8 +23,8 @@ namespace TribalWars.Maps.Polygons
             : base(map)
         {
             // Active manipulators
-            _bbCode = new BbCodeManipulator(map, this);
-            AddManipulator(_bbCode);
+            _polygonDrawer = new PolygonDrawerManipulator(map, this);
+            AddManipulator(_polygonDrawer);
 
             MapMover.RightClickToMove = false;
         }
@@ -36,7 +36,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         protected override void ReadXmlCore(XmlReader r)
         {
-            _bbCode.ReadXmlCore(r);
+            _polygonDrawer.ReadXmlCore(r);
         }
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         protected override void WriteXmlCore(XmlWriter w)
         {
-            _bbCode.WriteXmlCore(w);
+            _polygonDrawer.WriteXmlCore(w);
         }
 
         public override IContextMenu GetContextMenu(System.Drawing.Point location, Village village)
         {
-            return new NoPolygonContextMenu(_bbCode);
+            return new NoPolygonContextMenu(_polygonDrawer);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         public IEnumerable<Village> GetAllPolygonVillages()
         {
-            foreach (Polygon poly in _bbCode.Polygons)
+            foreach (Polygon poly in _polygonDrawer.Polygons)
             {
                 foreach (Village village in poly.GetVillages())
                 {
@@ -71,7 +71,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         public List<Polygon> GetAllPolygons()
         {
-            return _bbCode.Polygons;
+            return _polygonDrawer.Polygons;
         }
         #endregion
     }

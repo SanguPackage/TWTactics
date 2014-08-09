@@ -14,25 +14,25 @@ namespace TribalWars.Maps.Polygons
     /// </summary>
     public class PolygonContextMenu : IContextMenu
     {
-        private readonly BbCodeManipulator _bbCode;
+        private readonly PolygonDrawerManipulator _polygonDrawer;
         private readonly UIContextMenu _menu;
 
-        public PolygonContextMenu(BbCodeManipulator bbCode)
+        public PolygonContextMenu(PolygonDrawerManipulator polygonDrawer)
         {
-            _bbCode = bbCode;
+            _polygonDrawer = polygonDrawer;
             _menu = JanusContextMenu.Create();
 
-            Debug.Assert(_bbCode.ActivePolygon != null);
+            Debug.Assert(_polygonDrawer.ActivePolygon != null);
 
-            _menu.AddCommand(string.Format("Generate \"{0}\"", _bbCode.ActivePolygon.Name), OnGenerate);
+            _menu.AddCommand(string.Format("Generate \"{0}\"", _polygonDrawer.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
 
             _menu.AddCommand("Delete", OnDelete, Shortcut.Del);
-            _menu.AddTextBoxCommand("Name", _bbCode.ActivePolygon.Name, NameChanged);
-            _menu.AddTextBoxCommand("Group", _bbCode.ActivePolygon.Group, GroupChanged);
-            _menu.AddChangeColorCommand("Color", _bbCode.ActivePolygon.LineColor, SelectedColorChanged);
+            _menu.AddTextBoxCommand("Name", _polygonDrawer.ActivePolygon.Name, NameChanged);
+            _menu.AddTextBoxCommand("Group", _polygonDrawer.ActivePolygon.Group, GroupChanged);
+            _menu.AddChangeColorCommand("Color", _polygonDrawer.ActivePolygon.LineColor, SelectedColorChanged);
 
-            _menu.AddCommand(_bbCode.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+            _menu.AddCommand(_polygonDrawer.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
         }
 
         public void Show(Control control, Point pos)
@@ -50,24 +50,24 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnDelete(object sender, CommandEventArgs e)
         {
-            _bbCode.Delete();
+            _polygonDrawer.Delete();
         }
 
         private void NameChanged(object sender, System.EventArgs e)
         {
             var nameChanger = (TextBox)sender;
-            _bbCode.ActivePolygon.Name = nameChanger.Text;
+            _polygonDrawer.ActivePolygon.Name = nameChanger.Text;
         }
 
         private void GroupChanged(object sender, System.EventArgs e)
         {
             var groupChanger = (TextBox)sender;
-            _bbCode.ActivePolygon.Group = groupChanger.Text;
+            _polygonDrawer.ActivePolygon.Group = groupChanger.Text;
         }
 
         private void SelectedColorChanged(object sender, Color selectedColor)
         {
-            _bbCode.ActivePolygon.LineColor = selectedColor;
+            _polygonDrawer.ActivePolygon.LineColor = selectedColor;
             World.Default.DrawMaps(false);
         }
 
@@ -77,7 +77,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnGenerate(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.ActivatePolygon(this, Enumerable.Repeat(_bbCode.ActivePolygon, 1));
+            World.Default.Map.EventPublisher.ActivatePolygon(this, Enumerable.Repeat(_polygonDrawer.ActivePolygon, 1));
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void ToggleVisibility(object sender, CommandEventArgs e)
         {
-            _bbCode.ToggleVisibility();
+            _polygonDrawer.ToggleVisibility();
         }
     }
 }

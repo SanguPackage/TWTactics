@@ -217,6 +217,7 @@ namespace TribalWars.Forms
             {
                 ToolStripChurchManipulator.Checked = !ToolStripChurchManipulator.Checked;
                 World.Default.Map.Manipulators.ToggleChurchManipulator();
+                World.Default.DrawMaps(false);
             }
         }
         #endregion

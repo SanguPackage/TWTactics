@@ -455,6 +455,10 @@ namespace TribalWars.Maps
         #endregion
 
         #region Other
+        /// <summary>
+        /// Forces a redraw of the map. If you want the MiniMap
+        /// to be invalidated aswell, call World.DrawMaps instead
+        /// </summary>
         public void Invalidate(bool resetBackgroundCache = true)
         {
             if (resetBackgroundCache && Display != null)

@@ -13,26 +13,26 @@ namespace TribalWars.Maps.Polygons
     /// </summary>
     public class NoPolygonContextMenu : IContextMenu
     {
-        private readonly BbCodeManipulator _bbCode;
+        private readonly PolygonDrawerManipulator _polygonDrawer;
         private readonly UIContextMenu _menu;
 
-        public NoPolygonContextMenu(BbCodeManipulator bbCode)
+        public NoPolygonContextMenu(PolygonDrawerManipulator polygonDrawer)
         {
-            _bbCode = bbCode;
+            _polygonDrawer = polygonDrawer;
             _menu = JanusContextMenu.Create();
 
-            if (_bbCode.Polygons.Count > 0)
+            if (_polygonDrawer.Polygons.Count > 0)
             {
                 _menu.AddCommand("Generate all", OnGenerate);
                 _menu.AddSeparator();
-                _menu.AddCommand(string.Format("Delete all ({0})", _bbCode.Polygons.Count), OnClearAll);
+                _menu.AddCommand(string.Format("Delete all ({0})", _polygonDrawer.Polygons.Count), OnClearAll);
 
-                int visiblePolygons = _bbCode.Polygons.Count(x => x.Visible);
+                int visiblePolygons = _polygonDrawer.Polygons.Count(x => x.Visible);
                 if (visiblePolygons > 0)
                 {
                     _menu.AddCommand(string.Format("Hide all visible ({0})", visiblePolygons), OnHideAll);
                 }
-                int hiddenPolygons = _bbCode.Polygons.Count(x => !x.Visible);
+                int hiddenPolygons = _polygonDrawer.Polygons.Count(x => !x.Visible);
                 if (hiddenPolygons > 0)
                 {
                     _menu.AddCommand(string.Format("Show all hidden ({0})", hiddenPolygons), OnShowAll);
@@ -59,7 +59,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnClearAll(object sender, CommandEventArgs e)
         {
-            _bbCode.Clear();
+            _polygonDrawer.Clear();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnGenerate(object sender, CommandEventArgs e)
         {
-            World.Default.Map.EventPublisher.ActivatePolygon(this, _bbCode.Polygons);
+            World.Default.Map.EventPublisher.ActivatePolygon(this, _polygonDrawer.Polygons);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnHideAll(object sender, CommandEventArgs e)
         {
-            _bbCode.ToggleVisibility(false);
+            _polygonDrawer.ToggleVisibility(false);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnShowAll(object sender, CommandEventArgs e)
         {
-            _bbCode.ToggleVisibility(true);
+            _polygonDrawer.ToggleVisibility(true);
         }
 
         private void OnHelp(object sender, CommandEventArgs e)

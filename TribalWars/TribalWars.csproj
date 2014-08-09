@@ -433,7 +433,7 @@
     <Compile Include="Maps\Manipulators\Implementations\MapMoverManipulator.cs" />
     <Compile Include="Maps\Manipulators\Implementations\MiniMapActiveVillageManipulator.cs" />
     <Compile Include="Maps\Manipulators\Managers\MiniMapManipulatorManager.cs" />
-    <Compile Include="Maps\Polygons\BbCodeManipulator.cs" />
+    <Compile Include="Maps\Polygons\PolygonDrawerManipulator.cs" />
     <Compile Include="Maps\Manipulators\ManipulatorBase.cs" />
     <Compile Include="Maps\Manipulators\ManipulatorManagerController.cs" />
     <Compile Include="Maps\Manipulators\Managers\ManipulatorManagerTypes.cs" />

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Xml.Linq;
 using TribalWars.Maps.Drawing.Displays;
@@ -142,46 +143,57 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
                 // Paint church radius
                 if (villageSize.Width > 10)
                 {
+                    int churchSize = 4;
+                    var churchInfluence = new System.Drawing.Drawing2D.GraphicsPath();
+                    churchInfluence.FillMode = FillMode.Winding;
+
+                    // most outward single village blocks
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X - villageSize.Width * churchSize,
+                        mapLocation.Y, 
+                        villageSize.Width, 
+                        villageSize.Height));
+
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X + villageSize.Width * churchSize,
+                        mapLocation.Y,
+                        villageSize.Width,
+                        villageSize.Height));
+
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X,
+                        mapLocation.Y - villageSize.Height * churchSize,
+                        villageSize.Width,
+                        villageSize.Height));
+
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X,
+                        mapLocation.Y + villageSize.Height * churchSize,
+                        villageSize.Width,
+                        villageSize.Height));
+
+                    // bigger rectangles:
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X - villageSize.Width * 3,
+                        mapLocation.Y - villageSize.Height * 2,
+                        villageSize.Width * 7,
+                        villageSize.Height * 5));
+
+                    churchInfluence.AddRectangle(new Rectangle(
+                        mapLocation.X - villageSize.Width * 2,
+                        mapLocation.Y - villageSize.Height * 3,
+                        villageSize.Width * 5,
+                        villageSize.Height * 7));
+
+
                     Color color = Color.FromArgb(church.Transparancy, church.Color);
                     using (var brush = new SolidBrush(color))
                     {
-                        int churchSize = 4;
-
-
-                        //e.Graphics.FillRectangle(
-                        //    brush, 
-                        //    mapLocation.X - villageSize.Width * churchSize, 
-                        //    mapLocation.Y, 
-                        //    villageSize.Width, 
-                        //    villageSize.Height);
-
-                        //e.Graphics.FillRectangle(
-                        //    brush,
-                        //    mapLocation.X + villageSize.Width * churchSize,
-                        //    mapLocation.Y,
-                        //    villageSize.Width,
-                        //    villageSize.Height);
-
-                        //e.Graphics.FillRectangle(
-                        //    brush,
-                        //    mapLocation.X,
-                        //    mapLocation.Y - villageSize.Width * churchSize,
-                        //    villageSize.Width,
-                        //    villageSize.Height);
-
-                        //e.Graphics.FillRectangle(
-                        //    brush,
-                        //    mapLocation.X,
-                        //    mapLocation.Y + villageSize.Width * churchSize,
-                        //    villageSize.Width,
-                        //    villageSize.Height);
-
-                        //e.Graphics.FillRectangle(
-                        //    brush,
-                        //    mapLocation.X,
-                        //    mapLocation.Y - villageSize.Height * churchSize,
-                        //    villageSize.Width,
-                        //    villageSize.Height * (churchSize * 2 + 1));
+                        e.Graphics.FillPath(brush, churchInfluence);
+                    }
+                    using (var pen = new Pen(church.Color))
+                    {
+                        e.Graphics.DrawPath(pen, churchInfluence);
                     }
                 }
             }

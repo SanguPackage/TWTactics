@@ -24,7 +24,7 @@ namespace TribalWars.Maps.Polygons
     /// <summary>
     /// Allows the user to draw polygons on the map
     /// </summary>
-    public class BbCodeManipulator : ManipulatorBase
+    public class PolygonDrawerManipulator : ManipulatorBase
     {
         #region Constants
         private const int MinDistanceBetweenPoints = 50;
@@ -70,7 +70,7 @@ namespace TribalWars.Maps.Polygons
         #endregion
 
         #region Constructors
-        public BbCodeManipulator(Map map, DefaultManipulatorManager parent)
+        public PolygonDrawerManipulator(Map map, DefaultManipulatorManager parent)
             : base(map)
         {
             _parent = parent;
