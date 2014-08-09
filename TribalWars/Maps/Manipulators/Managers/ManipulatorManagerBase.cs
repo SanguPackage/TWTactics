@@ -104,7 +104,7 @@ namespace TribalWars.Maps.Manipulators.Managers
             if (!string.IsNullOrEmpty(village.Tooltip.Footer))
             {
                 settings.FooterText = village.Tooltip.Footer;
-                settings.FooterImage = Other.Note;
+                settings.FooterImage = village.Tooltip.FooterImage;
             }
             return settings;
         }

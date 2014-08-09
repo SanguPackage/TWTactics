@@ -1,5 +1,9 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
+using TribalWars.Maps.Icons;
+using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Tools;
+using TribalWars.Worlds;
 
 namespace TribalWars.Villages
 {
@@ -9,10 +13,12 @@ namespace TribalWars.Villages
     public class VillageTooltip
     {
         private readonly Village _village;
+        private readonly ChurchInfo _church;
 
         public VillageTooltip(Village village)
         {
             _village = village;
+            _church = World.Default.Map.Manipulators.ChurchManipulator.GetChurch(_village);
         }
 
         /// <summary>
@@ -128,14 +134,33 @@ namespace TribalWars.Villages
         {
             get
             {
+                var str = new StringBuilder();
+                if (_church != null)
+                {
+                    str.AppendLine(string.Format("Church level {0}", _church.ChurchLevel));
+                }
+
                 if (_village.HasComments)
                 {
-                    var str = new StringBuilder();
                     str.AppendLine("Comments:");
                     str.AppendLine(_village.Comments);
-                    return str.ToString();
                 }
-                return "";
+
+                return str.ToString();
+            }
+        }
+
+        public Image FooterImage
+        {
+            get
+            {
+                if (_church != null)
+                    return Properties.Resources.Church;
+
+                if (_village.HasComments) 
+                    return Other.Note;
+
+                return null;
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Xml.Linq;
+using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Tools;
 using TribalWars.Villages;
@@ -86,44 +87,102 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
                 Point mapLocation = _map.Display.GetMapLocation(church.Village.Location);
 
                 var villageSize = _map.Display.Dimensions.Size;
-                if (villageSize.Width > 30)
-                {
-                    using (var levelBackground = new SolidBrush(Color.Red))
-                    using (var levelTextBrush = new SolidBrush(Color.Yellow))
-                    using (var levelFont = new Font("Verdana", 10, FontStyle.Bold))
-                    {
-                        e.Graphics.FillEllipse(
-                            levelBackground,
-                            mapLocation.X + villageSize.Width / 2 - 6,
-                            mapLocation.Y + villageSize.Height / 3 - 3,
-                            12, 
-                            15);
 
-                        e.Graphics.DrawString(
-                            church.ChurchLevel.ToString(), 
-                            levelFont, 
-                            levelTextBrush,
-                            mapLocation.X + villageSize.Width / 2 - 6,
-                            mapLocation.Y + villageSize.Height / 3 - 3);
+                // Paint curch level
+                if (_map.Display.Type == DisplayTypes.Icon)
+                {
+                    if (villageSize.Width > 30)
+                    {
+                        using (var levelBackground = new SolidBrush(Color.Red))
+                        using (var levelTextBrush = new SolidBrush(Color.Yellow))
+                        using (var levelFont = new Font("Verdana", 10, FontStyle.Bold))
+                        {
+                            e.Graphics.FillEllipse(
+                                levelBackground,
+                                mapLocation.X + villageSize.Width / 2 - 6,
+                                mapLocation.Y + villageSize.Height / 3 - 3,
+                                12, 
+                                15);
+
+                            e.Graphics.DrawString(
+                                church.ChurchLevel.ToString(), 
+                                levelFont, 
+                                levelTextBrush,
+                                mapLocation.X + villageSize.Width / 2 - 6,
+                                mapLocation.Y + villageSize.Height / 3 - 3);
+                        }
+                    }
+                    else if (villageSize.Width > 20)
+                    {
+                        using (var levelBackground = new SolidBrush(Color.Red))
+                        {
+                            e.Graphics.FillRectangle(
+                                levelBackground,
+                                mapLocation.X + villageSize.Width / 2 - villageSize.Width / 4 + 2,
+                                mapLocation.Y + villageSize.Height / 2 - villageSize.Width / 4 + 2,
+                                villageSize.Width / 4,
+                                villageSize.Width / 4);
+                        }
                     }
                 }
-                else if (villageSize.Width > 20)
+                else if (villageSize.Width > 15)
                 {
+                    // Shape Display
                     using (var levelBackground = new SolidBrush(Color.Red))
                     {
                         e.Graphics.FillRectangle(
                             levelBackground,
-                            mapLocation.X + villageSize.Width / 2 - villageSize.Width / 4,
-                            mapLocation.Y + villageSize.Height / 2 - villageSize.Width / 4,
+                            mapLocation.X + villageSize.Width / 2 - villageSize.Width / 8,
+                            mapLocation.Y + villageSize.Height / 2 - villageSize.Width / 8,
                             villageSize.Width / 4,
                             villageSize.Width / 4);
                     }
                 }
 
-                Color color = Color.FromArgb(church.Transparancy, church.Color);
-                using (var brush = new SolidBrush(color))
+                // Paint church radius
+                if (villageSize.Width > 10)
                 {
-                    e.Graphics.FillRectangle(brush, mapLocation.X, mapLocation.Y, 100, 100);
+                    Color color = Color.FromArgb(church.Transparancy, church.Color);
+                    using (var brush = new SolidBrush(color))
+                    {
+                        int churchSize = 4;
+
+
+                        //e.Graphics.FillRectangle(
+                        //    brush, 
+                        //    mapLocation.X - villageSize.Width * churchSize, 
+                        //    mapLocation.Y, 
+                        //    villageSize.Width, 
+                        //    villageSize.Height);
+
+                        //e.Graphics.FillRectangle(
+                        //    brush,
+                        //    mapLocation.X + villageSize.Width * churchSize,
+                        //    mapLocation.Y,
+                        //    villageSize.Width,
+                        //    villageSize.Height);
+
+                        //e.Graphics.FillRectangle(
+                        //    brush,
+                        //    mapLocation.X,
+                        //    mapLocation.Y - villageSize.Width * churchSize,
+                        //    villageSize.Width,
+                        //    villageSize.Height);
+
+                        //e.Graphics.FillRectangle(
+                        //    brush,
+                        //    mapLocation.X,
+                        //    mapLocation.Y + villageSize.Width * churchSize,
+                        //    villageSize.Width,
+                        //    villageSize.Height);
+
+                        //e.Graphics.FillRectangle(
+                        //    brush,
+                        //    mapLocation.X,
+                        //    mapLocation.Y - villageSize.Height * churchSize,
+                        //    villageSize.Width,
+                        //    villageSize.Height * (churchSize * 2 + 1));
+                    }
                 }
             }
         }
