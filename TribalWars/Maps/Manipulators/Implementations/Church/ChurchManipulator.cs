@@ -193,7 +193,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
                     }
                     using (var pen = new Pen(church.Color))
                     {
-                        e.Graphics.DrawPath(pen, churchInfluence);
+                        //e.Graphics.DrawPath(pen, churchInfluence);
                     }
                 }
             }
