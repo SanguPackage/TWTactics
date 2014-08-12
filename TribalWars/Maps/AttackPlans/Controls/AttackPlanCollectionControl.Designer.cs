@@ -53,8 +53,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
             this.AllPlans = new System.Windows.Forms.Panel();
             this.Timer = new System.Windows.Forms.Timer(this.components);
+            
             this.Collection.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.AllPlans.SuspendLayout();
             this.SuspendLayout();
             // 
             // Collection
@@ -242,7 +244,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdFindPool.Image = ((System.Drawing.Image)(resources.GetObject("cmdFindPool.Image")));
             this.cmdFindPool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdFindPool.Name = "cmdFindPool";
-            this.cmdFindPool.Size = new System.Drawing.Size(23, 20);
+            this.cmdFindPool.Size = new System.Drawing.Size(23, 22);
             this.cmdFindPool.ToolTipText = "Find villages inside the attackers pool that can still reach the target at the ar" +
     "rival time at the given speed. Add villages to the attack pool in the \'Manage yo" +
     "ur villages\' Window.";
@@ -251,6 +253,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // AllPlans
             // 
             this.AllPlans.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            
             this.AllPlans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AllPlans.Location = new System.Drawing.Point(0, 25);
             this.AllPlans.Margin = new System.Windows.Forms.Padding(0);
@@ -262,6 +265,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // 
             this.Timer.Interval = 1000;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            
             // 
             // AttackPlanCollectionControl
             // 
@@ -275,6 +279,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.Collection.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.AllPlans.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

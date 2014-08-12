@@ -149,6 +149,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             {
                 World.Default.Map.EventPublisher.AttackSelect(this, _plans.Select(x => x.Key).First());
             }
+            else
+            {
+                ShowHelp();
+            }
 
             foreach (var toolbarItem in toolStrip1.Items.OfType<ToolStripItem>())
             {
@@ -161,6 +165,15 @@ namespace TribalWars.Maps.AttackPlans.Controls
                     toolbarItem.Visible = _visibleWhenNoPlans.Contains(toolbarItem);
                 }
             }
+        }
+
+        private void ShowHelp()
+        {
+            var attackHelpControl1 = new AttackHelpControl();
+            attackHelpControl1.Dock = DockStyle.Fill;
+            attackHelpControl1.Location = new System.Drawing.Point(0, 0);
+            attackHelpControl1.Margin = new Padding(0);
+            AllPlans.Controls.Add(attackHelpControl1);
         }
         #endregion
 
@@ -251,7 +264,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
         #region AttackPlans
         private void AddPlan(AttackPlan plan)
         {
-            toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
+            if (AllPlans.Controls.Count == 1 && AllPlans.Controls[0] is AttackHelpControl)
+            {
+                toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
+                AllPlans.Controls.Clear();
+            }
 
             Village vil = plan.Target;
             var newPlanDropdownItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
@@ -278,6 +295,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
             AllPlans.Controls.Remove(attackControls.Item2);
             AttackDropDown.DropDownItems.Remove(attackControls.Item1);
+            _plans.Remove(plan);
 
             if (ActivePlan == attackControls.Item2)
             {
@@ -289,6 +307,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 {
                     SelectPlan(null, EventArgs.Empty);
                 }
+            }
+
+            if (!_plans.Any())
+            {
+                ShowHelp();
             }
         }
 

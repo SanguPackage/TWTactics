@@ -112,6 +112,7 @@ namespace TribalWars.Forms
             this.ToolStripDefaultManipulator = new System.Windows.Forms.ToolStripButton();
             this.ToolStripPolygonManipulator = new System.Windows.Forms.ToolStripButton();
             this.ToolStripAttackManipulator = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripChurchManipulator = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -138,7 +139,6 @@ namespace TribalWars.Forms
             this.monitoringControl1 = new TribalWars.Maps.Monitoring.MonitoringControl();
             this.FormToolbarContainer = new System.Windows.Forms.ToolStripContainer();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.ToolStripChurchManipulator = new System.Windows.Forms.ToolStripButton();
             this.Status.SuspendLayout();
             this.MenuBar.SuspendLayout();
             this.ToolStrip.SuspendLayout();
@@ -633,7 +633,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(432, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(486, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -818,6 +818,16 @@ namespace TribalWars.Forms
             this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks (left click to add target, right click on your own village" +
     "s to attack from)";
             this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);
+            // 
+            // ToolStripChurchManipulator
+            // 
+            this.ToolStripChurchManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripChurchManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripChurchManipulator.Image")));
+            this.ToolStripChurchManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripChurchManipulator.Name = "ToolStripChurchManipulator";
+            this.ToolStripChurchManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripChurchManipulator.ToolTipText = "Display the influence radius of your churches";
+            this.ToolStripChurchManipulator.Click += new System.EventHandler(this.ToolStripChurchManipulator_Click);
             // 
             // toolStripSeparator
             // 
@@ -1215,16 +1225,6 @@ namespace TribalWars.Forms
             this.saveFileDialog1.DefaultExt = "sets";
             this.saveFileDialog1.Filter = "Settings|*.sets";
             this.saveFileDialog1.RestoreDirectory = true;
-            // 
-            // ToolStripChurchManipulator
-            // 
-            this.ToolStripChurchManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripChurchManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripChurchManipulator.Image")));
-            this.ToolStripChurchManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripChurchManipulator.Name = "ToolStripChurchManipulator";
-            this.ToolStripChurchManipulator.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripChurchManipulator.ToolTipText = "Display the radius of your churches";
-            this.ToolStripChurchManipulator.Click += new System.EventHandler(this.ToolStripChurchManipulator_Click);
             // 
             // MainForm
             // 

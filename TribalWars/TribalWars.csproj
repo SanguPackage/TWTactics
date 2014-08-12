@@ -198,6 +198,12 @@
     <Compile Include="Forms\YourVillagesForm.Designer.cs">
       <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maps\AttackPlans\Controls\AttackHelpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Maps\AttackPlans\Controls\AttackHelpControl.Designer.cs">
+      <DependentUpon>AttackHelpControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Maps\AttackPlans\Controls\AttackIcons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -610,6 +616,9 @@
     <EmbeddedResource Include="Forms\YourVillagesForm.resx">
       <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackHelpControl.resx">
+      <DependentUpon>AttackHelpControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -809,6 +818,7 @@
     <None Include="Resources\Flag_redHS.png" />
     <None Include="Resources\Delete.ico" />
     <None Include="Resources\Church.png" />
+    <None Include="Resources\cmdFind.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
