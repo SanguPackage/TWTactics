@@ -85,8 +85,9 @@ namespace TribalWars.Villages.ContextMenu
             var level = (int)e.Command.Tag;
             foreach (Village village in _villages)
             {
-                _map.EventPublisher.ChurchChange(village, level);
+                _map.EventPublisher.ChurchChange(village, level, false);
             }
+            World.Default.DrawMaps(false);
         }
 
         private void OnPinpointAndCenter(object sender, CommandEventArgs e)

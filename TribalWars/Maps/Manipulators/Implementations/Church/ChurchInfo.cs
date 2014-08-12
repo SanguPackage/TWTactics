@@ -9,16 +9,24 @@ using TribalWars.Villages;
 
 namespace TribalWars.Maps.Manipulators.Implementations.Church
 {
+    /// <summary>
+    /// TW church
+    /// </summary>
     public class ChurchInfo
     {
+        #region Fields
         private int _churchLevel;
+        #endregion
 
         #region Properties
         /// <summary>
         /// Village with the church change
         /// </summary>
-        public Village Village { get; set; }
+        public Village Village { get; private set; }
 
+        /// <summary>
+        /// Level of the church in the village
+        /// </summary>
         public int ChurchLevel
         {
             get { return _churchLevel; }
@@ -28,10 +36,19 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             }
         }
 
+        /// <summary>
+        /// The church influence radius color
+        /// </summary>
         public Color Color { get; set; }
 
+        /// <summary>
+        /// The church influence radius transparacy %
+        /// </summary>
         public int Transparancy { get; set; }
 
+        /// <summary>
+        /// The default Color for church radius
+        /// </summary>
         public static Color DefaultColor
         {
             get { return Color.Yellow; }
@@ -61,7 +78,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
         }
         #endregion
 
-        #region Church Radius
+        #region Church Influence Radius
         /// <summary>
         /// Get the radius of the church on a map Control
         /// </summary>

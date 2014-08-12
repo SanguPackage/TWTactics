@@ -56,7 +56,7 @@ namespace TribalWars.Maps
 
         #region Publish Methods
         #region Church
-        public void ChurchChange(Village village, int level)
+        public void ChurchChange(Village village, int level, bool redrawMaps = true)
         {
             if (ChurchChanged != null)
             {
@@ -71,6 +71,11 @@ namespace TribalWars.Maps
                 }
 
                 ChurchChanged(null, new ChurchEventArgs(church));
+
+                if (redrawMaps)
+                {
+                    World.Default.DrawMaps(false);
+                }
             }
         }
         #endregion

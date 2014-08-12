@@ -158,43 +158,10 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             }
         }
 
-        protected internal override bool MouseMoveCore(MapMouseMoveEventArgs e)
-        {
-            
-            return false;
-        }
-
-        protected internal override bool OnVillageClickCore(MapVillageEventArgs e)
-        {
-            return false;
-        }
-
-        protected internal override bool OnKeyDownCore(MapKeyEventArgs e)
-        {
-            
-            return false;
-        }
-
         protected internal override void CleanUp()
         {
             _churches.Clear();
         }
-
-        public override void TimerPaint(MapTimerPaintEventArgs e)
-        {
-            
-        }
-
-        public override void Dispose()
-        {
-
-        }
         #endregion
-
-        #region Privates
-        
-        #endregion
-
-        
     }
 }
