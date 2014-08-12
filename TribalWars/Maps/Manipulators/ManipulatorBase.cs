@@ -30,7 +30,7 @@ namespace TribalWars.Maps.Manipulators
         }
         #endregion
 
-        #region IManipulator Members
+        #region Members
         public virtual IContextMenu GetContextMenu(Point location, Village village)
         {
             return ContextMenuProvider.DefaultProvider(_map, location, village);
@@ -128,17 +128,20 @@ namespace TribalWars.Maps.Manipulators
         /// Cleanup anything when switching worlds or settings
         /// </summary>
         protected internal abstract void CleanUp();
-        #endregion
 
-        #region IDrawer Members
         public virtual void TimerPaint(MapTimerPaintEventArgs e)
         {
             
         }
 
-        public virtual void Paint(MapPaintEventArgs e)
+        public virtual void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
 
+        }
+
+        public virtual void BackgroundPaint(MapPaintEventArgs e, bool isActiveManipulator)
+        {
+            
         }
         #endregion
 

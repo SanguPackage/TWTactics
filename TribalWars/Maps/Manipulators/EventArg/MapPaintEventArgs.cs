@@ -17,20 +17,13 @@ namespace TribalWars.Maps.Manipulators.EventArg
         /// Gets the full map rectangle
         /// </summary>
         public Rectangle FullMapRectangle { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether it is the active
-        /// manipulator
-        /// </summary>
-        public bool IsActiveManipulator { get; private set; }
         #endregion
 
         #region Constructors
-        public MapPaintEventArgs(Graphics g, Rectangle fullRec, bool isActive)
+        public MapPaintEventArgs(Graphics g, Rectangle fullRec)
         {
             Graphics = g;
             FullMapRectangle = fullRec;
-            IsActiveManipulator = isActive;
         }
         #endregion
     }

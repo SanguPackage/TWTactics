@@ -77,7 +77,7 @@ Press 's' to remove this tooltip.";
         {
         }
 
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             using (var rectanglePen = new Pen(Color.FromArgb(118, 143, 219), 3))
             {

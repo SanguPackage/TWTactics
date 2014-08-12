@@ -81,7 +81,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             return _churches.FirstOrDefault(x => x.Village == village);
         }
 
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             foreach (ChurchInfo church in _churches)
             {

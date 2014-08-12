@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events.Impls;
@@ -171,9 +172,7 @@ namespace TribalWars.Maps.Controls
             else
             {
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                Map.Display.Paint(e.Graphics, ClientRectangle);
-
-                Map.Manipulators.Paint(e.Graphics, ClientRectangle);
+                Map.Paint(e.Graphics, ClientRectangle);
             }
         }
 

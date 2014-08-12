@@ -384,15 +384,15 @@ namespace TribalWars.Maps.Manipulators.Managers
         #endregion
 
         #region IMapDrawer Members
-        public void Paint(MapPaintEventArgs e)
+        public void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             if (_fullControllManipulator != null && !_manipulators.Contains(_fullControllManipulator))
             {
-                _fullControllManipulator.Paint(e);
+                _fullControllManipulator.Paint(e, isActiveManipulator);
             }
 
             foreach (ManipulatorBase manipulator in _manipulators)
-                manipulator.Paint(e);
+                manipulator.Paint(e, isActiveManipulator);
         }
 
         public void TimerPaint(MapTimerPaintEventArgs e)

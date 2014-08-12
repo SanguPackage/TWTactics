@@ -136,9 +136,9 @@ namespace TribalWars.Maps.AttackPlans
         #endregion
 
         #region Map Events
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
-            if (!Settings.ShowIfNotActiveManipulator && !e.IsActiveManipulator)
+            if (!Settings.ShowIfNotActiveManipulator && !isActiveManipulator)
             {
                 return;
             }
@@ -151,8 +151,8 @@ namespace TribalWars.Maps.AttackPlans
 
             Rectangle gameSize = _map.Display.GetGameRectangle();
             Graphics g = e.Graphics;
-            
-            if (e.IsActiveManipulator && ActivePlan != null)
+
+            if (isActiveManipulator && ActivePlan != null)
             {
                 if (_map.Display.IsVisible(ActivePlan.Target))
                 {

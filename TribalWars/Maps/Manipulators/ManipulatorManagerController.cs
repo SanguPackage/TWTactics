@@ -21,10 +21,15 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Maps.Manipulators
 {
+    public interface IMapPainter
+    {
+        
+    }
+
     /// <summary>
     /// Manages the user interaction with a map
     /// </summary>
-    public class ManipulatorManagerController
+    public class ManipulatorManagerController : IMapPainter
     {
         #region Delegates
         public delegate void MouseMovedDelegate(MouseEventArgs e, Point mapLocation, Village village, Point activeLocation, Point activeVillage);
@@ -33,6 +38,8 @@ namespace TribalWars.Maps.Manipulators
         #region Fields
         private readonly Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> _manipulators;
         private ManipulatorManagerTypes? _previousType;
+        private readonly List<ManipulatorBase> _roaming = new List<ManipulatorBase>();
+        private ChurchManipulator _churchManipulator;
 
         private MouseMovedDelegate _mouseMoved;
         #endregion
@@ -67,6 +74,18 @@ namespace TribalWars.Maps.Manipulators
         public PolygonManipulatorManager PolygonManipulator { get; private set; }
 
         public AttackManipulatorManager AttackManipulator { get; private set; }
+
+        public ChurchManipulator ChurchManipulator
+        {
+            get
+            {
+                if (_churchManipulator == null)
+                {
+                    _churchManipulator = new ChurchManipulator(Map);
+                }
+                return _churchManipulator;
+            }
+        }
 
         /// <summary>
         /// The last village the cursor was on or is still on
@@ -113,16 +132,7 @@ namespace TribalWars.Maps.Manipulators
         }
         #endregion
 
-        #region Public Methods
-        /// <summary>
-        /// Add a method that will be triggered each time the mouse
-        /// moves over the map
-        /// </summary>
-        public void AddMouseMoved(MouseMovedDelegate moved)
-        {
-            _mouseMoved += moved;
-        }
-
+        #region Manipulators
         /// <summary>
         /// Changes the active manipulatormanager
         /// </summary>
@@ -165,18 +175,31 @@ namespace TribalWars.Maps.Manipulators
             }
         }
 
-        private readonly List<ManipulatorBase> _roaming = new List<ManipulatorBase>();
-        private ChurchManipulator _churchManipulator;
-
-        public ChurchManipulator ChurchManipulator
+        public void ToggleChurchManipulator()
         {
-            get
+            ToggleRoamingManipulator(ChurchManipulator);
+        }
+
+        #region Roaming Manipulator
+        /// <summary>
+        /// A roaming manipulator is not part of a <see cref="ManipulatorManagerBase"/> but
+        /// is added to whichever is active
+        /// </summary>
+        /// <remarks>
+        /// TODO: Incomplete roaming manipulators implementation:
+        /// - Only those events used by <see cref="ChurchManipulator"/> are actually called
+        /// - New roaming manipulators are not automatically persisted 
+        /// - etc..
+        /// </remarks>
+        private void ToggleRoamingManipulator(ManipulatorBase manipulator)
+        {
+            if (_roaming.Contains(manipulator))
             {
-                if (_churchManipulator == null)
-                {
-                    _churchManipulator = new ChurchManipulator(Map);
-                }
-                return _churchManipulator;
+                _roaming.Remove(manipulator);
+            }
+            else
+            {
+                _roaming.Add(manipulator);
             }
         }
 
@@ -191,24 +214,10 @@ namespace TribalWars.Maps.Manipulators
         {
             ChurchManipulator.ReadXml(newReader);
         }
+        #endregion
+        #endregion
 
-        public void ToggleChurchManipulator()
-        {
-            ToggleRoamingManipulator(ChurchManipulator);
-        }
-
-        private void ToggleRoamingManipulator(ManipulatorBase manipulator)
-        {
-            if (_roaming.Contains(manipulator))
-            {
-                _roaming.Remove(manipulator);
-            }
-            else
-            {
-                _roaming.Add(manipulator);
-            }
-        }
-
+        #region KeyEvents
         public bool KeyDown(KeyEventArgs e)
         {
             return CurrentManipulator.OnKeyDownCore(new MapKeyEventArgs(e));
@@ -217,6 +226,17 @@ namespace TribalWars.Maps.Manipulators
         public bool KeyUp(KeyEventArgs e)
         {
             return CurrentManipulator.OnKeyUpCore(new MapKeyEventArgs(e));
+        }
+        #endregion
+
+        #region MouseEvents
+        /// <summary>
+        /// Add a method that will be triggered each time the mouse
+        /// moves over the map
+        /// </summary>
+        public void AddMouseMoved(MouseMovedDelegate moved)
+        {
+            _mouseMoved += moved;
         }
 
         public bool OnVillageDoubleClick(MouseEventArgs e, Village village)
@@ -284,17 +304,19 @@ namespace TribalWars.Maps.Manipulators
         {
             return CurrentManipulator.MouseWheel(e);
         }
+        #endregion
 
-        public void Paint(Graphics graphics, Rectangle fullMap)
+        #region Painting
+        public void Paint(MapPaintEventArgs e)
         {
             foreach (ManipulatorBase roaming in _roaming)
             {
-                roaming.Paint(new MapPaintEventArgs(graphics, fullMap, false));
+                roaming.Paint(e, false);
             }
 
             foreach (ManipulatorManagerBase manipulator in _manipulators.Values)
             {
-                manipulator.Paint(new MapPaintEventArgs(graphics, fullMap, manipulator == CurrentManipulator));
+                manipulator.Paint(e, manipulator == CurrentManipulator);
             }
         }
 

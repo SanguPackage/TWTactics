@@ -13,6 +13,7 @@ using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Views;
 using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators;
+using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools;
@@ -490,5 +491,22 @@ namespace TribalWars.Maps
             return string.Format("ControlName={0}, Loc={1}", _control.Name, Location);
         }
         #endregion
+
+        public void Paint(Graphics g, Rectangle fullMap)
+        {
+            var paintArgs = new MapPaintEventArgs(g, fullMap);
+
+            // TODO: we zaten hier:
+            // Display / Manipulators both want to draw to the background
+
+            // Display is the cache
+            // Painter is the one we will instantiate here?
+            
+
+            Display.Paint(Manipulators, g, fullMap);
+
+            
+            Manipulators.Paint(paintArgs);
+        }
     }
 }

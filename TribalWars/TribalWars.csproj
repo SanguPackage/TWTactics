@@ -273,6 +273,7 @@
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Drawing\Drawers\BackgroundDrawerData.cs" />
+    <Compile Include="Maps\Drawing\Painter.cs" />
     <Compile Include="Maps\Drawing\Views\IView.cs" />
     <Compile Include="Maps\Drawing\Views\ViewsCollection.cs" />
     <Compile Include="Maps\Icons\Background.Designer.cs">

@@ -84,13 +84,13 @@ namespace TribalWars.Maps.Polygons
         /// <summary>
         /// Paints the polygons
         /// </summary>
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             if (Polygons != null)
             {
                 foreach (Polygon poly in Polygons)
                 {
-                    bool active = poly == ActivePolygon && e.IsActiveManipulator;
+                    bool active = poly == ActivePolygon && isActiveManipulator;
                     if (poly.List.Count > 1 && poly.Visible)
                     {
                         Pen pen = GetPen(poly.LineColor);

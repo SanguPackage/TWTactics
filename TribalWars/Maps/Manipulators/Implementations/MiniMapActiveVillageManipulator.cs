@@ -99,7 +99,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
             }
         }
 
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             if (_mainMapSelectedVillage != null)
             {

@@ -18,6 +18,8 @@ namespace TribalWars.Controls.XPTables
     /// <summary>
     /// Control for displaying villages, players and tribes in an XPTable.
     /// Also provides right click functionality etc.
+    /// 
+    /// LEGACY: Use Janus GridEx. This one gets problematic with larger datasets.
     /// </summary>
     public partial class TableWrapperControl : UserControl
     {

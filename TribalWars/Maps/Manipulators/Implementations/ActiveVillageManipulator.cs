@@ -72,9 +72,9 @@ namespace TribalWars.Maps.Manipulators.Implementations
             return false;
         }
 
-        public override void Paint(MapPaintEventArgs e)
+        public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
-            if (e.IsActiveManipulator)
+            if (isActiveManipulator)
             {
                 Rectangle gameSize = _map.Display.GetGameRectangle();
                 Debug.Assert(new Rectangle(new Point(0, 0), _map.CanvasSize) == e.FullMapRectangle);
