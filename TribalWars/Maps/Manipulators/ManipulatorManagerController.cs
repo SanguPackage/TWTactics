@@ -305,5 +305,15 @@ namespace TribalWars.Maps.Manipulators
                 manipulator.TimerPaint(new MapTimerPaintEventArgs(g, fullMap, manipulator == CurrentManipulator));
         }
         #endregion
+
+        public void CleanUp()
+        {
+            foreach (var manipulator in _roaming)
+            {
+                manipulator.CleanUp();
+            }
+
+            _manipulators.ForEach(d => d.Value.CleanUp());
+        }
     }
 }

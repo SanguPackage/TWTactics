@@ -109,7 +109,7 @@ namespace TribalWars.Worlds
 
                 // MainMap: Manipulators
                 Dictionary<ManipulatorManagerTypes, ManipulatorManagerBase> dict = map.Manipulators.Manipulators;
-                dict.ForEach(d => d.Value.CleanUp());
+                map.Manipulators.CleanUp();
 
                 r.ReadToFollowing("Manipulator");
                 while (r.IsStartElement("Manipulator"))
