@@ -87,7 +87,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
             {
                 Point mapLocation = _map.Display.GetMapLocation(church.Village.Location);
 
-                var villageSize = _map.Display.Dimensions.Size;
+                var villageSize = _map.Display.Dimensions.SizeWithSpacing;
 
                 // Paint curch level
                 if (_map.Display.Type == DisplayTypes.Icon)
