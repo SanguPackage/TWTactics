@@ -139,10 +139,25 @@ namespace TribalWars.Maps.Manipulators
 
         }
 
-        public virtual void BackgroundPaint(MapPaintEventArgs e, bool isActiveManipulator)
-        {
+        //public virtual void BackgroundPaint(MapPaintEventArgs e, bool isActiveManipulator)
+        //{
             
-        }
+        //}
+
+        //public virtual void MiniMapPaint(MapPaintEventArgs e, bool isActiveManipulator)
+        //{
+
+        //}
+
+        //public virtual void MiniMapBackgroundPaint(MapPaintEventArgs e, bool isActiveManipulator)
+        //{
+
+        //}
+
+        //public virtual void MiniMapTimerPaint(MapPaintEventArgs e, bool isActiveManipulator)
+        //{
+
+        //}
         #endregion
 
         #region IDisposable Members

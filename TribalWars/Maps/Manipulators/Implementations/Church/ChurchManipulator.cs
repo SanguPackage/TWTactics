@@ -141,7 +141,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
                 }
 
                 // Paint church radius
-                if (villageSize.Width > 10)
+                if (villageSize.Width > 0)
                 {
                     GraphicsPath churchInfluence = church.GetRadius(mapLocation, villageSize);
 
