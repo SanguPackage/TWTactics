@@ -195,6 +195,11 @@ namespace TribalWars.Villages.ContextMenu
         {
             var level = (int) e.Command.Tag;
             _map.EventPublisher.ChurchChange(_village, level);
+
+            if (_onVillageTypeChangeDelegate != null)
+            {
+                _onVillageTypeChangeDelegate();
+            }
         }
 
         private void OnVillageTypeChange(object sender, CommandEventArgs e)

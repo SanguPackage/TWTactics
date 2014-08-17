@@ -60,6 +60,7 @@ namespace TribalWars.Controls.GridExs
             _columns[VillageFields.Kingdom].ConfigureAsNumeric();
 
             _columns[VillageFields.Player].Visible = ShowPlayer;
+            _columns[VillageFields.Church].Visible = World.Default.Settings.Church;
 
             World.Default.Map.EventPublisher.LocationChanged += EventPublisherOnLocationChanged;
         }

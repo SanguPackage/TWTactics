@@ -37,7 +37,8 @@ namespace TribalWars.Controls.XPTables
         Default = 127,
         All = 16383,
         Kingdom,
-        Visible
+        Visible,
+        Church
     }
     #endregion
 

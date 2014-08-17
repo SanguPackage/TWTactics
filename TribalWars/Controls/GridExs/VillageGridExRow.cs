@@ -26,6 +26,15 @@ namespace TribalWars.Controls.GridExs
 
         public string Name { get; set; }
 
+        public int? Church
+        {
+            get
+            {
+                var church = _map.Manipulators.ChurchManipulator.GetChurch(Village);
+                return church == null ? (int?)null : church.ChurchLevel;
+            }
+        }
+
         public int Kingdom { get; set; }
 
         public int Type

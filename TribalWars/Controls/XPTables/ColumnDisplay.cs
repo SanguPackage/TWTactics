@@ -136,6 +136,9 @@ namespace TribalWars.Controls.XPTables
 
                     case VillageFields.Player:
                         return PlayerName;
+
+                    case VillageFields.Church:
+                        return "The church level";
                 }
 
                 throw new Exception("Add new header text here... (go to ColumnDisplay class)");

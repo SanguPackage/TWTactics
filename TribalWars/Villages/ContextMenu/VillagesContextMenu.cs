@@ -88,6 +88,11 @@ namespace TribalWars.Villages.ContextMenu
                 _map.EventPublisher.ChurchChange(village, level, false);
             }
             World.Default.DrawMaps(false);
+
+            if (_onVillageTypeChangeDelegate != null)
+            {
+                _onVillageTypeChangeDelegate(VillageType.None);
+            }
         }
 
         private void OnPinpointAndCenter(object sender, CommandEventArgs e)
