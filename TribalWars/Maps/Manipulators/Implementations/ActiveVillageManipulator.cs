@@ -67,6 +67,7 @@ namespace TribalWars.Maps.Manipulators.Implementations
             if (e.Village == null && _pinPointedVillage == null && _selectedVillage != null)
             {
                 _selectedVillage = null;
+                _map.EventPublisher.Deselect(this);
                 return true;
             }
             return false;
