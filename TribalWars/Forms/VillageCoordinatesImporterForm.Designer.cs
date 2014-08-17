@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.playerTribeDropdown1 = new TribalWars.Controls.Finders.PlayerTribeDropdown();
+            this.ClearTextFieldButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.uiGroupBox1.Controls.Add(this.ClearTextFieldButton);
             this.uiGroupBox1.Controls.Add(this.VillageCoordsInputBox);
             this.uiGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox1.Location = new System.Drawing.Point(12, 67);
@@ -65,7 +67,7 @@
             this.VillageCoordsInputBox.Multiline = true;
             this.VillageCoordsInputBox.Name = "VillageCoordsInputBox";
             this.VillageCoordsInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.VillageCoordsInputBox.Size = new System.Drawing.Size(255, 331);
+            this.VillageCoordsInputBox.Size = new System.Drawing.Size(255, 304);
             this.VillageCoordsInputBox.TabIndex = 0;
             this.VillageCoordsInputBox.TextChanged += new System.EventHandler(this.VillageCoordsInputBox_TextChanged);
             // 
@@ -125,6 +127,16 @@
             this.playerTribeDropdown1.TabIndex = 1;
             this.playerTribeDropdown1.PlayerSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.PlayerEventArgs>(this.playerTribeDropdown1_PlayerSelected);
             // 
+            // ClearTextFieldButton
+            // 
+            this.ClearTextFieldButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ClearTextFieldButton.Location = new System.Drawing.Point(7, 331);
+            this.ClearTextFieldButton.Name = "ClearTextFieldButton";
+            this.ClearTextFieldButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearTextFieldButton.TabIndex = 1;
+            this.ClearTextFieldButton.Text = "Clear";
+            this.ClearTextFieldButton.Click += new System.EventHandler(this.ClearTextFieldButton_Click);
+            // 
             // VillageCoordinatesImporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.Label label1;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox3;
         private Controls.Finders.PlayerTribeDropdown playerTribeDropdown1;
+        private Janus.Windows.EditControls.UIButton ClearTextFieldButton;
     }
 }

@@ -40,5 +40,10 @@ namespace TribalWars.Forms
             var villages = playerTribeDropdown1.Player;
             villagesGridExControl1.Bind(villages);
         }
+
+        private void ClearTextFieldButton_Click(object sender, EventArgs e)
+        {
+            VillageCoordsInputBox.Text = "";
+        }
     }
 }
