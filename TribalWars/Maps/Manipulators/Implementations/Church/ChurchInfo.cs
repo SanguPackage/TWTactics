@@ -51,7 +51,7 @@ namespace TribalWars.Maps.Manipulators.Implementations.Church
         /// </summary>
         public static Color DefaultColor
         {
-            get { return Color.Yellow; }
+            get { return Color.Blue; }
         }
         #endregion
 
