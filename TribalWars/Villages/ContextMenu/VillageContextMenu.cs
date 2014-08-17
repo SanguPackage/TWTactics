@@ -151,24 +151,20 @@ namespace TribalWars.Villages.ContextMenu
         private static UICommand[] CreateChurchLevelCommands(CommandEventHandler handler, ChurchInfo church)
         {
             var churchLevelCommands = new List<UICommand>();
-            if (church != null)
+            for (int i = 0; i <= 3; i++)
             {
-                churchLevelCommands.Add(CreateChurchLevelCommand(handler, 0, church));
-            }
-            for (int i = 1; i <= 3; i++)
-            {
-                churchLevelCommands.Add(CreateChurchLevelCommand(handler, i, church));
+                churchLevelCommands.Add(CreateChurchLevelCommand(handler, i, church == null ? -1 : church.ChurchLevel));
             }
 
             return churchLevelCommands.ToArray();
         }
 
-        private static UICommand CreateChurchLevelCommand(CommandEventHandler handler, int level, ChurchInfo church)
+        private static UICommand CreateChurchLevelCommand(CommandEventHandler handler, int level, int churchLevel)
         {
             string text = level == 0 ? "No church" : string.Format("Level {0}", level);
             var cmd = new UICommand("", text)
             {
-                IsChecked = level == (church == null ? 0 : church.ChurchLevel),
+                IsChecked = level == churchLevel,
                 Tag = level
             };
 
