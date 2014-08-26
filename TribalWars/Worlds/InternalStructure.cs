@@ -398,8 +398,11 @@ namespace TribalWars.Worlds
                 foreach (var worldType in worldsPerWorldType)
                 {
                     IGrouping<string, int> fixedType = worldType;
-                    IEnumerable<string> allWorldsInType = Enumerable.Range(1, fixedType.Max()).Select(x => fixedType.Key + x);
-                    worlds.AddRange(allWorldsInType);
+                    if (fixedType.Max() != -1)
+                    {
+                        IEnumerable<string> allWorldsInType = Enumerable.Range(1, fixedType.Max()).Select(x => fixedType.Key + x);
+                        worlds.AddRange(allWorldsInType);
+                    }
                 }
 
                 return worlds.ToArray();
@@ -412,7 +415,15 @@ namespace TribalWars.Worlds
             private static KeyValuePair<string, int> SplitIntoServerPrefixAndWorldNumber(string world)
             {
                 Match match = WorldSplitterRegex.Match(world);
-                return new KeyValuePair<string, int>(match.Groups[1].Value, Convert.ToInt32(match.Groups[2].Value));
+                int worldNumber;
+                if (int.TryParse(match.Groups[2].Value, out worldNumber))
+                {
+                    return new KeyValuePair<string, int>(match.Groups[1].Value, worldNumber);
+                }
+                else
+                {
+                    return new KeyValuePair<string, int>(match.Groups[1].Value, -1);
+                }
             }
 
             /// <summary>

@@ -288,17 +288,20 @@ namespace TribalWars.Maps.Drawing
                 {
                     // Paint village icon/shape
                     BackgroundDrawerData mainData = World.Default.Views.GetBackgroundDrawerData(village, marker);
-                    finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
-                    if (finalCache != null)
+                    if (mainData != null)
                     {
-                        finalCache.PaintVillage(g, mapVillage);
-
-                        if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
+                        finalCache = _drawerFactoryStrategy.CreateVillageDrawer(village.Bonus, mainData, marker);
+                        if (finalCache != null)
                         {
-                            // Paint extra village decorators
-                            foreach (DrawerBase decorator in World.Default.Views.GetDecoratorDrawers(_drawerFactoryStrategy, village, mainData))
+                            finalCache.PaintVillage(g, mapVillage);
+
+                            if (_drawerFactoryStrategy.SupportDecorators && village.Type != VillageType.None)
                             {
-                                decorator.PaintVillage(g, mapVillage);
+                                // Paint extra village decorators
+                                foreach (DrawerBase decorator in World.Default.Views.GetDecoratorDrawers(_drawerFactoryStrategy, village, mainData))
+                                {
+                                    decorator.PaintVillage(g, mapVillage);
+                                }
                             }
                         }
                     }
