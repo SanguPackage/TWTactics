@@ -154,6 +154,11 @@ namespace TribalWars.Maps.Drawing
             {
                 otherMapEnd += otherVillageSize * (otherGameMax - 1000) * -1;
             }
+            else if (otherMapStart < 0)
+            {
+                otherMapEnd -= otherMapStart;
+                otherMapStart = 0;
+            }
 
             int map = mapStart;
             for (int game = gameStart; game <= gameMax; game += sizeBetweenLines)
