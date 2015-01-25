@@ -69,7 +69,7 @@ namespace TribalWars.Browsers.Control
 
             Browser.CanGoForwardChanged += Browser_CanGoForwardChanged;
             Browser.CanGoBackChanged += Browser_CanGoBackChanged;
-            Browser.ScriptErrorsSuppressed = true;
+            Browser.ScriptErrorsSuppressed = true; // Doesn't seem to be hiding the twstats.com error message though
 
             World.Default.EventPublisher.Browse += OnBrowseEvent;
             World.Default.EventPublisher.SettingsLoaded += OnSettingsLoaded;
