@@ -52,7 +52,7 @@ You can move the map by
 
 The Delete key works for Polygons and Attack Plans
 
-Use L to lock the pinned village
+Use L to (un)lock the pinned village
 
 Polygon drawing: Hold control for fixed horizontal drawing. Shift for fixed vertical drawing.
 
