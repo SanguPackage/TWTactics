@@ -354,7 +354,7 @@ namespace TribalWars.Maps
                     Location oldLocation = Location;
                     
                     Location = location;
-                    Display.UpdateLocation();
+                    Display.UpdateLocation(CanvasSize, oldLocation, location);
 
                     EventPublisher.SetMapCenter(sender, new MapLocationEventArgs(location, oldLocation, Display.Zoom));
                 }
@@ -456,6 +456,13 @@ namespace TribalWars.Maps
         #endregion
 
         #region Other
+        public void Paint(Graphics g, Rectangle fullMap)
+        {
+            var paintArgs = new MapPaintEventArgs(g, fullMap);
+            Display.Paint(Manipulators, g, fullMap);
+            Manipulators.Paint(paintArgs);
+        }
+
         /// <summary>
         /// Forces a redraw of the map. If you want the MiniMap
         /// to be invalidated aswell, call World.DrawMaps instead
@@ -491,22 +498,5 @@ namespace TribalWars.Maps
             return string.Format("ControlName={0}, Loc={1}", _control.Name, Location);
         }
         #endregion
-
-        public void Paint(Graphics g, Rectangle fullMap)
-        {
-            var paintArgs = new MapPaintEventArgs(g, fullMap);
-
-            // TODO: we zaten hier:
-            // Display / Manipulators both want to draw to the background
-
-            // Display is the cache
-            // Painter is the one we will instantiate here?
-            
-
-            Display.Paint(Manipulators, g, fullMap);
-
-            
-            Manipulators.Paint(paintArgs);
-        }
     }
 }

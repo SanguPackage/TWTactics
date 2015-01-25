@@ -1,11 +1,16 @@
-MapDragger: Don't wait for entire game diff before redrawing the map
+TODO
+====
+Village contextmenu: start player/tribe with #number in the world (+ amount of M?)
+Continent lines are not working (but are in painting)
+Subforms: make them show in the taskbar
 
-Undo/Redo MapLocation changes
-
+Before release
+==============
 GridEx.SaveSettings = true;
 
 
-
+World Data
+==========
 world.dat???
 http://forum.tribalwars.net/showthread.php?253942-World-dat
 
@@ -15,8 +20,6 @@ http://forum.die-staemme.de/showthread.php?71112-Weltdaten-und-Interface
 
 
 ['gras1.png', 'gras2.png', 'gras3.png', 'gras4.png', 'v1_left.png', 'v1.png', 'v2_left.png', 'v2.png', 'v3_left.png', 'v3.png', 'v4_left.png', 'v4.png', 'v5_left.png', 'v5.png', 'v6_left.png', 'v6.png', 'b1_left.png', 'b1.png', 'b2_left.png', 'b2.png', 'b3_left.png', 'b3.png', 'b4_left.png', 'b4.png', 'b5_left.png', 'b5.png', 'b6_left.png', 'b6.png', 'berg1.png', 'berg2.png', 'berg3.png', 'berg4.png', 'forest0000.png', 'forest0001.png', 'forest0010.png', 'forest0011.png', 'forest0100.png', 'forest0101.png', 'forest0110.png', 'forest0111.png', 'forest1000.png', 'forest1001.png', 'forest1010.png', 'forest1011.png', 'forest1100.png', 'forest1101.png', 'forest1110.png', 'forest1111.png', 'see.png', 'event_xmas.png', 'event_easter.png', 'ghost.png', 'event_merchant.png', 'event_wizard.png', 'event_easter2014.png']
-
-
 
 http://en12.tribalwars.net/graphic/unit/unit_spear.png
 
@@ -34,7 +37,7 @@ village.txt : RANK (last) = bonus village
 
 
 Tips & Hints:
--------------
+=============
 Use Control to increase the effect of other keys (movement arrows, ...)
 
 Use middle mouse button to switch between default and polygon or attack mode.

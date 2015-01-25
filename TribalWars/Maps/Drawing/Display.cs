@@ -122,10 +122,133 @@ namespace TribalWars.Maps.Drawing
         #endregion
 
         #region Reset Cache
-        public void UpdateLocation()
+        //public void UpdateLocation()
+        //{
+        //    ResetCache();
+        //    _visibleRectangle = GetGameRectangle();
+        //}
+
+        public void UpdateLocation(Size canvasSize, Location oldLocation, Location newLocation)
         {
-            ResetCache();
-            _visibleRectangle = GetGameRectangle();
+            if (oldLocation == null || oldLocation.Display != newLocation.Display || oldLocation.Zoom != newLocation.Zoom
+                || _background == null || _visibleRectangle.IsEmpty)
+            {
+                ResetCache();
+                _visibleRectangle = GetGameRectangle();
+            }
+            else
+            {
+                ResetCache();
+                _visibleRectangle = GetGameRectangle();
+
+                // TODO: need fix for when resizing?
+
+                //var newRec = GetGameRectangle();
+
+                //var intersection = _visibleRectangle.Value;
+                //intersection.Intersect(newRec);
+                //if (true || intersection.IsEmpty)
+                //{
+                //    ResetCache();
+                //}
+                //else
+                //{
+                //    VillageDimensions dimensions = _drawerFactoryStrategy.Dimensions;
+                //    int xOffset = (oldLocation.X - newLocation.X);
+                //    int yOffset = (oldLocation.Y - newLocation.Y);
+
+                //    var newBackground = new Bitmap(canvasSize.Width, canvasSize.Height);
+                //    // TODO: need to call this from _painter: 
+                //    // --> need to adjust offset a bit
+                //    using (var g = Graphics.FromImage(newBackground))
+                //    {
+                //        g.DrawImageUnscaled(
+                //            _background,
+                //            xOffset * dimensions.SizeWithSpacing.Width,
+                //            yOffset * dimensions.SizeWithSpacing.Height);
+
+                //        if (xOffset != 0)
+                //        {
+                //            var horizontal = new Rectangle();
+                //            if (xOffset < 0)
+                //            {
+                //                horizontal.X = _visibleRectangle.Value.Right + xOffset;
+                //            }
+                //            else
+                //            {
+                //                horizontal.X = _visibleRectangle.Value.X - xOffset;
+                //            }
+
+                //            horizontal.Width = Math.Abs(xOffset);
+                //            horizontal.Y = _visibleRectangle.Value.Y - yOffset;
+                //            horizontal.Height = _visibleRectangle.Value.Height;
+
+                //            horizontal.Width++;
+                //            horizontal.Height++;
+
+                //            //if (xOffset < 0)
+                //            //{
+                //            //    horizontal.X = newLocation.X;
+                //            //}
+                //            //else
+                //            //{
+                //            //    horizontal.X = _visibleRectangle.Value.X - xOffset;
+                //            //}
+                //            //if (newLocation.Y < oldLocation.Y)
+                //            //{
+                //            //    horizontal.Y = newLocation.Y;
+                //            //}
+                //            //else
+                //            //{
+                //            //    horizontal.Y = oldLocation.Y;
+                //            //}
+
+
+                //            var horizontalMap = new Rectangle(
+                //                0,
+                //                0,
+                //                horizontal.Width * dimensions.SizeWithSpacing.Width,
+                //                horizontal.Height * dimensions.SizeWithSpacing.Height);
+
+                //            var horDrawed = _painter.GetBitmap(_settings, horizontal, horizontalMap, _mapOffset);
+
+                //            Debug.Assert(_mapOffset.X <= 0 && _mapOffset.Y <= 0);
+
+                //            var whereToDraw = new Point();
+                //            //whereToDraw.X = _visibleRectangle.Value.X;
+                //            //if (xOffset < 0)
+                //            //{
+                //            //    whereToDraw.X = newLocation.X;
+                //            //}
+                //            //else
+                //            //{
+                //            //    whereToDraw.X = _visibleRectangle.Value.X - xOffset;
+                //            //}
+                //            //if (newLocation.Y < oldLocation.Y)
+                //            //{
+                //            //    whereToDraw.Y = newLocation.Y;
+                //            //}
+                //            //else
+                //            //{
+                //            //    whereToDraw.Y = oldLocation.Y;
+                //            //}
+
+                //            var rect = new Rectangle(whereToDraw.X, whereToDraw.Y, horizontalMap.Width, horizontalMap.Height);
+                //            g.DrawImageUnscaled(horDrawed, rect);
+                //            //using (var testPen = new Pen(Color.Black))
+                //            //{
+                //            //    g.DrawRectangle(testPen, rect);
+                //            //}
+                //        }
+
+
+
+                //    }
+                //    _background = newBackground;
+                //}
+
+                //_visibleRectangle = newRec;
+            }
         }
 
         /// <summary>
