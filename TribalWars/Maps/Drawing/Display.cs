@@ -27,7 +27,6 @@ namespace TribalWars.Maps.Drawing
         private Rectangle _visibleGameRectangle;
 
         private Bitmap _background;
-        private Painter _painter;
 
         private readonly DrawerFactoryBase _drawerFactoryStrategy;
         private readonly DisplaySettings _settings;
@@ -140,9 +139,6 @@ namespace TribalWars.Maps.Drawing
                 ResetCache();
                 _visibleGameRectangle = GetGameRectangle();
 
-                // TODO: _background needs to be with 'fixed' villages (ie no offset)
-                // otherwise the merging becomes tiresome...
-
                 var newRec = GetGameRectangle();
 
                 // var calcer = new Calculator(_visibleRectangle, newRec);
@@ -176,7 +172,7 @@ namespace TribalWars.Maps.Drawing
         #endregion
 
         #region Painting
-        private void PaintBackground(Graphics g)
+        private void PaintCachedBackground(Graphics g)
         {
             // Also draw villages that are only partially visible at left/top
             Point mapOffset = GetMapLocation(_visibleGameRectangle.Location);
@@ -186,26 +182,48 @@ namespace TribalWars.Maps.Drawing
         /// <summary>
         /// Paints the canvas
         /// </summary>
-        public void Paint(IMapPainter manipulators, Graphics g2, Rectangle fullMap)
+        public void Paint(Graphics g2, Rectangle fullMap)
         {
             if (_background == null)
             {
                 //Debug.WriteLine("passed for Paint " + fullMap.ToString());
                 //var timing = Stopwatch.StartNew();
 
-                if (_painter == null || true)
-                {
-                    _painter = new Painter(this, fullMap, manipulators);
-                }
-                _background = _painter.GetBitmap();
+                var dimensions = Dimensions;
+                var largerThanFullMap = fullMap;
+                largerThanFullMap.Width += dimensions.SizeWithSpacing.Width;
+                largerThanFullMap.Height += dimensions.SizeWithSpacing.Height;
 
+                var largerGameRectangle = GetGameRectangle();
+                largerGameRectangle.Width += 1;
+                largerGameRectangle.Height += 1;
+
+                var canvas = new Bitmap(largerThanFullMap.Width, largerThanFullMap.Height);
+                var g = Graphics.FromImage(canvas);
+
+                using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
+                {
+                    g.FillRectangle(backgroundBrush, largerThanFullMap);
+                }
+
+                var calcVillagesToDisplay = new DisplayVillageCalculator(Dimensions, largerGameRectangle, largerThanFullMap);
+                foreach (var village in calcVillagesToDisplay.GetVillages())
+                {
+                    Paint(g, village.GameLocation, new Rectangle(village.MapLocation, Dimensions.Size));
+                }
+
+                var continentDrawer = new ContinentLinesPainter(g, Settings, Dimensions, largerGameRectangle, largerThanFullMap);
+                continentDrawer.DrawContinentLines();
+
+                _background = canvas;
+                
                 _visibleGameRectangle = GetGameRectangle();
 
                 //timing.Stop();
                 //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
             }
 
-            PaintBackground(g2);
+            PaintCachedBackground(g2);
         }
 
         /// <summary>
@@ -214,7 +232,7 @@ namespace TribalWars.Maps.Drawing
         /// <param name="g">The graphics object</param>
         /// <param name="game">The game location of the village</param>
         /// <param name="mapVillage">Where and how big to draw the village</param>
-        public void Paint(Graphics g, Point game, Rectangle mapVillage)
+        private void Paint(Graphics g, Point game, Rectangle mapVillage)
         {
             if (!(game.X >= 0 && game.X < 1000 && game.Y >= 0 && game.Y < 1000))
                 return;

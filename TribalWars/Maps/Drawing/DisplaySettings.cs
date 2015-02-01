@@ -55,13 +55,17 @@ namespace TribalWars.Maps.Drawing
         public Pen CreateProvincePen()
         {
             Debug.Assert(ProvinceLines);
-            return new Pen(Color.FromArgb(42, 94, 31), 1f);
+            var pen = new Pen(Color.FromArgb(42, 94, 31), 1f);
+            pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            return pen;
         }
 
         public Pen CreateContinentPen()
         {
             Debug.Assert(ContinentLines);
-            return new Pen(Color.Black, 1);
+            var pen = new Pen(Color.Black, 1);
+            pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+            return pen;
         }
 
         public override string ToString()

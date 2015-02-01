@@ -459,7 +459,7 @@ namespace TribalWars.Maps
         public void Paint(Graphics g, Rectangle fullMap)
         {
             var paintArgs = new MapPaintEventArgs(g, fullMap);
-            Display.Paint(Manipulators, g, fullMap);
+            Display.Paint(g, fullMap);
             Manipulators.Paint(paintArgs);
         }
 

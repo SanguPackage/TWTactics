@@ -4,93 +4,61 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using TribalWars.Maps.Manipulators;
+using TribalWars.Maps.Drawing.Displays;
 
 namespace TribalWars.Maps.Drawing
 {
+    //public class Line
+    //{
+    //    public int X1 { get; private set; }
+
+    //    public int X2 { get; private set; }
+
+    //    public int Y1 { get; private set; }
+
+    //    public int Y2 { get; private set; }
+
+    //    public Line(int x1, int y1, int x2, int y2)
+    //    {
+    //        X1 = x1;
+    //        Y1 = y1;
+    //        X2 = x2;
+    //        Y2 = y2;
+    //    }
+    //}
+
     /// <summary>
-    /// Paints the villages and continent/province lines on a canvas
+    /// Calculates positions for and draws the continent and province lines
     /// </summary>
-    public class Painter
+    public class ContinentLinesPainter
     {
         #region Fields
-        private readonly Bitmap _canvas;
         private readonly Graphics _g;
         private readonly Rectangle _toPaint;
         private readonly Rectangle _visibleGameRectangle;
 
-        private readonly int _villageWidth;
-        private readonly int _villageHeight;
         private readonly int _villageWidthSpacing;
         private readonly int _villageHeightSpacing;
 
-        private readonly Display _display;
+        private readonly DisplaySettings _settings;
         #endregion
 
         #region Constructor
-        public Painter(Display display, Rectangle mapSize, IMapPainter painter)
+        public ContinentLinesPainter(Graphics g, DisplaySettings settings, VillageDimensions dimensions, Rectangle gameRectangle, Rectangle mapSize)
         {
-            var dimensions = display.Dimensions;
-            mapSize.Width += dimensions.SizeWithSpacing.Width;
-            mapSize.Height += dimensions.SizeWithSpacing.Height;
-
-           
-
-            _display = display;
-            _canvas = new Bitmap(mapSize.Width, mapSize.Height);
-            _g = Graphics.FromImage(_canvas);
-               
-            _visibleGameRectangle = display.GetGameRectangle();
-            _visibleGameRectangle = new Rectangle(_visibleGameRectangle.Location, new Size(_visibleGameRectangle.Width + 1, _visibleGameRectangle.Height + 1));
-            // _visibleGameRectangle is sometimes negative!!
-
-            // Also draw villages that are only partially visible at left/top
-            //Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
-            //mapSize.Offset(mapOffset);
+            _settings = settings;
+            _g = g;
+            _visibleGameRectangle = gameRectangle;
             _toPaint = mapSize;
-
-            using (var backgroundBrush = new SolidBrush(_display.Settings.BackgroundColor))
-            {
-                _g.FillRectangle(backgroundBrush, _toPaint);
-            }
-
             
             _villageWidthSpacing = dimensions.SizeWithSpacing.Width;
             _villageHeightSpacing = dimensions.SizeWithSpacing.Height;
 
-            _villageWidth = dimensions.Size.Width;
-            _villageHeight = dimensions.Size.Height;
-
-            DrawVillages();
-            DrawContinentLines();
-
-            //painter.Paint(_g, );
-        }
-        #endregion
-
-        #region Villages
-        private void DrawVillages()
-        {
-            int mapX = _toPaint.Left;
-            int mapY = _toPaint.Top;
-
-            int gameY = _visibleGameRectangle.Y;
-
-            for (int yMap = mapY; yMap <= _toPaint.Height; yMap += _villageHeightSpacing)
-            {
-                int gameX = _visibleGameRectangle.X;
-                for (int xMap = mapX; xMap <= _toPaint.Width; xMap += _villageWidthSpacing)
-                {
-                    _display.Paint(_g, new Point(gameX, gameY), new Rectangle(xMap, yMap, _villageWidth, _villageHeight));
-                    gameX += 1;
-                }
-                gameY += 1;
-            }
         }
         #endregion
 
         #region Continent Lines
-        private void DrawContinentLines()
+        public void DrawContinentLines()
         {
             //Horizontal
             DrawContinentLines(_toPaint.Top, _toPaint.Bottom, _visibleGameRectangle.Y, _visibleGameRectangle.Bottom, _villageHeightSpacing, true, _toPaint.Left, _toPaint.Right, _visibleGameRectangle.X, _visibleGameRectangle.Right, _villageWidthSpacing);
@@ -111,20 +79,18 @@ namespace TribalWars.Maps.Drawing
             const int provinceWidth = 5;
             const int continentWidth = 100;
 
-            if (_villageWidthSpacing > 4 && _display.Settings.ProvinceLines)
+            if (_villageWidthSpacing > 4 && _settings.ProvinceLines)
             {
-                using (var provincePen = _display.Settings.CreateProvincePen())
+                using (var provincePen = _settings.CreateProvincePen())
                 {
-                    provincePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
                     DrawContinentLines(provincePen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, provinceWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
                 }
             }
 
-            if (_display.Settings.ContinentLines)
+            if (_settings.ContinentLines)
             {
-                using (var continentPen = _display.Settings.CreateContinentPen())
+                using (var continentPen = _settings.CreateContinentPen())
                 {
-                    continentPen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
                     DrawContinentLines(continentPen, mapMin, mapMax, gameMin, gameMax, villageSize, isHorizontal, continentWidth, otherMapMin, otherMapMax, otherGameMin, otherGameMax, otherVillageSize);
                 }
             }
@@ -184,24 +150,6 @@ namespace TribalWars.Maps.Drawing
 
                 map += villageSize * sizeBetweenLines;
             }
-        }
-        #endregion
-
-        #region Public Methods
-        /// <summary>
-        /// Gets the game rectangle representing what is drawn on the map
-        /// </summary>
-        public Rectangle GetVisibleGameRectangle()
-        {
-            return _visibleGameRectangle;
-        }
-
-        /// <summary>
-        /// Gets the canvas with all villages drawn to it
-        /// </summary>
-        public Bitmap GetBitmap()
-        {
-            return _canvas;
         }
         #endregion
     }
