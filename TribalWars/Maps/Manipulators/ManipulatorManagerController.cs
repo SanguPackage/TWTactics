@@ -21,6 +21,8 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Maps.Manipulators
 {
+    // TODO: IMapPainter: this can probably go?
+    // if not, there is some stuff that needs to be fetched from the painting branch
     public interface IMapPainter
     {
         

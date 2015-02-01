@@ -24,9 +24,9 @@ namespace TribalWars.Maps.Drawing
         private readonly Map _map;
         private readonly MarkerManager _markers;
 
-        private Rectangle _visibleRectangle;
+        private Rectangle _visibleGameRectangle;
 
-        private Bitmap _background; // TODO: private PainterCache _cache?
+        private Bitmap _background;
         private Painter _painter;
 
         private readonly DrawerFactoryBase _drawerFactoryStrategy;
@@ -122,131 +122,46 @@ namespace TribalWars.Maps.Drawing
         #endregion
 
         #region Reset Cache
-        //public void UpdateLocation()
-        //{
-        //    ResetCache();
-        //    _visibleRectangle = GetGameRectangle();
-        //}
-
         public void UpdateLocation(Size canvasSize, Location oldLocation, Location newLocation)
         {
             if (oldLocation == null || oldLocation.Display != newLocation.Display || oldLocation.Zoom != newLocation.Zoom
-                || _background == null || _visibleRectangle.IsEmpty)
+                || _background == null || _visibleGameRectangle.IsEmpty || canvasSize != _background.Size)
             {
                 ResetCache();
-                _visibleRectangle = GetGameRectangle();
+                _visibleGameRectangle = GetGameRectangle();
+                //if (_background != null && canvasSize != _background.Size)
+                //{
+                //    // TODO: need fix for when resizing?
+                //    _painter = new Painter(this, new Rectangle(new Point(), canvasSize), null);
+                //}
             }
             else
             {
                 ResetCache();
-                _visibleRectangle = GetGameRectangle();
+                _visibleGameRectangle = GetGameRectangle();
 
-                // TODO: need fix for when resizing?
+                // TODO: _background needs to be with 'fixed' villages (ie no offset)
+                // otherwise the merging becomes tiresome...
 
-                //var newRec = GetGameRectangle();
+                var newRec = GetGameRectangle();
 
-                //var intersection = _visibleRectangle.Value;
-                //intersection.Intersect(newRec);
-                //if (true || intersection.IsEmpty)
-                //{
-                //    ResetCache();
-                //}
-                //else
-                //{
-                //    VillageDimensions dimensions = _drawerFactoryStrategy.Dimensions;
-                //    int xOffset = (oldLocation.X - newLocation.X);
-                //    int yOffset = (oldLocation.Y - newLocation.Y);
+                // var calcer = new Calculator(_visibleRectangle, newRec);
+                // Rectangle[] toDraw = calcer.GetNonOverlappingRectangles();
 
-                //    var newBackground = new Bitmap(canvasSize.Width, canvasSize.Height);
-                //    // TODO: need to call this from _painter: 
-                //    // --> need to adjust offset a bit
-                //    using (var g = Graphics.FromImage(newBackground))
-                //    {
-                //        g.DrawImageUnscaled(
-                //            _background,
-                //            xOffset * dimensions.SizeWithSpacing.Width,
-                //            yOffset * dimensions.SizeWithSpacing.Height);
+                
+                var intersection = _visibleGameRectangle;
+                intersection.Intersect(newRec);
+                if (intersection.IsEmpty)
+                {
+                    ResetCache();
+                }
+                else
+                {
+                    
+                }
 
-                //        if (xOffset != 0)
-                //        {
-                //            var horizontal = new Rectangle();
-                //            if (xOffset < 0)
-                //            {
-                //                horizontal.X = _visibleRectangle.Value.Right + xOffset;
-                //            }
-                //            else
-                //            {
-                //                horizontal.X = _visibleRectangle.Value.X - xOffset;
-                //            }
-
-                //            horizontal.Width = Math.Abs(xOffset);
-                //            horizontal.Y = _visibleRectangle.Value.Y - yOffset;
-                //            horizontal.Height = _visibleRectangle.Value.Height;
-
-                //            horizontal.Width++;
-                //            horizontal.Height++;
-
-                //            //if (xOffset < 0)
-                //            //{
-                //            //    horizontal.X = newLocation.X;
-                //            //}
-                //            //else
-                //            //{
-                //            //    horizontal.X = _visibleRectangle.Value.X - xOffset;
-                //            //}
-                //            //if (newLocation.Y < oldLocation.Y)
-                //            //{
-                //            //    horizontal.Y = newLocation.Y;
-                //            //}
-                //            //else
-                //            //{
-                //            //    horizontal.Y = oldLocation.Y;
-                //            //}
-
-
-                //            var horizontalMap = new Rectangle(
-                //                0,
-                //                0,
-                //                horizontal.Width * dimensions.SizeWithSpacing.Width,
-                //                horizontal.Height * dimensions.SizeWithSpacing.Height);
-
-                //            var horDrawed = _painter.GetBitmap(_settings, horizontal, horizontalMap, _mapOffset);
-
-                //            Debug.Assert(_mapOffset.X <= 0 && _mapOffset.Y <= 0);
-
-                //            var whereToDraw = new Point();
-                //            //whereToDraw.X = _visibleRectangle.Value.X;
-                //            //if (xOffset < 0)
-                //            //{
-                //            //    whereToDraw.X = newLocation.X;
-                //            //}
-                //            //else
-                //            //{
-                //            //    whereToDraw.X = _visibleRectangle.Value.X - xOffset;
-                //            //}
-                //            //if (newLocation.Y < oldLocation.Y)
-                //            //{
-                //            //    whereToDraw.Y = newLocation.Y;
-                //            //}
-                //            //else
-                //            //{
-                //            //    whereToDraw.Y = oldLocation.Y;
-                //            //}
-
-                //            var rect = new Rectangle(whereToDraw.X, whereToDraw.Y, horizontalMap.Width, horizontalMap.Height);
-                //            g.DrawImageUnscaled(horDrawed, rect);
-                //            //using (var testPen = new Pen(Color.Black))
-                //            //{
-                //            //    g.DrawRectangle(testPen, rect);
-                //            //}
-                //        }
-
-
-
-                //    }
-                //    _background = newBackground;
-                //}
-
+                
+                // _background = newBackground;
                 //_visibleRectangle = newRec;
             }
         }
@@ -261,134 +176,36 @@ namespace TribalWars.Maps.Drawing
         #endregion
 
         #region Painting
+        private void PaintBackground(Graphics g)
+        {
+            // Also draw villages that are only partially visible at left/top
+            Point mapOffset = GetMapLocation(_visibleGameRectangle.Location);
+            g.DrawImageUnscaled(_background, mapOffset.X, mapOffset.Y);
+        }
+
         /// <summary>
         /// Paints the canvas
         /// </summary>
         public void Paint(IMapPainter manipulators, Graphics g2, Rectangle fullMap)
         {
-            if (_background != null)
-            {
-                //Debug.WriteLine("passed for cache " + fullMap.ToString());
-                g2.DrawImageUnscaled(_background, 0, 0);
-            }
-            else
+            if (_background == null)
             {
                 //Debug.WriteLine("passed for Paint " + fullMap.ToString());
+                //var timing = Stopwatch.StartNew();
 
-                var timing = Stopwatch.StartNew();
-
-                // Normal way: 1sec on zoom 1
                 if (_painter == null || true)
                 {
-                    // we zaten hier:
-                    // also create new painter when the _map.Location.Zoom changes. 
-                    // also when we change DisplayType
-                    // factory method?
                     _painter = new Painter(this, fullMap, manipulators);
                 }
                 _background = _painter.GetBitmap();
-                _visibleRectangle = _painter.GetVisibleGameRectangle();
 
-                timing.Stop();
-                //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
+                _visibleGameRectangle = GetGameRectangle();
 
-                #region THA OLD CODE
-                //timing.Restart();
-                // x1: 0.6 secs
-
-                // THIS IS THE OLD CODE:
-                // Use it to see if we've slowed things down or not...
-
-                //_background = new Bitmap(_map.Control.PictureWidth, _map.Control.PictureHeight);
-                //Graphics g = Graphics.FromImage(_background);
-
-                //Point gameTopLeft = GetGameLocation(fullMap.Left, fullMap.Top);
-                //Point gameBottomRight = GetGameLocation(fullMap.Right, fullMap.Bottom);
-                //_visibleRectangle = new Rectangle(gameTopLeft.X, gameTopLeft.Y, gameBottomRight.X - gameTopLeft.X, gameBottomRight.Y - gameTopLeft.Y);
-
-                //int xOffset = GetMapLocation(gameTopLeft).X;
-                //int yOffset = GetMapLocation(gameTopLeft).Y;
-
-                //DisplayBase displayType = DisplayManager.CurrentDisplay;
-                //int zoom = _map.Location.Zoom;
-                //int width = displayType.GetVillageWidthSpacing(zoom);
-                //int height = displayType.GetVillageHeightSpacing(zoom);
-                //int mapY = 0;
-
-                //int villageWidth = displayType.GetVillageWidth(zoom);
-                //int villageHeight = displayType.GetVillageHeight(zoom);
-
-                //// Draw villages
-                //int mapX = fullMap.Left + xOffset;
-                //mapY = fullMap.Top + yOffset;
-                //if (false)
-                //{
-                //    // Different way to loop over the villages
-                //    // timing is pretty much the same...
-                //    /*for (int gameY = gameTopLeft.Y; gameY <= gameBottomRight.Y; gameY++)
-                //    {
-                //        mapX = fullMap.Left + xOffset;
-                //        for (int gameX = gameTopLeft.X; gameX <= gameBottomRight.X; gameX++)
-                //        {
-                //            _viewManager.Paint(g, new Point(gameX, gameY), mapX, mapY, villageWidth, villageHeight);
-                //            mapX += width;
-                //            villagesDrawed++;
-                //        }
-                //        mapY += height;
-                //    }*/
-                //}
-                //else
-                //{
-                //    int gameX = 0;
-                //    int gameY = gameTopLeft.Y;
-                //    g.FillRectangle(_backgroundBrush, fullMap);
-                //    for (int yMap = mapY; yMap <= fullMap.Bottom; yMap += height)
-                //    {
-                //        gameX = gameTopLeft.X;
-                //        for (int xMap = mapX; xMap <= fullMap.Right; xMap += width)
-                //        {
-                //            DisplayManager.Paint(g, new Point(gameX, gameY), xMap, yMap, villageWidth, villageHeight);
-                //            gameX += 1;
-                //        }
-                //        gameY += 1;
-                //    }
-                //}
-
-                ////// Horizontal continent lines
-                //int gridOffset = 5;
-                //mapY = fullMap.Top + yOffset - (gameTopLeft.Y % gridOffset) * height;
-                ////for (int gameY = _visibleRectangle.Y - (_visibleRectangle.Y % gridOffset); gameY <= _visibleRectangle.Height; gameY += gridOffset)
-                //for (int gameY = gameTopLeft.Y - (gameTopLeft.Y % gridOffset); gameY <= gameBottomRight.Y; gameY += gridOffset)
-                //{
-                //    if (gameY > 0 && gameY < 1000)
-                //    {
-                //        if (gameY % 100 == 0)
-                //            g.DrawLine(_continentPen, 0, mapY, fullMap.Width, mapY);
-                //        else if (width > 4)
-                //            g.DrawLine(_provincePen, 0, mapY, fullMap.Width, mapY);
-                //    }
-                //    mapY += height * gridOffset;
-                //}
-
-                //// Vertical continent lines
-                //mapX = fullMap.Left + xOffset - (gameTopLeft.X % gridOffset) * width;
-                //for (int gameX = gameTopLeft.X - (gameTopLeft.X % gridOffset); gameX <= gameBottomRight.X; gameX += gridOffset)
-                //{
-                //    if (gameX > 0 && gameX < 1000)
-                //    {
-                //        if (gameX % 100 == 0)
-                //            g.DrawLine(_continentPen, mapX, 0, mapX, fullMap.Height);
-                //        else if (width > 4)
-                //            g.DrawLine(_provincePen, mapX, 0, mapX, fullMap.Height);
-                //    }
-                //    mapX += width * gridOffset;
-                //}
                 //timing.Stop();
-                //Debug.WriteLine("Painting OLD:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
-                #endregion
-
-                g2.DrawImageUnscaled(_background, 0, 0);
+                //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));
             }
+
+            PaintBackground(g2);
         }
 
         /// <summary>
@@ -458,7 +275,7 @@ namespace TribalWars.Maps.Drawing
         /// </summary>
         public bool IsVisible(IEnumerable<Village> villages)
         {
-            return villages.Any(village => _visibleRectangle.Contains(village.Location));
+            return villages.Any(village => _visibleGameRectangle.Contains(village.Location));
         }
         #endregion
 
@@ -551,7 +368,7 @@ namespace TribalWars.Maps.Drawing
 
         public override string ToString()
         {
-            return string.Format("Map={0}, Visible={1}, VillageSize={2}", _map, _visibleRectangle, _drawerFactoryStrategy != null ? Dimensions.Size.ToString() : "NotInited");
+            return string.Format("Map={0}, Visible={1}, VillageSize={2}", _map, _visibleGameRectangle, _drawerFactoryStrategy != null ? Dimensions.Size.ToString() : "NotInited");
         }
         #endregion
     }

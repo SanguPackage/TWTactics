@@ -4,6 +4,7 @@ Village contextmenu: start player/tribe with #number in the world (+ amount of M
 Subforms: make them show in the taskbar
 
 Rename solution to TWTactics
+Add note that Browsers\ is mostly not implemented stuff
 
 Before release
 ==============

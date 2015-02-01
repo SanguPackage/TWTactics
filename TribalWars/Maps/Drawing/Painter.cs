@@ -30,16 +30,23 @@ namespace TribalWars.Maps.Drawing
         #region Constructor
         public Painter(Display display, Rectangle mapSize, IMapPainter painter)
         {
+            var dimensions = display.Dimensions;
+            mapSize.Width += dimensions.SizeWithSpacing.Width;
+            mapSize.Height += dimensions.SizeWithSpacing.Height;
+
+           
+
             _display = display;
             _canvas = new Bitmap(mapSize.Width, mapSize.Height);
             _g = Graphics.FromImage(_canvas);
                
             _visibleGameRectangle = display.GetGameRectangle();
+            _visibleGameRectangle = new Rectangle(_visibleGameRectangle.Location, new Size(_visibleGameRectangle.Width + 1, _visibleGameRectangle.Height + 1));
             // _visibleGameRectangle is sometimes negative!!
 
             // Also draw villages that are only partially visible at left/top
-            Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
-            mapSize.Offset(mapOffset);
+            //Point mapOffset = _display.GetMapLocation(_visibleGameRectangle.Location);
+            //mapSize.Offset(mapOffset);
             _toPaint = mapSize;
 
             using (var backgroundBrush = new SolidBrush(_display.Settings.BackgroundColor))
@@ -47,7 +54,7 @@ namespace TribalWars.Maps.Drawing
                 _g.FillRectangle(backgroundBrush, _toPaint);
             }
 
-            var dimensions = display.Dimensions;
+            
             _villageWidthSpacing = dimensions.SizeWithSpacing.Width;
             _villageHeightSpacing = dimensions.SizeWithSpacing.Height;
 
