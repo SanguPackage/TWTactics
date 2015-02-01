@@ -1,8 +1,9 @@
 TODO
 ====
 Village contextmenu: start player/tribe with #number in the world (+ amount of M?)
-Continent lines are not working (but are in painting)
 Subforms: make them show in the taskbar
+
+Rename solution to TWTactics
 
 Before release
 ==============
