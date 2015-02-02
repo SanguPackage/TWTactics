@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Diagnostics;
 using TribalWars.Maps.Drawing.Displays;
 using TribalWars.Maps.Drawing.Drawers;
+using TribalWars.Maps.Drawing.Helpers;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
@@ -25,6 +26,7 @@ namespace TribalWars.Maps.Drawing
         private readonly MarkerManager _markers;
 
         private Rectangle _visibleGameRectangle;
+        private Rectangle _canvasRectangle;
 
         private Bitmap _background;
 
@@ -124,41 +126,69 @@ namespace TribalWars.Maps.Drawing
         public void UpdateLocation(Size canvasSize, Location oldLocation, Location newLocation)
         {
             if (oldLocation == null || oldLocation.Display != newLocation.Display || oldLocation.Zoom != newLocation.Zoom
-                || _background == null || _visibleGameRectangle.IsEmpty || canvasSize != _background.Size)
+                || _background == null || _visibleGameRectangle.IsEmpty || canvasSize != _canvasRectangle.Size)
             {
                 ResetCache();
                 _visibleGameRectangle = GetGameRectangle();
                 //if (_background != null && canvasSize != _background.Size)
                 //{
                 //    // TODO: need fix for when resizing?
-                //    _painter = new Painter(this, new Rectangle(new Point(), canvasSize), null);
                 //}
             }
             else
             {
-                ResetCache();
-                _visibleGameRectangle = GetGameRectangle();
-
                 var newRec = GetGameRectangle();
 
-                // var calcer = new Calculator(_visibleRectangle, newRec);
-                // Rectangle[] toDraw = calcer.GetNonOverlappingRectangles();
-
-                
-                var intersection = _visibleGameRectangle;
-                intersection.Intersect(newRec);
-                if (intersection.IsEmpty)
+                var calcer = new RegionsToDrawCalculator(_visibleGameRectangle, newRec);
+                if (!calcer.HasIntersection || true)
                 {
                     ResetCache();
                 }
                 else
                 {
-                    
-                }
+                    Rectangle backgroundMove;
+                    var gameRecsToDraw = calcer.GetNonOverlappingGameRectangles(out backgroundMove);
 
+                    backgroundMove.X *= Dimensions.SizeWithSpacing.Width * -1;
+
+
+                    using (var g = Graphics.FromImage(_background))
+                    {
+                        // BUG: this scrolls 2x too fast or something?
+                        g.DrawImageUnscaled(_background, backgroundMove);
+                        //using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
+                        //{
+                        //    g.FillRectangle(backgroundBrush, _canvasRectangle);
+                        //}
+
+                        foreach (Rectangle gameRecToDraw in gameRecsToDraw)
+                        {
+                            //var mapRecToDraw = GetMapRectangle(gameRecToDraw);
+                            //mapRecToDraw.X = 0;
+                            //mapRecToDraw.Y = 0;
+                            //Bitmap drawed = PaintBackground(mapRecToDraw, gameRecToDraw);
+
+                            var partialCanvas = new Rectangle(0, 0, gameRecToDraw.Width * Dimensions.SizeWithSpacing.Width, gameRecToDraw.Height * Dimensions.SizeWithSpacing.Height);
+                            var partialGameRect = gameRecToDraw;
+                            Offset(ref partialCanvas, ref partialGameRect);
+
+                            
+                            Bitmap drawed = PaintBackground(partialCanvas, partialGameRect);
+
+                            // BUG: this draws the initial stuff, not the new
+                            //g.DrawImageUnscaled(drawed, new Point(0, 0));
+                            g.DrawImageUnscaled(drawed, new Point(canvasSize.Width - drawed.Width, 0));
+                            using (var p = new Pen(Color.Black))
+                                g.DrawRectangle(p, canvasSize.Width - drawed.Width, 0, canvasSize.Width, canvasSize.Height);
+                        }
+
+                        
+                        
+                    }
+                }
                 
                 // _background = newBackground;
-                //_visibleRectangle = newRec;
+                _visibleGameRectangle = GetGameRectangle();
             }
         }
 
@@ -177,47 +207,60 @@ namespace TribalWars.Maps.Drawing
             // Also draw villages that are only partially visible at left/top
             Point mapOffset = GetMapLocation(_visibleGameRectangle.Location);
             g.DrawImageUnscaled(_background, mapOffset.X, mapOffset.Y);
+            //g.DrawImageUnscaled(_background, 0, 0);
+        }
+
+        private Bitmap PaintBackground(Rectangle canvasRectangle, Rectangle gameRectangle)
+        {
+            var canvas = new Bitmap(canvasRectangle.Width, canvasRectangle.Height);
+            using (var g = Graphics.FromImage(canvas))
+            {
+                using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
+                {
+                    g.FillRectangle(backgroundBrush, canvasRectangle);
+                }
+
+                var calcVillagesToDisplay = new DisplayVillageCalculator(Dimensions, gameRectangle, canvasRectangle);
+                foreach (var village in calcVillagesToDisplay.GetVillages())
+                {
+                    Paint(g, village.GameLocation, new Rectangle(village.MapLocation, Dimensions.Size));
+                }
+
+                var continentDrawer = new ContinentLinesPainter(g, Settings, Dimensions, gameRectangle, canvasRectangle);
+                continentDrawer.DrawContinentLines();
+            }
+            return canvas;
+        }
+
+        /// <summary>
+        /// To take the _mapOffset into account
+        /// </summary>
+        private void Offset(ref Rectangle canvasRectangle, ref Rectangle gameRectangle)
+        {
+            canvasRectangle.Width += Dimensions.SizeWithSpacing.Width;
+            canvasRectangle.Height += Dimensions.SizeWithSpacing.Height;
+
+            gameRectangle.Width += 1;
+            gameRectangle.Height += 1;
         }
 
         /// <summary>
         /// Paints the canvas
         /// </summary>
-        public void Paint(Graphics g2, Rectangle fullMap)
+        public void Paint(Graphics g2, Rectangle canvasRectangle)
         {
             if (_background == null)
             {
                 //Debug.WriteLine("passed for Paint " + fullMap.ToString());
                 //var timing = Stopwatch.StartNew();
 
-                var dimensions = Dimensions;
-                var largerThanFullMap = fullMap;
-                largerThanFullMap.Width += dimensions.SizeWithSpacing.Width;
-                largerThanFullMap.Height += dimensions.SizeWithSpacing.Height;
-
+                var largerThanCanvas = canvasRectangle;
                 var largerGameRectangle = GetGameRectangle();
-                largerGameRectangle.Width += 1;
-                largerGameRectangle.Height += 1;
 
-                var canvas = new Bitmap(largerThanFullMap.Width, largerThanFullMap.Height);
-                var g = Graphics.FromImage(canvas);
-
-                using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
-                {
-                    g.FillRectangle(backgroundBrush, largerThanFullMap);
-                }
-
-                var calcVillagesToDisplay = new DisplayVillageCalculator(Dimensions, largerGameRectangle, largerThanFullMap);
-                foreach (var village in calcVillagesToDisplay.GetVillages())
-                {
-                    Paint(g, village.GameLocation, new Rectangle(village.MapLocation, Dimensions.Size));
-                }
-
-                var continentDrawer = new ContinentLinesPainter(g, Settings, Dimensions, largerGameRectangle, largerThanFullMap);
-                continentDrawer.DrawContinentLines();
-
-                _background = canvas;
-                
+                Offset(ref largerThanCanvas, ref largerGameRectangle);
+                _background = PaintBackground(largerThanCanvas, largerGameRectangle);
                 _visibleGameRectangle = GetGameRectangle();
+                _canvasRectangle = canvasRectangle;
 
                 //timing.Stop();
                 //Debug.WriteLine("Painting NEW:{0} in {1}", _map.Location, timing.Elapsed.TotalSeconds.ToString(CultureInfo.InvariantCulture));

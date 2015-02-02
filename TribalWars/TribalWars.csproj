@@ -274,10 +274,11 @@
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Drawing\Drawers\BackgroundDrawerData.cs" />
-    <Compile Include="Maps\Drawing\DisplayVillageCalculator.cs" />
+    <Compile Include="Maps\Drawing\Helpers\DisplayVillageCalculator.cs" />
+    <Compile Include="Maps\Drawing\Helpers\RegionsToDrawCalculator.cs" />
     <Compile Include="Maps\Drawing\Views\IView.cs" />
     <Compile Include="Maps\Drawing\Views\ViewsCollection.cs" />
-    <Compile Include="Maps\Drawing\VillageDrawingLocation.cs" />
+    <Compile Include="Maps\Drawing\Helpers\VillageDrawingLocation.cs" />
     <Compile Include="Maps\Icons\Background.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

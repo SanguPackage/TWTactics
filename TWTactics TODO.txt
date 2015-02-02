@@ -6,6 +6,8 @@ Subforms: make them show in the taskbar
 Rename solution to TWTactics
 Add note that Browsers\ is mostly not implemented stuff
 
+Update likely release date :p
+
 Before release
 ==============
 GridEx.SaveSettings = true;

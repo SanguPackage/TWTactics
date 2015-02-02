@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using TribalWars.Maps.Drawing.Displays;
-using TribalWars.Maps.Manipulators;
 
-namespace TribalWars.Maps.Drawing
+namespace TribalWars.Maps.Drawing.Helpers
 {
     /// <summary>
     /// Get which villages need to be displayed

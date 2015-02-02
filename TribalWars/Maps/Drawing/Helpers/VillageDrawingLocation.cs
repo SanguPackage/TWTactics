@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace TribalWars.Maps.Drawing
+namespace TribalWars.Maps.Drawing.Helpers
 {
     /// <summary>
     /// Mapping between the game and map locations of a village

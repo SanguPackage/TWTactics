@@ -117,21 +117,23 @@ namespace TribalWars.Tools.JanusExtensions
             const int canvasSize = 16;
 
             var map = new Bitmap(canvasSize, canvasSize);
-            Graphics g = Graphics.FromImage(map);
-            using (var brush = new SolidBrush(color))
+            using (Graphics g = Graphics.FromImage(map))
             {
-                g.FillRectangle(brush, 0, 0, canvasSize, canvasSize);
-            }
-            using (var borderPen = new Pen(Color.Black))
-            {
-                g.DrawRectangle(borderPen, 0, 0, canvasSize - 1, canvasSize - 1);
-            }
-
-            if (extraColor.HasValue)
-            {
-                using (var brush = new SolidBrush(extraColor.Value))
+                using (var brush = new SolidBrush(color))
                 {
-                    g.FillRectangle(brush, 5, 5, canvasSize - 10, canvasSize - 10);
+                    g.FillRectangle(brush, 0, 0, canvasSize, canvasSize);
+                }
+                using (var borderPen = new Pen(Color.Black))
+                {
+                    g.DrawRectangle(borderPen, 0, 0, canvasSize - 1, canvasSize - 1);
+                }
+
+                if (extraColor.HasValue)
+                {
+                    using (var brush = new SolidBrush(extraColor.Value))
+                    {
+                        g.FillRectangle(brush, 5, 5, canvasSize - 10, canvasSize - 10);
+                    }
                 }
             }
 

@@ -121,32 +121,34 @@ namespace TribalWars.Maps.Controls
                 else
                 {
                     _cacheX = new Bitmap(panel.ClientRectangle.Width, panel.ClientRectangle.Height);
-                    Graphics g2 = Graphics.FromImage(_cacheX);
-
-                    int mapOffset = villageWidth;
-                    int gameOffset = 1;
-                    if (mapOffset < 53)
+                    using (Graphics g2 = Graphics.FromImage(_cacheX))
                     {
-                        int temp = 53 / villageWidth;
-                        if (temp < 5) temp = 5;
-                        else temp += temp % 5;
 
-                        gameOffset = temp;
-                        mapOffset = villageWidth * temp;
-                    }
-
-                    for (int i = mapLeftTop.X; i <= panel.Width; i += mapOffset)
-                    {
-                        if (gameLeftTop.X > 0 && gameLeftTop.X < 1000 && i > 0)
+                        int mapOffset = villageWidth;
+                        int gameOffset = 1;
+                        if (mapOffset < 53)
                         {
-                            g2.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
-                            g2.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
+                            int temp = 53 / villageWidth;
+                            if (temp < 5) temp = 5;
+                            else temp += temp % 5;
 
-                            g.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
-                            g.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
+                            gameOffset = temp;
+                            mapOffset = villageWidth * temp;
                         }
 
-                        gameLeftTop.X += gameOffset;
+                        for (int i = mapLeftTop.X; i <= panel.Width; i += mapOffset)
+                        {
+                            if (gameLeftTop.X > 0 && gameLeftTop.X < 1000 && i > 0)
+                            {
+                                g2.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
+                                g2.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
+
+                                g.DrawString(gameLeftTop.X.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, i - 10 + villageWidth / 2, 3);
+                                g.DrawLine(Pens.Black, i + villageWidth / 2, panel.Height, i + villageWidth / 2, panel.Height - 4);
+                            }
+
+                            gameLeftTop.X += gameOffset;
+                        }
                     }
                 }
             }
@@ -163,32 +165,34 @@ namespace TribalWars.Maps.Controls
                 else
                 {
                     _cacheY = new Bitmap(panel.ClientRectangle.Width, panel.ClientRectangle.Height);
-                    Graphics g2 = Graphics.FromImage(_cacheY);
-
-                    int mapOffset = villageHeight;
-                    int gameOffset = 1;
-                    if (mapOffset < 38)
+                    using (Graphics g2 = Graphics.FromImage(_cacheY))
                     {
-                        int temp = 38 / villageHeight;
-                        if (temp < 5) temp = 5;
-                        else temp += temp % 5;
 
-                        gameOffset = temp;
-                        mapOffset = villageHeight * temp;
-                    }
-
-                    for (int i = mapLeftTop.Y; i <= panel.Height; i += mapOffset)
-                    {
-                        if (gameLeftTop.Y > 0 && gameLeftTop.Y < 1000 && i > 0)
+                        int mapOffset = villageHeight;
+                        int gameOffset = 1;
+                        if (mapOffset < 38)
                         {
-                            g2.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
-                            g2.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
+                            int temp = 38 / villageHeight;
+                            if (temp < 5) temp = 5;
+                            else temp += temp % 5;
 
-                            g.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
-                            g.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
+                            gameOffset = temp;
+                            mapOffset = villageHeight * temp;
                         }
 
-                        gameLeftTop.Y += gameOffset;
+                        for (int i = mapLeftTop.Y; i <= panel.Height; i += mapOffset)
+                        {
+                            if (gameLeftTop.Y > 0 && gameLeftTop.Y < 1000 && i > 0)
+                            {
+                                g2.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
+                                g2.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
+
+                                g.DrawString(gameLeftTop.Y.ToString(CultureInfo.InvariantCulture), _rulerFont, Brushes.Black, 0, i - 10 + villageHeight / 2, _rulerStringFormat);
+                                g.DrawLine(Pens.Black, panel.Width, i + villageHeight / 2, panel.Width - 4, i + villageHeight / 2);
+                            }
+
+                            gameLeftTop.Y += gameOffset;
+                        }
                     }
                 }
             }
