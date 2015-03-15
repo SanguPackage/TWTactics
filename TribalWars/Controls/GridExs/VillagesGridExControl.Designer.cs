@@ -55,6 +55,7 @@
             this.GridExVillage.Location = new System.Drawing.Point(0, 0);
             this.GridExVillage.Margin = new System.Windows.Forms.Padding(0);
             this.GridExVillage.Name = "GridExVillage";
+            this.GridExVillage.SaveSettings = true;
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
             this.GridExVillage.SettingsKey = "PolygonVillage3";
             this.GridExVillage.Size = new System.Drawing.Size(281, 260);
@@ -79,6 +80,7 @@
             this.Name = "VillagesGridExControl";
             this.Size = new System.Drawing.Size(281, 260);
             this.Load += new System.EventHandler(this.VillagesGridControl_Load);
+            ((System.Configuration.IPersistComponentSettings)(this.GridExVillage)).LoadComponentSettings();
             ((System.ComponentModel.ISupportInitialize)(this.GridExVillage)).EndInit();
             this.ResumeLayout(false);
 
