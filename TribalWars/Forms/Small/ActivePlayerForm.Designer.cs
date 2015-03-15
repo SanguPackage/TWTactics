@@ -187,7 +187,6 @@
             this.MinimizeBox = false;
             this.Name = "ActivePlayerForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select active player";
             this.Load += new System.EventHandler(this.ActivePlayerForm_Load);

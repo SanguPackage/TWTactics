@@ -181,7 +181,6 @@ namespace TribalWars.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoadWorldForm";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Load World";
             this.Load += new System.EventHandler(this.LoadWorldForm_Load);

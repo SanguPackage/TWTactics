@@ -173,7 +173,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TimeZoneForm";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Synchronize Server Time";
