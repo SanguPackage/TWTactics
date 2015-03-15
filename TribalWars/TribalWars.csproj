@@ -789,6 +789,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Browsers\BrowsersNotUsed.txt" />
     <Content Include="favicon.ico" />
     <None Include="Resources\note.png" />
     <None Include="Resources\Noble.png" />

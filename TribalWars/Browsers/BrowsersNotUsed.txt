@@ -1,0 +1,2 @@
+﻿Most of the stuff in the Browsers folder is not active.
+A simple browser control is used to browse TWStats but all the other classes are not being used.
