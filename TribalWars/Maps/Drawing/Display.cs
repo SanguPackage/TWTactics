@@ -125,71 +125,75 @@ namespace TribalWars.Maps.Drawing
         #region Reset Cache
         public void UpdateLocation(Size canvasSize, Location oldLocation, Location newLocation)
         {
-            if (oldLocation == null || oldLocation.Display != newLocation.Display || oldLocation.Zoom != newLocation.Zoom
-                || _background == null || _visibleGameRectangle.IsEmpty || canvasSize != _canvasRectangle.Size)
-            {
+            //if (oldLocation == null || oldLocation.Display != newLocation.Display || oldLocation.Zoom != newLocation.Zoom
+            //    || _background == null || _visibleGameRectangle.IsEmpty || canvasSize != _canvasRectangle.Size)
+            //{
                 ResetCache();
                 _visibleGameRectangle = GetGameRectangle();
                 //if (_background != null && canvasSize != _background.Size)
                 //{
                 //    // TODO: need fix for when resizing?
                 //}
-            }
-            else
-            {
-                var newRec = GetGameRectangle();
+            //}
+            //else
+            //{
+            //    var newRec = GetGameRectangle();
 
-                var calcer = new RegionsToDrawCalculator(_visibleGameRectangle, newRec);
-                if (!calcer.HasIntersection || true)
-                {
-                    ResetCache();
-                }
-                else
-                {
-                    Rectangle backgroundMove;
-                    var gameRecsToDraw = calcer.GetNonOverlappingGameRectangles(out backgroundMove);
+            //    var calcer = new RegionsToDrawCalculator(_visibleGameRectangle, newRec);
+            //    if (!calcer.HasIntersection)
+            //    {
+            //        ResetCache();
+            //    }
+            //    else
+            //    {
+            //        // TODO: we zaten hier:
+            //        // new approach -> create a screenshot of what it should be and of what it is....
+            //        // will be easier to see what exactly is going on with this shit :)
 
-                    backgroundMove.X *= Dimensions.SizeWithSpacing.Width * -1;
+            //        Rectangle backgroundMove;
+            //        var gameRecsToDraw = calcer.GetNonOverlappingGameRectangles(out backgroundMove);
+
+            //        backgroundMove.X *= Dimensions.SizeWithSpacing.Width * -1;
 
 
-                    using (var g = Graphics.FromImage(_background))
-                    {
-                        // BUG: this scrolls 2x too fast or something?
-                        g.DrawImageUnscaled(_background, backgroundMove);
-                        //using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
-                        //{
-                        //    g.FillRectangle(backgroundBrush, _canvasRectangle);
-                        //}
+            //        using (var g = Graphics.FromImage(_background))
+            //        {
+            //            // BUG: this scrolls 2x too fast or something?
+            //            g.DrawImageUnscaled(_background, backgroundMove);
+            //            //using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
+            //            //{
+            //            //    g.FillRectangle(backgroundBrush, _canvasRectangle);
+            //            //}
 
-                        foreach (Rectangle gameRecToDraw in gameRecsToDraw)
-                        {
-                            //var mapRecToDraw = GetMapRectangle(gameRecToDraw);
-                            //mapRecToDraw.X = 0;
-                            //mapRecToDraw.Y = 0;
-                            //Bitmap drawed = PaintBackground(mapRecToDraw, gameRecToDraw);
+            //            foreach (Rectangle gameRecToDraw in gameRecsToDraw)
+            //            {
+            //                //var mapRecToDraw = GetMapRectangle(gameRecToDraw);
+            //                //mapRecToDraw.X = 0;
+            //                //mapRecToDraw.Y = 0;
+            //                //Bitmap drawed = PaintBackground(mapRecToDraw, gameRecToDraw);
 
-                            var partialCanvas = new Rectangle(0, 0, gameRecToDraw.Width * Dimensions.SizeWithSpacing.Width, gameRecToDraw.Height * Dimensions.SizeWithSpacing.Height);
-                            var partialGameRect = gameRecToDraw;
-                            Offset(ref partialCanvas, ref partialGameRect);
+            //                var partialCanvas = new Rectangle(0, 0, gameRecToDraw.Width * Dimensions.SizeWithSpacing.Width, gameRecToDraw.Height * Dimensions.SizeWithSpacing.Height);
+            //                var partialGameRect = gameRecToDraw;
+            //                Offset(ref partialCanvas, ref partialGameRect);
 
                             
-                            Bitmap drawed = PaintBackground(partialCanvas, partialGameRect);
+            //                Bitmap drawed = PaintBackground(partialCanvas, partialGameRect);
 
-                            // BUG: this draws the initial stuff, not the new
-                            //g.DrawImageUnscaled(drawed, new Point(0, 0));
-                            g.DrawImageUnscaled(drawed, new Point(canvasSize.Width - drawed.Width, 0));
-                            using (var p = new Pen(Color.Black))
-                                g.DrawRectangle(p, canvasSize.Width - drawed.Width, 0, canvasSize.Width, canvasSize.Height);
-                        }
+            //                // BUG: this draws the initial stuff, not the new
+            //                //g.DrawImageUnscaled(drawed, new Point(0, 0));
+            //                g.DrawImageUnscaled(drawed, new Point(canvasSize.Width - drawed.Width, 0));
+            //                using (var p = new Pen(Color.Black))
+            //                    g.DrawRectangle(p, canvasSize.Width - drawed.Width, 0, canvasSize.Width, canvasSize.Height);
+            //            }
 
                         
                         
-                    }
-                }
+            //        }
+            //    }
                 
-                // _background = newBackground;
-                _visibleGameRectangle = GetGameRectangle();
-            }
+            //    // _background = newBackground;
+            //    _visibleGameRectangle = GetGameRectangle();
+            //}
         }
 
         /// <summary>
