@@ -10,6 +10,16 @@ using TribalWars.Worlds;
 
 namespace TribalWars.Browsers.Control
 {
+    // TODO: Possible workaround for TWStats showing popups
+    //http://stackoverflow.com/questions/1951771/how-to-disable-alert-box-javascript-in-c-sharp-webbrower-control
+    //HtmlElement head = myWebBrowser.Document.GetElementsByTagName("head")[0];
+    //    HtmlElement scriptEl = myWebBrowser.Document.CreateElement("script");
+    //    IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+    //    string alertBlocker = @"window.alert = function () { };";
+    //    element.text = alertBlocker;
+    //    head.AppendChild(scriptEl);
+    //    myWebBrowser.ScriptErrorsSuppressed = true;
+
     public partial class BrowserControl : UserControl
     {
         #region Constants
