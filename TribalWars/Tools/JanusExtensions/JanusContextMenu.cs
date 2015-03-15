@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
 using TribalWars.Villages;
@@ -223,7 +224,8 @@ namespace TribalWars.Tools.JanusExtensions
 
         public static void AddPlayerContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
         {
-            var playerCommand = menu.AddCommand(player.Name, null, Properties.Resources.Player);
+            string playerDesc = string.Format("#{0} {1} ({2})", player.Rank, player.Name, Common.GetPrettyNumber(player.Points));
+            var playerCommand = menu.AddCommand(playerDesc, null, Properties.Resources.Player);
             AddPlayerContextCommands(map, player, addTribeCommands, playerCommand);
         }
 
@@ -236,7 +238,8 @@ namespace TribalWars.Tools.JanusExtensions
 
         public static void AddTribeContextCommands(this UIContextMenu menu, Map map, Tribe tribe)
         {
-            var tribeCommand = menu.AddCommand(tribe.Tag, null, Properties.Resources.Tribe);
+            string tribeDesc = string.Format("#{0} {1} ({2})", tribe.Rank, tribe.Tag, Common.GetPrettyNumber(tribe.AllPoints));
+            var tribeCommand = menu.AddCommand(tribeDesc, null, Properties.Resources.Tribe);
             tribeCommand.ToolTipText = tribe.Tooltip;
             var tribeContext = new TribeContextMenu(map, tribe);
             tribeCommand.Commands.AddRange(tribeContext.GetCommands().ToArray());
