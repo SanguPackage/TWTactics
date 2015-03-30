@@ -267,6 +267,19 @@ namespace TribalWars.Forms
             if (w.SettingsName != null)
             {
                 StatusWorld.Text = w.Settings.Name;
+                if (w.CurrentData.HasValue)
+                {
+                    StatusDataTime.Text = w.CurrentData.Value.ToLongDateString();
+                    if (w.PreviousData.HasValue)
+                    {
+                        StatusDataTime.ToolTipText = "Comparing with data of " + (w.CurrentData.Value - w.PreviousData.Value).GetTimeDifference() + " ago";
+                    }
+                    else
+                    {
+                        StatusDataTime.ToolTipText = "";
+                    }
+                }
+                
 
                 // Fill settings contextmenu
                 ToolStripSettings.DropDownItems.Clear();

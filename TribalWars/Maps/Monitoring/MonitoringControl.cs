@@ -125,7 +125,7 @@ namespace TribalWars.Maps.Monitoring
                     }
                     else
                     {
-                        listItem.ToolTipText = GetTimeDifference(current.Value - info.Value);
+                        listItem.ToolTipText = (current.Value - info.Value).GetTimeDifference();
                     }
 
                     PreviousDateList.Items.Add(listItem);
@@ -169,32 +169,6 @@ namespace TribalWars.Maps.Monitoring
         #endregion
 
         #region Private Methods
-        /// <summary>
-        /// Transforms the parameter to {0} days, {1} hours
-        /// </summary>
-        private string GetTimeDifference(TimeSpan span)
-        {
-            var str = new StringBuilder();
-            AppendTimeDifferenceFraction(str, span.Days, "{0} days");
-            AppendTimeDifferenceFraction(str, span.Hours, "{0} hours");
-            return str.ToString();
-        }
-
-        /// <summary>
-        /// Helper for GetTimeDifference
-        /// </summary>
-        private void AppendTimeDifferenceFraction(StringBuilder str, int amount, string format)
-        {
-            if (amount != 0)
-            {
-                if (str.Length != 0)
-                {
-                    str.Append(", ");
-                }
-                str.AppendFormat(format, Math.Abs(amount));
-            }
-        }
-
         /// <summary>
         /// Create the options for the provided keyword
         /// </summary>

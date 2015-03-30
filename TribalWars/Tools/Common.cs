@@ -117,6 +117,32 @@ namespace TribalWars.Tools
         {
             return string.Format("{0} {1}", date.ToString("dd.MM."), date.ToLongTimeString());
         }
+
+        /// <summary>
+        /// Transforms the parameter to {0} days, {1} hours
+        /// </summary>
+        public static string GetTimeDifference(this TimeSpan span)
+        {
+            var str = new StringBuilder();
+            AppendTimeDifferenceFraction(str, span.Days, "{0} days");
+            AppendTimeDifferenceFraction(str, span.Hours, "{0} hours");
+            return str.ToString();
+        }
+
+        /// <summary>
+        /// Helper for GetTimeDifference
+        /// </summary>
+        private static void AppendTimeDifferenceFraction(StringBuilder str, int amount, string format)
+        {
+            if (amount != 0)
+            {
+                if (str.Length != 0)
+                {
+                    str.Append(", ");
+                }
+                str.AppendFormat(format, Math.Abs(amount));
+            }
+        }
         #endregion
 
         #region Color Methods

@@ -45,6 +45,7 @@ namespace TribalWars.Forms
             this.Status = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.StatusMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StatusDataTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusXY = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusVillage = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusPlayer = new System.Windows.Forms.ToolStripStatusLabel();
@@ -185,6 +186,7 @@ namespace TribalWars.Forms
             this.Status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProgressBar,
             this.StatusMessage,
+            this.StatusDataTime,
             this.StatusXY,
             this.StatusVillage,
             this.StatusPlayer,
@@ -195,6 +197,7 @@ namespace TribalWars.Forms
             this.toolStripStatusLabel5});
             this.Status.Location = new System.Drawing.Point(0, 696);
             this.Status.Name = "Status";
+            this.Status.ShowItemToolTips = true;
             this.Status.Size = new System.Drawing.Size(877, 24);
             this.Status.TabIndex = 17;
             this.Status.Text = "statusStrip1";
@@ -207,9 +210,22 @@ namespace TribalWars.Forms
             // StatusMessage
             // 
             this.StatusMessage.Name = "StatusMessage";
-            this.StatusMessage.Size = new System.Drawing.Size(210, 19);
+            this.StatusMessage.Size = new System.Drawing.Size(29, 19);
             this.StatusMessage.Spring = true;
             this.StatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // StatusDataTime
+            // 
+            this.StatusDataTime.AutoSize = false;
+            this.StatusDataTime.AutoToolTip = true;
+            this.StatusDataTime.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusDataTime.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.StatusDataTime.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.StatusDataTime.Name = "StatusDataTime";
+            this.StatusDataTime.Size = new System.Drawing.Size(150, 19);
+            this.StatusDataTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StatusXY
             // 
@@ -1225,7 +1241,7 @@ namespace TribalWars.Forms
             this.TabsMonitoring.Key = "Monitoring";
             this.TabsMonitoring.Location = new System.Drawing.Point(1, 23);
             this.TabsMonitoring.Name = "TabsMonitoring";
-            this.TabsMonitoring.Size = new System.Drawing.Size(520, 612);
+            this.TabsMonitoring.Size = new System.Drawing.Size(526, 618);
             this.TabsMonitoring.TabStop = true;
             this.TabsMonitoring.Text = "Monitoring";
             this.TabsMonitoring.ToolTipText = "Check what is happening in your monitoring area, the world or in your tribe.";
@@ -1237,7 +1253,7 @@ namespace TribalWars.Forms
             this.monitoringControl1.Location = new System.Drawing.Point(0, 0);
             this.monitoringControl1.Margin = new System.Windows.Forms.Padding(0);
             this.monitoringControl1.Name = "monitoringControl1";
-            this.monitoringControl1.Size = new System.Drawing.Size(520, 612);
+            this.monitoringControl1.Size = new System.Drawing.Size(526, 618);
             this.monitoringControl1.TabIndex = 0;
             // 
             // FormToolbarContainer
@@ -1426,6 +1442,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionDefault;
         private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionPolygon;
         private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionPlanAttacks;
+        private System.Windows.Forms.ToolStripStatusLabel StatusDataTime;
     }
 }
 
