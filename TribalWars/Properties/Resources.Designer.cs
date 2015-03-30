@@ -192,6 +192,16 @@ namespace TribalWars.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DefaultInteraction {
+            get {
+                object obj = ResourceManager.GetObject("DefaultInteraction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Defense {
             get {
                 object obj = ResourceManager.GetObject("Defense", resourceCulture);
@@ -465,6 +475,16 @@ namespace TribalWars.Properties {
         internal static System.Drawing.Bitmap pointer {
             get {
                 object obj = ResourceManager.GetObject("pointer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Polygon {
+            get {
+                object obj = ResourceManager.GetObject("Polygon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

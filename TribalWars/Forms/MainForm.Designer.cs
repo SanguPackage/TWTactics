@@ -73,6 +73,10 @@ namespace TribalWars.Forms
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapIconDisplay = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapShapeDisplay = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuMapInteractionDefault = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapInteractionPolygon = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapInteractionPlanAttacks = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapSetHomeLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
@@ -432,6 +436,10 @@ namespace TribalWars.Forms
             this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuMapIconDisplay,
             this.MenuMapShapeDisplay,
+            this.toolStripMenuItem6,
+            this.MenuMapInteractionDefault,
+            this.MenuMapInteractionPolygon,
+            this.MenuMapInteractionPlanAttacks,
             this.toolStripMenuItem3,
             this.MenuMapSetHomeLocation,
             this.toolStripMenuItem5,
@@ -461,6 +469,37 @@ namespace TribalWars.Forms
             this.MenuMapShapeDisplay.Size = new System.Drawing.Size(205, 22);
             this.MenuMapShapeDisplay.Text = "Display rectangles";
             this.MenuMapShapeDisplay.Click += new System.EventHandler(this.ToolStripShapeDisplay_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(202, 6);
+            // 
+            // MenuMapInteractionDefault
+            // 
+            this.MenuMapInteractionDefault.Checked = true;
+            this.MenuMapInteractionDefault.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MenuMapInteractionDefault.Image = global::TribalWars.Properties.Resources.DefaultInteraction;
+            this.MenuMapInteractionDefault.Name = "MenuMapInteractionDefault";
+            this.MenuMapInteractionDefault.Size = new System.Drawing.Size(205, 22);
+            this.MenuMapInteractionDefault.Text = "Default map interaction";
+            this.MenuMapInteractionDefault.Click += new System.EventHandler(this.MenuMapInteractionDefault_Click);
+            // 
+            // MenuMapInteractionPolygon
+            // 
+            this.MenuMapInteractionPolygon.Image = global::TribalWars.Properties.Resources.Polygon;
+            this.MenuMapInteractionPolygon.Name = "MenuMapInteractionPolygon";
+            this.MenuMapInteractionPolygon.Size = new System.Drawing.Size(205, 22);
+            this.MenuMapInteractionPolygon.Text = "Draw Polygons";
+            this.MenuMapInteractionPolygon.Click += new System.EventHandler(this.MenuMapInteractionPolygon_Click);
+            // 
+            // MenuMapInteractionPlanAttacks
+            // 
+            this.MenuMapInteractionPlanAttacks.Image = global::TribalWars.Properties.Resources.barracks;
+            this.MenuMapInteractionPlanAttacks.Name = "MenuMapInteractionPlanAttacks";
+            this.MenuMapInteractionPlanAttacks.Size = new System.Drawing.Size(205, 22);
+            this.MenuMapInteractionPlanAttacks.Text = "Plan Attacks";
+            this.MenuMapInteractionPlanAttacks.Click += new System.EventHandler(this.MenuMapInteractionPlanAttacks_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -633,7 +672,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(486, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(432, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -1383,6 +1422,10 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsManageYourVillages;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsImportVillageCoordinates;
         private System.Windows.Forms.ToolStripButton ToolStripChurchManipulator;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionDefault;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionPolygon;
+        private System.Windows.Forms.ToolStripMenuItem MenuMapInteractionPlanAttacks;
     }
 }
 

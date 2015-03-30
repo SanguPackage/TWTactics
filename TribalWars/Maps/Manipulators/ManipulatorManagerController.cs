@@ -142,7 +142,7 @@ namespace TribalWars.Maps.Manipulators
         {
             if (CurrentManipulator == _manipulators[manipulator])
             {
-                return;
+                manipulator = ManipulatorManagerTypes.Default;
             }
 
             if (manipulator != ManipulatorManagerTypes.Default)

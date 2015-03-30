@@ -823,6 +823,8 @@
     <None Include="Resources\Delete.ico" />
     <None Include="Resources\Church.png" />
     <None Include="Resources\cmdFind.png" />
+    <None Include="Resources\DefaultInteraction.png" />
+    <None Include="Resources\Polygon.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

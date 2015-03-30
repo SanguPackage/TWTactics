@@ -180,6 +180,18 @@ namespace TribalWars.Forms
                 manipulator.Item2.Checked = manipulator.Item1 == e.ManipulatorType;
             }
 
+            var manipulators2 = new TupleList<ManipulatorManagerTypes, ToolStripMenuItem>
+                {
+                    {ManipulatorManagerTypes.Default, MenuMapInteractionDefault},
+                    {ManipulatorManagerTypes.Polygon,MenuMapInteractionPolygon},
+                    {ManipulatorManagerTypes.Attack, MenuMapInteractionPlanAttacks}
+                };
+
+            foreach (var manipulator in manipulators2)
+            {
+                manipulator.Item2.Checked = manipulator.Item1 == e.ManipulatorType;
+            }
+
             if (e.ManipulatorType == ManipulatorManagerTypes.Attack)
             {
                 var pane = GetNavigationPane(NavigationPanes.Attack);
@@ -196,6 +208,30 @@ namespace TribalWars.Forms
         }
 
         private void ToolStripAttackManipulator_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            }
+        }
+
+        private void MenuMapInteractionDefault_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+            }
+        }
+
+        private void MenuMapInteractionPolygon_Click(object sender, EventArgs e)
+        {
+            if (World.Default.HasLoaded)
+            {
+                World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
+            }
+        }
+
+        private void MenuMapInteractionPlanAttacks_Click(object sender, EventArgs e)
         {
             if (World.Default.HasLoaded)
             {
