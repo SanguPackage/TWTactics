@@ -47,7 +47,7 @@ namespace TribalWars.Tools.PropertyGrid.Players
         [Category(PROPERTY_CATEGORY), TypeConverter(typeof(ExpandableObjectConverter)), PropertyOrder(15)]
         public VillageCollection Villages
         {
-            get { return new VillageCollection(Player.Villages); }
+            get { return new VillageCollection(Player); }
         }
 
         [Category(PROPERTY_CATEGORY), PropertyOrder(20)]
@@ -64,7 +64,23 @@ namespace TribalWars.Tools.PropertyGrid.Players
         [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Points
         {
-            get { return Player.Points.ToString("#,0"); }
+            get
+            {
+                string str = Player.Points.ToString("#,0");
+                if (Player.PreviousPlayerDetails != null)
+                {
+                    var prevPoints = Player.PreviousPlayerDetails.Points;
+                    if (prevPoints != 0 && prevPoints != Player.Points)
+                    {
+                        int dif = Player.Points - prevPoints;
+                        if (dif < 0) str += " (" + Common.GetPrettyNumber(dif) + ")";
+                        else str += " (+" + Common.GetPrettyNumber(dif) + ")";
+                    }
+                }
+                return str;
+
+                //return Player.Points.ToString("#,0");
+            }
             set { }
         }
 

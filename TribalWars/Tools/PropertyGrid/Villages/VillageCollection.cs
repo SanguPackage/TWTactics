@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using TribalWars.Villages;
 
 namespace TribalWars.Tools.PropertyGrid.Villages
@@ -13,6 +14,7 @@ namespace TribalWars.Tools.PropertyGrid.Villages
     {
         #region Fields
         private List<Village> list;
+        private Player ply;
         #endregion
 
         #region Properties
@@ -26,17 +28,26 @@ namespace TribalWars.Tools.PropertyGrid.Villages
         #endregion
 
         #region Constructors
-        public VillageCollection(List<Village> vils)
+        public VillageCollection(Player player)
         {
-            list = vils;
+            list = player.Villages;
+            ply = player;
+
         }
         #endregion
 
         #region BBCode
         public override string ToString()
         {
-            //if (list.Count == 1) return list[0].ToString();
-            return string.Format("Villages ({0})", list.Count);
+            if (ply != null && ply.PreviousPlayerDetails != null)
+            {
+                var conquer = ply.ConquerString;
+                if (!string.IsNullOrWhiteSpace(conquer))
+                {
+                    return string.Format("{0} ({1})", list.Count, conquer);
+                }
+            }
+            return string.Format("{0}", list.Count);
         }
         #endregion
 

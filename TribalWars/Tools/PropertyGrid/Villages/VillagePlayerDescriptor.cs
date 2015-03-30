@@ -28,7 +28,10 @@ namespace TribalWars.Tools.PropertyGrid.Villages
         #region Public Methods
         public override string ToString()
         {
-            //return Player.Points.ToString("#,0") + " points";
+            var conquer = Player.ConquerString;
+            if (!string.IsNullOrWhiteSpace(conquer))
+                return string.Format("{0} ({1})", Player.Name, conquer);
+
             return Player.Name;
         }
         #endregion

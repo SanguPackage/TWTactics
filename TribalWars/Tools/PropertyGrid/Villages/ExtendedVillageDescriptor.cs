@@ -55,7 +55,21 @@ namespace TribalWars.Tools.PropertyGrid.Villages
         [Category(PROPERTY_CATEGORY), PropertyOrder(12)]
         public string Points
         {
-            get { return Village.Points.ToString("#,0"); }
+            get
+            {
+                string str = Village.Points.ToString("#,0");
+                if (Village.PreviousVillageDetails != null)
+                {
+                    var prevPoints = Village.PreviousVillageDetails.Points;
+                    if (prevPoints != 0 && prevPoints != _village.Points)
+                    {
+                        int dif = _village.Points - prevPoints;
+                        if (dif < 0) str += " (" + Common.GetPrettyNumber(dif) + ")";
+                        else str += " (+" + Common.GetPrettyNumber(dif) + ")";
+                    }
+                }
+                return str;
+            }
             set { }
         }
 
@@ -72,9 +86,13 @@ namespace TribalWars.Tools.PropertyGrid.Villages
             get
             {
                 if (Village.HasPlayer)
+                {
                     return new VillagePlayerDescriptor(Village.Player);
+                }
                 else
+                {
                     return null;
+                }
             }
             set { }
         }

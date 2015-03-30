@@ -53,7 +53,7 @@ namespace TribalWars.Tools.PropertyGrid.Players
         {
             get
             {
-                return new VillageCollection(Player.Villages);
+                return new VillageCollection(Player);
             }
         }
         #endregion
