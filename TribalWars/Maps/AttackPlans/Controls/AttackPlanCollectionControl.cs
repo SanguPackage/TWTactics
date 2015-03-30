@@ -225,7 +225,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             if (World.Default.Map.Manipulators.AttackManipulator.IsAttackersPoolEmpty)
             {
-                MessageBox.Show("Open Windows > 'Manage your villages' to create an attackers pool!", "Attackers pool");
+                MessageBox.Show("In the top menu, choose 'Windows' > 'Manage your villages' to create an attackers pool!", "Attackers pool");
             }
             else if (ActivePlan != null && UnitInput.Unit != null)
             {
