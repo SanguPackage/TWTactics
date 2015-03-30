@@ -82,28 +82,6 @@ namespace TribalWars.Controls.AccordeonDetails
         }
 
         /// <summary>
-        /// Show details propertygrid, hide comments
-        /// </summary>
-        private void DetailsView_Click(object sender, EventArgs e)
-        {
-            DetailsGrid.Visible = true;
-            Comments.Visible = false;
-            DetailsView.Checked = true;
-            CommentsView.Checked = false;
-        }
-
-        /// <summary>
-        /// Show comments, hide details propertygrid
-        /// </summary>
-        private void CommentsView_Click(object sender, EventArgs e)
-        {
-            DetailsGrid.Visible = false;
-            Comments.Visible = true;
-            DetailsView.Checked = false;
-            CommentsView.Checked = true;
-        }
-
-        /// <summary>
         /// User entered a village in the VillageTextBox
         /// </summary>
         private void SelectedVillage_VillageSelected(object sender, VillageEventArgs e)
@@ -190,7 +168,7 @@ namespace TribalWars.Controls.AccordeonDetails
             else if (sender is ReportTableRow)
             {
                 var row = (ReportTableRow)sender;
-                SpecialVillage.SetReport(row.Report);
+                //SpecialVillage.SetReport(row.Report);
             }
             else if (sender is TribeTableRow)
             {
@@ -230,7 +208,7 @@ namespace TribalWars.Controls.AccordeonDetails
         {
             if (_current.Village != null)
             {
-                SpecialVillage.SetReport(_current.Village.Reports.CurrentSituation);
+                //SpecialVillage.SetReport(_current.Village.Reports.CurrentSituation);
             }
         }
 
@@ -311,13 +289,12 @@ namespace TribalWars.Controls.AccordeonDetails
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = true;
                     ViewTribeDetails.Checked = false;
-                    SpecialVillage.Visible = false;
+                    //SpecialVillage.Visible = false;
 
-                    if (!DetailsView.Checked)
-                    {
-                        DetailsView_Click(null, EventArgs.Empty);
-                    }
-                    CommentsView.Enabled = false;
+                    Table.Visible = true;
+                    CommentsLabel.Visible = false;
+                    Comments.Visible = false;
+                    CommentsPanel.Visible = false;
 
                     if (command.Display != _current.Display || command.Player != _current.Player)
                     {
@@ -339,13 +316,12 @@ namespace TribalWars.Controls.AccordeonDetails
                     ViewVillageDetails.Checked = false;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = true;
-                    SpecialVillage.Visible = false;
+                    //SpecialVillage.Visible = false;
 
-                    if (!DetailsView.Checked)
-                    {
-                        DetailsView_Click(null, EventArgs.Empty);
-                    }
-                    CommentsView.Enabled = false;
+                    Table.Visible = true;
+                    CommentsLabel.Visible = false;
+                    Comments.Visible = false;
+                    CommentsPanel.Visible = false;
 
                     if (command.Display != _current.Display || command.Tribe != _current.Tribe)
                     {
@@ -368,11 +344,16 @@ namespace TribalWars.Controls.AccordeonDetails
                     ViewVillageDetails.Checked = true;
                     ViewPlayerDetails.Checked = false;
                     ViewTribeDetails.Checked = false;
-                    SpecialVillage.Visible = true;
+                    //SpecialVillage.Visible = true;
 
-                    CommentsView.Enabled = true;
+                    Table.Visible = false;
+                    CommentsLabel.Visible = true;
+                    Comments.Visible = true;
+                    CommentsPanel.Visible = true;
 
-                    SpecialVillage.SetReport(command.Village.Reports.CurrentSituation);
+                    CommentsLabel.Text = "Custom comments for " + command.Village.LocationString;
+
+                    //SpecialVillage.SetReport(command.Village.Reports.CurrentSituation);
                     DetailsGrid.SelectedObject = new ExtendedVillageDescriptor(command.Village);
                     Table.DisplayReports(command.Village, command.Village.Reports);
                     SetButtons(command.Village.Type);

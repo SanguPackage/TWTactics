@@ -35,38 +35,37 @@ namespace TribalWars.Controls.AccordeonDetails
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsControl));
             this.QuickFinderLayout = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.Comments = new System.Windows.Forms.TextBox();
             this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
+            this.CommentsPanel = new System.Windows.Forms.Panel();
+            this.CommentsLabel = new System.Windows.Forms.Label();
+            this.Comments = new System.Windows.Forms.TextBox();
             this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
-            this.SpecialVillage = new TribalWars.Controls.AccordeonDetails.VillageControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.SelectedVillage = new TribalWars.Controls.Common.ToolStripVillageTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.UndoButton = new System.Windows.Forms.ToolStripButton();
             this.RedoButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.DetailsView = new System.Windows.Forms.ToolStripButton();
-            this.CommentsView = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ViewVillageDetails = new System.Windows.Forms.ToolStripButton();
             this.ViewPlayerDetails = new System.Windows.Forms.ToolStripButton();
             this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
             this.ContextStripPanel = new System.Windows.Forms.Panel();
-            this.MarkPlayerOrTribe = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.ContextStrip = new System.Windows.Forms.ToolStrip();
             this.AttackFlag = new System.Windows.Forms.ToolStripButton();
+            this.CatapultFlag = new System.Windows.Forms.ToolStripButton();
             this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
             this.NobleFlag = new System.Windows.Forms.ToolStripButton();
             this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
             this.FarmFlag = new System.Windows.Forms.ToolStripButton();
             this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
-            this.CatapultFlag = new System.Windows.Forms.ToolStripButton();
+            this.MarkPlayerOrTribe = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.QuickFinderLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.CommentsPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.ContextStripPanel.SuspendLayout();
             this.ContextStrip.SuspendLayout();
@@ -101,29 +100,15 @@ namespace TribalWars.Controls.AccordeonDetails
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.Comments);
             this.splitContainer2.Panel1.Controls.Add(this.DetailsGrid);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.CommentsPanel);
             this.splitContainer2.Panel2.Controls.Add(this.Table);
-            this.splitContainer2.Panel2.Controls.Add(this.SpecialVillage);
             this.splitContainer2.Size = new System.Drawing.Size(267, 247);
             this.splitContainer2.SplitterDistance = 122;
             this.splitContainer2.TabIndex = 0;
-            // 
-            // Comments
-            // 
-            this.Comments.AcceptsReturn = true;
-            this.Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Comments.Location = new System.Drawing.Point(0, 0);
-            this.Comments.Multiline = true;
-            this.Comments.Name = "Comments";
-            this.Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Comments.Size = new System.Drawing.Size(267, 122);
-            this.Comments.TabIndex = 1;
-            this.Comments.Visible = false;
-            this.Comments.TextChanged += new System.EventHandler(this.Comments_TextChanged);
             // 
             // DetailsGrid
             // 
@@ -135,6 +120,43 @@ namespace TribalWars.Controls.AccordeonDetails
             this.DetailsGrid.Size = new System.Drawing.Size(267, 122);
             this.DetailsGrid.TabIndex = 0;
             this.DetailsGrid.ToolbarVisible = false;
+            // 
+            // CommentsPanel
+            // 
+            this.CommentsPanel.Controls.Add(this.CommentsLabel);
+            this.CommentsPanel.Controls.Add(this.Comments);
+            this.CommentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommentsPanel.Location = new System.Drawing.Point(0, 0);
+            this.CommentsPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.CommentsPanel.Name = "CommentsPanel";
+            this.CommentsPanel.Size = new System.Drawing.Size(267, 121);
+            this.CommentsPanel.TabIndex = 1;
+            this.CommentsPanel.Visible = false;
+            // 
+            // CommentsLabel
+            // 
+            this.CommentsLabel.AutoSize = true;
+            this.CommentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CommentsLabel.Location = new System.Drawing.Point(3, 4);
+            this.CommentsLabel.Name = "CommentsLabel";
+            this.CommentsLabel.Size = new System.Drawing.Size(165, 20);
+            this.CommentsLabel.TabIndex = 4;
+            this.CommentsLabel.Text = "Custom comments for";
+            // 
+            // Comments
+            // 
+            this.Comments.AcceptsReturn = true;
+            this.Comments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Comments.Location = new System.Drawing.Point(0, 27);
+            this.Comments.Multiline = true;
+            this.Comments.Name = "Comments";
+            this.Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Comments.Size = new System.Drawing.Size(267, 94);
+            this.Comments.TabIndex = 2;
+            this.Comments.Visible = false;
+            this.Comments.TextChanged += Comments_TextChanged;
             // 
             // Table
             // 
@@ -167,19 +189,6 @@ namespace TribalWars.Controls.AccordeonDetails
             | TribalWars.Controls.XPTables.VillageFields.Points) 
             | TribalWars.Controls.XPTables.VillageFields.PointsDifference) 
             | TribalWars.Controls.XPTables.VillageFields.HasReport)));
-            this.Table.RowSelected += new System.EventHandler<System.EventArgs>(this.Table_RowSelected);
-            // 
-            // SpecialVillage
-            // 
-            this.SpecialVillage.BackColor = System.Drawing.Color.Transparent;
-            this.SpecialVillage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SpecialVillage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpecialVillage.Location = new System.Drawing.Point(0, 0);
-            this.SpecialVillage.Margin = new System.Windows.Forms.Padding(0);
-            this.SpecialVillage.Name = "SpecialVillage";
-            this.SpecialVillage.Size = new System.Drawing.Size(267, 121);
-            this.SpecialVillage.TabIndex = 0;
-            this.SpecialVillage.Visible = false;
             // 
             // toolStrip1
             // 
@@ -190,9 +199,6 @@ namespace TribalWars.Controls.AccordeonDetails
             this.UndoButton,
             this.RedoButton,
             this.toolStripSeparator3,
-            this.DetailsView,
-            this.CommentsView,
-            this.toolStripSeparator1,
             this.ViewVillageDetails,
             this.ViewPlayerDetails,
             this.ViewTribeDetails});
@@ -251,35 +257,6 @@ namespace TribalWars.Controls.AccordeonDetails
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // DetailsView
-            // 
-            this.DetailsView.Checked = true;
-            this.DetailsView.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DetailsView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DetailsView.Image = ((System.Drawing.Image)(resources.GetObject("DetailsView.Image")));
-            this.DetailsView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DetailsView.Name = "DetailsView";
-            this.DetailsView.Size = new System.Drawing.Size(23, 22);
-            this.DetailsView.Text = "toolStripButton2";
-            this.DetailsView.ToolTipText = "General details";
-            this.DetailsView.Click += new System.EventHandler(this.DetailsView_Click);
-            // 
-            // CommentsView
-            // 
-            this.CommentsView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CommentsView.Image = ((System.Drawing.Image)(resources.GetObject("CommentsView.Image")));
-            this.CommentsView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CommentsView.Name = "CommentsView";
-            this.CommentsView.Size = new System.Drawing.Size(23, 22);
-            this.CommentsView.Text = "toolStripButton1";
-            this.CommentsView.ToolTipText = "Custom comments";
-            this.CommentsView.Click += new System.EventHandler(this.CommentsView_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // ViewVillageDetails
             // 
             this.ViewVillageDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -287,7 +264,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewVillageDetails.Image = global::TribalWars.Properties.Resources.Village;
             this.ViewVillageDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewVillageDetails.Name = "ViewVillageDetails";
-            this.ViewVillageDetails.Size = new System.Drawing.Size(23, 20);
+            this.ViewVillageDetails.Size = new System.Drawing.Size(23, 22);
             this.ViewVillageDetails.ToolTipText = "View village details";
             this.ViewVillageDetails.Click += new System.EventHandler(this.ViewVillageDetails_Click);
             // 
@@ -298,7 +275,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewPlayerDetails.Image = global::TribalWars.Properties.Resources.Player;
             this.ViewPlayerDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewPlayerDetails.Name = "ViewPlayerDetails";
-            this.ViewPlayerDetails.Size = new System.Drawing.Size(23, 20);
+            this.ViewPlayerDetails.Size = new System.Drawing.Size(23, 22);
             this.ViewPlayerDetails.ToolTipText = "View player details";
             this.ViewPlayerDetails.Click += new System.EventHandler(this.ViewPlayerDetails_Click);
             // 
@@ -309,7 +286,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewTribeDetails.Image = global::TribalWars.Properties.Resources.Tribe;
             this.ViewTribeDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewTribeDetails.Name = "ViewTribeDetails";
-            this.ViewTribeDetails.Size = new System.Drawing.Size(23, 20);
+            this.ViewTribeDetails.Size = new System.Drawing.Size(23, 22);
             this.ViewTribeDetails.ToolTipText = "View tribe details";
             this.ViewTribeDetails.Click += new System.EventHandler(this.ViewTribeDetails_Click);
             // 
@@ -323,22 +300,6 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ContextStripPanel.Name = "ContextStripPanel";
             this.ContextStripPanel.Size = new System.Drawing.Size(267, 25);
             this.ContextStripPanel.TabIndex = 8;
-            // 
-            // MarkPlayerOrTribe
-            // 
-            this.MarkPlayerOrTribe.AllowBarbarianViews = false;
-            this.MarkPlayerOrTribe.AutoUpdateMarkers = true;
-            this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
-            this.MarkPlayerOrTribe.CanDeactivate = true;
-            this.MarkPlayerOrTribe.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.MarkPlayerOrTribe.DefaultMarkerColor = System.Drawing.Color.Black;
-            this.MarkPlayerOrTribe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MarkPlayerOrTribe.Location = new System.Drawing.Point(0, 0);
-            this.MarkPlayerOrTribe.Margin = new System.Windows.Forms.Padding(0);
-            this.MarkPlayerOrTribe.Name = "MarkPlayerOrTribe";
-            this.MarkPlayerOrTribe.Size = new System.Drawing.Size(267, 25);
-            this.MarkPlayerOrTribe.TabIndex = 1;
-            this.MarkPlayerOrTribe.Visible = false;
             // 
             // ContextStrip
             // 
@@ -367,6 +328,17 @@ namespace TribalWars.Controls.AccordeonDetails
             this.AttackFlag.Size = new System.Drawing.Size(23, 22);
             this.AttackFlag.ToolTipText = "Mark this village as offensive";
             this.AttackFlag.Click += new System.EventHandler(this.AttackFlag_Click);
+            // 
+            // CatapultFlag
+            // 
+            this.CatapultFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CatapultFlag.Image = global::TribalWars.Properties.Resources.catapult;
+            this.CatapultFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatapultFlag.Name = "CatapultFlag";
+            this.CatapultFlag.Size = new System.Drawing.Size(23, 22);
+            this.CatapultFlag.Text = "toolStripButton1";
+            this.CatapultFlag.ToolTipText = "Mark this village as offensive with catapults";
+            this.CatapultFlag.Click += new System.EventHandler(this.CatapultFlag_Click);
             // 
             // DefenseFlag
             // 
@@ -425,16 +397,21 @@ namespace TribalWars.Controls.AccordeonDetails
             this.VillageCurrentSituation.Visible = false;
             this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
             // 
-            // CatapultFlag
+            // MarkPlayerOrTribe
             // 
-            this.CatapultFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CatapultFlag.Image = global::TribalWars.Properties.Resources.catapult;
-            this.CatapultFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CatapultFlag.Name = "CatapultFlag";
-            this.CatapultFlag.Size = new System.Drawing.Size(23, 22);
-            this.CatapultFlag.Text = "toolStripButton1";
-            this.CatapultFlag.ToolTipText = "Mark this village as offensive with catapults";
-            this.CatapultFlag.Click += new System.EventHandler(this.CatapultFlag_Click);
+            this.MarkPlayerOrTribe.AllowBarbarianViews = false;
+            this.MarkPlayerOrTribe.AutoUpdateMarkers = true;
+            this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
+            this.MarkPlayerOrTribe.CanDeactivate = true;
+            this.MarkPlayerOrTribe.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.MarkPlayerOrTribe.DefaultMarkerColor = System.Drawing.Color.Black;
+            this.MarkPlayerOrTribe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MarkPlayerOrTribe.Location = new System.Drawing.Point(0, 0);
+            this.MarkPlayerOrTribe.Margin = new System.Windows.Forms.Padding(0);
+            this.MarkPlayerOrTribe.Name = "MarkPlayerOrTribe";
+            this.MarkPlayerOrTribe.Size = new System.Drawing.Size(267, 25);
+            this.MarkPlayerOrTribe.TabIndex = 1;
+            this.MarkPlayerOrTribe.Visible = false;
             // 
             // DetailsControl
             // 
@@ -450,10 +427,11 @@ namespace TribalWars.Controls.AccordeonDetails
             this.QuickFinderLayout.ResumeLayout(false);
             this.QuickFinderLayout.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.CommentsPanel.ResumeLayout(false);
+            this.CommentsPanel.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ContextStripPanel.ResumeLayout(false);
@@ -468,7 +446,6 @@ namespace TribalWars.Controls.AccordeonDetails
 
         private System.Windows.Forms.TableLayoutPanel QuickFinderLayout;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton ViewPlayerDetails;
         private System.Windows.Forms.ToolStripButton ViewTribeDetails;
         private System.Windows.Forms.ToolStripButton ViewVillageDetails;
@@ -477,7 +454,6 @@ namespace TribalWars.Controls.AccordeonDetails
         private TableWrapperControl Table;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.PropertyGrid DetailsGrid;
-        private VillageControl SpecialVillage;
         private System.Windows.Forms.Panel ContextStripPanel;
         private System.Windows.Forms.ToolStrip ContextStrip;
         private System.Windows.Forms.ToolStripButton DefenseFlag;
@@ -488,12 +464,12 @@ namespace TribalWars.Controls.AccordeonDetails
         private System.Windows.Forms.ToolStripButton UndoButton;
         private System.Windows.Forms.ToolStripButton RedoButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton CommentsView;
-        private System.Windows.Forms.ToolStripButton DetailsView;
-        private System.Windows.Forms.TextBox Comments;
         private System.Windows.Forms.ToolStripSeparator VillageSeperator;
         private System.Windows.Forms.ToolStripButton VillageCurrentSituation;
         private Maps.Markers.MarkerSettingsControl MarkPlayerOrTribe;
         private System.Windows.Forms.ToolStripButton CatapultFlag;
+        private System.Windows.Forms.TextBox Comments;
+        private System.Windows.Forms.Panel CommentsPanel;
+        private System.Windows.Forms.Label CommentsLabel;
     }
 }
