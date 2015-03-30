@@ -224,7 +224,11 @@ namespace TribalWars.Tools.JanusExtensions
 
         public static void AddPlayerContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
         {
-            string playerDesc = string.Format("#{0} {1} ({2})", player.Rank, player.Name, Common.GetPrettyNumber(player.Points));
+            string playerDesc = string.Format("{0} ({1})", player.Name, Common.GetPrettyNumber(player.Points));
+            if (player.Rank <= 100)
+            {
+                playerDesc = string.Format("#{0} {1}", player.Rank, playerDesc);
+            }
             var playerCommand = menu.AddCommand(playerDesc, null, Properties.Resources.Player);
             AddPlayerContextCommands(map, player, addTribeCommands, playerCommand);
         }
@@ -238,7 +242,11 @@ namespace TribalWars.Tools.JanusExtensions
 
         public static void AddTribeContextCommands(this UIContextMenu menu, Map map, Tribe tribe)
         {
-            string tribeDesc = string.Format("#{0} {1} ({2})", tribe.Rank, tribe.Tag, Common.GetPrettyNumber(tribe.AllPoints));
+            string tribeDesc = string.Format("{0} ({1})", tribe.Tag, Common.GetPrettyNumber(tribe.AllPoints));
+            if (tribe.Rank <= 20)
+            {
+                tribeDesc = string.Format("#{0} {1}", tribe.Rank, tribeDesc);
+            }
             var tribeCommand = menu.AddCommand(tribeDesc, null, Properties.Resources.Tribe);
             tribeCommand.ToolTipText = tribe.Tooltip;
             var tribeContext = new TribeContextMenu(map, tribe);
