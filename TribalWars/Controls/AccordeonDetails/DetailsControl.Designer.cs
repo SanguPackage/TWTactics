@@ -1,4 +1,5 @@
 using TribalWars.Controls.Common;
+using TribalWars.Controls.Common.ToolStripControlHostWrappers;
 using TribalWars.Controls.XPTables;
 using TribalWars.Worlds.Events.Impls;
 
@@ -41,7 +42,7 @@ namespace TribalWars.Controls.AccordeonDetails
             this.Comments = new System.Windows.Forms.TextBox();
             this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.SelectedVillage = new TribalWars.Controls.Common.ToolStripVillageTextBox();
+            this.SelectedVillage = new ToolStripVillageTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.UndoButton = new System.Windows.Forms.ToolStripButton();
             this.RedoButton = new System.Windows.Forms.ToolStripButton();

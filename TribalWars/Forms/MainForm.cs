@@ -9,6 +9,7 @@ using System.IO;
 using TribalWars.Browsers;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
+using TribalWars.Controls.Common.ToolStripControlHostWrappers;
 using TribalWars.Forms.NotUsed;
 using TribalWars.Forms.Small;
 using TribalWars.Maps.Drawing.Displays;

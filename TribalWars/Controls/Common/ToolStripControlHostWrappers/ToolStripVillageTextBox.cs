@@ -1,78 +1,13 @@
 using System;
-using System.Drawing;
-using System.Windows.Forms.Design;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
 using TribalWars.Controls.Finders;
-using TribalWars.Controls.TimeConverter;
 using TribalWars.Villages;
-using TribalWars.Villages.Units;
-using TribalWars.Worlds;
 using TribalWars.Worlds.Events.Impls;
-using XPTable.Models;
 
-namespace TribalWars.Controls.Common
+namespace TribalWars.Controls.Common.ToolStripControlHostWrappers
 {
-    #region Generics?
-    // looks like the separate classes exist for design time convenience
-    //public class ToolStripControlHoster<T> : ToolStripControlHost where T : Control, new()
-    //{
-    //    public T HosterControl
-    //    {
-    //        get { return Control as T; }
-    //    }
-
-    //    public ToolStripControlHoster()
-    //        : base(new T())
-    //    {
-    //        AutoSize = false;
-    //    }
-    //}
-    #endregion
-
-    /// <summary>
-    /// Wrapper for a Unit ImageCombobox for use in a ToolStrip
-    /// </summary>
-    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
-    public class ToolStripUnitsImageCombobox : ToolStripControlHost
-    {
-        #region Properties
-        /// <summary>
-        /// Gets the underlying ImageCombobox
-        /// </summary>
-        public ImageCombobox Combobox
-        {
-            get { return Control as ImageCombobox; }
-        }
-
-        /// <summary>
-        /// Gets the currently selected unit
-        /// </summary>
-        public Unit Unit
-        {
-            get
-            {
-                if (World.Default.HasLoaded)
-                {
-                    int i = Combobox.SelectedIndex;
-                    return WorldUnits.Default[i];
-                }
-                return null;
-            }
-        }
-        #endregion
-
-        #region Constructors
-        public ToolStripUnitsImageCombobox()
-            : base(new ImageCombobox())
-        {
-            AutoSize = false;
-            Text = string.Empty;
-            ToolTipText = string.Empty;
-        }
-        #endregion
-    }
-
     /// <summary>
     /// Wrapper for a VillageTextBox for use in a ToolStrip
     /// </summary>
@@ -222,63 +157,6 @@ namespace TribalWars.Controls.Common
             PlayerTribeSelector.VillageSelected -= control_VillageSelected;
             PlayerTribeSelector.TribeSelected -= TextBox_TribeSelected;
             PlayerTribeSelector.PlayerSelected -= TextBox_PlayerSelected;
-        }
-        #endregion
-    }
-
-    
-    /// <summary>
-    /// Wrapper for a LocationChangerControl for use in a ToolStrip.
-    /// </summary>
-    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
-    public class ToolStripLocationChangerControl : ToolStripControlHost
-    {
-        #region Properties
-        /// <summary>
-        /// Gets the underlying LocationChangerControl
-        /// </summary>
-        public LocationChangerControl LocationChanger
-        {
-            get { return Control as LocationChangerControl; }
-        }
-        #endregion
-
-        #region Constructors
-        public ToolStripLocationChangerControl()
-            : base(new LocationChangerControl())
-        {
-            AutoSize = false;
-            ToolTipText = string.Empty;
-            LocationChanger.Width = 200;
-        }
-        #endregion
-    }
-
-
-
-    /// <summary>
-    /// Wrapper for a TimeConverterCalculatorControl for use in a ToolStrip
-    /// </summary>
-    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
-    public class ToolStripTimeConverterCalculator : ToolStripControlHost
-    {
-        #region Properties
-        /// <summary>
-        /// Gets the underlying TimeConverterCalculatorControl
-        /// </summary>
-        public TimeConverterCalculatorControl TimeConverterCalculator
-        {
-            get { return Control as TimeConverterCalculatorControl; }
-        }
-        #endregion
-
-        #region Constructors
-        public ToolStripTimeConverterCalculator()
-            : base(new TimeConverterCalculatorControl())
-        {
-            AutoSize = false;
-            Text = string.Empty;
-            ToolTipText = string.Empty;
         }
         #endregion
     }

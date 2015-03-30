@@ -1,4 +1,5 @@
 using TribalWars.Controls.Common;
+using TribalWars.Controls.Common.ToolStripControlHostWrappers;
 
 namespace TribalWars.Maps.AttackPlans.Controls
 {
@@ -44,11 +45,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdSort = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdClear = new System.Windows.Forms.ToolStripButton();
-            this.VillageInput = new TribalWars.Controls.Common.ToolStripVillageTextBox();
+            this.VillageInput = new ToolStripVillageTextBox();
             this.cmdAddVillage = new System.Windows.Forms.ToolStripButton();
             this.cmdAddTarget = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.UnitInput = new TribalWars.Controls.Common.ToolStripUnitsImageCombobox();
+            this.UnitInput = new ToolStripUnitsImageCombobox();
             this.cmdFind = new System.Windows.Forms.ToolStripButton();
             this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
             this.AllPlans = new System.Windows.Forms.Panel();

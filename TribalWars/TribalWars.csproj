@@ -130,6 +130,15 @@
       <DependentUpon>VillageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AccordeonLocation\FinderOptions.cs" />
+    <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripLocationChangerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripUnitsImageCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripVillageTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Finders\FinderOptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,7 +248,7 @@
     <Compile Include="Controls\TimeConverter\TimeConverterCalculatorControl.Designer.cs">
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Common\ToolStripControlHostWrappers.cs">
+    <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripTimeConverterCalculator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\AccordeonLocation\LocationControl.cs">
