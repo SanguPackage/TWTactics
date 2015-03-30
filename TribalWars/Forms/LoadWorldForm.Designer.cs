@@ -105,6 +105,7 @@ namespace TribalWars.Forms
             this.Worlds.Size = new System.Drawing.Size(303, 397);
             this.Worlds.TabIndex = 3;
             this.Worlds.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Worlds_AfterSelect);
+            this.Worlds.DoubleClick += new System.EventHandler(this.Worlds_DoubleClick);
             // 
             // btnLoad
             // 

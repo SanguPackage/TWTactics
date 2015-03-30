@@ -44,6 +44,12 @@ namespace TribalWars.Forms
             if (Worlds.Nodes.ContainsKey(Properties.Settings.Default.LastWorld))
             {
                 Worlds.SelectedNode = Worlds.Nodes[Properties.Settings.Default.LastWorld];
+                Worlds.SelectedNode.Expand();
+            }
+            else if (Worlds.Nodes.Count > 0)
+            {
+                Worlds.SelectedNode = Worlds.Nodes[0];
+                Worlds.SelectedNode.Expand();
             }
         }
 
@@ -93,6 +99,11 @@ namespace TribalWars.Forms
                     WorldSettings.Items.Add(itm);
                 }
             }
+        }
+
+        private void Worlds_DoubleClick(object sender, EventArgs e)
+        {
+            btnLoad.PerformClick();
         }
         #endregion
 
