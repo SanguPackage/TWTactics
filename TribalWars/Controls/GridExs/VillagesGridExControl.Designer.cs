@@ -57,7 +57,7 @@
             this.GridExVillage.Name = "GridExVillage";
             this.GridExVillage.SaveSettings = true;
             this.GridExVillage.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelectionSameTable;
-            this.GridExVillage.SettingsKey = "PolygonVillage3";
+            this.GridExVillage.SettingsKey = "GridExVillage";
             this.GridExVillage.Size = new System.Drawing.Size(281, 260);
             this.GridExVillage.TabIndex = 2;
             this.GridExVillage.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
