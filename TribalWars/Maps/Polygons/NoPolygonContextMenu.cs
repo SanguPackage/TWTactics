@@ -59,7 +59,10 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnClearAll(object sender, CommandEventArgs e)
         {
-            _polygonDrawer.Clear();
+            if (MessageBox.Show("Delete all polygons?", "Polygons", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                _polygonDrawer.Clear();
+            }
         }
 
         /// <summary>
