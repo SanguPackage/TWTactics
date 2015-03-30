@@ -342,6 +342,16 @@ namespace TribalWars.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LeftNavigation_QuickFind {
+            get {
+                object obj = ResourceManager.GetObject("LeftNavigation_QuickFind", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lightcavalry {
             get {
                 object obj = ResourceManager.GetObject("lightcavalry", resourceCulture);

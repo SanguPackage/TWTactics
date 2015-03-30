@@ -337,4 +337,7 @@
   <data name="Polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Polygon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LeftNavigation_QuickFind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LeftNavigation_QuickFind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

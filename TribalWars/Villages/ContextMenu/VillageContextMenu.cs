@@ -70,7 +70,7 @@ namespace TribalWars.Villages.ContextMenu
 
             if (map.Display.IsVisible(village))
             {
-                _menu.AddCommand("Pinpoint", OnPinPoint);
+                _menu.AddCommand("Quick Details", OnPinPoint, Properties.Resources.LeftNavigation_QuickFind);
             }
             _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             
@@ -225,7 +225,7 @@ namespace TribalWars.Villages.ContextMenu
         }
 
         /// <summary>
-        /// Open quick details for the village
+        /// Select village on the map
         /// </summary>
         private void OnPinPoint(object sender, CommandEventArgs e)
         {
