@@ -62,10 +62,14 @@
             // 
             // RefreshMarkersButton
             // 
+            this.RefreshMarkersButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RefreshMarkersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RefreshMarkersButton.Icon = ((System.Drawing.Icon)(resources.GetObject("RefreshMarkersButton.Icon")));
-            this.RefreshMarkersButton.Location = new System.Drawing.Point(237, 0);
+            this.RefreshMarkersButton.ImageSize = new System.Drawing.Size(64, 64);
+            this.RefreshMarkersButton.Location = new System.Drawing.Point(3, 210);
             this.RefreshMarkersButton.Name = "RefreshMarkersButton";
-            this.RefreshMarkersButton.Size = new System.Drawing.Size(75, 16);
+            this.RefreshMarkersButton.Size = new System.Drawing.Size(312, 48);
             this.RefreshMarkersButton.TabIndex = 1;
             this.RefreshMarkersButton.Text = "Refresh";
             this.RefreshMarkersButton.ToolTipText = "The marker list is not updated when you alter the markers from the context menu. " +
@@ -90,7 +94,7 @@
             this.MarkersGrid.Location = new System.Drawing.Point(3, 22);
             this.MarkersGrid.Name = "MarkersGrid";
             this.MarkersGrid.SettingsKey = "MarkersGrid2";
-            this.MarkersGrid.Size = new System.Drawing.Size(312, 239);
+            this.MarkersGrid.Size = new System.Drawing.Size(312, 182);
             this.MarkersGrid.TabIndex = 0;
             this.MarkersGrid.UpdateMode = Janus.Windows.GridEX.UpdateMode.CellUpdate;
             this.MarkersGrid.DeletingRecord += new Janus.Windows.GridEX.RowActionCancelEventHandler(this.MarkersGrid_DeletingRecord);
