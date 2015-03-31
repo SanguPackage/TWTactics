@@ -195,6 +195,12 @@
     <Compile Include="Forms\NewWorldForm.Designer.cs">
       <DependentUpon>NewWorldForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Small\TimeConverterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Small\TimeConverterForm.Designer.cs">
+      <DependentUpon>TimeConverterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VillageCoordinatesImporterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -622,6 +628,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\TimeConverterForm.resx">
+      <DependentUpon>TimeConverterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.resx">
       <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>

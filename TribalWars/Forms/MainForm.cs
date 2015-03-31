@@ -50,8 +50,8 @@ namespace TribalWars.Forms
             //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
             //ToolStrip.Items.Add(ctl);
 
-            var ctl2 = new ToolStripTimeConverterCalculator();
-            ToolStrip.Items.Add(ctl2);
+            //var ctl2 = new ToolStripTimeConverterCalculator();
+            //ToolStrip.Items.Add(ctl2);
         }
 
         /// <summary>
@@ -612,6 +612,12 @@ namespace TribalWars.Forms
         {
             var frm = new VillageCoordinatesImporterForm();
             frm.Show();
+        }
+
+        private void MenuWindowsAddTimes_Click(object sender, EventArgs e)
+        {
+            var f = new TimeConverterForm();
+            f.Show();
         }
         #endregion
     }

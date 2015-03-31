@@ -126,6 +126,7 @@ namespace TribalWars.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NewWorldForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create World";
             this.Load += new System.EventHandler(this.LoadWorldForm_Load);
