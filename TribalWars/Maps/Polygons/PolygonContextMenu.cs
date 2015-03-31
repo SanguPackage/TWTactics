@@ -24,7 +24,7 @@ namespace TribalWars.Maps.Polygons
 
             Debug.Assert(_polygonDrawer.ActivePolygon != null);
 
-            _menu.AddCommand(string.Format("Generate \"{0}\"", _polygonDrawer.ActivePolygon.Name), OnGenerate);
+            _menu.AddCommand(string.Format("Manipulate villages in \"{0}\"", _polygonDrawer.ActivePolygon.Name), OnGenerate);
             _menu.AddSeparator();
 
             _menu.AddCommand("Delete", OnDelete, Shortcut.Del);

@@ -71,8 +71,8 @@ namespace TribalWars.Maps.Polygons
             this.LoadPolygonData.Name = "LoadPolygonData";
             this.LoadPolygonData.Size = new System.Drawing.Size(88, 45);
             this.LoadPolygonData.TabIndex = 1;
-            this.LoadPolygonData.Text = "Load Polygon Data";
-            this.LoadPolygonData.ToolTipText = "Load (or reload) all your drawn polygons.";
+            this.LoadPolygonData.Text = "Load Cluster Data";
+            this.LoadPolygonData.ToolTipText = "Load (or reload) all your drawn clusters.";
             this.LoadPolygonData.Click += new System.EventHandler(this.LoadPolygonData_Click);
             // 
             // GridExVillageShowFieldChooser
@@ -96,7 +96,7 @@ namespace TribalWars.Maps.Polygons
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridExVillage.AutoEdit = true;
             this.GridExVillage.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><EmptyGridInfo>Click \'" +
-    "Load Polygon Data\' to load all villages inside your polygons.</EmptyGridInfo></L" +
+    "Load Cluster Data\' to load all villages inside your clusters.</EmptyGridInfo></L" +
     "ocalizableData>";
             this.GridExVillage.ColumnAutoResize = true;
             this.GridExVillage.DataMember = "VILLAGE";
@@ -136,8 +136,8 @@ namespace TribalWars.Maps.Polygons
             this.ModusPolygon.Name = "ModusPolygon";
             this.ModusPolygon.Size = new System.Drawing.Size(84, 45);
             this.ModusPolygon.TabIndex = 0;
-            this.ModusPolygon.Text = "Manage Polygons";
-            this.ModusPolygon.ToolTipText = "Change polygon groups, names and colors!";
+            this.ModusPolygon.Text = "Manage Clusters";
+            this.ModusPolygon.ToolTipText = "Change cluster groups, names and colors!";
             this.ModusPolygon.Click += new System.EventHandler(this.ModusPolygon_Click);
             // 
             // GeneratorActions
@@ -168,7 +168,7 @@ namespace TribalWars.Maps.Polygons
             this.ModusVillage.Size = new System.Drawing.Size(84, 45);
             this.ModusVillage.TabIndex = 1;
             this.ModusVillage.Text = "BBCodes Generator";
-            this.ModusVillage.ToolTipText = "Generate BBCodes based on villages inside the polygons";
+            this.ModusVillage.ToolTipText = "Generate BBCodes based on villages inside the drawn clusters";
             this.ModusVillage.Click += new System.EventHandler(this.ModusVillage_Click);
             // 
             // GridExPolygon

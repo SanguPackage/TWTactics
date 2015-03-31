@@ -97,11 +97,11 @@ namespace TribalWars.Maps.Polygons
             if (!polygons.Any())
             {
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
-                MessageBox.Show(@"You have not yet defined any polygons.
-I have activated polygon drawing for you, you can go back to the main map and create some now!
+                MessageBox.Show(@"You have not yet defined any clusters.
+I have activated cluster drawing for you, you can go back to the main map and create some now!
 
 Click and hold left mouse button to start drawing!
-Or... Right click on the map for more help.", "No polygons!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (ModusPolygon.Enabled)

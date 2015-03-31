@@ -524,7 +524,7 @@ namespace TribalWars.Forms
             this.MenuMapInteractionPolygon.Image = global::TribalWars.Properties.Resources.Polygon;
             this.MenuMapInteractionPolygon.Name = "MenuMapInteractionPolygon";
             this.MenuMapInteractionPolygon.Size = new System.Drawing.Size(205, 22);
-            this.MenuMapInteractionPolygon.Text = "Draw Polygons";
+            this.MenuMapInteractionPolygon.Text = "Draw Clusters";
             this.MenuMapInteractionPolygon.Click += new System.EventHandler(this.MenuMapInteractionPolygon_Click);
             // 
             // MenuMapInteractionPlanAttacks
@@ -806,7 +806,7 @@ namespace TribalWars.Forms
             this.ToolStripSave.Name = "ToolStripSave";
             this.ToolStripSave.Size = new System.Drawing.Size(23, 22);
             this.ToolStripSave.Text = "&Save";
-            this.ToolStripSave.ToolTipText = "Save settings (markers, attack plans, polygons, ...)";
+            this.ToolStripSave.ToolTipText = "Save settings (markers, attack plans, clusters, ...)";
             this.ToolStripSave.Click += new System.EventHandler(this.ToolStripSave_Click);
             // 
             // toolStripSeparator4
@@ -895,8 +895,8 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripPolygonManipulator.Name = "ToolStripPolygonManipulator";
             this.ToolStripPolygonManipulator.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripPolygonManipulator.Text = "Polygon";
-            this.ToolStripPolygonManipulator.ToolTipText = "Draw polygons on the map (with BB code generation)";
+            this.ToolStripPolygonManipulator.Text = "Clusters";
+            this.ToolStripPolygonManipulator.ToolTipText = "Draw clusters on the map (with BB code generation)";
             this.ToolStripPolygonManipulator.Click += new System.EventHandler(this.ToolStripPolygonManipulator_Click);
             // 
             // ToolStripAttackManipulator
@@ -1258,8 +1258,8 @@ namespace TribalWars.Forms
             this.TabsPolygon.Name = "TabsPolygon";
             this.TabsPolygon.Size = new System.Drawing.Size(526, 457);
             this.TabsPolygon.TabStop = true;
-            this.TabsPolygon.Text = "Polygon";
-            this.TabsPolygon.ToolTipText = "Generate BBCodes from polygon areas you have drawn on the map.";
+            this.TabsPolygon.Text = "Clusters";
+            this.TabsPolygon.ToolTipText = "Generate BBCodes from clusters you have drawn on the map.";
             // 
             // Polygon
             // 

@@ -121,7 +121,7 @@ namespace TribalWars.Controls.Finders
             "Entire map",
             "Visible map",
             "Monitored Area",
-            "Polygon"});
+            "Clusters"});
             this.Area.Location = new System.Drawing.Point(90, 35);
             this.Area.Name = "Area";
             this.Area.Size = new System.Drawing.Size(141, 21);

@@ -23,19 +23,19 @@ namespace TribalWars.Maps.Polygons
 
             if (_polygonDrawer.Polygons.Count > 0)
             {
-                _menu.AddCommand("Generate all", OnGenerate);
+                _menu.AddCommand("Manipulate villages from all clusters", OnGenerate);
                 _menu.AddSeparator();
-                _menu.AddCommand(string.Format("Delete all ({0})", _polygonDrawer.Polygons.Count), OnClearAll);
+                _menu.AddCommand(string.Format("Delete all clusters ({0})", _polygonDrawer.Polygons.Count), OnClearAll);
 
                 int visiblePolygons = _polygonDrawer.Polygons.Count(x => x.Visible);
                 if (visiblePolygons > 0)
                 {
-                    _menu.AddCommand(string.Format("Hide all visible ({0})", visiblePolygons), OnHideAll);
+                    _menu.AddCommand(string.Format("Hide all visible clusters ({0})", visiblePolygons), OnHideAll);
                 }
                 int hiddenPolygons = _polygonDrawer.Polygons.Count(x => !x.Visible);
                 if (hiddenPolygons > 0)
                 {
-                    _menu.AddCommand(string.Format("Show all hidden ({0})", hiddenPolygons), OnShowAll);
+                    _menu.AddCommand(string.Format("Show all hidden clusters ({0})", hiddenPolygons), OnShowAll);
                 }
 
                 _menu.AddSeparator();
@@ -59,7 +59,7 @@ namespace TribalWars.Maps.Polygons
         /// </summary>
         private void OnClearAll(object sender, CommandEventArgs e)
         {
-            if (MessageBox.Show("Delete all polygons?", "Polygons", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Delete all clusters?", "Clusters", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 _polygonDrawer.Clear();
             }
@@ -91,12 +91,12 @@ namespace TribalWars.Maps.Polygons
 
         private void OnHelp(object sender, CommandEventArgs e)
         {
-            const string caption = @"Click and hold the left mouse button to draw the area (=Polygon) you want to generate BB codes for.
+            const string caption = @"Click and hold the left mouse button to draw the area (=cluster) you want to generate BB codes for.
 Use Control to force drawing vertically and Shift to force drawing horizontally. (in case you don't have a steady hand:)
-Click on a polygon to select it. Use Del to remove the selected Polygon. Use the arrow keys to move it.
+Click on a cluster to select it. Use Del to remove the selected cluster. Use the arrow keys to move it.
 
-Right click inside/outside a polygon for more options.";
-            MessageBox.Show(caption, "Polygon Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+Right click inside/outside a cluster for more options.";
+            MessageBox.Show(caption, "Clusters Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
