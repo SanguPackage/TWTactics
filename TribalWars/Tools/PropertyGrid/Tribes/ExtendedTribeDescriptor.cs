@@ -52,7 +52,7 @@ namespace TribalWars.Tools.PropertyGrid.Tribes
         [Category(PropertyCategory), PropertyOrder(40)]
         public string Points
         {
-            get { return Tribe.AllPoints.ToString("#,0"); }
+            get { return Tribe.AllPointsDiff; }
             set { }
         }
 

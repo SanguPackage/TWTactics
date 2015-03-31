@@ -63,10 +63,13 @@ namespace TribalWars.Tools
         /// </summary>
         public static string GetPrettyNumber(int input)
         {
-            if (input <= 99999) return input.ToString("#,0");
-            if (input <= 999999) return string.Format("{0}k", (input / 1000).ToString("#,0"));
-            if (input <= 99999999) return string.Format("{0}M", (input / 1000000D).ToString("0.#"));
-            return string.Format("{0}M", (input / 1000000).ToString("#,0"));
+            string negative = input < 0 ? "-" : "";
+            input = Math.Abs(input);
+
+            if (input <= 99999) return negative + input.ToString("#,0");
+            if (input <= 999999) return string.Format("{0}{1}k", negative, (input / 1000).ToString("#,0"));
+            if (input <= 99999999) return string.Format("{0}{1}M", negative, (input / 1000000D).ToString("0.#"));
+            return string.Format("{0}{1}M", negative, (input / 1000000).ToString("#,0"));
         }
         #endregion
 

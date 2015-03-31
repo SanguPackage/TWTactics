@@ -29,7 +29,7 @@ namespace TribalWars.Tools.PropertyGrid.Players
         #region Public Methods
         public override string ToString()
         {
-            return Player.Points.ToString("#,0");
+            return Player.PointsWithDiff;
         }
         #endregion
 

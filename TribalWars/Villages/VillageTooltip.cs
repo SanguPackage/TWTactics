@@ -55,14 +55,7 @@ namespace TribalWars.Villages
                     pointsPrefix = "Points";
                 }
 
-                str.AppendFormat("{0}: {1} points", pointsPrefix, Common.GetPrettyNumber(_village.Points));
-                if (prevPoints != 0 && prevPoints != _village.Points)
-                {
-                    int dif = _village.Points - prevPoints;
-                    if (dif < 0) str.AppendFormat(" ({0})", Common.GetPrettyNumber(dif));
-                    else str.AppendFormat(" (+{0})", Common.GetPrettyNumber(dif));
-                }
-
+                str.AppendFormat("{0}: {1}", pointsPrefix, _village.PointsWithDiff);
 
                 if (_village.HasPlayer)
                 {
@@ -91,7 +84,8 @@ namespace TribalWars.Villages
                     if (_village.HasTribe)
                     {
                         str.AppendLine();
-                        str.AppendFormat("Tribe: {0} (#{1} | {2} points)", _village.Player.Tribe.Tag, _village.Player.Tribe.Rank, Common.GetPrettyNumber(_village.Player.Tribe.AllPoints));
+                        str.AppendFormat("Tribe: {0}", _village.Player.Tribe);
+                        //str.AppendFormat("Tribe: {0} (#{1} | {2} points)", _village.Player.Tribe.Tag, _village.Player.Tribe.Rank, Common.GetPrettyNumber(_village.Player.Tribe.AllPoints));
                         if (prevTribe != null && !prevTribe.Equals(_village.Player.Tribe))
                         {
                             str.AppendLine();

@@ -107,6 +107,25 @@ namespace TribalWars.Villages
             set { _points = value; }
         }
 
+        public string PointsWithDiff
+        {
+            get
+            {
+                string str = Common.GetPrettyNumber(Points) + " ";
+                if (PreviousPlayerDetails != null)
+                {
+                    var prevPoints = PreviousPlayerDetails.Points;
+                    if (prevPoints != 0 && prevPoints != Points)
+                    {
+                        int dif = Points - prevPoints;
+                        if (dif < 0) str += " (" + Common.GetPrettyNumber(dif) + ")";
+                        else str += " (+" + Common.GetPrettyNumber(dif) + ")";
+                    }
+                }
+                return str;
+            }
+        }
+
         /// <summary>
         /// Gets or sets the rank of the player
         /// </summary>
@@ -217,7 +236,8 @@ namespace TribalWars.Villages
         #region BBCode
         public override string ToString()
         {
-            return string.Format("{0} ({1}pts|{2}vils)", Name, Common.GetPrettyNumber(Points), Villages.Count);
+            string conquer = string.IsNullOrWhiteSpace(ConquerString) ? "" : string.Format(" ({0})", ConquerString);
+            return string.Format("{0} ({1} | {2}vils{3})", Name, Common.GetPrettyNumber(Points), Villages.Count, conquer);
         }
 
         public string BbCode()

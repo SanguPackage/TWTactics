@@ -7,7 +7,13 @@ namespace TribalWars.Controls.Common
     /// <summary>
     /// Combobox that displays images only
     /// </summary>
-    /// <remarks>Used as a Unit ComboBox</remarks>
+    /// <remarks>
+    /// Used as a Unit ComboBox
+    /// 
+    /// ----
+    /// 
+    /// ! The ImageList gets set in code !
+    /// </remarks>
     [ToolboxBitmap(typeof(ComboBox))]
     public partial class ImageCombobox : ComboBox
     {

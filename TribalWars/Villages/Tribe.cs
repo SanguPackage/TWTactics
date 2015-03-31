@@ -111,6 +111,25 @@ namespace TribalWars.Villages
             }
         }
 
+        public string AllPointsDiff
+        {
+            get
+            {
+                string str = Common.GetPrettyNumber(AllPoints);
+                if (PreviousTribeDetails != null)
+                {
+                    var prevPoints = PreviousTribeDetails.AllPoints;
+                    if (prevPoints != 0 && prevPoints != AllPoints)
+                    {
+                        int dif = AllPoints - prevPoints;
+                        if (dif < 0) str += " (" + Common.GetPrettyNumber(dif) + ")";
+                        else str += " (+" + Common.GetPrettyNumber(dif) + ")";
+                    }
+                }
+                return str;
+            }
+        }
+
         /// <summary>
         /// Gets a string describing the tribe
         /// </summary>
@@ -123,9 +142,9 @@ namespace TribalWars.Villages
                 str.AppendLine();
                 str.AppendFormat("Rank: {0}", _rank);
                 str.AppendLine();
-                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(_allPoints));
+                str.AppendFormat("Points: {0}", AllPointsDiff);
                 str.AppendLine();
-                str.AppendFormat("Players: {0}", Common.GetPrettyNumber(Players.Count));
+                str.AppendFormat("Players: {0} {1}", Common.GetPrettyNumber(Players.Count), string.IsNullOrWhiteSpace(PlayerDifferenceString) ? "" : "(" + PlayerDifferenceString + ")");
 
                 if (Players.Count > 0)
                 {
@@ -171,7 +190,12 @@ namespace TribalWars.Villages
 
         public override string ToString()
         {
-            return string.Format("{0}", Tag);
+            string str = string.Format("{0} ({1} | {2}plys)", Tag, Common.GetPrettyNumber(AllPoints), Players.Count);
+            if (Rank < 40)
+            {
+                str = string.Format("#{0} {1}", Rank, str);
+            }
+            return str;
         }
 
         public string BbCodeSimple()

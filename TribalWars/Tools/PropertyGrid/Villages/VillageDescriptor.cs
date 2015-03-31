@@ -40,7 +40,7 @@ namespace TribalWars.Tools.PropertyGrid.Villages
         #region Public Methods
         public override string ToString()
         {
-            return Village.Points.ToString("#,0") + " points";
+            return Village.PointsWithDiff;
         }
         #endregion
 
@@ -70,7 +70,7 @@ namespace TribalWars.Tools.PropertyGrid.Villages
         public string Points
         {
             // Used by the VillagePropertyDescriptor
-            get { return Village.Points.ToString("#,0"); }
+            get { return Village.PointsWithDiff; }
             set { }
         }
         #endregion

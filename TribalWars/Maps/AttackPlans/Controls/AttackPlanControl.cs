@@ -175,9 +175,17 @@ namespace TribalWars.Maps.AttackPlans.Controls
             _settingControlValues = true;
             Date.Value = Plan.ArrivalTime;
             Coords.Text = Plan.Target.LocationString;
-            _Village.Text = Plan.Target.Name;
-            _Player.Text = Plan.Target.HasPlayer ? Plan.Target.Player.ToString() : "";
-            _Tribe.Text = Plan.Target.HasTribe ? Plan.Target.Player.Tribe.ToString() : "";
+            _Village.Text = string.Format("{0}{1}", Plan.Target.Name, Plan.Target.PointsWithDiff);
+            if (Plan.Target.HasPlayer)
+            {
+                _Player.Text = Plan.Target.Player.ToString();
+                _Tribe.Text = Plan.Target.HasTribe ? Plan.Target.Player.Tribe.Tag : "";
+            }
+            else
+            {
+                _Player.Text = "";
+                _Tribe.Text = "";
+            }
             _settingControlValues = false;
         }
         #endregion

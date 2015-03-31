@@ -121,6 +121,25 @@ namespace TribalWars.Villages
         /// </summary>
         public int Points { get; set; }
 
+        public string PointsWithDiff
+        {
+            get
+            {
+                string str = Points.ToString("#,0") + " ";
+                if (PreviousVillageDetails != null)
+                {
+                    var prevPoints = PreviousVillageDetails.Points;
+                    if (prevPoints != 0 && prevPoints != Points)
+                    {
+                        int dif = Points - prevPoints;
+                        if (dif < 0) str += " (" + Common.GetPrettyNumber(dif) + ")";
+                        else str += " (+" + Common.GetPrettyNumber(dif) + ")";
+                    }
+                }
+                return str;
+            }
+        }
+
         /// <summary>
         /// Gets the bonusvillage type
         /// </summary>

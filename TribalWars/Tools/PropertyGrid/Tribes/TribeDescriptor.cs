@@ -40,7 +40,7 @@ namespace TribalWars.Tools.PropertyGrid.Tribes
         #region Public Methods
         public override string ToString()
         {
-            return tribe.Tag;
+            return tribe.ToString();
         }
         #endregion
 
@@ -55,7 +55,7 @@ namespace TribalWars.Tools.PropertyGrid.Tribes
         [Category(PROPERTY_CATEGORY), PropertyOrder(40)]
         public string Points
         {
-            get { return tribe.AllPoints.ToString("#,0"); }
+            get { return tribe.AllPointsDiff; }
             set { }
         }
 
@@ -69,7 +69,7 @@ namespace TribalWars.Tools.PropertyGrid.Tribes
         [Category(PROPERTY_CATEGORY), PropertyOrder(55)]
         public string Players
         {
-            get { return tribe.Players.Count.ToString("#,0"); }
+            get { return tribe.Players.Count + (string.IsNullOrWhiteSpace(tribe.PlayerDifferenceString) ? "" : " (" + tribe.PlayerDifferenceString + ")"); }
             set { }
         }
 

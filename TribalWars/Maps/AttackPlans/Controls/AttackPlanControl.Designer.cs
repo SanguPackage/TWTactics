@@ -38,13 +38,13 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.Close = new System.Windows.Forms.LinkLabel();
             this._Player = new System.Windows.Forms.Label();
             this._Village = new System.Windows.Forms.Label();
-            this._Tribe = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.AttackCountLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
             this.DistanceContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._Tribe = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -142,20 +142,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this._Village.DoubleClick += new System.EventHandler(this._Village_DoubleClick);
             this._Village.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Village_MouseClick);
             // 
-            // _Tribe
-            // 
-            this._Tribe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._Tribe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._Tribe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this._Tribe.Location = new System.Drawing.Point(201, 23);
-            this._Tribe.Name = "_Tribe";
-            this._Tribe.Size = new System.Drawing.Size(70, 17);
-            this._Tribe.TabIndex = 12;
-            this._Tribe.Text = "Tag";
-            this._Tribe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._Tribe.DoubleClick += new System.EventHandler(this.Tribe_DoubleClick);
-            this._Tribe.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Tribe_MouseClick);
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.AttackCountLabel);
@@ -216,6 +202,20 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DistanceContainer.TabIndex = 5;
             this.DistanceContainer.WrapContents = false;
             // 
+            // _Tribe
+            // 
+            this._Tribe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._Tribe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._Tribe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this._Tribe.Location = new System.Drawing.Point(201, 23);
+            this._Tribe.Name = "_Tribe";
+            this._Tribe.Size = new System.Drawing.Size(70, 17);
+            this._Tribe.TabIndex = 12;
+            this._Tribe.Text = "Tag";
+            this._Tribe.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._Tribe.DoubleClick += new System.EventHandler(this.Tribe_DoubleClick);
+            this._Tribe.MouseClick += new System.Windows.Forms.MouseEventHandler(this._Tribe_MouseClick);
+            // 
             // AttackPlanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,7 +239,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label _Village;
-        private System.Windows.Forms.Label _Tribe;
         private System.Windows.Forms.Label _Player;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.LinkLabel Close;
@@ -249,5 +248,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private System.Windows.Forms.FlowLayoutPanel DistanceContainer;
         private System.Windows.Forms.Label AttackCountLabel;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label _Tribe;
     }
 }

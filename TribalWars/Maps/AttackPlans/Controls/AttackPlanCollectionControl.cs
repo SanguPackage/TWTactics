@@ -112,6 +112,12 @@ namespace TribalWars.Maps.AttackPlans.Controls
                     break;
             }
 
+            if (e.AttackFrom.Any())
+            {
+                var plan = e.AttackFrom.First().Plan;
+                _plans[plan].Item1.Text = GetAttackToolstripText(plan);
+            }
+
             if (ActivePlan != null)
             {
                 Debug.Assert(!e.AttackFrom.Any() || ActivePlan.Plan == e.AttackFrom.First().Plan);
@@ -134,6 +140,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
             UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
+
+            VillageTypeInput.Combobox.ImageList = VillageTypeHelper.GetImageList();
 
             _plans.Clear();
             AttackDropDown.DropDownItems.Clear();
@@ -262,6 +270,14 @@ namespace TribalWars.Maps.AttackPlans.Controls
         #endregion
 
         #region AttackPlans
+        private string GetAttackToolstripText(AttackPlan plan)
+        {
+            Village vil = plan.Target;
+            string attackDesc = string.Format("{0} {1} ({2}pts) - {3} attacks", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points), plan.Attacks.Count());
+            if (vil.HasPlayer) attackDesc += " on " + vil.Player.Name;
+            return attackDesc;
+        }
+
         private void AddPlan(AttackPlan plan)
         {
             if (AllPlans.Controls.Count == 1 && AllPlans.Controls[0] is AttackHelpControl)
@@ -270,9 +286,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 AllPlans.Controls.Clear();
             }
 
-            Village vil = plan.Target;
-            var newPlanDropdownItm = new ToolStripMenuItem(string.Format("{0} {1} ({2}pts)", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points)), null, SelectPlan);
-            if (vil.HasPlayer) newPlanDropdownItm.Text += " (" + vil.Player.Name + ")";
+            var newPlanDropdownItm = new ToolStripMenuItem("", null, SelectPlan);
+            newPlanDropdownItm.Text = GetAttackToolstripText(plan);
             AttackDropDown.DropDownItems.Add(newPlanDropdownItm);
 
             var newPlan = new AttackPlanControl(WorldUnits.Default.ImageList, plan);
