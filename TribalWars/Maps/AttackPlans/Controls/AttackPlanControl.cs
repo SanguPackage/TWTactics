@@ -175,7 +175,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             _settingControlValues = true;
             Date.Value = Plan.ArrivalTime;
             Coords.Text = Plan.Target.LocationString;
-            _Village.Text = string.Format("{0}{1}", Plan.Target.Name, Plan.Target.PointsWithDiff);
+            _Village.Text = string.Format("{0} ({1})", Plan.Target.Name, Plan.Target.Points.ToString("#,0"));
             if (Plan.Target.HasPlayer)
             {
                 _Player.Text = Plan.Target.Player.ToString();
