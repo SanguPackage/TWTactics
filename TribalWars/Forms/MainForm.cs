@@ -62,7 +62,9 @@ namespace TribalWars.Forms
             Text = string.Format("TW Tactics v{0} - by Sangu", AboutForm.ProgramVersion);
 
 #if DEBUG
+            ToolStripDraw.Visible = true;
             ToolStripProgramSettings.Visible = true;
+            this.Text += " - DEBUG";
 #endif
 
             World.Default.InitializeMaps(Map, MiniMap);

@@ -210,7 +210,7 @@ namespace TribalWars.Forms
             // StatusMessage
             // 
             this.StatusMessage.Name = "StatusMessage";
-            this.StatusMessage.Size = new System.Drawing.Size(29, 19);
+            this.StatusMessage.Size = new System.Drawing.Size(60, 19);
             this.StatusMessage.Spring = true;
             this.StatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -688,7 +688,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(432, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(486, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -808,6 +808,7 @@ namespace TribalWars.Forms
             this.ToolStripDraw.Size = new System.Drawing.Size(23, 22);
             this.ToolStripDraw.Text = "Draw the map";
             this.ToolStripDraw.ToolTipText = "Refresh the map";
+            this.ToolStripDraw.Visible = false;
             this.ToolStripDraw.Click += new System.EventHandler(this.ToolStripDraw_Click);
             // 
             // toolStripSeparator5
