@@ -71,30 +71,35 @@
             // 
             // TimeOffset
             // 
+            this.TimeOffset.Increment = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
             this.TimeOffset.Location = new System.Drawing.Point(104, 64);
             this.TimeOffset.Maximum = new decimal(new int[] {
-            23,
+            86400,
             0,
             0,
             0});
             this.TimeOffset.Minimum = new decimal(new int[] {
-            23,
+            86400,
             0,
             0,
             -2147483648});
             this.TimeOffset.Name = "TimeOffset";
-            this.TimeOffset.Size = new System.Drawing.Size(42, 20);
+            this.TimeOffset.Size = new System.Drawing.Size(69, 20);
             this.TimeOffset.TabIndex = 7;
             this.TimeOffset.ValueChanged += new System.EventHandler(this.TimeOffset_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 66);
+            this.label2.Location = new System.Drawing.Point(179, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "hours";
+            this.label2.Text = "seconds";
             // 
             // label1
             // 

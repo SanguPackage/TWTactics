@@ -23,7 +23,7 @@ namespace TribalWars.Forms.Small
                 if (_serverOffset != value)
                 {
                     _serverOffset = value;
-                    TimeOffset.Value = value.Hours;
+                    TimeOffset.Value = (decimal)value.TotalSeconds;
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace TribalWars.Forms.Small
 
         private void TimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            ServerOffset = new TimeSpan((int)TimeOffset.Value, 0, 0);
+            ServerOffset = new TimeSpan(0, 0, (int)TimeOffset.Value);
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

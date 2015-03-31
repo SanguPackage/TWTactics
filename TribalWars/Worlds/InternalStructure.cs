@@ -470,7 +470,7 @@ namespace TribalWars.Worlds
                     {
                         if (timeZoneSetter.ShowDialog() == DialogResult.OK)
                         {
-                            worldInfo.Offset = timeZoneSetter.ServerOffset.Hours.ToString(CultureInfo.InvariantCulture);
+                            worldInfo.Offset = timeZoneSetter.ServerOffset.TotalSeconds.ToString(CultureInfo.InvariantCulture);
                         }
                     }
                 }

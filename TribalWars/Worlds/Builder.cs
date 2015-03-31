@@ -275,7 +275,7 @@ namespace TribalWars.Worlds
 
             w.Settings.Server = new Uri(info.Server);
             w.Settings.Name = info.Name;
-            w.Settings.ServerOffset = new TimeSpan(Convert.ToInt32(info.Offset), 0, 0);
+            w.Settings.ServerOffset = new TimeSpan(0, 0, Convert.ToInt32(info.Offset));
             w.Settings.Speed = Convert.ToSingle(info.Speed, CultureInfo.InvariantCulture);
             w.Settings.UnitSpeed = Convert.ToSingle(info.UnitSpeed, CultureInfo.InvariantCulture);
 
