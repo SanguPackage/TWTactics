@@ -245,7 +245,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 13);
             this.label7.TabIndex = 29;
-            this.label7.Text = "Copyright (C) Sangu 2007-2014";
+            this.label7.Text = "Copyright (C) Sangu 2007-2015";
             // 
             // VerifyProductKey
             // 

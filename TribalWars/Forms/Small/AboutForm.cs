@@ -121,7 +121,7 @@ namespace TribalWars.Forms.Small
         private void GnuLicense_Click(object sender, EventArgs e)
         {
             const string license = @"TW Tactics
-Copyright (C) 2014 Van Schandevijl Wouter
+Copyright (C) 2015 Van Schandevijl Wouter
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
