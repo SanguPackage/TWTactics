@@ -28,7 +28,7 @@ namespace TribalWars.Maps.Monitoring
 
         private bool _showHelpTooltip;
         private Point _lastTooltipLocation;
-        private const string HelpTitle = "Monitoring ActiveRectangle";
+        private const string HelpTitle = "Monitoring Area";
         private const string HelpBody = 
                 @"Press +, - and the arrow keys to 
 grow and shrink the area.
@@ -92,8 +92,8 @@ Press 's' to remove this tooltip.";
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                string text = string.Format("Set this as the new area you want to keep updated about? (In Monitoring tab)");
-                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring ActiveRectangle", MessageBoxButtons.YesNoCancel);
+                string text = string.Format("Set this as the new Monitoring Area? This is the area you monitor growth for in the Monitoring tab.");
+                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring Area", MessageBoxButtons.YesNoCancel);
                 if (saveActiveRectangle == DialogResult.Cancel)
                 {
                     return false;

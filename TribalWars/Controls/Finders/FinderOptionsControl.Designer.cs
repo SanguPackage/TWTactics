@@ -120,7 +120,7 @@ namespace TribalWars.Controls.Finders
             this.Area.Items.AddRange(new object[] {
             "Entire map",
             "Visible map",
-            "Active rectangle",
+            "Monitored Area",
             "Polygon"});
             this.Area.Location = new System.Drawing.Point(90, 35);
             this.Area.Name = "Area";
