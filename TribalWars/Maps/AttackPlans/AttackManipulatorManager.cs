@@ -202,7 +202,7 @@ namespace TribalWars.Maps.AttackPlans
                 return new NoVillageAttackContextMenu(this);
             }
 
-            if (village.Player == World.Default.You)
+            if (village.Player == World.Default.You && (_attacker.ActivePlan == null || _attacker.ActivePlan.Target != village))
             {
                 // Right click on a village you own = add new attacker
                 return null;
