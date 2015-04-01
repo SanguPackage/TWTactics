@@ -132,7 +132,7 @@ namespace TribalWars.Maps.Drawing
                 _visibleGameRectangle = GetGameRectangle();
                 //if (_background != null && canvasSize != _background.Size)
                 //{
-                //    // TODO: need fix for when resizing?
+                //    // need fix for when resizing?
                 //}
             //}
             //else
@@ -146,7 +146,7 @@ namespace TribalWars.Maps.Drawing
             //    }
             //    else
             //    {
-            //        // TODO: we zaten hier:
+            //        // we zaten hier:
             //        // new approach -> create a screenshot of what it should be and of what it is....
             //        // will be easier to see what exactly is going on with this shit :)
 
@@ -158,7 +158,7 @@ namespace TribalWars.Maps.Drawing
 
             //        using (var g = Graphics.FromImage(_background))
             //        {
-            //            // BUG: this scrolls 2x too fast or something?
+            //            // B UG: this scrolls 2x too fast or something?
             //            g.DrawImageUnscaled(_background, backgroundMove);
             //            //using (var backgroundBrush = new SolidBrush(Settings.BackgroundColor))
             //            //{
@@ -179,7 +179,7 @@ namespace TribalWars.Maps.Drawing
                             
             //                Bitmap drawed = PaintBackground(partialCanvas, partialGameRect);
 
-            //                // BUG: this draws the initial stuff, not the new
+            //                // B UG: this draws the initial stuff, not the new
             //                //g.DrawImageUnscaled(drawed, new Point(0, 0));
             //                g.DrawImageUnscaled(drawed, new Point(canvasSize.Width - drawed.Width, 0));
             //                using (var p = new Pen(Color.Black))
@@ -315,8 +315,6 @@ namespace TribalWars.Maps.Drawing
 
             if (finalCache == null)
             {
-                // TODO: this happens for all non villages in shape display?
-                // paint background color and skip this?
                 PaintNonVillage(g, game, mapVillage);
             }
         }

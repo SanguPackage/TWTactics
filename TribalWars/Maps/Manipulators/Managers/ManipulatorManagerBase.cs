@@ -177,11 +177,11 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             if (e.MouseEventArgs.Button == MouseButtons.XButton1)
             {
-                // TODO: back
+                
             }
             if (e.MouseEventArgs.Button == MouseButtons.XButton2)
             {
-                // TODO: forward
+                
             }
 
             if (e.MouseEventArgs.Button == MouseButtons.Middle)
@@ -239,10 +239,8 @@ namespace TribalWars.Maps.Manipulators.Managers
         {
             if (_fullControllManipulator != null)
             {
-                // TODO: this isHandled is actually "mustRedraw"
-                //       these should return void and have EventArgs.Redraw and .Handled props
-                var isHandled = _fullControllManipulator.OnVillageDoubleClickCore(e);
-                if (isHandled)
+                var mustRedraw = _fullControllManipulator.OnVillageDoubleClickCore(e);
+                if (mustRedraw)
                     return true;
             }
 
@@ -352,7 +350,6 @@ namespace TribalWars.Maps.Manipulators.Managers
                     return false;
 
                 case Keys.Back:
-                    // TODO: return to previous location
                     break;
             }
 

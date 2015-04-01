@@ -21,17 +21,10 @@ using TribalWars.Worlds.Events.Impls;
 
 namespace TribalWars.Maps.Manipulators
 {
-    // TODO: IMapPainter: this can probably go?
-    // if not, there is some stuff that needs to be fetched from the painting branch
-    public interface IMapPainter
-    {
-        
-    }
-
     /// <summary>
     /// Manages the user interaction with a map
     /// </summary>
-    public class ManipulatorManagerController : IMapPainter
+    public class ManipulatorManagerController
     {
         #region Delegates
         public delegate void MouseMovedDelegate(MouseEventArgs e, Point mapLocation, Village village, Point activeLocation, Point activeVillage);
@@ -183,13 +176,14 @@ namespace TribalWars.Maps.Manipulators
         /// is added to whichever is active
         /// </summary>
         /// <remarks>
-        /// TODO: Incomplete roaming manipulators implementation:
+        /// ATTN: !!! Incomplete roaming manipulators implementation: !!!
         /// - Only those events used by <see cref="ChurchManipulator"/> are actually called
         /// - New roaming manipulators are not automatically persisted 
         /// - etc..
         /// </remarks>
         private void ToggleRoamingManipulator(ManipulatorBase manipulator)
         {
+            Debug.Assert(manipulator is ChurchManipulator, "See remark above. RoamingManipulators only implemented for the Church.");
             if (_roaming.Contains(manipulator))
             {
                 _roaming.Remove(manipulator);

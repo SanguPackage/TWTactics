@@ -517,6 +517,8 @@ namespace TribalWars.Maps.AttackPlans
         #region Private
         private AttackPlan GetExistingPlan(Village village)
         {
+            // TODO: we zaten hier
+            // Geef het volgende dorp weer wanneer village momenteel al geselecteerd is
             AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == village);
             return existingPlan;
         }
