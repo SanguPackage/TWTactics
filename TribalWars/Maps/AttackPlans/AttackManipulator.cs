@@ -275,6 +275,21 @@ namespace TribalWars.Maps.AttackPlans
                         loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
                         loc.Offset(-5, -27); // more - means to the top or the left
                         g.DrawImage(AttackIcons.FlagBlue25, loc);
+
+                        if (villageSize.Width >= VillageWidthToSwitchToSmallerFlags)
+                        {
+                            loc = _map.Display.GetMapLocation(plan.Target.Location);
+                            loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                            using (var font = new Font("Verdana", 8, FontStyle.Bold))
+                            {
+                                g.DrawString(
+                                    plan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
+                                    font,
+                                    Brushes.Black,
+                                    loc.X + 0,
+                                    loc.Y - 24);
+                            }
+                        }
                     }
 
                     if (Settings.ShowOtherAttackers)
@@ -380,9 +395,18 @@ namespace TribalWars.Maps.AttackPlans
                 {
                     if (e.Village.Player == World.Default.You && ActivePlan != null)
                     {
-                        var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
-                        _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
-                        return true;
+                        if (e.Village == ActivePlan.Target)
+                        {
+                            // Can't add attacker to target
+                            return false;
+                        }
+                        else
+                        {
+                            // Add new attacker
+                            var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
+                            _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
+                            return true;
+                        }
                     }
                 }
             }
@@ -436,21 +460,25 @@ namespace TribalWars.Maps.AttackPlans
 
         protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
         {
-            AttackPlan existingPlan = GetExistingPlan(e.Village);
-            if (existingPlan != null)
-            {
-                existingPlan.Pinpoint(null);
-                return true;
-            }
-            else
-            {
-                AttackPlanFrom existingAttack = GetAttacker(e.Village);
-                if (existingAttack != null)
-                {
-                    existingAttack.Plan.Pinpoint(existingAttack);
-                    return true;
-                }
-            }
+            // No idea what this did.
+            // Right now it centers on the target when clicked (but reverts to default manipulator)
+            // The else block was never executed.
+
+            //AttackPlan existingPlan = GetExistingPlan(e.Village);
+            //if (existingPlan != null)
+            //{
+            //    existingPlan.Pinpoint(null);
+            //    return true;
+            //}
+            //else
+            //{
+            //    AttackPlanFrom existingAttack = GetAttacker(e.Village);
+            //    if (existingAttack != null)
+            //    {
+            //        existingAttack.Plan.Pinpoint(existingAttack);
+            //        return true;
+            //    }
+            //}
             return false;
         }
         #endregion
