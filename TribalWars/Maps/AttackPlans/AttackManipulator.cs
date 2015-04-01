@@ -380,7 +380,7 @@ namespace TribalWars.Maps.AttackPlans
                 {
                     if (e.Village.Player == World.Default.You && ActivePlan != null)
                     {
-                        var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[UnitTypes.Ram]));
+                        var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
                         _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                         return true;
                     }

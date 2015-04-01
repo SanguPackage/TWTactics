@@ -55,6 +55,8 @@ namespace TribalWars.Maps.AttackPlans
         #endregion
 
         #region Properties
+        public UnitTypes DefaultSpeed { get; set; }
+
         /// <summary>
         /// Global attack planner configuration
         /// </summary>

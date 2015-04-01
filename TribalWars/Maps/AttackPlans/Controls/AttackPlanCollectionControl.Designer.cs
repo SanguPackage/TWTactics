@@ -54,8 +54,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
             this.AllPlans = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.VillageTypeInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Collection.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -229,6 +229,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.UnitInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
             this.UnitInput.Name = "UnitInput";
             this.UnitInput.Size = new System.Drawing.Size(40, 24);
+            this.UnitInput.Click += new System.EventHandler(this.UnitInput_Click);
             // 
             // cmdFind
             // 
@@ -248,7 +249,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdFindPool.Image = ((System.Drawing.Image)(resources.GetObject("cmdFindPool.Image")));
             this.cmdFindPool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdFindPool.Name = "cmdFindPool";
-            this.cmdFindPool.Size = new System.Drawing.Size(23, 22);
+            this.cmdFindPool.Size = new System.Drawing.Size(23, 20);
             this.cmdFindPool.ToolTipText = "Find villages inside the attackers pool that can still reach the target at the ar" +
     "rival time at the given speed. Add villages to the attack pool in the \'Manage yo" +
     "ur villages\' Window.";
@@ -274,17 +275,17 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // Timer
-            // 
-            this.Timer.Interval = 1000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
             // VillageTypeInput
             // 
             this.VillageTypeInput.AutoSize = false;
             this.VillageTypeInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
             this.VillageTypeInput.Name = "VillageTypeInput";
             this.VillageTypeInput.Size = new System.Drawing.Size(40, 24);
+            // 
+            // Timer
+            // 
+            this.Timer.Interval = 1000;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // AttackPlanCollectionControl
             // 
