@@ -143,6 +143,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         public void UpdateDisplay()
         {
             AttackCountLabel.Text = Plan.Attacks.Count().ToString(CultureInfo.InvariantCulture);
+            Comments.Text = Plan.Comments;
             foreach (var attackFrom in DistanceContainer.Controls.OfType<AttackPlanFromControl>())
             {
                 attackFrom.UpdateDisplay();
@@ -243,6 +244,17 @@ namespace TribalWars.Maps.AttackPlans.Controls
         public override string ToString()
         {
             return Plan.ToString();
+        }
+
+        private void ToggleComments_Click(object sender, EventArgs e)
+        {
+            CommentsToggle1.Visible = !CommentsToggle1.Visible;
+            Comments.Visible = !Comments.Visible;
+        }
+
+        private void Comments_TextChanged(object sender, EventArgs e)
+        {
+            Plan.Comments = Comments.Text;
         }
     }
 }

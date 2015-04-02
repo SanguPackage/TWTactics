@@ -596,6 +596,7 @@ namespace TribalWars.Maps.AttackPlans
                         new XElement("Plan",
                             new XAttribute("Target", plan.Target.LocationString),
                             new XAttribute("ArrivalTime", plan.ArrivalTime.ToFileTimeUtc()),
+                            new XAttribute("Comments", plan.Comments ?? ""),
                             new XElement("Attackers",
                                 plan.Attacks.Select(attacker =>
                                     new XElement("Attacker",
@@ -639,6 +640,11 @@ namespace TribalWars.Maps.AttackPlans
                     var plan = new AttackPlan(
                         World.Default.GetVillage(xmlPlan.Attribute("Target").Value),
                         DateTime.FromFileTimeUtc(long.Parse(xmlPlan.Attribute("ArrivalTime").Value)));
+
+                    if (xmlPlan.Attribute("Comments") != null)
+                    {
+                        plan.Comments = xmlPlan.Attribute("Comments").Value;
+                    }
 
                     if (plan.Target != null)
                     {

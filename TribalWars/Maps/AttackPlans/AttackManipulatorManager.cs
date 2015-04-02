@@ -182,6 +182,12 @@ namespace TribalWars.Maps.AttackPlans
                         str.AppendFormat("{0}: {1}", unitSent.Key.Name, unitSent.Count());
                         str.AppendLine();
                     }
+
+                    if (!string.IsNullOrWhiteSpace(plan.Comments))
+                    {
+                        settings.FooterText = plan.Comments;
+                        settings.FooterImage = Other.Note;
+                    }
                 }
             }
 
@@ -189,7 +195,16 @@ namespace TribalWars.Maps.AttackPlans
 
             if (!string.IsNullOrEmpty(village.Tooltip.Footer))
             {
-                settings.FooterText = village.Tooltip.Footer;
+                if (!string.IsNullOrWhiteSpace(settings.FooterText))
+                {
+                    settings.FooterText += "\n\n";
+                    settings.FooterText += village.Tooltip.Footer;
+                }
+                else
+                {
+                    settings.FooterText = village.Tooltip.Footer;
+                }
+                
                 settings.FooterImage = village.Tooltip.FooterImage;
             }
             return settings;

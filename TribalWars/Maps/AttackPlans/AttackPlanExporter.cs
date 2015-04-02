@@ -60,14 +60,14 @@ namespace TribalWars.Maps.AttackPlans
         public static string GetSinglePlanTextExport(AttackPlan plan)
         {
             var exporter = new AttackPlanExporter(plan.Attacks);
-            exporter.AddHeader(plan.Target.ToString(), plan.ArrivalTime);
+            exporter.AddHeader(plan.Target.ToString(), plan.ArrivalTime, plan.Comments);
             return exporter.GetTextExport(true);
         }
 
         public static string GetSinglePlanBbCodeExport(AttackPlan plan)
         {
             var exporter = new AttackPlanExporter(plan.Attacks);
-            exporter.AddHeader(plan.Target.BbCode(), plan.ArrivalTime);
+            exporter.AddHeader(plan.Target.BbCode(), plan.ArrivalTime, plan.Comments);
             return exporter.GetBbCodeExport(true);
         }
         #endregion
@@ -78,10 +78,14 @@ namespace TribalWars.Maps.AttackPlans
             return date.ToLongDateString() + " " + date.ToLongTimeString();
         }
 
-        private void AddHeader(string target, DateTime arrivalTime)
+        private void AddHeader(string target, DateTime arrivalTime, string comments)
         {
             _str.AppendLine("*** Attack Plan ***");
             _str.AppendLine(target);
+            if (!string.IsNullOrWhiteSpace(comments))
+            {
+                _str.AppendLine(comments);
+            }
             _str.AppendLine();
 
             _str.AppendLine("Arrival time: " + PrintDate(arrivalTime));
@@ -96,10 +100,14 @@ namespace TribalWars.Maps.AttackPlans
             _str.AppendLine("Export time: " + PrintDate(World.Default.Settings.ServerTime));
             _str.AppendLine();
 
-            var plans = _attacks.GroupBy(x => new { x.Plan.Target, x.Plan.ArrivalTime });
+            var plans = _attacks.GroupBy(x => new { x.Plan, x.Plan.ArrivalTime });
             foreach (var plan in plans)
             {
-                _str.AppendLine(bbCode ? plan.Key.Target.BbCode() : plan.Key.Target.ToString());
+                _str.AppendLine(bbCode ? plan.Key.Plan.Target.BbCode() : plan.Key.Plan.Target.ToString());
+                if (!string.IsNullOrWhiteSpace(plan.Key.Plan.Comments))
+                {
+                    _str.AppendLine(plan.Key.Plan.Comments);
+                }
                 _str.AppendLine("Arrival time: " + PrintDate(plan.Key.ArrivalTime));
                 _str.AppendLineFormat("Total attacks: {0}", plan.Count());
                 _str.AppendLine();

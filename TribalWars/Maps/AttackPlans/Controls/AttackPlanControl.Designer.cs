@@ -40,6 +40,9 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this._Village = new System.Windows.Forms.Label();
             this._Tribe = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ToggleComments = new System.Windows.Forms.Button();
+            this.CommentsToggle1 = new System.Windows.Forms.Panel();
+            this.Comments = new System.Windows.Forms.TextBox();
             this.AttackCountLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Date = new TribalWars.Controls.TimeConverter.TimeConverterControl();
@@ -48,6 +51,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.CommentsToggle1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -158,9 +162,9 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.AttackCountLabel);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.Date);
+            this.panel3.Controls.Add(this.CommentsToggle1);
+            this.panel3.Controls.Add(this.Comments);
+            this.panel3.Controls.Add(this.ToggleComments);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 40);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
@@ -168,12 +172,50 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.panel3.Size = new System.Drawing.Size(274, 30);
             this.panel3.TabIndex = 4;
             // 
+            // ToggleComments
+            // 
+            this.ToggleComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToggleComments.Image = global::TribalWars.Properties.Resources.pencil1;
+            this.ToggleComments.Location = new System.Drawing.Point(251, 3);
+            this.ToggleComments.Name = "ToggleComments";
+            this.ToggleComments.Size = new System.Drawing.Size(20, 23);
+            this.ToggleComments.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.ToggleComments, "Add a comment to this attack plan");
+            this.ToggleComments.UseVisualStyleBackColor = true;
+            this.ToggleComments.Click += new System.EventHandler(this.ToggleComments_Click);
+            // 
+            // CommentsToggle1
+            // 
+            this.CommentsToggle1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CommentsToggle1.Controls.Add(this.AttackCountLabel);
+            this.CommentsToggle1.Controls.Add(this.label1);
+            this.CommentsToggle1.Controls.Add(this.Date);
+            this.CommentsToggle1.Location = new System.Drawing.Point(0, 0);
+            this.CommentsToggle1.Margin = new System.Windows.Forms.Padding(0);
+            this.CommentsToggle1.Name = "CommentsToggle1";
+            this.CommentsToggle1.Size = new System.Drawing.Size(248, 30);
+            this.CommentsToggle1.TabIndex = 5;
+            // 
+            // Comments
+            // 
+            this.Comments.AcceptsReturn = true;
+            this.Comments.AcceptsTab = true;
+            this.Comments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Comments.Location = new System.Drawing.Point(3, 5);
+            this.Comments.Name = "Comments";
+            this.Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Comments.Size = new System.Drawing.Size(245, 20);
+            this.Comments.TabIndex = 4;
+            this.Comments.Visible = false;
+            this.Comments.TextChanged += new System.EventHandler(this.Comments_TextChanged);
+            // 
             // AttackCountLabel
             // 
-            this.AttackCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AttackCountLabel.AutoSize = true;
             this.AttackCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AttackCountLabel.Location = new System.Drawing.Point(251, 6);
+            this.AttackCountLabel.Location = new System.Drawing.Point(3, 5);
             this.AttackCountLabel.Name = "AttackCountLabel";
             this.AttackCountLabel.Size = new System.Drawing.Size(16, 16);
             this.AttackCountLabel.TabIndex = 3;
@@ -184,20 +226,20 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 8);
+            this.label1.Location = new System.Drawing.Point(26, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Arrival time:";
+            this.label1.Text = "attacks on";
             // 
             // Date
             // 
             this.Date.BackColor = System.Drawing.Color.Transparent;
             this.Date.CustomFormat = "MMM, dd yyyy HH:mm:ss";
-            this.Date.Location = new System.Drawing.Point(68, 3);
+            this.Date.Location = new System.Drawing.Point(81, 3);
             this.Date.Margin = new System.Windows.Forms.Padding(0);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(165, 25);
+            this.Date.Size = new System.Drawing.Size(167, 25);
             this.Date.TabIndex = 1;
             this.toolTip1.SetToolTip(this.Date, "Set the time the attacks should reach the target");
             this.Date.Value = new System.DateTime(2008, 4, 10, 0, 26, 44, 906);
@@ -230,6 +272,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.CommentsToggle1.ResumeLayout(false);
+            this.CommentsToggle1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +293,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private System.Windows.Forms.Label AttackCountLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label _Tribe;
+        private System.Windows.Forms.Button ToggleComments;
+        private System.Windows.Forms.Panel CommentsToggle1;
+        private System.Windows.Forms.TextBox Comments;
     }
 }

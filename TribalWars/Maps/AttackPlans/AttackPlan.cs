@@ -34,6 +34,8 @@ namespace TribalWars.Maps.AttackPlans
         {
             get { return _attacks; }
         }
+
+        public string Comments { get; set; }
         #endregion
 
         #region Constructors
