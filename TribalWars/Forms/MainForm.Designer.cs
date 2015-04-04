@@ -73,6 +73,7 @@ namespace TribalWars.Forms
             this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapMonitoringArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMapSetHomeLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapIconDisplay = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapShapeDisplay = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,6 @@ namespace TribalWars.Forms
             this.MenuMapInteractionDefault = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapInteractionPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapInteractionPlanAttacks = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMapSetHomeLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMapSelectPane0 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuMapSelectPane1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -483,6 +483,15 @@ namespace TribalWars.Forms
             this.MenuMapMonitoringArea.Text = "Set Monitoring Area";
             this.MenuMapMonitoringArea.Click += new System.EventHandler(this.ToolStripActiveRectangle_Click);
             // 
+            // MenuMapSetHomeLocation
+            // 
+            this.MenuMapSetHomeLocation.Image = global::TribalWars.Properties.Resources.Home2;
+            this.MenuMapSetHomeLocation.ImageTransparentColor = System.Drawing.Color.Black;
+            this.MenuMapSetHomeLocation.Name = "MenuMapSetHomeLocation";
+            this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(205, 22);
+            this.MenuMapSetHomeLocation.Text = "Set as Home Location";
+            this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
+            // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
@@ -534,15 +543,6 @@ namespace TribalWars.Forms
             this.MenuMapInteractionPlanAttacks.Size = new System.Drawing.Size(205, 22);
             this.MenuMapInteractionPlanAttacks.Text = "Plan Attacks";
             this.MenuMapInteractionPlanAttacks.Click += new System.EventHandler(this.MenuMapInteractionPlanAttacks_Click);
-            // 
-            // MenuMapSetHomeLocation
-            // 
-            this.MenuMapSetHomeLocation.Image = global::TribalWars.Properties.Resources.Home2;
-            this.MenuMapSetHomeLocation.ImageTransparentColor = System.Drawing.Color.Black;
-            this.MenuMapSetHomeLocation.Name = "MenuMapSetHomeLocation";
-            this.MenuMapSetHomeLocation.Size = new System.Drawing.Size(205, 22);
-            this.MenuMapSetHomeLocation.Text = "Set as Home Location";
-            this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -723,7 +723,7 @@ namespace TribalWars.Forms
             this.toolStripSeparator});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(409, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(486, 25);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -858,6 +858,7 @@ namespace TribalWars.Forms
             this.ToolStripIconDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripIconDisplay.Name = "ToolStripIconDisplay";
             this.ToolStripIconDisplay.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripIconDisplay.Tag = "ChangeHighlight";
             this.ToolStripIconDisplay.Text = "Switch map display to tw village images";
             this.ToolStripIconDisplay.Click += new System.EventHandler(this.ToolStripIconDisplay_Click);
             // 
@@ -868,6 +869,7 @@ namespace TribalWars.Forms
             this.ToolStripShapeDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripShapeDisplay.Name = "ToolStripShapeDisplay";
             this.ToolStripShapeDisplay.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripShapeDisplay.Tag = "ChangeHighlight";
             this.ToolStripShapeDisplay.Text = "Switch map display to shape villages";
             this.ToolStripShapeDisplay.ToolTipText = "Switch map display to rectangle villages";
             this.ToolStripShapeDisplay.Click += new System.EventHandler(this.ToolStripShapeDisplay_Click);
@@ -884,6 +886,7 @@ namespace TribalWars.Forms
             this.ToolStripDefaultManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripDefaultManipulator.Name = "ToolStripDefaultManipulator";
             this.ToolStripDefaultManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripDefaultManipulator.Tag = "ChangeHighlight";
             this.ToolStripDefaultManipulator.Text = "Default";
             this.ToolStripDefaultManipulator.ToolTipText = "Revert to normal map interaction";
             this.ToolStripDefaultManipulator.Click += new System.EventHandler(this.ToolStripDefaultManipulator_Click);
@@ -895,6 +898,7 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripPolygonManipulator.Name = "ToolStripPolygonManipulator";
             this.ToolStripPolygonManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripPolygonManipulator.Tag = "ChangeHighlight";
             this.ToolStripPolygonManipulator.Text = "Clusters";
             this.ToolStripPolygonManipulator.ToolTipText = "Draw clusters on the map (with BB code generation)";
             this.ToolStripPolygonManipulator.Click += new System.EventHandler(this.ToolStripPolygonManipulator_Click);
@@ -906,6 +910,7 @@ namespace TribalWars.Forms
             this.ToolStripAttackManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
             this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripAttackManipulator.Tag = "ChangeHighlight";
             this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks (left click to add target, right click on your own village" +
     "s to attack from)";
             this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);

@@ -46,12 +46,7 @@ namespace TribalWars.Forms
             ToolStrip.Items.Add(_locationChanger);
             ToolStrip.Items.Add(new ToolStripSeparator());
 
-            // Distance calc toolstrip
-            //TribalWars.Controls.DistanceToolStrip.DistanceControlHost ctl = new TribalWars.Controls.DistanceToolStrip.DistanceControlHost();
-            //ToolStrip.Items.Add(ctl);
-
-            //var ctl2 = new ToolStripTimeConverterCalculator();
-            //ToolStrip.Items.Add(ctl2);
+            ToolStrip.Renderer = new ToolstripHighlyVisibleCheckedButtons();
         }
 
         /// <summary>
@@ -370,6 +365,30 @@ namespace TribalWars.Forms
         #endregion
 
         #region Menu & Toolstrip Handlers
+        /// <summary>
+        /// Makes clearer which button is currently checked
+        /// </summary>
+        private class ToolstripHighlyVisibleCheckedButtons : ToolStripProfessionalRenderer
+        {
+            protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
+            {
+                var btn = e.Item as ToolStripButton;
+                if (btn != null && btn.Checked && btn.Tag != null && btn.Tag.ToString() == "ChangeHighlight")
+                {
+                    var bounds = new Rectangle(Point.Empty, e.Item.Size);
+                    using (var fillBrush = new SolidBrush(Color.FromArgb(201, 185, 151)))
+                    using (var borderPen = new Pen(Color.FromArgb(94, 94, 94)))
+                    {
+                        e.Graphics.FillRectangle(fillBrush, bounds);
+                        bounds.Width -= 1;
+                        bounds.Height -= 1;
+                        e.Graphics.DrawRectangle(borderPen, bounds);
+                    }
+                }
+                else base.OnRenderButtonBackground(e);
+            }
+        }
+
         private void MenuFileNew_Click(object sender, EventArgs e)
         {
             World.Default.SaveSettings();
