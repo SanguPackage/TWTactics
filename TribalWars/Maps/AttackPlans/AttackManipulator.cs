@@ -517,9 +517,24 @@ namespace TribalWars.Maps.AttackPlans
         #region Private
         private AttackPlan GetExistingPlan(Village village)
         {
-            // TODO: we zaten hier
-            // Geef het volgende dorp weer wanneer village momenteel al geselecteerd is
-            AttackPlan existingPlan = _plans.FirstOrDefault(x => x.Target == village);
+            if (ActivePlan != null && ActivePlan.Target == village)
+            {
+                var existingPlans = _plans.Where(x => x.Target == village).ToList();
+                if (existingPlans.Count() > 1)
+                {
+                    // Cycle through the attack plans
+                    if (existingPlans.Last() == ActivePlan)
+                    {
+                        return existingPlans.First();
+                    }
+                    else
+                    {
+                        return existingPlans[existingPlans.IndexOf(ActivePlan) + 1];
+                    }
+                }
+            }
+
+            var existingPlan = _plans.FirstOrDefault(x => x.Target == village);
             return existingPlan;
         }
 
