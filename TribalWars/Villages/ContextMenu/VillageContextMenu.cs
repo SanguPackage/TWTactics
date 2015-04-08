@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using TribalWars.Browsers.Control;
 using Janus.Windows.UI.CommandBars;
 using System.Drawing;
+using System.Linq;
 using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.AttackPlans;
@@ -57,14 +58,6 @@ namespace TribalWars.Villages.ContextMenu
 
             AddAttackPlanItems();
 
-            if (World.Default.You == _village.Player || (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
-            {
-                _menu.AddCommand("New attack plan", OnAttack, Properties.Resources.Defense);
-            }
-            else
-            {
-                _menu.AddCommand("New attack plan", OnAttack, Buildings.BuildingImages.Barracks);
-            }
             _menu.AddSeparator();
 
             if (map.Display.IsVisible(village))
@@ -108,22 +101,48 @@ namespace TribalWars.Villages.ContextMenu
 
         private void AddAttackPlanItems()
         {
-            if (_attackPlan == null) return;
-
-            if (_isActiveAttackPlan)
+            if (_attackPlan != null)
             {
-                if (_attacker == null)
+                int planCount = World.Default.Map.Manipulators.AttackManipulator.GetPlans().Count(x => x.Target == _attackPlan.Target);
+                if (!_isActiveAttackPlan || planCount > 1)
+                {
+                    string selectPlan = "Select attack plan";
+                    if (planCount > 1)
+                    {
+                        selectPlan += string.Format(" ({0})", planCount);
+                    }
+
+                    _menu.AddCommand(selectPlan, OnSelectAttackPlan, Properties.Resources.FlagGreen);
+                }
+
+                AddAttackPlanNewItem();
+
+                if (_isActiveAttackPlan && _attacker != null)
+                {
+                    _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
+                }
+
+                if ((_isActiveAttackPlan || planCount > 0) && _attacker == null)
                 {
                     _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
-                }
-                else
-                {
-                    _menu.AddCommand("Delete from plan", OnDeleteAttacker, Properties.Resources.Delete);
                 }
             }
             else
             {
-                _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
+                AddAttackPlanNewItem();
+            }
+        }
+
+        private void AddAttackPlanNewItem()
+        {
+            if (World.Default.You == _village.Player ||
+                (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
+            {
+                _menu.AddCommand("New attack plan", OnAttack, Properties.Resources.Defense);
+            }
+            else
+            {
+                _menu.AddCommand("New attack plan", OnAttack, Buildings.BuildingImages.Barracks);
             }
         }
 
@@ -264,6 +283,10 @@ namespace TribalWars.Villages.ContextMenu
         private void OnDeleteAttackPlan(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            if (!_isActiveAttackPlan)
+            {
+                
+            }
             World.Default.Map.EventPublisher.AttackRemoveTarget(this, _attackPlan);
         }
 
@@ -277,7 +300,10 @@ namespace TribalWars.Villages.ContextMenu
         private void OnSelectAttackPlan(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-            World.Default.Map.EventPublisher.AttackSelect(this, _attackPlan);
+            AttackPlanFrom dummy;
+            bool dummy2;
+            var nextPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(_village, out dummy2, out dummy, true);
+            World.Default.Map.EventPublisher.AttackSelect(this, nextPlan);
         }
         #endregion
     }

@@ -179,6 +179,7 @@ namespace TribalWars.Maps.AttackPlans
                     }
                 }
 
+                using (var font = new Font("Verdana", 10, FontStyle.Bold))
                 using (var activeAttackersPen = new Pen(Color.Yellow, 1))
                 using (var warningAttackersPen = new Pen(Color.Red, 1))
                 using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
@@ -187,9 +188,9 @@ namespace TribalWars.Maps.AttackPlans
                     // cirkels for the active plan attackers
                     foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                     {
-                        var isAlreadyUsed = IsVillageUsedMultipleTimes(attacker.Attacker);
+                        int attackerUsedCount = VillageUsedCount(attacker.Attacker);
                         Pen penToUse;
-                        if (isAlreadyUsed)
+                        if (attackerUsedCount > 1)
                         {
                             penToUse = ActiveAttacker == attacker ? selectedWarningAttackersPen : warningAttackersPen;
                         }
@@ -205,6 +206,16 @@ namespace TribalWars.Maps.AttackPlans
                             villageLocation.Y,
                             villageSize.Width,
                             villageSize.Height);
+
+                        //if (attackerUsedCount > 1)
+                        //{
+                        //    g.DrawString(
+                        //        attackerUsedCount.ToString(),
+                        //        font,
+                        //        Brushes.Black,
+                        //        villageLocation.X + 10,
+                        //        villageLocation.Y - 0);
+                        //}
                     }
                 }
             }
@@ -322,7 +333,7 @@ namespace TribalWars.Maps.AttackPlans
         {
             if (e.Village != null)
             {
-                AttackPlan existingPlan = GetExistingPlan(e.Village);
+                AttackPlan existingPlan = GetExistingPlan(e.Village, true);
                 AttackPlanFrom[] existingAttacks = GetAttackers(e.Village).ToArray();
 
                 if (e.MouseEventArgs.Button == MouseButtons.Left)
@@ -491,7 +502,7 @@ namespace TribalWars.Maps.AttackPlans
 
         public AttackPlan GetPlan(Village village, out AttackPlanFrom attacker, bool cycleVillage)
         {
-            AttackPlan asTarget = GetExistingPlan(village);
+            AttackPlan asTarget = GetExistingPlan(village, cycleVillage);
             if (asTarget != null)
             {
                 attacker = null;
@@ -515,10 +526,15 @@ namespace TribalWars.Maps.AttackPlans
         #endregion
 
         #region Private
-        private AttackPlan GetExistingPlan(Village village)
+        private AttackPlan GetExistingPlan(Village village, bool cycleVillage)
         {
             if (ActivePlan != null && ActivePlan.Target == village)
             {
+                if (!cycleVillage)
+                {
+                    return ActivePlan;
+                }
+
                 var existingPlans = _plans.Where(x => x.Target == village).ToList();
                 if (existingPlans.Count() > 1)
                 {
@@ -534,7 +550,9 @@ namespace TribalWars.Maps.AttackPlans
                 }
             }
 
-            var existingPlan = _plans.FirstOrDefault(x => x.Target == village);
+            // LastOrDefault: In PaintNonActivePlans the last plan is painted over the previous ones
+            // So that the Delete plan from the VillageContextMenu works properly
+            var existingPlan = _plans.LastOrDefault(x => x.Target == village); 
             return existingPlan;
         }
 
@@ -549,9 +567,14 @@ namespace TribalWars.Maps.AttackPlans
             return existingAttack;
         }
 
+        private int VillageUsedCount(Village village)
+        {
+            return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village);
+        }
+
         private bool IsVillageUsedMultipleTimes(Village village)
         {
-            return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village) > 1;
+            return VillageUsedCount(village) > 1;
         }
 
         /// <summary>
