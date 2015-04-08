@@ -283,10 +283,6 @@ namespace TribalWars.Villages.ContextMenu
         private void OnDeleteAttackPlan(object sender, CommandEventArgs e)
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-            if (!_isActiveAttackPlan)
-            {
-                
-            }
             World.Default.Map.EventPublisher.AttackRemoveTarget(this, _attackPlan);
         }
 

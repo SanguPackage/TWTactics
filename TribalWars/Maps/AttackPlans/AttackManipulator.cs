@@ -135,7 +135,7 @@ namespace TribalWars.Maps.AttackPlans
         }
         #endregion
 
-        #region Map Events
+        #region Map Painting
         public override void Paint(MapPaintEventArgs e, bool isActiveManipulator)
         {
             if (!Settings.ShowIfNotActiveManipulator && !isActiveManipulator)
@@ -154,116 +154,127 @@ namespace TribalWars.Maps.AttackPlans
 
             if (isActiveManipulator && ActivePlan != null)
             {
-                if (_map.Display.IsVisible(ActivePlan.Target))
-                {
-                    // Paint circles around the active plan
-                    using (var activeTargetPen = new Pen(Color.Yellow, 2))
-                    {
-                        if (gameSize.Contains(ActivePlan.Target.Location))
-                        {
-                            Point villageLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
-                            g.DrawEllipse(
-                                activeTargetPen,
-                                villageLocation.X,
-                                villageLocation.Y,
-                                villageSize.Width,
-                                villageSize.Height);
-
-                            g.DrawEllipse(
-                                activeTargetPen,
-                                villageLocation.X - 4,
-                                villageLocation.Y - 4,
-                                villageSize.Width + 8,
-                                villageSize.Height + 8);
-                        }
-                    }
-                }
-
-                using (var font = new Font("Verdana", 10, FontStyle.Bold))
-                using (var activeAttackersPen = new Pen(Color.Yellow, 1))
-                using (var warningAttackersPen = new Pen(Color.Red, 1))
-                using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
-                using (var selectedWarningAttackersPen = new Pen(Color.Red, 3))
-                {
-                    // cirkels for the active plan attackers
-                    foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
-                    {
-                        int attackerUsedCount = VillageUsedCount(attacker.Attacker);
-                        Pen penToUse;
-                        if (attackerUsedCount > 1)
-                        {
-                            penToUse = ActiveAttacker == attacker ? selectedWarningAttackersPen : warningAttackersPen;
-                        }
-                        else
-                        {
-                            penToUse = ActiveAttacker == attacker ? selectedActiveAttackersPen : activeAttackersPen;
-                        }
-
-                        Point villageLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
-                        g.DrawEllipse(
-                            penToUse,
-                            villageLocation.X,
-                            villageLocation.Y,
-                            villageSize.Width,
-                            villageSize.Height);
-
-                        //if (attackerUsedCount > 1)
-                        //{
-                        //    g.DrawString(
-                        //        attackerUsedCount.ToString(),
-                        //        font,
-                        //        Brushes.Black,
-                        //        villageLocation.X + 10,
-                        //        villageLocation.Y - 0);
-                        //}
-                    }
-                }
+                PaintWhenActiveManipulator(gameSize, g, villageSize);
             }
 
             PaintNonActivePlans(villageSize, g, gameSize);
 
             if (ActivePlan != null)
             {
-                Point activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                PaintActivePlan(villageSize, g, gameSize);
+            }
+        }
 
-                if (_map.Display.IsVisible(ActivePlan.Target))
+        private void PaintActivePlan(Size villageSize, Graphics g, Rectangle gameSize)
+        {
+            Point activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+
+            if (_map.Display.IsVisible(ActivePlan.Target))
+            {
+                // The active plan attacked village
+                activePlanTargetLocation.Offset(villageSize.Width/2, villageSize.Height/2);
+                activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
+                g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
+
+                activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                activePlanTargetLocation.Offset(villageSize.Width/2, villageSize.Height/2);
+                using (var font = new Font("Verdana", 10, FontStyle.Bold))
                 {
-                    // The active plan attacked village
-                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                    activePlanTargetLocation.Offset(-8, -48); // more - means to the top or the left
-                    g.DrawImage(AttackIcons.FlagGreen, activePlanTargetLocation);
+                    g.DrawString(
+                        ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
+                        font,
+                        Brushes.Black,
+                        activePlanTargetLocation.X + 1,
+                        activePlanTargetLocation.Y - 40);
+                }
+            }
 
-                    activePlanTargetLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
-                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                    using (var font = new Font("Verdana", 10, FontStyle.Bold))
+            foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
+            {
+                // Villages attacking the active target village
+                var attackerLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
+                attackerLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
+
+                if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
+                {
+                    attackerLocation.Offset(-10, -17);
+                    g.DrawImage(Resources.FlagGreen, attackerLocation);
+                }
+                else
+                {
+                    attackerLocation.Offset(-6, -25);
+                    g.DrawImage(AttackIcons.PinGreen20, attackerLocation);
+
+                    int attackerUsedCount = VillageUsedCount(attacker.Attacker);
+                    if (attackerUsedCount > 1)
                     {
-                        g.DrawString(
-                            ActivePlan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
-                            font,
-                            Brushes.Black,
-                            activePlanTargetLocation.X + 1,
-                            activePlanTargetLocation.Y - 40);
+                        using (var font = new Font("Verdana", 10, FontStyle.Bold))
+                        {
+                            g.DrawString(
+                                attackerUsedCount.ToString(),
+                                font,
+                                Brushes.Black,
+                                attackerLocation.X + 0,
+                                attackerLocation.Y - 0);
+                        }
                     }
                 }
+            }
+        }
 
+        private void PaintWhenActiveManipulator(Rectangle gameSize, Graphics g, Size villageSize)
+        {
+            if (_map.Display.IsVisible(ActivePlan.Target))
+            {
+                // Paint circles around the active plan
+                using (var activeTargetPen = new Pen(Color.Yellow, 2))
+                {
+                    if (gameSize.Contains(ActivePlan.Target.Location))
+                    {
+                        Point villageLocation = _map.Display.GetMapLocation(ActivePlan.Target.Location);
+                        g.DrawEllipse(
+                            activeTargetPen,
+                            villageLocation.X,
+                            villageLocation.Y,
+                            villageSize.Width,
+                            villageSize.Height);
+
+                        g.DrawEllipse(
+                            activeTargetPen,
+                            villageLocation.X - 4,
+                            villageLocation.Y - 4,
+                            villageSize.Width + 8,
+                            villageSize.Height + 8);
+                    }
+                }
+            }
+
+            using (var activeAttackersPen = new Pen(Color.Yellow, 1))
+            using (var warningAttackersPen = new Pen(Color.Red, 1))
+            using (var selectedActiveAttackersPen = new Pen(Color.Yellow, 3))
+            using (var selectedWarningAttackersPen = new Pen(Color.Red, 3))
+            {
+                // cirkels for the active plan attackers
                 foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(ActivePlan.Attacks, gameSize))
                 {
-                    // Villages attacking the active target village
-                    activePlanTargetLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
-                    activePlanTargetLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
-
-                    if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
+                    int attackerUsedCount = VillageUsedCount(attacker.Attacker);
+                    Pen penToUse;
+                    if (attackerUsedCount > 1)
                     {
-                        //Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagGreen;
-                        activePlanTargetLocation.Offset(-10, -17);
-                        g.DrawImage(Resources.FlagGreen, activePlanTargetLocation);
+                        penToUse = ActiveAttacker == attacker ? selectedWarningAttackersPen : warningAttackersPen;
                     }
                     else
                     {
-                        //Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinGreen20;
-                        activePlanTargetLocation.Offset(-6, -25);
-                        g.DrawImage(AttackIcons.PinGreen20, activePlanTargetLocation);
+                        penToUse = ActiveAttacker == attacker ? selectedActiveAttackersPen : activeAttackersPen;
                     }
+
+                    Point attackerLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
+                    g.DrawEllipse(
+                        penToUse,
+                        attackerLocation.X,
+                        attackerLocation.Y,
+                        villageSize.Width,
+                        villageSize.Height);
                 }
             }
         }
@@ -277,29 +288,26 @@ namespace TribalWars.Maps.AttackPlans
 
             foreach (var plan in _plans)
             {
-                Point loc = _map.Display.GetMapLocation(plan.Target.Location);
+                Point planLoc = _map.Display.GetMapLocation(plan.Target.Location);
                 if (plan != ActivePlan)
                 {
                     // Other villages attacked but not the active plan
                     if (Settings.ShowOtherTargets)
                     {
-                        loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                        loc.Offset(-5, -27); // more - means to the top or the left
-                        g.DrawImage(AttackIcons.FlagBlue25, loc);
+                        planLoc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                        planLoc.Offset(-5, -27); // more - means to the top or the left
+                        g.DrawImage(AttackIcons.FlagBlue25, planLoc);
 
-                        if (villageSize.Width >= VillageWidthToSwitchToSmallerFlags)
+                        planLoc = _map.Display.GetMapLocation(plan.Target.Location);
+                        planLoc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                        using (var font = new Font("Verdana", 8, FontStyle.Bold))
                         {
-                            loc = _map.Display.GetMapLocation(plan.Target.Location);
-                            loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
-                            using (var font = new Font("Verdana", 8, FontStyle.Bold))
-                            {
-                                g.DrawString(
-                                    plan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
-                                    font,
-                                    Brushes.Black,
-                                    loc.X + 0,
-                                    loc.Y - 24);
-                            }
+                            g.DrawString(
+                                plan.Attacks.Count().ToString(CultureInfo.InvariantCulture),
+                                font,
+                                Brushes.Black,
+                                planLoc.X + 0,
+                                planLoc.Y - 24);
                         }
                     }
 
@@ -308,27 +316,43 @@ namespace TribalWars.Maps.AttackPlans
                         foreach (AttackPlanFrom attacker in FilterAttacksForDrawing(plan.Attacks, gameSize))
                         {
                             // Villages attacking other target villages
-                            loc = _map.Display.GetMapLocation(attacker.Attacker.Location);
-                            loc.Offset(villageSize.Width / 2, villageSize.Height / 2);
+                            var attackerLocation = _map.Display.GetMapLocation(attacker.Attacker.Location);
+                            attackerLocation.Offset(villageSize.Width / 2, villageSize.Height / 2);
 
-                            if (villageSize.Width < VillageWidthToSwitchToSmallerFlags)
+                            int attackerUsedCount = VillageUsedCount(attacker.Attacker);
+                            if (villageSize.Width > VillageWidthToSwitchToSmallerFlags)
                             {
-                                Image smallAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.Flag_redHS : Resources.FlagBlue;
-                                loc.Offset(-10, -17);
-                                g.DrawImage(smallAttackerImage, loc);
+                                Image biggerAttackerImage = attackerUsedCount > 1 ? AttackIcons.PinRed20 : AttackIcons.PinBlue20;
+                                attackerLocation.Offset(-6, -25);
+                                g.DrawImage(biggerAttackerImage, attackerLocation);
+
+                                if (attackerUsedCount > 1)
+                                {
+                                    using (var font = new Font("Verdana", 10, FontStyle.Bold))
+                                    {
+                                        g.DrawString(
+                                            attackerUsedCount.ToString(),
+                                            font,
+                                            Brushes.Black,
+                                            attackerLocation.X + 0,
+                                            attackerLocation.Y - 0);
+                                    }
+                                }
                             }
-                            else
+                            else if (villageSize.Width > 15)
                             {
-                                Image biggerAttackerImage = IsVillageUsedMultipleTimes(attacker.Attacker) ? AttackIcons.PinRed20 : AttackIcons.PinBlue20;
-                                loc.Offset(-6, -25);
-                                g.DrawImage(biggerAttackerImage, loc);
+                                Image smallAttackerImage = attackerUsedCount > 1 ? AttackIcons.Flag_redHS : Resources.FlagBlue;
+                                attackerLocation.Offset(-10, -17);
+                                g.DrawImage(smallAttackerImage, attackerLocation);
                             }
                         }
                     }
                 }
             }
         }
+        #endregion
 
+        #region User Input Handlers
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
             if (e.Village != null)
@@ -468,30 +492,6 @@ namespace TribalWars.Maps.AttackPlans
 
             return false;
         }
-
-        protected internal override bool OnVillageDoubleClickCore(MapVillageEventArgs e)
-        {
-            // No idea what this did.
-            // Right now it centers on the target when clicked (but reverts to default manipulator)
-            // The else block was never executed.
-
-            //AttackPlan existingPlan = GetExistingPlan(e.Village);
-            //if (existingPlan != null)
-            //{
-            //    existingPlan.Pinpoint(null);
-            //    return true;
-            //}
-            //else
-            //{
-            //    AttackPlanFrom existingAttack = GetAttacker(e.Village);
-            //    if (existingAttack != null)
-            //    {
-            //        existingAttack.Plan.Pinpoint(existingAttack);
-            //        return true;
-            //    }
-            //}
-            return false;
-        }
         #endregion
 
         #region Public Methods
@@ -570,11 +570,6 @@ namespace TribalWars.Maps.AttackPlans
         private int VillageUsedCount(Village village)
         {
             return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village);
-        }
-
-        private bool IsVillageUsedMultipleTimes(Village village)
-        {
-            return VillageUsedCount(village) > 1;
         }
 
         /// <summary>
