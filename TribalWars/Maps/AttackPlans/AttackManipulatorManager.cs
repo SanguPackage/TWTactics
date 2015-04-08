@@ -112,7 +112,7 @@ namespace TribalWars.Maps.AttackPlans
         /// Gets the first plan where the village is either the target
         /// or one of the attackers
         /// </summary>
-        public AttackPlan GetPlan(Village village, out bool isActivePlan, out AttackPlanFrom attacker, bool cycleVillage /*= true*/)
+        public AttackPlan GetPlan(Village village, out bool isActivePlan, out AttackPlanFrom attacker, bool cycleVillage)
         {
             var plan = _attacker.GetPlan(village, out attacker, cycleVillage);
             isActivePlan = plan == _attacker.ActivePlan;

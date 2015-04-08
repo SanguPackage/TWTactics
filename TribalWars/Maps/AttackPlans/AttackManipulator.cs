@@ -68,13 +68,15 @@ namespace TribalWars.Maps.AttackPlans
         #endregion
 
         #region AttackPlan Events
+
         private void EventPublisherOnTargetRemoved(object sender, AttackEventArgs e)
         {
             _plans.Remove(e.Plan);
 
             if (ActivePlan == e.Plan)
             {
-                _map.EventPublisher.AttackSelect(sender, _plans.FirstOrDefault());
+                var selectedPlan = _plans.OrderBy(x => x.Target.DistanceTo(ActivePlan.Target)).FirstOrDefault();
+                _map.EventPublisher.AttackSelect(sender, selectedPlan);
             }
 
             _map.Invalidate(false);

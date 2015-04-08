@@ -382,15 +382,21 @@ namespace TribalWars.Villages
         /// <returns>Required TimeSpan for a one way trip</returns>
         public static TimeSpan TravelTime(Village v1, Village v2, Unit unit)
         {
-            Point start = v1.Location;
-            Point end = v2.Location;
+            var distance = v1.DistanceTo(v2);
+            var secs = (int)Math.Round(distance * unit.Speed * 60);
+            return new TimeSpan(0, 0, secs);
+        }
+
+        public double DistanceTo(Village to)
+        {
+            Point start = Location;
+            Point end = to.Location;
 
             int x = start.X - end.X;
             int y = start.Y - end.Y;
 
             double distance = Math.Sqrt(x * x + y * y);
-            var secs = (int)Math.Round(distance * unit.Speed * 60);
-            return new TimeSpan(0, 0, secs);
+            return distance;
         }
 
         /// <summary>
