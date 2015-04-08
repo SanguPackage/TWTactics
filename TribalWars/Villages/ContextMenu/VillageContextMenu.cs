@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using TribalWars.Browsers.Control;
 using Janus.Windows.UI.CommandBars;
 using System.Drawing;
-using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Maps.AttackPlans;
@@ -52,7 +51,7 @@ namespace TribalWars.Villages.ContextMenu
             _village = village;
             _map = map;
             _onVillageTypeChangeDelegate = onVillageTypeChangeDelegate;
-            _attackPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(_village, out _isActiveAttackPlan, out _attacker);
+            _attackPlan = World.Default.Map.Manipulators.AttackManipulator.GetPlan(_village, out _isActiveAttackPlan, out _attacker, false);
 
             _menu = JanusContextMenu.Create();
 
@@ -97,7 +96,7 @@ namespace TribalWars.Villages.ContextMenu
                 if (village.PreviousVillageDetails != null && village.PreviousVillageDetails.Player != village.Player && village.PreviousVillageDetails.Player != null)
                 {
                     var oldPlayer = World.Default.GetPlayer(village.PreviousVillageDetails.Player.Name);
-                    _menu.AddPlayerNobledContextCommands(map, oldPlayer == null ? village.PreviousVillageDetails.Player : oldPlayer, true);
+                    _menu.AddPlayerNobledContextCommands(map, oldPlayer ?? village.PreviousVillageDetails.Player, true);
                 }
             }
 
@@ -109,23 +108,22 @@ namespace TribalWars.Villages.ContextMenu
 
         private void AddAttackPlanItems()
         {
-            if (_attackPlan != null)
+            if (_attackPlan == null) return;
+
+            if (_isActiveAttackPlan)
             {
-                if (_isActiveAttackPlan)
+                if (_attacker == null)
                 {
-                    if (_attacker == null)
-                    {
-                        _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
-                    }
-                    else
-                    {
-                        _menu.AddCommand("Delete from plan", OnDeleteAttacker, Properties.Resources.Delete);
-                    }
+                    _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
                 }
                 else
                 {
-                    _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
+                    _menu.AddCommand("Delete from plan", OnDeleteAttacker, Properties.Resources.Delete);
                 }
+            }
+            else
+            {
+                _menu.AddCommand("Select attack plan", OnSelectAttackPlan, Properties.Resources.FlagGreen);
             }
         }
 

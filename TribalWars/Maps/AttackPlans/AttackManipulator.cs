@@ -489,7 +489,7 @@ namespace TribalWars.Maps.AttackPlans
             return _plans;
         }
 
-        public AttackPlan GetPlan(Village village, out AttackPlanFrom attacker)
+        public AttackPlan GetPlan(Village village, out AttackPlanFrom attacker, bool cycleVillage)
         {
             AttackPlan asTarget = GetExistingPlan(village);
             if (asTarget != null)
