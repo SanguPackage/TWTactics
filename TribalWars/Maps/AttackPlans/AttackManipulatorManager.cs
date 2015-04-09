@@ -122,7 +122,7 @@ namespace TribalWars.Maps.AttackPlans
         protected override SuperTipSettings BuildTooltip(Village village)
         {
             AttackPlanFrom attacker;
-            var plan = _attacker.GetPlan(village, out attacker, false);
+            AttackPlan plan = _attacker.GetPlan(village, out attacker, false);
             if (plan == null)
             {
                 return base.BuildTooltip(village);
@@ -140,6 +140,10 @@ namespace TribalWars.Maps.AttackPlans
             if (attacker != null)
             {
                 settings.Image = attacker.SlowestUnit.Image;
+
+                str.Append(Environment.NewLine);
+                str.Append(Environment.NewLine);
+                str.AppendFormat("Attacker: {0}", attacker.Attacker);
                 str.Append(Environment.NewLine);
                 str.AppendFormat("Travel time: {0}", attacker.TravelTime);
                 str.Append(Environment.NewLine);
