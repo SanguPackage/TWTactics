@@ -1,6 +1,7 @@
 #region Using
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -626,6 +627,11 @@ namespace TribalWars.Maps.AttackPlans
             /// False: Only show when the AttackManipulator is the CurrentManipulator.
             /// </summary>
             public bool ShowIfNotActiveManipulator { get; set; }
+
+            /// <summary>
+            /// Show attack arrival time when sent NOW in the <see cref="AttackPlanFromControl"/>s
+            /// </summary>
+            public bool ShowArrivalTimeWhenSentNow { get; set; }
             #endregion
 
             #region Constructors
@@ -634,6 +640,7 @@ namespace TribalWars.Maps.AttackPlans
                 ShowOtherTargets = true;
                 ShowOtherAttackers = true;
                 ShowIfNotActiveManipulator = true;
+                ShowArrivalTimeWhenSentNow = false;
             }
             #endregion
         }
@@ -645,6 +652,7 @@ namespace TribalWars.Maps.AttackPlans
                     new XAttribute("ShowOtherTargets", Settings.ShowOtherTargets),
                     new XAttribute("ShowOtherAttackers", Settings.ShowOtherAttackers),
                     new XAttribute("ShowIfNotActiveManipulator", Settings.ShowIfNotActiveManipulator),
+                    new XAttribute("ShowArrivalTimeWhenSentNow", Settings.ShowArrivalTimeWhenSentNow),
                     _plans.Select(plan =>
                         new XElement("Plan",
                             new XAttribute("Target", plan.Target.LocationString),
@@ -670,21 +678,17 @@ namespace TribalWars.Maps.AttackPlans
                 // Settings
                 var settingsNode = attackManipulator.Element("Plans");
                 Debug.Assert(settingsNode != null);
-                var showOtherTargets = settingsNode.Attribute("ShowOtherTargets");
-                if (showOtherTargets != null)
+
+                Func<string, bool, bool> readSetting = (settingName, defaultValue) =>
                 {
-                    Settings.ShowOtherTargets = Convert.ToBoolean(showOtherTargets.Value);
-                }
-                var showOtherAttackers = settingsNode.Attribute("ShowOtherAttackers");
-                if (showOtherAttackers != null)
-                {
-                    Settings.ShowOtherAttackers = Convert.ToBoolean(showOtherAttackers.Value);
-                }
-                var showIfNotActiveManipulator = settingsNode.Attribute("ShowIfNotActiveManipulator");
-                if (showIfNotActiveManipulator != null)
-                {
-                    Settings.ShowIfNotActiveManipulator = Convert.ToBoolean(showIfNotActiveManipulator.Value);
-                }
+                    XAttribute value = settingsNode.Attribute(settingName);
+                    return value != null ? Convert.ToBoolean(value.Value) : defaultValue;
+                };
+
+                Settings.ShowOtherTargets = readSetting("ShowOtherTargets", true);
+                Settings.ShowOtherAttackers = readSetting("ShowOtherAttackers", true);
+                Settings.ShowIfNotActiveManipulator = readSetting("ShowIfNotActiveManipulator", true);
+                Settings.ShowArrivalTimeWhenSentNow = readSetting("ShowArrivalTimeWhenSentNow", false);
 
                 // AttackPlans
                 var plans = attackManipulator.Descendants("Plan");

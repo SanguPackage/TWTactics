@@ -79,7 +79,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateLeft.Size = new System.Drawing.Size(70, 18);
             this.DateLeft.TabIndex = 3;
             this.DateLeft.Text = "1.22:10:15";
-            this.toolTip1.SetToolTip(this.DateLeft, "Time left before sending to arrive at specified date");
+            this.toolTip1.SetToolTip(this.DateLeft, "Time left (before sending to arrive at specified date)");
             this.DateLeft.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.DateLeft.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
@@ -102,7 +102,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateSend.Size = new System.Drawing.Size(128, 18);
             this.DateSend.TabIndex = 3;
             this.DateSend.Text = "tomorrow at 19:00:00";
-            this.toolTip1.SetToolTip(this.DateSend, "Time to send to arrive at specified date");
+            this.toolTip1.SetToolTip(this.DateSend, "Time to send (to arrive at specified date)");
             this.DateSend.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.DateSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
@@ -133,7 +133,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.pictureBox3.Size = new System.Drawing.Size(17, 17);
             this.pictureBox3.TabIndex = 8;
             this.pictureBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox3, "Time to send to arrive at specified date");
+            this.toolTip1.SetToolTip(this.pictureBox3, "Time to send (to arrive at specified date)");
             // 
             // pictureBox2
             // 
@@ -144,7 +144,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.pictureBox2.Size = new System.Drawing.Size(18, 18);
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox2, "Time left before sending to arrive at specified date");
+            this.toolTip1.SetToolTip(this.pictureBox2, "Time left (before sending to arrive at specified date)");
             // 
             // pictureBox1
             // 

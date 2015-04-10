@@ -31,7 +31,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             _menu.AddToggleCommand("Show non-active plan attackers", _manipulator.Settings.ShowOtherAttackers, OnShowOtherAttackers);
             _menu.AddSeparator();
             _menu.AddToggleCommand("Always show attack plans", _manipulator.Settings.ShowIfNotActiveManipulator, OnShowIfNotActiveManipulator);
+            _menu.AddSeparator();
+            _menu.AddToggleCommand("Show 'arrival times when sent now' in attack planner", _manipulator.Settings.ShowArrivalTimeWhenSentNow, OnShowArrivalTimeWhenSentNow);
         }
+
         #endregion
 
         #region EventHandlers
@@ -51,6 +54,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             _manipulator.Settings.ShowOtherAttackers = !_manipulator.Settings.ShowOtherAttackers;
             World.Default.Map.Invalidate(false);
+        }
+
+        private void OnShowArrivalTimeWhenSentNow(object sender, CommandEventArgs e)
+        {
+            _manipulator.Settings.ShowArrivalTimeWhenSentNow = !_manipulator.Settings.ShowArrivalTimeWhenSentNow;
         }
         #endregion
 

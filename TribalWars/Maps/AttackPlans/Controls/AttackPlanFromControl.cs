@@ -57,7 +57,15 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
             DateRequired.Text = Attacker.TravelTime.ToString();
             DateSend.Text = Attacker.FormattedSendDate();
-            DateNow.Text = Tools.Common.GetPrettyDate(World.Default.Settings.ServerTime + Attacker.TravelTime);
+            if (World.Default.Map.Manipulators.AttackManipulator.Settings.ShowArrivalTimeWhenSentNow)
+            {
+                DateNow.Text = Tools.Common.GetPrettyDate(World.Default.Settings.ServerTime + Attacker.TravelTime);
+            }
+            else
+            {
+                DateNow.Text = "Send troops:";
+            }
+            
 
             TimeSpan timeLeftBeforeSend = Attacker.GetTimeLeftBeforeSendDate();
             if (timeLeftBeforeSend.TotalSeconds >= 0)
