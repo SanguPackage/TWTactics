@@ -230,9 +230,15 @@ namespace TribalWars.Maps.AttackPlans
                 return new NoVillageAttackContextMenu(this);
             }
 
-            if (village.Player == World.Default.You && (_attacker.ActivePlan == null || _attacker.ActivePlan.Target != village) && _attacker.VillageUsedCount(village) == 0)
+            bool isYourVillage = village.HasPlayer && village.Player == World.Default.You;
+            bool villageIsNotTheTarget = _attacker.ActivePlan != null && _attacker.ActivePlan.Target != village;
+
+            int villageUsedInAttackCount = _attacker.VillageUsedCount(village);
+            bool hasExistingAttacker = villageUsedInAttackCount != 1 || (villageUsedInAttackCount == 1 && !_attacker.IsAddingTarget);
+            if (isYourVillage && villageIsNotTheTarget && !hasExistingAttacker)
             {
                 // Right click on a village you own = add new attacker
+                // So: show no contextmenu
                 return null;
             }
 

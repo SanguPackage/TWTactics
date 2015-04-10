@@ -13,6 +13,7 @@ using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Properties;
 using TribalWars.Villages;
+using TribalWars.Villages.ContextMenu;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
@@ -51,6 +52,13 @@ namespace TribalWars.Maps.AttackPlans
         /// Global attack planner configuration
         /// </summary>
         public SettingsInfo Settings { get; private set; }
+
+        /// <summary>
+        /// Workaround for the <see cref="VillageContextMenu"/>:
+        /// Do not show the contextmenu when your village is not yet assigned as an attacker.
+        /// But by the time the <see cref="AttackManipulatorManager"/> checks whether the contextmenu is required, the attacker has already been added in <see cref="MouseDownCore"/>.
+        /// </summary>
+        public bool IsAddingTarget { get; private set; }
         #endregion
 
         #region Constructors
@@ -357,6 +365,7 @@ namespace TribalWars.Maps.AttackPlans
         #region User Input Handlers
         protected internal override bool MouseDownCore(MapMouseEventArgs e)
         {
+            IsAddingTarget = false;
             if (e.Village != null)
             {
                 AttackPlan existingPlan = GetExistingPlan(e.Village, true);
@@ -449,6 +458,7 @@ namespace TribalWars.Maps.AttackPlans
                                 // Add new attacker
                                 var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
                                 _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
+                                IsAddingTarget = true;
                                 return true;                                
                             }
                         }
