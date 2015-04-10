@@ -298,9 +298,9 @@ namespace TribalWars.Villages.ContextMenu
 
         private void OnAddAttacker(object sender, CommandEventArgs e)
         {
-            Debug.Assert(_attacker != null);
+            Debug.Assert(World.Default.Map.Manipulators.AttackManipulator.ActivePlan != null && _village != null);
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-            World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.AddAttackFrom(_attacker));
+            World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(World.Default.Map.Manipulators.AttackManipulator.ActivePlan, _village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed])));
         }
 
         private void OnDeleteAttacker(object sender, CommandEventArgs e)

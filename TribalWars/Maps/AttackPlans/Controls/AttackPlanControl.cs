@@ -232,11 +232,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         /// </summary>
         private AttackPlanFromControl GetControlForAttackPlan(AttackPlanFrom attacker)
         {
-            AttackPlanFromControl attackerControl =
-                DistanceContainer.Controls
-                                 .OfType<AttackPlanFromControl>()
-                                 .SingleOrDefault(x => x.Attacker == attacker);
-
+            var attackerControl = DistanceContainer.Controls.OfType<AttackPlanFromControl>().SingleOrDefault(x => x.Attacker == attacker);
             return attackerControl;
         }
         #endregion

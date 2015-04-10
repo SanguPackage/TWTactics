@@ -116,7 +116,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 else if (e.Button == MouseButtons.Left)
                 {
                     World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
-                    World.Default.Map.EventPublisher.SelectVillages(null, Attacker.Attacker, VillageTools.SelectVillage);
                     World.Default.Map.EventPublisher.AttackSelect(null, Attacker);
                     World.Default.Map.GiveFocus();
                 }

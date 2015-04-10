@@ -69,6 +69,12 @@ namespace TribalWars.Maps.AttackPlans
         {
             get { return !_attackersPool.Any(); }
         }
+
+        public AttackPlan ActivePlan
+        {
+            get { return _attacker.ActivePlan; }
+        }
+
         #endregion
 
         #region Constructors
