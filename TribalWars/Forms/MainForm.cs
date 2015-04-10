@@ -33,18 +33,10 @@ namespace TribalWars.Forms
     /// </summary>
     public partial class MainForm : Form
     {
-        #region Fields
-        private readonly ToolStripLocationChangerControl _locationChanger;
-        #endregion
-
         #region Constructor
         public MainForm()
         {
             InitializeComponent();
-
-            _locationChanger = new ToolStripLocationChangerControl();
-            ToolStrip.Items.Add(_locationChanger);
-            ToolStrip.Items.Add(new ToolStripSeparator());
 
             ToolStrip.Renderer = new ToolstripHighlyVisibleCheckedButtons();
         }
@@ -300,7 +292,7 @@ namespace TribalWars.Forms
 
         private void OnWorldLoaded(object sender, EventArgs e)
         {
-            _locationChanger.LocationChanger.Initialize(World.Default.Map);
+            toolStripLocationChangerControl1.LocationChanger.Initialize(World.Default.Map);
 
             ToolStripChurchManipulator.Visible = World.Default.Settings.Church;
             if (ToolStripChurchManipulator.Visible && !ToolStripChurchManipulator.Checked)
