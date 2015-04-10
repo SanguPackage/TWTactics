@@ -102,6 +102,19 @@ namespace TribalWars.Villages.ContextMenu
 
         private void AddAttackPlanItems()
         {
+            bool isAttackPlannerActive = World.Default.Map.Manipulators.AttackManipulator == World.Default.Map.Manipulators.CurrentManipulator;
+            if (isAttackPlannerActive && _attacker != null)
+            {
+                _menu.AddCommand("Add new attacker to plan", OnAddAttacker, UnitImages.Ram);
+
+                if (_isActiveAttackPlan && _attacker != null)
+                {
+                    _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
+                }
+
+                _menu.AddSeparator();
+            }
+
             if (_attackPlan != null)
             {
                 int planCount = World.Default.Map.Manipulators.AttackManipulator.GetPlans().Count(x => x.Target == _attackPlan.Target);
@@ -118,23 +131,9 @@ namespace TribalWars.Villages.ContextMenu
 
                 AddAttackPlanNewItem();
 
-                if (World.Default.Map.Manipulators.AttackManipulator == World.Default.Map.Manipulators.CurrentManipulator)
+                if (isAttackPlannerActive && (_isActiveAttackPlan || planCount > 0) && _attacker == null)
                 {
-                    if (_attacker != null)
-                    {
-                        _menu.AddSeparator();
-                        _menu.AddCommand("Add attacker to plan", OnAddAttacker, UnitImages.Ram);
-                    }
-
-                    if (_isActiveAttackPlan && _attacker != null)
-                    {
-                        _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
-                    }
-
-                    if ((_isActiveAttackPlan || planCount > 0) && _attacker == null)
-                    {
-                        _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
-                    }
+                    _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
                 }
             }
             else
