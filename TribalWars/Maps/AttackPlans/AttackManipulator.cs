@@ -439,10 +439,18 @@ namespace TribalWars.Maps.AttackPlans
                         }
                         else
                         {
-                            // Add new attacker
-                            var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
-                            _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
-                            return true;
+                            if (existingAttacks.Any())
+                            {
+                                // Show contextmenu instead
+                                return false;
+                            }
+                            else
+                            {
+                                // Add new attacker
+                                var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan, e.Village, WorldUnits.Default[World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed]));
+                                _map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
+                                return true;                                
+                            }
                         }
                     }
                 }
@@ -569,7 +577,7 @@ namespace TribalWars.Maps.AttackPlans
             return existingAttack;
         }
 
-        private int VillageUsedCount(Village village)
+        public int VillageUsedCount(Village village)
         {
             return _plans.SelectMany(x => x.Attacks).Count(x => x.Attacker == village);
         }

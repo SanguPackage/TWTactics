@@ -16,6 +16,7 @@ using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
+using TribalWars.Villages.Units;
 using TribalWars.Worlds;
 using TribalWars.Worlds.Events;
 
@@ -117,14 +118,23 @@ namespace TribalWars.Villages.ContextMenu
 
                 AddAttackPlanNewItem();
 
-                if (_isActiveAttackPlan && _attacker != null)
+                if (World.Default.Map.Manipulators.AttackManipulator == World.Default.Map.Manipulators.CurrentManipulator)
                 {
-                    _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
-                }
+                    if (_attacker != null)
+                    {
+                        _menu.AddSeparator();
+                        _menu.AddCommand("Add attacker to plan", OnAddAttacker, UnitImages.Ram);
+                    }
 
-                if ((_isActiveAttackPlan || planCount > 0) && _attacker == null)
-                {
-                    _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
+                    if (_isActiveAttackPlan && _attacker != null)
+                    {
+                        _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
+                    }
+
+                    if ((_isActiveAttackPlan || planCount > 0) && _attacker == null)
+                    {
+                        _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
+                    }
                 }
             }
             else
@@ -284,6 +294,13 @@ namespace TribalWars.Villages.ContextMenu
         {
             World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
             World.Default.Map.EventPublisher.AttackRemoveTarget(this, _attackPlan);
+        }
+
+        private void OnAddAttacker(object sender, CommandEventArgs e)
+        {
+            Debug.Assert(_attacker != null);
+            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Attack);
+            World.Default.Map.EventPublisher.AttackUpdateTarget(this, AttackUpdateEventArgs.AddAttackFrom(_attacker));
         }
 
         private void OnDeleteAttacker(object sender, CommandEventArgs e)
