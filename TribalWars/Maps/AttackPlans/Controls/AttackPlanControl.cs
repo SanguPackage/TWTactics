@@ -177,15 +177,21 @@ namespace TribalWars.Maps.AttackPlans.Controls
             Date.Value = Plan.ArrivalTime;
             Coords.Text = Plan.Target.LocationString;
             _Village.Text = string.Format("{0} ({1})", Plan.Target.Name, Plan.Target.Points.ToString("#,0"));
+            toolTip1.SetToolTip(_Village, Plan.Target.Tooltip.Text);
             if (Plan.Target.HasPlayer)
             {
                 _Player.Text = Plan.Target.Player.ToString();
+                toolTip1.SetToolTip(_Player, Plan.Target.Player.Tooltip);
+
                 _Tribe.Text = Plan.Target.HasTribe ? Plan.Target.Player.Tribe.Tag : "";
+                toolTip1.SetToolTip(_Tribe, Plan.Target.HasTribe ? Plan.Target.Player.Tribe.Tooltip : "");
             }
             else
             {
                 _Player.Text = "";
                 _Tribe.Text = "";
+                toolTip1.SetToolTip(_Player, "");
+                toolTip1.SetToolTip(_Tribe, "");
             }
             _settingControlValues = false;
         }

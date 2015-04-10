@@ -198,7 +198,7 @@ namespace TribalWars.Villages
             get
             {
                 var str = new StringBuilder();
-                str.AppendFormat("Points: {0}", Common.GetPrettyNumber(_points));
+                str.AppendFormat("Points: {0}", PointsWithDiff);
                 str.AppendLine();
                 str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(Villages.Count));
                 string conquer = ConquerString;
@@ -206,7 +206,7 @@ namespace TribalWars.Villages
                 if (Tribe != null)
                 {
                     str.AppendLine();
-                    str.AppendFormat("Tribe: {0} (Rank: {1})", Tribe.Tag, Common.GetPrettyNumber(Tribe.Rank));
+                    str.AppendFormat("Tribe: {0} (#{1})", Tribe.Tag, Common.GetPrettyNumber(Tribe.Rank));
                 }
 
                 return str.ToString().Trim();
