@@ -19,8 +19,6 @@ namespace TribalWars.Forms
     /// </summary>
     public partial class YourVillagesForm : Form
     {
-        private Player _player;
-
         public YourVillagesForm()
         {
             InitializeComponent();
@@ -35,7 +33,6 @@ namespace TribalWars.Forms
             else
             {
                 var form = new YourVillagesForm();
-                form._player = World.Default.You;
                 form.villagesGridControl1.Bind(World.Default.You);
 
                 form.Show();

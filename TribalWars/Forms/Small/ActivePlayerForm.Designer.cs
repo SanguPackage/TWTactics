@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivePlayerForm));
             this.OkButton = new Janus.Windows.EditControls.UIButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.You = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
-            this.YourMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
-            this.YourTribeMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
             this.groupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.YourTribeMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
+            this.YourMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
+            this.You = new TribalWars.Controls.Finders.PlayerTribeDropdown();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
@@ -67,45 +67,22 @@
             // uiGroupBox1
             // 
             this.uiGroupBox1.Controls.Add(this.You);
+            this.uiGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox1.Location = new System.Drawing.Point(8, 148);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(295, 50);
+            this.uiGroupBox1.Size = new System.Drawing.Size(295, 57);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Select yourself";
-            // 
-            // You
-            // 
-            this.You.AllowTribe = false;
-            this.You.AutoOpenOnFocus = false;
-            this.You.BackColor = System.Drawing.Color.Transparent;
-            this.You.Location = new System.Drawing.Point(6, 19);
-            this.You.Margin = new System.Windows.Forms.Padding(0);
-            this.You.Name = "You";
-            this.You.Size = new System.Drawing.Size(283, 28);
-            this.You.TabIndex = 0;
             // 
             // uiGroupBox2
             // 
             this.uiGroupBox2.Controls.Add(this.YourMarker);
+            this.uiGroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox2.Location = new System.Drawing.Point(309, 148);
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Size = new System.Drawing.Size(358, 50);
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Select the  marker for your villages";
-            // 
-            // YourMarker
-            // 
-            this.YourMarker.AllowBarbarianViews = false;
-            this.YourMarker.AutoUpdateMarkers = false;
-            this.YourMarker.BackColor = System.Drawing.Color.Transparent;
-            this.YourMarker.CanDeactivate = false;
-            this.YourMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.YourMarker.DefaultMarkerColor = System.Drawing.Color.Black;
-            this.YourMarker.Location = new System.Drawing.Point(7, 20);
-            this.YourMarker.Margin = new System.Windows.Forms.Padding(0);
-            this.YourMarker.Name = "YourMarker";
-            this.YourMarker.Size = new System.Drawing.Size(348, 25);
-            this.YourMarker.TabIndex = 1;
             // 
             // uiGroupBox3
             // 
@@ -115,20 +92,6 @@
             this.uiGroupBox3.Size = new System.Drawing.Size(358, 50);
             this.uiGroupBox3.TabIndex = 2;
             this.uiGroupBox3.Text = "Select the marker for players in your tribe";
-            // 
-            // YourTribeMarker
-            // 
-            this.YourTribeMarker.AllowBarbarianViews = false;
-            this.YourTribeMarker.AutoUpdateMarkers = false;
-            this.YourTribeMarker.BackColor = System.Drawing.Color.Transparent;
-            this.YourTribeMarker.CanDeactivate = false;
-            this.YourTribeMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.YourTribeMarker.DefaultMarkerColor = System.Drawing.Color.Black;
-            this.YourTribeMarker.Location = new System.Drawing.Point(7, 20);
-            this.YourTribeMarker.Margin = new System.Windows.Forms.Padding(0);
-            this.YourTribeMarker.Name = "YourTribeMarker";
-            this.YourTribeMarker.Size = new System.Drawing.Size(348, 25);
-            this.YourTribeMarker.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -170,6 +133,45 @@
             this.label2.TabIndex = 0;
             this.label2.Text = resources.GetString("label2.Text");
             // 
+            // YourTribeMarker
+            // 
+            this.YourTribeMarker.AllowBarbarianViews = false;
+            this.YourTribeMarker.AutoUpdateMarkers = false;
+            this.YourTribeMarker.BackColor = System.Drawing.Color.Transparent;
+            this.YourTribeMarker.CanDeactivate = false;
+            this.YourTribeMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.YourTribeMarker.DefaultMarkerColor = System.Drawing.Color.Black;
+            this.YourTribeMarker.Location = new System.Drawing.Point(7, 20);
+            this.YourTribeMarker.Margin = new System.Windows.Forms.Padding(0);
+            this.YourTribeMarker.Name = "YourTribeMarker";
+            this.YourTribeMarker.Size = new System.Drawing.Size(348, 25);
+            this.YourTribeMarker.TabIndex = 2;
+            // 
+            // YourMarker
+            // 
+            this.YourMarker.AllowBarbarianViews = false;
+            this.YourMarker.AutoUpdateMarkers = false;
+            this.YourMarker.BackColor = System.Drawing.Color.Transparent;
+            this.YourMarker.CanDeactivate = false;
+            this.YourMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+            this.YourMarker.DefaultMarkerColor = System.Drawing.Color.Black;
+            this.YourMarker.Location = new System.Drawing.Point(7, 20);
+            this.YourMarker.Margin = new System.Windows.Forms.Padding(0);
+            this.YourMarker.Name = "YourMarker";
+            this.YourMarker.Size = new System.Drawing.Size(348, 25);
+            this.YourMarker.TabIndex = 1;
+            // 
+            // You
+            // 
+            this.You.AllowTribe = false;
+            this.You.AutoOpenOnFocus = false;
+            this.You.BackColor = System.Drawing.Color.Transparent;
+            this.You.Location = new System.Drawing.Point(5, 27);
+            this.You.Margin = new System.Windows.Forms.Padding(0);
+            this.You.Name = "You";
+            this.You.Size = new System.Drawing.Size(283, 31);
+            this.You.TabIndex = 0;
+            // 
             // ActivePlayerForm
             // 
             this.AcceptButton = this.OkButton;
@@ -187,7 +189,7 @@
             this.MinimizeBox = false;
             this.Name = "ActivePlayerForm";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select active player";
             this.Load += new System.EventHandler(this.ActivePlayerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();

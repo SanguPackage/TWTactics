@@ -40,7 +40,6 @@ namespace TribalWars.Forms.Small
             if (You.Player == null || You.Player.Empty)
             {
                 You.SelectorControl.Focus();
-                You.SelectorControl.DroppedDown = true;
             }
         }
 
