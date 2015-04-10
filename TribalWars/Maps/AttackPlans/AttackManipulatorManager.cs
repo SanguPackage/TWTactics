@@ -130,9 +130,20 @@ namespace TribalWars.Maps.AttackPlans
 
             var settings = new SuperTipSettings();
             settings.ToolTipStyle = ToolTipStyle.Standard;
-            settings.HeaderText = plan.Target.Tooltip.Title;
             settings.HeaderImage = Properties.Resources.FlagGreen;
+
             var str = new System.Text.StringBuilder();
+            if (attacker == null)
+            {
+                settings.HeaderText = plan.Target.Tooltip.Title;
+            }
+            else
+            {
+                settings.HeaderText = attacker.Attacker.Tooltip.Title;
+
+                str.AppendFormat("Target: {0}", plan.Target.Tooltip.Title);
+                str.Append(Environment.NewLine);
+            }
             str.AppendFormat("Points: {0}", Common.GetPrettyNumber(plan.Target.Points));
             str.Append(Environment.NewLine);
             str.AppendFormat("Arrival date: {0}", plan.ArrivalTime.GetPrettyDate());
@@ -142,8 +153,6 @@ namespace TribalWars.Maps.AttackPlans
                 settings.Image = attacker.SlowestUnit.Image;
 
                 str.Append(Environment.NewLine);
-                str.Append(Environment.NewLine);
-                str.AppendFormat("Attacker: {0}", attacker.Attacker);
                 str.Append(Environment.NewLine);
                 str.AppendFormat("Travel time: {0}", attacker.TravelTime);
                 str.Append(Environment.NewLine);
@@ -221,7 +230,7 @@ namespace TribalWars.Maps.AttackPlans
                 return new NoVillageAttackContextMenu(this);
             }
 
-            if (village.Player == World.Default.You && (_attacker.ActivePlan == null || _attacker.ActivePlan.Target != village) && _attacker.VillageUsedCount(village) < 2)
+            if (village.Player == World.Default.You && (_attacker.ActivePlan == null || _attacker.ActivePlan.Target != village) && _attacker.VillageUsedCount(village) == 0)
             {
                 // Right click on a village you own = add new attacker
                 return null;
