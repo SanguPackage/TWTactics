@@ -117,7 +117,7 @@ namespace TribalWars.Villages.ContextMenu
 
             if (_attackPlan != null)
             {
-                int planCount = World.Default.Map.Manipulators.AttackManipulator.GetPlans().Count(x => x.Target == _attackPlan.Target);
+                int planCount = World.Default.Map.Manipulators.AttackManipulator.GetPlans().Count(x => x.Target == _village || x.Attacks.Any(attack => attack.Attacker == _village));
                 if (!_isActiveAttackPlan || planCount > 1)
                 {
                     string selectPlan = "Select attack plan";
