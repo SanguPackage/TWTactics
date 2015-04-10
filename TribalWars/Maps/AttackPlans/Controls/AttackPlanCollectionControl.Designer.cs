@@ -249,7 +249,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdFindPool.Image = ((System.Drawing.Image)(resources.GetObject("cmdFindPool.Image")));
             this.cmdFindPool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdFindPool.Name = "cmdFindPool";
-            this.cmdFindPool.Size = new System.Drawing.Size(23, 20);
+            this.cmdFindPool.Size = new System.Drawing.Size(23, 22);
             this.cmdFindPool.ToolTipText = "Find villages inside the attackers pool that can still reach the target at the ar" +
     "rival time at the given speed. Add villages to the attack pool in the \'Manage yo" +
     "ur villages\' Window.";

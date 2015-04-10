@@ -645,6 +645,7 @@ namespace TribalWars.Forms
             // 
             // MenuWindowsManageYourAttackersPool
             // 
+            this.MenuWindowsManageYourAttackersPool.Image = global::TribalWars.Properties.Resources.star;
             this.MenuWindowsManageYourAttackersPool.Name = "MenuWindowsManageYourAttackersPool";
             this.MenuWindowsManageYourAttackersPool.Size = new System.Drawing.Size(221, 22);
             this.MenuWindowsManageYourAttackersPool.Text = "Manage your attackers pool";

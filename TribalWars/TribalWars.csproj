@@ -857,6 +857,7 @@
     <None Include="Resources\place.png" />
     <None Include="Resources\time.png" />
     <None Include="Resources\time1.png" />
+    <None Include="Resources\star.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
