@@ -38,15 +38,15 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateNow = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.DateSend = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Close = new System.Windows.Forms.LinkLabel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.UnitBox = new TribalWars.Controls.Common.ImageCombobox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // _Village
@@ -74,7 +74,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // 
             // DateLeft
             // 
-            this.DateLeft.Location = new System.Drawing.Point(94, 41);
+            this.DateLeft.Location = new System.Drawing.Point(95, 41);
             this.DateLeft.Name = "DateLeft";
             this.DateLeft.Size = new System.Drawing.Size(70, 18);
             this.DateLeft.TabIndex = 3;
@@ -106,39 +106,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateSend.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.DateSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::TribalWars.Properties.Resources.speed;
-            this.pictureBox1.Location = new System.Drawing.Point(78, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "Travel time");
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::TribalWars.Properties.Resources.speed;
-            this.pictureBox2.Location = new System.Drawing.Point(78, 40);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox2, "Time left before sending to arrive at specified date");
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::TribalWars.Properties.Resources.place;
-            this.pictureBox3.Location = new System.Drawing.Point(169, 40);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox3, "Time to send to arrive at specified date");
-            // 
             // Close
             // 
             this.Close.ActiveLinkColor = System.Drawing.Color.Black;
@@ -156,6 +123,39 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.Close.Text = "x";
             this.Close.VisitedLinkColor = System.Drawing.Color.Black;
             this.Close.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Close_LinkClicked);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::TribalWars.Properties.Resources.place;
+            this.pictureBox3.Location = new System.Drawing.Point(169, 40);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox3, "Time to send to arrive at specified date");
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::TribalWars.Properties.Resources.time1;
+            this.pictureBox2.Location = new System.Drawing.Point(78, 39);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox2, "Time left before sending to arrive at specified date");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TribalWars.Properties.Resources.speed;
+            this.pictureBox1.Location = new System.Drawing.Point(78, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Travel time");
             // 
             // Coords
             // 
@@ -205,9 +205,9 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.Size = new System.Drawing.Size(311, 60);
             this.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
