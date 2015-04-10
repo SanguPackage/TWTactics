@@ -213,6 +213,7 @@
     <Compile Include="Forms\YourVillagesForm.Designer.cs">
       <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maps\AttackPlans\Controls\AttackersPoolContextMenuCommandCreator.cs" />
     <Compile Include="Maps\AttackPlans\Controls\AttackHelpControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

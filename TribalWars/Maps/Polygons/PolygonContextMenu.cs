@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Janus.Windows.UI.CommandBars;
 using TribalWars.Controls;
+using TribalWars.Maps.AttackPlans.Controls;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Worlds;
 
@@ -25,6 +26,7 @@ namespace TribalWars.Maps.Polygons
             Debug.Assert(_polygonDrawer.ActivePolygon != null);
 
             _menu.AddCommand(string.Format("Manipulate villages in \"{0}\"", _polygonDrawer.ActivePolygon.Name), OnGenerate);
+            AttackersPoolContextMenuCommandCreator.Add(_menu, _polygonDrawer.ActivePolygon.GetVillages().Where(x => x.Player == World.Default.You));
             _menu.AddSeparator();
 
             _menu.AddCommand("Delete", OnDelete, Shortcut.Del);

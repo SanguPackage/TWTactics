@@ -12,6 +12,7 @@ using System.Drawing;
 using Janus.Windows.UI;
 using TribalWars.Controls;
 using TribalWars.Maps;
+using TribalWars.Maps.AttackPlans.Controls;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
 using TribalWars.Tools.JanusExtensions;
@@ -66,8 +67,7 @@ namespace TribalWars.Villages.ContextMenu
             {
                 _menu.AddCommand("Defend these villages", OnAddTargets, Properties.Resources.swordsman);
 
-                var cmd = _menu.AddCommand("Add to attackers pool", OnAddAttackers, Properties.Resources.FlagGreen);
-                cmd.ToolTipText = "When using the attack plan search function, don't search through all your villages but only select villages from those added to the 'pool'.";
+                AttackersPoolContextMenuCommandCreator.Add(_menu, _villages);
             }
             else
             {
@@ -77,6 +77,7 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
         }
+
         #endregion
 
         #region Event Handlers
@@ -95,18 +96,18 @@ namespace TribalWars.Villages.ContextMenu
             }
         }
 
-        private void OnPinpointAndCenter(object sender, CommandEventArgs e)
-        {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
-            World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
-            World.Default.Map.SetCenter(_villages);
-        }
+        //private void OnPinpointAndCenter(object sender, CommandEventArgs e)
+        //{
+        //    World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+        //    World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
+        //    World.Default.Map.SetCenter(_villages);
+        //}
 
-        private void OnPinPoint(object sender, CommandEventArgs e)
-        {
-            World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
-            World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
-        }
+        //private void OnPinPoint(object sender, CommandEventArgs e)
+        //{
+        //    World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Default);
+        //    World.Default.Map.EventPublisher.SelectVillages(sender, _villages, VillageTools.PinPoint);
+        //}
 
         private void OnRemovePurpose(object sender, CommandEventArgs e)
         {
@@ -161,11 +162,6 @@ namespace TribalWars.Villages.ContextMenu
             }
 
             WinForms.ToClipboard(str.ToString());
-        }
-
-        private void OnAddAttackers(object sender, EventArgs e)
-        {
-            World.Default.Map.Manipulators.AttackManipulator.AddToAttackersPool(_villages);
         }
 
         private void OnAddTargets(object sender, EventArgs e)
