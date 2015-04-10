@@ -472,6 +472,16 @@ namespace TribalWars.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap place {
+            get {
+                object obj = ResourceManager.GetObject("place", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Player {
             get {
                 object obj = ResourceManager.GetObject("Player", resourceCulture);
@@ -685,6 +695,16 @@ namespace TribalWars.Properties {
         internal static System.Drawing.Bitmap timbercamp {
             get {
                 object obj = ResourceManager.GetObject("timbercamp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap time1 {
+            get {
+                object obj = ResourceManager.GetObject("time1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
