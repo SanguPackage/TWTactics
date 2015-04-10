@@ -190,8 +190,8 @@
   <data name="cmdFind" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cmdFind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DefaultInteraction" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DefaultInteraction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rectangle.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="smithy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\smithy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,8 +247,11 @@
   <data name="Line1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Line.cur;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Polygon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultInteraction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultInteraction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FlagGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Flag_greenHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -280,8 +283,8 @@
   <data name="Ellipse1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ellipse.cur;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="rectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rectangle.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="face" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\face.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -306,6 +309,9 @@
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pencil.cur;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LeftNavigation_QuickFind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LeftNavigation_QuickFind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Defense" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Defense.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,10 +340,7 @@
   <data name="nobleman" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Noble.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Polygon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LeftNavigation_QuickFind" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LeftNavigation_QuickFind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="place" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\place.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

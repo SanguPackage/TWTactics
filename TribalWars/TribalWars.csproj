@@ -845,6 +845,7 @@
     <None Include="Resources\DefaultInteraction.png" />
     <None Include="Resources\Polygon.png" />
     <None Include="Resources\LeftNavigation_QuickFind.png" />
+    <None Include="Resources\place.png" />
     <Content Include="WorldTemplate\TacticsUnits.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -103,9 +103,6 @@ namespace TribalWars.Forms
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
             this.ToolstripButtonCreateWorld = new System.Windows.Forms.ToolStripButton();
             this.ToolStripOpen = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripProgramSettings = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripAbout = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripDownload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripSettings = new System.Windows.Forms.ToolStripDropDownButton();
@@ -123,6 +120,10 @@ namespace TribalWars.Forms
             this.ToolStripAttackManipulator = new System.Windows.Forms.ToolStripButton();
             this.ToolStripChurchManipulator = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLocationChangerControl1 = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolStripProgramSettings = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
@@ -701,9 +702,6 @@ namespace TribalWars.Forms
             this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolstripButtonCreateWorld,
             this.ToolStripOpen,
-            this.ToolStripProgramSettings,
-            this.ToolStripAbout,
-            this.toolStripSeparator7,
             this.ToolStripDownload,
             this.toolStripSeparator6,
             this.ToolStripSettings,
@@ -720,10 +718,14 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator,
             this.ToolStripAttackManipulator,
             this.ToolStripChurchManipulator,
-            this.toolStripSeparator});
+            this.toolStripSeparator,
+            this.toolStripLocationChangerControl1,
+            this.toolStripSeparator7,
+            this.ToolStripProgramSettings,
+            this.ToolStripAbout});
             this.ToolStrip.Location = new System.Drawing.Point(3, 0);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(486, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(609, 31);
             this.ToolStrip.TabIndex = 0;
             // 
             // ToolstripButtonCreateWorld
@@ -732,7 +734,7 @@ namespace TribalWars.Forms
             this.ToolstripButtonCreateWorld.Image = ((System.Drawing.Image)(resources.GetObject("ToolstripButtonCreateWorld.Image")));
             this.ToolstripButtonCreateWorld.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolstripButtonCreateWorld.Name = "ToolstripButtonCreateWorld";
-            this.ToolstripButtonCreateWorld.Size = new System.Drawing.Size(23, 22);
+            this.ToolstripButtonCreateWorld.Size = new System.Drawing.Size(23, 28);
             this.ToolstripButtonCreateWorld.ToolTipText = "Create a new world";
             this.ToolstripButtonCreateWorld.Click += new System.EventHandler(this.ToolstripButtonCreateWorld_Click);
             // 
@@ -742,36 +744,10 @@ namespace TribalWars.Forms
             this.ToolStripOpen.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripOpen.Image")));
             this.ToolStripOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripOpen.Name = "ToolStripOpen";
-            this.ToolStripOpen.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripOpen.Size = new System.Drawing.Size(23, 28);
             this.ToolStripOpen.Text = "&Open";
             this.ToolStripOpen.ToolTipText = "Load a different world or select a different TW snapshot";
             this.ToolStripOpen.Click += new System.EventHandler(this.ToolStripOpen_Click);
-            // 
-            // ToolStripProgramSettings
-            // 
-            this.ToolStripProgramSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripProgramSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripProgramSettings.Image")));
-            this.ToolStripProgramSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripProgramSettings.Name = "ToolStripProgramSettings";
-            this.ToolStripProgramSettings.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripProgramSettings.ToolTipText = "Change program settings";
-            this.ToolStripProgramSettings.Visible = false;
-            this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
-            // 
-            // ToolStripAbout
-            // 
-            this.ToolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAbout.Image")));
-            this.ToolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripAbout.Name = "ToolStripAbout";
-            this.ToolStripAbout.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripAbout.ToolTipText = "Postcardware!";
-            this.ToolStripAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // ToolStripDownload
             // 
@@ -779,14 +755,14 @@ namespace TribalWars.Forms
             this.ToolStripDownload.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripDownload.Image")));
             this.ToolStripDownload.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripDownload.Name = "ToolStripDownload";
-            this.ToolStripDownload.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripDownload.Size = new System.Drawing.Size(23, 28);
             this.ToolStripDownload.Text = "Download latest TW data";
             this.ToolStripDownload.Click += new System.EventHandler(this.MenuFileWorldDownload_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
             // 
             // ToolStripSettings
             // 
@@ -794,7 +770,7 @@ namespace TribalWars.Forms
             this.ToolStripSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripSettings.Image")));
             this.ToolStripSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripSettings.Name = "ToolStripSettings";
-            this.ToolStripSettings.Size = new System.Drawing.Size(62, 22);
+            this.ToolStripSettings.Size = new System.Drawing.Size(62, 28);
             this.ToolStripSettings.Text = "Settings";
             this.ToolStripSettings.ToolTipText = "Select different saved settings";
             // 
@@ -804,7 +780,7 @@ namespace TribalWars.Forms
             this.ToolStripSave.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripSave.Image")));
             this.ToolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripSave.Name = "ToolStripSave";
-            this.ToolStripSave.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripSave.Size = new System.Drawing.Size(23, 28);
             this.ToolStripSave.Text = "&Save";
             this.ToolStripSave.ToolTipText = "Save settings (markers, attack plans, clusters, ...)";
             this.ToolStripSave.Click += new System.EventHandler(this.ToolStripSave_Click);
@@ -812,7 +788,7 @@ namespace TribalWars.Forms
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
             // 
             // ToolStripHome
             // 
@@ -820,7 +796,7 @@ namespace TribalWars.Forms
             this.ToolStripHome.Image = global::TribalWars.Properties.Resources.Home2;
             this.ToolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripHome.Name = "ToolStripHome";
-            this.ToolStripHome.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripHome.Size = new System.Drawing.Size(23, 28);
             this.ToolStripHome.Text = "Center the map on your home";
             this.ToolStripHome.Click += new System.EventHandler(this.ToolStripHome_Click);
             // 
@@ -830,7 +806,7 @@ namespace TribalWars.Forms
             this.ToolStripActiveRectangle.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripActiveRectangle.Image")));
             this.ToolStripActiveRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripActiveRectangle.Name = "ToolStripActiveRectangle";
-            this.ToolStripActiveRectangle.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripActiveRectangle.Size = new System.Drawing.Size(23, 28);
             this.ToolStripActiveRectangle.ToolTipText = "Set the Monitoring Area";
             this.ToolStripActiveRectangle.Click += new System.EventHandler(this.ToolStripActiveRectangle_Click);
             // 
@@ -840,7 +816,7 @@ namespace TribalWars.Forms
             this.ToolStripDraw.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripDraw.Image")));
             this.ToolStripDraw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripDraw.Name = "ToolStripDraw";
-            this.ToolStripDraw.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripDraw.Size = new System.Drawing.Size(23, 28);
             this.ToolStripDraw.Text = "Draw the map";
             this.ToolStripDraw.ToolTipText = "Refresh the map";
             this.ToolStripDraw.Visible = false;
@@ -849,7 +825,7 @@ namespace TribalWars.Forms
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // ToolStripIconDisplay
             // 
@@ -857,7 +833,7 @@ namespace TribalWars.Forms
             this.ToolStripIconDisplay.Image = global::TribalWars.Properties.Resources.Village;
             this.ToolStripIconDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripIconDisplay.Name = "ToolStripIconDisplay";
-            this.ToolStripIconDisplay.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripIconDisplay.Size = new System.Drawing.Size(23, 28);
             this.ToolStripIconDisplay.Tag = "ChangeHighlight";
             this.ToolStripIconDisplay.Text = "Switch map display to tw village images";
             this.ToolStripIconDisplay.Click += new System.EventHandler(this.ToolStripIconDisplay_Click);
@@ -868,7 +844,7 @@ namespace TribalWars.Forms
             this.ToolStripShapeDisplay.Image = global::TribalWars.Properties.Resources.shapes;
             this.ToolStripShapeDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripShapeDisplay.Name = "ToolStripShapeDisplay";
-            this.ToolStripShapeDisplay.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripShapeDisplay.Size = new System.Drawing.Size(23, 28);
             this.ToolStripShapeDisplay.Tag = "ChangeHighlight";
             this.ToolStripShapeDisplay.Text = "Switch map display to shape villages";
             this.ToolStripShapeDisplay.ToolTipText = "Switch map display to rectangle villages";
@@ -877,7 +853,7 @@ namespace TribalWars.Forms
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
             // 
             // ToolStripDefaultManipulator
             // 
@@ -885,7 +861,7 @@ namespace TribalWars.Forms
             this.ToolStripDefaultManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripDefaultManipulator.Image")));
             this.ToolStripDefaultManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripDefaultManipulator.Name = "ToolStripDefaultManipulator";
-            this.ToolStripDefaultManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripDefaultManipulator.Size = new System.Drawing.Size(23, 28);
             this.ToolStripDefaultManipulator.Tag = "ChangeHighlight";
             this.ToolStripDefaultManipulator.Text = "Default";
             this.ToolStripDefaultManipulator.ToolTipText = "Revert to normal map interaction";
@@ -897,7 +873,7 @@ namespace TribalWars.Forms
             this.ToolStripPolygonManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripPolygonManipulator.Image")));
             this.ToolStripPolygonManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripPolygonManipulator.Name = "ToolStripPolygonManipulator";
-            this.ToolStripPolygonManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripPolygonManipulator.Size = new System.Drawing.Size(23, 28);
             this.ToolStripPolygonManipulator.Tag = "ChangeHighlight";
             this.ToolStripPolygonManipulator.Text = "Clusters";
             this.ToolStripPolygonManipulator.ToolTipText = "Draw clusters on the map (with BB code generation)";
@@ -909,7 +885,7 @@ namespace TribalWars.Forms
             this.ToolStripAttackManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAttackManipulator.Image")));
             this.ToolStripAttackManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
-            this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripAttackManipulator.Size = new System.Drawing.Size(23, 28);
             this.ToolStripAttackManipulator.Tag = "ChangeHighlight";
             this.ToolStripAttackManipulator.ToolTipText = "Start planning attacks (left click to add target, right click on your own village" +
     "s to attack from)";
@@ -921,14 +897,48 @@ namespace TribalWars.Forms
             this.ToolStripChurchManipulator.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripChurchManipulator.Image")));
             this.ToolStripChurchManipulator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripChurchManipulator.Name = "ToolStripChurchManipulator";
-            this.ToolStripChurchManipulator.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripChurchManipulator.Size = new System.Drawing.Size(23, 28);
             this.ToolStripChurchManipulator.ToolTipText = "Display the influence radius of your churches";
             this.ToolStripChurchManipulator.Click += new System.EventHandler(this.ToolStripChurchManipulator_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLocationChangerControl1
+            // 
+            this.toolStripLocationChangerControl1.AutoSize = false;
+            this.toolStripLocationChangerControl1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripLocationChangerControl1.Name = "toolStripLocationChangerControl1";
+            this.toolStripLocationChangerControl1.Size = new System.Drawing.Size(200, 28);
+            this.toolStripLocationChangerControl1.Text = "toolStripLocationChangerControl1";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
+            // 
+            // ToolStripProgramSettings
+            // 
+            this.ToolStripProgramSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripProgramSettings.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripProgramSettings.Image")));
+            this.ToolStripProgramSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripProgramSettings.Name = "ToolStripProgramSettings";
+            this.ToolStripProgramSettings.Size = new System.Drawing.Size(23, 28);
+            this.ToolStripProgramSettings.ToolTipText = "Change program settings";
+            this.ToolStripProgramSettings.Visible = false;
+            this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
+            // 
+            // ToolStripAbout
+            // 
+            this.ToolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripAbout.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripAbout.Image")));
+            this.ToolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripAbout.Name = "ToolStripAbout";
+            this.ToolStripAbout.Size = new System.Drawing.Size(23, 28);
+            this.ToolStripAbout.ToolTipText = "Postcardware!";
+            this.ToolStripAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
             // 
             // RightToolStripPanel
             // 
@@ -970,7 +980,7 @@ namespace TribalWars.Forms
             this.FormSplitter.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.FormSplitter.Panel2.Controls.Add(this.Tabs);
             this.FormSplitter.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.FormSplitter.Size = new System.Drawing.Size(877, 647);
+            this.FormSplitter.Size = new System.Drawing.Size(877, 641);
             this.FormSplitter.SplitterDistance = 340;
             this.FormSplitter.TabIndex = 0;
             this.FormSplitter.TabStop = false;
@@ -991,7 +1001,7 @@ namespace TribalWars.Forms
             // LeftSplitter.Panel2
             // 
             this.LeftSplitter.Panel2.Controls.Add(this.LeftNavigation);
-            this.LeftSplitter.Size = new System.Drawing.Size(337, 641);
+            this.LeftSplitter.Size = new System.Drawing.Size(337, 635);
             this.LeftSplitter.SplitterDistance = 230;
             this.LeftSplitter.TabIndex = 0;
             this.LeftSplitter.TabStop = false;
@@ -1030,7 +1040,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind,
             this.LeftNavigation_Markers,
             this.LeftNavigation_Distance});
-            this.LeftNavigation.Size = new System.Drawing.Size(337, 407);
+            this.LeftNavigation.Size = new System.Drawing.Size(337, 401);
             this.LeftNavigation.TabIndex = 0;
             this.LeftNavigation.VisibleButtonCount = 0;
             // 
@@ -1058,7 +1068,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Location.Key = "LeftNavigation_Location";
             this.LeftNavigation_Location.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Location.Name = "LeftNavigation_Location";
-            this.LeftNavigation_Location.Size = new System.Drawing.Size(335, 342);
+            this.LeftNavigation_Location.Size = new System.Drawing.Size(335, 336);
             this.LeftNavigation_Location.TabIndex = 1;
             this.LeftNavigation_Location.Text = "Location Options";
             this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1072,7 +1082,7 @@ namespace TribalWars.Forms
             this.locationControl1.Location = new System.Drawing.Point(0, 0);
             this.locationControl1.Margin = new System.Windows.Forms.Padding(0);
             this.locationControl1.Name = "locationControl1";
-            this.locationControl1.Size = new System.Drawing.Size(335, 342);
+            this.locationControl1.Size = new System.Drawing.Size(335, 336);
             this.locationControl1.TabIndex = 0;
             // 
             // LeftNavigation_QuickFind
@@ -1099,7 +1109,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
             this.LeftNavigation_QuickFind.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
-            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(335, 342);
+            this.LeftNavigation_QuickFind.Size = new System.Drawing.Size(335, 336);
             this.LeftNavigation_QuickFind.TabIndex = 4;
             this.LeftNavigation_QuickFind.Text = "Quick Details";
             this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1113,7 +1123,7 @@ namespace TribalWars.Forms
             this.detailsControl1.Location = new System.Drawing.Point(0, 0);
             this.detailsControl1.Margin = new System.Windows.Forms.Padding(0);
             this.detailsControl1.Name = "detailsControl1";
-            this.detailsControl1.Size = new System.Drawing.Size(335, 342);
+            this.detailsControl1.Size = new System.Drawing.Size(335, 336);
             this.detailsControl1.TabIndex = 1;
             // 
             // LeftNavigation_Markers
@@ -1140,7 +1150,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
             this.LeftNavigation_Markers.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
-            this.LeftNavigation_Markers.Size = new System.Drawing.Size(335, 342);
+            this.LeftNavigation_Markers.Size = new System.Drawing.Size(335, 336);
             this.LeftNavigation_Markers.TabIndex = 3;
             this.LeftNavigation_Markers.Text = "Map Markers";
             this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1155,7 +1165,7 @@ namespace TribalWars.Forms
             this.markersContainerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.markersContainerControl1.Name = "markersContainerControl1";
             this.markersContainerControl1.Padding = new System.Windows.Forms.Padding(2);
-            this.markersContainerControl1.Size = new System.Drawing.Size(335, 342);
+            this.markersContainerControl1.Size = new System.Drawing.Size(335, 336);
             this.markersContainerControl1.TabIndex = 1;
             // 
             // LeftNavigation_Distance
@@ -1182,7 +1192,7 @@ namespace TribalWars.Forms
             this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
             this.LeftNavigation_Distance.Location = new System.Drawing.Point(1, 27);
             this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
-            this.LeftNavigation_Distance.Size = new System.Drawing.Size(335, 342);
+            this.LeftNavigation_Distance.Size = new System.Drawing.Size(335, 336);
             this.LeftNavigation_Distance.TabIndex = 6;
             this.LeftNavigation_Distance.Text = "Plan Attacks";
             this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1195,7 +1205,7 @@ namespace TribalWars.Forms
             this._attackPlan.Location = new System.Drawing.Point(0, 0);
             this._attackPlan.Margin = new System.Windows.Forms.Padding(0);
             this._attackPlan.Name = "_attackPlan";
-            this._attackPlan.Size = new System.Drawing.Size(335, 342);
+            this._attackPlan.Size = new System.Drawing.Size(335, 336);
             this._attackPlan.TabIndex = 0;
             // 
             // Tabs
@@ -1204,7 +1214,7 @@ namespace TribalWars.Forms
             this.Tabs.InputFocusTab = this.TabsMap;
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
-            this.Tabs.Size = new System.Drawing.Size(530, 644);
+            this.Tabs.Size = new System.Drawing.Size(530, 638);
             this.Tabs.TabIndex = 1;
             this.Tabs.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.TabsMap,
@@ -1219,7 +1229,7 @@ namespace TribalWars.Forms
             this.TabsMap.Key = "Map";
             this.TabsMap.Location = new System.Drawing.Point(1, 23);
             this.TabsMap.Name = "TabsMap";
-            this.TabsMap.Size = new System.Drawing.Size(526, 618);
+            this.TabsMap.Size = new System.Drawing.Size(526, 612);
             this.TabsMap.TabStop = true;
             this.TabsMap.Text = "Map";
             // 
@@ -1230,7 +1240,7 @@ namespace TribalWars.Forms
             this.Map.Location = new System.Drawing.Point(0, 0);
             this.Map.Margin = new System.Windows.Forms.Padding(0);
             this.Map.Name = "Map";
-            this.Map.Size = new System.Drawing.Size(526, 618);
+            this.Map.Size = new System.Drawing.Size(526, 612);
             this.Map.TabIndex = 0;
             // 
             // TabsBrowser
@@ -1304,7 +1314,7 @@ namespace TribalWars.Forms
             // 
             this.FormToolbarContainer.ContentPanel.Controls.Add(this.FormSplitter);
             this.FormToolbarContainer.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.FormToolbarContainer.ContentPanel.Size = new System.Drawing.Size(877, 647);
+            this.FormToolbarContainer.ContentPanel.Size = new System.Drawing.Size(877, 641);
             this.FormToolbarContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FormToolbarContainer.Location = new System.Drawing.Point(0, 24);
             this.FormToolbarContainer.Name = "FormToolbarContainer";
@@ -1454,7 +1464,6 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripButton ToolstripButtonCreateWorld;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton ToolStripActiveRectangle;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem MenuFileSynchronizeTime;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton ToolStripProgramSettings;
@@ -1488,6 +1497,8 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsAddTimes;
         private System.Windows.Forms.ToolStripMenuItem MenuMapMonitoringArea;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
+        private Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl toolStripLocationChangerControl1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
 
