@@ -38,10 +38,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateNow = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.DateSend = new System.Windows.Forms.Label();
-            this.Close = new System.Windows.Forms.LinkLabel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Close = new System.Windows.Forms.LinkLabel();
             this.Coords = new TribalWars.Controls.Finders.VillagePlayerTribeSelector();
             this.UnitBox = new TribalWars.Controls.Common.ImageCombobox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -106,24 +106,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateSend.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.DateSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
-            // Close
-            // 
-            this.Close.ActiveLinkColor = System.Drawing.Color.Black;
-            this.Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Close.AutoSize = true;
-            this.Close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Close.DisabledLinkColor = System.Drawing.Color.Black;
-            this.Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Close.LinkColor = System.Drawing.Color.Black;
-            this.Close.Location = new System.Drawing.Point(296, 3);
-            this.Close.Name = "Close";
-            this.Close.Size = new System.Drawing.Size(15, 16);
-            this.Close.TabIndex = 4;
-            this.Close.TabStop = true;
-            this.Close.Text = "x";
-            this.Close.VisitedLinkColor = System.Drawing.Color.Black;
-            this.Close.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Close_LinkClicked);
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::TribalWars.Properties.Resources.place;
@@ -149,13 +131,31 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TribalWars.Properties.Resources.speed;
-            this.pictureBox1.Location = new System.Drawing.Point(78, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(79, 20);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(17, 17);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBox1, "Travel time");
+            // 
+            // Close
+            // 
+            this.Close.ActiveLinkColor = System.Drawing.Color.Black;
+            this.Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Close.AutoSize = true;
+            this.Close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Close.DisabledLinkColor = System.Drawing.Color.Black;
+            this.Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Close.LinkColor = System.Drawing.Color.Black;
+            this.Close.Location = new System.Drawing.Point(296, 3);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(15, 16);
+            this.Close.TabIndex = 4;
+            this.Close.TabStop = true;
+            this.Close.Text = "x";
+            this.Close.VisitedLinkColor = System.Drawing.Color.Black;
+            this.Close.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Close_LinkClicked);
             // 
             // Coords
             // 
