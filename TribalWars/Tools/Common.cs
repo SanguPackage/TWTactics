@@ -98,14 +98,14 @@ namespace TribalWars.Tools
         public static string GetPrettyDate(this DateTime date, bool shortFormat)
         {
             DateTime serverTime = World.Default.Settings.ServerTime;
-            if (date.DayOfYear == serverTime.DayOfYear)
+            if (date.Date == serverTime.Date)
             {
                 if (shortFormat)
                     return "today at " + date.ToShortTimeString();
                 else
                     return "today at " + date.ToLongTimeString();
             }
-            else if (date.DayOfYear - 1 == serverTime.DayOfYear)
+            else if (date.Date.AddDays(-1) == serverTime.Date)
                 return "tomorrow at " + date.ToLongTimeString();
             else if (shortFormat)
                 return string.Format("{0} at {1}", date.ToString("dd.MM."), date.ToShortTimeString());
