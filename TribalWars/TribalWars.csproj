@@ -207,6 +207,12 @@
     <Compile Include="Forms\VillageCoordinatesImporterForm.Designer.cs">
       <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AttackersPoolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AttackersPoolForm.Designer.cs">
+      <DependentUpon>AttackersPoolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\YourVillagesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -635,6 +641,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.resx">
       <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AttackersPoolForm.resx">
+      <DependentUpon>AttackersPoolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\YourVillagesForm.resx">
       <DependentUpon>YourVillagesForm.cs</DependentUpon>

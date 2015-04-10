@@ -93,6 +93,7 @@ namespace TribalWars.Forms
             this.MenuWindowsManageYourVillages = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsImportVillageCoordinates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuWindowsManageYourAttackersPool = new System.Windows.Forms.ToolStripMenuItem();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsAddTimes = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -617,6 +618,7 @@ namespace TribalWars.Forms
             this.MenuWindowsManageYourVillages,
             this.MenuWindowsImportVillageCoordinates,
             this.toolStripMenuItem7,
+            this.MenuWindowsManageYourAttackersPool,
             this.otherToolStripMenuItem});
             this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
             this.windowsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
@@ -625,28 +627,35 @@ namespace TribalWars.Forms
             // MenuWindowsManageYourVillages
             // 
             this.MenuWindowsManageYourVillages.Name = "MenuWindowsManageYourVillages";
-            this.MenuWindowsManageYourVillages.Size = new System.Drawing.Size(212, 22);
+            this.MenuWindowsManageYourVillages.Size = new System.Drawing.Size(221, 22);
             this.MenuWindowsManageYourVillages.Text = "Manage your villages";
             this.MenuWindowsManageYourVillages.Click += new System.EventHandler(this.MenuWindowsManageYourVillages_Click);
             // 
             // MenuWindowsImportVillageCoordinates
             // 
             this.MenuWindowsImportVillageCoordinates.Name = "MenuWindowsImportVillageCoordinates";
-            this.MenuWindowsImportVillageCoordinates.Size = new System.Drawing.Size(212, 22);
+            this.MenuWindowsImportVillageCoordinates.Size = new System.Drawing.Size(221, 22);
             this.MenuWindowsImportVillageCoordinates.Text = "Import village coordinates";
             this.MenuWindowsImportVillageCoordinates.Click += new System.EventHandler(this.MenuWindowsImportVillageCoordinates_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(209, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(218, 6);
+            // 
+            // MenuWindowsManageYourAttackersPool
+            // 
+            this.MenuWindowsManageYourAttackersPool.Name = "MenuWindowsManageYourAttackersPool";
+            this.MenuWindowsManageYourAttackersPool.Size = new System.Drawing.Size(221, 22);
+            this.MenuWindowsManageYourAttackersPool.Text = "Manage your attackers pool";
+            this.MenuWindowsManageYourAttackersPool.Click += new System.EventHandler(this.MenuWindowsManageYourAttackersPool_Click);
             // 
             // otherToolStripMenuItem
             // 
             this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuWindowsAddTimes});
             this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            this.otherToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.otherToolStripMenuItem.Text = "Other";
             // 
             // MenuWindowsAddTimes
@@ -1499,6 +1508,7 @@ namespace TribalWars.Forms
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
         private Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl toolStripLocationChangerControl1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem MenuWindowsManageYourAttackersPool;
     }
 }
 

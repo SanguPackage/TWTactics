@@ -625,6 +625,11 @@ namespace TribalWars.Forms
             frm.Show();
         }
 
+        private void MenuWindowsManageYourAttackersPool_Click(object sender, EventArgs e)
+        {
+            AttackersPoolForm.ShowForm();
+        }
+
         private void MenuWindowsAddTimes_Click(object sender, EventArgs e)
         {
             var f = new TimeConverterForm();

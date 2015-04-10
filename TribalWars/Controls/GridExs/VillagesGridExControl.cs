@@ -214,6 +214,11 @@ namespace TribalWars.Controls.GridExs
             GridExVillage.MoveFirst();
         }
 
+        public IEnumerable<Village> GetSelectedVillages()
+        {
+            return GridExVillage.SelectedItems.GetRows<VillageGridExRow>().Select(x => x.Village);
+        }
+
         private void GridExVillage_InitCustomEdit(object sender, InitCustomEditEventArgs e)
         {
             if (e.Column == _columns[VillageFields.Type] && e.Row.RowType == RowType.FilterRow)

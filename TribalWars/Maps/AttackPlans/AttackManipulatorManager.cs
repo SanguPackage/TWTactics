@@ -70,6 +70,11 @@ namespace TribalWars.Maps.AttackPlans
             get { return !_attackersPool.Any(); }
         }
 
+        public ICollection<Village> AttackersPool
+        {
+            get { return _attackersPool; }
+        }
+
         public AttackPlan ActivePlan
         {
             get { return _attacker.ActivePlan; }
