@@ -276,46 +276,130 @@ namespace TribalWars.Maps.AttackPlans
             _attackersPool.AddRange(villages.Distinct());
         }
 
-        public IEnumerable<Village> GetAttackersFromYou(AttackPlan plan, Unit slowestUnit)
+        public IEnumerable<Travelfun> GetAttackersFromYou(AttackPlan plan, Unit slowestUnit)
         {
             return GetAttackers(World.Default.You, plan, slowestUnit);
         }
 
-        public IEnumerable<Village> GetAttackersFromPool(AttackPlan plan, Unit slowestUnit, out bool depleted)
+        public IEnumerable<Travelfun> GetAttackersFromPool(AttackPlan plan, Unit slowestUnit, out bool depleted)
         {
-            Village[] attackers = GetAttackers(_attackersPool, plan, slowestUnit).ToArray();
-            _attackersPool.RemoveAll(attackers.Contains);
+            var attackers = GetAttackers(_attackersPool, plan, slowestUnit).ToArray();
+            _attackersPool.RemoveAll(attackers.Select(x => x.Village).Contains);
 
             depleted = !_attackersPool.Any();
             return attackers;
         }
 
-        private IEnumerable<Village> GetAttackers(IEnumerable<Village> searchIn, AttackPlan plan, Unit slowestUnit)
+        /// <summary>
+        /// When looking for attacks on Ram speed, also include villages that won't reach Ram but do Sword/Axe
+        /// </summary>
+        private static Unit[] GetAcceptableSpeeds(Unit selectedUnit)
         {
-            Village[] villagesAlreadyUsed = GetPlans().SelectMany(x => x.Attacks)
-                                      .Select(x => x.Attacker)
-                                      .ToArray();
-
-            var villagesWithTimeLeft =
-               (from village in searchIn
-                where !villagesAlreadyUsed.Contains(village)
-                let travelTime = Village.TravelTime(plan.Target, village, slowestUnit)
-                let timeBeforeNeedToSend = plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
-                select new
-                {
-                    Village = village,
-                    TimeBeforeNeedToSend = timeBeforeNeedToSend
-                })
-                .OrderBy(x => x.TimeBeforeNeedToSend)
-                .ToArray();
-
-            if (!villagesWithTimeLeft.Any(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft))
+            var acceptableSpeeds = new List<Unit>();
+            if (selectedUnit == null)
             {
-                return villagesWithTimeLeft.OrderByDescending(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackersWhenNone).Select(x => x.Village);
+                acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Axe]);
+                acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Sword]);
+                acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Light]);
+                acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Heavy]);
+                acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Ram]);
             }
             else
             {
-                return villagesWithTimeLeft.Where(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft).Take(AutoFindAmountOfAttackers).Select(x => x.Village);
+                acceptableSpeeds.Add(selectedUnit);
+                switch (selectedUnit.Type)
+                {
+                    case UnitTypes.Axe:
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Light]);
+                        break;
+
+                    case UnitTypes.Spear:
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Heavy]);
+                        break;
+
+                    case UnitTypes.Sword:
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Spear]);
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Heavy]);
+                        break;
+
+                    case UnitTypes.Knight:
+                    case UnitTypes.Snob:
+                    case UnitTypes.Spy:
+                    case UnitTypes.Catapult:
+                        break;
+
+                    case UnitTypes.Ram:
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Axe]);
+                        acceptableSpeeds.Add(WorldUnits.Default[UnitTypes.Sword]);
+                        break;
+                }
+            }
+            return acceptableSpeeds.ToArray();
+        }
+
+        public class Travelfun
+        {
+            public Village Village { get; set; }
+            public Unit Speed { get; set; }
+            public TimeSpan TravelTime { get; set; }
+            public TimeSpan TimeBeforeNeedToSend { get; set; }
+        }
+
+        private IEnumerable<Travelfun> GetAttackers(IEnumerable<Village> searchIn, AttackPlan plan, Unit slowestUnit)
+        {
+            Unit[] acceptableSpeeds = GetAcceptableSpeeds(slowestUnit);
+            Village[] villagesAlreadyUsed = 
+                GetPlans().SelectMany(x => x.Attacks)
+                    .Select(x => x.Attacker)
+                    .ToArray();
+
+            var matchingVillages =
+                (from village in searchIn
+                 where !villagesAlreadyUsed.Contains(village)
+                 select village);
+
+            var villagesWithAllSpeeds =
+                from village in matchingVillages
+                from speed in acceptableSpeeds
+                let travelTime = Village.TravelTime(plan.Target, village, speed)
+                select new Travelfun
+                {
+                    Village = village,
+                    Speed = speed,
+                    TravelTime = travelTime,
+                    TimeBeforeNeedToSend = plan.ArrivalTime - World.Default.Settings.ServerTime.Add(travelTime)
+                };
+
+            var villagesWithBestSpeed =
+                villagesWithAllSpeeds
+                    .GroupBy(x => x.Village)
+                    .Select(x => GetBestSpeedMatch(x.ToList()));
+
+            var villages =
+                villagesWithBestSpeed
+                    .OrderBy(x => x.TimeBeforeNeedToSend)
+                    .ToArray();
+
+            if (!villages.Any(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft))
+            {
+                return villages.OrderByDescending(x => x.TimeBeforeNeedToSend).Take(AutoFindAmountOfAttackersWhenNone);
+            }
+            else
+            {
+                return villages.Where(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft).Take(AutoFindAmountOfAttackers);
+            }
+        }
+
+        private static Travelfun GetBestSpeedMatch(ICollection<Travelfun> speeds)
+        {
+            speeds = speeds.OrderBy(t => t.TimeBeforeNeedToSend).ToList();
+            if (!speeds.Any(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft))
+            {
+                return speeds.OrderByDescending(x => x.TimeBeforeNeedToSend).FirstOrDefault();
+            }
+            else
+            {
+                return speeds.FirstOrDefault(x => x.TimeBeforeNeedToSend.TotalSeconds > AutoFindMinimumAmountOfSecondsLeft);
             }
         }
         #endregion

@@ -47,6 +47,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 }
             }
         }
+
+        private bool IsHelpVisible
+        {
+            get { return AllPlans.Controls.Count == 1 && AllPlans.Controls[0] is AttackHelpControl; }
+        }
         #endregion
 
         #region Constructors
@@ -54,7 +59,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             InitializeComponent();
 
-            _visibleWhenNoPlans = new ToolStripItem[] { VillageInput, cmdAddTarget };
+            _visibleWhenNoPlans = new ToolStripItem[] { VillageInput, VillageInputLabel, cmdAddTarget, cmdAddVillage };
 
             World.Default.EventPublisher.SettingsLoaded += Default_SettingsLoaded;
             World.Default.Map.EventPublisher.TargetAdded += EventPublisherOnTargetAdded;
@@ -163,7 +168,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 ShowHelp();
             }
 
-            foreach (var toolbarItem in toolStrip1.Items.OfType<ToolStripItem>())
+            toolStrip2.Visible = _plans.Any();
+            foreach (var toolbarItem in toolStrip1.Items.OfType<ToolStripItem>().Where(x => x.Tag == null || x.Tag.ToString() != "OWN_VISIBILITY"))
             {
                 if (_plans.Any())
                 {
@@ -217,12 +223,12 @@ namespace TribalWars.Maps.AttackPlans.Controls
             {
                 ActivePlayerForm.AskToSetSelf();
             }
-            else if (ActivePlan != null && UnitInput.Unit != null)
+            else if (ActivePlan != null)
             {
-                IEnumerable<Village> searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromYou(ActivePlan.Plan, UnitInput.Unit);
-                foreach (var village in searchIn)
+                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromYou(ActivePlan.Plan, UnitInput.Unit);
+                foreach (var attacker in searchIn)
                 {
-                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village, UnitInput.Unit));
+                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, attacker.Village, attacker.Speed));
                     World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                 }
 
@@ -239,15 +245,15 @@ namespace TribalWars.Maps.AttackPlans.Controls
             else if (ActivePlan != null && UnitInput.Unit != null)
             {
                 bool depleted;
-                IEnumerable<Village> searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, out depleted);
+                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, out depleted);
                 if (depleted)
                 {
                     MessageBox.Show("Attackers pool depleted!", "Attackers pool");
                 }
 
-                foreach (var village in searchIn)
+                foreach (var attacker in searchIn)
                 {
-                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, village, UnitInput.Unit));
+                    var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, attacker.Village, attacker.Speed));
                     World.Default.Map.EventPublisher.AttackUpdateTarget(this, attackEventArgs);
                 }
 
@@ -281,9 +287,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
         private void AddPlan(AttackPlan plan)
         {
-            if (AllPlans.Controls.Count == 1 && AllPlans.Controls[0] is AttackHelpControl)
+            if (IsHelpVisible)
             {
-                toolStrip1.Items.OfType<ToolStripItem>().ForEach(x => x.Visible = true);
+                toolStrip1.Items.OfType<ToolStripItem>().Where(x => x.Tag == null || x.Tag.ToString() != "OWN_VISIBILITY").ForEach(x => x.Visible = true);
+                toolStrip2.Visible = true;
                 AllPlans.Controls.Clear();
             }
 
@@ -379,7 +386,16 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
         private void UnitInput_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed = UnitInput.Unit.Type;
+            if (UnitInput.Unit != null)
+            {
+                World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed = UnitInput.Unit.Type;
+            }
+        }
+
+        private void VillageInput_TextChanged(object sender, EventArgs e)
+        {
+            cmdAddTarget.Visible = VillageInput.Village != null;
+            cmdAddVillage.Visible = VillageInput.Village != null && _activePlan != null;
         }
     }
 }

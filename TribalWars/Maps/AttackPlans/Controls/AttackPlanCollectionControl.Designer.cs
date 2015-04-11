@@ -35,6 +35,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackPlanCollectionControl));
             this.Collection = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.AttackDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.cmdClipboard = new System.Windows.Forms.ToolStripDropDownButton();
             this.cmdClipboardText = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,20 +43,22 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdClipboardTextAll = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdClipboardBBCodeAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmdSort = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdClear = new System.Windows.Forms.ToolStripButton();
+            this.VillageInputLabel = new System.Windows.Forms.ToolStripLabel();
             this.VillageInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox();
             this.cmdAddVillage = new System.Windows.Forms.ToolStripButton();
             this.cmdAddTarget = new System.Windows.Forms.ToolStripButton();
             this.AllPlans = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.VillageTypeInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
             this.UnitInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
             this.cmdFind = new System.Windows.Forms.ToolStripButton();
             this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdSort = new System.Windows.Forms.ToolStripButton();
+            this.cmdClear = new System.Windows.Forms.ToolStripButton();
             this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.Collection.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -82,11 +85,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
             this.AttackDropDown,
             this.cmdClipboard,
-            this.cmdSort,
             this.toolStripSeparator1,
-            this.cmdClear,
+            this.VillageInputLabel,
             this.VillageInput,
             this.cmdAddVillage,
             this.cmdAddTarget});
@@ -96,6 +99,12 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.toolStrip1.Size = new System.Drawing.Size(319, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel3.Text = "Export:";
             // 
             // AttackDropDown
             // 
@@ -154,30 +163,16 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdClipboardBBCodeAll.Text = "All Attacks (BBCode)";
             this.cmdClipboardBBCodeAll.Click += new System.EventHandler(this.cmdClipboardBBCodeAll_Click);
             // 
-            // cmdSort
-            // 
-            this.cmdSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdSort.Image = ((System.Drawing.Image)(resources.GetObject("cmdSort.Image")));
-            this.cmdSort.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdSort.Name = "cmdSort";
-            this.cmdSort.Size = new System.Drawing.Size(23, 22);
-            this.cmdSort.Text = "Sort attacks on travel time";
-            this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // cmdClear
+            // VillageInputLabel
             // 
-            this.cmdClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdClear.Image = ((System.Drawing.Image)(resources.GetObject("cmdClear.Image")));
-            this.cmdClear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(23, 22);
-            this.cmdClear.Text = "Remove all attacks on currently selected plan";
-            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
+            this.VillageInputLabel.Name = "VillageInputLabel";
+            this.VillageInputLabel.Size = new System.Drawing.Size(74, 22);
+            this.VillageInputLabel.Text = "Coordinates:";
             // 
             // VillageInput
             // 
@@ -191,6 +186,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.VillageInput.Size = new System.Drawing.Size(60, 23);
             this.VillageInput.Tribe = null;
             this.VillageInput.Village = null;
+            this.VillageInput.TextChanged += new System.EventHandler(this.VillageInput_TextChanged);
             // 
             // cmdAddVillage
             // 
@@ -199,8 +195,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdAddVillage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdAddVillage.Name = "cmdAddVillage";
             this.cmdAddVillage.Size = new System.Drawing.Size(23, 22);
+            this.cmdAddVillage.Tag = "OWN_VISIBILITY";
             this.cmdAddVillage.Text = "A";
             this.cmdAddVillage.ToolTipText = "Attack current target from selected village";
+            this.cmdAddVillage.Visible = false;
             this.cmdAddVillage.Click += new System.EventHandler(this.cmdAddVillage_Click);
             // 
             // cmdAddTarget
@@ -210,8 +208,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.cmdAddTarget.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdAddTarget.Name = "cmdAddTarget";
             this.cmdAddTarget.Size = new System.Drawing.Size(23, 22);
+            this.cmdAddTarget.Tag = "OWN_VISIBILITY";
             this.cmdAddTarget.Text = "T";
             this.cmdAddTarget.ToolTipText = "Add target village";
+            this.cmdAddTarget.Visible = false;
             this.cmdAddTarget.Click += new System.EventHandler(this.cmdAddTarget_Click);
             // 
             // AllPlans
@@ -231,12 +231,21 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.VillageTypeInput,
             this.UnitInput,
             this.cmdFind,
-            this.cmdFindPool});
+            this.cmdFindPool,
+            this.toolStripSeparator2,
+            this.cmdSort,
+            this.cmdClear});
             this.toolStrip2.Location = new System.Drawing.Point(0, 25);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(319, 25);
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
+            this.toolStripLabel1.Text = "Quick find:";
             // 
             // VillageTypeInput
             // 
@@ -280,16 +289,35 @@ namespace TribalWars.Maps.AttackPlans.Controls
     "ur villages\' Window.";
             this.cmdFindPool.Click += new System.EventHandler(this.cmdFindPool_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cmdSort
+            // 
+            this.cmdSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cmdSort.Image = ((System.Drawing.Image)(resources.GetObject("cmdSort.Image")));
+            this.cmdSort.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdSort.Name = "cmdSort";
+            this.cmdSort.Size = new System.Drawing.Size(23, 22);
+            this.cmdSort.Text = "Sort attacks on travel time";
+            this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
+            // 
+            // cmdClear
+            // 
+            this.cmdClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cmdClear.Image = ((System.Drawing.Image)(resources.GetObject("cmdClear.Image")));
+            this.cmdClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdClear.Name = "cmdClear";
+            this.cmdClear.Size = new System.Drawing.Size(23, 22);
+            this.cmdClear.Text = "Remove all attacks on currently selected plan";
+            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
+            // 
             // Timer
             // 
             this.Timer.Interval = 1000;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
-            this.toolStripLabel1.Text = "Quick find:";
             // 
             // AttackPlanCollectionControl
             // 
@@ -334,5 +362,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private System.Windows.Forms.ToolStrip toolStrip2;
         private ToolStripUnitsImageCombobox VillageTypeInput;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripLabel VillageInputLabel;
     }
 }

@@ -177,6 +177,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.UnitBox.FormattingEnabled = true;
             this.UnitBox.ItemHeight = 20;
             this.UnitBox.Location = new System.Drawing.Point(2, 30);
+            this.UnitBox.MaxDropDownItems = 9;
             this.UnitBox.Name = "UnitBox";
             this.UnitBox.Size = new System.Drawing.Size(75, 26);
             this.UnitBox.TabIndex = 2;
