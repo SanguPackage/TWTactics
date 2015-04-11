@@ -225,7 +225,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
             }
             else if (ActivePlan != null)
             {
-                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromYou(ActivePlan.Plan, UnitInput.Unit);
+                VillageType? villageType = GetSelectedVillageTypeFilter();
+                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromYou(ActivePlan.Plan, UnitInput.Unit, villageType);
                 foreach (var attacker in searchIn)
                 {
                     var attackEventArgs = AttackUpdateEventArgs.AddAttackFrom(new AttackPlanFrom(ActivePlan.Plan, attacker.Village, attacker.Speed));
@@ -236,6 +237,15 @@ namespace TribalWars.Maps.AttackPlans.Controls
             }
         }
 
+        private VillageType? GetSelectedVillageTypeFilter()
+        {
+            if (VillageTypeInput.Combobox.SelectedIndex > 0)
+            {
+                return VillageTypeHelper.GetVillageType(VillageTypeInput.Combobox.SelectedIndex);
+            }
+            return null;
+        }
+
         private void cmdFindPool_Click(object sender, EventArgs e)
         {
             if (World.Default.Map.Manipulators.AttackManipulator.IsAttackersPoolEmpty)
@@ -244,8 +254,10 @@ namespace TribalWars.Maps.AttackPlans.Controls
             }
             else if (ActivePlan != null && UnitInput.Unit != null)
             {
+                VillageType? villageType = GetSelectedVillageTypeFilter();
+
                 bool depleted;
-                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, out depleted);
+                var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, villageType, out depleted);
                 if (depleted)
                 {
                     MessageBox.Show("Attackers pool depleted!", "Attackers pool");

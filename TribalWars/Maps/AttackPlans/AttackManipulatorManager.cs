@@ -276,14 +276,14 @@ namespace TribalWars.Maps.AttackPlans
             _attackersPool.AddRange(villages.Distinct());
         }
 
-        public IEnumerable<Travelfun> GetAttackersFromYou(AttackPlan plan, Unit slowestUnit)
+        public IEnumerable<Travelfun> GetAttackersFromYou(AttackPlan plan, Unit slowestUnit, VillageType? villageType)
         {
-            return GetAttackers(World.Default.You, plan, slowestUnit);
+            return GetAttackers(World.Default.You, plan, slowestUnit, villageType);
         }
 
-        public IEnumerable<Travelfun> GetAttackersFromPool(AttackPlan plan, Unit slowestUnit, out bool depleted)
+        public IEnumerable<Travelfun> GetAttackersFromPool(AttackPlan plan, Unit slowestUnit, VillageType? villageType, out bool depleted)
         {
-            var attackers = GetAttackers(_attackersPool, plan, slowestUnit).ToArray();
+            var attackers = GetAttackers(_attackersPool, plan, slowestUnit, villageType).ToArray();
             _attackersPool.RemoveAll(attackers.Select(x => x.Village).Contains);
 
             depleted = !_attackersPool.Any();
@@ -345,7 +345,7 @@ namespace TribalWars.Maps.AttackPlans
             public TimeSpan TimeBeforeNeedToSend { get; set; }
         }
 
-        private IEnumerable<Travelfun> GetAttackers(IEnumerable<Village> searchIn, AttackPlan plan, Unit slowestUnit)
+        private IEnumerable<Travelfun> GetAttackers(IEnumerable<Village> searchIn, AttackPlan plan, Unit slowestUnit, VillageType? villageType)
         {
             Unit[] acceptableSpeeds = GetAcceptableSpeeds(slowestUnit);
             Village[] villagesAlreadyUsed = 
@@ -357,6 +357,11 @@ namespace TribalWars.Maps.AttackPlans
                 (from village in searchIn
                  where !villagesAlreadyUsed.Contains(village)
                  select village);
+
+            if (villageType != null)
+            {
+                matchingVillages = matchingVillages.Where(x => x.Type.HasFlag(villageType));
+            }
 
             var villagesWithAllSpeeds =
                 from village in matchingVillages

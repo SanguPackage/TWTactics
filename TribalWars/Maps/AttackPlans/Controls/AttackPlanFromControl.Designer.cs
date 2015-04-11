@@ -181,6 +181,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.UnitBox.Name = "UnitBox";
             this.UnitBox.Size = new System.Drawing.Size(75, 26);
             this.UnitBox.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.UnitBox, "Select the slowest unit of the attack");
             this.UnitBox.SelectedIndexChanged += new System.EventHandler(this.Unit_SelectedIndexChanged);
             // 
             // AttackPlanFromControl
