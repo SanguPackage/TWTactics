@@ -138,8 +138,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
         private void Default_SettingsLoaded(object sender, EventArgs e)
         {
-            UnitInput.Combobox.ImageList = WorldUnits.Default.ImageList;
-            UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position;
+            UnitInput.SetWorldUnits(true);
+            UnitInput.Combobox.SelectedIndex = WorldUnits.Default[UnitTypes.Ram].Position + 1; // +1: First Image is null in the Combobox.ImageList
             World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed = UnitTypes.Ram;
 
             VillageTypeInput.Combobox.ImageList = VillageTypeHelper.GetImageList();
@@ -379,7 +379,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
         private void UnitInput_Click(object sender, EventArgs e)
         {
-            World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed = (UnitTypes)UnitInput.Combobox.SelectedIndex;
+            World.Default.Map.Manipulators.AttackManipulator.DefaultSpeed = UnitInput.Unit.Type;
         }
     }
 }

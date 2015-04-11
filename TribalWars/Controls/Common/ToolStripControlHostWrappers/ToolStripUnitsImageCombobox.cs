@@ -11,6 +11,8 @@ namespace TribalWars.Controls.Common.ToolStripControlHostWrappers
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.ToolStrip)]
     public class ToolStripUnitsImageCombobox : ToolStripControlHost
     {
+        private bool _allowEmpty;
+
         #region Properties
         /// <summary>
         /// Gets the underlying ImageCombobox
@@ -30,6 +32,10 @@ namespace TribalWars.Controls.Common.ToolStripControlHostWrappers
                 if (World.Default.HasLoaded)
                 {
                     int i = Combobox.SelectedIndex;
+                    if (_allowEmpty)
+                    {
+                        return i == 0 ? null : WorldUnits.Default[i - 1];
+                    }
                     return WorldUnits.Default[i];
                 }
                 return null;
@@ -46,5 +52,11 @@ namespace TribalWars.Controls.Common.ToolStripControlHostWrappers
             ToolTipText = string.Empty;
         }
         #endregion
+
+        public void SetWorldUnits(bool addEmpty)
+        {
+            _allowEmpty = addEmpty;
+            Combobox.ImageList = WorldUnits.Default.GetImageList(addEmpty);
+        }
     }
 }

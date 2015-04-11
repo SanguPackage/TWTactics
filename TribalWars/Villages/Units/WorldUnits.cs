@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace TribalWars.Villages.Units
 {
@@ -8,8 +11,6 @@ namespace TribalWars.Villages.Units
     public class WorldUnits : IEnumerable<Unit>
     {
         #region Fields
-        private System.Windows.Forms.ImageList _list;
-
         private static Dictionary<UnitTypes, Unit> _units;
         #endregion
 
@@ -18,20 +19,23 @@ namespace TribalWars.Villages.Units
         /// Gets the ImageList with all unit images
         /// </summary>
         /// <remarks>Used in ImageListComboboxes</remarks>
-        public System.Windows.Forms.ImageList ImageList
+        public ImageList ImageList
         {
-            get
+            get { return GetImageList(false); }
+        }
+
+        public ImageList GetImageList(bool addEmpty)
+        {
+            var list = new ImageList();
+            if (addEmpty)
             {
-                if (_list == null)
-                {
-                    _list = new System.Windows.Forms.ImageList();
-                    foreach (Unit u in this)
-                    {
-                        _list.Images.Add(u.Image);
-                    }
-                }
-                return _list;
+                list.Images.Add(new Bitmap(18, 18));
             }
+            foreach (Unit u in this)
+            {
+                list.Images.Add(u.Image);
+            }
+            return list;
         }
         #endregion
 
@@ -41,15 +45,7 @@ namespace TribalWars.Villages.Units
         /// </summary>
         public Unit this[int position]
         {
-            get
-            {
-                foreach (Unit u in _units.Values)
-                {
-                    if (u.Position == position)
-                        return u;
-                }
-                return null;
-            }
+            get { return _units.Values.FirstOrDefault(u => u.Position == position); }
         }
 
         /// <summary>
@@ -90,7 +86,6 @@ namespace TribalWars.Villages.Units
         #region Public Methods
         public void SetUnits(Dictionary<UnitTypes, Unit> units)
         {
-            _list = null;
             _units = units;
         }
         #endregion

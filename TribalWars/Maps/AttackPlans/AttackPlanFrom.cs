@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using TribalWars.Villages;
 using TribalWars.Villages.Units;
 using TribalWars.Worlds;
@@ -38,6 +39,8 @@ namespace TribalWars.Maps.AttackPlans
         #region Constructors
         public AttackPlanFrom(AttackPlan plan, Village attacker, Unit slowestUnit)
         {
+            Debug.Assert(slowestUnit != null);
+
             Plan = plan;
             Attacker = attacker;
             SlowestUnit = slowestUnit;

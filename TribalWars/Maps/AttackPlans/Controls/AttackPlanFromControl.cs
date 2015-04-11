@@ -60,10 +60,12 @@ namespace TribalWars.Maps.AttackPlans.Controls
             if (World.Default.Map.Manipulators.AttackManipulator.Settings.ShowArrivalTimeWhenSentNow)
             {
                 DateNow.Text = Tools.Common.GetPrettyDate(World.Default.Settings.ServerTime + Attacker.TravelTime);
+                toolTip1.SetToolTip(DateNow, "Arrival time when sent NOW");
             }
             else
             {
                 DateNow.Text = "Send troops:";
+                toolTip1.SetToolTip(DateNow, "");
             }
             
 

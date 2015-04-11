@@ -90,7 +90,6 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.DateNow.Size = new System.Drawing.Size(129, 18);
             this.DateNow.TabIndex = 3;
             this.DateNow.Text = "tomorrow at 24:55:45";
-            this.toolTip1.SetToolTip(this.DateNow, "Arrival time when sent NOW");
             this.DateNow.DoubleClick += new System.EventHandler(this.AttackPlanFromControl_DoubleClick);
             this.DateNow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AttackPlanFromControl_MouseClick);
             // 
