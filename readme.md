@@ -11,10 +11,10 @@ The error you get is: **Access to the registry key '...' is denied** whenever yo
 
 Contributing is not only possible but the main reason the project is hosted here on GitHub. It's probably a good idea to contact me before implementing any major new features though.  
 
-### License ###
-
-See LICENSE.txt
-
 ### Author ###
 
 Wouter 'Laoujin' Van Schandevijl (woutervs@hotmail.com)
+
+### License ###
+
+MIT Copyright (c) 2015 Wouter Van Schandevijl
