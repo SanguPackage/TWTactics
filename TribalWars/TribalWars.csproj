@@ -583,7 +583,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorldTemplate\TacticsUnit.cs" />
-    <Compile Include="WorldTemplate\WorldSettings.designer.cs">
+    <Compile Include="WorldTemplate\WorldSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldSettings.xsd</DependentUpon>
