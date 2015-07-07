@@ -28,11 +28,7 @@ namespace TribalWars.Forms
 
         private void VillageCoordinatesImporterForm_HelpButtonClicked(object sender, CancelEventArgs e)
         {
-            MessageBox.Show(
-                "Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right."
-                + Environment.NewLine + Environment.NewLine + "Use Control + A to select all imported villages. Right click to set their purpose or to attack them."
-                + Environment.NewLine + Environment.NewLine + "You can find more information at Windows > 'Manage your villages' :)",
-                "Import village coordinates?");
+            MessageBox.Show(FormRes.VillageCoordinatesImporterForm_Help, FormRes.VillageCoordinatesImporterForm_Help_Title);
         }
 
         private void playerTribeDropdown1_PlayerSelected(object sender, Worlds.Events.Impls.PlayerEventArgs e)

@@ -189,6 +189,21 @@
     <Compile Include="Controls\XPTables\PlayerTableRow.cs" />
     <Compile Include="Controls\XPTables\TribeTableRow.cs" />
     <Compile Include="Controls\XPTables\VillageTableRow.cs" />
+    <Compile Include="Forms\FormRes.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormRes.nl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRes.nl1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormRes.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewWorldForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -626,6 +641,27 @@
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRes.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormRes.nl1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoadWorldForm.en.resx">
+      <DependentUpon>LoadWorldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoadWorldForm.nl.resx">
+      <DependentUpon>LoadWorldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewWorldForm.en.resx">
+      <DependentUpon>NewWorldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewWorldForm.nl.resx">
+      <DependentUpon>NewWorldForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewWorldForm.resx">
       <DependentUpon>NewWorldForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -638,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\TimeConverterForm.resx">
       <DependentUpon>TimeConverterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.nl.resx">
+      <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.resx">
       <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>

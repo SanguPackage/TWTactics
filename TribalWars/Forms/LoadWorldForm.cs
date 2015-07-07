@@ -39,6 +39,9 @@ namespace TribalWars.Forms
         #region Events
         private void LoadWorldForm_Load(object sender, EventArgs e)
         {
+	        WorldSettings.Columns[0].Text = FormRes.LoadWorldForm_SettingsGrid_ColumnName;
+			WorldSettings.Columns[1].Text = FormRes.LoadWorldForm_SettingsGrid_ColumnCreatedAt;
+
             // Load last selected world
             FillTree();
             if (Worlds.Nodes.ContainsKey(Properties.Settings.Default.LastWorld))
@@ -59,7 +62,7 @@ namespace TribalWars.Forms
             string pathData = FindSelectedWorldDataPath();
             if (path.Length == 0)
             {
-                MessageBox.Show("No world selected!");
+                MessageBox.Show(FormRes.LoadWorldForm_NoWorldSelected);
             }
             else
             {

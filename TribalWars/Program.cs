@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using TribalWars.Forms;
 
@@ -13,6 +15,9 @@ namespace TribalWars
         [STAThread]
         static void Main()
         {
+			Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("nl-BE");
+			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nl-BE");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

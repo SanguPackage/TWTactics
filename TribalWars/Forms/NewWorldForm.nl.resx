@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,50 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;Servers.Parent" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <data name="&gt;&gt;btnNewWorld.Name" xml:space="preserve">
-    <value>btnNewWorld</value>
-  </data>
-  <data name="&gt;&gt;worldLabel.Name" xml:space="preserve">
-    <value>worldLabel</value>
-  </data>
-  <data name="&gt;&gt;CreateANewWorldGroupbox.Name" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="worldLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="&gt;&gt;AvailableWorlds.Parent" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <data name="&gt;&gt;CreateANewWorldGroupbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Servers.Name" xml:space="preserve">
-    <value>Servers</value>
-  </data>
-  <data name="AvailableWorlds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 46</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="serverLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="AvailableWorlds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 21</value>
-  </data>
-  <data name="&gt;&gt;Servers.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="IconList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACW
-        CgAAAk1TRnQBSQFMAgEBAwEAAXQBAAGEAQABEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAAYgBAAGIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -205,173 +167,23 @@
         Af8BhwIAAeABAQHgAQAB4AEHAgABwAEDAYABAQHwAwABwAEBAQABAQHwAQcCAAGAAQEBgAEBAfABHwIA
         AYABAQGAAQEB8AEPAgABgAEBAcABAQHwAQMCAAGAAQEBwAEBAeABAQIAAYABAQHgAQEBwAEHAgABgAEB
         AeABAQGAAT8CAAHAAQEB8AEBAfwBfwIAAcABAwH4AQEB/AF/AgABwAEHAfgBAwH8AX8CAAHgAQ8C/wH8
-        AX8CAAH9A/8B/gH/GAAL
+        AX8CAAH9A/8B/gH/AgAL
 </value>
   </data>
-  <data name="btnNewWorld.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 43</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AvailableWorlds.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>NewWorldForm</value>
-  </data>
-  <data name="&gt;&gt;Servers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnNewWorld.Text" xml:space="preserve">
-    <value>&amp;Create New World</value>
+    <value>&amp;Maak Nieuwe Wereld</value>
   </data>
-  <data name="worldLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnNewWorld.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="worldLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 49</value>
-  </data>
-  <data name="&gt;&gt;AvailableWorlds.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnNewWorld.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>257, 147</value>
-  </data>
-  <data name="&gt;&gt;worldLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="Servers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 21</value>
-  </data>
-  <data name="btnNewWorld.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="Servers.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="AvailableWorlds.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.Name" xml:space="preserve">
-    <value>serverLabel</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Servers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 19</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CreateANewWorldGroupbox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="CreateANewWorldGroupbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 123</value>
-  </data>
-  <data name="serverLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="CreateANewWorldGroupbox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;IconList.Name" xml:space="preserve">
-    <value>IconList</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.Parent" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;worldLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="CreateANewWorldGroupbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="btnNewWorld.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 73</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="worldLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
   </data>
   <data name="worldLabel.Text" xml:space="preserve">
-    <value>World:</value>
-  </data>
-  <data name="&gt;&gt;btnNewWorld.Parent" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <data name="&gt;&gt;AvailableWorlds.Name" xml:space="preserve">
-    <value>AvailableWorlds</value>
-  </data>
-  <data name="&gt;&gt;CreateANewWorldGroupbox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="worldLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;worldLabel.Parent" xml:space="preserve">
-    <value>CreateANewWorldGroupbox</value>
-  </data>
-  <data name="serverLabel.Text" xml:space="preserve">
-    <value>Server:</value>
+    <value>Wereld:</value>
   </data>
   <data name="CreateANewWorldGroupbox.Text" xml:space="preserve">
-    <value>Create a new world</value>
-  </data>
-  <data name="&gt;&gt;OpenFolder.Name" xml:space="preserve">
-    <value>OpenFolder</value>
-  </data>
-  <data name="&gt;&gt;btnNewWorld.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;OpenFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Servers.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="serverLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;AvailableWorlds.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>Maak een nieuwe wereld</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Create World</value>
+    <value>Maak Wereld</value>
   </data>
-  <data name="serverLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
-  </data>
-  <data name="&gt;&gt;IconList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnNewWorld.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>nl</value>
-  </metadata>
-  <metadata name="OpenFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>107, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>58</value>
-  </metadata>
-  <metadata name="IconList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

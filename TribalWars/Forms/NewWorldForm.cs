@@ -76,13 +76,11 @@ namespace TribalWars.Forms
             string selectYouLater = "";
             if (World.Default.You.Empty)
             {
-                selectYouLater = Environment.NewLine + Environment.NewLine + "You can later still specify yourself through the World -> 'Select Active Player' menu.";
-                selectYouLater += Environment.NewLine + Environment.NewLine + "Note that for example planning attacks will work much easier when you have selected yourself.";
+                selectYouLater = Environment.NewLine + Environment.NewLine + FormRes.NewWorldForm_Created_NoYou1;
+                selectYouLater += Environment.NewLine + Environment.NewLine + FormRes.NewWorldForm_Created_NoYou2;
             }
 
-            MessageBox.Show(@"A new world has been created!
-
-Right click a village if you don't know where to start." + selectYouLater, "World Created!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(FormRes.NewWorldForm_Created + selectYouLater, FormRes.NewWorldForm_CreatedTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             Close();
         }
