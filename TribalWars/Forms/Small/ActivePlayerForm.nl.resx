@@ -117,44 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActivePlayerForm_AskToSetSelf" xml:space="preserve">
-    <value>Select Active Player</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="OkButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAyRJREFUOE91kl1Ik2EYhp8151xH2UbgQA8kEBeEIcxlgWW1Ncy1Wmo4y2qLXGv9
+        aOhq+UOZ5tLWjz+btqbT1Vw2K8taRpqUYEGxOoigQorOrE46Cre7d58riOqGC773/e7nee73ez/6S3mU
+        oKxXamv9tZ2uh6773WPdoTp/navwZGGxrEiWGHf9W3KrXNl4s/Gdf9qPwPMAgi+CGH45zD17J7045j32
+        UX5Aro3b/9SK6hX7mkaa5tpCbega74JnyoOB6QH4nvnQN9UH14QLjnsOVF2uiqZsS6mOl80rzZiWX+Gu
+        mKsZqsGpkVNoDbWi/VE7nBNOOB870THeAceYA6dHTsM2aIP6hDoqyhf9TrJAbpO/MVwxwHLNgppgDRru
+        NKDpfhPsD+ywj9nRHGpG/VA92oJtOOw7DEOHAUkbkj7RUhJSqj5VmXU8C8XdxdjdvxvmgBmVw5Wwjlhh
+        u2vjsAasCL8N4/az2zD2G1HaXorFWxcjaVVSMckOyuwSiwQFXQUo8hRhx9UdMF43wjRsgvmWGaaACU/C
+        TxCNRjH6YhQlnhJoLmqwULcQ/JX8blpetTxAewk553OgcquweWAzdP06lF8rhz6ox4XRC4hEIvj89TMq
+        g5VQu9VQtChAWgJPwXtAsiOyQaogJDckI7cnl5sw+WoS0++mofVoMfttFjOzM9D5dMj35WN1z2osOrpo
+        vkEOL0SZhzKbYw3oOEF8TgyVV4Wn759ykSfCE/jy/Qs0AQ0UAQWy+7MhbhGD9jN/IYGfw++ijJ0Za0Um
+        EdeA7ITEzkRI3VL0vexDJBrBrtFdyLiRAemAFIJLAlA98xkZSoJIIdoSu0ZeijklTFVs8wyjk9HL4vXy
+        oLunA11lax/DzTjHqGZsZ9Pz+B8omwTcj7DMtCw3wZjwg2zspSNujhUNMvwML6OdEZtuYKgokrwmWcUV
+        /5LMItPzjLwf3FHOMmJJehhORmxyLYPdFm2iOfFGsSle9qekZdJcYbnwNfeRYlFjzawMC6OMINAI3i7R
+        LFkft/9XvDR92jrJHkmLsEx4XVgqHJKUSVrTS9LVVET8uCcuop/8F6jSzlkfUQAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="ActivePlayerForm_AskToSetSelf_Title" xml:space="preserve">
-    <value>You have not yet selected yourself.
-Set yourself now?</value>
+  <data name="SelectYourselfGroupbox.Text" xml:space="preserve">
+    <value>Jezelf selecteren</value>
   </data>
-  <data name="LoadWorldForm_NoWorldSelected" xml:space="preserve">
-    <value>No world selected!</value>
+  <data name="SelectYourVillagesMarkerGroupbox.Text" xml:space="preserve">
+    <value>Zet de markering voor jouw dorpen</value>
   </data>
-  <data name="LoadWorldForm_SettingsGrid_ColumnCreatedAt" xml:space="preserve">
-    <value>Created on</value>
+  <data name="SelectYourTribeMarkersGroupbox.Text" xml:space="preserve">
+    <value>Zet de markering voor spelers in je stam</value>
   </data>
-  <data name="LoadWorldForm_SettingsGrid_ColumnName" xml:space="preserve">
-    <value>Name</value>
+  <data name="WhySetMeGroupbox.Text" xml:space="preserve">
+    <value>Waarom zou ik zeggen wie ik ben?</value>
   </data>
-  <data name="NewWorldForm_Created" xml:space="preserve">
-    <value>A new world has been created!
+  <data name="WhySetMeLabel.Text" xml:space="preserve">
+    <value>TWTactics reageert verschillend wanneer een dorp tot je stam, tot jezelf of tot de vijand behoort.
 
-Right click a village if you don't know where to start.</value>
-  </data>
-  <data name="NewWorldForm_CreatedTitle" xml:space="preserve">
-    <value>World Created!</value>
-  </data>
-  <data name="NewWorldForm_Created_NoYou1" xml:space="preserve">
-    <value>You can later still specify yourself through the World -&gt; 'Select Active Player' menu.</value>
-  </data>
-  <data name="NewWorldForm_Created_NoYou2" xml:space="preserve">
-    <value>Note that for example planning attacks will work much easier when you have selected yourself.</value>
-  </data>
-  <data name="VillageCoordinatesImporterForm_Help" xml:space="preserve">
-    <value>Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right.
+Vooral de aanvalsplanner kan je veel beter bijstaan wanneer je jezelf selecteert.
 
-Use Control + A to select all imported villages. Right click to set their purpose or to attack them.
-
-You can find more information at Windows &gt; 'Manage your villages' :)</value>
+Je kan jezelf later nog altijd selecteren in het hoofdmenu.</value>
   </data>
-  <data name="VillageCoordinatesImporterForm_Help_Title" xml:space="preserve">
-    <value>Import village coordinates?</value>
+  <data name="HowToMarkersWorkLabel.Text" xml:space="preserve">
+    <value>Hieronder kan je specifiëren hoe precies je je eigen dorpen en de dorpen van jouw stam wil tonen op de kaart. De eerste is de hoofdkleur die gebruikt wordt als achtergrondkleur. De tweede, secundaire, kleur is optioneel.
+Het idee is om een hoofdkleur zonder secundaire kleur te gebruiken om stammen te markeren en om spelers binnen die stam die je specifiek in de gaten wil houden dezelfde hoofdkleur maar met een sucundaire kleur te geven.</value>
+  </data>
+  <data name="HowDoMarkersWorkGroupbox.Text" xml:space="preserve">
+    <value>Hoe werken de markeringen?</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Actieve speler selecteren</value>
   </data>
 </root>

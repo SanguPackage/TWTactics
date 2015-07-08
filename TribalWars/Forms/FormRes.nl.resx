@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivePlayerForm_AskToSetSelf" xml:space="preserve">
+    <value>Je hebt jezelf nog niet geselecteerd.
+Nu doen?</value>
+  </data>
+  <data name="ActivePlayerForm_AskToSetSelf_Title" xml:space="preserve">
+    <value>Actieve speler selecteren</value>
+  </data>
   <data name="LoadWorldForm_NoWorldSelected" xml:space="preserve">
     <value>Geen wereld geselecteerd!</value>
   </data>

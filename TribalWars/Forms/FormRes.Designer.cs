@@ -61,6 +61,25 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Active Player.
+        /// </summary>
+        internal static string ActivePlayerForm_AskToSetSelf {
+            get {
+                return ResourceManager.GetString("ActivePlayerForm_AskToSetSelf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not yet selected yourself.
+        ///Set yourself now?.
+        /// </summary>
+        internal static string ActivePlayerForm_AskToSetSelf_Title {
+            get {
+                return ResourceManager.GetString("ActivePlayerForm_AskToSetSelf_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No world selected!.
         /// </summary>
         internal static string LoadWorldForm_NoWorldSelected {

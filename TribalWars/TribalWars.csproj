@@ -682,6 +682,12 @@
     <EmbeddedResource Include="Forms\Small\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\ActivePlayerForm.en.resx">
+      <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\ActivePlayerForm.nl.resx">
+      <DependentUpon>ActivePlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </EmbeddedResource>

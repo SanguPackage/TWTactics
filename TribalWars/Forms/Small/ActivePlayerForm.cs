@@ -83,8 +83,8 @@ namespace TribalWars.Forms.Small
         public static void AskToSetSelf()
         {
             if (MessageBox.Show(
-                    "You have not yet selected yourself.\nSet yourself now?",
-                    "Select Active Player",
+                    FormRes.ActivePlayerForm_AskToSetSelf,
+                    FormRes.ActivePlayerForm_AskToSetSelf_Title,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information) == DialogResult.Yes)
             {
