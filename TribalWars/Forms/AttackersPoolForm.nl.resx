@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HelpLabel.Text" xml:space="preserve">
+    <value>Voeg dorpen toe aan de aanvalsgroep via 'Mijn dorpen beheren' of 'Dorpscoordinaten importeren'. Of door rechts te klikken in een van je op de kaart getekende clusters.</value>
+  </data>
+  <data name="ReloadButton.Text" xml:space="preserve">
+    <value>Aanvalsgroep opnieuw laden</value>
+  </data>
+  <data name="ClearButton.Text" xml:space="preserve">
+    <value>Aanvalsgroup leegmaken</value>
+  </data>
+  <data name="RemoveSelectedButton.Text" xml:space="preserve">
+    <value>Geselecteerde dorpen uit de aanvalsgroep halen</value>
+  </data>
+  <data name="VillagesInAttackersPoolGroupbox.Text" xml:space="preserve">
+    <value>Dorpen in je aanvalsgroep</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAA
+        AAD///8B////Af///wH///8B////Af///wH///8B////Af///wH///8B////Af///wH///8B////Af//
+        /wH///8B////Af///wH///8BB3/ZEQd50BMIZLID////Af///wH///8B////AQhdsgMHZrMTB2m0Ef//
+        /wH///8B////Af///wH///8B////AQeB3UMGedB9BWi1OwVdpAn///8B////AQVdngkEXaM7BWOsfQVn
+        sUP///8B////Af///wH///8B////Af///wEHiO01Bn3YvwVtvMcEXJ9nBlaYFwZWmBcEWZlnBFyexwRf
+        pL8EZKs1////Af///wH///8B////Af///wH///8BC5L8EweI658GeM//BWSs5wRanJ0EWJidBFma5wRc
+        nv8EXaGfBV6rE////wH///8B////Af///wH///8B////ARSd/wMHj/d5B4bn8QZ2y/8FaLT7BWOq+wVg
+        pv8EXqLxA1ufeQBOsQP///8B////Af///wH///8B////Af///wH///8BBZH7VQeP9t0HiOr/Bn/a/wZ2
+        yv8FbLv/BWKp3QRZnFX///8B////Af///wH///8B////Af///wH///8BCZH9Lw2V/LMSl/z7E5f7/wyT
+        +v8Hiez/BnzV/wVruvsDX6WzAliaL////wH///8B////Af///wEhnv4NGpr9WR2c/dkoof3/MKT9/y+k
+        /f8ln/3/FJf8/wmO9P8HguD/BnXK/wZrutkFa7pZBHbNDf///wEnov4HKqL9VzGk/c0+qv3jSK7950qw
+        /e1Grv37Oaj9/yWf/f8Wmf37DZT77QqP9OcJh+bjB3/bzQZ/3FcFgd8HMaf8BzWo/DlFrf1JUrD9V1i1
+        +2NYtv1xU7P+1Uiu/f0wpPz9H5z91Rub/XEdmvtjF5n8VwqU/UkGjvU5B43yB////wH///8B////Af//
+        /wH///8B////AVa1/n9Psf71NKb89Rya/X////8B////Af///wH///8B////Af///wH///8B////Af//
+        /wH///8B////Af///wFVs/4tT7H+5TWm/eUZmP0t////Af///wH///8B////Af///wH///8B////Af//
+        /wH///8B////Af///wH///8BUJ//BUqv/KszpfyrII//Bf///wH///8B////Af///wH///8B////Af//
+        /wH///8B////Af///wH///8B////Af///wFAqv1LL6H9S////wH///8B////Af///wH///8B////Af//
+        /wH///8B////Af///wH///8B////Af///wH///8BO6f/By6f/wf///8B////Af///wH///8B////Af//
+        /wH///8BAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        //8AAP//AAD//w==
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Aanvalsgroep Beheren</value>
+  </data>
+</root>

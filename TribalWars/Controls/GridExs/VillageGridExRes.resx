@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChurchTooltip" xml:space="preserve">
+    <value>The church level</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>Diff.</value>
+  </data>
+  <data name="Kingdom" xml:space="preserve">
+    <value>Kingdom</value>
+  </data>
+  <data name="KingdomTooltip" xml:space="preserve">
+    <value>The kingdom the village is located in</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>XY</value>
+  </data>
+  <data name="LocationTooltip" xml:space="preserve">
+    <value>Coordinates of the village</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameTooltip" xml:space="preserve">
+    <value>Name of the village</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="PlayerDifferenceTooltip" xml:space="preserve">
+    <value>The player the village has been nobled from.</value>
+  </data>
+  <data name="PlayerNameTooltip" xml:space="preserve">
+    <value>The owner of the village</value>
+  </data>
+  <data name="PlayerOld" xml:space="preserve">
+    <value>Old owner</value>
+  </data>
+  <data name="PlayerPointsDiffTooltip" xml:space="preserve">
+    <value>The difference in player points since previous data</value>
+  </data>
+  <data name="PlayerPointsTooltip" xml:space="preserve">
+    <value>The points of the player owning the village</value>
+  </data>
+  <data name="Players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="Player_NameTooltip" xml:space="preserve">
+    <value>The name of the player</value>
+  </data>
+  <data name="Player_PointsDiffTooltip" xml:space="preserve">
+    <value>The difference in player points since previous data</value>
+  </data>
+  <data name="Player_PointsTooltip" xml:space="preserve">
+    <value>Points of the player</value>
+  </data>
+  <data name="Player_TribeOldTooltip" xml:space="preserve">
+    <value>The tribe the player switched from since previous data</value>
+  </data>
+  <data name="Player_TribeTooltip" xml:space="preserve">
+    <value>The tribe the player belongs to</value>
+  </data>
+  <data name="Player_VillagesDiffTooltip" xml:space="preserve">
+    <value>Villages gained and/or lost since previous data</value>
+  </data>
+  <data name="Player_VillagesTooltip" xml:space="preserve">
+    <value>Villages of the player</value>
+  </data>
+  <data name="Player_VisibleTooltip" xml:space="preserve">
+    <value>Show image if at least one village of the player is currently visible on the main map.</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="PointsDifferenceTooltip" xml:space="preserve">
+    <value>Difference in village points since previous data</value>
+  </data>
+  <data name="PointsTooltip" xml:space="preserve">
+    <value>Points of the village</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="Tribe" xml:space="preserve">
+    <value>Tribe</value>
+  </data>
+  <data name="TribeOld" xml:space="preserve">
+    <value>Old tribe</value>
+  </data>
+  <data name="TribeRankTooltip" xml:space="preserve">
+    <value>The rank of the tribe of the player</value>
+  </data>
+  <data name="TribeTag" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="TribeTagTooltip" xml:space="preserve">
+    <value>The tribe of the player</value>
+  </data>
+  <data name="Tribe_NameTooltip" xml:space="preserve">
+    <value>Tribe name</value>
+  </data>
+  <data name="Tribe_PlayersDiffTooltip" xml:space="preserve">
+    <value>The difference in players since previous data</value>
+  </data>
+  <data name="Tribe_PlayersTooltip" xml:space="preserve">
+    <value>Amount of players in the tribe</value>
+  </data>
+  <data name="Tribe_PointsDiffTooltip" xml:space="preserve">
+    <value>The difference in total tribe points since previous data</value>
+  </data>
+  <data name="Tribe_PointsTooltip" xml:space="preserve">
+    <value>Total points of the tribe</value>
+  </data>
+  <data name="Tribe_RankTooltip" xml:space="preserve">
+    <value>World rank of the tribe</value>
+  </data>
+  <data name="Tribe_TagTooltip" xml:space="preserve">
+    <value>Tribe tag</value>
+  </data>
+  <data name="Tribe_VillagesDiffTooltip" xml:space="preserve">
+    <value>The difference in villages since previous data</value>
+  </data>
+  <data name="Tribe_VillagesTooltip" xml:space="preserve">
+    <value>The total amount of villages in the tribe</value>
+  </data>
+  <data name="Tribe_VisibleTooltip" xml:space="preserve">
+    <value>Show image if at least one village of the tribe is currently visible on the main map.</value>
+  </data>
+  <data name="TypeTooltip" xml:space="preserve">
+    <value>Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details' or by using the right click contextmenu)</value>
+  </data>
+  <data name="Villages" xml:space="preserve">
+    <value>Villages</value>
+  </data>
+  <data name="VillagesDiffTooltip" xml:space="preserve">
+    <value>The villages the player gained and/or lost since previous data</value>
+  </data>
+  <data name="VillagesTooltip" xml:space="preserve">
+    <value>The amount of villages the player has</value>
+  </data>
+  <data name="VillageType_Catapults" xml:space="preserve">
+    <value>Catapults</value>
+  </data>
+  <data name="VillageType_Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="VillageType_Defensive" xml:space="preserve">
+    <value>Defensive</value>
+  </data>
+  <data name="VillageType_Farm" xml:space="preserve">
+    <value>Farm</value>
+  </data>
+  <data name="VillageType_Noble" xml:space="preserve">
+    <value>Nobles</value>
+  </data>
+  <data name="VillageType_Offensive" xml:space="preserve">
+    <value>Offensive</value>
+  </data>
+  <data name="VillageType_Scouts" xml:space="preserve">
+    <value>Scouts</value>
+  </data>
+  <data name="VisibleCellTooltip" xml:space="preserve">
+    <value>Currently visible on the map</value>
+  </data>
+  <data name="VisibleTooltip" xml:space="preserve">
+    <value>Show image if village is currently visible on the main map</value>
+  </data>
+</root>

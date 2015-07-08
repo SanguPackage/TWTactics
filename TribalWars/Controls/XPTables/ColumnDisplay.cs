@@ -4,6 +4,7 @@ using TribalWars.Villages;
 using TribalWars.Worlds;
 using XPTable.Models;
 using System.Drawing;
+using TribalWars.Controls.GridExs;
 using XPTable.Sorting;
 
 namespace TribalWars.Controls.XPTables
@@ -101,44 +102,33 @@ namespace TribalWars.Controls.XPTables
         /// </summary>
         public static class VillageHeaderTooltips
         {
-            public const string Visible = "Show image if village is currently visible on the main map";
-            public const string Type = "Show image for village type (Offense, Defense, Scout, Noble or Farm - Set in 'Quick Details' or by using the right click contextmenu)";
-            public const string Location = "Coordinates of the village";
-            public const string Name = "Name of the village";
-            public const string Points = "Points of the village";
-            public const string PointsDifference = "Difference in village points since previous data";
-            public const string Kingdom = "The kingdom the village is located in";
-
-            public const string PlayerName = "The owner of the village";
-            public const string TribeTag = "The tribe of the player";
-
             public static string GetTooltip(VillageFields type)
             {
                 switch (type)
                 {
                     case VillageFields.Coordinates:
-                        return Location;
+                        return VillageGridExRes.LocationTooltip;
 
                    case VillageFields.Kingdom:
-                        return Kingdom;
+						return VillageGridExRes.KingdomTooltip;
 
                    case VillageFields.Name:
-                        return Name;
+						return VillageGridExRes.NameTooltip;
 
                     case VillageFields.Points:
-                        return Points;
+						return VillageGridExRes.PointsTooltip;
 
                     case VillageFields.Visible:
-                        return Visible;
+						return VillageGridExRes.VisibleTooltip;
 
                     case VillageFields.Type:
-                        return Type;
+						return VillageGridExRes.TypeTooltip;
 
                     case VillageFields.Player:
-                        return PlayerName;
+						return VillageGridExRes.PlayerNameTooltip;
 
                     case VillageFields.Church:
-                        return "The church level";
+                        return VillageGridExRes.ChurchTooltip;
                 }
 
                 throw new Exception("Add new header text here... (go to ColumnDisplay class)");
@@ -151,21 +141,21 @@ namespace TribalWars.Controls.XPTables
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(VillageFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, VillageHeaderTooltips.Visible);
-            ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20, VillageHeaderTooltips.Type);
-            TextColumn villageCoordColumn = CreateTextColumn("XY", 50, VillageHeaderTooltips.Location);
-            TextColumn villageNameColumn = CreateTextColumn("Name", 114, VillageHeaderTooltips.Name);
-            NumberColumn villagePointsColumn = CreateNumberColumn("Points", 55, VillageHeaderTooltips.Points);
-            NumberColumn villagePointsDifferenceColumn = CreateNumberColumn("Diff.", 45, VillageHeaderTooltips.PointsDifference);
+			ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, VillageGridExRes.VisibleTooltip);
+			ImageColumn villageImageColumn = CreateImageColumn(string.Empty, 20, VillageGridExRes.TypeTooltip);
+			TextColumn villageCoordColumn = CreateTextColumn(VillageGridExRes.Location, 50, VillageGridExRes.LocationTooltip);
+			TextColumn villageNameColumn = CreateTextColumn(VillageGridExRes.Name, 114, VillageGridExRes.NameTooltip);
+			NumberColumn villagePointsColumn = CreateNumberColumn(VillageGridExRes.Points, 55, VillageGridExRes.PointsTooltip);
+			NumberColumn villagePointsDifferenceColumn = CreateNumberColumn(VillageGridExRes.Difference, 45, VillageGridExRes.PointsDifferenceTooltip);
 
-            TextColumn villagePlayerColumn = CreateTextColumn("Player", 85, VillageHeaderTooltips.PlayerName);
-            TextColumn villagePlayerDifferenceColumn = CreateTextColumn("Old owner", 85, "The player the village has been nobled from.");
-            NumberColumn villagePlayerPoints = CreateNumberColumn("Points", 65, "The points of the player owning the village");
-            NumberColumn villagePlayerPointsDifference = CreateNumberColumn("Diff.", 55, "The difference in player points since previous data");
-            NumberColumn villageVillagesColumn = CreateNumberColumn("Villages", 60, "The amount of villages the player has");
-            TextColumn villageVillagesDifferenceColumn = CreateTextColumn("Diff.", 45, "The villages the player gained and/or lost since previous data");
-            TextColumn villageTribeColumn = CreateTextColumn("Tribe", 50, VillageHeaderTooltips.TribeTag);
-            NumberColumn villageTribeRankColumn = CreateNumberColumn("Rank", 50, "The rank of the tribe of the player");
+			TextColumn villagePlayerColumn = CreateTextColumn(VillageGridExRes.Player, 85, VillageGridExRes.PlayerNameTooltip);
+            TextColumn villagePlayerDifferenceColumn = CreateTextColumn(VillageGridExRes.PlayerOld, 85, VillageGridExRes.PlayerDifferenceTooltip);
+            NumberColumn villagePlayerPoints = CreateNumberColumn(VillageGridExRes.Points, 65, VillageGridExRes.PlayerPointsTooltip);
+			NumberColumn villagePlayerPointsDifference = CreateNumberColumn(VillageGridExRes.Difference, 55, VillageGridExRes.PlayerPointsDiffTooltip);
+			NumberColumn villageVillagesColumn = CreateNumberColumn(VillageGridExRes.Villages, 60, VillageGridExRes.VillagesTooltip);
+			TextColumn villageVillagesDifferenceColumn = CreateTextColumn(VillageGridExRes.Difference, 45, VillageGridExRes.VillagesDiffTooltip);
+			TextColumn villageTribeColumn = CreateTextColumn(VillageGridExRes.Tribe, 50, VillageGridExRes.TribeTagTooltip);
+            NumberColumn villageTribeRankColumn = CreateNumberColumn(VillageGridExRes.Rank, 50, VillageGridExRes.TribeRankTooltip);
 
             villageImageColumn.Visible = (fields & VillageFields.Type) != 0;
             villageNameColumn.Visible = (fields & VillageFields.Name) != 0;
@@ -203,14 +193,14 @@ namespace TribalWars.Controls.XPTables
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(PlayerFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the player is currently visible on the main map.");
-            TextColumn playerNameColumn = CreateTextColumn("Name", 85, "The name of the player");
-            TextColumn playerTribeColumn = CreateTextColumn("Tribe", 60, "The tribe the player belongs to");
-            NumberColumn playerPointsColumn = CreateNumberColumn("Points", 72, "Points of the player");
-            NumberColumn playerVillagesColumn = CreateNumberColumn("Villages", 60, "Villages of the player");
-            TextColumn playerVillagesDifferenceColumn = CreateTextColumn("Diff.", 60, "Villages gained and/or lost since previous data");
-            TextColumn playerTribeDifferenceColumn = CreateTextColumn("Old tribe", 65, "The tribe the player switched from since previous data");
-            NumberColumn playerPointsDifferenceColumn = CreateNumberColumn("Diff.", 55, "The difference in player points since previous data");
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, VillageGridExRes.Player_VisibleTooltip);
+			TextColumn playerNameColumn = CreateTextColumn(VillageGridExRes.Name, 85, VillageGridExRes.Player_NameTooltip);
+			TextColumn playerTribeColumn = CreateTextColumn(VillageGridExRes.Tribe, 60, VillageGridExRes.Player_TribeTooltip);
+			NumberColumn playerPointsColumn = CreateNumberColumn(VillageGridExRes.Points, 72, VillageGridExRes.Player_PointsTooltip);
+			NumberColumn playerVillagesColumn = CreateNumberColumn(VillageGridExRes.Villages, 60, VillageGridExRes.Player_VillagesTooltip);
+			TextColumn playerVillagesDifferenceColumn = CreateTextColumn(VillageGridExRes.Difference, 60, VillageGridExRes.Player_VillagesDiffTooltip);
+			TextColumn playerTribeDifferenceColumn = CreateTextColumn(VillageGridExRes.TribeOld, 65, VillageGridExRes.Player_TribeOldTooltip);
+			NumberColumn playerPointsDifferenceColumn = CreateNumberColumn(VillageGridExRes.Difference, 55, VillageGridExRes.Player_PointsDiffTooltip);
 
             playerNameColumn.Visible = (fields & PlayerFields.Name) != 0;
             playerPointsColumn.Visible = (fields & PlayerFields.Points) != 0;
@@ -237,16 +227,16 @@ namespace TribalWars.Controls.XPTables
         /// <param name="fields">The visible columns</param>
         public static ColumnModel CreateColumnModel(TribeFields fields)
         {
-            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, "Show image if at least one village of the tribe is currently visible on the main map.");
-            NumberColumn tribeRankColumn = CreateNumberColumn("Rank", 40, "World rank of the tribe");
-            TextColumn tribeTagColumn = CreateTextColumn("Tag", 50, "Tribe tag");
-            NumberColumn tribePlayersColumn = CreateNumberColumn("Players", 55, "Amount of players in the tribe");
-            TextColumn tribePlayersDifferenceColumn = CreateTextColumn("Diff.", 50, "The difference in players since previous data");
-            NumberColumn tribePointsColumn = CreateNumberColumn("Points", 75, "Total points of the tribe");
-            NumberColumn tribePointsDifferenceColumn = CreateNumberColumn("Diff.", 70, "The difference in total tribe points since previous data");
-            NumberColumn tribeVillagesColumn = CreateNumberColumn("Villages", 55, "The total amount of villages in the tribe");
-            NumberColumn tribeVillagesDifferenceColumn = CreateNumberColumn("Diff.", 55, "The difference in villages since previous data");
-            TextColumn tribeNameColumn = CreateTextColumn("Name", 130, "Tribe name");
+            ImageColumn visibleColumn = CreateImageColumn(string.Empty, 20, VillageGridExRes.Tribe_VisibleTooltip);
+			NumberColumn tribeRankColumn = CreateNumberColumn(VillageGridExRes.Rank, 40, VillageGridExRes.Tribe_RankTooltip);
+			TextColumn tribeTagColumn = CreateTextColumn(VillageGridExRes.TribeTag, 50, VillageGridExRes.Tribe_TagTooltip);
+			NumberColumn tribePlayersColumn = CreateNumberColumn(VillageGridExRes.Players, 55, VillageGridExRes.Tribe_PlayersTooltip);
+			TextColumn tribePlayersDifferenceColumn = CreateTextColumn(VillageGridExRes.Difference, 50, VillageGridExRes.Tribe_PlayersDiffTooltip);
+			NumberColumn tribePointsColumn = CreateNumberColumn(VillageGridExRes.Points, 75, VillageGridExRes.Tribe_PointsTooltip);
+			NumberColumn tribePointsDifferenceColumn = CreateNumberColumn(VillageGridExRes.Difference, 70, VillageGridExRes.Tribe_PointsDiffTooltip);
+			NumberColumn tribeVillagesColumn = CreateNumberColumn(VillageGridExRes.Villages, 55, VillageGridExRes.Tribe_VillagesTooltip);
+			NumberColumn tribeVillagesDifferenceColumn = CreateNumberColumn(VillageGridExRes.Difference, 55, VillageGridExRes.Tribe_VillagesDiffTooltip);
+			TextColumn tribeNameColumn = CreateTextColumn(VillageGridExRes.Name, 130, VillageGridExRes.Tribe_NameTooltip);
 
             tribeRankColumn.Visible = (fields & TribeFields.Rank) != 0;
             tribeTagColumn.Visible = (fields & TribeFields.Tag) != 0;

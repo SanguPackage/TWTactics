@@ -53,6 +53,7 @@ namespace TribalWars.Controls.GridExs
                 VillageFields type = GetVillageColumnType(column);
                 _columns.Add(type, column);
 
+				//column.Name = ColumnDisplay
                 column.HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.GetTooltip(type);
             }
 
@@ -141,7 +142,7 @@ namespace TribalWars.Controls.GridExs
                 if (record.Visible)
                 {
                     e.Row.Cells["Visible"].Image = Properties.Resources.Visible;
-                    e.Row.Cells["Visible"].ToolTipText = "Currently visible on the map";
+                    e.Row.Cells["Visible"].ToolTipText = VillageGridExRes.VisibleCellTooltip;
                 }
 
                 // SetVillageType()

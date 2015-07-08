@@ -117,7 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="VillagesInAttackersPoolGroupbox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="HelpLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;HelpLabel.Parent" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="VillagesInAttackersPoolGroupbox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="HelpLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAA
@@ -142,4 +158,176 @@
         //8AAP//AAD//w==
 </value>
   </data>
+  <data name="ClearButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 70</value>
+  </data>
+  <data name="ReloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 392</value>
+  </data>
+  <data name="villagesGridControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="VillagesInAttackersPoolGroupbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ClearButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="villagesGridControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 340</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AttackersPoolForm</value>
+  </data>
+  <data name="&gt;&gt;HelpLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VillagesInAttackersPoolGroupbox.Text" xml:space="preserve">
+    <value>Villages currently in your attackers pool</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Parent" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
+  <data name="ReloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="ReloadButton.Text" xml:space="preserve">
+    <value>Reload attackers pool</value>
+  </data>
+  <data name="&gt;&gt;HelpLabel.Name" xml:space="preserve">
+    <value>HelpLabel</value>
+  </data>
+  <data name="VillagesInAttackersPoolGroupbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>441, 468</value>
+  </data>
+  <data name="&gt;&gt;ReloadButton.Name" xml:space="preserve">
+    <value>ReloadButton</value>
+  </data>
+  <data name="villagesGridControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ClearButton.Text" xml:space="preserve">
+    <value>Clear attackers pool</value>
+  </data>
+  <data name="&gt;&gt;RemoveSelectedButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ClearButton.Name" xml:space="preserve">
+    <value>ClearButton</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>459, 492</value>
+  </data>
+  <data name="RemoveSelectedButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RemoveSelectedButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="villagesGridControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 49</value>
+  </data>
+  <data name="&gt;&gt;RemoveSelectedButton.Parent" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
+  <data name="ClearButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ClearButton.Parent" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
+  <data name="RemoveSelectedButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 392</value>
+  </data>
+  <data name="villagesGridControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="ClearButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="RemoveSelectedButton.Text" xml:space="preserve">
+    <value>Remove selected villages from pool</value>
+  </data>
+  <data name="HelpLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;RemoveSelectedButton.Name" xml:space="preserve">
+    <value>RemoveSelectedButton</value>
+  </data>
+  <data name="&gt;&gt;HelpLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ReloadButton.Parent" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
+  <data name="HelpLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>429, 27</value>
+  </data>
+  <data name="ReloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 70</value>
+  </data>
+  <data name="&gt;&gt;ReloadButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Type" xml:space="preserve">
+    <value>TribalWars.Controls.GridExs.VillagesGridExControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;VillagesInAttackersPoolGroupbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ClearButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;RemoveSelectedButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="RemoveSelectedButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 70</value>
+  </data>
+  <data name="HelpLabel.Text" xml:space="preserve">
+    <value>Add villages to the attackers pool by using the 'Manage your villages' or 'Import village coordinates' windows. Or by right clicking a cluster you've drawn on the map.</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Name" xml:space="preserve">
+    <value>villagesGridControl1</value>
+  </data>
+  <data name="&gt;&gt;VillagesInAttackersPoolGroupbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ReloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VillagesInAttackersPoolGroupbox.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;VillagesInAttackersPoolGroupbox.Name" xml:space="preserve">
+    <value>VillagesInAttackersPoolGroupbox</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Manage your attackers pool</value>
+  </data>
+  <data name="VillagesInAttackersPoolGroupbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 12</value>
+  </data>
+  <data name="ReloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="ClearButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>299, 392</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
 </root>

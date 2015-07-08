@@ -28,7 +28,7 @@ namespace TribalWars.Forms
 
         private void VillageCoordinatesImporterForm_HelpButtonClicked(object sender, CancelEventArgs e)
         {
-            MessageBox.Show(FormRes.VillageCoordinatesImporterForm_Help, FormRes.VillageCoordinatesImporterForm_Help_Title);
+			MessageBox.Show(FormRes.VillageCoordinatesImporterForm_Help_Title, FormRes.VillageCoordinatesImporterForm_Help);
         }
 
         private void playerTribeDropdown1_PlayerSelected(object sender, Worlds.Events.Impls.PlayerEventArgs e)

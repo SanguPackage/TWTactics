@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
+using TribalWars.Controls.GridExs;
 using TribalWars.Controls.XPTables;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Tools;
@@ -249,7 +250,7 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
                 if (record.ISVISIBLE)
                 {
                     e.Row.Cells["ISVISIBLE"].Image = Properties.Resources.Visible;
-                    e.Row.Cells["ISVISIBLE"].ToolTipText = "Currently visible on the map";
+					e.Row.Cells["ISVISIBLE"].ToolTipText = VillageGridExRes.VisibleTooltip;
                 }
 
                 // SetVillageType()
@@ -373,15 +374,15 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
 
         private void SetGridExVillageTooltips()
         {
-            GridExVillage.RootTable.Columns["NAME"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Name;
-            GridExVillage.RootTable.Columns["LOCATION"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Location;
-            GridExVillage.RootTable.Columns["KINGDOM"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Kingdom;
-            GridExVillage.RootTable.Columns["POINTS"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Points;
-            GridExVillage.RootTable.Columns["POINTSDIFF"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PointsDifference;
-            GridExVillage.RootTable.Columns["PLAYER"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.PlayerName;
-            GridExVillage.RootTable.Columns["TRIBE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.TribeTag;
-            GridExVillage.RootTable.Columns["TYPE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Type;
-            GridExVillage.RootTable.Columns["ISVISIBLE"].HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.Visible;
+            GridExVillage.RootTable.Columns["NAME"].HeaderToolTip = VillageGridExRes.NameTooltip;
+			GridExVillage.RootTable.Columns["LOCATION"].HeaderToolTip = VillageGridExRes.LocationTooltip;
+			GridExVillage.RootTable.Columns["KINGDOM"].HeaderToolTip = VillageGridExRes.KingdomTooltip;
+			GridExVillage.RootTable.Columns["POINTS"].HeaderToolTip = VillageGridExRes.PointsTooltip;
+			GridExVillage.RootTable.Columns["POINTSDIFF"].HeaderToolTip = VillageGridExRes.PointsDifferenceTooltip;
+			GridExVillage.RootTable.Columns["PLAYER"].HeaderToolTip = VillageGridExRes.NameTooltip;
+			GridExVillage.RootTable.Columns["TRIBE"].HeaderToolTip = VillageGridExRes.TribeTag;
+			GridExVillage.RootTable.Columns["TYPE"].HeaderToolTip = VillageGridExRes.TypeTooltip;
+			GridExVillage.RootTable.Columns["ISVISIBLE"].HeaderToolTip = VillageGridExRes.VisibleTooltip;
         }
         #endregion
 

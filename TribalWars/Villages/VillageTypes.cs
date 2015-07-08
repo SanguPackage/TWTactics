@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TribalWars.Controls.GridExs;
 using TribalWars.Maps.Icons;
 using TribalWars.Villages.Buildings;
 using TribalWars.Villages.Units;
@@ -110,25 +111,25 @@ namespace TribalWars.Villages
         public static string GetDescription(this VillageType type)
         {
             if (type.HasFlag(VillageType.Noble))
-                return "Nobles";
+                return VillageGridExRes.VillageType_Noble;
 
             if (type.HasFlag(VillageType.Attack))
-                return "Offensive";
+				return VillageGridExRes.VillageType_Offensive;
 
             if (type.HasFlag(VillageType.Catapult))
-                return "Catapults";
+				return VillageGridExRes.VillageType_Catapults;
 
             if (type.HasFlag(VillageType.Defense))
-                return "Defensive";
+				return VillageGridExRes.VillageType_Defensive;
 
             if (type.HasFlag(VillageType.Scout))
-                return "Scouts";
+				return VillageGridExRes.VillageType_Scouts;
 
             if (type.HasFlag(VillageType.Farm))
-                return "Farm";
+				return VillageGridExRes.VillageType_Farm;
 
             if (type.HasFlag(VillageType.Comments))
-                return "Comments";
+				return VillageGridExRes.VillageType_Comments;
 
             return null;
         }

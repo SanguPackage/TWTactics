@@ -158,6 +158,11 @@
     <Compile Include="Controls\Finders\PlayerTribeDropdown.Designer.cs">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GridExs\VillageGridExRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VillageGridExRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GridExs\VillageGridExRow.cs" />
     <Compile Include="Controls\TimeConverter\DateEventArgs.cs" />
     <Compile Include="Controls\GridExs\VillagesGridExControl.cs">
@@ -630,6 +635,11 @@
     <EmbeddedResource Include="Controls\Finders\PlayerTribeDropdown.resx">
       <DependentUpon>PlayerTribeDropdown.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridExs\VillageGridExRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VillageGridExRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridExs\VillageGridExRes.nl.resx" />
     <EmbeddedResource Include="Controls\GridExs\VillagesGridExControl.resx">
       <DependentUpon>VillagesGridExControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -640,6 +650,9 @@
     <EmbeddedResource Include="Controls\TimeConverter\TimeConverterCalculatorControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TimeConverterCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AttackersPoolForm.nl.resx">
+      <DependentUpon>AttackersPoolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRes.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>

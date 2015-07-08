@@ -30,114 +30,80 @@ namespace TribalWars.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackersPoolForm));
-            this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ReloadButton = new System.Windows.Forms.Button();
-            this.ClearButton = new System.Windows.Forms.Button();
-            this.RemoveSelectedButton = new System.Windows.Forms.Button();
-            this.villagesGridControl1 = new TribalWars.Controls.GridExs.VillagesGridExControl();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
-            this.uiGroupBox1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // uiGroupBox1
-            // 
-            this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiGroupBox1.Controls.Add(this.label1);
-            this.uiGroupBox1.Controls.Add(this.ReloadButton);
-            this.uiGroupBox1.Controls.Add(this.ClearButton);
-            this.uiGroupBox1.Controls.Add(this.RemoveSelectedButton);
-            this.uiGroupBox1.Controls.Add(this.villagesGridControl1);
-            this.uiGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox1.Location = new System.Drawing.Point(9, 12);
-            this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(441, 468);
-            this.uiGroupBox1.TabIndex = 4;
-            this.uiGroupBox1.Text = "Villages currently in your attackers pool";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 27);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Add villages to the attackers pool by using the \'Manage your villages\' or \'Import" +
-    " village coordinates\' windows. Or by right clicking a cluster you\'ve drawn on th" +
-    "e map.";
-            // 
-            // ReloadButton
-            // 
-            this.ReloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReloadButton.Location = new System.Drawing.Point(3, 392);
-            this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(142, 70);
-            this.ReloadButton.TabIndex = 3;
-            this.ReloadButton.Text = "Reload attackers pool";
-            this.ReloadButton.UseVisualStyleBackColor = true;
-            this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
-            // 
-            // ClearButton
-            // 
-            this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(299, 392);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(136, 70);
-            this.ClearButton.TabIndex = 2;
-            this.ClearButton.Text = "Clear attackers pool";
-            this.ClearButton.UseVisualStyleBackColor = true;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
-            // RemoveSelectedButton
-            // 
-            this.RemoveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveSelectedButton.Location = new System.Drawing.Point(151, 392);
-            this.RemoveSelectedButton.Name = "RemoveSelectedButton";
-            this.RemoveSelectedButton.Size = new System.Drawing.Size(142, 70);
-            this.RemoveSelectedButton.TabIndex = 1;
-            this.RemoveSelectedButton.Text = "Remove selected villages from pool";
-            this.RemoveSelectedButton.UseVisualStyleBackColor = true;
-            this.RemoveSelectedButton.Click += new System.EventHandler(this.RemoveSelectedButton_Click);
-            // 
-            // villagesGridControl1
-            // 
-            this.villagesGridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.villagesGridControl1.Location = new System.Drawing.Point(3, 49);
-            this.villagesGridControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.villagesGridControl1.Name = "villagesGridControl1";
-            this.villagesGridControl1.ShowPlayer = false;
-            this.villagesGridControl1.Size = new System.Drawing.Size(432, 340);
-            this.villagesGridControl1.TabIndex = 0;
-            // 
-            // AttackersPoolForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 492);
-            this.Controls.Add(this.uiGroupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AttackersPoolForm";
-            this.Text = "Manage your attackers pool";
-            this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
-            this.uiGroupBox1.ResumeLayout(false);
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackersPoolForm));
+			this.VillagesInAttackersPoolGroupbox = new Janus.Windows.EditControls.UIGroupBox();
+			this.HelpLabel = new System.Windows.Forms.Label();
+			this.ReloadButton = new System.Windows.Forms.Button();
+			this.ClearButton = new System.Windows.Forms.Button();
+			this.RemoveSelectedButton = new System.Windows.Forms.Button();
+			this.villagesGridControl1 = new TribalWars.Controls.GridExs.VillagesGridExControl();
+			((System.ComponentModel.ISupportInitialize)(this.VillagesInAttackersPoolGroupbox)).BeginInit();
+			this.VillagesInAttackersPoolGroupbox.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// VillagesInAttackersPoolGroupbox
+			// 
+			resources.ApplyResources(this.VillagesInAttackersPoolGroupbox, "VillagesInAttackersPoolGroupbox");
+			this.VillagesInAttackersPoolGroupbox.Controls.Add(this.HelpLabel);
+			this.VillagesInAttackersPoolGroupbox.Controls.Add(this.ReloadButton);
+			this.VillagesInAttackersPoolGroupbox.Controls.Add(this.ClearButton);
+			this.VillagesInAttackersPoolGroupbox.Controls.Add(this.RemoveSelectedButton);
+			this.VillagesInAttackersPoolGroupbox.Controls.Add(this.villagesGridControl1);
+			this.VillagesInAttackersPoolGroupbox.Name = "VillagesInAttackersPoolGroupbox";
+			// 
+			// HelpLabel
+			// 
+			resources.ApplyResources(this.HelpLabel, "HelpLabel");
+			this.HelpLabel.Name = "HelpLabel";
+			// 
+			// ReloadButton
+			// 
+			resources.ApplyResources(this.ReloadButton, "ReloadButton");
+			this.ReloadButton.Name = "ReloadButton";
+			this.ReloadButton.UseVisualStyleBackColor = true;
+			this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
+			// 
+			// ClearButton
+			// 
+			resources.ApplyResources(this.ClearButton, "ClearButton");
+			this.ClearButton.Name = "ClearButton";
+			this.ClearButton.UseVisualStyleBackColor = true;
+			this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+			// 
+			// RemoveSelectedButton
+			// 
+			resources.ApplyResources(this.RemoveSelectedButton, "RemoveSelectedButton");
+			this.RemoveSelectedButton.Name = "RemoveSelectedButton";
+			this.RemoveSelectedButton.UseVisualStyleBackColor = true;
+			this.RemoveSelectedButton.Click += new System.EventHandler(this.RemoveSelectedButton_Click);
+			// 
+			// villagesGridControl1
+			// 
+			resources.ApplyResources(this.villagesGridControl1, "villagesGridControl1");
+			this.villagesGridControl1.Name = "villagesGridControl1";
+			this.villagesGridControl1.ShowPlayer = false;
+			// 
+			// AttackersPoolForm
+			// 
+			resources.ApplyResources(this, "$this");
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.VillagesInAttackersPoolGroupbox);
+			this.Name = "AttackersPoolForm";
+			this.TopMost = true;
+			((System.ComponentModel.ISupportInitialize)(this.VillagesInAttackersPoolGroupbox)).EndInit();
+			this.VillagesInAttackersPoolGroupbox.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
 
         #endregion
 
         private VillagesGridExControl villagesGridControl1;
-        private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
+        private Janus.Windows.EditControls.UIGroupBox VillagesInAttackersPoolGroupbox;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button RemoveSelectedButton;
         private System.Windows.Forms.Button ReloadButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HelpLabel;
 
     }
 }
