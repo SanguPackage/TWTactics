@@ -685,6 +685,9 @@
     <EmbeddedResource Include="Forms\Small\ActivePlayerForm.resx">
       <DependentUpon>ActivePlayerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\TimeConverterForm.nl.resx">
+      <DependentUpon>TimeConverterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Small\TimeConverterForm.resx">
       <DependentUpon>TimeConverterForm.cs</DependentUpon>
     </EmbeddedResource>
