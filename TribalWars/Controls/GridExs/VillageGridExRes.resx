@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Church" xml:space="preserve">
+    <value>Church</value>
+  </data>
   <data name="ChurchTooltip" xml:space="preserve">
     <value>The church level</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="PlayerDifferenceTooltip" xml:space="preserve">
     <value>The player the village has been nobled from.</value>
+  </data>
+  <data name="PlayerName" xml:space="preserve">
+    <value>Player</value>
   </data>
   <data name="PlayerNameTooltip" xml:space="preserve">
     <value>The owner of the village</value>

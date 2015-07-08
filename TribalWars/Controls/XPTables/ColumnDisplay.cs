@@ -100,7 +100,7 @@ namespace TribalWars.Controls.XPTables
         /// <summary>
         /// Tooltips are shared between XPTable and Janus.GridEX
         /// </summary>
-        public static class VillageHeaderTooltips
+        public static class VillageHeader
         {
             public static string GetTooltip(VillageFields type)
             {
@@ -133,6 +133,38 @@ namespace TribalWars.Controls.XPTables
 
                 throw new Exception("Add new header text here... (go to ColumnDisplay class)");
             }
+
+	        public static string GetCaption(VillageFields type)
+	        {
+				switch (type)
+				{
+					case VillageFields.Coordinates:
+						return VillageGridExRes.Location;
+
+					case VillageFields.Kingdom:
+						return VillageGridExRes.Kingdom;
+
+					case VillageFields.Name:
+						return VillageGridExRes.Name;
+
+					case VillageFields.Points:
+						return VillageGridExRes.Points;
+
+					case VillageFields.Visible:
+						return "";
+
+					case VillageFields.Type:
+						return "";
+
+					case VillageFields.Player:
+						return VillageGridExRes.PlayerName;
+
+					case VillageFields.Church:
+						return VillageGridExRes.Church;
+				}
+
+				throw new Exception("Add new header text here... (go to ColumnDisplay class)");
+	        }
         }
 
         /// <summary>

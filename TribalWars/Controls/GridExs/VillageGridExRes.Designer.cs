@@ -61,6 +61,15 @@ namespace TribalWars.Controls.GridExs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Church.
+        /// </summary>
+        internal static string Church {
+            get {
+                return ResourceManager.GetString("Church", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The church level.
         /// </summary>
         internal static string ChurchTooltip {
@@ -219,6 +228,15 @@ namespace TribalWars.Controls.GridExs {
         internal static string PlayerDifferenceTooltip {
             get {
                 return ResourceManager.GetString("PlayerDifferenceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player.
+        /// </summary>
+        internal static string PlayerName {
+            get {
+                return ResourceManager.GetString("PlayerName", resourceCulture);
             }
         }
         

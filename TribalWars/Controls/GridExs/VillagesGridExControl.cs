@@ -53,8 +53,8 @@ namespace TribalWars.Controls.GridExs
                 VillageFields type = GetVillageColumnType(column);
                 _columns.Add(type, column);
 
-				//column.Name = ColumnDisplay
-                column.HeaderToolTip = ColumnDisplay.VillageHeaderTooltips.GetTooltip(type);
+	            column.Caption = ColumnDisplay.VillageHeader.GetCaption(type);
+                column.HeaderToolTip = ColumnDisplay.VillageHeader.GetTooltip(type);
             }
 
             _columns[VillageFields.Points].ConfigureAsNumeric();

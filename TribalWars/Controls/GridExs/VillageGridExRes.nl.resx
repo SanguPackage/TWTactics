@@ -282,4 +282,10 @@
   <data name="VisibleTooltip" xml:space="preserve">
     <value>Toon icon indien het dorp zichtbaar is op de kaart</value>
   </data>
+  <data name="Church" xml:space="preserve">
+    <value>Kerk</value>
+  </data>
+  <data name="PlayerName" xml:space="preserve">
+    <value>Speler</value>
+  </data>
 </root>
