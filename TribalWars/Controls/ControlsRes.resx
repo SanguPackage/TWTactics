@@ -117,80 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActivePlayerForm_AskToSetSelf" xml:space="preserve">
-    <value>Select Active Player</value>
+  <data name="LocationChangerControl_PlaceHolder" xml:space="preserve">
+    <value>Go to village, player, tribe...</value>
   </data>
-  <data name="ActivePlayerForm_AskToSetSelf_Title" xml:space="preserve">
-    <value>You have not yet selected yourself.
-Set yourself now?</value>
+  <data name="LocationChangerControl_ZoomControl_Tooltip" xml:space="preserve">
+    <value>Change map zoom level</value>
   </data>
-  <data name="LoadWorldForm_NoWorldSelected" xml:space="preserve">
-    <value>No world selected!</value>
-  </data>
-  <data name="LoadWorldForm_SettingsGrid_ColumnCreatedAt" xml:space="preserve">
-    <value>Created on</value>
-  </data>
-  <data name="LoadWorldForm_SettingsGrid_ColumnName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="NewWorldForm_Created" xml:space="preserve">
-    <value>A new world has been created!
-
-Right click a village if you don't know where to start.</value>
-  </data>
-  <data name="NewWorldForm_CreatedTitle" xml:space="preserve">
-    <value>World Created!</value>
-  </data>
-  <data name="NewWorldForm_Created_NoYou1" xml:space="preserve">
-    <value>You can later still specify yourself through the World -&gt; 'Select Active Player' menu.</value>
-  </data>
-  <data name="NewWorldForm_Created_NoYou2" xml:space="preserve">
-    <value>Note that for example planning attacks will work much easier when you have selected yourself.</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnImage" xml:space="preserve">
-    <value>Image</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnImage_Tooltip" xml:space="preserve">
-    <value>A village, player or tribe</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnRank" xml:space="preserve">
-    <value>Rank</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnText" xml:space="preserve">
-    <value>Rank and points</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnText_Tooltip" xml:space="preserve">
-    <value>Extra description</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnValue" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnValue_Tooltip" xml:space="preserve">
-    <value>The player name, tribe tag or village coordinate</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnVisible" xml:space="preserve">
-    <value>Visible</value>
-  </data>
-  <data name="PlayerTribeDropdown_ColumnVisible_Tooltip" xml:space="preserve">
-    <value>Is at least one village visible on the main map</value>
-  </data>
-  <data name="PlayerTribeDropdown_EmptyTooltip" xml:space="preserve">
-    <value>Enter {0}</value>
-  </data>
-  <data name="PlayerTribeDropdown_EmptyTooltip_Player" xml:space="preserve">
-    <value>, player name</value>
-  </data>
-  <data name="PlayerTribeDropdown_EmptyTooltip_Tribe" xml:space="preserve">
-    <value>, tribe tag</value>
-  </data>
-  <data name="VillageCoordinatesImporterForm_Help" xml:space="preserve">
-    <value>Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right.
-
-Use Control + A to select all imported villages. Right click to set their purpose or to attack them.
-
-You can find more information at Windows &gt; 'Manage your villages' :)</value>
-  </data>
-  <data name="VillageCoordinatesImporterForm_Help_Title" xml:space="preserve">
-    <value>Import village coordinates?</value>
+  <data name="PlayerOrTribeRow_Text" xml:space="preserve">
+    <value>#{1} ({0} points)</value>
+    <comment>{0} = Points; {1} = Rank</comment>
   </data>
 </root>

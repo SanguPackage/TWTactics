@@ -150,17 +150,29 @@ Klik rechts op een dorp indien je niet goed weet hoe te beginnen.</value>
   <data name="PlayerTribeDropdown_ColumnImage" xml:space="preserve">
     <value>Icon</value>
   </data>
+  <data name="PlayerTribeDropdown_ColumnImage_Tooltip" xml:space="preserve">
+    <value>Een dorp, speler of stam</value>
+  </data>
   <data name="PlayerTribeDropdown_ColumnRank" xml:space="preserve">
     <value>Rank</value>
   </data>
   <data name="PlayerTribeDropdown_ColumnText" xml:space="preserve">
     <value>Rank en punten</value>
   </data>
+  <data name="PlayerTribeDropdown_ColumnText_Tooltip" xml:space="preserve">
+    <value>Extra informatie</value>
+  </data>
   <data name="PlayerTribeDropdown_ColumnValue" xml:space="preserve">
     <value>Naam</value>
   </data>
+  <data name="PlayerTribeDropdown_ColumnValue_Tooltip" xml:space="preserve">
+    <value>De spelersnaam, de stamtag of de dorpscoordinaten</value>
+  </data>
   <data name="PlayerTribeDropdown_ColumnVisible" xml:space="preserve">
     <value>Zichtbaar</value>
+  </data>
+  <data name="PlayerTribeDropdown_ColumnVisible_Tooltip" xml:space="preserve">
+    <value>Is minstens 1 dorp zichtbaar op de kaart</value>
   </data>
   <data name="PlayerTribeDropdown_EmptyTooltip1" xml:space="preserve">
     <value>Voer {0} in</value>

@@ -48,7 +48,7 @@ namespace TribalWars.Controls.Finders
         {
             _visibilityGetter = tribe;
             Value = tribe.Tag;
-            Text = string.Format("#{1} ({0} points)", Tools.Common.GetPrettyNumber(tribe.AllPoints), tribe.Rank);
+            Text = string.Format(ControlsRes.PlayerOrTribeRow_Text, Tools.Common.GetPrettyNumber(tribe.AllPoints), tribe.Rank);
             Tooltip = tribe.Tooltip;
             Rank = tribe.Rank;
             IsTribe = true;
@@ -58,7 +58,7 @@ namespace TribalWars.Controls.Finders
         {
             _visibilityGetter = player;
             Value = player.Name;
-            Text = string.Format("#{1} ({0} points)", Tools.Common.GetPrettyNumber(player.Points), player.Rank);
+            Text = string.Format(ControlsRes.PlayerOrTribeRow_Text, Tools.Common.GetPrettyNumber(player.Points), player.Rank);
             Tooltip = player.Tooltip;
             Rank = player.Rank;
             IsPlayer = true;

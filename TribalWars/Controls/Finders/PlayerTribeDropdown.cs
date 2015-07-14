@@ -104,6 +104,11 @@ namespace TribalWars.Controls.Finders
 	        SelectorControl.DropDownList.Columns["Value"].Caption = FormRes.PlayerTribeDropdown_ColumnValue;
 	        SelectorControl.DropDownList.Columns["Text"].Caption = FormRes.PlayerTribeDropdown_ColumnText;
 	        SelectorControl.DropDownList.Columns["Rank"].Caption = FormRes.PlayerTribeDropdown_ColumnRank;
+
+			SelectorControl.DropDownList.Columns["Visible"].HeaderToolTip = FormRes.PlayerTribeDropdown_ColumnVisible_Tooltip;
+			SelectorControl.DropDownList.Columns["Image"].HeaderToolTip = FormRes.PlayerTribeDropdown_ColumnImage_Tooltip;
+			SelectorControl.DropDownList.Columns["Value"].HeaderToolTip = FormRes.PlayerTribeDropdown_ColumnValue_Tooltip;
+			SelectorControl.DropDownList.Columns["Text"].HeaderToolTip = FormRes.PlayerTribeDropdown_ColumnText_Tooltip;
         }
 
         private void DropDownList_FormattingRow(object sender, RowLoadEventArgs e)

@@ -11,8 +11,8 @@ namespace TribalWars.Controls.Finders
     public class AutoCompleteCache
     {
         #region Fields
-        private IEnumerable<PlayerOrTribeRow> _playerAutoComplete;
-        private IEnumerable<PlayerOrTribeRow> _tribeAutoComplete;
+        private readonly IEnumerable<PlayerOrTribeRow> _playerAutoComplete;
+        private readonly IEnumerable<PlayerOrTribeRow> _tribeAutoComplete;
         #endregion
 
         public PlayerOrTribeRow[] GetPlayersAndTribes(bool players, bool tribes)

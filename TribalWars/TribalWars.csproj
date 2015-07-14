@@ -139,6 +139,11 @@
     <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripVillageTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ControlsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlsRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Finders\FinderOptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -343,6 +348,11 @@
     <Compile Include="Maps\Manipulators\IContextMenuProvider.cs" />
     <Compile Include="Maps\Manipulators\Implementations\Church\ChurchInfo.cs" />
     <Compile Include="Maps\Manipulators\Implementations\Church\ChurchManipulator.cs" />
+    <Compile Include="Maps\MapRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MapRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -616,6 +626,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>DetailsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ControlsRes.nl.resx" />
+    <EmbeddedResource Include="Controls\ControlsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.en.resx">
+      <DependentUpon>FinderOptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>
@@ -714,8 +732,16 @@
       <SubType>Designer</SubType>
       <LastGenOutput>AttackIcons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\MapRes.nl.resx" />
+    <EmbeddedResource Include="Maps\MapRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MapRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\Markers\MarkerSettingsControl.nl.resx">
+      <DependentUpon>MarkerSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>

@@ -154,6 +154,15 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A village, player or tribe.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnImage_Tooltip {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnImage_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rank.
         /// </summary>
         internal static string PlayerTribeDropdown_ColumnRank {
@@ -172,6 +181,15 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra description.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnText_Tooltip {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnText_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string PlayerTribeDropdown_ColumnValue {
@@ -181,11 +199,29 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The player name, tribe tag or village coordinate.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnValue_Tooltip {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnValue_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visible.
         /// </summary>
         internal static string PlayerTribeDropdown_ColumnVisible {
             get {
                 return ResourceManager.GetString("PlayerTribeDropdown_ColumnVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is at least one village visible on the main map.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnVisible_Tooltip {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnVisible_Tooltip", resourceCulture);
             }
         }
         

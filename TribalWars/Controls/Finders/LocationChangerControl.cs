@@ -18,8 +18,6 @@ namespace TribalWars.Controls.Finders
     /// </summary>
     public partial class LocationChangerControl : UserControl
     {
-        private const string DefaultPlaceHolderText = "Go to village, player, tribe...";
-
         #region Fields
         private Map _map;
         private bool _updatingZoom;
@@ -37,7 +35,7 @@ namespace TribalWars.Controls.Finders
             _map = map;
             SelectorControl.Initialize(map);
             _map.EventPublisher.LocationChanged += EventPublisher_LocationChanged;
-            SelectorControl.PlaceHolderText = DefaultPlaceHolderText;
+			SelectorControl.PlaceHolderText = ControlsRes.LocationChangerControl_PlaceHolder;
         }
         #endregion
 

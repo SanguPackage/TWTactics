@@ -118,6 +118,281 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="MarkerActivePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 0</value>
+  </data>
+  <data name="&gt;&gt;MarkerActivePanel.Name" xml:space="preserve">
+    <value>MarkerActivePanel</value>
+  </data>
+  <data name="&gt;&gt;MarkerColor.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MarkerView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 3</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MarkerExtraColor.ColorPicker.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="MarkerActive.ToolTipText" xml:space="preserve">
+    <value>Activate or disable the marker</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MarkerColor.ColorPicker.ShowMoreColorsButton" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MarkerActivePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;MarkerExtraColor.Name" xml:space="preserve">
+    <value>MarkerExtraColor</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="MarkerColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="MarkerExtraColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;BilliardMarkerPicturebox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MarkerColor.ColorPicker.MoreColorsButtonText" xml:space="preserve">
+    <value>More Colors...</value>
+  </data>
+  <data name="MarkerActive.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;MarkerColor.Name" xml:space="preserve">
+    <value>MarkerColor</value>
+  </data>
+  <data name="MarkerColor.ToolTipText" xml:space="preserve">
+    <value>Choose marker main color</value>
+  </data>
+  <data name="&gt;&gt;MarkerActive.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Tile</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.ShowMoreColorsButton" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;MarkerView.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIComboBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="MarkerColor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MarkerActive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 0</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.ShowAutomaticButton" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MarkerView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;MarkerActive.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UICheckBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;BilliardMarkerPicturebox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="MarkerExtraColor.ToolTipText" xml:space="preserve">
+    <value>Choose marker inner color</value>
+  </data>
+  <data name="&gt;&gt;MarkerActive.Name" xml:space="preserve">
+    <value>MarkerActive</value>
+  </data>
+  <data name="&gt;&gt;MarkerView.Name" xml:space="preserve">
+    <value>MarkerView</value>
+  </data>
+  <data name="&gt;&gt;MarkerExtraColor.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIColorButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="MarkerExtraColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 2</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.ShowToolTips" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MarkerActivePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Tile</value>
+  </data>
+  <data name="&gt;&gt;BilliardMarkerPicturebox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="MarkerColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="MarkerView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="BilliardMarkerPicturebox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 22</value>
+  </data>
+  <data name="&gt;&gt;MarkerExtraColor.Parent" xml:space="preserve">
+    <value>MarkerActivePanel</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.MoreColorsButtonText" xml:space="preserve">
+    <value>More Colors...</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;MarkerActive.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.ShowAutomaticButton" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;MarkerActivePanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;MarkerColor.Parent" xml:space="preserve">
+    <value>MarkerActivePanel</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
+  <data name="MarkerView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="BilliardMarkerPicturebox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="MarkerActive.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 25</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;BilliardMarkerPicturebox.Name" xml:space="preserve">
+    <value>BilliardMarkerPicturebox</value>
+  </data>
+  <data name="&gt;&gt;MarkerActivePanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MarkerActivePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MarkerView.Parent" xml:space="preserve">
+    <value>MarkerActivePanel</value>
+  </data>
+  <data name="MarkerExtraColor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 100</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>299, 25</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MarkerColor.ColorPicker.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="BilliardMarkerPicturebox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 3</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.ShowToolTips" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.AutomaticButtonText" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.AutomaticButtonText" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="&gt;&gt;MarkerActivePanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MarkerExtraColor.ColorPicker.Columns" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="MarkerActivePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 25</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MarkerSettingsControl</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.Columns" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;MarkerExtraColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;MarkerView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;MarkerColor.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIColorButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 100</value>
+  </data>
+  <data name="MarkerColor.ColorPicker.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="BilliardMarkerPicturebox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -131,4 +406,10 @@
         ZwoAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
 </root>

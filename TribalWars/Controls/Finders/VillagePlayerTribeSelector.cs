@@ -151,7 +151,7 @@ namespace TribalWars.Controls.Finders
         public bool AllowCoordinates { get; set; }
 
         /// <summary>
-        /// Show help text when there is not user entered text.
+        /// Show help text when there is no user entered text.
         /// </summary>
         public string PlaceHolderText
         {
