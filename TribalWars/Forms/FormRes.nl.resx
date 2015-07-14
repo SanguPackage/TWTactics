@@ -147,6 +147,30 @@ Klik rechts op een dorp indien je niet goed weet hoe te beginnen.</value>
   <data name="NewWorldForm_Created_NoYou2" xml:space="preserve">
     <value>Hou er rekening mee dat bijvoorbeeld de aanvalsplanner veel beter werkt als je jezelf geselecteerd hebt.</value>
   </data>
+  <data name="PlayerTribeDropdown_ColumnImage" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="PlayerTribeDropdown_ColumnRank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="PlayerTribeDropdown_ColumnText" xml:space="preserve">
+    <value>Rank en punten</value>
+  </data>
+  <data name="PlayerTribeDropdown_ColumnValue" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="PlayerTribeDropdown_ColumnVisible" xml:space="preserve">
+    <value>Zichtbaar</value>
+  </data>
+  <data name="PlayerTribeDropdown_EmptyTooltip1" xml:space="preserve">
+    <value>Voer {0} in</value>
+  </data>
+  <data name="PlayerTribeDropdown_EmptyTooltip_Player" xml:space="preserve">
+    <value>, spelersnaam</value>
+  </data>
+  <data name="PlayerTribeDropdown_EmptyTooltip_Tribe" xml:space="preserve">
+    <value>, stamtag</value>
+  </data>
   <data name="VillageCoordinatesImporterForm_Help" xml:space="preserve">
     <value>Dorpscoordinaten importeren?</value>
   </data>

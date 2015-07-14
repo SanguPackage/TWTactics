@@ -145,6 +145,78 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnImage {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnRank {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank and points.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnText {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnValue {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible.
+        /// </summary>
+        internal static string PlayerTribeDropdown_ColumnVisible {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_ColumnVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter {0}.
+        /// </summary>
+        internal static string PlayerTribeDropdown_EmptyTooltip {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_EmptyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , player name.
+        /// </summary>
+        internal static string PlayerTribeDropdown_EmptyTooltip_Player {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_EmptyTooltip_Player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , tribe tag.
+        /// </summary>
+        internal static string PlayerTribeDropdown_EmptyTooltip_Tribe {
+            get {
+                return ResourceManager.GetString("PlayerTribeDropdown_EmptyTooltip_Tribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right.
         ///
         ///Use Control + A to select all imported villages. Right click to set their purpose or to attack them.

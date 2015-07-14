@@ -137,6 +137,9 @@
         LFkft/9XvDR92jrJHkmLsEx4XVgqHJKUSVrTS9LVVET8uCcuop/8F6jSzlkfUQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="You.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
   <data name="SelectYourselfGroupbox.Text" xml:space="preserve">
     <value>Jezelf selecteren</value>
   </data>
@@ -146,15 +149,15 @@
   <data name="SelectYourTribeMarkersGroupbox.Text" xml:space="preserve">
     <value>Zet de markering voor spelers in je stam</value>
   </data>
-  <data name="WhySetMeGroupbox.Text" xml:space="preserve">
-    <value>Waarom zou ik zeggen wie ik ben?</value>
-  </data>
   <data name="WhySetMeLabel.Text" xml:space="preserve">
     <value>TWTactics reageert verschillend wanneer een dorp tot je stam, tot jezelf of tot de vijand behoort.
 
 Vooral de aanvalsplanner kan je veel beter bijstaan wanneer je jezelf selecteert.
 
 Je kan jezelf later nog altijd selecteren in het hoofdmenu.</value>
+  </data>
+  <data name="WhySetMeGroupbox.Text" xml:space="preserve">
+    <value>Waarom zou ik zeggen wie ik ben?</value>
   </data>
   <data name="HowToMarkersWorkLabel.Text" xml:space="preserve">
     <value>Hieronder kan je specifiëren hoe precies je je eigen dorpen en de dorpen van jouw stam wil tonen op de kaart. De eerste is de hoofdkleur die gebruikt wordt als achtergrondkleur. De tweede, secundaire, kleur is optioneel.

@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
 using Janus.Windows.GridEX.EditControls;
+using TribalWars.Forms;
 using TribalWars.Maps;
 using TribalWars.Villages;
 using TribalWars.Worlds;
@@ -97,6 +98,12 @@ namespace TribalWars.Controls.Finders
         private void VillagePlayerTribeSelector_Load(object sender, EventArgs e)
         {
             SelectorControl.DropDownList.FormattingRow += DropDownList_FormattingRow;
+
+	        SelectorControl.DropDownList.Columns["Visible"].Caption = FormRes.PlayerTribeDropdown_ColumnVisible;
+	        SelectorControl.DropDownList.Columns["Image"].Caption = FormRes.PlayerTribeDropdown_ColumnImage;
+	        SelectorControl.DropDownList.Columns["Value"].Caption = FormRes.PlayerTribeDropdown_ColumnValue;
+	        SelectorControl.DropDownList.Columns["Text"].Caption = FormRes.PlayerTribeDropdown_ColumnText;
+	        SelectorControl.DropDownList.Columns["Rank"].Caption = FormRes.PlayerTribeDropdown_ColumnRank;
         }
 
         private void DropDownList_FormattingRow(object sender, RowLoadEventArgs e)
@@ -336,10 +343,10 @@ namespace TribalWars.Controls.Finders
         private string GetEmptyTooltip()
         {
             string str = "";
-            if (AllowPlayer) str += ", player name";
-            if (AllowTribe) str += ", tribe tag";
+            if (AllowPlayer) str += FormRes.PlayerTribeDropdown_EmptyTooltip_Player;
+			if (AllowTribe) str += FormRes.PlayerTribeDropdown_EmptyTooltip_Tribe;
             if (str != string.Empty)
-                return "Enter" + str.Substring(1);
+				return string.Format(FormRes.PlayerTribeDropdown_EmptyTooltip, str.Substring(1));
 
             return string.Empty;
         }

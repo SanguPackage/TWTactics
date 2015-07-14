@@ -127,15 +127,17 @@
   <data name="&gt;&gt;WhySetMeLabel.Name" xml:space="preserve">
     <value>WhySetMeLabel</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="WhySetMeLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="SelectYourselfGroupbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 57</value>
   </data>
   <data name="&gt;&gt;YourMarker.Parent" xml:space="preserve">
     <value>SelectYourVillagesMarkerGroupbox</value>
   </data>
   <data name="&gt;&gt;WhySetMeGroupbox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="WhySetMeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
   </data>
   <data name="&gt;&gt;SelectYourTribeMarkersGroupbox.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -148,9 +150,6 @@
   </data>
   <data name="&gt;&gt;SelectYourTribeMarkersGroupbox.Name" xml:space="preserve">
     <value>SelectYourTribeMarkersGroupbox</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>677, 322</value>
   </data>
   <data name="HowToMarkersWorkLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 16</value>
@@ -173,6 +172,7 @@
   <data name="OkButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14.25pt</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="HowToMarkersWorkLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -192,6 +192,9 @@
   <data name="&gt;&gt;You.Type" xml:space="preserve">
     <value>TribalWars.Controls.Finders.PlayerTribeDropdown, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="&gt;&gt;YourTribeMarker.Name" xml:space="preserve">
+    <value>YourTribeMarker</value>
+  </data>
   <data name="OkButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -209,14 +212,8 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="&gt;&gt;YourMarker.Name" xml:space="preserve">
     <value>YourMarker</value>
   </data>
-  <data name="You.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
   <data name="You.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 31</value>
-  </data>
-  <data name="WhySetMeGroupbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 13</value>
   </data>
   <data name="HowDoMarkersWorkGroupbox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -226,6 +223,9 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   </data>
   <data name="&gt;&gt;YourMarker.Type" xml:space="preserve">
     <value>TribalWars.Maps.Markers.MarkerSettingsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SelectYourselfGroupbox.Name" xml:space="preserve">
+    <value>SelectYourselfGroupbox</value>
   </data>
   <data name="&gt;&gt;WhySetMeLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -244,9 +244,6 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   </data>
   <data name="SelectYourVillagesMarkerGroupbox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="You.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 27</value>
   </data>
   <data name="SelectYourTribeMarkersGroupbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>309, 204</value>
@@ -277,6 +274,9 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   </data>
   <data name="HowToMarkersWorkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="SelectYourVillagesMarkerGroupbox.Text" xml:space="preserve">
+    <value>Select the  marker for your villages</value>
   </data>
   <data name="YourTribeMarker.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -315,6 +315,9 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="&gt;&gt;OkButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="SelectYourTribeMarkersGroupbox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;SelectYourVillagesMarkerGroupbox.Name" xml:space="preserve">
     <value>SelectYourVillagesMarkerGroupbox</value>
   </data>
@@ -330,8 +333,8 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="&gt;&gt;HowToMarkersWorkLabel.Parent" xml:space="preserve">
     <value>HowDoMarkersWorkGroupbox</value>
   </data>
-  <data name="SelectYourTribeMarkersGroupbox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="WhySetMeLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="WhySetMeGroupbox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -348,23 +351,20 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="WhySetMeLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;OkButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;SelectYourselfGroupbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="SelectYourVillagesMarkerGroupbox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;HowToMarkersWorkLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="YourMarker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ActivePlayerForm</value>
   </data>
   <data name="&gt;&gt;You.Name" xml:space="preserve">
     <value>You</value>
@@ -384,26 +384,26 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="&gt;&gt;SelectYourVillagesMarkerGroupbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;WhySetMeGroupbox.Name" xml:space="preserve">
-    <value>WhySetMeGroupbox</value>
-  </data>
   <data name="&gt;&gt;HowDoMarkersWorkGroupbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;HowDoMarkersWorkGroupbox.Type" xml:space="preserve">
     <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
   </data>
-  <data name="WhySetMeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
+  <data name="WhySetMeGroupbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 13</value>
   </data>
   <data name="OkButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 264</value>
   </data>
+  <data name="&gt;&gt;SelectYourVillagesMarkerGroupbox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="You.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="SelectYourselfGroupbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 57</value>
+  <data name="You.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 27</value>
   </data>
   <data name="&gt;&gt;YourMarker.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -420,17 +420,17 @@ The idea is to pick the same first 'main' color is to indicate a tribe (with an 
   <data name="HowToMarkersWorkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>350, 110</value>
   </data>
-  <data name="&gt;&gt;SelectYourselfGroupbox.Name" xml:space="preserve">
-    <value>SelectYourselfGroupbox</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>677, 322</value>
   </data>
-  <data name="&gt;&gt;YourTribeMarker.Name" xml:space="preserve">
-    <value>YourTribeMarker</value>
+  <data name="&gt;&gt;OkButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ActivePlayerForm</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SelectYourVillagesMarkerGroupbox.Text" xml:space="preserve">
-    <value>Select the  marker for your villages</value>
+  <data name="You.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="&gt;&gt;SelectYourselfGroupbox.Type" xml:space="preserve">
     <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
@@ -451,8 +451,8 @@ Especially the Attack Planner can assist you much better if you tell us which pl
 
 You can always change this from the Menu in the main window later on.</value>
   </data>
-  <data name="&gt;&gt;SelectYourVillagesMarkerGroupbox.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;WhySetMeGroupbox.Name" xml:space="preserve">
+    <value>WhySetMeGroupbox</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
