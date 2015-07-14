@@ -262,7 +262,7 @@ namespace TribalWars.Forms
                     StatusDataTime.Text = w.CurrentData.Value.ToLongDateString();
                     if (w.PreviousData.HasValue)
                     {
-                        StatusDataTime.ToolTipText = "Comparing with data of " + (w.CurrentData.Value - w.PreviousData.Value).GetTimeDifference() + " ago";
+                        StatusDataTime.ToolTipText = string.Format(FormRes.MainForm_StatusDataTime_Tooltip, (w.CurrentData.Value - w.PreviousData.Value).GetTimeDifference());
                     }
                     else
                     {
@@ -521,7 +521,7 @@ namespace TribalWars.Forms
         {
             if (World.Default.HasLoaded)
             {
-                DialogResult result = MessageBox.Show("Use the current position as your home?\n(You can use the Home key to jump to the Home location)", "Set Home Location", MessageBoxButtons.YesNo);
+				DialogResult result = MessageBox.Show(FormRes.MainForm_SetHomeLocation, FormRes.MainForm_SetHomeLocation_Title, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     World.Default.Map.SaveHome();
@@ -547,7 +547,7 @@ namespace TribalWars.Forms
 
                 World.Default.Map.Screenshot(lFile);
 
-                StatusMessage.Text = "Screenshot saved as " + lFile;
+                StatusMessage.Text = string.Format(FormRes.MainForm_ScreenshotSaved, lFile);
             }
         }
 

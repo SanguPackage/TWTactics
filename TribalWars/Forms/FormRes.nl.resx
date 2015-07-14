@@ -133,6 +133,20 @@ Nu doen?</value>
   <data name="LoadWorldForm_SettingsGrid_ColumnName" xml:space="preserve">
     <value>Naam</value>
   </data>
+  <data name="MainForm_ScreenshotSaved" xml:space="preserve">
+    <value>Screenshot bewaard als {0}</value>
+  </data>
+  <data name="MainForm_SetHomeLocation" xml:space="preserve">
+    <value>Gebruik de huidige positie op de kaart als je thuislocatie?
+(Je kan de Home toets gebruiken om er naartoe te springen)</value>
+  </data>
+  <data name="MainForm_SetHomeLocation_Title" xml:space="preserve">
+    <value>Zet thuislocatie</value>
+  </data>
+  <data name="MainForm_StatusDataTime_Tooltip" xml:space="preserve">
+    <value>Vergelijken met de data van {0} geleden</value>
+    <comment>{0} = time difference</comment>
+  </data>
   <data name="NewWorldForm_Created" xml:space="preserve">
     <value>Een nieuwe wereld is aangemaakt!
 

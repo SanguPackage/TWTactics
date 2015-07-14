@@ -107,6 +107,43 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screenshot saved as {0}.
+        /// </summary>
+        internal static string MainForm_ScreenshotSaved {
+            get {
+                return ResourceManager.GetString("MainForm_ScreenshotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the current position as your home?
+        ///(You can use the Home key to jump to the Home location).
+        /// </summary>
+        internal static string MainForm_SetHomeLocation {
+            get {
+                return ResourceManager.GetString("MainForm_SetHomeLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Home Location.
+        /// </summary>
+        internal static string MainForm_SetHomeLocation_Title {
+            get {
+                return ResourceManager.GetString("MainForm_SetHomeLocation_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comparing with data of {0} ago.
+        /// </summary>
+        internal static string MainForm_StatusDataTime_Tooltip {
+            get {
+                return ResourceManager.GetString("MainForm_StatusDataTime_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A new world has been created!
         ///
         ///Right click a village if you don&apos;t know where to start..

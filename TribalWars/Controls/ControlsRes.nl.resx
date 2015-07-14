@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LocationChangerControl_PlaceHolder" xml:space="preserve">
-    <value>Ga naar dorp, speler, stam</value>
+    <value>Naar dorp, speler, stam</value>
   </data>
   <data name="LocationChangerControl_ZoomControl_Tooltip" xml:space="preserve">
     <value>Wijzig het zoomniveau van de kaart</value>
