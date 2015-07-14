@@ -117,7 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="SetPurposeOfYourVillagesGroupbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>441, 468</value>
+  </data>
+  <data name="Explain1Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 16</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="SetPurposeOfYourVillagesGroupbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 12</value>
+  </data>
+  <data name="&gt;&gt;Explain2Label.Parent" xml:space="preserve">
+    <value>SetPurposeOfYourVillagesGroupbox</value>
+  </data>
+  <data name="&gt;&gt;Explain2Label.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SetPurposeOfYourVillagesGroupbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="villagesGridControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SetPurposeOfYourVillagesGroupbox.Name" xml:space="preserve">
+    <value>SetPurposeOfYourVillagesGroupbox</value>
+  </data>
+  <data name="&gt;&gt;Explain1Label.Parent" xml:space="preserve">
+    <value>SetPurposeOfYourVillagesGroupbox</value>
+  </data>
+  <data name="villagesGridControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 331</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>YourVillagesForm</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Parent" xml:space="preserve">
+    <value>SetPurposeOfYourVillagesGroupbox</value>
+  </data>
+  <data name="&gt;&gt;SetPurposeOfYourVillagesGroupbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="villagesGridControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="villagesGridControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 134</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>459, 492</value>
+  </data>
+  <data name="Explain2Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 76</value>
+  </data>
+  <data name="SetPurposeOfYourVillagesGroupbox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="villagesGridControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Explain1Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;SetPurposeOfYourVillagesGroupbox.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="Explain2Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>429, 43</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Type" xml:space="preserve">
+    <value>TribalWars.Controls.GridExs.VillagesGridExControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="Explain2Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;Explain1Label.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Explain1Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 60</value>
+  </data>
+  <data name="&gt;&gt;villagesGridControl1.Name" xml:space="preserve">
+    <value>villagesGridControl1</value>
+  </data>
+  <data name="&gt;&gt;Explain2Label.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SetPurposeOfYourVillagesGroupbox.Text" xml:space="preserve">
+    <value>Set the purpose of your villages</value>
+  </data>
+  <data name="Explain2Label.Text" xml:space="preserve">
+    <value>You can also use the right click contextmenu to create an "attackers pool". The pool contains villages that can be used as potential matches when using the search function in the 'Plan Attacks' pane.</value>
+  </data>
+  <data name="&gt;&gt;Explain1Label.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Explain1Label.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="Explain2Label.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;Explain1Label.Name" xml:space="preserve">
+    <value>Explain1Label</value>
+  </data>
+  <data name="&gt;&gt;Explain2Label.Name" xml:space="preserve">
+    <value>Explain2Label</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Manage your villages</value>
+  </data>
+  <data name="&gt;&gt;SetPurposeOfYourVillagesGroupbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Explain1Label.Text" xml:space="preserve">
     <value>After having (temporarily hopefully!) given your villages secret names describing their troopcount, you can use the filters in the grid to find those villages and set their purpose by selecting them and using the right click contextmenu. You can use Control + A to select all filtered villages. Or use Shift or Control to select a range of rows.</value>
   </data>
+  <data name="SetPurposeOfYourVillagesGroupbox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
 </root>

@@ -30,83 +30,58 @@ namespace TribalWars.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YourVillagesForm));
-            this.villagesGridControl1 = new TribalWars.Controls.GridExs.VillagesGridExControl();
-            this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
-            this.uiGroupBox1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // villagesGridControl1
-            // 
-            this.villagesGridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.villagesGridControl1.Location = new System.Drawing.Point(3, 134);
-            this.villagesGridControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.villagesGridControl1.Name = "villagesGridControl1";
-            this.villagesGridControl1.ShowPlayer = false;
-            this.villagesGridControl1.Size = new System.Drawing.Size(432, 331);
-            this.villagesGridControl1.TabIndex = 0;
-            // 
-            // uiGroupBox1
-            // 
-            this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiGroupBox1.Controls.Add(this.label2);
-            this.uiGroupBox1.Controls.Add(this.villagesGridControl1);
-            this.uiGroupBox1.Controls.Add(this.label1);
-            this.uiGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox1.Location = new System.Drawing.Point(9, 12);
-            this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(441, 468);
-            this.uiGroupBox1.TabIndex = 4;
-            this.uiGroupBox1.Text = "Set the purpose of your villages";
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(429, 43);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "You can also use the right click contextmenu to create an \"attackers pool\". The p" +
-    "ool contains villages that can be used as potential matches when using the searc" +
-    "h function in the \'Plan Attacks\' pane.";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(428, 60);
-            this.label1.TabIndex = 3;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // YourVillagesForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 492);
-            this.Controls.Add(this.uiGroupBox1);
-            this.Name = "YourVillagesForm";
-            this.Text = "Manage your villages";
-            this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
-            this.uiGroupBox1.ResumeLayout(false);
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YourVillagesForm));
+			this.villagesGridControl1 = new TribalWars.Controls.GridExs.VillagesGridExControl();
+			this.SetPurposeOfYourVillagesGroupbox = new Janus.Windows.EditControls.UIGroupBox();
+			this.Explain2Label = new System.Windows.Forms.Label();
+			this.Explain1Label = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.SetPurposeOfYourVillagesGroupbox)).BeginInit();
+			this.SetPurposeOfYourVillagesGroupbox.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// villagesGridControl1
+			// 
+			resources.ApplyResources(this.villagesGridControl1, "villagesGridControl1");
+			this.villagesGridControl1.Name = "villagesGridControl1";
+			this.villagesGridControl1.ShowPlayer = false;
+			// 
+			// SetPurposeOfYourVillagesGroupbox
+			// 
+			resources.ApplyResources(this.SetPurposeOfYourVillagesGroupbox, "SetPurposeOfYourVillagesGroupbox");
+			this.SetPurposeOfYourVillagesGroupbox.Controls.Add(this.Explain2Label);
+			this.SetPurposeOfYourVillagesGroupbox.Controls.Add(this.villagesGridControl1);
+			this.SetPurposeOfYourVillagesGroupbox.Controls.Add(this.Explain1Label);
+			this.SetPurposeOfYourVillagesGroupbox.Name = "SetPurposeOfYourVillagesGroupbox";
+			// 
+			// Explain2Label
+			// 
+			resources.ApplyResources(this.Explain2Label, "Explain2Label");
+			this.Explain2Label.Name = "Explain2Label";
+			// 
+			// Explain1Label
+			// 
+			resources.ApplyResources(this.Explain1Label, "Explain1Label");
+			this.Explain1Label.Name = "Explain1Label";
+			// 
+			// YourVillagesForm
+			// 
+			resources.ApplyResources(this, "$this");
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.SetPurposeOfYourVillagesGroupbox);
+			this.Name = "YourVillagesForm";
+			this.TopMost = true;
+			((System.ComponentModel.ISupportInitialize)(this.SetPurposeOfYourVillagesGroupbox)).EndInit();
+			this.SetPurposeOfYourVillagesGroupbox.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
 
         #endregion
 
         private VillagesGridExControl villagesGridControl1;
-        private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private Janus.Windows.EditControls.UIGroupBox SetPurposeOfYourVillagesGroupbox;
+        private System.Windows.Forms.Label Explain2Label;
+        private System.Windows.Forms.Label Explain1Label;
 
     }
 }
