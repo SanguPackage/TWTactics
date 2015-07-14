@@ -117,188 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;ServerTime.Name" xml:space="preserve">
-    <value>ServerTime</value>
-  </data>
-  <data name="&gt;&gt;ExplainationLabel.Name" xml:space="preserve">
-    <value>ExplainationLabel</value>
+  <data name="ExplainationLabel.Text" xml:space="preserve">
+    <value>Het programma moet het tijdsverschil weten tussen jouw lokale tijd en de TW server tijd opdat aanvalstijden correct kunnen uitgerekend worden.
+
+Als er een verschil is in de tijdzones:
+Kijk naar 'Server tijd' en verzeker jezelf dat de tijd exact overeenkomt met de tijd in Tribal Wars. Verander 'Tijdsaanpassing' totdat dit overeenkomt.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ServerTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 33</value>
-  </data>
-  <data name="&gt;&gt;TimeOffset.Name" xml:space="preserve">
-    <value>TimeOffset</value>
-  </data>
-  <data name="LocalTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>10, 13</value>
-  </data>
-  <data name="&gt;&gt;LocalTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;YourLocalTimeLabel.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ServerTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ExplainationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 140</value>
-  </data>
-  <data name="&gt;&gt;ExplainationLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="LocalTime.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;TimeDisplayTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="YourLocalTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;TimeAdjustmentLabel.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="ServerTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 33</value>
-  </data>
-  <data name="CloseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 249</value>
-  </data>
-  <data name="&gt;&gt;ServerTimeLabel.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="TimeOffset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
-  </data>
-  <data name="ExplainationLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="LocalTime.Text" xml:space="preserve">
-    <value>.</value>
-  </data>
-  <data name="ServerTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;TimeAdjustmentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SecondsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 66</value>
-  </data>
-  <data name="&gt;&gt;SecondsLabel.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="ServerTimeLabel.Text" xml:space="preserve">
-    <value>Server time:</value>
-  </data>
-  <data name="CloseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 46</value>
-  </data>
-  <data name="SecondsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;ExplainationLabel.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="CloseButton.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;ServerTimeLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;CloseButton.Name" xml:space="preserve">
-    <value>CloseButton</value>
-  </data>
-  <data name="YourLocalTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 16</value>
-  </data>
-  <data name="ServerTime.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="SecondsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
   </data>
   <data name="SecondsLabel.Text" xml:space="preserve">
-    <value>seconds</value>
-  </data>
-  <data name="&gt;&gt;gbTimeZome.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;YourLocalTimeLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="TimeOffset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 64</value>
-  </data>
-  <data name="ServerTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>10, 13</value>
-  </data>
-  <data name="&gt;&gt;SecondsLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SecondsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="&gt;&gt;YourLocalTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>seconden</value>
   </data>
   <data name="TimeAdjustmentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="ServerTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
-  </data>
-  <data name="YourLocalTimeLabel.Text" xml:space="preserve">
-    <value>Your local time:</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="ServerTime.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;TimeOffset.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="&gt;&gt;ServerTimeLabel.Name" xml:space="preserve">
-    <value>ServerTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;gbTimeZome.Name" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="gbTimeZome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="&gt;&gt;TimeOffset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ExplainationLabel.Text" xml:space="preserve">
-    <value>This progam needs to know the time difference (if any) between your time and the TW server time in order to calculate attack times correctly.
-
-If there is a difference in time zones:
-Look at 'server time' and ensure it is the same as Tribal Wars server time. If it is not, change the 'Time adjustment' value until it is.</value>
-  </data>
-  <data name="CloseButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14.25pt</value>
-  </data>
-  <data name="&gt;&gt;CloseButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="LocalTime.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>86, 13</value>
   </data>
   <data name="TimeAdjustmentLabel.Text" xml:space="preserve">
-    <value>Time adjustment:</value>
+    <value>Tijdsaanpassing:</value>
   </data>
-  <data name="TimeOffset.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="ServerTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
   </data>
-  <data name="ExplainationLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 91</value>
+  <data name="ServerTimeLabel.Text" xml:space="preserve">
+    <value>Server tijd:</value>
+  </data>
+  <data name="YourLocalTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="YourLocalTimeLabel.Text" xml:space="preserve">
+    <value>Jouw lokale tijd:</value>
+  </data>
+  <data name="CloseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAyRJREFUOE91kl1Ik2EYhp8151xH2UbgQA8kEBeEIcxlgWW1Ncy1Wmo4y2qLXGv9
+        aOhq+UOZ5tLWjz+btqbT1Vw2K8taRpqUYEGxOoigQorOrE46Cre7d58riOqGC773/e7nee73ez/6S3mU
+        oKxXamv9tZ2uh6773WPdoTp/navwZGGxrEiWGHf9W3KrXNl4s/Gdf9qPwPMAgi+CGH45zD17J7045j32
+        UX5Aro3b/9SK6hX7mkaa5tpCbega74JnyoOB6QH4nvnQN9UH14QLjnsOVF2uiqZsS6mOl80rzZiWX+Gu
+        mKsZqsGpkVNoDbWi/VE7nBNOOB870THeAceYA6dHTsM2aIP6hDoqyhf9TrJAbpO/MVwxwHLNgppgDRru
+        NKDpfhPsD+ywj9nRHGpG/VA92oJtOOw7DEOHAUkbkj7RUhJSqj5VmXU8C8XdxdjdvxvmgBmVw5Wwjlhh
+        u2vjsAasCL8N4/az2zD2G1HaXorFWxcjaVVSMckOyuwSiwQFXQUo8hRhx9UdMF43wjRsgvmWGaaACU/C
+        TxCNRjH6YhQlnhJoLmqwULcQ/JX8blpetTxAewk553OgcquweWAzdP06lF8rhz6ox4XRC4hEIvj89TMq
+        g5VQu9VQtChAWgJPwXtAsiOyQaogJDckI7cnl5sw+WoS0++mofVoMfttFjOzM9D5dMj35WN1z2osOrpo
+        vkEOL0SZhzKbYw3oOEF8TgyVV4Wn759ykSfCE/jy/Qs0AQ0UAQWy+7MhbhGD9jN/IYGfw++ijJ0Za0Um
+        EdeA7ITEzkRI3VL0vexDJBrBrtFdyLiRAemAFIJLAlA98xkZSoJIIdoSu0ZeijklTFVs8wyjk9HL4vXy
+        oLunA11lax/DzTjHqGZsZ9Pz+B8omwTcj7DMtCw3wZjwg2zspSNujhUNMvwML6OdEZtuYKgokrwmWcUV
+        /5LMItPzjLwf3FHOMmJJehhORmxyLYPdFm2iOfFGsSle9qekZdJcYbnwNfeRYlFjzawMC6OMINAI3i7R
+        LFkft/9XvDR92jrJHkmLsEx4XVgqHJKUSVrTS9LVVET8uCcuop/8F6jSzlkfUQAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -804,134 +671,7 @@ Look at 'server time' and ensure it is the same as Tribal Wars server time. If i
         AAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAACAAwAAgAMAAMAHAADgDwAA+D8AAP//AAA=
 </value>
   </data>
-  <data name="&gt;&gt;LocalTime.Name" xml:space="preserve">
-    <value>LocalTime</value>
-  </data>
-  <data name="TimeAdjustmentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;SecondsLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>TimeZoneForm</value>
-  </data>
-  <data name="&gt;&gt;ServerTime.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="LocalTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 16</value>
-  </data>
-  <data name="&gt;&gt;ServerTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="YourLocalTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;TimeAdjustmentLabel.Name" xml:space="preserve">
-    <value>TimeAdjustmentLabel</value>
-  </data>
-  <data name="&gt;&gt;CloseButton.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;TimeDisplayTimer.Name" xml:space="preserve">
-    <value>TimeDisplayTimer</value>
-  </data>
-  <data name="TimeAdjustmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 66</value>
-  </data>
-  <data name="&gt;&gt;ExplainationLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;TimeOffset.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;CloseButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="CloseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAyRJREFUOE91kl1Ik2EYhp8151xH2UbgQA8kEBeEIcxlgWW1Ncy1Wmo4y2qLXGv9
-        aOhq+UOZ5tLWjz+btqbT1Vw2K8taRpqUYEGxOoigQorOrE46Cre7d58riOqGC773/e7nee73ez/6S3mU
-        oKxXamv9tZ2uh6773WPdoTp/navwZGGxrEiWGHf9W3KrXNl4s/Gdf9qPwPMAgi+CGH45zD17J7045j32
-        UX5Aro3b/9SK6hX7mkaa5tpCbega74JnyoOB6QH4nvnQN9UH14QLjnsOVF2uiqZsS6mOl80rzZiWX+Gu
-        mKsZqsGpkVNoDbWi/VE7nBNOOB870THeAceYA6dHTsM2aIP6hDoqyhf9TrJAbpO/MVwxwHLNgppgDRru
-        NKDpfhPsD+ywj9nRHGpG/VA92oJtOOw7DEOHAUkbkj7RUhJSqj5VmXU8C8XdxdjdvxvmgBmVw5Wwjlhh
-        u2vjsAasCL8N4/az2zD2G1HaXorFWxcjaVVSMckOyuwSiwQFXQUo8hRhx9UdMF43wjRsgvmWGaaACU/C
-        TxCNRjH6YhQlnhJoLmqwULcQ/JX8blpetTxAewk553OgcquweWAzdP06lF8rhz6ox4XRC4hEIvj89TMq
-        g5VQu9VQtChAWgJPwXtAsiOyQaogJDckI7cnl5sw+WoS0++mofVoMfttFjOzM9D5dMj35WN1z2osOrpo
-        vkEOL0SZhzKbYw3oOEF8TgyVV4Wn759ykSfCE/jy/Qs0AQ0UAQWy+7MhbhGD9jN/IYGfw++ijJ0Za0Um
-        EdeA7ITEzkRI3VL0vexDJBrBrtFdyLiRAemAFIJLAlA98xkZSoJIIdoSu0ZeijklTFVs8wyjk9HL4vXy
-        oLunA11lax/DzTjHqGZsZ9Pz+B8omwTcj7DMtCw3wZjwg2zspSNujhUNMvwML6OdEZtuYKgokrwmWcUV
-        /5LMItPzjLwf3FHOMmJJehhORmxyLYPdFm2iOfFGsSle9qekZdJcYbnwNfeRYlFjzawMC6OMINAI3i7R
-        LFkft/9XvDR92jrJHkmLsEx4XVgqHJKUSVrTS9LVVET8uCcuop/8F6jSzlkfUQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="CloseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="TimeAdjustmentLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;LocalTime.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;TimeAdjustmentLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="YourLocalTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Synchronize Server Time</value>
+    <value>Synchroniseer Server Tijd</value>
   </data>
-  <data name="ServerTime.Text" xml:space="preserve">
-    <value>.</value>
-  </data>
-  <data name="&gt;&gt;ServerTime.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="&gt;&gt;gbTimeZome.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;YourLocalTimeLabel.Name" xml:space="preserve">
-    <value>YourLocalTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;gbTimeZome.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>264, 304</value>
-  </data>
-  <data name="&gt;&gt;SecondsLabel.Name" xml:space="preserve">
-    <value>SecondsLabel</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SecondsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;LocalTime.Parent" xml:space="preserve">
-    <value>gbTimeZome</value>
-  </data>
-  <data name="gbTimeZome.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="gbTimeZome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 234</value>
-  </data>
-  <data name="&gt;&gt;ServerTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>nl</value>
-  </metadata>
-  <metadata name="TimeDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

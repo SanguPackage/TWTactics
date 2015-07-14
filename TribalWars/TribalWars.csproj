@@ -712,6 +712,9 @@
     <EmbeddedResource Include="Forms\Small\TimeConverterForm.resx">
       <DependentUpon>TimeConverterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Small\TimeZoneForm.nl.resx">
+      <DependentUpon>TimeZoneForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\VillageCoordinatesImporterForm.nl.resx">
       <DependentUpon>VillageCoordinatesImporterForm.cs</DependentUpon>
     </EmbeddedResource>
