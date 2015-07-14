@@ -117,10 +117,126 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="LimitResultsLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;cmdVillage.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Search.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenStart.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Area.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="Filter.Items6" xml:space="preserve">
+    <value>Tribe change players</value>
+  </data>
+  <data name="cmdPlayer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Tribe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 22</value>
+  </data>
+  <data name="&gt;&gt;AreaLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;Tribe.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Search.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 25</value>
+  </data>
+  <data name="ResultLimit.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cmdPlayer.Text" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="PointsBetweenEnd.ThousandsSeparator" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;LimitResultsLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;cmdPlayer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdVillage.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="cmdPlayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="LimitResultsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="What.Items" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="FilterLabel.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="&gt;&gt;Area.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;What.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Filter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;Search.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="AreaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="WithinTribeLabel.Text" xml:space="preserve">
+    <value>Within tribe</value>
+  </data>
+  <data name="&gt;&gt;LimitResultsLabel.Name" xml:space="preserve">
+    <value>LimitResultsLabel</value>
+  </data>
+  <data name="&gt;&gt;Search.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Common.LabelTextBox, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="AreaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="Filter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 60</value>
+  </data>
+  <data name="label6.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Filter.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="WithinTribeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="&gt;&gt;AreaLabel.Name" xml:space="preserve">
+    <value>AreaLabel</value>
+  </data>
+  <data name="&gt;&gt;WithinTribeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="DropDown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -132,4 +248,472 @@
         LGU9nChYAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="&gt;&gt;Area.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="FilterLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Filter.Items1" xml:space="preserve">
+    <value>Strongest</value>
+  </data>
+  <data name="PointsBetweenStart.ThousandsSeparator" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="Search.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ResultLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;WithinTribeLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Filter.Items5" xml:space="preserve">
+    <value>Nobled villages</value>
+  </data>
+  <data name="Filter.Items4" xml:space="preserve">
+    <value>Points lost villages</value>
+  </data>
+  <data name="Filter.Items3" xml:space="preserve">
+    <value>Inactives</value>
+  </data>
+  <data name="Filter.Items2" xml:space="preserve">
+    <value>New abandoned villages</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DropDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="PointsBetweenEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 87</value>
+  </data>
+  <data name="&gt;&gt;cmdPlayer.Name" xml:space="preserve">
+    <value>cmdPlayer</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenLabel.Name" xml:space="preserve">
+    <value>PointsBetweenLabel</value>
+  </data>
+  <data name="&gt;&gt;Search.Name" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Area.Items" xml:space="preserve">
+    <value>Entire map</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Height should be 35 or 158</value>
+  </data>
+  <data name="&gt;&gt;Area.Name" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="WithinTribeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Search.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-1, 4</value>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PointsBetweenLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="What.Items2" xml:space="preserve">
+    <value>Villages</value>
+  </data>
+  <data name="&gt;&gt;AreaLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FinderOptionsControl</value>
+  </data>
+  <data name="cmdTribe.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="cmdTribe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 23</value>
+  </data>
+  <data name="&gt;&gt;Search.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="cmdPlayer.ToolTip" xml:space="preserve">
+    <value>List all players matching the search criteria</value>
+  </data>
+  <data name="Tribe.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cmdPlayer.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Area.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PointsBetweenStart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AreaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;FilterLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdTribe.ToolTip" xml:space="preserve">
+    <value>List all tribes matching the search criteria</value>
+  </data>
+  <data name="PointsBetweenEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="Area.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 35</value>
+  </data>
+  <data name="AreaLabel.Text" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="DropDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 6</value>
+  </data>
+  <data name="&gt;&gt;Filter.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ResultLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cmdVillage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="&gt;&gt;LimitResultsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DropDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PointsBetweenLabel.Text" xml:space="preserve">
+    <value>Points between</value>
+  </data>
+  <data name="LimitResultsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Area.Items1" xml:space="preserve">
+    <value>Visible map</value>
+  </data>
+  <data name="&gt;&gt;cmdPlayer.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="Tribe.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;cmdVillage.Name" xml:space="preserve">
+    <value>cmdVillage</value>
+  </data>
+  <data name="&gt;&gt;Tribe.Name" xml:space="preserve">
+    <value>Tribe</value>
+  </data>
+  <data name="Tribe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenEnd.Name" xml:space="preserve">
+    <value>PointsBetweenEnd</value>
+  </data>
+  <data name="PointsBetweenLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;What.Name" xml:space="preserve">
+    <value>What</value>
+  </data>
+  <data name="Area.Items2" xml:space="preserve">
+    <value>Monitored Area</value>
+  </data>
+  <data name="Tribe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 133</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;FilterLabel.Name" xml:space="preserve">
+    <value>FilterLabel</value>
+  </data>
+  <data name="FilterLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Filter.Name" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenStart.Name" xml:space="preserve">
+    <value>PointsBetweenStart</value>
+  </data>
+  <data name="&gt;&gt;cmdPlayer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmdTribe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="WithinTribeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;FilterLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AreaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LimitResultsLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Filter.Items" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="&gt;&gt;DropDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Filter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 21</value>
+  </data>
+  <data name="cmdVillage.ToolTip" xml:space="preserve">
+    <value>List all villages matching the search criteria</value>
+  </data>
+  <data name="&gt;&gt;DropDown.Name" xml:space="preserve">
+    <value>DropDown</value>
+  </data>
+  <data name="&gt;&gt;cmdTribe.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;ResultLimit.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 158</value>
+  </data>
+  <data name="AreaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 38</value>
+  </data>
+  <data name="AreaLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cmdVillage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 6</value>
+  </data>
+  <data name="&gt;&gt;Tribe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="DropDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="WithinTribeLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ResultLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="cmdVillage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;cmdVillage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdTribe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdVillage.Text" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="ResultLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 110</value>
+  </data>
+  <data name="cmdTribe.Text" xml:space="preserve">
+    <value>Tribe</value>
+  </data>
+  <data name="&gt;&gt;DropDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;Area.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;What.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ResultLimit.Name" xml:space="preserve">
+    <value>ResultLimit</value>
+  </data>
+  <data name="&gt;&gt;Filter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="What.Items1" xml:space="preserve">
+    <value>Tribes</value>
+  </data>
+  <data name="PointsBetweenLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 89</value>
+  </data>
+  <data name="FilterLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 63</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenEnd.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="DropDown.ToolTip" xml:space="preserve">
+    <value>Open/Hide the additional filters menu</value>
+  </data>
+  <data name="PointsBetweenStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="PointsBetweenStart.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;WithinTribeLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PointsBetweenEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="LimitResultsLabel.Text" xml:space="preserve">
+    <value>Limit results</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;cmdTribe.Name" xml:space="preserve">
+    <value>cmdTribe</value>
+  </data>
+  <data name="cmdTribe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 6</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 13</value>
+  </data>
+  <data name="Area.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 21</value>
+  </data>
+  <data name="PointsBetweenLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithinTribeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 136</value>
+  </data>
+  <data name="&gt;&gt;Tribe.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Finders.PlayerTribeDropdown, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="What.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 21</value>
+  </data>
+  <data name="What.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;What.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="PointsBetweenEnd.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="What.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;ResultLimit.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="LimitResultsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenEnd.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DropDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;WithinTribeLabel.Name" xml:space="preserve">
+    <value>WithinTribeLabel</value>
+  </data>
+  <data name="FilterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="PointsBetweenStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 87</value>
+  </data>
+  <data name="&gt;&gt;FilterLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="FilterLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tribe.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;PointsBetweenStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cmdPlayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 6</value>
+  </data>
+  <data name="What.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 8</value>
+  </data>
+  <data name="cmdTribe.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LimitResultsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 112</value>
+  </data>
+  <data name="Search.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;cmdVillage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Filter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="What.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 226</value>
+  </data>
+  <data name="PointsBetweenLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Area.Items3" xml:space="preserve">
+    <value>Clusters</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
 </root>

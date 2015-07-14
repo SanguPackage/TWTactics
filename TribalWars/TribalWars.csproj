@@ -631,7 +631,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ControlsRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.en.resx">
+    <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.nl.resx">
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.resx">
