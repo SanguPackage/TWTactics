@@ -618,6 +618,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorldSettings.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Browsers\Control\BrowserControl.nl.resx">
+      <DependentUpon>BrowserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AccordeonDetails\VillageControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VillageControl.cs</DependentUpon>
