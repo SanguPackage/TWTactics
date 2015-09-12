@@ -35,9 +35,9 @@
 			this.RefreshMarkersButton = new Janus.Windows.EditControls.UIButton();
 			this.MarkersGrid = new Janus.Windows.GridEX.GridEX();
 			this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
-			this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
 			this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
 			this.AbandonedMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
+			this.EnemyMarker = new TribalWars.Maps.Markers.MarkerSettingsControl();
 			((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
 			this.uiGroupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.MarkersGrid)).BeginInit();
@@ -91,17 +91,6 @@
 			this.uiGroupBox2.Controls.Add(this.EnemyMarker);
 			this.uiGroupBox2.Name = "uiGroupBox2";
 			// 
-			// EnemyMarker
-			// 
-			resources.ApplyResources(this.EnemyMarker, "EnemyMarker");
-			this.EnemyMarker.AllowBarbarianViews = false;
-			this.EnemyMarker.AutoUpdateMarkers = true;
-			this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
-			this.EnemyMarker.CanDeactivate = false;
-			this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-			this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
-			this.EnemyMarker.Name = "EnemyMarker";
-			// 
 			// uiGroupBox3
 			// 
 			resources.ApplyResources(this.uiGroupBox3, "uiGroupBox3");
@@ -118,6 +107,17 @@
 			this.AbandonedMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
 			this.AbandonedMarker.DefaultMarkerColor = System.Drawing.Color.Olive;
 			this.AbandonedMarker.Name = "AbandonedMarker";
+			// 
+			// EnemyMarker
+			// 
+			resources.ApplyResources(this.EnemyMarker, "EnemyMarker");
+			this.EnemyMarker.AllowBarbarianViews = false;
+			this.EnemyMarker.AutoUpdateMarkers = true;
+			this.EnemyMarker.BackColor = System.Drawing.Color.Transparent;
+			this.EnemyMarker.CanDeactivate = false;
+			this.EnemyMarker.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+			this.EnemyMarker.DefaultMarkerColor = System.Drawing.Color.Red;
+			this.EnemyMarker.Name = "EnemyMarker";
 			// 
 			// MarkersControl
 			// 
