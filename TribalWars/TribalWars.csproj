@@ -632,6 +632,12 @@
       <SubType>Designer</SubType>
       <DependentUpon>DetailsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AccordeonLocation\LocationControl.nl.resx">
+      <DependentUpon>LocationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AccordeonLocation\LocationFinderControl.nl.resx">
+      <DependentUpon>LocationFinderControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlsRes.nl.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
