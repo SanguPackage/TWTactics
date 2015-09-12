@@ -767,6 +767,9 @@
     <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackPlanControl.nl.resx">
       <DependentUpon>AttackPlanControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackPlanFromControl.nl.resx">
+      <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\MapRes.nl.resx" />
     <EmbeddedResource Include="Maps\MapRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
