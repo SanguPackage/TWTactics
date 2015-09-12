@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TribalWars.Controls.XPTables;
+using TribalWars.Forms;
 using TribalWars.Maps.Markers;
 using TribalWars.Tools.PropertyGrid.Players;
 using TribalWars.Tools.PropertyGrid.Tribes;
@@ -351,7 +352,7 @@ namespace TribalWars.Controls.AccordeonDetails
                     Comments.Visible = true;
                     CommentsPanel.Visible = true;
 
-                    CommentsLabel.Text = "Custom comments for " + command.Village.LocationString;
+                    CommentsLabel.Text = string.Format(FormRes.DetailsControl_CustomCommentsForVillage, command.Village.LocationString);
 
                     //SpecialVillage.SetReport(command.Village.Reports.CurrentSituation);
                     DetailsGrid.SelectedObject = new ExtendedVillageDescriptor(command.Village);

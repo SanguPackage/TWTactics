@@ -117,86 +117,712 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="&gt;&gt;CommentsLabel.Name" xml:space="preserve">
+    <value>CommentsLabel</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ViewVillageDetails.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="FarmFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village as a farm</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="&gt;&gt;NobleFlag.Name" xml:space="preserve">
+    <value>NobleFlag</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splitContainer2.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="&gt;&gt;DetailsGrid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PropertyGrid, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MarkPlayerOrTribe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;SelectedVillage.Name" xml:space="preserve">
+    <value>SelectedVillage</value>
+  </data>
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="ContextStripPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ContextStripPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VillageSeperator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ViewVillageDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ViewVillageDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="ViewPlayerDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;ContextStripPanel.Parent" xml:space="preserve">
+    <value>QuickFinderLayout</value>
+  </data>
+  <data name="&gt;&gt;FarmFlag.Name" xml:space="preserve">
+    <value>FarmFlag</value>
+  </data>
   <data name="UndoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK2SURBVDhPdZJJT1NRGIb7E1xoTNwYTEwMaHSFiTvFuDGg
-        caWigRiJYEQGB4KQGIIghqEqYZTJAIqIIoOAKDKDiMyTlhYoLZdKqVxuCwilfbyUEsXAk5zN+b73Pe85
-        51NsRXqFmrRKHSnlAg8Lv5NY2E11iwpneXtyPmh50WKgV/8b04KVOcsqJmkFlU6koKqfmMy67U2elo8z
-        pJew2uwMTkjk1k6wgV1e1lUbeoNIQFQReW+/bDbKrBrn26SE3W5HtKzgGdmC173GdfV/zM+LeAWkbjbI
-        eD/sEKvkBMfDWzmSMIF7cCPVHQLTpiWnVE5htbGyvEjv0Cgevo/XTVJLelDrRer7jLgFyeJkA0dzJQ4n
-        6dkfPsCB601kVGqcFiCKcyyYZwmNLSI5vx7Fg2cNrNpsRGT3s+9OL4dSTLgppzmoFHCN0+KWJOByu4f4
-        ohFHSkkSMc4YyH5Vx9XIfBS3k2odhTXiXgyzx78Fl2gNroHNXIpu5VhwA3vDBtjt+xndjIUFixmT0UBj
-        azfnQ7JQ3HxUzfLKqsNgjfK2KXZ713D6br1zB0LS+tjpXYvy9YicYF42EGhu7+ZcYAaKs0HPGRw1OFvX
-        6RqdI1GOvMGceZkdZ0rxS+hgRo4v6CcpKqvnYmg2iqi0OnJKvzpbt8a8aGWXVwmZ5SMIUzoE3QS3YgqJ
-        zahZ/4kbMe8QzYuOZpvt73U2GBgXcb9WxbhWj1qtoaG1E89/ZyG5oImolPey2Ip1WX6oBYtDuPa2trX5
-        0Bpp79Ewphmjsa2bC0FpFFd3bR6mmzHFRCa9wfhTYMliwizOsiiZkH7NYBDk2HotA0PD+EVkEZ/9cbN4
-        A//7L/HwURKXXkGTfJJGo0b1Q0V7Zy/KrDJO+ipJzP20tfhflHl1XL6TywnZ7NSVJ/iE5xGWULqFUKH4
-        A+vTo3PkKm5AAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAArZJREFUOE91kklPU1EYhvsTXGhM3BhMTAxodIWJO8W4MaBxpaKBGIlgRAYHgpAY
+        giCGoSphlMkAiogig4AoMoOIzJOWFigtl0qpXG4LCKV9vJQSxcCTnM35vvc97znnU2xFeoWatEodKeUC
+        Dwu/k1jYTXWLCmd5e3I+aHnRYqBX/xvTgpU5yyomaQWVTqSgqp+YzLrtTZ6WjzOkl7Da7AxOSOTWTrCB
+        XV7WVRt6g0hAVBF5b79sNsqsGufbpITdbke0rOAZ2YLXvcZ19X/Mz4t4BaRuNsh4P+wQq+QEx8NbOZIw
+        gXtwI9UdAtOmJadUTmG1sbK8SO/QKB6+j9dNUkt6UOtF6vuMuAXJ4mQDR3MlDifp2R8+wIHrTWRUapwW
+        IIpzLJhnCY0tIjm/HsWDZw2s2mxEZPez704vh1JMuCmnOagUcI3T4pYk4HK7h/iiEUdKSRIxzhjIflXH
+        1ch8FLeTah2FNeJeDLPHvwWXaA2ugc1cim7lWHADe8MG2O37Gd2MhQWLGZPRQGNrN+dDslDcfFTN8sqq
+        w2CN8rYpdnvXcPpuvXMHQtL62Oldi/L1iJxgXjYQaG7v5lxgBoqzQc8ZHDU4W9fpGp0jUY68wZx5mR1n
+        SvFL6GBGji/oJykqq+diaDaKqLQ6ckq/Olu3xrxoZZdXCZnlIwhTOgTdBLdiConNqFn/iRsx7xDNi45m
+        m+3vdTYYGBdxv1bFuFaPWq2hobUTz39nIbmgiaiU97LYinVZfqgFi0O49ra2tfnQGmnv0TCmGaOxrZsL
+        QWkUV3dtHqabMcVEJr3B+FNgyWLCLM6yKJmQfs1gEOTYei0DQ8P4RWQRn/1xs3gD//sv8fBREpdeQZN8
+        kkajRvVDRXtnL8qsMk76KknM/bS1+F+UeXVcvpPLCdns1JUn+ITnEZZQuoVQofgD69Ojc+QqbkAAAAAA
+        SUVORK5CYII=
 </value>
+  </data>
+  <data name="ScoutFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village for scouts</value>
+  </data>
+  <data name="DefenseFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="RedoButton.ToolTipText" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;ContextStripPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CommentsPanel.Name" xml:space="preserve">
+    <value>CommentsPanel</value>
+  </data>
+  <data name="ViewPlayerDetails.ToolTipText" xml:space="preserve">
+    <value>View player details</value>
+  </data>
+  <data name="&gt;&gt;ViewTribeDetails.Name" xml:space="preserve">
+    <value>ViewTribeDetails</value>
+  </data>
+  <data name="ContextStripPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectedVillage.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ViewTribeDetails.ToolTipText" xml:space="preserve">
+    <value>View tribe details</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel1.Parent" xml:space="preserve">
+    <value>splitContainer2</value>
+  </data>
+  <data name="CommentsPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 121</value>
+  </data>
+  <data name="ContextStripPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 25</value>
+  </data>
+  <data name="&gt;&gt;ScoutFlag.Name" xml:space="preserve">
+    <value>ScoutFlag</value>
+  </data>
+  <data name="&gt;&gt;Table.Type" xml:space="preserve">
+    <value>TribalWars.Controls.XPTables.TableWrapperControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="NobleFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="RedoButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;Table.Name" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="&gt;&gt;VillageCurrentSituation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CommentsPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DetailsGrid.Name" xml:space="preserve">
+    <value>DetailsGrid</value>
+  </data>
+  <data name="&gt;&gt;CommentsPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Table.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="MarkPlayerOrTribe.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ContextStrip.Parent" xml:space="preserve">
+    <value>ContextStripPanel</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="DefenseFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="VillageCurrentSituation.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="ContextStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="NobleFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="DetailsGrid.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;QuickFinderLayout.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="QuickFinderLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 297</value>
+  </data>
+  <data name="&gt;&gt;Comments.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Table.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ContextStripPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="UndoButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="CommentsPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="CommentsPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;Comments.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VillageCurrentSituation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;UndoButton.Name" xml:space="preserve">
+    <value>UndoButton</value>
+  </data>
+  <data name="VillageCurrentSituation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAlNJREFUOE+tkO9LE3Ecx+9PCPoXoh71IEwo6En0IMN+INmm5NIKWgRzYKn0pCtK
+        9yTYbLHTgUNTmXN6+3FzP+7mhjdzGynOQHT9gKVuU5YpFIg6fXd3u/mjyHrQCz7cwff7en2/d8SfiHOt
+        RykL1aHT61Ok7mXqacuTDpVKdVxe3sPNz6E4bPwT+KkUpmZT6B6gEeTHkM19xfxSDr20G/WNjydqteQR
+        WS0gir8SHosgEOal96088H19G5lveRgtA6iqU+tktYAjPCNtNHSxaOvm0GkfhcnSjfRybldeWttCMr0J
+        JjIHRU3NZ1ktYOempcB+9JQZi8srBXk1L8gbiCXX0TEUw3WF4mDA6p2QpDbhBqa+IAa9MTgYBu5AGNlV
+        4eTMJqIf1jE8+QOaZhLK6mrK0NL4QtYJoscdkwL7yaQXoDe+Rme/B87ILNrpGDRNonwD/QYVXpHand2I
+        hY7I2kHexhOgzBQeaDS4VXcHN5UVMD68gGzXRWyP38YzsmFH39p4lTDbQpIwPvEe3GgcHjYCl38U9HAI
+        dheLHpsTVocf9doG3L9yGgmyFIvt57HCKNGkvgbC1MdKAVEWpb0Zgd3NwUp7YWV41GqfQ11eUqm+XIKR
+        5jO4V3YSVeWlFYTxjU8KDAfHMOQZwSDDCSKLAVcA/bQPNocPFnsI5apHED9ZjJw7dQJlZ49VSv+gGHg3
+        NQOHcCrtCcLm9EuiU7iJPxSFqTeA0kt3pcBvFAMiG5t5ZJfX8PFLDtPJLKKJBfCT8xD3/DUgPg+bQwPi
+        4r+MrPxPCOInbe9BjhnlHv8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="&gt;&gt;UndoButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RedoButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="SelectedVillage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 23</value>
+  </data>
+  <data name="&gt;&gt;ContextStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CatapultFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MarkPlayerOrTribe.Parent" xml:space="preserve">
+    <value>ContextStripPanel</value>
+  </data>
+  <data name="ViewTribeDetails.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="CommentsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="ViewPlayerDetails.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel1.Name" xml:space="preserve">
+    <value>splitContainer2.Panel1</value>
+  </data>
+  <data name="VillageCurrentSituation.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;AttackFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CommentsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="QuickFinderLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="DefenseFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village as defensive</value>
+  </data>
+  <data name="&gt;&gt;Comments.Name" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="splitContainer2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 247</value>
+  </data>
+  <data name="ViewPlayerDetails.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="DetailsGrid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 122</value>
+  </data>
+  <data name="VillageCurrentSituation.ToolTipText" xml:space="preserve">
+    <value>View the current estimated status</value>
+  </data>
+  <data name="ContextStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="UndoButton.ToolTipText" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="DetailsGrid.HelpVisible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QuickFinderLayout.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="QuickFinderLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="splitContainer2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="toolStrip1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ContextStripPanel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,25,Absolute,25,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;ContextStripPanel.Name" xml:space="preserve">
+    <value>ContextStripPanel</value>
+  </data>
+  <data name="&gt;&gt;ViewPlayerDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Table.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="Table.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;VillageCurrentSituation.Name" xml:space="preserve">
+    <value>VillageCurrentSituation</value>
+  </data>
+  <data name="&gt;&gt;ContextStrip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
+    <value>toolStripSeparator3</value>
+  </data>
+  <data name="MarkPlayerOrTribe.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ContextStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Name" xml:space="preserve">
+    <value>splitContainer2</value>
+  </data>
+  <data name="FarmFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="ContextStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 25</value>
+  </data>
+  <data name="&gt;&gt;Table.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
+  </data>
+  <data name="ViewVillageDetails.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AttackFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="CommentsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 20</value>
+  </data>
+  <data name="Comments.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;DetailsGrid.Parent" xml:space="preserve">
+    <value>splitContainer2.Panel1</value>
+  </data>
+  <data name="ScoutFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;Table.Parent" xml:space="preserve">
+    <value>splitContainer2.Panel2</value>
+  </data>
+  <data name="&gt;&gt;RedoButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CommentsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;MarkPlayerOrTribe.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;CommentsPanel.Parent" xml:space="preserve">
+    <value>splitContainer2.Panel2</value>
+  </data>
+  <data name="CommentsPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;RedoButton.Name" xml:space="preserve">
+    <value>RedoButton</value>
+  </data>
+  <data name="&gt;&gt;NobleFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>QuickFinderLayout</value>
+  </data>
+  <data name="&gt;&gt;DefenseFlag.Name" xml:space="preserve">
+    <value>DefenseFlag</value>
+  </data>
+  <data name="&gt;&gt;QuickFinderLayout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;MarkPlayerOrTribe.Name" xml:space="preserve">
+    <value>MarkPlayerOrTribe</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Parent" xml:space="preserve">
+    <value>QuickFinderLayout</value>
+  </data>
+  <data name="Table.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 121</value>
+  </data>
+  <data name="ScoutFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;CommentsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Comments.Parent" xml:space="preserve">
+    <value>CommentsPanel</value>
+  </data>
+  <data name="CatapultFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="QuickFinderLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;ScoutFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 297</value>
+  </data>
+  <data name="CatapultFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village as offensive with catapults</value>
+  </data>
+  <data name="&gt;&gt;QuickFinderLayout.Name" xml:space="preserve">
+    <value>QuickFinderLayout</value>
+  </data>
+  <data name="UndoButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="AttackFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="CommentsPanel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="AttackFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village as offensive</value>
+  </data>
+  <data name="Comments.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="SelectedVillage.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="CommentsLabel.Text" xml:space="preserve">
+    <value>Custom comments for</value>
+  </data>
+  <data name="QuickFinderLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="FarmFlag.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DetailsGrid.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="DetailsGrid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ContextStrip.Text" xml:space="preserve">
+    <value>ContextStrip</value>
+  </data>
+  <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
+    <value>122</value>
+  </data>
+  <data name="UndoButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="DetailsGrid.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="MarkPlayerOrTribe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;ViewTribeDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ViewVillageDetails.Name" xml:space="preserve">
+    <value>ViewVillageDetails</value>
+  </data>
+  <data name="Comments.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 25</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel2.Name" xml:space="preserve">
+    <value>splitContainer2.Panel2</value>
+  </data>
+  <data name="&gt;&gt;CommentsLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RedoButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="AttackFlag.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAABAhJREFUOE+VVHtMU3cUvnPZFs1mZASDW4khbFTG3ENcCA/XxinDCmzTZdkWzAT3
+        UDI3Wc2SYfAC2RZ8sMoUAYUVKAXaApZyAUuB214KtJSXgNhgoaAxyNyAMZGX9Nu9N3dxLu6Pfbkn9+ac
+        73zn/M7N+RH/hlarfZKhmfjy4rphhaJ4oqmx8SCAx0iSXDXIxrhvgfrf6G9t9aqsqD5VqqpFpbYF+Xla
+        FFxUMsaqkvVnskiZpS4321hT4i/QHw2KorwYc1tusbIWZaX10FczyDtfgdycc+V6vUqc+FEMk5okQ5ny
+        9GEhhVCpqjZQldRGg6FrDe9ob29frVbrTykLDbzApSozqnQtyFYocSwlpSWDJKvfiZXNB4rWIemz+EMG
+        g2ENbTLFFCm1fYUF6nGT0ZLJCzE0fTjnbClUxRQvZNC3smIWsHPxJB08gvKyRvaYGkgkkpUTP6btM1Tr
+        SYVCNV9SRIEytPNGjDj7Iiu1prvccSiDFY2XHWg29bDJDUhPy4LZ7MD01CKKi/S4QGqWKipqJ0tL6qDT
+        NIOqaYOxoRNsh0uE1WLvqNKZYTJ2w2EfQc0lGtln8pGYmLR46POv8PudKSwvAzptE1uoAx1tw7C2DsHc
+        0o+Wpj62cBdr9CLBCdDNA7B3uKCtuAypRFrvL/JN2iPb9suX+3Z4stK/RaWmHozlKro6R9HbfQMO9s3x
+        bR3DsNADaGNsC8Q3ySlF2T8VsjNQIzwsPI8d2XPc3E4fTzg71nMRn3z84rLoedFYZqZi3jk0CefVOxjs
+        n0C3YwydNhfsdhdo2jlHREZGesmioo+/sWWL3Nvb+xlO5L24t+Nk0o1/anKOIP1ovIV1RTy7bi2p0zT8
+        4R6ZhWt4Gld6b6K/7xYvaqa7b3N5DyEzkxRFbPK1v/WyNyJeWnsvShKawPn9fHwCCi6UXBu5Po2b43fh
+        Hpnhzcpc81A1Zh2f/DeszdUB6txjzHdf7EF4kA+CA/3UYrGY71L+tVxqMdvHuI6mp5YwM7WCyYlFuGy/
+        LajV9RJegENycvLqtKMHfrg+wOCWexDxsaG9QUFBwUKYUBWpPnV2j8/+ensBC/fuY37Og9kZoLHBZmX3
+        83GBRhAymcx32yt+zu/l++FoKkRG8t4TQogHW2hzb++Qi11arNz3AOzDCaempu4UKAQRHR39lEy6NePd
+        iABPXJg/okIDx/fulkiFMA9u+wvy8raOjo5aOTG32718Ljv3A84vUNi/FLtz+67QDUv7o19FRODTcyJf
+        bznrftDuPyCXy9fbbD0/G+vp+Pz8/CcEN0GcPEn67grbdOXA7hDEhb+A18V+dSEhIQ8IjwDb0CrWHr6X
+        3o95U/Xh9mAksEKhYp8br20O2iGE/gcI4i8CWGYdkBpOtAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="CommentsPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ViewVillageDetails.ToolTipText" xml:space="preserve">
+    <value>View village details</value>
+  </data>
+  <data name="ViewTribeDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="QuickFinderLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="ViewTribeDetails.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="Comments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 94</value>
+  </data>
+  <data name="Comments.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="SelectedVillage.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="VillageSeperator.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="CommentsLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="splitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="QuickFinderLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;ViewPlayerDetails.Name" xml:space="preserve">
+    <value>ViewPlayerDetails</value>
+  </data>
+  <data name="Comments.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;FarmFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel2.Parent" xml:space="preserve">
+    <value>splitContainer2</value>
+  </data>
+  <data name="&gt;&gt;VillageSeperator.Name" xml:space="preserve">
+    <value>VillageSeperator</value>
   </data>
   <data name="RedoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
+        zIqOLdMFJOkPDS3XZ+Fp3skAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="Comments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 27</value>
+  </data>
+  <data name="VillageSeperator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ContextStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MarkPlayerOrTribe.Type" xml:space="preserve">
+    <value>TribalWars.Maps.Markers.MarkerSettingsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="CatapultFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splitContainer2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;AttackFlag.Name" xml:space="preserve">
+    <value>AttackFlag</value>
+  </data>
+  <data name="&gt;&gt;splitContainer2.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;CommentsLabel.Parent" xml:space="preserve">
+    <value>CommentsPanel</value>
+  </data>
+  <data name="&gt;&gt;DefenseFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ContextStrip.Name" xml:space="preserve">
+    <value>ContextStrip</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>DetailsControl</value>
+  </data>
+  <data name="&gt;&gt;CatapultFlag.Name" xml:space="preserve">
+    <value>CatapultFlag</value>
+  </data>
+  <data name="NobleFlag.ToolTipText" xml:space="preserve">
+    <value>Mark this village for nobles</value>
+  </data>
+  <data name="&gt;&gt;DetailsGrid.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="MarkPlayerOrTribe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="splitContainer2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="&gt;&gt;QuickFinderLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="CatapultFlag.Text" xml:space="preserve">
+    <value>toolStripButton1</value>
+  </data>
+  <data name="MarkPlayerOrTribe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 25</value>
   </data>
   <metadata name="ContextStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>116, 17</value>
   </metadata>
-  <data name="AttackFlag.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQISURBVDhPlVR7TFN3FL5z2RbNZmQEg1uJISxUhu4hLoSH
-        a+OUYQW2qVm2BTPBPZTMTVazZBi8QLYFH6wyZYCCBUqBtoClXMBS4LaXAi3lJSBrsFDQGGRuwJjIS/rt
-        3pu7OBf3x77ck3tzzne+c37n5vyIf0Or1T7N0Ex8eXHdsEJRPNHU2HgYwBMkSa4aZGPct0D9b/S3tnpV
-        VlSfKVXVolLbgvw8LQouKRljVcn6c1mkzFKXm22sKfEX6I8HRVFejLktt1hZi7LSeuirGeT9XIHcnAvl
-        er1KnPhhDJOaJEOZ8uxRIYVQqao2UJXURoOhaw3vaG9vX61W688oCw28wJUqM6p0LchWKHEiJaUlgySr
-        34mVzQeK1iHp0/gjBoNhDW0yxRQptX2FBepxk9GSyQsxNH0053wpVMUUL2TQt7JiFrBz8SQdPobyskb2
-        mBpIJJKVUz+kHTBU60mFQjVfUkSBMrTzRow4+yIrtaZ73HEogxWNVx1oNvWwyQ1IT8uC2ezA9NQiiov0
-        uEhqlioqaidLS+qg0zSDqmmDsaETbIdLhNVi76jSmWEydsNhH0HNFRrZ5/KRmJi0eOSzL/H73SksLwM6
-        bRNbqAMdbcOwtg7B3NKPlqY+tnAXa/QiwQnQzQOwd7igrbgKqURa7y/yTdor2375iwM7PVnp36BSUw/G
-        ch1dnaPo7b4JB/vm+LaOYVjoAbQxtgXi6+SUouwfC9kZqBEeFp7HjuwFbm5nTyacH+u5hI8/ClwWvSga
-        y8xUzDuHJuG8fheD/RPodoyh0+aC3e4CTTvniMjISC9ZVPTJN7ZulXt7ez/HibwX93acTLrxT03OMaQf
-        j7ewrojn160ldZqGP9wjs3ANT+Na7y30993mRc109x0u7xFkZpKiiE2+9rc2eyPi5bX3oyShCZzfz8cn
-        oOBiyS8jN6Zxa/we3CMzvLW1Oj1UjVnHJ/8Na3N1gDr3BPPt53sRHuSD4EA/tVgs5ruUfyWXWsz2Ma6j
-        6aklzEytYHJiES7bbwtqdb2EF+CQnJy8Ou34oe9vDDC47R5EfGxob1BQULAQJlRFqk+c3eOzv95ZwML9
-        B5if82B2BmhssFnZ/XxSoBGETCbz3f6Kn/M7+UE4mgqRkbzvlBDiwRba0ts75GKXFisPPAD7cMKpqam7
-        BApBREdHPyOTbst4NyLAExfmj6jQwPF9eyRSIcyD2/6CvLxto6OjVk7M7XYvX8jOfZ/zCxT2L8Xu2rE7
-        dMPSwehXERH47JzI11vOuh+2+w/I5fL1NlvPT8Z6Oj4/P/8pwU0Qp0+TvrvDNl07tCcEceEv4XWxX11I
-        SMhDwmPANrSKtUfvpf0xb6o+2BGMBFYoVOxz87UtQTuF0P8AQfwFCyFmIWnEyh4AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="VillageCurrentSituation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJQSURBVDhPrZDdS1NhHMfPnxD0L0RddRE2KOgmushYL0i2
-        Kbm0ghbBHFgq3bSodDfBJovNDRwulb3p2fvrmRt7yW002QxEZwVL3aYsUygY6vTbztmZL0XWRR/4cQ48
-        z+fzPOcQfyJJ9R9XaVVqqUyWk0hf5573PVMLBIKT7PI+9sg86uNPfkIknUN6LgediUQgEkOx9BWLKyWM
-        knZ0dj9NtYslx1i1Bi3+SigWhS8UYd63K8D38g4K3ypQaE1o6RBKWbWGJTTLbJQP+zGgozBkDkOp1SG/
-        WtqTVza2kc1vwRGdB6+t7TOr1jBTM0zgIDKVBsurazV5vVKVN5HIlqGeSOAmj3c4oHenGGmgegPlWADj
-        7gQsDgfsvhCK69WTC1uIL5Thmv4BUa8E/NZWlbyv+xWrE8SIPcEEDlLIL0GmeIMhgxPW6BwGyQREPbR8
-        Cwa5AAqJeHcvoiWjrHaYd8kMVBoVHolEuNNxD7f5TVA8voTi8GXsTN3FC0nXrqy/+zqhMQYZYSr1AVQ4
-        Cac/Cps3DNIVhNnmx4jRCr3Fi05xFx5eO4uMhIPlwYtYc/DRI7wBQjnmZwK0TEv7MwmznYKedEPviKBd
-        /BJCbkOz8GoDJnvP4UHjabRwOU2E4q2HCbgCMUw4JzHuoKqiHyabDwbSA6PFA605CK7gCehPpiMXzpxC
-        4/kTzcw/qAfep2dhqZ5KOgMwWr2MaK3exBuMQznqA+fKfSbwG/UAzeZWBcXVDXz8UsJMtoh4ZgmR6UXQ
-        e/4aoJ9HzZEBevFfhlX+JwTxE3JUQZAeZlZfAAAAAElFTkSuQmCC
-</value>
-  </data>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
 </root>

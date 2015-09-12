@@ -124,6 +124,9 @@ Nu doen?</value>
   <data name="ActivePlayerForm_AskToSetSelf_Title" xml:space="preserve">
     <value>Actieve speler selecteren</value>
   </data>
+  <data name="DetailsControl_CustomCommentsForVillage" xml:space="preserve">
+    <value>Eigen commentaar voor {0}</value>
+  </data>
   <data name="LoadWorldForm_NoWorldSelected" xml:space="preserve">
     <value>Geen wereld geselecteerd!</value>
   </data>

@@ -124,6 +124,9 @@
     <value>You have not yet selected yourself.
 Set yourself now?</value>
   </data>
+  <data name="DetailsControl_CustomCommentsForVillage" xml:space="preserve">
+    <value>Custom comments for {0}</value>
+  </data>
   <data name="LoadWorldForm_NoWorldSelected" xml:space="preserve">
     <value>No world selected!</value>
   </data>

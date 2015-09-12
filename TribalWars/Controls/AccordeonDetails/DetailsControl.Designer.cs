@@ -33,168 +33,127 @@ namespace TribalWars.Controls.AccordeonDetails
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsControl));
-            this.QuickFinderLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
-            this.CommentsPanel = new System.Windows.Forms.Panel();
-            this.CommentsLabel = new System.Windows.Forms.Label();
-            this.Comments = new System.Windows.Forms.TextBox();
-            this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.SelectedVillage = new ToolStripVillageTextBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.UndoButton = new System.Windows.Forms.ToolStripButton();
-            this.RedoButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.ViewVillageDetails = new System.Windows.Forms.ToolStripButton();
-            this.ViewPlayerDetails = new System.Windows.Forms.ToolStripButton();
-            this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
-            this.ContextStripPanel = new System.Windows.Forms.Panel();
-            this.ContextStrip = new System.Windows.Forms.ToolStrip();
-            this.AttackFlag = new System.Windows.Forms.ToolStripButton();
-            this.CatapultFlag = new System.Windows.Forms.ToolStripButton();
-            this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
-            this.NobleFlag = new System.Windows.Forms.ToolStripButton();
-            this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
-            this.FarmFlag = new System.Windows.Forms.ToolStripButton();
-            this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
-            this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
-            this.MarkPlayerOrTribe = new TribalWars.Maps.Markers.MarkerSettingsControl();
-            this.QuickFinderLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.CommentsPanel.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.ContextStripPanel.SuspendLayout();
-            this.ContextStrip.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // QuickFinderLayout
-            // 
-            this.QuickFinderLayout.ColumnCount = 1;
-            this.QuickFinderLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.QuickFinderLayout.Controls.Add(this.splitContainer2, 0, 2);
-            this.QuickFinderLayout.Controls.Add(this.toolStrip1, 0, 0);
-            this.QuickFinderLayout.Controls.Add(this.ContextStripPanel, 0, 1);
-            this.QuickFinderLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuickFinderLayout.Location = new System.Drawing.Point(0, 0);
-            this.QuickFinderLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.QuickFinderLayout.Name = "QuickFinderLayout";
-            this.QuickFinderLayout.RowCount = 3;
-            this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.QuickFinderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.QuickFinderLayout.Size = new System.Drawing.Size(267, 297);
-            this.QuickFinderLayout.TabIndex = 1;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 50);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.DetailsGrid);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.CommentsPanel);
-            this.splitContainer2.Panel2.Controls.Add(this.Table);
-            this.splitContainer2.Size = new System.Drawing.Size(267, 247);
-            this.splitContainer2.SplitterDistance = 122;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // DetailsGrid
-            // 
-            this.DetailsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DetailsGrid.HelpVisible = false;
-            this.DetailsGrid.Location = new System.Drawing.Point(0, 0);
-            this.DetailsGrid.Margin = new System.Windows.Forms.Padding(0);
-            this.DetailsGrid.Name = "DetailsGrid";
-            this.DetailsGrid.Size = new System.Drawing.Size(267, 122);
-            this.DetailsGrid.TabIndex = 0;
-            this.DetailsGrid.ToolbarVisible = false;
-            // 
-            // CommentsPanel
-            // 
-            this.CommentsPanel.Controls.Add(this.CommentsLabel);
-            this.CommentsPanel.Controls.Add(this.Comments);
-            this.CommentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CommentsPanel.Location = new System.Drawing.Point(0, 0);
-            this.CommentsPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.CommentsPanel.Name = "CommentsPanel";
-            this.CommentsPanel.Size = new System.Drawing.Size(267, 121);
-            this.CommentsPanel.TabIndex = 1;
-            this.CommentsPanel.Visible = false;
-            // 
-            // CommentsLabel
-            // 
-            this.CommentsLabel.AutoSize = true;
-            this.CommentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CommentsLabel.Location = new System.Drawing.Point(3, 4);
-            this.CommentsLabel.Name = "CommentsLabel";
-            this.CommentsLabel.Size = new System.Drawing.Size(165, 20);
-            this.CommentsLabel.TabIndex = 4;
-            this.CommentsLabel.Text = "Custom comments for";
-            // 
-            // Comments
-            // 
-            this.Comments.AcceptsReturn = true;
-            this.Comments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Comments.Location = new System.Drawing.Point(0, 27);
-            this.Comments.Multiline = true;
-            this.Comments.Name = "Comments";
-            this.Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Comments.Size = new System.Drawing.Size(267, 94);
-            this.Comments.TabIndex = 2;
-            this.Comments.Visible = false;
-            this.Comments.TextChanged += Comments_TextChanged;
-            // 
-            // Table
-            // 
-            this.Table.AutoSelectSingleRow = false;
-            this.Table.BackColor = System.Drawing.Color.Transparent;
-            this.Table.DisplayType = TribalWars.Controls.XPTables.TableWrapperControl.ColumnDisplayTypeEnum.Custom;
-            this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Table.Location = new System.Drawing.Point(0, 0);
-            this.Table.Margin = new System.Windows.Forms.Padding(0);
-            this.Table.Name = "Table";
-            this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
-            this.Table.Size = new System.Drawing.Size(267, 121);
-            this.Table.TabIndex = 0;
-            this.Table.VisiblePlayerFields = ((TribalWars.Controls.XPTables.PlayerFields)(((((TribalWars.Controls.XPTables.PlayerFields.Name | TribalWars.Controls.XPTables.PlayerFields.Points) 
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsControl));
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.DetailsGrid = new System.Windows.Forms.PropertyGrid();
+			this.CommentsPanel = new System.Windows.Forms.Panel();
+			this.CommentsLabel = new System.Windows.Forms.Label();
+			this.Comments = new System.Windows.Forms.TextBox();
+			this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
+			this.QuickFinderLayout = new System.Windows.Forms.TableLayoutPanel();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.SelectedVillage = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.UndoButton = new System.Windows.Forms.ToolStripButton();
+			this.RedoButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.ViewVillageDetails = new System.Windows.Forms.ToolStripButton();
+			this.ViewPlayerDetails = new System.Windows.Forms.ToolStripButton();
+			this.ViewTribeDetails = new System.Windows.Forms.ToolStripButton();
+			this.ContextStripPanel = new System.Windows.Forms.Panel();
+			this.ContextStrip = new System.Windows.Forms.ToolStrip();
+			this.AttackFlag = new System.Windows.Forms.ToolStripButton();
+			this.CatapultFlag = new System.Windows.Forms.ToolStripButton();
+			this.DefenseFlag = new System.Windows.Forms.ToolStripButton();
+			this.NobleFlag = new System.Windows.Forms.ToolStripButton();
+			this.ScoutFlag = new System.Windows.Forms.ToolStripButton();
+			this.FarmFlag = new System.Windows.Forms.ToolStripButton();
+			this.VillageSeperator = new System.Windows.Forms.ToolStripSeparator();
+			this.VillageCurrentSituation = new System.Windows.Forms.ToolStripButton();
+			this.MarkPlayerOrTribe = new TribalWars.Maps.Markers.MarkerSettingsControl();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
+			this.CommentsPanel.SuspendLayout();
+			this.QuickFinderLayout.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
+			this.ContextStripPanel.SuspendLayout();
+			this.ContextStrip.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// splitContainer2
+			// 
+			resources.ApplyResources(this.splitContainer2, "splitContainer2");
+			this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			resources.ApplyResources(this.splitContainer2.Panel1, "splitContainer2.Panel1");
+			this.splitContainer2.Panel1.Controls.Add(this.DetailsGrid);
+			// 
+			// splitContainer2.Panel2
+			// 
+			resources.ApplyResources(this.splitContainer2.Panel2, "splitContainer2.Panel2");
+			this.splitContainer2.Panel2.Controls.Add(this.CommentsPanel);
+			this.splitContainer2.Panel2.Controls.Add(this.Table);
+			// 
+			// DetailsGrid
+			// 
+			resources.ApplyResources(this.DetailsGrid, "DetailsGrid");
+			this.DetailsGrid.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+			this.DetailsGrid.Name = "DetailsGrid";
+			this.DetailsGrid.ToolbarVisible = false;
+			// 
+			// CommentsPanel
+			// 
+			resources.ApplyResources(this.CommentsPanel, "CommentsPanel");
+			this.CommentsPanel.Controls.Add(this.CommentsLabel);
+			this.CommentsPanel.Controls.Add(this.Comments);
+			this.CommentsPanel.Name = "CommentsPanel";
+			// 
+			// CommentsLabel
+			// 
+			resources.ApplyResources(this.CommentsLabel, "CommentsLabel");
+			this.CommentsLabel.Name = "CommentsLabel";
+			// 
+			// Comments
+			// 
+			this.Comments.AcceptsReturn = true;
+			resources.ApplyResources(this.Comments, "Comments");
+			this.Comments.Name = "Comments";
+			// 
+			// Table
+			// 
+			resources.ApplyResources(this.Table, "Table");
+			this.Table.AutoSelectSingleRow = false;
+			this.Table.BackColor = System.Drawing.Color.Transparent;
+			this.Table.DisplayType = TribalWars.Controls.XPTables.TableWrapperControl.ColumnDisplayTypeEnum.Custom;
+			this.Table.Name = "Table";
+			this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.RaiseSelectEvent;
+			this.Table.VisiblePlayerFields = ((TribalWars.Controls.XPTables.PlayerFields)(((((TribalWars.Controls.XPTables.PlayerFields.Name | TribalWars.Controls.XPTables.PlayerFields.Points) 
             | TribalWars.Controls.XPTables.PlayerFields.PointsDifference) 
             | TribalWars.Controls.XPTables.PlayerFields.Villages) 
             | TribalWars.Controls.XPTables.PlayerFields.VillagesDifference)));
-            this.Table.VisibleReportFields = ((TribalWars.Controls.XPTables.ReportFields)((((((TribalWars.Controls.XPTables.ReportFields.Type | TribalWars.Controls.XPTables.ReportFields.Status) 
+			this.Table.VisibleReportFields = ((TribalWars.Controls.XPTables.ReportFields)((((((TribalWars.Controls.XPTables.ReportFields.Type | TribalWars.Controls.XPTables.ReportFields.Status) 
             | TribalWars.Controls.XPTables.ReportFields.Village) 
             | TribalWars.Controls.XPTables.ReportFields.Player) 
             | TribalWars.Controls.XPTables.ReportFields.Date) 
             | TribalWars.Controls.XPTables.ReportFields.Flag)));
-            this.Table.VisibleTribeFields = ((TribalWars.Controls.XPTables.TribeFields)((((((TribalWars.Controls.XPTables.TribeFields.Tag | TribalWars.Controls.XPTables.TribeFields.Name) 
+			this.Table.VisibleTribeFields = ((TribalWars.Controls.XPTables.TribeFields)((((((TribalWars.Controls.XPTables.TribeFields.Tag | TribalWars.Controls.XPTables.TribeFields.Name) 
             | TribalWars.Controls.XPTables.TribeFields.Players) 
             | TribalWars.Controls.XPTables.TribeFields.Points) 
             | TribalWars.Controls.XPTables.TribeFields.Villages) 
             | TribalWars.Controls.XPTables.TribeFields.Rank)));
-            this.Table.VisibleVillageFields = ((TribalWars.Controls.XPTables.VillageFields)((((((TribalWars.Controls.XPTables.VillageFields.Type | TribalWars.Controls.XPTables.VillageFields.Coordinates) 
+			this.Table.VisibleVillageFields = ((TribalWars.Controls.XPTables.VillageFields)((((((TribalWars.Controls.XPTables.VillageFields.Type | TribalWars.Controls.XPTables.VillageFields.Coordinates) 
             | TribalWars.Controls.XPTables.VillageFields.Name) 
             | TribalWars.Controls.XPTables.VillageFields.Points) 
             | TribalWars.Controls.XPTables.VillageFields.PointsDifference) 
             | TribalWars.Controls.XPTables.VillageFields.HasReport)));
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			// 
+			// QuickFinderLayout
+			// 
+			resources.ApplyResources(this.QuickFinderLayout, "QuickFinderLayout");
+			this.QuickFinderLayout.Controls.Add(this.splitContainer2, 0, 2);
+			this.QuickFinderLayout.Controls.Add(this.toolStrip1, 0, 0);
+			this.QuickFinderLayout.Controls.Add(this.ContextStripPanel, 0, 1);
+			this.QuickFinderLayout.Name = "QuickFinderLayout";
+			// 
+			// toolStrip1
+			// 
+			resources.ApplyResources(this.toolStrip1, "toolStrip1");
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectedVillage,
             this.toolStripSeparator2,
             this.UndoButton,
@@ -203,109 +162,82 @@ namespace TribalWars.Controls.AccordeonDetails
             this.ViewVillageDetails,
             this.ViewPlayerDetails,
             this.ViewTribeDetails});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(267, 25);
-            this.toolStrip1.TabIndex = 6;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // SelectedVillage
-            // 
-            this.SelectedVillage.AllowPlayer = true;
-            this.SelectedVillage.AllowTribe = true;
-            this.SelectedVillage.AutoSize = false;
-            this.SelectedVillage.BackColor = System.Drawing.Color.White;
-            this.SelectedVillage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SelectedVillage.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.SelectedVillage.Name = "SelectedVillage";
-            this.SelectedVillage.Player = null;
-            this.SelectedVillage.Size = new System.Drawing.Size(130, 23);
-            this.SelectedVillage.Tribe = null;
-            this.SelectedVillage.Village = null;
-            this.SelectedVillage.VillageSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.VillageEventArgs>(this.SelectedVillage_VillageSelected);
-            this.SelectedVillage.PlayerSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.PlayerEventArgs>(this.SelectedVillage_PlayerSelected);
-            this.SelectedVillage.TribeSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.TribeEventArgs>(this.SelectedVillage_TribeSelected);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // UndoButton
-            // 
-            this.UndoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UndoButton.Enabled = false;
-            this.UndoButton.Image = ((System.Drawing.Image)(resources.GetObject("UndoButton.Image")));
-            this.UndoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UndoButton.Name = "UndoButton";
-            this.UndoButton.Size = new System.Drawing.Size(23, 22);
-            this.UndoButton.ToolTipText = "Undo";
-            this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
-            // 
-            // RedoButton
-            // 
-            this.RedoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RedoButton.Enabled = false;
-            this.RedoButton.Image = ((System.Drawing.Image)(resources.GetObject("RedoButton.Image")));
-            this.RedoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RedoButton.Name = "RedoButton";
-            this.RedoButton.Size = new System.Drawing.Size(23, 22);
-            this.RedoButton.ToolTipText = "Redo";
-            this.RedoButton.Click += new System.EventHandler(this.RedoButton_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // ViewVillageDetails
-            // 
-            this.ViewVillageDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ViewVillageDetails.Enabled = false;
-            this.ViewVillageDetails.Image = global::TribalWars.Properties.Resources.Village;
-            this.ViewVillageDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewVillageDetails.Name = "ViewVillageDetails";
-            this.ViewVillageDetails.Size = new System.Drawing.Size(23, 22);
-            this.ViewVillageDetails.ToolTipText = "View village details";
-            this.ViewVillageDetails.Click += new System.EventHandler(this.ViewVillageDetails_Click);
-            // 
-            // ViewPlayerDetails
-            // 
-            this.ViewPlayerDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ViewPlayerDetails.Enabled = false;
-            this.ViewPlayerDetails.Image = global::TribalWars.Properties.Resources.Player;
-            this.ViewPlayerDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewPlayerDetails.Name = "ViewPlayerDetails";
-            this.ViewPlayerDetails.Size = new System.Drawing.Size(23, 22);
-            this.ViewPlayerDetails.ToolTipText = "View player details";
-            this.ViewPlayerDetails.Click += new System.EventHandler(this.ViewPlayerDetails_Click);
-            // 
-            // ViewTribeDetails
-            // 
-            this.ViewTribeDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ViewTribeDetails.Enabled = false;
-            this.ViewTribeDetails.Image = global::TribalWars.Properties.Resources.Tribe;
-            this.ViewTribeDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewTribeDetails.Name = "ViewTribeDetails";
-            this.ViewTribeDetails.Size = new System.Drawing.Size(23, 22);
-            this.ViewTribeDetails.ToolTipText = "View tribe details";
-            this.ViewTribeDetails.Click += new System.EventHandler(this.ViewTribeDetails_Click);
-            // 
-            // ContextStripPanel
-            // 
-            this.ContextStripPanel.Controls.Add(this.ContextStrip);
-            this.ContextStripPanel.Controls.Add(this.MarkPlayerOrTribe);
-            this.ContextStripPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContextStripPanel.Location = new System.Drawing.Point(0, 25);
-            this.ContextStripPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.ContextStripPanel.Name = "ContextStripPanel";
-            this.ContextStripPanel.Size = new System.Drawing.Size(267, 25);
-            this.ContextStripPanel.TabIndex = 8;
-            // 
-            // ContextStrip
-            // 
-            this.ContextStrip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStrip1.Name = "toolStrip1";
+			// 
+			// SelectedVillage
+			// 
+			resources.ApplyResources(this.SelectedVillage, "SelectedVillage");
+			this.SelectedVillage.AllowPlayer = true;
+			this.SelectedVillage.AllowTribe = true;
+			this.SelectedVillage.BackColor = System.Drawing.Color.White;
+			this.SelectedVillage.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.SelectedVillage.Name = "SelectedVillage";
+			this.SelectedVillage.Player = null;
+			this.SelectedVillage.Tribe = null;
+			this.SelectedVillage.Village = null;
+			this.SelectedVillage.VillageSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.VillageEventArgs>(this.SelectedVillage_VillageSelected);
+			this.SelectedVillage.PlayerSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.PlayerEventArgs>(this.SelectedVillage_PlayerSelected);
+			this.SelectedVillage.TribeSelected += new System.EventHandler<TribalWars.Worlds.Events.Impls.TribeEventArgs>(this.SelectedVillage_TribeSelected);
+			// 
+			// toolStripSeparator2
+			// 
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			// 
+			// UndoButton
+			// 
+			resources.ApplyResources(this.UndoButton, "UndoButton");
+			this.UndoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.UndoButton.Name = "UndoButton";
+			this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
+			// 
+			// RedoButton
+			// 
+			resources.ApplyResources(this.RedoButton, "RedoButton");
+			this.RedoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.RedoButton.Name = "RedoButton";
+			this.RedoButton.Click += new System.EventHandler(this.RedoButton_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			// 
+			// ViewVillageDetails
+			// 
+			resources.ApplyResources(this.ViewVillageDetails, "ViewVillageDetails");
+			this.ViewVillageDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ViewVillageDetails.Image = global::TribalWars.Properties.Resources.Village;
+			this.ViewVillageDetails.Name = "ViewVillageDetails";
+			this.ViewVillageDetails.Click += new System.EventHandler(this.ViewVillageDetails_Click);
+			// 
+			// ViewPlayerDetails
+			// 
+			resources.ApplyResources(this.ViewPlayerDetails, "ViewPlayerDetails");
+			this.ViewPlayerDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ViewPlayerDetails.Image = global::TribalWars.Properties.Resources.Player;
+			this.ViewPlayerDetails.Name = "ViewPlayerDetails";
+			this.ViewPlayerDetails.Click += new System.EventHandler(this.ViewPlayerDetails_Click);
+			// 
+			// ViewTribeDetails
+			// 
+			resources.ApplyResources(this.ViewTribeDetails, "ViewTribeDetails");
+			this.ViewTribeDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ViewTribeDetails.Image = global::TribalWars.Properties.Resources.Tribe;
+			this.ViewTribeDetails.Name = "ViewTribeDetails";
+			this.ViewTribeDetails.Click += new System.EventHandler(this.ViewTribeDetails_Click);
+			// 
+			// ContextStripPanel
+			// 
+			resources.ApplyResources(this.ContextStripPanel, "ContextStripPanel");
+			this.ContextStripPanel.Controls.Add(this.ContextStrip);
+			this.ContextStripPanel.Controls.Add(this.MarkPlayerOrTribe);
+			this.ContextStripPanel.Name = "ContextStripPanel";
+			// 
+			// ContextStrip
+			// 
+			resources.ApplyResources(this.ContextStrip, "ContextStrip");
+			this.ContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AttackFlag,
             this.CatapultFlag,
             this.DefenseFlag,
@@ -314,132 +246,101 @@ namespace TribalWars.Controls.AccordeonDetails
             this.FarmFlag,
             this.VillageSeperator,
             this.VillageCurrentSituation});
-            this.ContextStrip.Location = new System.Drawing.Point(0, 0);
-            this.ContextStrip.Name = "ContextStrip";
-            this.ContextStrip.Size = new System.Drawing.Size(267, 25);
-            this.ContextStrip.TabIndex = 2;
-            this.ContextStrip.Text = "ContextStrip";
-            // 
-            // AttackFlag
-            // 
-            this.AttackFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.AttackFlag.Image = ((System.Drawing.Image)(resources.GetObject("AttackFlag.Image")));
-            this.AttackFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AttackFlag.Name = "AttackFlag";
-            this.AttackFlag.Size = new System.Drawing.Size(23, 22);
-            this.AttackFlag.ToolTipText = "Mark this village as offensive";
-            this.AttackFlag.Click += new System.EventHandler(this.AttackFlag_Click);
-            // 
-            // CatapultFlag
-            // 
-            this.CatapultFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CatapultFlag.Image = global::TribalWars.Properties.Resources.catapult;
-            this.CatapultFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CatapultFlag.Name = "CatapultFlag";
-            this.CatapultFlag.Size = new System.Drawing.Size(23, 22);
-            this.CatapultFlag.Text = "toolStripButton1";
-            this.CatapultFlag.ToolTipText = "Mark this village as offensive with catapults";
-            this.CatapultFlag.Click += new System.EventHandler(this.CatapultFlag_Click);
-            // 
-            // DefenseFlag
-            // 
-            this.DefenseFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DefenseFlag.Image = global::TribalWars.Properties.Resources.Defense;
-            this.DefenseFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DefenseFlag.Name = "DefenseFlag";
-            this.DefenseFlag.Size = new System.Drawing.Size(23, 22);
-            this.DefenseFlag.ToolTipText = "Mark this village as defensive";
-            this.DefenseFlag.Click += new System.EventHandler(this.DefenseFlag_Click);
-            // 
-            // NobleFlag
-            // 
-            this.NobleFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NobleFlag.Image = global::TribalWars.Properties.Resources.nobleman;
-            this.NobleFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NobleFlag.Name = "NobleFlag";
-            this.NobleFlag.Size = new System.Drawing.Size(23, 22);
-            this.NobleFlag.ToolTipText = "Mark this village for nobles";
-            this.NobleFlag.Click += new System.EventHandler(this.NobleFlag_Click);
-            // 
-            // ScoutFlag
-            // 
-            this.ScoutFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ScoutFlag.Image = global::TribalWars.Properties.Resources.scout;
-            this.ScoutFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ScoutFlag.Name = "ScoutFlag";
-            this.ScoutFlag.Size = new System.Drawing.Size(23, 22);
-            this.ScoutFlag.ToolTipText = "Mark this village for scouts";
-            this.ScoutFlag.Click += new System.EventHandler(this.ScoutFlag_Click);
-            // 
-            // FarmFlag
-            // 
-            this.FarmFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FarmFlag.Image = global::TribalWars.Properties.Resources.farm;
-            this.FarmFlag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FarmFlag.Name = "FarmFlag";
-            this.FarmFlag.Size = new System.Drawing.Size(23, 22);
-            this.FarmFlag.ToolTipText = "Mark this village as a farm";
-            this.FarmFlag.Click += new System.EventHandler(this.FarmFlag_Click);
-            // 
-            // VillageSeperator
-            // 
-            this.VillageSeperator.Name = "VillageSeperator";
-            this.VillageSeperator.Size = new System.Drawing.Size(6, 25);
-            this.VillageSeperator.Visible = false;
-            // 
-            // VillageCurrentSituation
-            // 
-            this.VillageCurrentSituation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.VillageCurrentSituation.Image = ((System.Drawing.Image)(resources.GetObject("VillageCurrentSituation.Image")));
-            this.VillageCurrentSituation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.VillageCurrentSituation.Name = "VillageCurrentSituation";
-            this.VillageCurrentSituation.Size = new System.Drawing.Size(23, 22);
-            this.VillageCurrentSituation.ToolTipText = "View the current estimated status";
-            this.VillageCurrentSituation.Visible = false;
-            this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
-            // 
-            // MarkPlayerOrTribe
-            // 
-            this.MarkPlayerOrTribe.AllowBarbarianViews = false;
-            this.MarkPlayerOrTribe.AutoUpdateMarkers = true;
-            this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
-            this.MarkPlayerOrTribe.CanDeactivate = true;
-            this.MarkPlayerOrTribe.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
-            this.MarkPlayerOrTribe.DefaultMarkerColor = System.Drawing.Color.Black;
-            this.MarkPlayerOrTribe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MarkPlayerOrTribe.Location = new System.Drawing.Point(0, 0);
-            this.MarkPlayerOrTribe.Margin = new System.Windows.Forms.Padding(0);
-            this.MarkPlayerOrTribe.Name = "MarkPlayerOrTribe";
-            this.MarkPlayerOrTribe.Size = new System.Drawing.Size(267, 25);
-            this.MarkPlayerOrTribe.TabIndex = 1;
-            this.MarkPlayerOrTribe.Visible = false;
-            // 
-            // DetailsControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.QuickFinderLayout);
-            this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "DetailsControl";
-            this.Size = new System.Drawing.Size(267, 297);
-            this.Load += new System.EventHandler(this.DetailsControl_Load);
-            this.QuickFinderLayout.ResumeLayout(false);
-            this.QuickFinderLayout.PerformLayout();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.CommentsPanel.ResumeLayout(false);
-            this.CommentsPanel.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.ContextStripPanel.ResumeLayout(false);
-            this.ContextStripPanel.PerformLayout();
-            this.ContextStrip.ResumeLayout(false);
-            this.ContextStrip.PerformLayout();
-            this.ResumeLayout(false);
+			this.ContextStrip.Name = "ContextStrip";
+			// 
+			// AttackFlag
+			// 
+			resources.ApplyResources(this.AttackFlag, "AttackFlag");
+			this.AttackFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.AttackFlag.Name = "AttackFlag";
+			this.AttackFlag.Click += new System.EventHandler(this.AttackFlag_Click);
+			// 
+			// CatapultFlag
+			// 
+			resources.ApplyResources(this.CatapultFlag, "CatapultFlag");
+			this.CatapultFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.CatapultFlag.Image = global::TribalWars.Properties.Resources.catapult;
+			this.CatapultFlag.Name = "CatapultFlag";
+			this.CatapultFlag.Click += new System.EventHandler(this.CatapultFlag_Click);
+			// 
+			// DefenseFlag
+			// 
+			resources.ApplyResources(this.DefenseFlag, "DefenseFlag");
+			this.DefenseFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.DefenseFlag.Image = global::TribalWars.Properties.Resources.Defense;
+			this.DefenseFlag.Name = "DefenseFlag";
+			this.DefenseFlag.Click += new System.EventHandler(this.DefenseFlag_Click);
+			// 
+			// NobleFlag
+			// 
+			resources.ApplyResources(this.NobleFlag, "NobleFlag");
+			this.NobleFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.NobleFlag.Image = global::TribalWars.Properties.Resources.nobleman;
+			this.NobleFlag.Name = "NobleFlag";
+			this.NobleFlag.Click += new System.EventHandler(this.NobleFlag_Click);
+			// 
+			// ScoutFlag
+			// 
+			resources.ApplyResources(this.ScoutFlag, "ScoutFlag");
+			this.ScoutFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ScoutFlag.Image = global::TribalWars.Properties.Resources.scout;
+			this.ScoutFlag.Name = "ScoutFlag";
+			this.ScoutFlag.Click += new System.EventHandler(this.ScoutFlag_Click);
+			// 
+			// FarmFlag
+			// 
+			resources.ApplyResources(this.FarmFlag, "FarmFlag");
+			this.FarmFlag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.FarmFlag.Image = global::TribalWars.Properties.Resources.farm;
+			this.FarmFlag.Name = "FarmFlag";
+			this.FarmFlag.Click += new System.EventHandler(this.FarmFlag_Click);
+			// 
+			// VillageSeperator
+			// 
+			resources.ApplyResources(this.VillageSeperator, "VillageSeperator");
+			this.VillageSeperator.Name = "VillageSeperator";
+			// 
+			// VillageCurrentSituation
+			// 
+			resources.ApplyResources(this.VillageCurrentSituation, "VillageCurrentSituation");
+			this.VillageCurrentSituation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.VillageCurrentSituation.Name = "VillageCurrentSituation";
+			this.VillageCurrentSituation.Click += new System.EventHandler(this.VillageCurrentSituation_Click);
+			// 
+			// MarkPlayerOrTribe
+			// 
+			resources.ApplyResources(this.MarkPlayerOrTribe, "MarkPlayerOrTribe");
+			this.MarkPlayerOrTribe.AllowBarbarianViews = false;
+			this.MarkPlayerOrTribe.AutoUpdateMarkers = true;
+			this.MarkPlayerOrTribe.BackColor = System.Drawing.Color.White;
+			this.MarkPlayerOrTribe.CanDeactivate = true;
+			this.MarkPlayerOrTribe.DefaultExtraMarkerColor = System.Drawing.Color.Transparent;
+			this.MarkPlayerOrTribe.DefaultMarkerColor = System.Drawing.Color.Black;
+			this.MarkPlayerOrTribe.Name = "MarkPlayerOrTribe";
+			// 
+			// DetailsControl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.Transparent;
+			this.Controls.Add(this.QuickFinderLayout);
+			this.Name = "DetailsControl";
+			this.Load += new System.EventHandler(this.DetailsControl_Load);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+			this.splitContainer2.ResumeLayout(false);
+			this.CommentsPanel.ResumeLayout(false);
+			this.CommentsPanel.PerformLayout();
+			this.QuickFinderLayout.ResumeLayout(false);
+			this.QuickFinderLayout.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
+			this.ContextStripPanel.ResumeLayout(false);
+			this.ContextStripPanel.PerformLayout();
+			this.ContextStrip.ResumeLayout(false);
+			this.ContextStrip.PerformLayout();
+			this.ResumeLayout(false);
 
         }
 
