@@ -53,12 +53,12 @@ namespace TribalWars.Maps.Markers
         {
             Marker marker = GetMarker();
 
-            _menu.AddChangeColorCommand("Main color", marker.Settings.Color, OnChangeColor);
-            _menu.AddChangeColorCommand("Inner color", marker.Settings.ExtraColor, Color.Transparent, OnChangeExtraColor);
+			_menu.AddChangeColorCommand(ControlsRes.MarkerContextMenu_MainColor, marker.Settings.Color, OnChangeColor);
+			_menu.AddChangeColorCommand(ControlsRes.MarkerContextMenu_InnerColor, marker.Settings.ExtraColor, Color.Transparent, OnChangeExtraColor);
 
             IEnumerable<string> views = World.Default.Views.GetBackgroundViews(false);
-            _menu.AddComboBoxCommand("View", views, marker.Settings.View, OnChangeView);
-            _menu.AddToggleCommand(marker.Settings.Enabled ? "Disable marker" : "Activate marker", marker.Settings.Enabled, OnChangeEnabled);
+			_menu.AddComboBoxCommand(ControlsRes.MarkerContextMenu_View, views, marker.Settings.View, OnChangeView);
+			_menu.AddToggleCommand(marker.Settings.Enabled ? ControlsRes.MarkerContextMenu_Disable : ControlsRes.MarkerContextMenu_Enable, marker.Settings.Enabled, OnChangeEnabled);
         }
 
         private Marker GetMarker()
@@ -112,7 +112,7 @@ namespace TribalWars.Maps.Markers
         
         private string GetMainCommandText(Marker marker)
         {
-            return marker.Empty ? "Mark " + (_tribe == null ? _player.Name : _tribe.Tag) : "Marker";
+			return marker.Empty ? string.Format(ControlsRes.MarkerContextMenu_MarkX, (_tribe == null ? _player.Name : _tribe.Tag)) : ControlsRes.MarkerContextMenu_Marker;
         }
 
         public void Show(Control control, Point position)

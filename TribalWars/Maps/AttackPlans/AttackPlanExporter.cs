@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TribalWars.Controls;
 using TribalWars.Tools;
 using TribalWars.Worlds;
 
@@ -80,7 +81,7 @@ namespace TribalWars.Maps.AttackPlans
 
         private void AddHeader(string target, DateTime arrivalTime, string comments)
         {
-            _str.AppendLine("*** Attack Plan ***");
+			_str.AppendLine(ControlsRes.AttackPlanExporter_Title);
             _str.AppendLine(target);
             if (!string.IsNullOrWhiteSpace(comments))
             {
@@ -88,16 +89,16 @@ namespace TribalWars.Maps.AttackPlans
             }
             _str.AppendLine();
 
-            _str.AppendLine("Arrival time: " + PrintDate(arrivalTime));
-            _str.AppendLine("Export time : " + PrintDate(World.Default.Settings.ServerTime));
-            _str.AppendLineFormat("Total attacks: {0}", _attacks.Count());
+            _str.AppendLine(string.Format(ControlsRes.AttackManipulatorManager_Tooltip_ArrivalDate, PrintDate(arrivalTime)));
+			_str.AppendLine(ControlsRes.AttackPlanExporter_ExportTime + PrintDate(World.Default.Settings.ServerTime));
+			_str.AppendLineFormat(ControlsRes.AttackPlanExporter_TotalAttacks, _attacks.Count());
             _str.AppendLine();
         }
 
         private void AddMultiHeader(bool bbCode)
         {
-            _str.AppendLine("*** Attack Plan ***");
-            _str.AppendLine("Export time: " + PrintDate(World.Default.Settings.ServerTime));
+			_str.AppendLine(ControlsRes.AttackPlanExporter_Title);
+			_str.AppendLine(ControlsRes.AttackPlanExporter_ExportTime + PrintDate(World.Default.Settings.ServerTime));
             _str.AppendLine();
 
             var plans = _attacks.GroupBy(x => new { x.Plan, x.Plan.ArrivalTime });
@@ -108,8 +109,8 @@ namespace TribalWars.Maps.AttackPlans
                 {
                     _str.AppendLine(plan.Key.Plan.Comments);
                 }
-                _str.AppendLine("Arrival time: " + PrintDate(plan.Key.ArrivalTime));
-                _str.AppendLineFormat("Total attacks: {0}", plan.Count());
+				_str.AppendLine(string.Format(ControlsRes.AttackManipulatorManager_Tooltip_TravelTime, PrintDate(plan.Key.ArrivalTime)));
+				_str.AppendLineFormat(ControlsRes.AttackPlanExporter_TotalAttacks, plan.Count());
                 _str.AppendLine();
             }
 
@@ -131,11 +132,11 @@ namespace TribalWars.Maps.AttackPlans
 
                 if (!singleAttackPlan)
                 {
-                    _str.AppendLine("Attack " + attacker.Plan.Target.BbCode());
+					_str.AppendLine(string.Format(ControlsRes.AttackPlanExporter_AttackX, attacker.Plan.Target.BbCode()));
                 }
 
-                _str.AppendLine(string.Format("{0} from {1}", attacker.SlowestUnit.BbCodeImage, attacker.Attacker.BbCode()));
-                _str.AppendLine("Send on: [b]" + attacker.FormattedSendDate() + "[/b]");
+				_str.AppendLine(string.Format(ControlsRes.AttackPlanExporter_ImgFromCoordinates, attacker.SlowestUnit.BbCodeImage, attacker.Attacker.BbCode()));
+                _str.AppendLine(string.Format(ControlsRes.AttackManipulatorManager_Tooltip_SendOn, "[b]" + attacker.FormattedSendDate() + "[/b]"));
                 AddWarning(attackers, attacker.TravelTime, i);
                 _str.AppendLine();
             }
@@ -151,11 +152,11 @@ namespace TribalWars.Maps.AttackPlans
 
                 if (!singleAttackPlan)
                 {
-                    _str.AppendLine("Attack " + attacker.Plan.Target);
+					_str.AppendLine(string.Format(ControlsRes.AttackPlanExporter_AttackX, attacker.Plan.Target));
                 }
 
-                _str.AppendLine(string.Format("{0} from {1}", attacker.SlowestUnit.Name, attacker.Attacker));
-                _str.AppendLine("Send on: " + attacker.FormattedSendDate());
+				_str.AppendLine(string.Format(ControlsRes.AttackPlanExporter_ImgFromCoordinates, attacker.SlowestUnit.Name, attacker.Attacker));
+				_str.AppendLine(string.Format(ControlsRes.AttackManipulatorManager_Tooltip_SendOn, attacker.FormattedSendDate()));
                 AddWarning(attackers, attacker.TravelTime, i);
                 _str.AppendLine();
             }
@@ -178,11 +179,11 @@ namespace TribalWars.Maps.AttackPlans
             {
                 if (attacksInQuickSuccession.Length >= AmountOfAttacksInQuickSuccessionForWarn)
                 {
-                    _str.AppendLineFormat("ATTN: {0} more attacks coming up soon!", attacksInQuickSuccession.Count());
+					_str.AppendLineFormat(ControlsRes.AttackPlanExporter_Attn_MoreAttacksComingSoon, attacksInQuickSuccession.Count());
                 }
                 else if (attacksInQuickSuccession.First().TimeBetween < _warnForCritical)
                 {
-                    _str.AppendLineFormat("ATTN: Another attack coming up {0} seconds later!", attacksInQuickSuccession.First().TimeBetween.TotalSeconds);
+					_str.AppendLineFormat(ControlsRes.AttackPlanExporter_Attn_AnotherAttackInXSeconds, attacksInQuickSuccession.First().TimeBetween.TotalSeconds);
                 }
             }
         }

@@ -152,12 +152,12 @@ namespace TribalWars.Maps.AttackPlans
             {
                 settings.HeaderText = attacker.Attacker.Tooltip.Title;
 
-                str.AppendFormat("Target: {0}", plan.Target.Tooltip.Title);
+				str.AppendFormat(ControlsRes.AttackManipulatorManager_Tooltip_Target, plan.Target.Tooltip.Title);
                 str.Append(Environment.NewLine);
             }
-            str.AppendFormat("Points: {0}", Common.GetPrettyNumber(plan.Target.Points));
+			str.AppendFormat(ControlsRes.AttackManipulatorManager_Tooltip_Points, Common.GetPrettyNumber(plan.Target.Points));
             str.Append(Environment.NewLine);
-            str.AppendFormat("Arrival date: {0}", plan.ArrivalTime.GetPrettyDate());
+			str.AppendFormat(ControlsRes.AttackManipulatorManager_Tooltip_ArrivalDate, plan.ArrivalTime.GetPrettyDate());
 
             if (attacker != null)
             {
@@ -165,9 +165,9 @@ namespace TribalWars.Maps.AttackPlans
 
                 str.Append(Environment.NewLine);
                 str.Append(Environment.NewLine);
-                str.AppendFormat("Travel time: {0}", attacker.TravelTime);
+				str.AppendFormat(ControlsRes.AttackManipulatorManager_Tooltip_TravelTime, attacker.TravelTime);
                 str.Append(Environment.NewLine);
-                str.AppendFormat("Send on: {0}", attacker.FormattedSendDate());
+				str.AppendFormat(ControlsRes.AttackManipulatorManager_Tooltip_SendOn, attacker.FormattedSendDate());
             }
             else
             {
@@ -175,15 +175,15 @@ namespace TribalWars.Maps.AttackPlans
                 str.Append(Environment.NewLine);
                 if (!plan.Attacks.Any())
                 {
-                    str.AppendFormat("Right click on your own villages to add them as attacking (or defending) villages.");
+                    str.AppendFormat("");
                     str.AppendLine();
-                    str.AppendFormat("Or easier: use the search function (binoculars icon) in the 'Plan Attacks' panel on the left!");
+                    str.AppendFormat("");
 
                     if (World.Default.You.Empty)
                     {
                         str.AppendLine();
                         str.AppendLine();
-                        str.Append("You have not yet set who you are so right click wont work! You can do so using the menu 'World' -> 'Set Active Player'");
+						str.Append(ControlsRes.AttackManipulatorManager_Tooltip_Help_NoYou);
                     }
                 }
                 else

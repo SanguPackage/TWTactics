@@ -117,11 +117,102 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AttackersPoolContextMenu_AddXToPool" xml:space="preserve">
+    <value>Add {0} villages to attackers pool</value>
+  </data>
+  <data name="AttackersPoolContextMenu_AddXVillagesTooltip" xml:space="preserve">
+    <value>When using the attack plan search function, don't search through all your villages but only select villages from those added to the 'attackers pool'.</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_ArrivalDate" xml:space="preserve">
+    <value>Arrival date: {0}</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_Help_1" xml:space="preserve">
+    <value>Right click on your own villages to add them as attacking (or defending) villages.</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_Help_2" xml:space="preserve">
+    <value>Or easier: use the search function (binoculars icon) in the 'Plan Attacks' panel on the left!</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_Help_NoYou" xml:space="preserve">
+    <value>You have not yet set who you are so right click wont work! You can do so using the menu 'World' -&gt; 'Set Active Player'</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_Points" xml:space="preserve">
+    <value>Points: {0}</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_SendOn" xml:space="preserve">
+    <value>Send on: {0}</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_Target" xml:space="preserve">
+    <value>Target: {0}</value>
+  </data>
+  <data name="AttackManipulatorManager_Tooltip_TravelTime" xml:space="preserve">
+    <value>Travel time: {0}</value>
+  </data>
+  <data name="AttackPlanExporter_AttackX" xml:space="preserve">
+    <value>Attack {0}</value>
+  </data>
+  <data name="AttackPlanExporter_Attn_AnotherAttackInXSeconds" xml:space="preserve">
+    <value>ATTN: Another attack coming up {0} seconds later!</value>
+  </data>
+  <data name="AttackPlanExporter_Attn_MoreAttacksComingSoon" xml:space="preserve">
+    <value>ATTN: {0} more attacks coming up soon!</value>
+  </data>
+  <data name="AttackPlanExporter_ExportTime" xml:space="preserve">
+    <value>Export time:</value>
+  </data>
+  <data name="AttackPlanExporter_ImgFromCoordinates" xml:space="preserve">
+    <value>{0} from {1}</value>
+    <comment>{0} = slowest unit. {1} = village coordinates</comment>
+  </data>
+  <data name="AttackPlanExporter_Title" xml:space="preserve">
+    <value>*** Attack Plan ***</value>
+  </data>
+  <data name="AttackPlanExporter_TotalAttacks" xml:space="preserve">
+    <value>Total attacks: {0}</value>
+  </data>
+  <data name="AttackPlanFromControl_ArrivalTimeWhenSentNow" xml:space="preserve">
+    <value>Arrival time when sent NOW</value>
+  </data>
+  <data name="AttackPlanFromControl_SendTroops" xml:space="preserve">
+    <value>Send troops:</value>
+  </data>
   <data name="LocationChangerControl_PlaceHolder" xml:space="preserve">
     <value>Go to village, player, tribe...</value>
   </data>
   <data name="LocationChangerControl_ZoomControl_Tooltip" xml:space="preserve">
     <value>Change map zoom level</value>
+  </data>
+  <data name="MarkerContextMenu_Disable" xml:space="preserve">
+    <value>Disable marker</value>
+  </data>
+  <data name="MarkerContextMenu_Enable" xml:space="preserve">
+    <value>Activate marker</value>
+  </data>
+  <data name="MarkerContextMenu_InnerColor" xml:space="preserve">
+    <value>Inner color</value>
+  </data>
+  <data name="MarkerContextMenu_MainColor" xml:space="preserve">
+    <value>Main color</value>
+  </data>
+  <data name="MarkerContextMenu_Marker" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="MarkerContextMenu_MarkX" xml:space="preserve">
+    <value>Mark {0}</value>
+  </data>
+  <data name="MarkerContextMenu_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="NoVillageAttackContextMenu_AlwaysShowAttackPlans" xml:space="preserve">
+    <value>Always show attack plans</value>
+  </data>
+  <data name="NoVillageAttackContextMenu_ShowArrivalTimesWhenSentNow" xml:space="preserve">
+    <value>Show 'arrival times when sent now' in attack planner</value>
+  </data>
+  <data name="NoVillageAttackContextMenu_ShowNonActivePlanAttackers" xml:space="preserve">
+    <value>Show non-active plan attackers</value>
+  </data>
+  <data name="NoVillageAttackContextMenu_ShowNonActivePlanTargets" xml:space="preserve">
+    <value>Show non-active plan targets</value>
   </data>
   <data name="PlayerOrTribeRow_Text" xml:space="preserve">
     <value>#{1} ({0} points)</value>

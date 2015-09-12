@@ -27,12 +27,12 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
             _menu = JanusContextMenu.Create();
 
-            _menu.AddToggleCommand("Show non-active plan targets", _manipulator.Settings.ShowOtherTargets, OnShowOtherTargets);
-            _menu.AddToggleCommand("Show non-active plan attackers", _manipulator.Settings.ShowOtherAttackers, OnShowOtherAttackers);
+			_menu.AddToggleCommand(ControlsRes.NoVillageAttackContextMenu_ShowNonActivePlanTargets, _manipulator.Settings.ShowOtherTargets, OnShowOtherTargets);
+			_menu.AddToggleCommand(ControlsRes.NoVillageAttackContextMenu_ShowNonActivePlanAttackers, _manipulator.Settings.ShowOtherAttackers, OnShowOtherAttackers);
             _menu.AddSeparator();
-            _menu.AddToggleCommand("Always show attack plans", _manipulator.Settings.ShowIfNotActiveManipulator, OnShowIfNotActiveManipulator);
+			_menu.AddToggleCommand(ControlsRes.NoVillageAttackContextMenu_AlwaysShowAttackPlans, _manipulator.Settings.ShowIfNotActiveManipulator, OnShowIfNotActiveManipulator);
             _menu.AddSeparator();
-            _menu.AddToggleCommand("Show 'arrival times when sent now' in attack planner", _manipulator.Settings.ShowArrivalTimeWhenSentNow, OnShowArrivalTimeWhenSentNow);
+			_menu.AddToggleCommand(ControlsRes.NoVillageAttackContextMenu_ShowArrivalTimesWhenSentNow, _manipulator.Settings.ShowArrivalTimeWhenSentNow, OnShowArrivalTimeWhenSentNow);
         }
 
         #endregion

@@ -750,6 +750,9 @@
     <EmbeddedResource Include="Forms\YourVillagesForm.resx">
       <DependentUpon>YourVillagesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackHelpControl.nl.resx">
+      <DependentUpon>AttackHelpControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackHelpControl.resx">
       <DependentUpon>AttackHelpControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -758,6 +761,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>AttackIcons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackPlanCollectionControl.nl.resx">
+      <DependentUpon>AttackPlanCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackPlanControl.nl.resx">
+      <DependentUpon>AttackPlanControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\MapRes.nl.resx" />
     <EmbeddedResource Include="Maps\MapRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -765,6 +774,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.nl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>

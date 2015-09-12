@@ -117,108 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AttackersPoolContextMenu_AddXToPool" xml:space="preserve">
-    <value>Voeg {0} dorpen toe aan de aanvalspoel</value>
+  <data name="Close.ToolTip" xml:space="preserve">
+    <value>Verwijder dit plan</value>
   </data>
-  <data name="AttackersPoolContextMenu_AddXVillagesTooltip" xml:space="preserve">
-    <value>De aanvalspoel kan gebruikt worden om dorpen in te zoeken bij het plannen van een aanval.</value>
+  <data name="AttackCountLabel.ToolTip" xml:space="preserve">
+    <value>Aantal aanvallen op het dorp</value>
   </data>
-  <data name="AttackManipulatorManager_Tooltip_ArrivalDate" xml:space="preserve">
-    <value>Arriveertijd: {0}</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
   </data>
-  <data name="AttackManipulatorManager_Tooltip_Help_1" xml:space="preserve">
-    <value>Klik rechts op je eigen dorpen om vanuit deze dorpen aan te vallen (of te verdedigen)</value>
-    <comment>Right click on your own villages to add them as attacking (or defending) villages.</comment>
+  <data name="label1.Text" xml:space="preserve">
+    <value>aanvallen</value>
   </data>
-  <data name="AttackManipulatorManager_Tooltip_Help_2" xml:space="preserve">
-    <value>Of makkelijker: gebruik het verrekijker icon in de aanvalsplanner links.</value>
-    <comment>Or easier: use the search function (binoculars icon) in the 'Plan Attacks' panel on the left!</comment>
+  <data name="Date.ToolTip" xml:space="preserve">
+    <value>Zet de tijd waarop de aanvallen moeten toekomen</value>
   </data>
-  <data name="AttackManipulatorManager_Tooltip_Help_NoYou" xml:space="preserve">
-    <value>Je hebt nog niet gezegd wie je bent! Je kan dit doen in het 'Actieve speler selecteren' scherm</value>
-    <comment>You have not yet set who you are so right click wont work! You can do so using the menu 'World' -&gt; 'Set Active Player'</comment>
-  </data>
-  <data name="AttackManipulatorManager_Tooltip_Points" xml:space="preserve">
-    <value>Punten: {0}</value>
-  </data>
-  <data name="AttackManipulatorManager_Tooltip_SendOn" xml:space="preserve">
-    <value>Stuur op: {0}</value>
-  </data>
-  <data name="AttackManipulatorManager_Tooltip_Target" xml:space="preserve">
-    <value>Doelwit: {0}</value>
-  </data>
-  <data name="AttackManipulatorManager_Tooltip_TravelTime" xml:space="preserve">
-    <value>Wandeltijd: {0}</value>
-  </data>
-  <data name="AttackPlanExporter_AttackX" xml:space="preserve">
-    <value>Val {0} aan</value>
-  </data>
-  <data name="AttackPlanExporter_Attn_AnotherAttackInXSeconds" xml:space="preserve">
-    <value>ATTN: Een andere aanval binnen {0} seconden!</value>
-  </data>
-  <data name="AttackPlanExporter_Attn_MoreAttacksComingSoon" xml:space="preserve">
-    <value>ATTN: {0} meer aanvallen binnenkort!</value>
-  </data>
-  <data name="AttackPlanExporter_ExportTime" xml:space="preserve">
-    <value>Exporteer tijd:</value>
-  </data>
-  <data name="AttackPlanExporter_ImgFromCoordinates" xml:space="preserve">
-    <value>{0} from {1}</value>
-    <comment>{0} = slowest unit. {1} = village coordinates</comment>
-  </data>
-  <data name="AttackPlanExporter_Title" xml:space="preserve">
-    <value>*** Aanvalsplan ***</value>
-  </data>
-  <data name="AttackPlanExporter_TotalAttacks" xml:space="preserve">
-    <value>Aantal aanvallen: {0}</value>
-  </data>
-  <data name="AttackPlanFromControl_ArrivalTimeWhenSentNow" xml:space="preserve">
-    <value>Arriveertijd wanner je NU aanvalt</value>
-  </data>
-  <data name="AttackPlanFromControl_SendTroops" xml:space="preserve">
-    <value>Stuur troepen:</value>
-  </data>
-  <data name="LocationChangerControl_PlaceHolder" xml:space="preserve">
-    <value>Naar dorp, speler, stam</value>
-  </data>
-  <data name="LocationChangerControl_ZoomControl_Tooltip" xml:space="preserve">
-    <value>Wijzig het zoomniveau van de kaart</value>
-  </data>
-  <data name="MarkerContextMenu_Disable" xml:space="preserve">
-    <value>Deactiveer markering</value>
-  </data>
-  <data name="MarkerContextMenu_Enable" xml:space="preserve">
-    <value>Activeer markering</value>
-  </data>
-  <data name="MarkerContextMenu_InnerColor" xml:space="preserve">
-    <value>Secundaire kleur</value>
-  </data>
-  <data name="MarkerContextMenu_MainColor" xml:space="preserve">
-    <value>Primaire kleur</value>
-  </data>
-  <data name="MarkerContextMenu_Marker" xml:space="preserve">
-    <value>Markering</value>
-  </data>
-  <data name="MarkerContextMenu_MarkX" xml:space="preserve">
-    <value>Markeer {0}</value>
-  </data>
-  <data name="MarkerContextMenu_View" xml:space="preserve">
-    <value>View</value>
-  </data>
-  <data name="NoVillageAttackContextMenu_AlwaysShowAttackPlans" xml:space="preserve">
-    <value>De aanvalsplannen altijd tonen</value>
-  </data>
-  <data name="NoVillageAttackContextMenu_ShowArrivalTimesWhenSentNow" xml:space="preserve">
-    <value>Toon arriveertijd wanneer nu versturen in de aanvalsplanner</value>
-  </data>
-  <data name="NoVillageAttackContextMenu_ShowNonActivePlanAttackers" xml:space="preserve">
-    <value>Toon de aanvallers van niet actieve plannen</value>
-  </data>
-  <data name="NoVillageAttackContextMenu_ShowNonActivePlanTargets" xml:space="preserve">
-    <value>Toon de niet actieve aanvalsplannen</value>
-  </data>
-  <data name="PlayerOrTribeRow_Text" xml:space="preserve">
-    <value>#{1} ({0} punten)</value>
-    <comment>{0} = Points; {1} = Rank</comment>
+  <data name="ToggleComments.ToolTip" xml:space="preserve">
+    <value>Voeg eigen commentaar toe aan dit aanvalsplan</value>
   </data>
 </root>

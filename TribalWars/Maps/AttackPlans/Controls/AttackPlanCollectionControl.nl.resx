@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 22</value>
+  </data>
+  <data name="toolStripLabel3.Text" xml:space="preserve">
+    <value>Exporteren:</value>
+  </data>
+  <data name="AttackDropDown.ToolTipText" xml:space="preserve">
+    <value>Selecteer een van je aanvalsplannen</value>
+  </data>
+  <data name="cmdClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIzSURBVDhPxdJbSNNRHMDxv1pBdH0LSgoMeogio6J6MQyV
+        KEswEjUyjDKtxGJZal7IctBybpIVKTg1XWp5IcseyoLMEaQVlIImM4eXudv/P03Np2/HacFw9Bb94Lwc
+        zud7/n840j+b9hY1bQ35NBsysQx8Y37b9/T1dPKkWvdnGbTHka01/LCWYeku5EpSBLoCFXc1WRQXpDNo
+        7vMOzqJp5TEz7nqmZSNV91VMOirRXk+lpyOD7AuRZCTuxNp+EkdrEGkJRxYGZvGMu5Z76hN8MhWiDN1h
+        tDsLs+kUT0ujOBsfQk1OIF06iZS4Q96B+krtXEB5hCYngTxVLFmpMVxNiUaVFMXFxEiS48PQp230BGIP
+        hngHjOUafip1TNkrmBzSMdF/DfeXMygfjiK/3Yfr5WacLWuwNSzFWutP2N5g70DVAzVTNgOTw3qBsxn/
+        mozSeQy5PVTgLTha1mJvWMZYbQAjNRJ7tm3yDpSX5DNhKWbCnCfwOdydMcjv9uN6tRXns3Xi5uWM1QUw
+        apQYeugjUFqUi9J7g/Hu87i7YpE7wnG1BeN8Hoi9cYXAixiZx4OVfgsDJbcycX6+jPtjHLIpQuDtOFvX
+        Y29a6cGjRr85XOXHgCFgYUB/Mx3be/HfpgO4Xu8QeAOOplXY6hd7Pnu4WsIisFng/nIfgdt5lzwPxPVm
+        F64XQdibVwu8BKu4+TceqPD34N4yH4Hv/b0U5Z4WLyyKxOhwDofu9hz625qn/30k6RcI56ssgBCQhwAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="cmdClipboard.ToolTipText" xml:space="preserve">
+    <value>Exporteer aanvalsplannen naar het klembord</value>
+  </data>
+  <data name="VillageInputLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 22</value>
+  </data>
+  <data name="VillageInputLabel.Text" xml:space="preserve">
+    <value>Coordinaten:</value>
+  </data>
+  <data name="cmdAddVillage.ToolTipText" xml:space="preserve">
+    <value>Val het huidige doeldorp aan met de ingevulde coordinaten</value>
+  </data>
+  <data name="cmdAddTarget.ToolTipText" xml:space="preserve">
+    <value>Voeg de coordinaten toe als nieuw aanvals doelwit</value>
+  </data>
+  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 22</value>
+  </data>
+  <data name="toolStripLabel1.Text" xml:space="preserve">
+    <value>Snel zoeken:</value>
+  </data>
+  <data name="VillageTypeInput.ToolTipText" xml:space="preserve">
+    <value>Selecteer enkel dorpen met het geselecteerde doel</value>
+  </data>
+  <data name="UnitInput.ToolTipText" xml:space="preserve">
+    <value>Selecteer de traagste eenheid en gebruik dan een van de knoppen rechts</value>
+  </data>
+  <data name="cmdFind.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIsSURBVDhPzZNfSFNhGIdPQklgIBIY1EWBWArBRErGFnYR
+        axpthM6VXawadOOCzdiWbpzTxeZhf6yOzsLMGVrRmuUalU4KG44KayCDogJbrrLhQieVNW392jlbxNAg
+        qIuey+d939/38fJ9xD/F2uUPayye6e0y60RGcVi6/SPL+SUIDrS75z4lkMfTRgiCyklbKifb/wb2lGZm
+        ENKGbvCkNpSKzDHWM5cDWM4vgTo7jK+JRdwcfQUtM4pNu8xI6RU/vTcQBt07jiJRC+uz0bQOFVAdPijJ
+        flQd7cJWqR2CegfK6xwvlYarUFu8kDf2YUs1nQo2QUm5CjKjBNHZ+WSlsc2H6fgXxOeTCDyNQ0HdRrGY
+        Rv625jFdqxcsH+cX4Q/NoE53HUW76V+3sPbcNzRaPFzTw9B72HofY6/qCgqFJPR27wk2IPRiCsHnH2C5
+        OAaZrh/rBEYct90iuQD63OCsyuyBpKEHZTUMSqpoFItMKOQbkV9uCKvpG+labaq2x4oNO4xYW6FHhfxM
+        ggtoOX8PyeR3TEY/Y+jRW5icQWzcSWYt6gjpxrvoHMKRGAZGJqCy3EVJdWaZBuYOFha+pYbfwN4XhOKk
+        7z8LqNW4VrMBkalZDD94jXbXOGq0A9ic2hXXcKjJ+axefwmVig7w958GX34K64VktLSSymPrMuraKkWT
+        OyY+7JiUqJwQHmxD2T4rcnnqGS7gT6Go9N9g3434GJMr0V5YwxX+DoL4ARJkk0CcNwWHAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
+  <data name="cmdFind.ToolTipText" xml:space="preserve">
+    <value>Zoek dorpen die het doelwit nog kunnen bereiken op de geselecteerde traagste eenheid.</value>
+  </data>
+  <data name="cmdFindPool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIcSURBVDhPzZFfSFNxFMev7t7fvUGjrb9CmFm9JIiI0UMg
+        QVT00oqgaaFCw2yO6CF8aEZBhJDD4WQo3e7acqtJaGvXqQ8+9CD5qpFBvSwIKoigTETK3/3db/euHxQ0
+        g/UQfeDAOV/O+Z7D7yf8E8yRA41mvLaRl3/HauZIcjVVl+Rl6SBxwrWoH11Z1GpW0F/l4nJpmFPegDl+
+        EmxkPwy1IsDl0jAmvfOm7vlholXOc7k4NF3vMUYP+s3M8SDNeUN0qkljk17dzJ0Ce3QY7EE9WHwnmFah
+        0zuVGlW3hwx1Y9CIiP4vfcRTMMG93Q10eG/e3sjGDsF8fKwQds7S+8ASe8DUbWCDTnwbUPCxV0b+howX
+        3Y78y2tSQ8HEBkMb3GzInWV3q8CSNWD368BStdYFu8Bub8bXiIK3PTLmrhBMXyQY84nZiU7Bzcd/Aghl
+        xoDS9bnXZTB1q7V9i7V9PZbCCl5bm2cvE8R8oqE2lXdBEMr4WHFoRArbZ38KKXhzU8bCVRlPLYNsB4HW
+        7Ajztj9DI2Tmwy0Zz7tlPLlEMNFJkDkvIX1OQuxM+QxvWxsztsn5rk+mz4JyYTDaLC7ZoZ2VkGi1okWk
+        WY/g5O3Fof3rPPbL5/wEg15xWj2t7LDDzm2j4TYJD338W9fifY8UnfVLy6lWMfDr49l53NJSbeLyaLsj
+        yuXivLpOVL1drublb+gtcvX4BaLy8r9CEL4DrCYNmPcQzAsAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="cmdFindPool.ToolTipText" xml:space="preserve">
+    <value>Zoek dorpen binnen de aanvalspoel die het doelwit nog kunnen bereiken op de geselecteerde traagste eenheid. Voeg dorpen toe aan de aanvalspoel in het 'Beheer je dorpen' scherm.</value>
+  </data>
+  <data name="cmdSort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGWSURBVDhPY4ABr/qTEvYF+79axiwSgwrhAv+hNCrwLDq4
+        yjV7+3+r8GmlUCFcALsBbrlb79knrntoHNzzEiqEC2Aa4Fpw0Mk1e/13y/j5GsYBnf8tI2cGQKWwASwG
+        ZG4/7Zi87pZZ2KRpJoH1X8xDJh2ESmEDqAaEhq5itk/Z/tE+a4sEiG8ROcPX2L/jv1n0dC2wAkyAaoBL
+        5tZjZqH1PyzCJqcY+8zkMnZvfw8ywNi//SJUCTrAHogkAEwDJkfkrZ0cmr5zemTh3KlRBbsmunpd7DHS
+        SIFKowMsBrgHbgPRsyOSxad6eLyo1VK6B5bADjANmObqCk59MwNjZ9bpq/6v11cLA0uggkYg9gZikAGu
+        QNwFxAgwJzzLeZK77/86PdVVUCF0YAzEIM0w7ATECDA1Ov9Bl6Hai1ZzHXEQf4qjozZYAhVsAWKQ5mNg
+        HgxMC8vq7be3+99hpJEK4k/0sBHtNNRYCpZEBTBXIGyf4u6rXW+s9KVITelrrZ7K7CYDlRXFWnKvqnWV
+        50KVoINqKE0NwMAAAGjYhmKtWjwvAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="cmdSort.ToolTipText" xml:space="preserve">
+    <value>Sorteer de aanvallende dorpen op wandelafstand</value>
+  </data>
+  <data name="cmdClear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIFSURBVDhPYwABLy8vAzcvzz2enp5O9fX1TGBBYkFoaCiz
+        k5NruqOjy38nZ+dv3t7egSAxqDQKsLe3ZwkKClJyd3fNgwpBBB0dnZNs7R22mVva/tfS0vrj7u5ZhW6I
+        vLw9h6Wto5O3l9d3e3vHOVBhCLC1dZe0t3excHBw2WZlY//fzt7hv7+P50ZXV1dukLyFhQWnu7v7Cnl5
+        p9+mpubdQEt4wBrRAdBWNicnlwJ5B+ffdnZO/4HeWWZubqNnaWk32dbG5r+egclkJSVjfqhynIDRzs5F
+        09bW6byZufV/fX3974bGRu/VtHTXychYcELVEAb6+sYOevomPy2tgOGib3RPRkZLCCpFGOibmyuoqGhd
+        0tUz/KdvYPLfxNTiv5a2zi2oNH5gaGgor6aufVVNXeuPhqbmGmFhCRNZWZVtBobG/1XUtDOhyrADYOhK
+        yMorn5JTVP2vrWdwSEZGRkhcXJwbhOUU1aYbGBh/UdbWloUqRwXy9vYcMoqqiySkpT9qaRk+0dIy0IJK
+        gRIBBwODEJ+2vsFZCSn5SUARzIQmLSfnLSah8F9VTRvoVI1WBgZxcBpAAkzKyloqysrK9wUEBORBfIgw
+        BLAJC4u2CgmL/5eXV97FxsarBhTDlieYTU0tJ3PycZoC2ajyknLKRqys7BOBTDsg5gULYgcsQMwFYQ48
+        YGAAACU+dY6KGF/OAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="cmdClear.ToolTipText" xml:space="preserve">
+    <value>Verwijder alle aanvallende dorpen uit het aanvalsplan</value>
+  </data>
+</root>

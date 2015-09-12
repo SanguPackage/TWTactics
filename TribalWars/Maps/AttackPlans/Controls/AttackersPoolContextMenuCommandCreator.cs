@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Controls;
 using TribalWars.Properties;
 using TribalWars.Tools.JanusExtensions;
 using TribalWars.Villages;
@@ -23,8 +24,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
 
             if (_villages.Any())
             {
-                var cmd = menu.AddCommand(string.Format("Add {0} villages to attackers pool", _villages.Count), OnAddAttackers, Resources.FlagGreen);
-                cmd.ToolTipText = "When using the attack plan search function, don't search through all your villages but only select villages from those added to the 'attackers pool'.";
+                var cmd = menu.AddCommand(string.Format(ControlsRes.AttackersPoolContextMenu_AddXToPool, _villages.Count), OnAddAttackers, Resources.FlagGreen);
+                cmd.ToolTipText = ControlsRes.AttackersPoolContextMenu_AddXVillagesTooltip;
             }
         }
 

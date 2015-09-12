@@ -31,60 +31,51 @@ namespace TribalWars.Maps.AttackPlans.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackPlanCollectionControl));
-            this.Collection = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.AttackDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.cmdClipboard = new System.Windows.Forms.ToolStripDropDownButton();
-            this.cmdClipboardText = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmdClipboardBBCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdClipboardTextAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmdClipboardBBCodeAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.VillageInputLabel = new System.Windows.Forms.ToolStripLabel();
-            this.VillageInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox();
-            this.cmdAddVillage = new System.Windows.Forms.ToolStripButton();
-            this.cmdAddTarget = new System.Windows.Forms.ToolStripButton();
-            this.AllPlans = new System.Windows.Forms.Panel();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.VillageTypeInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
-            this.UnitInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
-            this.cmdFind = new System.Windows.Forms.ToolStripButton();
-            this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdSort = new System.Windows.Forms.ToolStripButton();
-            this.cmdClear = new System.Windows.Forms.ToolStripButton();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.Collection.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // Collection
-            // 
-            this.Collection.ColumnCount = 1;
-            this.Collection.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Collection.Controls.Add(this.toolStrip1, 0, 0);
-            this.Collection.Controls.Add(this.AllPlans, 0, 2);
-            this.Collection.Controls.Add(this.toolStrip2, 0, 1);
-            this.Collection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Collection.Location = new System.Drawing.Point(0, 0);
-            this.Collection.Margin = new System.Windows.Forms.Padding(0);
-            this.Collection.Name = "Collection";
-            this.Collection.RowCount = 3;
-            this.Collection.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.Collection.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.Collection.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Collection.Size = new System.Drawing.Size(319, 95);
-            this.Collection.TabIndex = 0;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackPlanCollectionControl));
+			this.Collection = new System.Windows.Forms.TableLayoutPanel();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+			this.AttackDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+			this.cmdClipboard = new System.Windows.Forms.ToolStripDropDownButton();
+			this.cmdClipboardText = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmdClipboardBBCode = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.cmdClipboardTextAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.cmdClipboardBBCodeAll = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.VillageInputLabel = new System.Windows.Forms.ToolStripLabel();
+			this.VillageInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox();
+			this.cmdAddVillage = new System.Windows.Forms.ToolStripButton();
+			this.cmdAddTarget = new System.Windows.Forms.ToolStripButton();
+			this.AllPlans = new System.Windows.Forms.Panel();
+			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+			this.VillageTypeInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
+			this.UnitInput = new TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox();
+			this.cmdFind = new System.Windows.Forms.ToolStripButton();
+			this.cmdFindPool = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.cmdSort = new System.Windows.Forms.ToolStripButton();
+			this.cmdClear = new System.Windows.Forms.ToolStripButton();
+			this.Timer = new System.Windows.Forms.Timer(this.components);
+			this.Collection.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
+			this.toolStrip2.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// Collection
+			// 
+			resources.ApplyResources(this.Collection, "Collection");
+			this.Collection.Controls.Add(this.toolStrip1, 0, 0);
+			this.Collection.Controls.Add(this.AllPlans, 0, 2);
+			this.Collection.Controls.Add(this.toolStrip2, 0, 1);
+			this.Collection.Name = "Collection";
+			// 
+			// toolStrip1
+			// 
+			resources.ApplyResources(this.toolStrip1, "toolStrip1");
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel3,
             this.AttackDropDown,
             this.cmdClipboard,
@@ -93,140 +84,110 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.VillageInput,
             this.cmdAddVillage,
             this.cmdAddTarget});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(319, 25);
-            this.toolStrip1.TabIndex = 4;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel3.Text = "Export:";
-            // 
-            // AttackDropDown
-            // 
-            this.AttackDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.AttackDropDown.Image = global::TribalWars.Properties.Resources.barracks;
-            this.AttackDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AttackDropDown.Name = "AttackDropDown";
-            this.AttackDropDown.Size = new System.Drawing.Size(29, 22);
-            this.AttackDropDown.Text = "Select an existing attack plan";
-            // 
-            // cmdClipboard
-            // 
-            this.cmdClipboard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdClipboard.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStrip1.Name = "toolStrip1";
+			// 
+			// toolStripLabel3
+			// 
+			resources.ApplyResources(this.toolStripLabel3, "toolStripLabel3");
+			this.toolStripLabel3.Name = "toolStripLabel3";
+			// 
+			// AttackDropDown
+			// 
+			resources.ApplyResources(this.AttackDropDown, "AttackDropDown");
+			this.AttackDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.AttackDropDown.Image = global::TribalWars.Properties.Resources.barracks;
+			this.AttackDropDown.Name = "AttackDropDown";
+			// 
+			// cmdClipboard
+			// 
+			resources.ApplyResources(this.cmdClipboard, "cmdClipboard");
+			this.cmdClipboard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdClipboard.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdClipboardText,
             this.cmdClipboardBBCode,
             this.toolStripMenuItem1,
             this.cmdClipboardTextAll,
             this.cmdClipboardBBCodeAll});
-            this.cmdClipboard.Image = ((System.Drawing.Image)(resources.GetObject("cmdClipboard.Image")));
-            this.cmdClipboard.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdClipboard.Name = "cmdClipboard";
-            this.cmdClipboard.Size = new System.Drawing.Size(29, 22);
-            this.cmdClipboard.Text = "Export attack plans to clipboard";
-            // 
-            // cmdClipboardText
-            // 
-            this.cmdClipboardText.Name = "cmdClipboardText";
-            this.cmdClipboardText.Size = new System.Drawing.Size(183, 22);
-            this.cmdClipboardText.Text = "Text";
-            this.cmdClipboardText.Click += new System.EventHandler(this.cmdClipboardText_Click);
-            // 
-            // cmdClipboardBBCode
-            // 
-            this.cmdClipboardBBCode.Name = "cmdClipboardBBCode";
-            this.cmdClipboardBBCode.Size = new System.Drawing.Size(183, 22);
-            this.cmdClipboardBBCode.Text = "BBCode";
-            this.cmdClipboardBBCode.Click += new System.EventHandler(this.cmdClipboardBBCode_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 6);
-            // 
-            // cmdClipboardTextAll
-            // 
-            this.cmdClipboardTextAll.Name = "cmdClipboardTextAll";
-            this.cmdClipboardTextAll.Size = new System.Drawing.Size(183, 22);
-            this.cmdClipboardTextAll.Text = "All Attacks (Text)";
-            this.cmdClipboardTextAll.Click += new System.EventHandler(this.cmdClipboardTextAll_Click);
-            // 
-            // cmdClipboardBBCodeAll
-            // 
-            this.cmdClipboardBBCodeAll.Name = "cmdClipboardBBCodeAll";
-            this.cmdClipboardBBCodeAll.Size = new System.Drawing.Size(183, 22);
-            this.cmdClipboardBBCodeAll.Text = "All Attacks (BBCode)";
-            this.cmdClipboardBBCodeAll.Click += new System.EventHandler(this.cmdClipboardBBCodeAll_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // VillageInputLabel
-            // 
-            this.VillageInputLabel.Name = "VillageInputLabel";
-            this.VillageInputLabel.Size = new System.Drawing.Size(74, 22);
-            this.VillageInputLabel.Text = "Coordinates:";
-            // 
-            // VillageInput
-            // 
-            this.VillageInput.AutoSize = false;
-            this.VillageInput.BackColor = System.Drawing.Color.White;
-            this.VillageInput.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.VillageInput.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.VillageInput.Name = "VillageInput";
-            this.VillageInput.Player = null;
-            this.VillageInput.ShowImage = false;
-            this.VillageInput.Size = new System.Drawing.Size(60, 23);
-            this.VillageInput.Tribe = null;
-            this.VillageInput.Village = null;
-            this.VillageInput.TextChanged += new System.EventHandler(this.VillageInput_TextChanged);
-            // 
-            // cmdAddVillage
-            // 
-            this.cmdAddVillage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdAddVillage.Image = global::TribalWars.Properties.Resources.FlagBlue;
-            this.cmdAddVillage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdAddVillage.Name = "cmdAddVillage";
-            this.cmdAddVillage.Size = new System.Drawing.Size(23, 22);
-            this.cmdAddVillage.Tag = "OWN_VISIBILITY";
-            this.cmdAddVillage.Text = "A";
-            this.cmdAddVillage.ToolTipText = "Attack current target from selected village";
-            this.cmdAddVillage.Visible = false;
-            this.cmdAddVillage.Click += new System.EventHandler(this.cmdAddVillage_Click);
-            // 
-            // cmdAddTarget
-            // 
-            this.cmdAddTarget.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdAddTarget.Image = global::TribalWars.Properties.Resources.PinSmall;
-            this.cmdAddTarget.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdAddTarget.Name = "cmdAddTarget";
-            this.cmdAddTarget.Size = new System.Drawing.Size(23, 22);
-            this.cmdAddTarget.Tag = "OWN_VISIBILITY";
-            this.cmdAddTarget.Text = "T";
-            this.cmdAddTarget.ToolTipText = "Add target village";
-            this.cmdAddTarget.Visible = false;
-            this.cmdAddTarget.Click += new System.EventHandler(this.cmdAddTarget_Click);
-            // 
-            // AllPlans
-            // 
-            this.AllPlans.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AllPlans.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AllPlans.Location = new System.Drawing.Point(0, 50);
-            this.AllPlans.Margin = new System.Windows.Forms.Padding(0);
-            this.AllPlans.Name = "AllPlans";
-            this.AllPlans.Size = new System.Drawing.Size(319, 45);
-            this.AllPlans.TabIndex = 5;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.cmdClipboard.Name = "cmdClipboard";
+			// 
+			// cmdClipboardText
+			// 
+			resources.ApplyResources(this.cmdClipboardText, "cmdClipboardText");
+			this.cmdClipboardText.Name = "cmdClipboardText";
+			this.cmdClipboardText.Click += new System.EventHandler(this.cmdClipboardText_Click);
+			// 
+			// cmdClipboardBBCode
+			// 
+			resources.ApplyResources(this.cmdClipboardBBCode, "cmdClipboardBBCode");
+			this.cmdClipboardBBCode.Name = "cmdClipboardBBCode";
+			this.cmdClipboardBBCode.Click += new System.EventHandler(this.cmdClipboardBBCode_Click);
+			// 
+			// toolStripMenuItem1
+			// 
+			resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			// 
+			// cmdClipboardTextAll
+			// 
+			resources.ApplyResources(this.cmdClipboardTextAll, "cmdClipboardTextAll");
+			this.cmdClipboardTextAll.Name = "cmdClipboardTextAll";
+			this.cmdClipboardTextAll.Click += new System.EventHandler(this.cmdClipboardTextAll_Click);
+			// 
+			// cmdClipboardBBCodeAll
+			// 
+			resources.ApplyResources(this.cmdClipboardBBCodeAll, "cmdClipboardBBCodeAll");
+			this.cmdClipboardBBCodeAll.Name = "cmdClipboardBBCodeAll";
+			this.cmdClipboardBBCodeAll.Click += new System.EventHandler(this.cmdClipboardBBCodeAll_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			// 
+			// VillageInputLabel
+			// 
+			resources.ApplyResources(this.VillageInputLabel, "VillageInputLabel");
+			this.VillageInputLabel.Name = "VillageInputLabel";
+			// 
+			// VillageInput
+			// 
+			resources.ApplyResources(this.VillageInput, "VillageInput");
+			this.VillageInput.BackColor = System.Drawing.Color.White;
+			this.VillageInput.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.VillageInput.Name = "VillageInput";
+			this.VillageInput.Player = null;
+			this.VillageInput.ShowImage = false;
+			this.VillageInput.Tribe = null;
+			this.VillageInput.Village = null;
+			this.VillageInput.TextChanged += new System.EventHandler(this.VillageInput_TextChanged);
+			// 
+			// cmdAddVillage
+			// 
+			resources.ApplyResources(this.cmdAddVillage, "cmdAddVillage");
+			this.cmdAddVillage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdAddVillage.Image = global::TribalWars.Properties.Resources.FlagBlue;
+			this.cmdAddVillage.Name = "cmdAddVillage";
+			this.cmdAddVillage.Tag = "OWN_VISIBILITY";
+			this.cmdAddVillage.Click += new System.EventHandler(this.cmdAddVillage_Click);
+			// 
+			// cmdAddTarget
+			// 
+			resources.ApplyResources(this.cmdAddTarget, "cmdAddTarget");
+			this.cmdAddTarget.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdAddTarget.Image = global::TribalWars.Properties.Resources.PinSmall;
+			this.cmdAddTarget.Name = "cmdAddTarget";
+			this.cmdAddTarget.Tag = "OWN_VISIBILITY";
+			this.cmdAddTarget.Click += new System.EventHandler(this.cmdAddTarget_Click);
+			// 
+			// AllPlans
+			// 
+			resources.ApplyResources(this.AllPlans, "AllPlans");
+			this.AllPlans.Name = "AllPlans";
+			// 
+			// toolStrip2
+			// 
+			resources.ApplyResources(this.toolStrip2, "toolStrip2");
+			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.VillageTypeInput,
             this.UnitInput,
@@ -235,105 +196,78 @@ namespace TribalWars.Maps.AttackPlans.Controls
             this.toolStripSeparator2,
             this.cmdSort,
             this.cmdClear});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(319, 25);
-            this.toolStrip2.TabIndex = 6;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
-            this.toolStripLabel1.Text = "Quick find:";
-            // 
-            // VillageTypeInput
-            // 
-            this.VillageTypeInput.AutoSize = false;
-            this.VillageTypeInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
-            this.VillageTypeInput.Name = "VillageTypeInput";
-            this.VillageTypeInput.Size = new System.Drawing.Size(40, 24);
-            this.VillageTypeInput.ToolTipText = "Only add villages that have the selected purpose";
-            // 
-            // UnitInput
-            // 
-            this.UnitInput.AutoSize = false;
-            this.UnitInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
-            this.UnitInput.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-            this.UnitInput.Name = "UnitInput";
-            this.UnitInput.Size = new System.Drawing.Size(40, 24);
-            this.UnitInput.ToolTipText = "Select the slowest unit speed";
-            this.UnitInput.Click += new System.EventHandler(this.UnitInput_Click);
-            // 
-            // cmdFind
-            // 
-            this.cmdFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdFind.Image = ((System.Drawing.Image)(resources.GetObject("cmdFind.Image")));
-            this.cmdFind.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdFind.Name = "cmdFind";
-            this.cmdFind.Size = new System.Drawing.Size(23, 22);
-            this.cmdFind.Text = "Find villages";
-            this.cmdFind.ToolTipText = "Find villages that can still reach the target at the arrival time at the given sp" +
-    "eed";
-            this.cmdFind.Click += new System.EventHandler(this.cmdFind_Click);
-            // 
-            // cmdFindPool
-            // 
-            this.cmdFindPool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdFindPool.Image = ((System.Drawing.Image)(resources.GetObject("cmdFindPool.Image")));
-            this.cmdFindPool.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdFindPool.Name = "cmdFindPool";
-            this.cmdFindPool.Size = new System.Drawing.Size(23, 22);
-            this.cmdFindPool.ToolTipText = "Find villages inside the attackers pool that can still reach the target at the ar" +
-    "rival time at the given speed. Add villages to the attack pool in the \'Manage yo" +
-    "ur villages\' Window.";
-            this.cmdFindPool.Click += new System.EventHandler(this.cmdFindPool_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cmdSort
-            // 
-            this.cmdSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdSort.Image = ((System.Drawing.Image)(resources.GetObject("cmdSort.Image")));
-            this.cmdSort.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdSort.Name = "cmdSort";
-            this.cmdSort.Size = new System.Drawing.Size(23, 22);
-            this.cmdSort.Text = "Sort attacks on travel time";
-            this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
-            // 
-            // cmdClear
-            // 
-            this.cmdClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cmdClear.Image = ((System.Drawing.Image)(resources.GetObject("cmdClear.Image")));
-            this.cmdClear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdClear.Name = "cmdClear";
-            this.cmdClear.Size = new System.Drawing.Size(23, 22);
-            this.cmdClear.Text = "Remove all attacks on currently selected plan";
-            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
-            // 
-            // Timer
-            // 
-            this.Timer.Interval = 1000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // AttackPlanCollectionControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.Collection);
-            this.Name = "AttackPlanCollectionControl";
-            this.Size = new System.Drawing.Size(319, 95);
-            this.Collection.ResumeLayout(false);
-            this.Collection.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.ResumeLayout(false);
+			this.toolStrip2.Name = "toolStrip2";
+			// 
+			// toolStripLabel1
+			// 
+			resources.ApplyResources(this.toolStripLabel1, "toolStripLabel1");
+			this.toolStripLabel1.Name = "toolStripLabel1";
+			// 
+			// VillageTypeInput
+			// 
+			resources.ApplyResources(this.VillageTypeInput, "VillageTypeInput");
+			this.VillageTypeInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
+			this.VillageTypeInput.Name = "VillageTypeInput";
+			// 
+			// UnitInput
+			// 
+			resources.ApplyResources(this.UnitInput, "UnitInput");
+			this.UnitInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(232)))));
+			this.UnitInput.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+			this.UnitInput.Name = "UnitInput";
+			this.UnitInput.Click += new System.EventHandler(this.UnitInput_Click);
+			// 
+			// cmdFind
+			// 
+			resources.ApplyResources(this.cmdFind, "cmdFind");
+			this.cmdFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdFind.Name = "cmdFind";
+			this.cmdFind.Click += new System.EventHandler(this.cmdFind_Click);
+			// 
+			// cmdFindPool
+			// 
+			resources.ApplyResources(this.cmdFindPool, "cmdFindPool");
+			this.cmdFindPool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdFindPool.Name = "cmdFindPool";
+			this.cmdFindPool.Click += new System.EventHandler(this.cmdFindPool_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			// 
+			// cmdSort
+			// 
+			resources.ApplyResources(this.cmdSort, "cmdSort");
+			this.cmdSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdSort.Name = "cmdSort";
+			this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
+			// 
+			// cmdClear
+			// 
+			resources.ApplyResources(this.cmdClear, "cmdClear");
+			this.cmdClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdClear.Name = "cmdClear";
+			this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
+			// 
+			// Timer
+			// 
+			this.Timer.Interval = 1000;
+			this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+			// 
+			// AttackPlanCollectionControl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.Collection);
+			this.Name = "AttackPlanCollectionControl";
+			this.Collection.ResumeLayout(false);
+			this.Collection.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
+			this.toolStrip2.ResumeLayout(false);
+			this.toolStrip2.PerformLayout();
+			this.ResumeLayout(false);
 
         }
 

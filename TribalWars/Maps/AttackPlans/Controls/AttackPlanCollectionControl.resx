@@ -117,89 +117,524 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="toolStrip2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;VillageInputLabel.Name" xml:space="preserve">
+    <value>VillageInputLabel</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdSort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIzSURBVDhPxdJbSNNRHMDxv1pBdH0LSgoMeogio6J6MQyV
-        KEswEjUyjDKtxGJZal7IctBybpIVKTg1XWp5IcseyoLMEaQVlIImM4eXudv/P03Np2/HacFw9Bb94Lwc
-        zud7/n840j+b9hY1bQ35NBsysQx8Y37b9/T1dPKkWvdnGbTHka01/LCWYeku5EpSBLoCFXc1WRQXpDNo
-        7vMOzqJp5TEz7nqmZSNV91VMOirRXk+lpyOD7AuRZCTuxNp+EkdrEGkJRxYGZvGMu5Z76hN8MhWiDN1h
-        tDsLs+kUT0ujOBsfQk1OIF06iZS4Q96B+krtXEB5hCYngTxVLFmpMVxNiUaVFMXFxEiS48PQp230BGIP
-        hngHjOUafip1TNkrmBzSMdF/DfeXMygfjiK/3Yfr5WacLWuwNSzFWutP2N5g70DVAzVTNgOTw3qBsxn/
-        mozSeQy5PVTgLTha1mJvWMZYbQAjNRJ7tm3yDpSX5DNhKWbCnCfwOdydMcjv9uN6tRXns3Xi5uWM1QUw
-        apQYeugjUFqUi9J7g/Hu87i7YpE7wnG1BeN8Hoi9cYXAixiZx4OVfgsDJbcycX6+jPtjHLIpQuDtOFvX
-        Y29a6cGjRr85XOXHgCFgYUB/Mx3be/HfpgO4Xu8QeAOOplXY6hd7Pnu4WsIisFng/nIfgdt5lzwPxPVm
-        F64XQdibVwu8BKu4+TceqPD34N4yH4Hv/b0U5Z4WLyyKxOhwDofu9hz625qn/30k6RcI56ssgBCQhwAA
-        AABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAZZJREFUOE9jgAGv+pMS9gX7v1rGLBKDCuEC/6E0KvAsOrjKNXv7f6vwaaVQIVwA
+        uwFuuVvv2Seue2gc3PMSKoQLYBrgWnDQyTV7/XfL+PkaxgGd/y0jZwZApbABLAZkbj/tmLzullnYpGkm
+        gfVfzEMmHYRKYQOoBoSGrmK2T9n+0T5riwSIbxE5w9fYv+O/WfR0LbACTIBqgEvm1mNmofU/LMImpxj7
+        zOQydm9/DzLA2L/9IlQJOsAeiCQATAMmR+StnRyavnN6ZOHcqVEFuya6el3sMdJIgUqjAywGuAduA9Gz
+        I5LFp3p4vKjVUroHlsAOMA2Y5uoKTn0zA2Nn1umr/q/XVwsDS6CCRiD2BmKQAa5A3AXECDAnPMt5krvv
+        /zo91VVQIXRgDMQgzTDsBMQIMDU6/0GXodqLVnMdcRB/iqOjNlgCFWwBYpDmY2AeDEwLy+rtt7f732Gk
+        kQriT/SwEe001FgKlkQFMFcgbJ/i7qtdb6z0pUhN6WutnsrsJgOVFcVacq+qdZXnQpWgg2ooTQ3AwAAA
+        aNiGYq1aPC8AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>466, 17</value>
-  </metadata>
+  <data name="cmdClipboardBBCodeAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardTextAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="cmdClipboardBBCodeAll.Text" xml:space="preserve">
+    <value>All Attacks (BBCode)</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardText.Name" xml:space="preserve">
+    <value>cmdClipboardText</value>
+  </data>
+  <data name="&gt;&gt;Collection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cmdClipboard.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;VillageTypeInput.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="AllPlans.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="VillageInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="&gt;&gt;VillageInput.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripVillageTextBox, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="Collection.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="toolStrip1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AllPlans" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="toolStrip2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,25,Absolute,25,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="toolStripLabel3.Text" xml:space="preserve">
+    <value>Export:</value>
+  </data>
+  <data name="cmdFind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="Collection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 95</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AttackDropDown.Name" xml:space="preserve">
+    <value>AttackDropDown</value>
+  </data>
+  <data name="&gt;&gt;toolStripLabel3.Name" xml:space="preserve">
+    <value>toolStripLabel3</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AllPlans.Parent" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="VillageTypeInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
+  </data>
+  <data name="&gt;&gt;cmdAddVillage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdClipboardBBCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="cmdClear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="cmdSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 22</value>
+  </data>
+  <data name="cmdClipboardTextAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="VillageInput.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripLabel1.Text" xml:space="preserve">
+    <value>Quick find:</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;toolStrip2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;UnitInput.Name" xml:space="preserve">
+    <value>UnitInput</value>
+  </data>
+  <data name="AllPlans.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 45</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 6</value>
+  </data>
+  <data name="cmdClipboardText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="toolStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cmdFindPool.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="AttackDropDown.Text" xml:space="preserve">
+    <value>Select an existing attack plan</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <data name="cmdFind.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIsSURBVDhPzZNfSFNhGIdPQklgIBIY1EWBWArBRErGFnYR
-        axpthM6VXawadOOCzdiWbpzTxeZhf6yOzsLMGVrRmuUalU4KG44KayCDogJbrrLhQieVNW392jlbxNAg
-        qIuey+d939/38fJ9xD/F2uUPayye6e0y60RGcVi6/SPL+SUIDrS75z4lkMfTRgiCyklbKifb/wb2lGZm
-        ENKGbvCkNpSKzDHWM5cDWM4vgTo7jK+JRdwcfQUtM4pNu8xI6RU/vTcQBt07jiJRC+uz0bQOFVAdPijJ
-        flQd7cJWqR2CegfK6xwvlYarUFu8kDf2YUs1nQo2QUm5CjKjBNHZ+WSlsc2H6fgXxOeTCDyNQ0HdRrGY
-        Rv625jFdqxcsH+cX4Q/NoE53HUW76V+3sPbcNzRaPFzTw9B72HofY6/qCgqFJPR27wk2IPRiCsHnH2C5
-        OAaZrh/rBEYct90iuQD63OCsyuyBpKEHZTUMSqpoFItMKOQbkV9uCKvpG+labaq2x4oNO4xYW6FHhfxM
-        ggtoOX8PyeR3TEY/Y+jRW5icQWzcSWYt6gjpxrvoHMKRGAZGJqCy3EVJdWaZBuYOFha+pYbfwN4XhOKk
-        7z8LqNW4VrMBkalZDD94jXbXOGq0A9ic2hXXcKjJ+axefwmVig7w958GX34K64VktLSSymPrMuraKkWT
-        OyY+7JiUqJwQHmxD2T4rcnnqGS7gT6Go9N9g3434GJMr0V5YwxX+DoL4ARJkk0CcNwWHAAAAAElFTkSu
-        QmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAixJREFUOE/Nk19IU2EYh09CSWAgEhjURYFYCsFESsYWdhFrGm2EzpVdrBp044LN
+        2JZunNPF5mF/rI7OwswZWtGa5RqVTgobjgprIIOiAluusuFCJ5U1bf3aOVvE0CCoi57L533f3/fx8n3E
+        P8Xa5Q9rLJ7p7TLrREZxWLr9I8v5JQgOtLvnPiWQx9NGCILKSVsqJ9v/BvaUZmYQ0oZu8KQ2lIrMMdYz
+        lwNYzi+BOjuMr4lF3Bx9BS0zik27zEjpFT+9NxAG3TuOIlEL67PRtA4VUB0+KMl+VB3twlapHYJ6B8rr
+        HC+VhqtQW7yQN/ZhSzWdCjZBSbkKMqME0dn5ZKWxzYfp+BfE55MIPI1DQd1GsZhG/rbmMV2rFywf5xfh
+        D82gTncdRbvpX7ew9tw3NFo8XNPD0HvYeh9jr+oKCoUk9HbvCTYg9GIKwecfYLk4BpmuH+sERhy33SK5
+        APrc4KzK7IGkoQdlNQxKqmgUi0wo5BuRX24Iq+kb6VptqrbHig07jFhboUeF/EyCC2g5fw/J5HdMRj9j
+        6NFbmJxBbNxJZi3qCOnGu+gcwpEYBkYmoLLcRUl1ZpkG5g4WFr6lht/A3heE4qTvPwuo1bhWswGRqVkM
+        P3iNdtc4arQD2JzaFddwqMn5rF5/CZWKDvD3nwZffgrrhWS0tJLKY+sy6toqRZM7Jj7smJSonBAebEPZ
+        PityeeoZLuBPoaj032DfjfgYkyvRXljDFf4OgvgBEmSTQJw3BYcAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="cmdAddVillage.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="cmdFind.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="toolStripLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 22</value>
+  </data>
+  <data name="Collection.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="AllPlans.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;cmdSort.Name" xml:space="preserve">
+    <value>cmdSort</value>
+  </data>
+  <data name="VillageTypeInput.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;UnitInput.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripUnitsImageCombobox, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cmdFindPool.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIcSURBVDhPzZFfSFNxFMev7t77u0Gjrb9CmFm9FImI0UMg
-        QVT00oqgaaFCw2ob0UP40IyCCKGGw8lQul3ddKtJaGvXqQ8+9CD6mlFBvSwIIpAgSIeUv/u73+5dPyho
-        Bush+sCBc76c8z2H30/4J5ijh5rMeF0TL/+O1cyx5GqqPsnL8kHilKugH19ZHtq/gt4aF5fLw5z2Bs2J
-        02CjB2GoVUEul4cx5V0wdc8PE616gculoekGjzF22G9mToZozhum080am/LqZu4M2JOjYI8awOI7wbQq
-        nT6o1qi6PWyoG0NGVPR/6ZE9RRMM726kI3vz9kY2fgTm0xPFsHOWPgCW2AOmbgPrd+Jbn4JP9wjytwle
-        dznyb25KjUUTGwxscLMBd5YN1YAl94E9rAdL1VkX7AK7vxlfowo+dBM8vy5j5oqMcZ+YnQwIbj7+E0Co
-        MPqUzuWIy2DqVmv7Fmv7eixFFLyzNs9fkzHsEw21ubITglDBx0pDo1LEPvtzWMH7OwSvbhDMWQbZSzK0
-        FkeEt/0ZGpVnF+8SvOwieHZVxmRARuaihPQFCYPnKmd529qYg5uciz2EvgiR4mCsRVyyQzsvIdFmRatI
-        sx7BydtLQ3vXeeyXz/ll9HvFGfWsssMOO7eNRtolPPbxb12Lj91SbD4gFVJtYvDXx7PzuKWl2sXCWIcj
-        xuXSvL0lq3oHqeXlb+itpHbisqzy8r9CEL4D+eANtApLsScAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAhxJREFUOE/NkV9IU3EUx6/u3t/vBo22/gphZvVSISJGD4EEUdFLK4KmhQoNrTmi
+        h/ChGQURQo0NJ0PpdteWW01CW7tOffChB8nXDAvqZUEQUQRBS6S893e/3bt+UNAM1kP0gQPnfDnnew6/
+        n/BPMEf3tZiJhhZe/h3L2UOp5XRjipeVg+Qx1xft8FIxvnsJA3UuLleGOe0NmBPHwUb3wlBqAlyuDGPK
+        O29qnh8mau08l8ujZ5o8xth+v5k9GtTz3pA+3aqyKa9m5k+APTwIdr8JLLEVTK3R9Nu1qq5sDhnK2qAR
+        Ff2fw8RTMsHd7c36yM6CvZGNH4D56Egp7Jxl9oAld4Apm8CGnPg2KOPjTYrCNYoXfY7CyytSc8nEBsNr
+        3GzYnWN36sBSu8DuNYKlG6wLtoHdWo+vURlv+ymeXiKYOU8w7hNzkz2Cm4//BBCqjEG5txh2GUzZaG3f
+        YG1fjWJExmtr89xFgqRPNJTW6l4IQhUfK48elSL22Z9CMt5cp3h+meKJZZA7S6C2OSK87c/oUTL74QbF
+        Qh/F4wsEkz0E2W4JmTMS4qeqZ3nbypjxdc73Yao/C9LSYKxNLNqhnpaQ7LCiXdRzHsHJ28ujD6zy2C+f
+        9xMMecUZ5aS8xQ47t41GOiU88PFvXYl3/VJszi8tpjvEwK+PZ+cJS0t3iotjXY4Yl8vz6ipRtC5az8vf
+        0Npp/cQ5ovDyv0IQvgPg1Q2rko5F2wAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="cmdSort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGWSURBVDhPY4ABr/qTEvYF+79axiwSgwrhAv+hNCrwLDq4
-        yjV7+3+r8GmlUCFcALsBbrlb79knrntoHNzzEiqEC2Aa4Fpw0Mk1e/13y/j5GsYBnf8tI2cGQKWwASwG
-        ZG4/7Zi87pZZ2KRpJoH1X8xDJh2ESmEDqAaEhq5itk/Z/tE+a4sEiG8ROcPX2L/jv1n0dC2wAkyAaoBL
-        5tZjZqH1PyzCJqcY+8zkMnZvfw8ywNi//SJUCTrAHogkAEwDJkfkrZ0cmr5zemTh3KlRBbsmunpd7DHS
-        SIFKowMsBrgHbgPRsyOSxad6eLyo1VK6B5bADjANmObqCk59MwNjZ9bpq/6v11cLA0uggkYg9gZikAGu
-        QNwFxAgwJzzLeZK77/86PdVVUCF0YAzEIM0w7ATECDA1Ov9Bl6Hai1ZzHXEQf4qjozZYAhVsAWKQ5mNg
-        HgxMC8vq7be3+99hpJEK4k/0sBHtNNRYCpZEBTBXIGyf4u6rXW+s9KVITelrrZ7K7CYDlRXFWnKvqnWV
-        50KVoINqKE0NwMAAAGjYhmKtWjwvAAAAAElFTkSuQmCC
-</value>
+  <data name="&gt;&gt;cmdFindPool.Name" xml:space="preserve">
+    <value>cmdFindPool</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AttackPlanCollectionControl</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
+  </data>
+  <data name="cmdAddTarget.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardTextAll.Name" xml:space="preserve">
+    <value>cmdClipboardTextAll</value>
+  </data>
+  <data name="&gt;&gt;Collection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Collection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdClear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardBBCode.Name" xml:space="preserve">
+    <value>cmdClipboardBBCode</value>
   </data>
   <data name="cmdClear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIFSURBVDhPYwABLy8vAzcvzz2enp5O9fX1TGBBYkFoaCiz
-        k5NruqOjy38nZ+dv3t7egSAxqDQKsLe3ZwkKClJyd3fNgwpBBB0dnZNs7R22mVva/tfS0vrj7u5ZhW6I
-        vLw9h6Wto5O3l9d3e3vHOVBhCLC1dZe0t3excHBw2WZlY//fzt7hv7+P50ZXV1dukLyFhQWnu7v7Cnl5
-        p9+mpubdQEt4wBrRAdBWNicnlwJ5B+ffdnZO/4HeWWZubqNnaWk32dbG5r+egclkJSVjfqhynIDRzs5F
-        09bW6byZufV/fX3974bGRu/VtHTXychYcELVEAb6+sYOevomPy2tgOGib3RPRkZLCCpFGOibmyuoqGhd
-        0tUz/KdvYPLfxNTiv5a2zi2oNH5gaGgor6aufVVNXeuPhqbmGmFhCRNZWZVtBobG/1XUtDOhyrADYOhK
-        yMorn5JTVP2vrWdwSEZGRkhcXJwbhOUU1aYbGBh/UdbWloUqRwXy9vYcMoqqiySkpT9qaRk+0dIy0IJK
-        gRIBBwODEJ+2vsFZCSn5SUARzIQmLSfnLSah8F9VTRvoVI1WBgZxcBpAAkzKyloqysrK9wUEBORBfIgw
-        BLAJC4u2CgmL/5eXV97FxsarBhTDlieYTU0tJ3PycZoC2ajyknLKRqys7BOBTDsg5gULYgcsQMwFYQ48
-        YGAAACU+dY6KGF/OAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgVJREFUOE9jAAEvLy8DNy/PPZ6enk719fVMYEFiQWhoKLOTk2u6o6PLfydn52/e
+        3t6BIDGoNAqwt7dnCQoKUnJ3d82DCkEEHR2dk2ztHbaZW9r+19LS+uPu7lmFboi8vD2Hpa2jk7eX13d7
+        e8c5UGEIsLV1l7S3d7FwcHDZZmVj/9/O3uG/v4/nRldXV26QvIWFBae7u/sKeXmn36am5t1AS3jAGtEB
+        0FY2JyeXAnkH5992dk7/gd5ZZm5uo2dpaTfZ1sbmv56ByWQlJWN+qHKcgNHOzkXT1tbpvJm59X99ff3v
+        hsZG79W0dNfJyFhwQtUQBvr6xg56+iY/La2A4aJvdE9GRksIKkUY6JubK6ioaF3S1TP8p29g8t/E1OK/
+        lrbOLag0fmBoaCivpq59VU1d64+GpuYaYWEJE1lZlW0Ghsb/VdS0M6HKsANg6ErIyiufklNU/a+tZ3BI
+        RkZGSFxcnBuE5RTVphsYGH9R1taWhSpHBfL29hwyiqqLJKSlP2ppGT7R0jLQgkqBEgEHA4MQn7a+wVkJ
+        KflJQBHMhCYtJ+ctJqHwX1VNG+hUjVYGBnFwGkACTMrKWirKysr3BQQE5EF8iDAEsAkLi7YKCYv/l5dX
+        3sXGxqsGFMOWJ5hNTS0nc/JxmgLZqPKScspGrKzsE4FMOyDmBQtiByxAzAVhDjxgYAAAJT51jooYX84A
+        AAAASUVORK5CYII=
 </value>
   </data>
+  <data name="UnitInput.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cmdAddVillage.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;toolStrip2.Parent" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AttackDropDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AllPlans.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="AllPlans.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 50</value>
+  </data>
+  <data name="&gt;&gt;toolStripLabel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdSort.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="VillageInputLabel.Text" xml:space="preserve">
+    <value>Coordinates:</value>
+  </data>
+  <data name="cmdClipboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAjNJREFUOE/F0ltI01EcwPG/WkF0fQtKCgx6iCKjonoxDJUoSzASNTKMMq3EYllq
+        Xshy0HJukhUpODVdankhyx7KgswRpBWUgiYzh5e52/8/Tc2nb8dpwXD0Fv3gvBzO53v+fzjSP5v2FjVt
+        Dfk0GzKxDHxjftv39PV08qRa92cZtMeRrTX8sJZh6S7kSlIEugIVdzVZFBekM2ju8w7OomnlMTPueqZl
+        I1X3VUw6KtFeT6WnI4PsC5FkJO7E2n4SR2sQaQlHFgZm8Yy7lnvqE3wyFaIM3WG0Owuz6RRPS6M4Gx9C
+        TU4gXTqJlLhD3oH6Su1cQHmEJieBPFUsWakxXE2JRpUUxcXESJLjw9CnbfQEYg+GeAeM5Rp+KnVM2SuY
+        HNIx0X8N95czKB+OIr/dh+vlZpwta7A1LMVa60/Y3mDvQNUDNVM2A5PDeoGzGf+ajNJ5DLk9VOAtOFrW
+        Ym9YxlhtACM1Enu2bfIOlJfkM2EpZsKcJ/A53J0xyO/243q1FeezdeLm5YzVBTBqlBh66CNQWpSL0nuD
+        8e7zuLtikTvCcbUF43weiL1xhcCLGJnHg5V+CwMltzJxfr6M+2McsilC4O04W9djb1rpwaNGvzlc5ceA
+        IWBhQH8zHdt78d+mA7he7xB4A46mVdjqF3s+e7hawiKwWeD+ch+B23mXPA/E9WYXrhdB2JtXC7wEq7j5
+        Nx6o8Pfg3jIfge/9vRTlnhYvLIrE6HAOh+72HPrbmqf/fSTpFwjnqyyAEJCHAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="VillageInput.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="Collection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="cmdAddVillage.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="VillageInputLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 22</value>
+  </data>
+  <data name="cmdClipboardText.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="cmdClipboardTextAll.Text" xml:space="preserve">
+    <value>All Attacks (Text)</value>
+  </data>
+  <data name="cmdAddVillage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="&gt;&gt;Collection.Name" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="&gt;&gt;Timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStrip2.Text" xml:space="preserve">
+    <value>toolStrip2</value>
+  </data>
+  <data name="cmdAddTarget.Text" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="&gt;&gt;toolStripLabel1.Name" xml:space="preserve">
+    <value>toolStripLabel1</value>
+  </data>
+  <data name="&gt;&gt;AllPlans.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="AttackDropDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 22</value>
+  </data>
+  <data name="&gt;&gt;cmdFindPool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdFindPool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="cmdAddTarget.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cmdAddTarget.ToolTipText" xml:space="preserve">
+    <value>Add target village</value>
+  </data>
+  <data name="&gt;&gt;VillageInputLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdClear.Text" xml:space="preserve">
+    <value>Remove all attacks on currently selected plan</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 95</value>
+  </data>
+  <data name="cmdFindPool.ToolTipText" xml:space="preserve">
+    <value>Find villages inside the attackers pool that can still reach the target at the arrival time at the given speed. Add villages to the attack pool in the 'Manage your villages' Window.</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;cmdSort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdClipboardBBCode.Text" xml:space="preserve">
+    <value>BBCode</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboard.Name" xml:space="preserve">
+    <value>cmdClipboard</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardBBCodeAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdClipboard.Text" xml:space="preserve">
+    <value>Export attack plans to clipboard</value>
+  </data>
+  <data name="&gt;&gt;cmdAddTarget.Name" xml:space="preserve">
+    <value>cmdAddTarget</value>
+  </data>
+  <data name="UnitInput.ToolTipText" xml:space="preserve">
+    <value>Select the slowest unit speed</value>
+  </data>
+  <data name="&gt;&gt;cmdClear.Name" xml:space="preserve">
+    <value>cmdClear</value>
+  </data>
+  <data name="cmdFind.Text" xml:space="preserve">
+    <value>Find villages</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 25</value>
+  </data>
+  <data name="&gt;&gt;cmdFind.Name" xml:space="preserve">
+    <value>cmdFind</value>
+  </data>
+  <data name="&gt;&gt;cmdAddVillage.Name" xml:space="preserve">
+    <value>cmdAddVillage</value>
+  </data>
+  <data name="toolStrip2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="&gt;&gt;toolStrip2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardBBCodeAll.Name" xml:space="preserve">
+    <value>cmdClipboardBBCodeAll</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;VillageInput.Name" xml:space="preserve">
+    <value>VillageInput</value>
+  </data>
+  <data name="cmdClear.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="Collection.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cmdFind.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AttackDropDown.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="AllPlans.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="cmdClipboard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 22</value>
+  </data>
+  <data name="Collection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Collection.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripLabel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Timer.Name" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="&gt;&gt;AllPlans.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdAddVillage.ToolTipText" xml:space="preserve">
+    <value>Attack current target from selected village</value>
+  </data>
+  <data name="&gt;&gt;cmdAddTarget.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Collection.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardBBCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AllPlans.Name" xml:space="preserve">
+    <value>AllPlans</value>
+  </data>
+  <data name="cmdFind.ToolTipText" xml:space="preserve">
+    <value>Find villages that can still reach the target at the arrival time at the given speed</value>
+  </data>
+  <data name="toolStrip2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 25</value>
+  </data>
+  <data name="&gt;&gt;VillageTypeInput.Name" xml:space="preserve">
+    <value>VillageTypeInput</value>
+  </data>
+  <data name="&gt;&gt;toolStrip2.Name" xml:space="preserve">
+    <value>toolStrip2</value>
+  </data>
+  <data name="cmdAddTarget.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="UnitInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
+  </data>
+  <data name="&gt;&gt;cmdClipboardText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cmdSort.Text" xml:space="preserve">
+    <value>Sort attacks on travel time</value>
+  </data>
+  <data name="VillageTypeInput.ToolTipText" xml:space="preserve">
+    <value>Only add villages that have the selected purpose</value>
+  </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>nl</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>384, 17</value>
+  </metadata>
+  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>466, 17</value>
+  </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>
