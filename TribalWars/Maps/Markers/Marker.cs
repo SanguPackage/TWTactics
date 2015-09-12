@@ -17,6 +17,16 @@ namespace TribalWars.Maps.Markers
     /// </remarks>
     public sealed class Marker : IEquatable<Marker>
     {
+		//#region Constants
+		//private static readonly string[] AllDefaultNames = new[]
+		//	{
+		//		ControlsRes.Marker_DefaultNames_You,
+		//		ControlsRes.Marker_DefaultNames_YourTribe,
+		//		ControlsRes.Marker_DefaultNames_Enemy,
+		//		ControlsRes.Marker_DefaultNames_Abandoned
+		//	};
+		//#endregion
+
         #region Constants
         /// <summary>
         /// Names of the You, YourTribe, ...

@@ -117,186 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;uiGroupBox1.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="EnemyMarker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="RefreshMarkersButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;RefreshMarkersButton.Parent" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="EnemyMarker.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MarkersControl</value>
-  </data>
-  <data name="&gt;&gt;MarkersGrid.Type" xml:space="preserve">
-    <value>Janus.Windows.GridEX.GridEX, Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="AbandonedMarker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 25</value>
-  </data>
-  <data name="uiGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 103</value>
-  </data>
-  <data name="EnemyMarker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 25</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox2.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="MarkersGrid_DesignTimeLayout.LayoutString" xml:space="preserve">
-    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;AllowAddNew&gt;True&lt;/AllowAddNew&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="Enabled"&gt;&lt;Caption&gt;Enabled&lt;/Caption&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;Enabled&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;FilterEditType&gt;NoEdit&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;Is the marker activated&lt;/HeaderToolTip&gt;&lt;Key&gt;Enabled&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;28&lt;/Width&gt;&lt;FilterRowButtonStyle&gt;None&lt;/FilterRowButtonStyle&gt;&lt;DefaultValue&gt;True&lt;/DefaultValue&gt;&lt;DefaultValueType&gt;System.Boolean&lt;/DefaultValueType&gt;&lt;/Column0&gt;&lt;Column1 ID="Type"&gt;&lt;ColumnType&gt;Image&lt;/ColumnType&gt;&lt;DataMember&gt;Type&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;NoEdit&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;Player or tribe marker?&lt;/HeaderToolTip&gt;&lt;Key&gt;Type&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;33&lt;/Width&gt;&lt;FilterRowButtonStyle&gt;None&lt;/FilterRowButtonStyle&gt;&lt;/Column1&gt;&lt;Column2 ID="Name"&gt;&lt;Caption&gt;Name&lt;/Caption&gt;&lt;DataMember&gt;SelectedPlayerOrTribe&lt;/DataMember&gt;&lt;EditType&gt;Custom&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;The marked player or tribe&lt;/HeaderToolTip&gt;&lt;Key&gt;Name&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;92&lt;/Width&gt;&lt;FilterRowComparison&gt;Contains&lt;/FilterRowComparison&gt;&lt;FilterRowButtonStyle&gt;ConditionOperatorDropDown&lt;/FilterRowButtonStyle&gt;&lt;DefaultFilterRowComparison&gt;Contains&lt;/DefaultFilterRowComparison&gt;&lt;/Column2&gt;&lt;Column3 ID="Color"&gt;&lt;CompareTarget&gt;Text&lt;/CompareTarget&gt;&lt;Caption&gt;Main color&lt;/Caption&gt;&lt;DataMember&gt;Color&lt;/DataMember&gt;&lt;EditType&gt;Custom&lt;/EditType&gt;&lt;FilterEditType&gt;NoEdit&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;Main color&lt;/HeaderToolTip&gt;&lt;Key&gt;Color&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;FilterRowButtonStyle&gt;None&lt;/FilterRowButtonStyle&gt;&lt;/Column3&gt;&lt;Column4 ID="ExtraColor"&gt;&lt;CompareTarget&gt;Text&lt;/CompareTarget&gt;&lt;Caption&gt;Inner color&lt;/Caption&gt;&lt;DataMember&gt;ExtraColor&lt;/DataMember&gt;&lt;EditType&gt;Custom&lt;/EditType&gt;&lt;FilterEditType&gt;NoEdit&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;Inner color&lt;/HeaderToolTip&gt;&lt;Key&gt;ExtraColor&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;62&lt;/Width&gt;&lt;FilterRowButtonStyle&gt;None&lt;/FilterRowButtonStyle&gt;&lt;/Column4&gt;&lt;Column5 ID="View"&gt;&lt;Caption&gt;View&lt;/Caption&gt;&lt;DataMember&gt;View&lt;/DataMember&gt;&lt;EditType&gt;DropDownList&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;View&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;114&lt;/Width&gt;&lt;FilterRowComparison&gt;Contains&lt;/FilterRowComparison&gt;&lt;/Column5&gt;&lt;Column6 ID="Delete"&gt;&lt;ButtonDisplayMode&gt;Always&lt;/ButtonDisplayMode&gt;&lt;ButtonImage Reference="GridEXLayoutData.RootTable.Columns.Column6.ButtonImage" /&gt;&lt;ButtonStyle&gt;ButtonCell&lt;/ButtonStyle&gt;&lt;Caption&gt;Delete&lt;/Caption&gt;&lt;ColumnType&gt;Image&lt;/ColumnType&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;NoEdit&lt;/FilterEditType&gt;&lt;HeaderToolTip&gt;Delete marker&lt;/HeaderToolTip&gt;&lt;Key&gt;Delete&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Width&gt;35&lt;/Width&gt;&lt;FilterRowButtonStyle&gt;None&lt;/FilterRowButtonStyle&gt;&lt;/Column6&gt;&lt;/Columns&gt;&lt;AllowDelete&gt;True&lt;/AllowDelete&gt;&lt;AllowEdit&gt;True&lt;/AllowEdit&gt;&lt;AllowGroup&gt;False&lt;/AllowGroup&gt;&lt;GroupCondition /&gt;&lt;RowHeight&gt;25&lt;/RowHeight&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
-  </data>
-  <data name="MarkersGrid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 22</value>
-  </data>
-  <data name="RefreshMarkersButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="MarkersGrid.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="AbandonedMarker.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="RefreshMarkersButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 48</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.Name" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;MarkersGrid.Name" xml:space="preserve">
-    <value>MarkersGrid</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox3.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;EnemyMarker.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Markers.MarkerSettingsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;EnemyMarker.Parent" xml:space="preserve">
-    <value>uiGroupBox2</value>
-  </data>
-  <data name="&gt;&gt;AbandonedMarker.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Markers.MarkerSettingsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="uiGroupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 48</value>
-  </data>
-  <data name="&gt;&gt;AbandonedMarker.Name" xml:space="preserve">
-    <value>AbandonedMarker</value>
-  </data>
-  <data name="RefreshMarkersButton.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="uiGroupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="AbandonedMarker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="AbandonedMarker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox2.Name" xml:space="preserve">
-    <value>uiGroupBox2</value>
-  </data>
-  <data name="uiGroupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 49</value>
-  </data>
-  <data name="uiGroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 2</value>
-  </data>
-  <data name="&gt;&gt;RefreshMarkersButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="uiGroupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;AbandonedMarker.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RefreshMarkersButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="MarkersGrid.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="uiGroupBox3.Text" xml:space="preserve">
-    <value>Change abandoned villages marker</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox3.Name" xml:space="preserve">
-    <value>uiGroupBox3</value>
-  </data>
-  <data name="uiGroupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 46</value>
-  </data>
-  <data name="&gt;&gt;AbandonedMarker.Parent" xml:space="preserve">
-    <value>uiGroupBox3</value>
-  </data>
-  <data name="&gt;&gt;RefreshMarkersButton.Name" xml:space="preserve">
-    <value>RefreshMarkersButton</value>
-  </data>
-  <data name="RefreshMarkersButton.ImageSize" type="System.Drawing.Size, System.Drawing">
-    <value>64, 64</value>
-  </data>
-  <data name="RefreshMarkersButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 210</value>
-  </data>
-  <data name="&gt;&gt;RefreshMarkersButton.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="MarkersGrid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 182</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="uiGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 264</value>
-  </data>
-  <data name="MarkersGrid_DesignTimeLayout_Reference_0.Instance" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAL1JREFUOE+tkDEKQjEQRBdbLbUTsbW28wyewMoD/M7exiNYeiPxTjGzOwnJz/4f
-        EAeGkLyZhaz8Ve+DBJjXRrMcIHyC2gvN8gwfe/Mo1OPylBhI8L41M5TL6Z05dFg36ZDbzjyszSjC6U7e
-        lJN0yHVjvixr832ynKRDzivX3TKkfz4tXFeL85QXdoynZy6W8Vq5jNMrw8w0Q6pyMQB/1p30hmjIKRMb
-        L4eMuOpVhBoYVQ7xuApgEkb1+A8S+QJBOD4ic8kd8AAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 369</value>
-  </data>
-  <data name="uiGroupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;EnemyMarker.Name" xml:space="preserve">
-    <value>EnemyMarker</value>
-  </data>
   <data name="RefreshMarkersButton.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAA4AMDAQAAEABABoBgAA5gAAACAgEAABAAQA6AIAAE4HAAAYGBAAAQAEAOgBAAA2CgAAEBAQAAEA
@@ -2210,52 +2031,28 @@
         AADjwwAA48MAAOHDAADgjwAA8A8AAPgPAAD+HwAA//8AAP//AAA=
 </value>
   </data>
-  <data name="uiGroupBox1.Text" xml:space="preserve">
-    <value>Markers</value>
-  </data>
-  <data name="uiGroupBox2.Text" xml:space="preserve">
-    <value>Change enemy marker</value>
-  </data>
-  <data name="MarkersGrid.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="uiGroupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;MarkersGrid.Parent" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="RefreshMarkersButton.Text" xml:space="preserve">
+    <value>Vernieuwen</value>
   </data>
   <data name="RefreshMarkersButton.ToolTipText" xml:space="preserve">
-    <value>The marker list is not updated when you alter the markers from the context menu. Click this button to refresh the marker list.</value>
+    <value>De eigen markeringen zijn niet altijd up to date. Klik hier om de lijst te synchroniseren.</value>
   </data>
-  <data name="&gt;&gt;EnemyMarker.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="MarkersGrid_DesignTimeLayout_Reference_0.Instance" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAL1JREFUOE+tkDEKQjEQRBdbLbUTsbW28wyewMoD/M7exiNYeiPxTjGzOwnJz/4f
+        EAeGkLyZhaz8Ve+DBJjXRrMcIHyC2gvN8gwfe/Mo1OPylBhI8L41M5TL6Z05dFg36ZDbzjyszSjC6U7e
+        lJN0yHVjvixr832ynKRDzivX3TKkfz4tXFeL85QXdoynZy6W8Vq5jNMrw8w0Q6pyMQB/1p30hmjIKRMb
+        L4eMuOpVhBoYVQ7xuApgEkb1+A8S+QJBOD4ic8kd8AAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="uiGroupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="uiGroupBox1.Text" xml:space="preserve">
+    <value>Eigen markeringen</value>
   </data>
-  <data name="EnemyMarker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+  <data name="uiGroupBox2.Text" xml:space="preserve">
+    <value>Markering vijandelijke dorpen</value>
   </data>
-  <data name="&gt;&gt;MarkersGrid.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="uiGroupBox3.Text" xml:space="preserve">
+    <value>Markering verlaten dorpen</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="uiGroupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>nl</value>
-  </metadata>
 </root>
