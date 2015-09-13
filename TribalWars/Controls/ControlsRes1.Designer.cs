@@ -517,6 +517,24 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (Current).
+        /// </summary>
+        internal static string MonitoringControl_DateCurrent {
+            get {
+                return ResourceManager.GetString("MonitoringControl_DateCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Previous).
+        /// </summary>
+        internal static string MonitoringControl_DatePrevious {
+            get {
+                return ResourceManager.GetString("MonitoringControl_DatePrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clusters.
         /// </summary>
         internal static string NoPolygonContextMenu_Clusters {

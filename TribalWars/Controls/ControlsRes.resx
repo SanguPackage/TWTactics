@@ -435,6 +435,12 @@ Press 's' to remove this tooltip.</value>
   <data name="ActiveRectangleManipulator_SetTitle" xml:space="preserve">
     <value>Set this as the new Monitoring Area? This is the area you monitor growth for in the Monitoring tab.</value>
   </data>
+  <data name="MonitoringControl_DateCurrent" xml:space="preserve">
+    <value>(Current)</value>
+  </data>
+  <data name="MonitoringControl_DatePrevious" xml:space="preserve">
+    <value>(Previous)</value>
+  </data>
   <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
     <value>Clusters</value>
   </data>

@@ -437,6 +437,12 @@ Duw 's' om deze help te verbergen.</value>
   <data name="ActiveRectangleManipulator_SetTitle" xml:space="preserve">
     <value>Zet dit als het nieuw gecontroleerd gebied? Dit is het gebied waarin je alle activiteit kan opvolgen.</value>
   </data>
+  <data name="MonitoringControl_DateCurrent" xml:space="preserve">
+    <value>(Huidige)</value>
+  </data>
+  <data name="MonitoringControl_DatePrevious" xml:space="preserve">
+    <value>(Vorige)</value>
+  </data>
   <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
     <value>Clusters</value>
   </data>
