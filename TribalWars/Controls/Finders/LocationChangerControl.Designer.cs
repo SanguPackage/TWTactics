@@ -51,7 +51,7 @@ namespace TribalWars.Controls.Finders
             this.ZoomControl.Name = "ZoomControl";
             this.ZoomControl.Size = new System.Drawing.Size(42, 24);
             this.ZoomControl.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.ZoomControl, "Change map zoom level");
+			this.toolTip1.SetToolTip(this.ZoomControl, ControlsRes.LocationChangerControl_ZoomControl_Tooltip);
             this.ZoomControl.Value = 1;
             this.ZoomControl.ValueChanged += new System.EventHandler(this.ZoomControl_ValueChanged);
             // 

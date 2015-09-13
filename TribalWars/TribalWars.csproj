@@ -139,11 +139,6 @@
     <Compile Include="Controls\Common\ToolStripControlHostWrappers\ToolStripVillageTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ControlsRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ControlsRes.resx</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ControlsRes1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

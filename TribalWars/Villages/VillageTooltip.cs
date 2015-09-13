@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Text;
+using TribalWars.Controls;
 using TribalWars.Maps.Icons;
 using TribalWars.Maps.Manipulators.Implementations.Church;
 using TribalWars.Tools;
@@ -31,12 +32,10 @@ namespace TribalWars.Villages
                 var str = new StringBuilder();
 
                 // Calculate previous stuff
-                int prevPoints = 0;
                 Player prevPlayer = null;
                 Tribe prevTribe = null;
                 if (_village.PreviousVillageDetails != null)
                 {
-                    prevPoints = _village.PreviousVillageDetails.Points;
                     prevPlayer = _village.PreviousVillageDetails.Player;
                     if (prevPlayer != null)
                     {
@@ -45,51 +44,47 @@ namespace TribalWars.Villages
                 }
 
                 // Start output
-                string pointsPrefix;
                 if (_village.Type != VillageType.None && _village.Type != VillageType.Comments)
                 {
-                    pointsPrefix = _village.Type.GetDescription();
+					str.AppendFormat("{0}: {1}", _village.Type.GetDescription(), _village.PointsWithDiff);
                 }
                 else
                 {
-                    pointsPrefix = "Points";
+	                str.AppendFormat(ControlsRes.Tooltip_Points, _village.PointsWithDiff);
                 }
-
-                str.AppendFormat("{0}: {1}", pointsPrefix, _village.PointsWithDiff);
 
                 if (_village.HasPlayer)
                 {
                     str.AppendLine();
-                    str.AppendFormat("Owner: {0} (#{1} | {2} points)", _village.Player.Name, _village.Player.Rank, Common.GetPrettyNumber(_village.Player.Points));
+					str.AppendFormat(ControlsRes.VillageTooltip_Owner, _village.Player.Name, _village.Player.Rank, Common.GetPrettyNumber(_village.Player.Points));
                     if (prevPlayer != null && !prevPlayer.Equals(_village.Player))
                     {
                         str.AppendLine();
-                        str.AppendFormat("Nobled from {0} (#{1}|{2} points)", prevPlayer.Name, prevPlayer.Rank, Common.GetPrettyNumber(prevPlayer.Points));
+						str.AppendFormat(ControlsRes.VillageTooltip_NobledFrom, prevPlayer.Name, prevPlayer.Rank, Common.GetPrettyNumber(prevPlayer.Points));
                     }
                     else if (prevPlayer == null && _village.PreviousVillageDetails != null)
                     {
                         str.AppendLine();
-                        str.Append("Nobled abandoned");
+						str.Append(ControlsRes.VillageTooltip_NobledFromAbandoned);
                     }
                     str.AppendLine();
                     string conquers = _village.Player.ConquerString;
                     if (string.IsNullOrEmpty(conquers))
                     {
-                        str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(_village.Player.Villages.Count));
+						str.AppendFormat(ControlsRes.Tooltip_Villages, Common.GetPrettyNumber(_village.Player.Villages.Count));
                     }
                     else
                     {
-                        str.AppendFormat("Villages: {0} ({1})", Common.GetPrettyNumber(_village.Player.Villages.Count), conquers);
+						str.AppendFormat(string.Format(ControlsRes.Tooltip_Villages, Common.GetPrettyNumber(_village.Player.Villages.Count)) + " ({0})", conquers);
                     }
                     if (_village.HasTribe)
                     {
                         str.AppendLine();
-                        str.AppendFormat("Tribe: {0}", _village.Player.Tribe);
-                        //str.AppendFormat("Tribe: {0} (#{1} | {2} points)", _village.Player.Tribe.Tag, _village.Player.Tribe.Rank, Common.GetPrettyNumber(_village.Player.Tribe.AllPoints));
+						str.AppendFormat(ControlsRes.Tooltip_TribeShort, _village.Player.Tribe);
                         if (prevTribe != null && !prevTribe.Equals(_village.Player.Tribe))
                         {
                             str.AppendLine();
-                            str.AppendFormat("Changed from {0}", prevTribe.Tag);
+							str.AppendFormat(ControlsRes.VillageTooltip_TribeChanged, prevTribe.Tag);
                         }
                     }
                 }
@@ -98,16 +93,16 @@ namespace TribalWars.Villages
                     str.AppendLine();
                     if (prevPlayer != null)
                     {
-                        str.AppendFormat("Abandoned by {0} ({1})", prevPlayer.Name, Common.GetPrettyNumber(prevPlayer.Points));
+						str.AppendFormat(ControlsRes.VillageTooltip_AbandonedBy, prevPlayer.Name, Common.GetPrettyNumber(prevPlayer.Points));
                         if (prevPlayer.Villages.Count > 1)
                         {
                             str.AppendLine();
-                            str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(prevPlayer.Villages.Count));
+							str.AppendFormat(ControlsRes.Tooltip_Villages, Common.GetPrettyNumber(prevPlayer.Villages.Count));
                         }
                     }
                     else
                     {
-                        str.Append("Abandoned");
+						str.Append(ControlsRes.VillageTooltip_Abandoned);
                     }
                 }
 
@@ -131,12 +126,12 @@ namespace TribalWars.Villages
                 var str = new StringBuilder();
                 if (_church != null)
                 {
-                    str.AppendLine(string.Format("Church level {0}", _church.ChurchLevel));
+					str.AppendLine(string.Format(ControlsRes.VillageTooltip_ChurchLevel, _church.ChurchLevel));
                 }
 
                 if (_village.HasComments)
                 {
-                    str.AppendLine("Comments:");
+					str.AppendLine(ControlsRes.Tooltip_Comments);
                     str.AppendLine(_village.Comments);
                 }
 

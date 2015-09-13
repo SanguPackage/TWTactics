@@ -314,7 +314,7 @@ namespace TribalWars.Villages
             str.Append("[b]");
             if (HasTribe)
             {
-                str.AppendFormat("[ally]{0}[/ally] Target: {1}", Tribe.Tag, BbCode());
+				str.AppendFormat("[ally]{0}[/ally] " + ControlsRes.PlayerOperation_Target + ": {1}", Tribe.Tag, BbCode());
             }
             else
             {
@@ -377,7 +377,7 @@ namespace TribalWars.Villages
                     str.AppendLine();
                     str.AppendLine();
                     str.AppendLine();
-                    str.AppendLine("Next part:");
+					str.AppendLine(ControlsRes.PlayerOperation_NextPart);
 
                     if (players.Length > currentPlayer)
                         str.AppendLine("[b]" + players[currentPlayer]);

@@ -217,7 +217,7 @@ namespace TribalWars.Villages
         public string BbCodeExtended(int minFilter)
         {
             var str = new StringBuilder(100);
-            str.AppendLine(string.Format("{0}{1}{1}[b]Player Details[/b]", BbCode(), Environment.NewLine));
+			str.AppendLine(string.Format("{0}{1}{1}[b]" + ControlsRes.BbCode_TribeExtended_Title + "[/b]", BbCode(), Environment.NewLine));
             Players.Sort();
             foreach (Player tribe in Players)
             {
@@ -234,7 +234,7 @@ namespace TribalWars.Villages
                 }
                 else
                 {
-                    str.Append("*DEAD*");
+					str.Append(ControlsRes.BbCode_TribeExtended_Dead);
                 }
                 str.AppendLine("[/quote]");
             }

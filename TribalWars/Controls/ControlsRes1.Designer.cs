@@ -250,6 +250,24 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *DEAD*.
+        /// </summary>
+        internal static string BbCode_TribeExtended_Dead {
+            get {
+                return ResourceManager.GetString("BbCode_TribeExtended_Dead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Details.
+        /// </summary>
+        internal static string BbCode_TribeExtended_Title {
+            get {
+                return ResourceManager.GetString("BbCode_TribeExtended_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ({0:#,0}pts).
         /// </summary>
         internal static string BbCode_VillagePoints {
@@ -354,6 +372,24 @@ namespace TribalWars.Controls {
         internal static string ContextMenu_TwStats {
             get {
                 return ResourceManager.GetString("ContextMenu_TwStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days.
+        /// </summary>
+        internal static string Date_DiffDays {
+            get {
+                return ResourceManager.GetString("Date_DiffDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours.
+        /// </summary>
+        internal static string Date_DiffHours {
+            get {
+                return ResourceManager.GetString("Date_DiffHours", resourceCulture);
             }
         }
         
@@ -556,11 +592,38 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next part:.
+        /// </summary>
+        internal static string PlayerOperation_NextPart {
+            get {
+                return ResourceManager.GetString("PlayerOperation_NextPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target.
+        /// </summary>
+        internal static string PlayerOperation_Target {
+            get {
+                return ResourceManager.GetString("PlayerOperation_Target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #{1} ({0} points).
         /// </summary>
         internal static string PlayerOrTribeRow_Text {
             get {
                 return ResourceManager.GetString("PlayerOrTribeRow_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments:.
+        /// </summary>
+        internal static string Tooltip_Comments {
+            get {
+                return ResourceManager.GetString("Tooltip_Comments", resourceCulture);
             }
         }
         
@@ -619,6 +682,15 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tribe: {0}.
+        /// </summary>
+        internal static string Tooltip_TribeShort {
+            get {
+                return ResourceManager.GetString("Tooltip_TribeShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Villages: {0}.
         /// </summary>
         internal static string Tooltip_Villages {
@@ -633,6 +705,42 @@ namespace TribalWars.Controls {
         internal static string ToString_Tribe {
             get {
                 return ResourceManager.GetString("ToString_Tribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on {0} at {1}.
+        /// </summary>
+        internal static string TwDate_Full {
+            get {
+                return ResourceManager.GetString("TwDate_Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} at {1}.
+        /// </summary>
+        internal static string TwDate_FullShort {
+            get {
+                return ResourceManager.GetString("TwDate_FullShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to today at {0}.
+        /// </summary>
+        internal static string TwDate_TodayAt {
+            get {
+                return ResourceManager.GetString("TwDate_TodayAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tomorrow at {0}.
+        /// </summary>
+        internal static string TwDate_TomorrowAt {
+            get {
+                return ResourceManager.GetString("TwDate_TomorrowAt", resourceCulture);
             }
         }
         
@@ -750,6 +858,69 @@ namespace TribalWars.Controls {
         internal static string VillagesContextMenu_RemovePurposeWarning {
             get {
                 return ResourceManager.GetString("VillagesContextMenu_RemovePurposeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abandoned.
+        /// </summary>
+        internal static string VillageTooltip_Abandoned {
+            get {
+                return ResourceManager.GetString("VillageTooltip_Abandoned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abandoned by {0} ({1}).
+        /// </summary>
+        internal static string VillageTooltip_AbandonedBy {
+            get {
+                return ResourceManager.GetString("VillageTooltip_AbandonedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Church level {0}.
+        /// </summary>
+        internal static string VillageTooltip_ChurchLevel {
+            get {
+                return ResourceManager.GetString("VillageTooltip_ChurchLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nobled from {0} (#{1}|{2} points).
+        /// </summary>
+        internal static string VillageTooltip_NobledFrom {
+            get {
+                return ResourceManager.GetString("VillageTooltip_NobledFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nobled abandoned.
+        /// </summary>
+        internal static string VillageTooltip_NobledFromAbandoned {
+            get {
+                return ResourceManager.GetString("VillageTooltip_NobledFromAbandoned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Owner: {0} (#{1} | {2} points).
+        /// </summary>
+        internal static string VillageTooltip_Owner {
+            get {
+                return ResourceManager.GetString("VillageTooltip_Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changed from {0}.
+        /// </summary>
+        internal static string VillageTooltip_TribeChanged {
+            get {
+                return ResourceManager.GetString("VillageTooltip_TribeChanged", resourceCulture);
             }
         }
     }

@@ -310,7 +310,7 @@
     <value>Nieuw aanvalsplan</value>
   </data>
   <data name="VillageContextMenu_NobledFrom" xml:space="preserve">
-    <value>Geëdelt van {0}</value>
+    <value>Geëdeld van {0}</value>
   </data>
   <data name="VillageContextMenu_RemovePurpose" xml:space="preserve">
     <value>Verwijder doel</value>
@@ -357,5 +357,67 @@
   <data name="ToString_Tribe" xml:space="preserve">
     <value>{0} ({1} | {2}spelers)</value>
     <comment>{0} = tag, {1} = AllPoints, {2} = Player count</comment>
+  </data>
+  <data name="BbCode_TribeExtended_Dead" xml:space="preserve">
+    <value>*DOOD*</value>
+  </data>
+  <data name="BbCode_TribeExtended_Title" xml:space="preserve">
+    <value>Speler Details</value>
+  </data>
+  <data name="Tooltip_Comments" xml:space="preserve">
+    <value>Comments:</value>
+  </data>
+  <data name="Tooltip_TribeShort" xml:space="preserve">
+    <value>Stam: {0}</value>
+  </data>
+  <data name="VillageTooltip_Abandoned" xml:space="preserve">
+    <value>Verlaten</value>
+  </data>
+  <data name="VillageTooltip_AbandonedBy" xml:space="preserve">
+    <value>Verlaten door {0} ({1})</value>
+    <comment>{0} = dead player, {1} his points</comment>
+  </data>
+  <data name="VillageTooltip_ChurchLevel" xml:space="preserve">
+    <value>Kerk level {0}</value>
+  </data>
+  <data name="VillageTooltip_NobledFrom" xml:space="preserve">
+    <value>Geëdeld van {0} (#{1}|{2} ptn)</value>
+    <comment>{0} = prev player, {1} = his rank, {2} = his points</comment>
+  </data>
+  <data name="VillageTooltip_NobledFromAbandoned" xml:space="preserve">
+    <value>Verlaten dorp geëdeld</value>
+  </data>
+  <data name="VillageTooltip_Owner" xml:space="preserve">
+    <value>Eigenaar: {0} (#{1} | {2} ptn)</value>
+    <comment>{0} = ply name, {1} = ply rank, {2} = player points</comment>
+  </data>
+  <data name="VillageTooltip_TribeChanged" xml:space="preserve">
+    <value>Van stam {0}</value>
+  </data>
+  <data name="Date_DiffDays" xml:space="preserve">
+    <value>{0} dagen</value>
+  </data>
+  <data name="Date_DiffHours" xml:space="preserve">
+    <value>{0} uren</value>
+  </data>
+  <data name="PlayerOperation_NextPart" xml:space="preserve">
+    <value>Volgend deel:</value>
+  </data>
+  <data name="PlayerOperation_Target" xml:space="preserve">
+    <value>Doelwit</value>
+  </data>
+  <data name="TwDate_Full" xml:space="preserve">
+    <value>op {0} om {1}</value>
+    <comment>{0} = day+month, {1} = ToLongTimeString()</comment>
+  </data>
+  <data name="TwDate_FullShort" xml:space="preserve">
+    <value>{0} om {1}</value>
+    <comment>{0} = day+month, {1} = ToShortTimeString()</comment>
+  </data>
+  <data name="TwDate_TodayAt" xml:space="preserve">
+    <value>vandaag om {0}</value>
+  </data>
+  <data name="TwDate_TomorrowAt" xml:space="preserve">
+    <value>morgen om {0}</value>
   </data>
 </root>

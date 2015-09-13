@@ -10,6 +10,7 @@ using System.Collections;
 
 using System.Windows.Forms;
 using System.Reflection;
+using TribalWars.Controls;
 using TribalWars.Villages;
 using TribalWars.Worlds;
 
@@ -101,16 +102,16 @@ namespace TribalWars.Tools
             if (date.Date == serverTime.Date)
             {
                 if (shortFormat)
-                    return "today at " + date.ToShortTimeString();
+                    return string.Format(ControlsRes.TwDate_TodayAt, date.ToShortTimeString());
                 else
-                    return "today at " + date.ToLongTimeString();
+                    return string.Format(ControlsRes.TwDate_TodayAt, date.ToLongTimeString());
             }
             else if (date.Date.AddDays(-1) == serverTime.Date)
-                return "tomorrow at " + date.ToLongTimeString();
+                return string.Format(ControlsRes.TwDate_TomorrowAt, date.ToLongTimeString());
             else if (shortFormat)
-                return string.Format("{0} at {1}", date.ToString("dd.MM."), date.ToShortTimeString());
+				return string.Format(ControlsRes.TwDate_FullShort, date.ToString("dd.MM."), date.ToShortTimeString());
             else
-                return string.Format("on {0} at {1}", date.ToString("dd.MM."), date.ToLongTimeString());
+				return string.Format(ControlsRes.TwDate_Full, date.ToString("dd.MM."), date.ToLongTimeString());
         }
 
         /// <summary>
@@ -127,8 +128,8 @@ namespace TribalWars.Tools
         public static string GetTimeDifference(this TimeSpan span)
         {
             var str = new StringBuilder();
-            AppendTimeDifferenceFraction(str, span.Days, "{0} days");
-            AppendTimeDifferenceFraction(str, span.Hours, "{0} hours");
+			AppendTimeDifferenceFraction(str, span.Days, ControlsRes.Date_DiffDays);
+			AppendTimeDifferenceFraction(str, span.Hours, ControlsRes.Date_DiffHours);
             return str.ToString();
         }
 
