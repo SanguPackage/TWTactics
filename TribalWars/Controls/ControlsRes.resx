@@ -470,6 +470,33 @@ Right click inside/outside a cluster for more options.</value>
   <data name="PolygonContextMenu_Show" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="PolygonControl_EmptyGrid" xml:space="preserve">
+    <value>There is nothing in the grid yet. Try '{0}'?</value>
+    <comment>{0} = load button text</comment>
+  </data>
+  <data name="PolygonControl_Grid_GroupText" xml:space="preserve">
+    <value>{0} ({1} / {2} villages)</value>
+    <comment>{0} = group, {1} = # rows checked, {2} total rows</comment>
+  </data>
+  <data name="PolygonControl_ModusCaption" xml:space="preserve">
+    <value>Current modus: {0}</value>
+  </data>
+  <data name="PolygonControl_StartHelp" xml:space="preserve">
+    <value>You have not yet defined any clusters.
+I have activated cluster drawing for you, you can go back to the main map and create some now!
+
+Click and hold left mouse button to start drawing!
+Or... Right click on the map for more help.</value>
+  </data>
+  <data name="PolygonControl_StartHelpTitle" xml:space="preserve">
+    <value>No clusters!</value>
+  </data>
+  <data name="PolygonControl_ToClipboard" xml:space="preserve">
+    <value>BBCodes for {0} villages have been placed on the clipboard!</value>
+  </data>
+  <data name="PolygonControl_ToClipboardTitle" xml:space="preserve">
+    <value>BBCodes on clipboard</value>
+  </data>
   <data name="PolygonDrawerManipulator_NewClusterName" xml:space="preserve">
     <value>cluster {0}</value>
     <comment>{0} = autoincrement</comment>

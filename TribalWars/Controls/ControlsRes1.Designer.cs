@@ -758,6 +758,73 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is nothing in the grid yet. Try &apos;{0}&apos;?.
+        /// </summary>
+        internal static string PolygonControl_EmptyGrid {
+            get {
+                return ResourceManager.GetString("PolygonControl_EmptyGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1} / {2} villages).
+        /// </summary>
+        internal static string PolygonControl_Grid_GroupText {
+            get {
+                return ResourceManager.GetString("PolygonControl_Grid_GroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current modus: {0}.
+        /// </summary>
+        internal static string PolygonControl_ModusCaption {
+            get {
+                return ResourceManager.GetString("PolygonControl_ModusCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not yet defined any clusters.
+        ///I have activated cluster drawing for you, you can go back to the main map and create some now!
+        ///
+        ///Click and hold left mouse button to start drawing!
+        ///Or... Right click on the map for more help..
+        /// </summary>
+        internal static string PolygonControl_StartHelp {
+            get {
+                return ResourceManager.GetString("PolygonControl_StartHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No clusters!.
+        /// </summary>
+        internal static string PolygonControl_StartHelpTitle {
+            get {
+                return ResourceManager.GetString("PolygonControl_StartHelpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BBCodes for {0} villages have been placed on the clipboard!.
+        /// </summary>
+        internal static string PolygonControl_ToClipboard {
+            get {
+                return ResourceManager.GetString("PolygonControl_ToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BBCodes on clipboard.
+        /// </summary>
+        internal static string PolygonControl_ToClipboardTitle {
+            get {
+                return ResourceManager.GetString("PolygonControl_ToClipboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cluster {0}.
         /// </summary>
         internal static string PolygonDrawerManipulator_NewClusterName {

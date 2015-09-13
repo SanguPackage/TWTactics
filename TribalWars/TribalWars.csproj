@@ -789,6 +789,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\Polygons\PolygonControl.nl.resx">
+      <DependentUpon>PolygonControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\Polygons\PolygonControl.resx">
       <DependentUpon>PolygonControl.cs</DependentUpon>
       <SubType>Designer</SubType>

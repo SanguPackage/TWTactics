@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Janus.Windows.GridEX;
+using TribalWars.Controls;
 using TribalWars.Controls.GridExs;
 using TribalWars.Controls.XPTables;
 using TribalWars.Maps.Manipulators.Managers;
@@ -98,11 +99,7 @@ namespace TribalWars.Maps.Polygons
             if (!polygons.Any())
             {
                 World.Default.Map.Manipulators.SetManipulator(ManipulatorManagerTypes.Polygon);
-                MessageBox.Show(@"You have not yet defined any clusters.
-I have activated cluster drawing for you, you can go back to the main map and create some now!
-
-Click and hold left mouse button to start drawing!
-Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(ControlsRes.PolygonControl_StartHelp, ControlsRes.PolygonControl_StartHelpTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (ModusPolygon.Enabled)
@@ -136,7 +133,7 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
         {
             if (GridExVillage.RowCount == 0)
             {
-                MessageBox.Show(string.Format("There is nothing in the grid yet. Try '{0}'?", LoadPolygonData.Text), "No data!");
+				MessageBox.Show(string.Format(ControlsRes.PolygonControl_EmptyGrid, LoadPolygonData.Text), ControlsRes.PolygonControl_StartHelpTitle);
                 return;
             }
 
@@ -171,7 +168,7 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
 
             if (WinForms.ToClipboard(str.ToString().Trim()))
             {
-                MessageBox.Show(string.Format("BBCodes for {0} villages have been placed on the clipboard!", villagesExported), "BBCodes on clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(string.Format(ControlsRes.PolygonControl_ToClipboard, villagesExported), ControlsRes.PolygonControl_ToClipboardTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -345,7 +342,7 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
                 // Set group totals
                 int totalRecords = row.GetRecordCount();
                 int totalChecked = row.GetChildRecords().Count(x => x.CheckState == RowCheckState.Checked);
-                row.GroupCaption = string.Format("{0} ({1} / {2} villages)", row.GroupValue, totalChecked, totalRecords);
+				row.GroupCaption = string.Format(ControlsRes.PolygonControl_Grid_GroupText, row.GroupValue, totalChecked, totalRecords);
 
                 GridEXRow[] children = row.GetChildRows();
                 foreach (var child in children)
@@ -406,7 +403,7 @@ Or... Right click on the map for more help.", "No clusters!", MessageBoxButtons.
             ModusVillage.Enabled = !isVillageModus;
             ModusPolygon.Enabled = isVillageModus;
 
-            CurrentModusGroupbox.Text = string.Format("Current modus: {0}", isVillageModus ? ModusVillage.Text : ModusPolygon.Text);
+			CurrentModusGroupbox.Text = string.Format(ControlsRes.PolygonControl_ModusCaption, isVillageModus ? ModusVillage.Text : ModusPolygon.Text);
             GridExVillage.Visible = isVillageModus;
             GridExVillageShowFieldChooser.Visible = isVillageModus;
             GridExPolygon.Visible = !isVillageModus;

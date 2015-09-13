@@ -476,6 +476,38 @@ Rechts klik in een cluster of erbuiten voor meer opties</value>
   <data name="PolygonContextMenu_Show" xml:space="preserve">
     <value>Toon</value>
   </data>
+  <data name="PolygonControl_EmptyGrid" xml:space="preserve">
+    <value>Er is nog niets in de grid, probeer '{0}'</value>
+    <comment>{0} = load button text</comment>
+  </data>
+  <data name="PolygonControl_Grid_GroupText" xml:space="preserve">
+    <value>{0} ({1} / {2} dorpen)</value>
+    <comment>{0} = group, {1} = # rows checked, {2} total rows</comment>
+  </data>
+  <data name="PolygonControl_ModusCaption" xml:space="preserve">
+    <value>Huidige modus: {0}</value>
+  </data>
+  <data name="PolygonControl_StartHelp" xml:space="preserve">
+    <value>Je hebt nog geen clusters getekend.
+Ik heb 'clusters tekenen' voor je geactiveerd. Ga terug naar de kaart en teken er een paar!
+
+Klik en houd de linker muisknop om te tekenen.
+Of... Rechts klik op de kaart voor meer help.</value>
+    <comment>You have not yet defined any clusters.
+I have activated cluster drawing for you, you can go back to the main map and create some now!
+
+Click and hold left mouse button to start drawing!
+Or... Right click on the map for more help.</comment>
+  </data>
+  <data name="PolygonControl_StartHelpTitle" xml:space="preserve">
+    <value>Geen clusters!</value>
+  </data>
+  <data name="PolygonControl_ToClipboard" xml:space="preserve">
+    <value>BBCodes voor {0} dorpen zijn op het klembord geplaatst</value>
+  </data>
+  <data name="PolygonControl_ToClipboardTitle" xml:space="preserve">
+    <value>Op het klembord geplaatst</value>
+  </data>
   <data name="PolygonDrawerManipulator_NewClusterName" xml:space="preserve">
     <value>cluster {0}</value>
     <comment>{0} = autoincrement</comment>
