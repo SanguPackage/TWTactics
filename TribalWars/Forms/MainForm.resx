@@ -127,6 +127,9 @@
   <data name="&gt;&gt;FormSplitter.Panel1.Name" xml:space="preserve">
     <value>FormSplitter.Panel1</value>
   </data>
+  <data name="LeftSplitter.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="ToolStripOpen.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 28</value>
   </data>
@@ -143,7 +146,7 @@
     <value>ToolStripShapeDisplay</value>
   </data>
   <data name="&gt;&gt;_attackPlan.Type" xml:space="preserve">
-    <value>TribalWars.Maps.AttackPlans.Controls.AttackPlanCollectionControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.AttackPlans.Controls.AttackPlanCollectionControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;LeftNavigation_Markers.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -280,21 +283,6 @@
         oFowQXd94f/6gmCMBAUzBCQ3ubMWuwG9zdX/NeW0/4MMAdkCT2VAAHLd7K6s/xW5aWA1S+f0IQw5tG0u
         WAAkMb23GSxx6cR6FFtAhoHEQHR9aQFY7aZlfeAMxQAyuTjeBdVUPABkCMi1IO+AwwNkEsgQkEugaggC
         hJ65/wEiz37uoWQvsQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="MenuFileSaveSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAjJJREFUOE+tkt9Lk1EYx99/oftugi66rakxnIvV4C3XUJYNw4qwH2+kWZou00TF
-        yjRq/oJshUsnrVaTcFKRP8AUKRFlKlmauaIlDjXFJoLB1/OcvXlcRRfRF56bl/fzOed5ziP9lzx/FgaV
-        r3UJLd5FPHTPo6kxhLuOadTVfoH9VgDXyydRWjKOwoK3yMsdwflzfqi4JBHY1QnU1qzgb1leWYUptQuH
-        Up/yUnFJ8j5Z4ILKim/qr7+H4ND8MnZZXkCjUWA96BEC94M5Ligt+ar+Hp2f8MfgAmLMPhRcmsIBS7MQ
-        OBtmuOCi7YOKiGyEhydC2CZ7kZM9huQkpxDU3w5yQdbZERWL5Fe4zx/EZoMbijIAs9khBDXVn7lAOTWg
-        on+GO/s/YVN8Iw4feYXExDohuFE5hY52sKcEjh1/A+vRXj5tGhj1TNemkyNwN1KsLyHLdiG4UjaBNh/Y
-        DgDNrh/s3b+j/NosHyoNjHrOzPCvw/uTW2E0VgjB5cIxeB4B952rbHHCMKVlR5Ul3Ya0M0UROInB+zww
-        GMqEwJY3ymCguirMTyaIfUaMTsbg+xmMTs5Cyb2KPaYWDut2u6DXFwkBraXjDtavTQKCT+ffxLvAHALT
-        i7hQbEeswcXgJsQm3IMuPl8IMjOGWN9LHN5q9GDLDhmP23rga+9DR3c/el8PYq/ZCo2+AXEM3q6th1ab
-        IwSUkyd6+HrShtGS0DvTU9G0aWDUM51KRfDOuKxowb9FktYATrQ4xbl82G8AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ToolStripDefaultManipulator.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -551,6 +539,9 @@
   <data name="LeftNavigation.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 401</value>
   </data>
+  <data name="&gt;&gt;browserControl1.Name" xml:space="preserve">
+    <value>browserControl1</value>
+  </data>
   <data name="MenuMapSelectPane2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -619,7 +610,7 @@
     <value>Save settings (markers, attack plans, clusters, ...)</value>
   </data>
   <data name="&gt;&gt;Map.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Controls.MapControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.Controls.MapControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;MenuMapInteractionDefault.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -678,8 +669,8 @@
   <data name="markersContainerControl1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Map.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="&gt;&gt;ToolStrip.Parent" xml:space="preserve">
+    <value>FormToolbarContainer.TopToolStripPanel</value>
   </data>
   <data name="&gt;&gt;MenuHelpAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -787,7 +778,7 @@
     <value>See screenshots</value>
   </data>
   <data name="&gt;&gt;detailsControl1.Type" xml:space="preserve">
-    <value>TribalWars.Controls.AccordeonDetails.DetailsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Controls.AccordeonDetails.DetailsControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="LeftNavigation_QuickFind.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 27</value>
@@ -1289,7 +1280,7 @@
     <value>StatusWorld</value>
   </data>
   <data name="&gt;&gt;toolStripLocationChangerControl1.Type" xml:space="preserve">
-    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="ToolStripIconDisplay.Text" xml:space="preserve">
     <value>Switch map display to tw village images</value>
@@ -1315,9 +1306,6 @@
   <data name="MenuMapShapeDisplay.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 22</value>
   </data>
-  <data name="&gt;&gt;Polygon.Name" xml:space="preserve">
-    <value>Polygon</value>
-  </data>
   <data name="&gt;&gt;mapToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1337,7 +1325,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="&gt;&gt;markersContainerControl1.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Markers.MarkersControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.Markers.MarkersControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="Polygon.ToolTip1" xml:space="preserve">
     <value />
@@ -1379,7 +1367,7 @@
     <value>0, 0</value>
   </data>
   <data name="&gt;&gt;browserControl1.Type" xml:space="preserve">
-    <value>TribalWars.Browsers.Control.BrowserControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Browsers.Control.BrowserControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="FormSplitter.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1458,7 +1446,7 @@
     <value />
   </data>
   <data name="&gt;&gt;monitoringControl1.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Monitoring.MonitoringControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.Monitoring.MonitoringControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -1493,14 +1481,29 @@
   <data name="StatusWorld.Text" xml:space="preserve">
     <value>World 12</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
   <data name="&gt;&gt;MenuMapSetHomeLocation.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;MenuMapSelectPane2.Name" xml:space="preserve">
     <value>MenuMapSelectPane2</value>
   </data>
-  <data name="&gt;&gt;browserControl1.Name" xml:space="preserve">
-    <value>browserControl1</value>
+  <data name="MenuFileSaveSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAjJJREFUOE+tkt9Lk1EYx99/oftugi66rakxnIvV4C3XUJYNw4qwH2+kWZou00TF
+        yjRq/oJshUsnrVaTcFKRP8AUKRFlKlmauaIlDjXFJoLB1/OcvXlcRRfRF56bl/fzOed5ziP9lzx/FgaV
+        r3UJLd5FPHTPo6kxhLuOadTVfoH9VgDXyydRWjKOwoK3yMsdwflzfqi4JBHY1QnU1qzgb1leWYUptQuH
+        Up/yUnFJ8j5Z4ILKim/qr7+H4ND8MnZZXkCjUWA96BEC94M5Ligt+ar+Hp2f8MfgAmLMPhRcmsIBS7MQ
+        OBtmuOCi7YOKiGyEhydC2CZ7kZM9huQkpxDU3w5yQdbZERWL5Fe4zx/EZoMbijIAs9khBDXVn7lAOTWg
+        on+GO/s/YVN8Iw4feYXExDohuFE5hY52sKcEjh1/A+vRXj5tGhj1TNemkyNwN1KsLyHLdiG4UjaBNh/Y
+        DgDNrh/s3b+j/NosHyoNjHrOzPCvw/uTW2E0VgjB5cIxeB4B952rbHHCMKVlR5Ul3Ya0M0UROInB+zww
+        GMqEwJY3ymCguirMTyaIfUaMTsbg+xmMTs5Cyb2KPaYWDut2u6DXFwkBraXjDtavTQKCT+ffxLvAHALT
+        i7hQbEeswcXgJsQm3IMuPl8IMjOGWN9LHN5q9GDLDhmP23rga+9DR3c/el8PYq/ZCo2+AXEM3q6th1ab
+        IwSUkyd6+HrShtGS0DvTU9G0aWDUM51KRfDOuKxowb9FktYATrQ4xbl82G8AAAAASUVORK5CYII=
+</value>
   </data>
   <data name="&gt;&gt;StatusWorld.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1643,7 +1646,7 @@
     <value>LeftNavigation_Location</value>
   </data>
   <data name="&gt;&gt;locationControl1.Type" xml:space="preserve">
-    <value>TribalWars.Controls.AccordeonLocation.LocationControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Controls.AccordeonLocation.LocationControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="ToolStripHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 28</value>
@@ -1834,7 +1837,7 @@
     <value>False</value>
   </data>
   <data name="&gt;&gt;Polygon.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Polygons.PolygonControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.Polygons.PolygonControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="MenuFileLoadWorld.Size" type="System.Drawing.Size, System.Drawing">
     <value>306, 22</value>
@@ -2322,9 +2325,6 @@
   <data name="saveFileDialog1.Filter" xml:space="preserve">
     <value>Settings|*.sets</value>
   </data>
-  <data name="&gt;&gt;ToolStrip.Parent" xml:space="preserve">
-    <value>FormToolbarContainer.TopToolStripPanel</value>
-  </data>
   <data name="ToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>609, 31</value>
   </data>
@@ -2401,7 +2401,7 @@
     <value>205, 22</value>
   </data>
   <data name="&gt;&gt;MiniMap.Type" xml:space="preserve">
-    <value>TribalWars.Maps.Controls.MiniMapControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>TribalWars.Maps.Controls.MiniMapControl, TWTactics, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="MenuBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -2624,8 +2624,8 @@
   <data name="&gt;&gt;ToolStripSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
+  <data name="Map.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="&gt;&gt;monitoringControl1.Name" xml:space="preserve">
     <value>monitoringControl1</value>
@@ -2810,8 +2810,8 @@
   <data name="&gt;&gt;MenuFileSaveSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LeftSplitter.ToolTip1" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;Polygon.Name" xml:space="preserve">
+    <value>Polygon</value>
   </data>
   <data name="RightToolStripPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 0</value>
@@ -2863,8 +2863,8 @@
   <metadata name="PickColor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
-  <metadata name="MenuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>607, 56</value>
+  <metadata name="LeftNavigation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
   <metadata name="ServerTimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>205, 56</value>
@@ -2896,8 +2896,8 @@
   <metadata name="LeftNavigation_QuickFind.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>331, 17</value>
   </metadata>
-  <metadata name="LeftNavigation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="MenuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>607, 56</value>
   </metadata>
   <metadata name="Status.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 56</value>

@@ -136,6 +136,18 @@ Nu doen?</value>
   <data name="LoadWorldForm_SettingsGrid_ColumnName" xml:space="preserve">
     <value>Naam</value>
   </data>
+  <data name="MainForm_LeftNavigationLocation" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
+  <data name="MainForm_LeftNavigation_MapMarkers" xml:space="preserve">
+    <value>Kaart Markeringen</value>
+  </data>
+  <data name="MainForm_LeftNavigation_PlanAttacks" xml:space="preserve">
+    <value>Aanvalsplanner</value>
+  </data>
+  <data name="MainForm_LeftNavigation_QuickFind" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="MainForm_ScreenshotSaved" xml:space="preserve">
     <value>Screenshot bewaard als {0}</value>
   </data>
@@ -149,6 +161,9 @@ Nu doen?</value>
   <data name="MainForm_StatusDataTime_Tooltip" xml:space="preserve">
     <value>Vergelijken met de data van {0} geleden</value>
     <comment>{0} = time difference</comment>
+  </data>
+  <data name="MainForm_Title_By" xml:space="preserve">
+    <value>door</value>
   </data>
   <data name="NewWorldForm_Created" xml:space="preserve">
     <value>Een nieuwe wereld is aangemaakt!

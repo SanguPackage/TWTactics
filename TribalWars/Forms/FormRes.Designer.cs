@@ -116,6 +116,42 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Map Markers.
+        /// </summary>
+        internal static string MainForm_LeftNavigation_MapMarkers {
+            get {
+                return ResourceManager.GetString("MainForm_LeftNavigation_MapMarkers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plan Attacks.
+        /// </summary>
+        internal static string MainForm_LeftNavigation_PlanAttacks {
+            get {
+                return ResourceManager.GetString("MainForm_LeftNavigation_PlanAttacks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Details.
+        /// </summary>
+        internal static string MainForm_LeftNavigation_QuickFind {
+            get {
+                return ResourceManager.GetString("MainForm_LeftNavigation_QuickFind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location Options.
+        /// </summary>
+        internal static string MainForm_LeftNavigationLocation {
+            get {
+                return ResourceManager.GetString("MainForm_LeftNavigationLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screenshot saved as {0}.
         /// </summary>
         internal static string MainForm_ScreenshotSaved {
@@ -149,6 +185,15 @@ namespace TribalWars.Forms {
         internal static string MainForm_StatusDataTime_Tooltip {
             get {
                 return ResourceManager.GetString("MainForm_StatusDataTime_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to by.
+        /// </summary>
+        internal static string MainForm_Title_By {
+            get {
+                return ResourceManager.GetString("MainForm_Title_By", resourceCulture);
             }
         }
         

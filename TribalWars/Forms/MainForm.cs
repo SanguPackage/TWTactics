@@ -46,13 +46,18 @@ namespace TribalWars.Forms
         /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
-            Text = string.Format("TW Tactics v{0} - by Sangu", AboutForm.ProgramVersion);
+			Text = string.Format("TW Tactics v{0} - " + FormRes.MainForm_Title_By + " Sangu", AboutForm.ProgramVersion);
 
 #if DEBUG
             ToolStripDraw.Visible = true;
             ToolStripProgramSettings.Visible = true;
             this.Text += " - DEBUG";
 #endif
+
+	        LeftNavigation_Location.Text = FormRes.MainForm_LeftNavigationLocation;
+	        LeftNavigation_QuickFind.Text = FormRes.MainForm_LeftNavigation_QuickFind;
+			LeftNavigation_Markers.Text = FormRes.MainForm_LeftNavigation_MapMarkers;
+			LeftNavigation_Distance.Text = FormRes.MainForm_LeftNavigation_PlanAttacks;
 
             World.Default.InitializeMaps(Map, MiniMap);
 

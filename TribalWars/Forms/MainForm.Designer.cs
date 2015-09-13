@@ -267,8 +267,8 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind,
             this.LeftNavigation_Markers,
             this.LeftNavigation_Distance});
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip1"));
+			this.VillageTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip"));
+			this.GeneralTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip1"));
 			this.LeftNavigation.VisibleButtonCount = 0;
 			// 
 			// LeftNavigation_Location
@@ -295,8 +295,8 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Location.Key = "LeftNavigation_Location";
 			this.LeftNavigation_Location.Name = "LeftNavigation_Location";
 			this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip1"));
+			this.VillageTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip"));
+			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip1"));
 			this.LeftNavigation_Location.ToolTipText = null;
 			// 
 			// locationControl1
@@ -331,8 +331,8 @@ namespace TribalWars.Forms
 			this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
 			this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
 			this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip1"));
+			this.VillageTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip"));
+			this.GeneralTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip1"));
 			this.LeftNavigation_QuickFind.ToolTipText = null;
 			// 
 			// detailsControl1
@@ -367,8 +367,8 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
 			this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
 			this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip1"));
+			this.VillageTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip"));
+			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip1"));
 			this.LeftNavigation_Markers.ToolTipText = null;
 			// 
 			// markersContainerControl1
@@ -403,8 +403,8 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
 			this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
 			this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip1"));
+			this.VillageTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip"));
+			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip1"));
 			this.LeftNavigation_Distance.ToolTipText = null;
 			// 
 			// _attackPlan
