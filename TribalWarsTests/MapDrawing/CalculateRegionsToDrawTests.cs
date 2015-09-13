@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using NUnit.Framework;
 using TribalWars.Maps.Drawing.Helpers;
-using Xunit;
 
 namespace TribalWarsTests.MapDrawing
 {
@@ -32,7 +32,7 @@ namespace TribalWarsTests.MapDrawing
         //    Assert.Equal(10, rectangleLeft.Bottom);
         //}
 
-        [Fact]
+        [Test]
         public void MovingRightCausesGapRight()
         {
             var old = new Rectangle(5, 5, 10, 10);
@@ -44,13 +44,13 @@ namespace TribalWarsTests.MapDrawing
 
             var rectangleLeft = toDraw.First();
 
-            Assert.Equal(old.Right, rectangleLeft.Left);
-            Assert.Equal(20, rectangleLeft.Right);
+            Assert.AreEqual(old.Right, rectangleLeft.Left);
+			Assert.AreEqual(20, rectangleLeft.Right);
 
-            Assert.Equal(old.Top, rectangleLeft.Top);
-            Assert.Equal(old.Bottom, rectangleLeft.Bottom);
+			Assert.AreEqual(old.Top, rectangleLeft.Top);
+			Assert.AreEqual(old.Bottom, rectangleLeft.Bottom);
 
-            Assert.Equal(5, backgroundMove.X);
+			Assert.AreEqual(5, backgroundMove.X);
         }
     }
 }

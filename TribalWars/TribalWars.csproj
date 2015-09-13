@@ -348,11 +348,6 @@
     <Compile Include="Maps\Manipulators\IContextMenuProvider.cs" />
     <Compile Include="Maps\Manipulators\Implementations\Church\ChurchInfo.cs" />
     <Compile Include="Maps\Manipulators\Implementations\Church\ChurchManipulator.cs" />
-    <Compile Include="Maps\MapRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MapRes.resx</DependentUpon>
-    </Compile>
     <Compile Include="Maps\Markers\MarkerGridRow.cs" />
     <Compile Include="Maps\Markers\MarkersControl.cs">
       <SubType>UserControl</SubType>
@@ -769,11 +764,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\AttackPlans\Controls\AttackPlanFromControl.nl.resx">
       <DependentUpon>AttackPlanFromControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Maps\MapRes.nl.resx" />
-    <EmbeddedResource Include="Maps\MapRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MapRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\Markers\MarkersControl.nl.resx">
       <DependentUpon>MarkersControl.cs</DependentUpon>
