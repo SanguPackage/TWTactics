@@ -113,6 +113,9 @@ namespace TribalWars.Forms
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.MenuFileSetActivePlayer = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuFileSynchronizeTime = new System.Windows.Forms.ToolStripMenuItem();
+			this.setLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SetLanguage_English = new System.Windows.Forms.ToolStripMenuItem();
+			this.SetLanguage_Dutch = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.MenuFileExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,29 +182,23 @@ namespace TribalWars.Forms
 			// 
 			// FormSplitter
 			// 
-			resources.ApplyResources(this.FormSplitter, "FormSplitter");
 			this.FormSplitter.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.FormSplitter, "FormSplitter");
 			this.FormSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.FormSplitter.Name = "FormSplitter";
 			// 
 			// FormSplitter.Panel1
 			// 
-			resources.ApplyResources(this.FormSplitter.Panel1, "FormSplitter.Panel1");
 			this.FormSplitter.Panel1.BackColor = System.Drawing.Color.Transparent;
 			this.FormSplitter.Panel1.Controls.Add(this.LeftSplitter);
-			this.VillageTooltip.SetToolTip(this.FormSplitter.Panel1, resources.GetString("FormSplitter.Panel1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormSplitter.Panel1, resources.GetString("FormSplitter.Panel1.ToolTip1"));
+			resources.ApplyResources(this.FormSplitter.Panel1, "FormSplitter.Panel1");
 			// 
 			// FormSplitter.Panel2
 			// 
-			resources.ApplyResources(this.FormSplitter.Panel2, "FormSplitter.Panel2");
 			this.FormSplitter.Panel2.BackColor = System.Drawing.Color.Transparent;
 			this.FormSplitter.Panel2.Controls.Add(this.Tabs);
-			this.VillageTooltip.SetToolTip(this.FormSplitter.Panel2, resources.GetString("FormSplitter.Panel2.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormSplitter.Panel2, resources.GetString("FormSplitter.Panel2.ToolTip1"));
+			resources.ApplyResources(this.FormSplitter.Panel2, "FormSplitter.Panel2");
 			this.FormSplitter.TabStop = false;
-			this.GeneralTooltip.SetToolTip(this.FormSplitter, resources.GetString("FormSplitter.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.FormSplitter, resources.GetString("FormSplitter.ToolTip1"));
 			// 
 			// LeftSplitter
 			// 
@@ -211,32 +208,21 @@ namespace TribalWars.Forms
 			// 
 			// LeftSplitter.Panel1
 			// 
-			resources.ApplyResources(this.LeftSplitter.Panel1, "LeftSplitter.Panel1");
 			this.LeftSplitter.Panel1.Controls.Add(this.MiniMap);
-			this.VillageTooltip.SetToolTip(this.LeftSplitter.Panel1, resources.GetString("LeftSplitter.Panel1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftSplitter.Panel1, resources.GetString("LeftSplitter.Panel1.ToolTip1"));
 			// 
 			// LeftSplitter.Panel2
 			// 
-			resources.ApplyResources(this.LeftSplitter.Panel2, "LeftSplitter.Panel2");
 			this.LeftSplitter.Panel2.Controls.Add(this.LeftNavigation);
-			this.VillageTooltip.SetToolTip(this.LeftSplitter.Panel2, resources.GetString("LeftSplitter.Panel2.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftSplitter.Panel2, resources.GetString("LeftSplitter.Panel2.ToolTip1"));
 			this.LeftSplitter.TabStop = false;
-			this.GeneralTooltip.SetToolTip(this.LeftSplitter, resources.GetString("LeftSplitter.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.LeftSplitter, resources.GetString("LeftSplitter.ToolTip1"));
 			// 
 			// MiniMap
 			// 
-			resources.ApplyResources(this.MiniMap, "MiniMap");
 			this.MiniMap.BackColor = System.Drawing.Color.Green;
+			resources.ApplyResources(this.MiniMap, "MiniMap");
 			this.MiniMap.Name = "MiniMap";
-			this.VillageTooltip.SetToolTip(this.MiniMap, resources.GetString("MiniMap.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.MiniMap, resources.GetString("MiniMap.ToolTip1"));
 			// 
 			// LeftNavigation
 			// 
-			resources.ApplyResources(this.LeftNavigation, "LeftNavigation");
 			this.LeftNavigation.ButtonActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
 			this.LeftNavigation.ButtonActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
 			this.LeftNavigation.ButtonBorderColor = System.Drawing.SystemColors.MenuHighlight;
@@ -256,6 +242,7 @@ namespace TribalWars.Forms
 			this.LeftNavigation.Controls.Add(this.LeftNavigation_Markers);
 			this.LeftNavigation.Controls.Add(this.LeftNavigation_Distance);
 			this.LeftNavigation.Cursor = System.Windows.Forms.Cursors.Default;
+			resources.ApplyResources(this.LeftNavigation, "LeftNavigation");
 			this.LeftNavigation.FooterGradientHighColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.LeftNavigation.FooterGradientLowColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.LeftNavigation.FooterHeight = 30;
@@ -267,15 +254,13 @@ namespace TribalWars.Forms
             this.LeftNavigation_QuickFind,
             this.LeftNavigation_Markers,
             this.LeftNavigation_Distance});
-			this.VillageTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation, resources.GetString("LeftNavigation.ToolTip1"));
 			this.LeftNavigation.VisibleButtonCount = 0;
 			// 
 			// LeftNavigation_Location
 			// 
-			resources.ApplyResources(this.LeftNavigation_Location, "LeftNavigation_Location");
 			this.LeftNavigation_Location.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
 			this.LeftNavigation_Location.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+			resources.ApplyResources(this.LeftNavigation_Location, "LeftNavigation_Location");
 			this.LeftNavigation_Location.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.LeftNavigation_Location.ButtonForeColor = System.Drawing.SystemColors.ControlText;
 			this.LeftNavigation_Location.Controls.Add(this.locationControl1);
@@ -295,8 +280,6 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Location.Key = "LeftNavigation_Location";
 			this.LeftNavigation_Location.Name = "LeftNavigation_Location";
 			this.LeftNavigation_Location.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Location, resources.GetString("LeftNavigation_Location.ToolTip1"));
 			this.LeftNavigation_Location.ToolTipText = null;
 			// 
 			// locationControl1
@@ -304,14 +287,12 @@ namespace TribalWars.Forms
 			resources.ApplyResources(this.locationControl1, "locationControl1");
 			this.locationControl1.BackColor = System.Drawing.Color.Transparent;
 			this.locationControl1.Name = "locationControl1";
-			this.VillageTooltip.SetToolTip(this.locationControl1, resources.GetString("locationControl1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.locationControl1, resources.GetString("locationControl1.ToolTip1"));
 			// 
 			// LeftNavigation_QuickFind
 			// 
-			resources.ApplyResources(this.LeftNavigation_QuickFind, "LeftNavigation_QuickFind");
 			this.LeftNavigation_QuickFind.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
 			this.LeftNavigation_QuickFind.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+			resources.ApplyResources(this.LeftNavigation_QuickFind, "LeftNavigation_QuickFind");
 			this.LeftNavigation_QuickFind.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.LeftNavigation_QuickFind.ButtonForeColor = System.Drawing.SystemColors.ControlText;
 			this.LeftNavigation_QuickFind.Controls.Add(this.detailsControl1);
@@ -331,8 +312,6 @@ namespace TribalWars.Forms
 			this.LeftNavigation_QuickFind.Key = "LeftNavigation_QuickFind";
 			this.LeftNavigation_QuickFind.Name = "LeftNavigation_QuickFind";
 			this.LeftNavigation_QuickFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_QuickFind, resources.GetString("LeftNavigation_QuickFind.ToolTip1"));
 			this.LeftNavigation_QuickFind.ToolTipText = null;
 			// 
 			// detailsControl1
@@ -340,14 +319,12 @@ namespace TribalWars.Forms
 			resources.ApplyResources(this.detailsControl1, "detailsControl1");
 			this.detailsControl1.BackColor = System.Drawing.Color.Transparent;
 			this.detailsControl1.Name = "detailsControl1";
-			this.VillageTooltip.SetToolTip(this.detailsControl1, resources.GetString("detailsControl1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.detailsControl1, resources.GetString("detailsControl1.ToolTip1"));
 			// 
 			// LeftNavigation_Markers
 			// 
-			resources.ApplyResources(this.LeftNavigation_Markers, "LeftNavigation_Markers");
 			this.LeftNavigation_Markers.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
 			this.LeftNavigation_Markers.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+			resources.ApplyResources(this.LeftNavigation_Markers, "LeftNavigation_Markers");
 			this.LeftNavigation_Markers.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.LeftNavigation_Markers.ButtonForeColor = System.Drawing.SystemColors.ControlText;
 			this.LeftNavigation_Markers.Controls.Add(this.markersContainerControl1);
@@ -367,8 +344,6 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Markers.Key = "LeftNavigation_Markers";
 			this.LeftNavigation_Markers.Name = "LeftNavigation_Markers";
 			this.LeftNavigation_Markers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Markers, resources.GetString("LeftNavigation_Markers.ToolTip1"));
 			this.LeftNavigation_Markers.ToolTipText = null;
 			// 
 			// markersContainerControl1
@@ -376,14 +351,12 @@ namespace TribalWars.Forms
 			resources.ApplyResources(this.markersContainerControl1, "markersContainerControl1");
 			this.markersContainerControl1.BackColor = System.Drawing.Color.Transparent;
 			this.markersContainerControl1.Name = "markersContainerControl1";
-			this.VillageTooltip.SetToolTip(this.markersContainerControl1, resources.GetString("markersContainerControl1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.markersContainerControl1, resources.GetString("markersContainerControl1.ToolTip1"));
 			// 
 			// LeftNavigation_Distance
 			// 
-			resources.ApplyResources(this.LeftNavigation_Distance, "LeftNavigation_Distance");
 			this.LeftNavigation_Distance.ActiveGradientHighColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(155)))));
 			this.LeftNavigation_Distance.ActiveGradientLowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(165)))), ((int)(((byte)(78)))));
+			resources.ApplyResources(this.LeftNavigation_Distance, "LeftNavigation_Distance");
 			this.LeftNavigation_Distance.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
 			this.LeftNavigation_Distance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
 			this.LeftNavigation_Distance.Controls.Add(this._attackPlan);
@@ -403,16 +376,12 @@ namespace TribalWars.Forms
 			this.LeftNavigation_Distance.Key = "LeftNavigation_Distance";
 			this.LeftNavigation_Distance.Name = "LeftNavigation_Distance";
 			this.LeftNavigation_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.VillageTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftNavigation_Distance, resources.GetString("LeftNavigation_Distance.ToolTip1"));
 			this.LeftNavigation_Distance.ToolTipText = null;
 			// 
 			// _attackPlan
 			// 
 			resources.ApplyResources(this._attackPlan, "_attackPlan");
 			this._attackPlan.Name = "_attackPlan";
-			this.VillageTooltip.SetToolTip(this._attackPlan, resources.GetString("_attackPlan.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this._attackPlan, resources.GetString("_attackPlan.ToolTip1"));
 			// 
 			// Tabs
 			// 
@@ -424,121 +393,78 @@ namespace TribalWars.Forms
             this.TabsBrowser,
             this.TabsPolygon,
             this.TabsMonitoring});
-			this.VillageTooltip.SetToolTip(this.Tabs, resources.GetString("Tabs.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.Tabs, resources.GetString("Tabs.ToolTip1"));
 			// 
 			// TabsMap
 			// 
-			resources.ApplyResources(this.TabsMap, "TabsMap");
 			this.TabsMap.Controls.Add(this.Map);
+			resources.ApplyResources(this.TabsMap, "TabsMap");
 			this.TabsMap.Key = "Map";
 			this.TabsMap.Name = "TabsMap";
 			this.TabsMap.TabStop = true;
-			this.GeneralTooltip.SetToolTip(this.TabsMap, resources.GetString("TabsMap.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.TabsMap, resources.GetString("TabsMap.ToolTip1"));
 			// 
 			// Map
 			// 
-			resources.ApplyResources(this.Map, "Map");
 			this.Map.BackColor = System.Drawing.Color.Transparent;
+			resources.ApplyResources(this.Map, "Map");
 			this.Map.Name = "Map";
-			this.VillageTooltip.SetToolTip(this.Map, resources.GetString("Map.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.Map, resources.GetString("Map.ToolTip1"));
 			// 
 			// TabsBrowser
 			// 
-			resources.ApplyResources(this.TabsBrowser, "TabsBrowser");
 			this.TabsBrowser.Controls.Add(this.browserControl1);
+			resources.ApplyResources(this.TabsBrowser, "TabsBrowser");
 			this.TabsBrowser.Key = "TWStats";
 			this.TabsBrowser.Name = "TabsBrowser";
 			this.TabsBrowser.TabStop = true;
-			this.GeneralTooltip.SetToolTip(this.TabsBrowser, resources.GetString("TabsBrowser.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.TabsBrowser, resources.GetString("TabsBrowser.ToolTip1"));
 			// 
 			// browserControl1
 			// 
-			resources.ApplyResources(this.browserControl1, "browserControl1");
 			this.browserControl1.ActiveVillage = 0;
+			resources.ApplyResources(this.browserControl1, "browserControl1");
 			this.browserControl1.GameBrowser = false;
 			this.browserControl1.Name = "browserControl1";
-			this.GeneralTooltip.SetToolTip(this.browserControl1, resources.GetString("browserControl1.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.browserControl1, resources.GetString("browserControl1.ToolTip1"));
 			// 
 			// TabsPolygon
 			// 
-			resources.ApplyResources(this.TabsPolygon, "TabsPolygon");
 			this.TabsPolygon.Controls.Add(this.Polygon);
+			resources.ApplyResources(this.TabsPolygon, "TabsPolygon");
 			this.TabsPolygon.Key = "Polygon";
 			this.TabsPolygon.Name = "TabsPolygon";
 			this.TabsPolygon.TabStop = true;
-			this.GeneralTooltip.SetToolTip(this.TabsPolygon, resources.GetString("TabsPolygon.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.TabsPolygon, resources.GetString("TabsPolygon.ToolTip1"));
 			// 
 			// Polygon
 			// 
-			resources.ApplyResources(this.Polygon, "Polygon");
 			this.Polygon.BackColor = System.Drawing.SystemColors.Control;
+			resources.ApplyResources(this.Polygon, "Polygon");
 			this.Polygon.Name = "Polygon";
-			this.VillageTooltip.SetToolTip(this.Polygon, resources.GetString("Polygon.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.Polygon, resources.GetString("Polygon.ToolTip1"));
 			// 
 			// TabsMonitoring
 			// 
-			resources.ApplyResources(this.TabsMonitoring, "TabsMonitoring");
 			this.TabsMonitoring.Controls.Add(this.monitoringControl1);
+			resources.ApplyResources(this.TabsMonitoring, "TabsMonitoring");
 			this.TabsMonitoring.Key = "Monitoring";
 			this.TabsMonitoring.Name = "TabsMonitoring";
 			this.TabsMonitoring.TabStop = true;
-			this.GeneralTooltip.SetToolTip(this.TabsMonitoring, resources.GetString("TabsMonitoring.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.TabsMonitoring, resources.GetString("TabsMonitoring.ToolTip1"));
 			// 
 			// monitoringControl1
 			// 
-			resources.ApplyResources(this.monitoringControl1, "monitoringControl1");
 			this.monitoringControl1.BackColor = System.Drawing.SystemColors.Control;
+			resources.ApplyResources(this.monitoringControl1, "monitoringControl1");
 			this.monitoringControl1.Name = "monitoringControl1";
-			this.VillageTooltip.SetToolTip(this.monitoringControl1, resources.GetString("monitoringControl1.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.monitoringControl1, resources.GetString("monitoringControl1.ToolTip1"));
 			// 
 			// FormToolbarContainer
 			// 
-			resources.ApplyResources(this.FormToolbarContainer, "FormToolbarContainer");
-			// 
-			// FormToolbarContainer.BottomToolStripPanel
-			// 
-			resources.ApplyResources(this.FormToolbarContainer.BottomToolStripPanel, "FormToolbarContainer.BottomToolStripPanel");
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer.BottomToolStripPanel, resources.GetString("FormToolbarContainer.BottomToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer.BottomToolStripPanel, resources.GetString("FormToolbarContainer.BottomToolStripPanel.ToolTip1"));
 			// 
 			// FormToolbarContainer.ContentPanel
 			// 
-			resources.ApplyResources(this.FormToolbarContainer.ContentPanel, "FormToolbarContainer.ContentPanel");
 			this.FormToolbarContainer.ContentPanel.Controls.Add(this.FormSplitter);
 			this.FormToolbarContainer.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer.ContentPanel, resources.GetString("FormToolbarContainer.ContentPanel.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer.ContentPanel, resources.GetString("FormToolbarContainer.ContentPanel.ToolTip1"));
-			// 
-			// FormToolbarContainer.LeftToolStripPanel
-			// 
-			resources.ApplyResources(this.FormToolbarContainer.LeftToolStripPanel, "FormToolbarContainer.LeftToolStripPanel");
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer.LeftToolStripPanel, resources.GetString("FormToolbarContainer.LeftToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer.LeftToolStripPanel, resources.GetString("FormToolbarContainer.LeftToolStripPanel.ToolTip1"));
+			resources.ApplyResources(this.FormToolbarContainer.ContentPanel, "FormToolbarContainer.ContentPanel");
+			resources.ApplyResources(this.FormToolbarContainer, "FormToolbarContainer");
 			this.FormToolbarContainer.Name = "FormToolbarContainer";
-			// 
-			// FormToolbarContainer.RightToolStripPanel
-			// 
-			resources.ApplyResources(this.FormToolbarContainer.RightToolStripPanel, "FormToolbarContainer.RightToolStripPanel");
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer.RightToolStripPanel, resources.GetString("FormToolbarContainer.RightToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer.RightToolStripPanel, resources.GetString("FormToolbarContainer.RightToolStripPanel.ToolTip1"));
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer, resources.GetString("FormToolbarContainer.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer, resources.GetString("FormToolbarContainer.ToolTip1"));
 			// 
 			// FormToolbarContainer.TopToolStripPanel
 			// 
-			resources.ApplyResources(this.FormToolbarContainer.TopToolStripPanel, "FormToolbarContainer.TopToolStripPanel");
 			this.FormToolbarContainer.TopToolStripPanel.Controls.Add(this.ToolStrip);
-			this.VillageTooltip.SetToolTip(this.FormToolbarContainer.TopToolStripPanel, resources.GetString("FormToolbarContainer.TopToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.FormToolbarContainer.TopToolStripPanel, resources.GetString("FormToolbarContainer.TopToolStripPanel.ToolTip1"));
 			// 
 			// ToolStrip
 			// 
@@ -568,138 +494,136 @@ namespace TribalWars.Forms
             this.ToolStripProgramSettings,
             this.ToolStripAbout});
 			this.ToolStrip.Name = "ToolStrip";
-			this.VillageTooltip.SetToolTip(this.ToolStrip, resources.GetString("ToolStrip.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.ToolStrip, resources.GetString("ToolStrip.ToolTip1"));
 			// 
 			// ToolstripButtonCreateWorld
 			// 
-			resources.ApplyResources(this.ToolstripButtonCreateWorld, "ToolstripButtonCreateWorld");
 			this.ToolstripButtonCreateWorld.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolstripButtonCreateWorld, "ToolstripButtonCreateWorld");
 			this.ToolstripButtonCreateWorld.Name = "ToolstripButtonCreateWorld";
 			this.ToolstripButtonCreateWorld.Click += new System.EventHandler(this.ToolstripButtonCreateWorld_Click);
 			// 
 			// ToolStripOpen
 			// 
-			resources.ApplyResources(this.ToolStripOpen, "ToolStripOpen");
 			this.ToolStripOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripOpen, "ToolStripOpen");
 			this.ToolStripOpen.Name = "ToolStripOpen";
 			this.ToolStripOpen.Click += new System.EventHandler(this.ToolStripOpen_Click);
 			// 
 			// ToolStripDownload
 			// 
-			resources.ApplyResources(this.ToolStripDownload, "ToolStripDownload");
 			this.ToolStripDownload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripDownload, "ToolStripDownload");
 			this.ToolStripDownload.Name = "ToolStripDownload";
 			this.ToolStripDownload.Click += new System.EventHandler(this.MenuFileWorldDownload_Click);
 			// 
 			// toolStripSeparator6
 			// 
-			resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
 			// 
 			// ToolStripSettings
 			// 
-			resources.ApplyResources(this.ToolStripSettings, "ToolStripSettings");
 			this.ToolStripSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			resources.ApplyResources(this.ToolStripSettings, "ToolStripSettings");
 			this.ToolStripSettings.Name = "ToolStripSettings";
 			// 
 			// ToolStripSave
 			// 
-			resources.ApplyResources(this.ToolStripSave, "ToolStripSave");
 			this.ToolStripSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripSave, "ToolStripSave");
 			this.ToolStripSave.Name = "ToolStripSave";
 			this.ToolStripSave.Click += new System.EventHandler(this.ToolStripSave_Click);
 			// 
 			// toolStripSeparator4
 			// 
-			resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
 			// 
 			// ToolStripHome
 			// 
-			resources.ApplyResources(this.ToolStripHome, "ToolStripHome");
 			this.ToolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolStripHome.Image = global::TribalWars.Properties.Resources.Home2;
+			resources.ApplyResources(this.ToolStripHome, "ToolStripHome");
 			this.ToolStripHome.Name = "ToolStripHome";
 			this.ToolStripHome.Click += new System.EventHandler(this.ToolStripHome_Click);
 			// 
 			// ToolStripActiveRectangle
 			// 
-			resources.ApplyResources(this.ToolStripActiveRectangle, "ToolStripActiveRectangle");
 			this.ToolStripActiveRectangle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripActiveRectangle, "ToolStripActiveRectangle");
 			this.ToolStripActiveRectangle.Name = "ToolStripActiveRectangle";
 			this.ToolStripActiveRectangle.Click += new System.EventHandler(this.ToolStripActiveRectangle_Click);
 			// 
 			// ToolStripDraw
 			// 
-			resources.ApplyResources(this.ToolStripDraw, "ToolStripDraw");
 			this.ToolStripDraw.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripDraw, "ToolStripDraw");
 			this.ToolStripDraw.Name = "ToolStripDraw";
 			this.ToolStripDraw.Click += new System.EventHandler(this.ToolStripDraw_Click);
 			// 
 			// toolStripSeparator5
 			// 
-			resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
+			resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
 			// 
 			// ToolStripIconDisplay
 			// 
-			resources.ApplyResources(this.ToolStripIconDisplay, "ToolStripIconDisplay");
 			this.ToolStripIconDisplay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolStripIconDisplay.Image = global::TribalWars.Properties.Resources.Village;
+			resources.ApplyResources(this.ToolStripIconDisplay, "ToolStripIconDisplay");
 			this.ToolStripIconDisplay.Name = "ToolStripIconDisplay";
 			this.ToolStripIconDisplay.Tag = "ChangeHighlight";
 			this.ToolStripIconDisplay.Click += new System.EventHandler(this.ToolStripIconDisplay_Click);
 			// 
 			// ToolStripShapeDisplay
 			// 
-			resources.ApplyResources(this.ToolStripShapeDisplay, "ToolStripShapeDisplay");
 			this.ToolStripShapeDisplay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolStripShapeDisplay.Image = global::TribalWars.Properties.Resources.shapes;
+			resources.ApplyResources(this.ToolStripShapeDisplay, "ToolStripShapeDisplay");
 			this.ToolStripShapeDisplay.Name = "ToolStripShapeDisplay";
 			this.ToolStripShapeDisplay.Tag = "ChangeHighlight";
 			this.ToolStripShapeDisplay.Click += new System.EventHandler(this.ToolStripShapeDisplay_Click);
 			// 
 			// toolStripSeparator3
 			// 
-			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
 			// 
 			// ToolStripDefaultManipulator
 			// 
-			resources.ApplyResources(this.ToolStripDefaultManipulator, "ToolStripDefaultManipulator");
 			this.ToolStripDefaultManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripDefaultManipulator, "ToolStripDefaultManipulator");
 			this.ToolStripDefaultManipulator.Name = "ToolStripDefaultManipulator";
 			this.ToolStripDefaultManipulator.Tag = "ChangeHighlight";
 			this.ToolStripDefaultManipulator.Click += new System.EventHandler(this.ToolStripDefaultManipulator_Click);
 			// 
 			// ToolStripPolygonManipulator
 			// 
-			resources.ApplyResources(this.ToolStripPolygonManipulator, "ToolStripPolygonManipulator");
 			this.ToolStripPolygonManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripPolygonManipulator, "ToolStripPolygonManipulator");
 			this.ToolStripPolygonManipulator.Name = "ToolStripPolygonManipulator";
 			this.ToolStripPolygonManipulator.Tag = "ChangeHighlight";
 			this.ToolStripPolygonManipulator.Click += new System.EventHandler(this.ToolStripPolygonManipulator_Click);
 			// 
 			// ToolStripAttackManipulator
 			// 
-			resources.ApplyResources(this.ToolStripAttackManipulator, "ToolStripAttackManipulator");
 			this.ToolStripAttackManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripAttackManipulator, "ToolStripAttackManipulator");
 			this.ToolStripAttackManipulator.Name = "ToolStripAttackManipulator";
 			this.ToolStripAttackManipulator.Tag = "ChangeHighlight";
 			this.ToolStripAttackManipulator.Click += new System.EventHandler(this.ToolStripAttackManipulator_Click);
 			// 
 			// ToolStripChurchManipulator
 			// 
-			resources.ApplyResources(this.ToolStripChurchManipulator, "ToolStripChurchManipulator");
 			this.ToolStripChurchManipulator.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripChurchManipulator, "ToolStripChurchManipulator");
 			this.ToolStripChurchManipulator.Name = "ToolStripChurchManipulator";
 			this.ToolStripChurchManipulator.Click += new System.EventHandler(this.ToolStripChurchManipulator_Click);
 			// 
 			// toolStripSeparator
 			// 
-			resources.ApplyResources(this.toolStripSeparator, "toolStripSeparator");
 			this.toolStripSeparator.Name = "toolStripSeparator";
+			resources.ApplyResources(this.toolStripSeparator, "toolStripSeparator");
 			// 
 			// toolStripLocationChangerControl1
 			// 
@@ -709,30 +633,25 @@ namespace TribalWars.Forms
 			// 
 			// toolStripSeparator7
 			// 
-			resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
+			resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
 			// 
 			// ToolStripProgramSettings
 			// 
-			resources.ApplyResources(this.ToolStripProgramSettings, "ToolStripProgramSettings");
 			this.ToolStripProgramSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripProgramSettings, "ToolStripProgramSettings");
 			this.ToolStripProgramSettings.Name = "ToolStripProgramSettings";
 			this.ToolStripProgramSettings.Click += new System.EventHandler(this.ToolStripProgramSettings_Click);
 			// 
 			// ToolStripAbout
 			// 
-			resources.ApplyResources(this.ToolStripAbout, "ToolStripAbout");
 			this.ToolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.ToolStripAbout, "ToolStripAbout");
 			this.ToolStripAbout.Name = "ToolStripAbout";
 			this.ToolStripAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
 			// 
-			// folderBrowserDialog1
-			// 
-			resources.ApplyResources(this.folderBrowserDialog1, "folderBrowserDialog1");
-			// 
 			// Status
 			// 
-			resources.ApplyResources(this.Status, "Status");
 			this.Status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProgressBar,
             this.StatusMessage,
@@ -745,20 +664,19 @@ namespace TribalWars.Forms
             this.StatusWorld,
             this.StatusServerTime,
             this.toolStripStatusLabel5});
+			resources.ApplyResources(this.Status, "Status");
 			this.Status.Name = "Status";
 			this.Status.ShowItemToolTips = true;
-			this.GeneralTooltip.SetToolTip(this.Status, resources.GetString("Status.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.Status, resources.GetString("Status.ToolTip1"));
 			// 
 			// ProgressBar
 			// 
-			resources.ApplyResources(this.ProgressBar, "ProgressBar");
 			this.ProgressBar.Name = "ProgressBar";
+			resources.ApplyResources(this.ProgressBar, "ProgressBar");
 			// 
 			// StatusMessage
 			// 
-			resources.ApplyResources(this.StatusMessage, "StatusMessage");
 			this.StatusMessage.Name = "StatusMessage";
+			resources.ApplyResources(this.StatusMessage, "StatusMessage");
 			this.StatusMessage.Spring = true;
 			// 
 			// StatusDataTime
@@ -810,22 +728,22 @@ namespace TribalWars.Forms
 			// 
 			// StatusSettings
 			// 
-			resources.ApplyResources(this.StatusSettings, "StatusSettings");
 			this.StatusSettings.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.StatusSettings.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.StatusSettings.Name = "StatusSettings";
 			this.StatusSettings.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+			resources.ApplyResources(this.StatusSettings, "StatusSettings");
 			// 
 			// StatusWorld
 			// 
-			resources.ApplyResources(this.StatusWorld, "StatusWorld");
 			this.StatusWorld.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
 			this.StatusWorld.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.StatusWorld.Name = "StatusWorld";
+			resources.ApplyResources(this.StatusWorld, "StatusWorld");
 			// 
 			// StatusServerTime
 			// 
@@ -850,19 +768,16 @@ namespace TribalWars.Forms
 			// 
 			// MenuBar
 			// 
-			resources.ApplyResources(this.MenuBar, "MenuBar");
 			this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuToolstrip,
             this.mapToolStripMenuItem,
             this.windowsToolStripMenuItem,
             this.helpToolStripMenuItem});
+			resources.ApplyResources(this.MenuBar, "MenuBar");
 			this.MenuBar.Name = "MenuBar";
-			this.VillageTooltip.SetToolTip(this.MenuBar, resources.GetString("MenuBar.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.MenuBar, resources.GetString("MenuBar.ToolTip1"));
 			// 
 			// MenuToolstrip
 			// 
-			resources.ApplyResources(this.MenuToolstrip, "MenuToolstrip");
 			this.MenuToolstrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuFileNew,
             this.MenuFileLoadWorld,
@@ -874,9 +789,11 @@ namespace TribalWars.Forms
             this.toolStripSeparator2,
             this.MenuFileSetActivePlayer,
             this.MenuFileSynchronizeTime,
+            this.setLanguageToolStripMenuItem,
             this.toolStripMenuItem1,
             this.MenuFileExit});
 			this.MenuToolstrip.Name = "MenuToolstrip";
+			resources.ApplyResources(this.MenuToolstrip, "MenuToolstrip");
 			// 
 			// MenuFileNew
 			// 
@@ -892,8 +809,8 @@ namespace TribalWars.Forms
 			// 
 			// toolStripMenuItem4
 			// 
-			resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+			resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
 			// 
 			// MenuFileWorldDownload
 			// 
@@ -903,8 +820,8 @@ namespace TribalWars.Forms
 			// 
 			// toolStripSeparator1
 			// 
-			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			// 
 			// MenuFileSaveSettings
 			// 
@@ -914,42 +831,61 @@ namespace TribalWars.Forms
 			// 
 			// MenuFileSaveSettingsAs
 			// 
-			resources.ApplyResources(this.MenuFileSaveSettingsAs, "MenuFileSaveSettingsAs");
 			this.MenuFileSaveSettingsAs.Name = "MenuFileSaveSettingsAs";
+			resources.ApplyResources(this.MenuFileSaveSettingsAs, "MenuFileSaveSettingsAs");
 			this.MenuFileSaveSettingsAs.Click += new System.EventHandler(this.MenuFileSaveSettingsAs_Click);
 			// 
 			// toolStripSeparator2
 			// 
-			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			// 
 			// MenuFileSetActivePlayer
 			// 
-			resources.ApplyResources(this.MenuFileSetActivePlayer, "MenuFileSetActivePlayer");
 			this.MenuFileSetActivePlayer.Image = global::TribalWars.Properties.Resources.Player;
 			this.MenuFileSetActivePlayer.Name = "MenuFileSetActivePlayer";
+			resources.ApplyResources(this.MenuFileSetActivePlayer, "MenuFileSetActivePlayer");
 			this.MenuFileSetActivePlayer.Click += new System.EventHandler(this.MenuFileSetActivePlayer_Click);
 			// 
 			// MenuFileSynchronizeTime
 			// 
-			resources.ApplyResources(this.MenuFileSynchronizeTime, "MenuFileSynchronizeTime");
 			this.MenuFileSynchronizeTime.Name = "MenuFileSynchronizeTime";
+			resources.ApplyResources(this.MenuFileSynchronizeTime, "MenuFileSynchronizeTime");
 			this.MenuFileSynchronizeTime.Click += new System.EventHandler(this.MenuFileSynchronizeTime_Click);
+			// 
+			// setLanguageToolStripMenuItem
+			// 
+			this.setLanguageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SetLanguage_English,
+            this.SetLanguage_Dutch});
+			this.setLanguageToolStripMenuItem.Name = "setLanguageToolStripMenuItem";
+			resources.ApplyResources(this.setLanguageToolStripMenuItem, "setLanguageToolStripMenuItem");
+			// 
+			// SetLanguage_English
+			// 
+			this.SetLanguage_English.Name = "SetLanguage_English";
+			resources.ApplyResources(this.SetLanguage_English, "SetLanguage_English");
+			this.SetLanguage_English.Click += new System.EventHandler(this.SetLanguage_English_Click);
+			// 
+			// SetLanguage_Dutch
+			// 
+			this.SetLanguage_Dutch.Name = "SetLanguage_Dutch";
+			resources.ApplyResources(this.SetLanguage_Dutch, "SetLanguage_Dutch");
+			this.SetLanguage_Dutch.Click += new System.EventHandler(this.SetLanguage_Dutch_Click);
 			// 
 			// toolStripMenuItem1
 			// 
-			resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
 			// 
 			// MenuFileExit
 			// 
-			resources.ApplyResources(this.MenuFileExit, "MenuFileExit");
 			this.MenuFileExit.Name = "MenuFileExit";
+			resources.ApplyResources(this.MenuFileExit, "MenuFileExit");
 			this.MenuFileExit.Click += new System.EventHandler(this.MenuFileExit_Click);
 			// 
 			// mapToolStripMenuItem
 			// 
-			resources.ApplyResources(this.mapToolStripMenuItem, "mapToolStripMenuItem");
 			this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuMapMonitoringArea,
             this.MenuMapSetHomeLocation,
@@ -969,6 +905,7 @@ namespace TribalWars.Forms
             this.MenuMapScreenshot,
             this.MenuMapSeeScreenshots});
 			this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
+			resources.ApplyResources(this.mapToolStripMenuItem, "mapToolStripMenuItem");
 			// 
 			// MenuMapMonitoringArea
 			// 
@@ -978,62 +915,62 @@ namespace TribalWars.Forms
 			// 
 			// MenuMapSetHomeLocation
 			// 
-			resources.ApplyResources(this.MenuMapSetHomeLocation, "MenuMapSetHomeLocation");
 			this.MenuMapSetHomeLocation.Image = global::TribalWars.Properties.Resources.Home2;
+			resources.ApplyResources(this.MenuMapSetHomeLocation, "MenuMapSetHomeLocation");
 			this.MenuMapSetHomeLocation.Name = "MenuMapSetHomeLocation";
 			this.MenuMapSetHomeLocation.Click += new System.EventHandler(this.MenuMapSetHomeLocation_Click);
 			// 
 			// toolStripMenuItem8
 			// 
-			resources.ApplyResources(this.toolStripMenuItem8, "toolStripMenuItem8");
 			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+			resources.ApplyResources(this.toolStripMenuItem8, "toolStripMenuItem8");
 			// 
 			// MenuMapIconDisplay
 			// 
-			resources.ApplyResources(this.MenuMapIconDisplay, "MenuMapIconDisplay");
 			this.MenuMapIconDisplay.Image = global::TribalWars.Properties.Resources.Village;
 			this.MenuMapIconDisplay.Name = "MenuMapIconDisplay";
+			resources.ApplyResources(this.MenuMapIconDisplay, "MenuMapIconDisplay");
 			this.MenuMapIconDisplay.Click += new System.EventHandler(this.ToolStripIconDisplay_Click);
 			// 
 			// MenuMapShapeDisplay
 			// 
-			resources.ApplyResources(this.MenuMapShapeDisplay, "MenuMapShapeDisplay");
 			this.MenuMapShapeDisplay.Image = global::TribalWars.Properties.Resources.shapes;
 			this.MenuMapShapeDisplay.Name = "MenuMapShapeDisplay";
+			resources.ApplyResources(this.MenuMapShapeDisplay, "MenuMapShapeDisplay");
 			this.MenuMapShapeDisplay.Click += new System.EventHandler(this.ToolStripShapeDisplay_Click);
 			// 
 			// toolStripMenuItem6
 			// 
-			resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
 			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+			resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
 			// 
 			// MenuMapInteractionDefault
 			// 
-			resources.ApplyResources(this.MenuMapInteractionDefault, "MenuMapInteractionDefault");
 			this.MenuMapInteractionDefault.Checked = true;
 			this.MenuMapInteractionDefault.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.MenuMapInteractionDefault.Image = global::TribalWars.Properties.Resources.DefaultInteraction;
 			this.MenuMapInteractionDefault.Name = "MenuMapInteractionDefault";
+			resources.ApplyResources(this.MenuMapInteractionDefault, "MenuMapInteractionDefault");
 			this.MenuMapInteractionDefault.Click += new System.EventHandler(this.MenuMapInteractionDefault_Click);
 			// 
 			// MenuMapInteractionPolygon
 			// 
-			resources.ApplyResources(this.MenuMapInteractionPolygon, "MenuMapInteractionPolygon");
 			this.MenuMapInteractionPolygon.Image = global::TribalWars.Properties.Resources.Polygon;
 			this.MenuMapInteractionPolygon.Name = "MenuMapInteractionPolygon";
+			resources.ApplyResources(this.MenuMapInteractionPolygon, "MenuMapInteractionPolygon");
 			this.MenuMapInteractionPolygon.Click += new System.EventHandler(this.MenuMapInteractionPolygon_Click);
 			// 
 			// MenuMapInteractionPlanAttacks
 			// 
-			resources.ApplyResources(this.MenuMapInteractionPlanAttacks, "MenuMapInteractionPlanAttacks");
 			this.MenuMapInteractionPlanAttacks.Image = global::TribalWars.Properties.Resources.barracks;
 			this.MenuMapInteractionPlanAttacks.Name = "MenuMapInteractionPlanAttacks";
+			resources.ApplyResources(this.MenuMapInteractionPlanAttacks, "MenuMapInteractionPlanAttacks");
 			this.MenuMapInteractionPlanAttacks.Click += new System.EventHandler(this.MenuMapInteractionPlanAttacks_Click);
 			// 
 			// toolStripMenuItem5
 			// 
-			resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+			resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
 			// 
 			// MenuMapSelectPane0
 			// 
@@ -1065,24 +1002,23 @@ namespace TribalWars.Forms
 			// 
 			// toolStripMenuItem2
 			// 
-			resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
 			// 
 			// MenuMapScreenshot
 			// 
-			resources.ApplyResources(this.MenuMapScreenshot, "MenuMapScreenshot");
 			this.MenuMapScreenshot.Name = "MenuMapScreenshot";
+			resources.ApplyResources(this.MenuMapScreenshot, "MenuMapScreenshot");
 			this.MenuMapScreenshot.Click += new System.EventHandler(this.MenuMapScreenshot_Click);
 			// 
 			// MenuMapSeeScreenshots
 			// 
-			resources.ApplyResources(this.MenuMapSeeScreenshots, "MenuMapSeeScreenshots");
 			this.MenuMapSeeScreenshots.Name = "MenuMapSeeScreenshots";
+			resources.ApplyResources(this.MenuMapSeeScreenshots, "MenuMapSeeScreenshots");
 			this.MenuMapSeeScreenshots.Click += new System.EventHandler(this.MenuMapSeeScreenshots_Click);
 			// 
 			// windowsToolStripMenuItem
 			// 
-			resources.ApplyResources(this.windowsToolStripMenuItem, "windowsToolStripMenuItem");
 			this.windowsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuWindowsManageYourVillages,
             this.MenuWindowsImportVillageCoordinates,
@@ -1090,51 +1026,52 @@ namespace TribalWars.Forms
             this.MenuWindowsManageYourAttackersPool,
             this.otherToolStripMenuItem});
 			this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
+			resources.ApplyResources(this.windowsToolStripMenuItem, "windowsToolStripMenuItem");
 			// 
 			// MenuWindowsManageYourVillages
 			// 
-			resources.ApplyResources(this.MenuWindowsManageYourVillages, "MenuWindowsManageYourVillages");
 			this.MenuWindowsManageYourVillages.Name = "MenuWindowsManageYourVillages";
+			resources.ApplyResources(this.MenuWindowsManageYourVillages, "MenuWindowsManageYourVillages");
 			this.MenuWindowsManageYourVillages.Click += new System.EventHandler(this.MenuWindowsManageYourVillages_Click);
 			// 
 			// MenuWindowsImportVillageCoordinates
 			// 
-			resources.ApplyResources(this.MenuWindowsImportVillageCoordinates, "MenuWindowsImportVillageCoordinates");
 			this.MenuWindowsImportVillageCoordinates.Name = "MenuWindowsImportVillageCoordinates";
+			resources.ApplyResources(this.MenuWindowsImportVillageCoordinates, "MenuWindowsImportVillageCoordinates");
 			this.MenuWindowsImportVillageCoordinates.Click += new System.EventHandler(this.MenuWindowsImportVillageCoordinates_Click);
 			// 
 			// toolStripMenuItem7
 			// 
-			resources.ApplyResources(this.toolStripMenuItem7, "toolStripMenuItem7");
 			this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+			resources.ApplyResources(this.toolStripMenuItem7, "toolStripMenuItem7");
 			// 
 			// MenuWindowsManageYourAttackersPool
 			// 
-			resources.ApplyResources(this.MenuWindowsManageYourAttackersPool, "MenuWindowsManageYourAttackersPool");
 			this.MenuWindowsManageYourAttackersPool.Image = global::TribalWars.Properties.Resources.star;
 			this.MenuWindowsManageYourAttackersPool.Name = "MenuWindowsManageYourAttackersPool";
+			resources.ApplyResources(this.MenuWindowsManageYourAttackersPool, "MenuWindowsManageYourAttackersPool");
 			this.MenuWindowsManageYourAttackersPool.Click += new System.EventHandler(this.MenuWindowsManageYourAttackersPool_Click);
 			// 
 			// otherToolStripMenuItem
 			// 
-			resources.ApplyResources(this.otherToolStripMenuItem, "otherToolStripMenuItem");
 			this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuWindowsAddTimes});
 			this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+			resources.ApplyResources(this.otherToolStripMenuItem, "otherToolStripMenuItem");
 			// 
 			// MenuWindowsAddTimes
 			// 
-			resources.ApplyResources(this.MenuWindowsAddTimes, "MenuWindowsAddTimes");
 			this.MenuWindowsAddTimes.Name = "MenuWindowsAddTimes";
+			resources.ApplyResources(this.MenuWindowsAddTimes, "MenuWindowsAddTimes");
 			this.MenuWindowsAddTimes.Click += new System.EventHandler(this.MenuWindowsAddTimes_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
-			resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuHelpReportBug,
             this.MenuHelpAbout});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+			resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
 			// 
 			// MenuHelpReportBug
 			// 
@@ -1144,8 +1081,8 @@ namespace TribalWars.Forms
 			// 
 			// MenuHelpAbout
 			// 
-			resources.ApplyResources(this.MenuHelpAbout, "MenuHelpAbout");
 			this.MenuHelpAbout.Name = "MenuHelpAbout";
+			resources.ApplyResources(this.MenuHelpAbout, "MenuHelpAbout");
 			this.MenuHelpAbout.Click += new System.EventHandler(this.MenuHelpAbout_Click);
 			// 
 			// BottomToolStripPanel
@@ -1154,8 +1091,6 @@ namespace TribalWars.Forms
 			this.BottomToolStripPanel.Name = "BottomToolStripPanel";
 			this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.VillageTooltip.SetToolTip(this.BottomToolStripPanel, resources.GetString("BottomToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.BottomToolStripPanel, resources.GetString("BottomToolStripPanel.ToolTip1"));
 			// 
 			// TopToolStripPanel
 			// 
@@ -1163,8 +1098,6 @@ namespace TribalWars.Forms
 			this.TopToolStripPanel.Name = "TopToolStripPanel";
 			this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.VillageTooltip.SetToolTip(this.TopToolStripPanel, resources.GetString("TopToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.TopToolStripPanel, resources.GetString("TopToolStripPanel.ToolTip1"));
 			// 
 			// RightToolStripPanel
 			// 
@@ -1172,8 +1105,6 @@ namespace TribalWars.Forms
 			this.RightToolStripPanel.Name = "RightToolStripPanel";
 			this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.VillageTooltip.SetToolTip(this.RightToolStripPanel, resources.GetString("RightToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.RightToolStripPanel, resources.GetString("RightToolStripPanel.ToolTip1"));
 			// 
 			// LeftToolStripPanel
 			// 
@@ -1181,15 +1112,11 @@ namespace TribalWars.Forms
 			this.LeftToolStripPanel.Name = "LeftToolStripPanel";
 			this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this.VillageTooltip.SetToolTip(this.LeftToolStripPanel, resources.GetString("LeftToolStripPanel.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this.LeftToolStripPanel, resources.GetString("LeftToolStripPanel.ToolTip1"));
 			// 
 			// ContentPanel
 			// 
-			resources.ApplyResources(this.ContentPanel, "ContentPanel");
 			this.ContentPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-			this.GeneralTooltip.SetToolTip(this.ContentPanel, resources.GetString("ContentPanel.ToolTip"));
-			this.VillageTooltip.SetToolTip(this.ContentPanel, resources.GetString("ContentPanel.ToolTip1"));
+			resources.ApplyResources(this.ContentPanel, "ContentPanel");
 			// 
 			// VillageTooltip
 			// 
@@ -1214,8 +1141,6 @@ namespace TribalWars.Forms
 			this.Controls.Add(this.MenuBar);
 			this.MainMenuStrip = this.MenuBar;
 			this.Name = "MainForm";
-			this.VillageTooltip.SetToolTip(this, resources.GetString("$this.ToolTip"));
-			this.GeneralTooltip.SetToolTip(this, resources.GetString("$this.ToolTip1"));
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Load += new System.EventHandler(this.FormMain_Load);
@@ -1371,6 +1296,9 @@ namespace TribalWars.Forms
         private Controls.Common.ToolStripControlHostWrappers.ToolStripLocationChangerControl toolStripLocationChangerControl1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsManageYourAttackersPool;
+		private System.Windows.Forms.ToolStripMenuItem setLanguageToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem SetLanguage_English;
+		private System.Windows.Forms.ToolStripMenuItem SetLanguage_Dutch;
     }
 }
 

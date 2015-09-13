@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 using TribalWars.Browsers;
 using TribalWars.Controls.Common;
 using Ascend.Windows.Forms;
@@ -641,5 +642,30 @@ namespace TribalWars.Forms
             f.Show();
         }
         #endregion
+
+		#region I18n
+		private void SetLanguage(CultureInfo ci)
+		{
+			if (ci.Name == Thread.CurrentThread.CurrentCulture.Name)
+				return;
+
+			ToolStripSave_Click(this, EventArgs.Empty);
+			Thread.CurrentThread.CurrentCulture = ci;
+			Thread.CurrentThread.CurrentUICulture = ci;
+			Properties.Settings.Default.Culture = ci.Name;
+			Properties.Settings.Default.Save();
+			Application.Restart();
+		}
+
+		private void SetLanguage_Dutch_Click(object sender, EventArgs e)
+		{
+			SetLanguage(CultureInfo.GetCultureInfo("nl-BE"));
+		}
+
+		private void SetLanguage_English_Click(object sender, EventArgs e)
+		{
+			SetLanguage(CultureInfo.InvariantCulture);
+		}
+		#endregion
     }
 }
