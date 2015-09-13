@@ -336,6 +336,7 @@
   </data>
   <data name="BbCode_Tribe" xml:space="preserve">
     <value>[b]{5}[/b] [ally]{0}[/ally]{3}Points: {2:#,0}pts ({6:#,0}avg){3}Players: {1}{3}Rank: {4}</value>
+    <comment>{0} = tag, {1} = # players, {2} = AllPoints, {3} = NewLine, {4} = Rank, {5} = Name, {6} = AvgPoints</comment>
   </data>
   <data name="Tooltip_Name" xml:space="preserve">
     <value>Name: {0}</value>

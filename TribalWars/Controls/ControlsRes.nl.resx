@@ -337,4 +337,25 @@
   <data name="VillagesContextMenu_RemovePurposeWarning" xml:space="preserve">
     <value>Wil je het doel van deze {0} dorpen verwijderen?\nDeze aktie kan niet ongedaan gemaakt worden!</value>
   </data>
+  <data name="BbCode_Tribe" xml:space="preserve">
+    <value>[b]{5}[/b] [ally]{0}[/ally]{3}Punten: {2:#,0}ptn ({6:#,0}gem){3}Spelers: {1}{3}Rang: {4}</value>
+    <comment>{0} = tag, {1} = # players, {2} = AllPoints, {3} = NewLine, {4} = Rank, {5} = Name, {6} = AvgPoints</comment>
+  </data>
+  <data name="Tooltip_Name" xml:space="preserve">
+    <value>Naam: {0}</value>
+  </data>
+  <data name="Tooltip_Rank" xml:space="preserve">
+    <value>Rang: {0}</value>
+  </data>
+  <data name="Tooltip_Tribe_Players" xml:space="preserve">
+    <value>Spelers: {0} {1}</value>
+    <comment>{0} = # players, {1} = players diff</comment>
+  </data>
+  <data name="Tooltip_Tribe_StrongestPlayers" xml:space="preserve">
+    <value>Sterksten:</value>
+  </data>
+  <data name="ToString_Tribe" xml:space="preserve">
+    <value>{0} ({1} | {2}spelers)</value>
+    <comment>{0} = tag, {1} = AllPoints, {2} = Player count</comment>
+  </data>
 </root>
