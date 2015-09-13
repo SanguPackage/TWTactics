@@ -117,407 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="AdditionalFiltersGroupbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 241</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFilters.Type" xml:space="preserve">
-    <value>TribalWars.Controls.Finders.FinderOptionsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 250</value>
-  </data>
-  <data name="FiltersPremadeGroupbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 241</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="FiltersPremadeGroupbox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="NobledPoints.Text" xml:space="preserve">
-    <value>Points</value>
-  </data>
-  <data name="&gt;&gt;TextPrevious.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Results</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>442, 349</value>
-  </data>
-  <data name="&gt;&gt;ApplyAdditionalFilters.Name" xml:space="preserve">
-    <value>ApplyAdditionalFilters</value>
-  </data>
-  <data name="&gt;&gt;NobledPointsOld.Name" xml:space="preserve">
-    <value>NobledPointsOld</value>
-  </data>
-  <data name="&gt;&gt;NobledPoints.Type" xml:space="preserve">
-    <value>XPTable.Models.NumberColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;OptionsTree.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TextPrevious.Name" xml:space="preserve">
-    <value>TextPrevious</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Comparing "current"</value>
-  </data>
-  <data name="CurrentDataDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFiltersGroupbox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="CurrentDataDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 20</value>
-  </data>
-  <data name="PreviousDateList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="AdditionalFiltersGroupbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 3</value>
-  </data>
-  <data name="&gt;&gt;CurrentDataDate.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="AdditionalFilters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ApplyAdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 200</value>
-  </data>
-  <data name="&gt;&gt;Table.Type" xml:space="preserve">
-    <value>TribalWars.Controls.XPTables.TableWrapperControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="CurrentDataDate.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ActivateAdditionalFilters.Parent" xml:space="preserve">
-    <value>AdditionalFiltersGroupbox</value>
-  </data>
-  <data name="&gt;&gt;NobledPointsOld.Type" xml:space="preserve">
-    <value>XPTable.Models.NumberColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;PreviousDateList.Name" xml:space="preserve">
-    <value>PreviousDateList</value>
-  </data>
-  <data name="&gt;&gt;Table.Name" xml:space="preserve">
-    <value>Table</value>
-  </data>
-  <data name="&gt;&gt;OptionsTree.Name" xml:space="preserve">
-    <value>OptionsTree</value>
-  </data>
-  <data name="NobledVillage.Text" xml:space="preserve">
-    <value>Village</value>
-  </data>
-  <data name="PreviousDateList.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="Table.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="CurrentDataDate.Text" xml:space="preserve">
-    <value>Current date</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="Table.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFilters.Parent" xml:space="preserve">
-    <value>AdditionalFiltersGroupbox</value>
-  </data>
-  <data name="CurrentDataDate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFiltersGroupbox.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;PreviousDateList.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;CurrentDataDate.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="PreviousDateList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="OptionsTree.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 222</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;ApplyAdditionalFilters.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="PreviousDateList.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;CurrentDataDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NobledVillage.Name" xml:space="preserve">
-    <value>NobledVillage</value>
-  </data>
-  <data name="OptionsTree.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MonitoringControl</value>
-  </data>
-  <data name="&gt;&gt;PreviousDateList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ApplyAdditionalFilters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ApplyAdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 35</value>
-  </data>
-  <data name="ApplyAdditionalFilters.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="Table.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NobledPoints.Name" xml:space="preserve">
-    <value>NobledPoints</value>
-  </data>
-  <data name="&gt;&gt;NobledVillage.Type" xml:space="preserve">
-    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFilters.Name" xml:space="preserve">
-    <value>AdditionalFilters</value>
-  </data>
-  <data name="&gt;&gt;FiltersPremadeGroupbox.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,50,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;OptionsTree.Parent" xml:space="preserve">
-    <value>FiltersPremadeGroupbox</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>with "previous"</value>
-  </data>
-  <data name="&gt;&gt;Table.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ActivateAdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 14</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ActivateAdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 0</value>
-  </data>
-  <data name="NobledPointsOld.Text" xml:space="preserve">
-    <value>Difference</value>
-  </data>
-  <data name="AdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-1, 14</value>
-  </data>
-  <data name="TextPrevious.Width" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="&gt;&gt;ActivateAdditionalFilters.Name" xml:space="preserve">
-    <value>ActivateAdditionalFilters</value>
-  </data>
-  <data name="ActivateAdditionalFilters.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="NobledPointsOld.Format" xml:space="preserve">
-    <value>#,0</value>
-  </data>
-  <data name="NobledPlayerOld.Text" xml:space="preserve">
-    <value>Previous owner</value>
-  </data>
-  <data name="TextPrevious.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;ActivateAdditionalFilters.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="OptionsTree.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="Table.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 330</value>
-  </data>
-  <data name="&gt;&gt;CurrentDataDate.Name" xml:space="preserve">
-    <value>CurrentDataDate</value>
-  </data>
-  <data name="PreviousDateList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 255</value>
-  </data>
-  <data name="&gt;&gt;ApplyAdditionalFilters.Parent" xml:space="preserve">
-    <value>AdditionalFiltersGroupbox</value>
-  </data>
-  <data name="&gt;&gt;NobledPlayer.Type" xml:space="preserve">
-    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;NobledPlayerOld.Name" xml:space="preserve">
-    <value>NobledPlayerOld</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>601, 602</value>
-  </data>
-  <data name="ActivateAdditionalFilters.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ApplyAdditionalFilters.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="OptionsTree.Indent" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;FiltersPremadeGroupbox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="ApplyAdditionalFilters.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
-  </data>
-  <data name="AdditionalFiltersGroupbox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;NobledPlayer.Name" xml:space="preserve">
-    <value>NobledPlayer</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 53</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="OptionsTree.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="&gt;&gt;FiltersPremadeGroupbox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="OptionsTree.Indent" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="&gt;&gt;NobledPlayerOld.Type" xml:space="preserve">
-    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 330</value>
-  </data>
-  <data name="&gt;&gt;PreviousDateList.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 44</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 250</value>
-  </data>
-  <data name="NobledPlayer.Text" xml:space="preserve">
-    <value>Player</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="OptionsTree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
   </data>
   <data name="OptionsTree.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 274</value>
-  </data>
-  <data name="NobledPoints.Format" xml:space="preserve">
-    <value>#,0</value>
-  </data>
-  <data name="Table.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
   </data>
   <data name="OptionsTree.Nodes" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -549,6 +162,33 @@
         bGVjdGVkSW1hZ2VJbmRleBBTZWxlY3RlZEltYWdlS2V5CkNoaWxkQ291bnQIVXNlckRhdGEBAQEAAAEA
         AQABAQgICAIAAAAGGAAAAAZOb2JsZWQGGQAAAB5WaWxsYWdlcyB0aGF0IGhhdmUgYmVlbiBub2JsZWQG
         GgAAAAVOb2RlOAD/////CQUAAAD/////CQUAAAAAAAAABhwAAAAMUGxheWVyTm9ibGVkCw==
+</value>
+  </data>
+  <data name="OptionsTree.Nodes1" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAAB1TeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQwAAAAHUHJvcEJhZwRUZXh0C1Rvb2xUaXBUZXh0BE5hbWUJ
+        SXNDaGVja2VkCkltYWdlSW5kZXgISW1hZ2VLZXkSU2VsZWN0ZWRJbWFnZUluZGV4EFNlbGVjdGVkSW1h
+        Z2VLZXkKQ2hpbGRDb3VudAljaGlsZHJlbjAJY2hpbGRyZW4xBAEBAQAAAQABAAQEKVN5c3RlbS5XaW5k
+        b3dzLkZvcm1zLk93bmVyRHJhd1Byb3BlcnR5QmFnAgAAAAEICAgdU3lzdGVtLldpbmRvd3MuRm9ybXMu
+        VHJlZU5vZGUCAAAAHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlAgAAAAIAAAAJAwAAAAYEAAAA
+        B1BsYXllcnMGBQAAAAAGBgAAAAVOb2RlNgD/////CQUAAAD/////CQUAAAACAAAACQgAAAAJCQAAAAwK
+        AAAAUVN5c3RlbS5EcmF3aW5nLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+        S2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUDAAAAKVN5c3RlbS5XaW5kb3dzLkZvcm1zLk93bmVyRHJh
+        d1Byb3BlcnR5QmFnAwAAAAlCYWNrQ29sb3IJRm9yZUNvbG9yBEZvbnQEBAIUU3lzdGVtLkRyYXdpbmcu
+        Q29sb3IKAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yCgAAAAIAAAAF9f///xRTeXN0ZW0uRHJhd2luZy5D
+        b2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwoAAAAKAAAAAAAAAAAAAAAA
+        AfT////1////CsDA//8AAAAAAAACAAoFCAAAAB1TeXN0ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQoA
+        AAAEVGV4dAtUb29sVGlwVGV4dAROYW1lCUlzQ2hlY2tlZApJbWFnZUluZGV4CEltYWdlS2V5ElNlbGVj
+        dGVkSW1hZ2VJbmRleBBTZWxlY3RlZEltYWdlS2V5CkNoaWxkQ291bnQIVXNlckRhdGEBAQEAAAEAAQAB
+        AQgICAIAAAAGDQAAAAtObyBhY3Rpdml0eQYOAAAAKVBsYXllcnMgdGhhdCBoYXZlIG5vdCBpbmNyZWFz
+        ZWQgaW4gcG9pbnRzBg8AAAAFTm9kZTcA/////wkFAAAA/////wkFAAAAAAAAAAYRAAAAEFBsYXllck5v
+        QWN0aXZpdHkFCQAAAB1TeXN0ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQoAAAAEVGV4dAtUb29sVGlw
+        VGV4dAROYW1lCUlzQ2hlY2tlZApJbWFnZUluZGV4CEltYWdlS2V5ElNlbGVjdGVkSW1hZ2VJbmRleBBT
+        ZWxlY3RlZEltYWdlS2V5CkNoaWxkQ291bnQIVXNlckRhdGEBAQEAAAEAAQABAQgICAIAAAAGEgAAAAxU
+        cmliZSBjaGFuZ2UGEwAAACBQbGF5ZXJzIHRoYXQgaGF2ZSBjaGFuZ2VkIHRyaWJlcwYUAAAABk5vZGUx
+        MAD/////CQUAAAD/////CQUAAAAAAAAABhYAAAARUGxheWVyVHJpYmVDaGFuZ2UL
 </value>
   </data>
   <data name="OptionsTree.Nodes2" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -589,97 +229,451 @@
         AAAAAAAABiIAAAAPVHJpYmVMb3N0UG9pbnRzCw==
 </value>
   </data>
-  <data name="&gt;&gt;AdditionalFiltersGroupbox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="OptionsTree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 222</value>
   </data>
-  <data name="AdditionalFilters.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="OptionsTree.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;AdditionalFiltersGroupbox.Name" xml:space="preserve">
-    <value>AdditionalFiltersGroupbox</value>
+  <data name="&gt;&gt;OptionsTree.Name" xml:space="preserve">
+    <value>OptionsTree</value>
   </data>
-  <data name="&gt;&gt;Table.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;OptionsTree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FiltersPremadeGroupbox.Text" xml:space="preserve">
-    <value>Premade filters</value>
-  </data>
-  <data name="&gt;&gt;AdditionalFilters.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;ActivateAdditionalFilters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CurrentDataDate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ApplyAdditionalFilters.Text" xml:space="preserve">
-    <value>Apply additional filters</value>
-  </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="AdditionalFiltersGroupbox.Text" xml:space="preserve">
-    <value>      Custom filter</value>
-  </data>
-  <data name="FiltersPremadeGroupbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="AdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 187</value>
-  </data>
-  <data name="OptionsTree.Nodes1" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAAB1TeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQwAAAAHUHJvcEJhZwRUZXh0C1Rvb2xUaXBUZXh0BE5hbWUJ
-        SXNDaGVja2VkCkltYWdlSW5kZXgISW1hZ2VLZXkSU2VsZWN0ZWRJbWFnZUluZGV4EFNlbGVjdGVkSW1h
-        Z2VLZXkKQ2hpbGRDb3VudAljaGlsZHJlbjAJY2hpbGRyZW4xBAEBAQAAAQABAAQEKVN5c3RlbS5XaW5k
-        b3dzLkZvcm1zLk93bmVyRHJhd1Byb3BlcnR5QmFnAgAAAAEICAgdU3lzdGVtLldpbmRvd3MuRm9ybXMu
-        VHJlZU5vZGUCAAAAHVN5c3RlbS5XaW5kb3dzLkZvcm1zLlRyZWVOb2RlAgAAAAIAAAAJAwAAAAYEAAAA
-        B1BsYXllcnMGBQAAAAAGBgAAAAVOb2RlNgD/////CQUAAAD/////CQUAAAACAAAACQgAAAAJCQAAAAwK
-        AAAAUVN5c3RlbS5EcmF3aW5nLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
-        S2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUDAAAAKVN5c3RlbS5XaW5kb3dzLkZvcm1zLk93bmVyRHJh
-        d1Byb3BlcnR5QmFnAwAAAAlCYWNrQ29sb3IJRm9yZUNvbG9yBEZvbnQEBAIUU3lzdGVtLkRyYXdpbmcu
-        Q29sb3IKAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yCgAAAAIAAAAF9f///xRTeXN0ZW0uRHJhd2luZy5D
-        b2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwoAAAAKAAAAAAAAAAAAAAAA
-        AfT////1////CsDA//8AAAAAAAACAAoFCAAAAB1TeXN0ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQoA
-        AAAEVGV4dAtUb29sVGlwVGV4dAROYW1lCUlzQ2hlY2tlZApJbWFnZUluZGV4CEltYWdlS2V5ElNlbGVj
-        dGVkSW1hZ2VJbmRleBBTZWxlY3RlZEltYWdlS2V5CkNoaWxkQ291bnQIVXNlckRhdGEBAQEAAAEAAQAB
-        AQgICAIAAAAGDQAAAAtObyBhY3Rpdml0eQYOAAAAKVBsYXllcnMgdGhhdCBoYXZlIG5vdCBpbmNyZWFz
-        ZWQgaW4gcG9pbnRzBg8AAAAFTm9kZTcA/////wkFAAAA/////wkFAAAAAAAAAAYRAAAAEFBsYXllck5v
-        QWN0aXZpdHkFCQAAAB1TeXN0ZW0uV2luZG93cy5Gb3Jtcy5UcmVlTm9kZQoAAAAEVGV4dAtUb29sVGlw
-        VGV4dAROYW1lCUlzQ2hlY2tlZApJbWFnZUluZGV4CEltYWdlS2V5ElNlbGVjdGVkSW1hZ2VJbmRleBBT
-        ZWxlY3RlZEltYWdlS2V5CkNoaWxkQ291bnQIVXNlckRhdGEBAQEAAAEAAQABAQgICAIAAAAGEgAAAAxU
-        cmliZSBjaGFuZ2UGEwAAACBQbGF5ZXJzIHRoYXQgaGF2ZSBjaGFuZ2VkIHRyaWJlcwYUAAAABk5vZGUx
-        MAD/////CQUAAAD/////CQUAAAAAAAAABhYAAAARUGxheWVyVHJpYmVDaGFuZ2UL
-</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Select dates</value>
-  </data>
-  <data name="&gt;&gt;FiltersPremadeGroupbox.Name" xml:space="preserve">
+  <data name="&gt;&gt;OptionsTree.Parent" xml:space="preserve">
     <value>FiltersPremadeGroupbox</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 349</value>
   </data>
   <data name="&gt;&gt;OptionsTree.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="AdditionalFilters.Enabled" type="System.Boolean, mscorlib">
+  <data name="AdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 27</value>
+  </data>
+  <data name="AdditionalFilters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="AdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 158</value>
+  </data>
+  <data name="AdditionalFilters.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFilters.Name" xml:space="preserve">
+    <value>AdditionalFilters</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFilters.Type" xml:space="preserve">
+    <value>TribalWars.Controls.Finders.FinderOptionsControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFilters.Parent" xml:space="preserve">
+    <value>AdditionalFiltersGroupbox</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFilters.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ActivateAdditionalFilters.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ActivateAdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 0</value>
+  </data>
+  <data name="ActivateAdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="ActivateAdditionalFilters.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;ActivateAdditionalFilters.Name" xml:space="preserve">
+    <value>ActivateAdditionalFilters</value>
+  </data>
+  <data name="&gt;&gt;ActivateAdditionalFilters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ActivateAdditionalFilters.Parent" xml:space="preserve">
+    <value>AdditionalFiltersGroupbox</value>
+  </data>
+  <data name="&gt;&gt;ActivateAdditionalFilters.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ApplyAdditionalFilters.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="ApplyAdditionalFilters.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="ApplyAdditionalFilters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 200</value>
+  </data>
+  <data name="ApplyAdditionalFilters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 35</value>
+  </data>
+  <data name="ApplyAdditionalFilters.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="ApplyAdditionalFilters.Text" xml:space="preserve">
+    <value>Apply additional filters</value>
+  </data>
+  <data name="&gt;&gt;ApplyAdditionalFilters.Name" xml:space="preserve">
+    <value>ApplyAdditionalFilters</value>
+  </data>
+  <data name="&gt;&gt;ApplyAdditionalFilters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApplyAdditionalFilters.Parent" xml:space="preserve">
+    <value>AdditionalFiltersGroupbox</value>
+  </data>
+  <data name="&gt;&gt;ApplyAdditionalFilters.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AdditionalFiltersGroupbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 3</value>
+  </data>
+  <data name="AdditionalFiltersGroupbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 241</value>
+  </data>
+  <data name="AdditionalFiltersGroupbox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="AdditionalFiltersGroupbox.Text" xml:space="preserve">
+    <value>      Custom filter</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFiltersGroupbox.Name" xml:space="preserve">
+    <value>AdditionalFiltersGroupbox</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFiltersGroupbox.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFiltersGroupbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AdditionalFiltersGroupbox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="NobledVillage.Text" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="NobledPlayer.Text" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="NobledPlayerOld.Text" xml:space="preserve">
+    <value>Previous owner</value>
+  </data>
+  <data name="NobledPoints.Format" xml:space="preserve">
+    <value>#,0</value>
+  </data>
+  <data name="NobledPoints.Text" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="NobledPointsOld.Format" xml:space="preserve">
+    <value>#,0</value>
+  </data>
+  <data name="NobledPointsOld.Text" xml:space="preserve">
+    <value>Difference</value>
+  </data>
+  <data name="FiltersPremadeGroupbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="FiltersPremadeGroupbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 241</value>
+  </data>
+  <data name="FiltersPremadeGroupbox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FiltersPremadeGroupbox.Text" xml:space="preserve">
+    <value>Premade filters</value>
+  </data>
+  <data name="&gt;&gt;FiltersPremadeGroupbox.Name" xml:space="preserve">
+    <value>FiltersPremadeGroupbox</value>
+  </data>
+  <data name="&gt;&gt;FiltersPremadeGroupbox.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;FiltersPremadeGroupbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FiltersPremadeGroupbox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="TextPrevious.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextPrevious.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="PreviousDateList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="PreviousDateList.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="PreviousDateList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="PreviousDateList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 255</value>
+  </data>
+  <data name="PreviousDateList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;PreviousDateList.Name" xml:space="preserve">
+    <value>PreviousDateList</value>
+  </data>
+  <data name="&gt;&gt;PreviousDateList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PreviousDateList.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;PreviousDateList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 53</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 274</value>
+  </data>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>with "previous"</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CurrentDataDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CurrentDataDate.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="CurrentDataDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 20</value>
+  </data>
+  <data name="CurrentDataDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="CurrentDataDate.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="CurrentDataDate.Text" xml:space="preserve">
+    <value>Current date</value>
+  </data>
+  <data name="&gt;&gt;CurrentDataDate.Name" xml:space="preserve">
+    <value>CurrentDataDate</value>
+  </data>
+  <data name="&gt;&gt;CurrentDataDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CurrentDataDate.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;CurrentDataDate.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 44</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Comparing "current"</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 330</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,50,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 250</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 349</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Select dates</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="Table.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="Table.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="Table.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Table.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 330</value>
+  </data>
+  <data name="Table.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;Table.Name" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="&gt;&gt;Table.Type" xml:space="preserve">
+    <value>TribalWars.Controls.XPTables.TableWrapperControl, TWTactics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Table.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;Table.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>155, 250</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 349</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>nl</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>601, 602</value>
+  </data>
+  <data name="&gt;&gt;NobledVillage.Name" xml:space="preserve">
+    <value>NobledVillage</value>
+  </data>
+  <data name="&gt;&gt;NobledVillage.Type" xml:space="preserve">
+    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NobledPlayer.Name" xml:space="preserve">
+    <value>NobledPlayer</value>
+  </data>
+  <data name="&gt;&gt;NobledPlayer.Type" xml:space="preserve">
+    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NobledPlayerOld.Name" xml:space="preserve">
+    <value>NobledPlayerOld</value>
+  </data>
+  <data name="&gt;&gt;NobledPlayerOld.Type" xml:space="preserve">
+    <value>XPTable.Models.TextColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NobledPoints.Name" xml:space="preserve">
+    <value>NobledPoints</value>
+  </data>
+  <data name="&gt;&gt;NobledPoints.Type" xml:space="preserve">
+    <value>XPTable.Models.NumberColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NobledPointsOld.Name" xml:space="preserve">
+    <value>NobledPointsOld</value>
+  </data>
+  <data name="&gt;&gt;NobledPointsOld.Type" xml:space="preserve">
+    <value>XPTable.Models.NumberColumn, XPTable, Version=1.1.8.1196, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TextPrevious.Name" xml:space="preserve">
+    <value>TextPrevious</value>
+  </data>
+  <data name="&gt;&gt;TextPrevious.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MonitoringControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -36,7 +36,6 @@ namespace TribalWars.Maps.Monitoring
 			this.AdditionalFiltersGroupbox = new Janus.Windows.EditControls.UIGroupBox();
 			this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
 			this.ApplyAdditionalFilters = new System.Windows.Forms.Button();
-			this.AdditionalFilters = new TribalWars.Controls.Finders.FinderOptionsControl();
 			this.NobledVillage = new XPTable.Models.TextColumn();
 			this.NobledPlayer = new XPTable.Models.TextColumn();
 			this.NobledPlayerOld = new XPTable.Models.TextColumn();
@@ -52,6 +51,7 @@ namespace TribalWars.Maps.Monitoring
 			this.CurrentDataDate = new System.Windows.Forms.Label();
 			this.groupBox3 = new Janus.Windows.EditControls.UIGroupBox();
 			this.Table = new TribalWars.Controls.XPTables.TableWrapperControl();
+			this.AdditionalFilters = new TribalWars.Controls.Finders.FinderOptionsControl();
 			((System.ComponentModel.ISupportInitialize)(this.AdditionalFiltersGroupbox)).BeginInit();
 			this.AdditionalFiltersGroupbox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.FiltersPremadeGroupbox)).BeginInit();
@@ -84,10 +84,10 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// AdditionalFiltersGroupbox
 			// 
-			resources.ApplyResources(this.AdditionalFiltersGroupbox, "AdditionalFiltersGroupbox");
+			this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
 			this.AdditionalFiltersGroupbox.Controls.Add(this.ActivateAdditionalFilters);
 			this.AdditionalFiltersGroupbox.Controls.Add(this.ApplyAdditionalFilters);
-			this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
+			resources.ApplyResources(this.AdditionalFiltersGroupbox, "AdditionalFiltersGroupbox");
 			this.AdditionalFiltersGroupbox.Name = "AdditionalFiltersGroupbox";
 			// 
 			// ActivateAdditionalFilters
@@ -103,19 +103,6 @@ namespace TribalWars.Maps.Monitoring
 			this.ApplyAdditionalFilters.Name = "ApplyAdditionalFilters";
 			this.ApplyAdditionalFilters.UseVisualStyleBackColor = true;
 			this.ApplyAdditionalFilters.Click += new System.EventHandler(this.ApplyAdditionalFilters_Click);
-			// 
-			// AdditionalFilters
-			// 
-			resources.ApplyResources(this.AdditionalFilters, "AdditionalFilters");
-			this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
-			this.AdditionalFilters.Buttonsvisible = false;
-			this.AdditionalFilters.Expanded = false;
-			this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
-            9000,
-            0,
-            0,
-            0});
-			this.AdditionalFilters.Name = "AdditionalFilters";
 			// 
 			// NobledVillage
 			// 
@@ -139,8 +126,8 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// FiltersPremadeGroupbox
 			// 
-			resources.ApplyResources(this.FiltersPremadeGroupbox, "FiltersPremadeGroupbox");
 			this.FiltersPremadeGroupbox.Controls.Add(this.OptionsTree);
+			resources.ApplyResources(this.FiltersPremadeGroupbox, "FiltersPremadeGroupbox");
 			this.FiltersPremadeGroupbox.Name = "FiltersPremadeGroupbox";
 			// 
 			// groupBox2
@@ -158,15 +145,15 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// groupBox5
 			// 
-			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Controls.Add(this.PreviousDateList);
+			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Name = "groupBox5";
 			// 
 			// PreviousDateList
 			// 
-			resources.ApplyResources(this.PreviousDateList, "PreviousDateList");
 			this.PreviousDateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TextPrevious});
+			resources.ApplyResources(this.PreviousDateList, "PreviousDateList");
 			this.PreviousDateList.FullRowSelect = true;
 			this.PreviousDateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.PreviousDateList.HideSelection = false;
@@ -183,8 +170,8 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// groupBox4
 			// 
-			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Controls.Add(this.CurrentDataDate);
+			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Name = "groupBox4";
 			// 
 			// CurrentDataDate
@@ -200,15 +187,28 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// Table
 			// 
-			resources.ApplyResources(this.Table, "Table");
 			this.Table.AutoSelectSingleRow = true;
 			this.Table.BackColor = System.Drawing.Color.Transparent;
 			this.Table.DisplayType = TribalWars.Controls.XPTables.TableWrapperControl.ColumnDisplayTypeEnum.All;
+			resources.ApplyResources(this.Table, "Table");
 			this.Table.Name = "Table";
 			this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
 			this.Table.VisiblePlayerFields = TribalWars.Controls.XPTables.PlayerFields.None;
 			this.Table.VisibleReportFields = TribalWars.Controls.XPTables.ReportFields.None;
 			this.Table.VisibleTribeFields = TribalWars.Controls.XPTables.TribeFields.None;
+			// 
+			// AdditionalFilters
+			// 
+			this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
+			this.AdditionalFilters.Buttonsvisible = false;
+			this.AdditionalFilters.Expanded = true;
+			this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			resources.ApplyResources(this.AdditionalFilters, "AdditionalFilters");
+			this.AdditionalFilters.Name = "AdditionalFilters";
 			// 
 			// MonitoringControl
 			// 
@@ -247,8 +247,7 @@ namespace TribalWars.Maps.Monitoring
         private XPTable.Models.NumberColumn NobledPoints;
         private XPTable.Models.NumberColumn NobledPointsOld;
         private System.Windows.Forms.TreeView OptionsTree;
-        private Janus.Windows.EditControls.UIGroupBox AdditionalFiltersGroupbox;
-        private FinderOptionsControl AdditionalFilters;
+		private Janus.Windows.EditControls.UIGroupBox AdditionalFiltersGroupbox;
         private TableWrapperControl Table;
         private Janus.Windows.EditControls.UIGroupBox FiltersPremadeGroupbox;
         private Janus.Windows.EditControls.UIGroupBox groupBox2;
@@ -261,6 +260,7 @@ namespace TribalWars.Maps.Monitoring
         private System.Windows.Forms.ListView PreviousDateList;
         private System.Windows.Forms.ColumnHeader TextPrevious;
         private System.Windows.Forms.CheckBox ActivateAdditionalFilters;
+		private FinderOptionsControl AdditionalFilters;
 
     }
 }
