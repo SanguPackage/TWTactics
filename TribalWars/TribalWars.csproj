@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlsRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ControlsRes1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlsRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Finders\FinderOptionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -643,7 +648,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ControlsRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ControlsRes.Designer.cs</LastGenOutput>
+      <LastGenOutput>ControlsRes1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Finders\FinderOptionsControl.nl.resx">
       <DependentUpon>FinderOptionsControl.cs</DependentUpon>

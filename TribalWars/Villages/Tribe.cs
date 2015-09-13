@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Tools;
 using TribalWars.Villages.Helpers;
@@ -138,19 +139,19 @@ namespace TribalWars.Villages
             get
             {
                 var str = new StringBuilder();
-                str.AppendFormat("Name: {0}", Name);
+				str.AppendFormat(ControlsRes.Tooltip_Name, Name);
                 str.AppendLine();
-                str.AppendFormat("Rank: {0}", _rank);
+				str.AppendFormat(ControlsRes.Tooltip_Rank, _rank);
                 str.AppendLine();
-                str.AppendFormat("Points: {0}", AllPointsDiff);
+				str.AppendFormat(ControlsRes.Tooltip_Points, AllPointsDiff);
                 str.AppendLine();
-                str.AppendFormat("Players: {0} {1}", Common.GetPrettyNumber(Players.Count), string.IsNullOrWhiteSpace(PlayerDifferenceString) ? "" : "(" + PlayerDifferenceString + ")");
+				str.AppendFormat(ControlsRes.Tooltip_Tribe_Players, Common.GetPrettyNumber(Players.Count), string.IsNullOrWhiteSpace(PlayerDifferenceString) ? "" : "(" + PlayerDifferenceString + ")");
 
                 if (Players.Count > 0)
                 {
                     str.AppendLine();
                     str.AppendLine();
-                    str.AppendLine("Strongest:");
+					str.AppendLine(ControlsRes.Tooltip_Tribe_StrongestPlayers);
                     string strongestPlayers = "";
                     foreach (var player in Players.OrderByDescending(x => x.Points).Take(5))
                     {
@@ -190,7 +191,7 @@ namespace TribalWars.Villages
 
         public override string ToString()
         {
-            string str = string.Format("{0} ({1} | {2}plys)", Tag, Common.GetPrettyNumber(AllPoints), Players.Count);
+			string str = string.Format(ControlsRes.ToString_Tribe, Tag, Common.GetPrettyNumber(AllPoints), Players.Count);
             if (Rank < 40)
             {
                 str = string.Format("#{0} {1}", Rank, str);
@@ -205,7 +206,7 @@ namespace TribalWars.Villages
 
         public string BbCode()
         {
-            return string.Format("[b]{5}[/b] [ally]{0}[/ally]{3}Points: {2:#,0}pts ({6:#,0}avg){3}Players: {1}{3}Rank: {4}", Tag, Players.Count, AllPoints, Environment.NewLine, Rank, Name, AveragePointsPerTribe);
+			return string.Format(ControlsRes.BbCode_Tribe, Tag, Players.Count, AllPoints, Environment.NewLine, Rank, Name, AveragePointsPerTribe);
         }
 
         public string BbCodeExtended()

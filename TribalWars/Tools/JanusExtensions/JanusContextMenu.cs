@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Janus.Windows.EditControls;
 using Janus.Windows.UI;
 using Janus.Windows.UI.CommandBars;
+using TribalWars.Controls;
 using TribalWars.Controls.Finders;
 using TribalWars.Maps;
 using TribalWars.Maps.Markers;
@@ -146,7 +147,7 @@ namespace TribalWars.Tools.JanusExtensions
         public static void AddSetVillageTypeCommand(this UIContextMenu menu, CommandEventHandler onVillageTypeChange, Village village)
         {
             VillageType currentVillageType = village == null ? VillageType.None : village.Type;
-            UICommand villageTypes = menu.AddCommand("Set purpose", null, currentVillageType.GetImage(true));
+            UICommand villageTypes = menu.AddCommand(ControlsRes.VillageContextMenu_SetPurpose, null, currentVillageType.GetImage(true));
             AddVillageTypeCommand(villageTypes, VillageType.Attack, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Catapult, currentVillageType, onVillageTypeChange);
             AddVillageTypeCommand(villageTypes, VillageType.Defense, currentVillageType, onVillageTypeChange);
@@ -218,7 +219,7 @@ namespace TribalWars.Tools.JanusExtensions
 
         public static void AddPlayerNobledContextCommands(this UIContextMenu menu, Map map, Player player, bool addTribeCommands)
         {
-            var playerCommand = menu.AddCommand("Nobled from " + player.Name, null, Properties.Resources.nobleman);
+            var playerCommand = menu.AddCommand(string.Format(ControlsRes.VillageContextMenu_NobledFrom, player.Name), null, Properties.Resources.nobleman);
             AddPlayerContextCommands(map, player, addTribeCommands, playerCommand);
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Controls;
 using TribalWars.Maps.AttackPlans.EventArg;
 using TribalWars.Maps.Manipulators.Managers;
 using TribalWars.Villages.ContextMenu;
@@ -60,11 +61,11 @@ namespace TribalWars.Maps.AttackPlans.Controls
             if (World.Default.Map.Manipulators.AttackManipulator.Settings.ShowArrivalTimeWhenSentNow)
             {
                 DateNow.Text = Tools.Common.GetPrettyDate(World.Default.Settings.ServerTime + Attacker.TravelTime);
-                toolTip1.SetToolTip(DateNow, "Arrival time when sent NOW");
+				toolTip1.SetToolTip(DateNow, ControlsRes.AttackPlanFromControl_ArrivalTimeWhenSentNow);
             }
             else
             {
-                DateNow.Text = "Send troops:";
+				DateNow.Text = ControlsRes.AttackPlanFromControl_SendTroops;
                 toolTip1.SetToolTip(DateNow, "");
             }
             

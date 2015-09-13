@@ -218,4 +218,140 @@
     <value>#{1} ({0} points)</value>
     <comment>{0} = Points; {1} = Rank</comment>
   </data>
+  <data name="BbCode_Player" xml:space="preserve">
+    <value> ({0}pts|{1}vils)</value>
+  </data>
+  <data name="BbCode_VillagePoints" xml:space="preserve">
+    <value>({0:#,0}pts)</value>
+  </data>
+  <data name="Church" xml:space="preserve">
+    <value>Church</value>
+  </data>
+  <data name="Church_Level" xml:space="preserve">
+    <value>Level {0}</value>
+  </data>
+  <data name="Church_None" xml:space="preserve">
+    <value>No church</value>
+  </data>
+  <data name="ContextMenu_Pinpoint" xml:space="preserve">
+    <value>Pinpoint</value>
+  </data>
+  <data name="ContextMenu_PinpointAndCenter" xml:space="preserve">
+    <value>Pinpoint &amp;&amp; Center</value>
+  </data>
+  <data name="ContextMenu_QuickDetails" xml:space="preserve">
+    <value>Quick Details</value>
+  </data>
+  <data name="ContextMenu_ToBbCode" xml:space="preserve">
+    <value>BBCode</value>
+  </data>
+  <data name="ContextMenu_ToBbCodeOperation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="ContextMenu_ToClipboard" xml:space="preserve">
+    <value>To clipboard</value>
+  </data>
+  <data name="ContextMenu_TwGuest" xml:space="preserve">
+    <value>TW Guest</value>
+  </data>
+  <data name="ContextMenu_TwStats" xml:space="preserve">
+    <value>TWStats</value>
+  </data>
+  <data name="NoVillageContextMenu_BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="NoVillageContextMenu_CenterHere" xml:space="preserve">
+    <value>Center here</value>
+  </data>
+  <data name="NoVillageContextMenu_ContinentLines" xml:space="preserve">
+    <value>Show continent lines</value>
+  </data>
+  <data name="NoVillageContextMenu_HideAbandoned" xml:space="preserve">
+    <value>Hide all abandoned</value>
+  </data>
+  <data name="NoVillageContextMenu_ProvinceLines" xml:space="preserve">
+    <value>Show province lines</value>
+  </data>
+  <data name="NoVillageContextMenu_SetHome" xml:space="preserve">
+    <value>Set Home</value>
+  </data>
+  <data name="NoVillageContextMenu_ShowMarkedOnly" xml:space="preserve">
+    <value>Show marked only</value>
+  </data>
+  <data name="NoVillageContextMenu_ShowVillageTooltip" xml:space="preserve">
+    <value>Show village &amp;tooltip</value>
+  </data>
+  <data name="PlayerContextMenu_ThisIsMe" xml:space="preserve">
+    <value>This is me!</value>
+  </data>
+  <data name="Tooltip_Points" xml:space="preserve">
+    <value>Points: {0}</value>
+  </data>
+  <data name="Tooltip_Tribe" xml:space="preserve">
+    <value>Tribe: {0} (#{1})</value>
+    <comment>{0} = Tag, {1} = TribeRank</comment>
+  </data>
+  <data name="Tooltip_Villages" xml:space="preserve">
+    <value>Villages: {0}</value>
+  </data>
+  <data name="VillageContextMenu_AddToAttackPlan" xml:space="preserve">
+    <value>Add new attacker to plan</value>
+  </data>
+  <data name="VillageContextMenu_DeleteAttackPlan" xml:space="preserve">
+    <value>Delete attack plan</value>
+  </data>
+  <data name="VillageContextMenu_DeleteFromAttackPlan" xml:space="preserve">
+    <value>Delete attacker from plan</value>
+  </data>
+  <data name="VillageContextMenu_NewAttackPlan" xml:space="preserve">
+    <value>New attack plan</value>
+  </data>
+  <data name="VillageContextMenu_NobledFrom" xml:space="preserve">
+    <value>Nobled from {0}</value>
+  </data>
+  <data name="VillageContextMenu_RemovePurpose" xml:space="preserve">
+    <value>Remove purpose</value>
+  </data>
+  <data name="VillageContextMenu_SelectAttackPlan" xml:space="preserve">
+    <value>Select attack plan</value>
+  </data>
+  <data name="VillageContextMenu_SetPurpose" xml:space="preserve">
+    <value>Set purpose</value>
+  </data>
+  <data name="VillagesContextMenu_AddTargetsWarning" xml:space="preserve">
+    <value>You are about to add {0} villages as attack targets. Continue?</value>
+  </data>
+  <data name="VillagesContextMenu_AttackThem" xml:space="preserve">
+    <value>Attack these villages</value>
+  </data>
+  <data name="VillagesContextMenu_ChangePurposeWarning" xml:space="preserve">
+    <value>Do you want to change the purpose for {0} villages to {1}?\nThis action cannot be undone!</value>
+    <comment>{0} = # villages, {1} = new purpose</comment>
+  </data>
+  <data name="VillagesContextMenu_DefendThem" xml:space="preserve">
+    <value>Defend these villages</value>
+  </data>
+  <data name="VillagesContextMenu_RemovePurposeWarning" xml:space="preserve">
+    <value>Do you want to remove all existing purpose of {0} villages?\nThis action cannot be undone!</value>
+  </data>
+  <data name="BbCode_Tribe" xml:space="preserve">
+    <value>[b]{5}[/b] [ally]{0}[/ally]{3}Points: {2:#,0}pts ({6:#,0}avg){3}Players: {1}{3}Rank: {4}</value>
+  </data>
+  <data name="Tooltip_Name" xml:space="preserve">
+    <value>Name: {0}</value>
+  </data>
+  <data name="Tooltip_Rank" xml:space="preserve">
+    <value>Rank: {0}</value>
+  </data>
+  <data name="Tooltip_Tribe_Players" xml:space="preserve">
+    <value>Players: {0} {1}</value>
+    <comment>{0} = # players, {1} = players diff</comment>
+  </data>
+  <data name="Tooltip_Tribe_StrongestPlayers" xml:space="preserve">
+    <value>Strongest:</value>
+  </data>
+  <data name="ToString_Tribe" xml:space="preserve">
+    <value>{0} ({1} | {2}plys)</value>
+    <comment>{0} = tag, {1} = AllPoints, {2} = Player count</comment>
+  </data>
 </root>

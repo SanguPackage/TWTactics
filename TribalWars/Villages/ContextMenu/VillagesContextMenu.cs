@@ -49,13 +49,13 @@ namespace TribalWars.Villages.ContextMenu
             // TODO: hehe, the ActiveVillageManipulator takes the first player and selects all his villages...
             //if (map.Display.IsVisible(_villages))
             //{
-            //    _menu.AddCommand("Pinpoint", OnPinPoint);
+			//    _menu.AddCommand(ControlsRes.ContextMenu_Pinpoint, OnPinPoint);
             //}
-            //_menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
+			//_menu.AddCommand(ControlsRes.ContextMenu_PinpointAndCenter, OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             //_menu.AddSeparator();
 
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, null);
-            _menu.AddCommand("Remove purpose", OnRemovePurpose);
+			_menu.AddCommand(ControlsRes.VillageContextMenu_RemovePurpose, OnRemovePurpose);
 
             if (World.Default.Settings.Church)
             {
@@ -65,17 +65,17 @@ namespace TribalWars.Villages.ContextMenu
             _menu.AddSeparator();
             if (!World.Default.You.Empty && villages.All(x => x.Player == World.Default.You))
             {
-                _menu.AddCommand("Defend these villages", OnAddTargets, Properties.Resources.swordsman);
+				_menu.AddCommand(ControlsRes.VillagesContextMenu_DefendThem, OnAddTargets, Properties.Resources.swordsman);
 
                 AttackersPoolContextMenuCommandCreator.Add(_menu, _villages);
             }
             else
             {
-                _menu.AddCommand("Attack these villages", OnAddTargets, Properties.Resources.barracks);
+				_menu.AddCommand(ControlsRes.VillagesContextMenu_AttackThem, OnAddTargets, Properties.Resources.barracks);
             }
             _menu.AddSeparator();
 
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToBbCode, OnBbCode, Properties.Resources.clipboard);
         }
 
         #endregion
@@ -111,8 +111,8 @@ namespace TribalWars.Villages.ContextMenu
 
         private void OnRemovePurpose(object sender, CommandEventArgs e)
         {
-            string text = string.Format("Do you want to remove all existing purpose of {0} villages?\nThis action cannot be undone!", _villages.Count());
-            if (_villages.Count() > 1 && MessageBox.Show(text, "Set purpose", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			string text = string.Format(ControlsRes.VillagesContextMenu_RemovePurposeWarning, _villages.Count());
+			if (_villages.Count() > 1 && MessageBox.Show(text, ControlsRes.VillageContextMenu_SetPurpose, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
             {
                 return;
             }
@@ -132,8 +132,8 @@ namespace TribalWars.Villages.ContextMenu
         private void OnVillageTypeChange(object sender, CommandEventArgs e)
         {
             var changeTo = (VillageType) e.Command.Tag;
-            string text = string.Format("Do you want to change the purpose for {0} villages to {1}?\nThis action cannot be undone!", _villages.Count(), changeTo);
-            if (_villages.Count() > 1 && MessageBox.Show(text, "Set purpose", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			string text = string.Format(ControlsRes.VillagesContextMenu_ChangePurposeWarning, _villages.Count(), changeTo);
+			if (_villages.Count() > 1 && MessageBox.Show(text, ControlsRes.VillageContextMenu_SetPurpose, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
             {
                 return;
             }
@@ -168,7 +168,7 @@ namespace TribalWars.Villages.ContextMenu
         {
             if (_villages.Count() > WarnWhenAddingMoreTargets)
             {
-                var result = MessageBox.Show(string.Format("You are about to add {0} villages as attack targets. Continue?", _villages.Count()), "Attack villages", MessageBoxButtons.YesNo);
+				var result = MessageBox.Show(string.Format(ControlsRes.VillagesContextMenu_AddTargetsWarning, _villages.Count()), ControlsRes.VillagesContextMenu_AttackThem, MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                 {
                     return;

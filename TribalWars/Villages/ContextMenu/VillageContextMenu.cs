@@ -63,9 +63,9 @@ namespace TribalWars.Villages.ContextMenu
 
             if (map.Display.IsVisible(village))
             {
-                _menu.AddCommand("Quick Details", OnPinPoint, Properties.Resources.LeftNavigation_QuickFind);
+				_menu.AddCommand(ControlsRes.ContextMenu_QuickDetails, OnPinPoint, Properties.Resources.LeftNavigation_QuickFind);
             }
-            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
+			_menu.AddCommand(ControlsRes.ContextMenu_PinpointAndCenter, OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             
             _menu.AddSeparator();
             _menu.AddSetVillageTypeCommand(OnVillageTypeChange, village);
@@ -95,9 +95,9 @@ namespace TribalWars.Villages.ContextMenu
             }
 
             _menu.AddSeparator();
-            _menu.AddCommand("TWStats", OnTwStats);
-            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_TwStats, OnTwStats);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToClipboard, OnToClipboard, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToBbCode, OnBbCode, Properties.Resources.clipboard);
         }
 
         private void AddAttackPlanItems()
@@ -105,11 +105,11 @@ namespace TribalWars.Villages.ContextMenu
             bool isAttackPlannerActive = World.Default.Map.Manipulators.AttackManipulator == World.Default.Map.Manipulators.CurrentManipulator;
             if (isAttackPlannerActive && _attacker != null)
             {
-                _menu.AddCommand("Add new attacker to plan", OnAddAttacker, UnitImages.Ram);
+				_menu.AddCommand(ControlsRes.VillageContextMenu_AddToAttackPlan, OnAddAttacker, UnitImages.Ram);
 
                 if (_isActiveAttackPlan && _attacker != null)
                 {
-                    _menu.AddCommand("Delete attacker from plan", OnDeleteAttacker, Properties.Resources.Delete);
+					_menu.AddCommand(ControlsRes.VillageContextMenu_DeleteFromAttackPlan, OnDeleteAttacker, Properties.Resources.Delete);
                 }
 
                 _menu.AddSeparator();
@@ -120,7 +120,7 @@ namespace TribalWars.Villages.ContextMenu
                 int planCount = World.Default.Map.Manipulators.AttackManipulator.GetPlans().Count(x => x.Target == _village || x.Attacks.Any(attack => attack.Attacker == _village));
                 if (!_isActiveAttackPlan || planCount > 1)
                 {
-                    string selectPlan = "Select attack plan";
+					string selectPlan = ControlsRes.VillageContextMenu_SelectAttackPlan;
                     if (planCount > 1)
                     {
                         selectPlan += string.Format(" ({0})", planCount);
@@ -133,7 +133,7 @@ namespace TribalWars.Villages.ContextMenu
 
                 if (isAttackPlannerActive && (_isActiveAttackPlan || planCount > 0) && _attacker == null)
                 {
-                    _menu.AddCommand("Delete attack plan", OnDeleteAttackPlan, Properties.Resources.Delete);
+					_menu.AddCommand(ControlsRes.VillageContextMenu_DeleteAttackPlan, OnDeleteAttackPlan, Properties.Resources.Delete);
                 }
             }
             else
@@ -147,18 +147,18 @@ namespace TribalWars.Villages.ContextMenu
             if (World.Default.You == _village.Player ||
                 (World.Default.You.HasTribe && _village.HasTribe && World.Default.You.Tribe == _village.Player.Tribe))
             {
-                _menu.AddCommand("New attack plan", OnAttack, Properties.Resources.Defense);
+				_menu.AddCommand(ControlsRes.VillageContextMenu_NewAttackPlan, OnAttack, Properties.Resources.Defense);
             }
             else
             {
-                _menu.AddCommand("New attack plan", OnAttack, Buildings.BuildingImages.Barracks);
+				_menu.AddCommand(ControlsRes.VillageContextMenu_NewAttackPlan, OnAttack, Buildings.BuildingImages.Barracks);
             }
         }
 
         public static void AddChurchCommands(UIContextMenu menu, ChurchInfo church, CommandEventHandler handler)
         {
             Debug.Assert(World.Default.Settings.Church);
-            string commandText = "Church" + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
+			string commandText = ControlsRes.Church + (church == null ? "" : string.Format(" ({0})", church.ChurchLevel));
             var containerCommand = new UICommand("", commandText)
                 {
                     Image = Properties.Resources.Church
@@ -187,7 +187,7 @@ namespace TribalWars.Villages.ContextMenu
 
         private static UICommand CreateChurchLevelCommand(CommandEventHandler handler, int level, int churchLevel)
         {
-            string text = level == 0 ? "No church" : string.Format("Level {0}", level);
+			string text = level == 0 ? ControlsRes.Church_None : string.Format(ControlsRes.Church_Level, level);
             var cmd = new UICommand("", text)
             {
                 IsChecked = level == churchLevel,

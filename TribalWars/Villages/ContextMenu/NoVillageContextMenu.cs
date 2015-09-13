@@ -21,20 +21,20 @@ namespace TribalWars.Villages.ContextMenu
             _gameLocation = gameLocation;
 
             _menu = JanusContextMenu.Create();
-            _menu.AddCommand("Center here", OnMapCenter, Properties.Resources.TeleportIcon);
-            _menu.AddCommand("Set Home", OnSetHome, Properties.Resources.HomeIcon);
+			_menu.AddCommand(ControlsRes.NoVillageContextMenu_CenterHere, OnMapCenter, Properties.Resources.TeleportIcon);
+			_menu.AddCommand(ControlsRes.NoVillageContextMenu_SetHome, OnSetHome, Properties.Resources.HomeIcon);
             _menu.AddSeparator();
 
-            _menu.AddChangeColorCommand("Background color", World.Default.Map.Display.Settings.BackgroundColor, Color.Green, OnBackgroundColor);
-            _menu.AddToggleCommand("Show continent lines", World.Default.Map.Display.Settings.ContinentLines, OnContinentLines);
-            _menu.AddToggleCommand("Show province lines", World.Default.Map.Display.Settings.ProvinceLines, OnProvinceLines);
+			_menu.AddChangeColorCommand(ControlsRes.NoVillageContextMenu_BackgroundColor, World.Default.Map.Display.Settings.BackgroundColor, Color.Green, OnBackgroundColor);
+			_menu.AddToggleCommand(ControlsRes.NoVillageContextMenu_ContinentLines, World.Default.Map.Display.Settings.ContinentLines, OnContinentLines);
+            _menu.AddToggleCommand(ControlsRes.NoVillageContextMenu_ProvinceLines, World.Default.Map.Display.Settings.ProvinceLines, OnProvinceLines);
             _menu.AddSeparator();
 
-            _menu.AddToggleCommand("Hide all abandoned", World.Default.Map.Display.Settings.HideAbandoned, OnHideAbandoned);
-            _menu.AddToggleCommand("Show marked only", World.Default.Map.Display.Settings.MarkedOnly, OnMarkedOnly);
+			_menu.AddToggleCommand(ControlsRes.NoVillageContextMenu_HideAbandoned, World.Default.Map.Display.Settings.HideAbandoned, OnHideAbandoned);
+			_menu.AddToggleCommand(ControlsRes.NoVillageContextMenu_ShowMarkedOnly, World.Default.Map.Display.Settings.MarkedOnly, OnMarkedOnly);
             _menu.AddSeparator();
 
-            var showTooltip = _menu.AddCommand("Show village &tooltip", OnShowTooltip);
+			var showTooltip = _menu.AddCommand(ControlsRes.NoVillageContextMenu_ShowVillageTooltip, OnShowTooltip);
             showTooltip.IsChecked = World.Default.Map.Manipulators.CurrentManipulator.TooltipActive;
         }
 

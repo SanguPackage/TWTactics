@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using TribalWars.Browsers.Reporting;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Tools;
 using TribalWars.Villages.Helpers;
@@ -327,7 +328,7 @@ namespace TribalWars.Villages
         /// <returns>[village](X|Y)[/village] (pts)</returns>
         public string BbCode()
         {
-            return string.Format("[village]({0}|{1})[/village] ({2:#,0}pts)", X, Y, Points);
+			return string.Format("[village]({0}|{1})[/village] {2}", X, Y, string.Format(ControlsRes.BbCode_VillagePoints, Points));
         }
 
         /// <summary>

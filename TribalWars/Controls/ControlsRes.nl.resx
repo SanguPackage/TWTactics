@@ -221,4 +221,120 @@
     <value>#{1} ({0} punten)</value>
     <comment>{0} = Points; {1} = Rank</comment>
   </data>
+  <data name="BbCode_Player" xml:space="preserve">
+    <value> ({0}ptn|{1}vils)</value>
+  </data>
+  <data name="BbCode_VillagePoints" xml:space="preserve">
+    <value>({0:#,0}ptn)</value>
+  </data>
+  <data name="Church" xml:space="preserve">
+    <value>Kerk</value>
+  </data>
+  <data name="Church_Level" xml:space="preserve">
+    <value>Level {0}</value>
+  </data>
+  <data name="Church_None" xml:space="preserve">
+    <value>Geen kerk</value>
+  </data>
+  <data name="ContextMenu_Pinpoint" xml:space="preserve">
+    <value>Selecteren</value>
+  </data>
+  <data name="ContextMenu_PinpointAndCenter" xml:space="preserve">
+    <value>Selecteren &amp;&amp; Centreren</value>
+  </data>
+  <data name="ContextMenu_QuickDetails" xml:space="preserve">
+    <value>Snelle Details</value>
+  </data>
+  <data name="ContextMenu_ToBbCode" xml:space="preserve">
+    <value>BBCode</value>
+  </data>
+  <data name="ContextMenu_ToBbCodeOperation" xml:space="preserve">
+    <value>Operatie</value>
+  </data>
+  <data name="ContextMenu_ToClipboard" xml:space="preserve">
+    <value>Naar klembord</value>
+  </data>
+  <data name="ContextMenu_TwGuest" xml:space="preserve">
+    <value>TW Gast</value>
+  </data>
+  <data name="ContextMenu_TwStats" xml:space="preserve">
+    <value>TWStats</value>
+  </data>
+  <data name="NoVillageContextMenu_BackgroundColor" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="NoVillageContextMenu_CenterHere" xml:space="preserve">
+    <value>Centreer hier</value>
+  </data>
+  <data name="NoVillageContextMenu_ContinentLines" xml:space="preserve">
+    <value>Toon continent lijnen</value>
+  </data>
+  <data name="NoVillageContextMenu_HideAbandoned" xml:space="preserve">
+    <value>Verberg alle verlaten dorpen</value>
+  </data>
+  <data name="NoVillageContextMenu_ProvinceLines" xml:space="preserve">
+    <value>Toon provincie lijnen</value>
+  </data>
+  <data name="NoVillageContextMenu_SetHome" xml:space="preserve">
+    <value>Zet als standaard locatie</value>
+  </data>
+  <data name="NoVillageContextMenu_ShowMarkedOnly" xml:space="preserve">
+    <value>Toon enkel gemarkeerde dorpen</value>
+  </data>
+  <data name="NoVillageContextMenu_ShowVillageTooltip" xml:space="preserve">
+    <value>Toon dorp tooltips</value>
+  </data>
+  <data name="PlayerContextMenu_ThisIsMe" xml:space="preserve">
+    <value>Dit ben ik!</value>
+  </data>
+  <data name="Tooltip_Points" xml:space="preserve">
+    <value>Punten: {0}</value>
+  </data>
+  <data name="Tooltip_Tribe" xml:space="preserve">
+    <value>Stam: {0} (#{1})</value>
+    <comment>{0} = Tag, {1} = TribeRank</comment>
+  </data>
+  <data name="Tooltip_Villages" xml:space="preserve">
+    <value>Dorpen: {0}</value>
+  </data>
+  <data name="VillageContextMenu_AddToAttackPlan" xml:space="preserve">
+    <value>Voeg aanvallen toe aan plan</value>
+  </data>
+  <data name="VillageContextMenu_DeleteAttackPlan" xml:space="preserve">
+    <value>Verwijder aanvalsplan</value>
+  </data>
+  <data name="VillageContextMenu_DeleteFromAttackPlan" xml:space="preserve">
+    <value>Verwijder aanvaller van plan</value>
+  </data>
+  <data name="VillageContextMenu_NewAttackPlan" xml:space="preserve">
+    <value>Nieuw aanvalsplan</value>
+  </data>
+  <data name="VillageContextMenu_NobledFrom" xml:space="preserve">
+    <value>Geëdelt van {0}</value>
+  </data>
+  <data name="VillageContextMenu_RemovePurpose" xml:space="preserve">
+    <value>Verwijder doel</value>
+  </data>
+  <data name="VillageContextMenu_SelectAttackPlan" xml:space="preserve">
+    <value>Selecteer aanvalsplan</value>
+  </data>
+  <data name="VillageContextMenu_SetPurpose" xml:space="preserve">
+    <value>Zet doel</value>
+  </data>
+  <data name="VillagesContextMenu_AddTargetsWarning" xml:space="preserve">
+    <value>{0} dorpen toevoegen als nieuwe aanvalsdoelwitten?</value>
+  </data>
+  <data name="VillagesContextMenu_AttackThem" xml:space="preserve">
+    <value>Val deze dorpen aan</value>
+  </data>
+  <data name="VillagesContextMenu_ChangePurposeWarning" xml:space="preserve">
+    <value>Wil je het doel van deze {0} dorpen wijzigen naar {1}?\nDeze aktie kan niet ongedaan gemaakt worden!</value>
+    <comment>{0} = # villages, {1} = new purpose</comment>
+  </data>
+  <data name="VillagesContextMenu_DefendThem" xml:space="preserve">
+    <value>Verdedig deze dorpen</value>
+  </data>
+  <data name="VillagesContextMenu_RemovePurposeWarning" xml:space="preserve">
+    <value>Wil je het doel van deze {0} dorpen verwijderen?\nDeze aktie kan niet ongedaan gemaakt worden!</value>
+  </data>
 </root>

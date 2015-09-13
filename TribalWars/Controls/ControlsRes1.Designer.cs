@@ -241,7 +241,7 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to [b]{5}[/b] [ally]{0}[/ally]{3}Points: {2:#,0}pts ({6:#,0}avg){3}Players: {1}{3}Rank: {4}.
         /// </summary>
         internal static string BbCode_Tribe {
             get {

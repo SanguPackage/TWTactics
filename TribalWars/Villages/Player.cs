@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TribalWars.Controls;
 using TribalWars.Maps;
 using TribalWars.Tools;
 using TribalWars.Villages.Helpers;
@@ -198,15 +199,15 @@ namespace TribalWars.Villages
             get
             {
                 var str = new StringBuilder();
-                str.AppendFormat("Points: {0}", PointsWithDiff);
+				str.AppendFormat(ControlsRes.Tooltip_Points, PointsWithDiff);
                 str.AppendLine();
-                str.AppendFormat("Villages: {0}", Common.GetPrettyNumber(Villages.Count));
+                str.AppendFormat(ControlsRes.Tooltip_Villages, Common.GetPrettyNumber(Villages.Count));
                 string conquer = ConquerString;
                 if (conquer != null) str.AppendFormat(" ({0})", conquer);
                 if (Tribe != null)
                 {
                     str.AppendLine();
-                    str.AppendFormat("Tribe: {0} (#{1})", Tribe.Tag, Common.GetPrettyNumber(Tribe.Rank));
+                    str.AppendFormat(ControlsRes.Tooltip_Tribe, Tribe.Tag, Common.GetPrettyNumber(Tribe.Rank));
                 }
 
                 return str.ToString().Trim();
@@ -243,7 +244,7 @@ namespace TribalWars.Villages
         public string BbCode()
         {
             string str = string.Format("[player]{0}[/player]", Name);
-            if (Villages.Count > 1) str += string.Format(" ({0}pts|{1}vils)", Common.GetPrettyNumber(Points), Villages.Count);
+            if (Villages.Count > 1) str += string.Format(ControlsRes.BbCode_Player, Common.GetPrettyNumber(Points), Villages.Count);
             return str;
         }
 
@@ -307,6 +308,7 @@ namespace TribalWars.Villages
 
         public string BbCodeMatt()
         {
+			// TODO: not translated
             // Build it
             var str = new StringBuilder(100);
             str.Append("[b]");

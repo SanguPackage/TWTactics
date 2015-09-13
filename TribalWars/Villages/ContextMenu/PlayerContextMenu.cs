@@ -42,14 +42,14 @@ namespace TribalWars.Villages.ContextMenu
 
             if (map.Display.IsVisible(player))
             {
-                _menu.AddCommand("Pinpoint", OnPinPoint);
+				_menu.AddCommand(ControlsRes.ContextMenu_Pinpoint, OnPinPoint);
             }
-            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
+			_menu.AddCommand(ControlsRes.ContextMenu_PinpointAndCenter, OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
             if (World.Default.You.Empty)
             {
-                _menu.AddCommand("This is me!", OnPlayerYouSet, Properties.Resources.Player);
+				_menu.AddCommand(ControlsRes.PlayerContextMenu_ThisIsMe, OnPlayerYouSet, Properties.Resources.Player);
                 _menu.AddSeparator();
             }
 
@@ -63,14 +63,14 @@ namespace TribalWars.Villages.ContextMenu
 
             _menu.AddSeparator();
 
-            _menu.AddCommand("TWStats", OnTwStats);
-            _menu.AddCommand("TW Guest", OnTwGuest);
+			_menu.AddCommand(ControlsRes.ContextMenu_TwStats, OnTwStats);
+			_menu.AddCommand(ControlsRes.ContextMenu_TwGuest, OnTwGuest);
 
             _menu.AddSeparator();
 
-            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
-            _menu.AddCommand("Operation", OnBbCodeOperation, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToClipboard, OnToClipboard, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToBbCode, OnBbCode, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToBbCodeOperation, OnBbCodeOperation, Properties.Resources.clipboard);
         }
         #endregion
 

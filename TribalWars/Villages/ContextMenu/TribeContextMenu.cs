@@ -37,22 +37,22 @@ namespace TribalWars.Villages.ContextMenu
 
             if (map.Display.IsVisible(tribe))
             {
-                _menu.AddCommand("Pinpoint", OnPinPoint);
+				_menu.AddCommand(ControlsRes.ContextMenu_Pinpoint, OnPinPoint);
             }
-            _menu.AddCommand("Pinpoint && Center", OnPinpointAndCenter, Properties.Resources.TeleportIcon);
+			_menu.AddCommand(ControlsRes.ContextMenu_PinpointAndCenter, OnPinpointAndCenter, Properties.Resources.TeleportIcon);
             _menu.AddSeparator();
 
             var markerContext = new MarkerContextMenu(map, tribe);
             _menu.AddMarkerContextCommands(markerContext);
             _menu.AddSeparator();
 
-            _menu.AddCommand("TWStats", OnTwStats);
-            _menu.AddCommand("TW Guest", OnTwGuest);
+			_menu.AddCommand(ControlsRes.ContextMenu_TwStats, OnTwStats);
+			_menu.AddCommand(ControlsRes.ContextMenu_TwGuest, OnTwGuest);
 
             _menu.AddSeparator();
 
-            _menu.AddCommand("To clipboard", OnToClipboard, Properties.Resources.clipboard);
-            _menu.AddCommand("BBCode", OnBbCode, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToClipboard, OnToClipboard, Properties.Resources.clipboard);
+			_menu.AddCommand(ControlsRes.ContextMenu_ToBbCode, OnBbCode, Properties.Resources.clipboard);
         }
         #endregion
 
