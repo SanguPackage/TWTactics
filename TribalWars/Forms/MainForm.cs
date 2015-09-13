@@ -646,14 +646,16 @@ namespace TribalWars.Forms
 		#region I18n
 		private void SetLanguage(CultureInfo ci)
 		{
-			if (ci.Name == Thread.CurrentThread.CurrentCulture.Name)
+			Properties.Settings.Default.Culture = ci.Name;
+			Properties.Settings.Default.Save();
+
+			if (ci.Name == Thread.CurrentThread.CurrentUICulture.Name)
 				return;
 
 			ToolStripSave_Click(this, EventArgs.Empty);
 			Thread.CurrentThread.CurrentCulture = ci;
 			Thread.CurrentThread.CurrentUICulture = ci;
-			Properties.Settings.Default.Culture = ci.Name;
-			Properties.Settings.Default.Save();
+			
 			Application.Restart();
 		}
 
