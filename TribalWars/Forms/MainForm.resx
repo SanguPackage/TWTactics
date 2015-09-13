@@ -976,7 +976,7 @@
     <value>toolStripContainer1</value>
   </data>
   <metadata name="ToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+    <value>708, 56</value>
   </metadata>
   <data name="ToolStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
@@ -1032,19 +1032,19 @@
   <data name="ToolStripDownload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALUSURBVDhPbZFdSFNhGMfnZfR1PNvx7Otsp+XcdE506qZz
-        NtNt9nGRbEZqq2WSCJkVFAheWDqXmklBghFkF9FNN+ZNhX2BkH0Imn1gXVYXhXlhSIWi/97nbCCEf3jG
-        s+f/+z97976q/8UbDEadQY5LJutD2WL/SEU9zchLYRsqTS+ZO3LyCub6BwZ+Pp949ef7/CKoqKcZecQQ
-        m4ysK80gWYYiddEvY9PvlvsvX0egKgwNb4eatyk9zcgjhljKJKNMbDDQ1NT67eXULNzuEDguG1x6NtI5
-        O7jtrFjPsb6YecQQSxklLAjGzNyCws8XuvrWCl1B8GoneCEXerMDQ5NhDIzXIEPHFvAOxXO5AiCWMpRl
-        v76jr7snsdAVH4RGk8+gPGi0DpRWF2ICB/ECh+Dw5LMF2UmPMcR2JxILlFVJsvXp6NjYcoU/AiGjCGoG
-        qUUHPMGi1IIGZBfTghzFI6bCHwZljHLmE5UsZ72ffD0DrVgCUeeBbC2Gy+eBf78X0ziGWTTCU1UMh7sA
-        AjvZti154NNd6OzsXJMsthkVfdAXna4MesmH9hthfEIzpnAEj1GJcVQpS+ZWT6HsgBebN+VBFEqUBSaL
-        7a2KjnFzZGSl3FfPNpeD57zouBXBM+zDbWThHgrx5m8zQtEguK2l7GV88HnrQBnlL9BFxJpbls6d74Gg
-        rmbvvheiNoT4/To8QgAPsAfhthq2PKh4xBAbO9GypFwiPYXNnv+VjuR2R9ldhKHNqIXFWov46GE0djVA
-        K0SUGXnEEEsZ5RlJeqP5WoE/8CveN4xSz3EYdfWQ9Edh0jUqRT3NyOvuHUYZYymjhFNK0+pNd53O8kW/
-        /9Jq6+kEglVnIRujSgUqz+BkWwJ+f++q07lrkVjKJKPrShNFwxXjTvuP3aHQ71gsttJ+8SqoqKcZeaJo
-        HCQ2GdlAGo3GKoj6O3qD/EEym+epqKcZeSksJZXqH41ugcgUiPPDAAAAAElFTkSuQmCC
+        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
 </value>
   </data>
   <data name="ToolStripDownload.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1129,23 +1129,23 @@
   <data name="ToolStripActiveRectangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="ToolStripActiveRectangle.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1354,9 +1354,6 @@
   <data name="ToolStripProgramSettings.ToolTipText" xml:space="preserve">
     <value>Change program settings</value>
   </data>
-  <data name="ToolStripProgramSettings.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="ToolStripAbout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1385,7 +1382,7 @@
     <value>3, 0</value>
   </data>
   <data name="ToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 31</value>
+    <value>686, 31</value>
   </data>
   <data name="ToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1427,13 +1424,13 @@
     <value>0</value>
   </data>
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>885, 17</value>
   </metadata>
   <metadata name="PickColor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>186, 56</value>
+    <value>17, 56</value>
   </metadata>
   <metadata name="Status.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>289, 56</value>
+    <value>120, 56</value>
   </metadata>
   <data name="ProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 18</value>
@@ -1553,13 +1550,13 @@
     <value>1</value>
   </data>
   <metadata name="ServerTimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>374, 56</value>
+    <value>205, 56</value>
   </metadata>
   <metadata name="GeneralTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>517, 56</value>
+    <value>348, 56</value>
   </metadata>
   <metadata name="MenuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>776, 56</value>
+    <value>607, 56</value>
   </metadata>
   <data name="MenuFileNew.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -1668,13 +1665,13 @@
     <value>Synchronize Server Time</value>
   </data>
   <data name="SetLanguage_English.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="SetLanguage_English.Text" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="SetLanguage_Dutch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="SetLanguage_Dutch.Text" xml:space="preserve">
     <value>Dutch</value>
@@ -2060,10 +2057,10 @@
     <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="VillageTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>649, 56</value>
+    <value>480, 56</value>
   </metadata>
   <metadata name="saveFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>118, 95</value>
+    <value>809, 56</value>
   </metadata>
   <data name="saveFileDialog1.Filter" xml:space="preserve">
     <value>Settings|*.sets</value>

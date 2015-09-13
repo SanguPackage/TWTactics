@@ -570,10 +570,10 @@
     <Compile Include="Forms\LoadWorldForm.Designer.cs">
       <DependentUpon>LoadWorldForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NotUsed\SettingsForm.cs">
+    <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NotUsed\SettingsForm.Designer.cs">
+    <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Small\TimeZoneForm.cs">
@@ -861,7 +861,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UnitImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NotUsed\SettingsForm.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NotUsed\TestForm.resx">

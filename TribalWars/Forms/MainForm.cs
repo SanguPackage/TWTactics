@@ -471,14 +471,16 @@ namespace TribalWars.Forms
 
         private void ToolStripProgramSettings_Click(object sender, EventArgs e)
         {
-            // This is the debug window
-            //var settings = new SettingsForm();
-            //settings.Show();
+			using (var settings = new SettingsForm())
+			{
+				settings.Show();
+			}
 
-            using (var f = new TestForm())
-            {
-                f.ShowDialog();
-            }
+			// This is the debug window
+			//using (var f = new TestForm())
+			//{
+			//	f.ShowDialog();
+			//}
         }
 
         private void ToolStripDraw_Click(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace TribalWars.Tools
@@ -15,11 +16,34 @@ namespace TribalWars.Tools
     /// </summary>
     public static class Network
     {
+	    private static IWebProxy GetProxy()
+	    {
+		    IWebProxy proxy;
+		    if (Properties.Settings.Default.Proxy)
+		    {
+			    try
+			    {
+					proxy = new WebProxy(Properties.Settings.Default.ProxyAddress + ":" + Properties.Settings.Default.ProxyPort);
+			    }
+			    catch
+			    {
+					proxy = WebRequest.GetSystemWebProxy();
+			    }
+		    }
+		    else
+		    {
+			    proxy = WebRequest.GetSystemWebProxy();
+		    }
+
+			proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+		    return proxy;
+	    }
+
         public static void PostValues(string url, NameValueCollection data)
         {
             using (var wb = new WebClient())
             {
-                wb.Proxy = WebRequest.GetSystemWebProxy();
+	            wb.Proxy = GetProxy();
                 var response = wb.UploadValues(url, "POST", data);
             }
         }
@@ -27,7 +51,7 @@ namespace TribalWars.Tools
         public static WebRequest CreateWebRequest(string url)
         {
             var client = WebRequest.Create(url);
-            client.Proxy = WebRequest.GetSystemWebProxy();
+	        client.Proxy = GetProxy();
             return client;
         }
 

@@ -4,12 +4,7 @@ using System.Windows.Forms;
 namespace TribalWars.Forms.NotUsed
 {
     /// <summary>
-    /// CURRENTLY NOT IN USE
-    /// 
     /// Change settings for the program
-    /// 
-    /// There is some layout for changing proxy
-    /// but not implemented (uses built in .NET method)
     /// </summary>
     public partial class SettingsForm : Form
     {
@@ -25,6 +20,9 @@ namespace TribalWars.Forms.NotUsed
 
         private void OkButton_Click(object sender, EventArgs e)
         {
+	        Properties.Settings.Default.Proxy = !ConnectedDirect.Checked;
+	        Properties.Settings.Default.ProxyAddress = ProxyAddress.Text;
+			Properties.Settings.Default.ProxyPort = int.Parse(ProxyPort.Text);
             Properties.Settings.Default.Save();
             Close();
         }

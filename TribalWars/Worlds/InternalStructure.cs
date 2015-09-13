@@ -683,9 +683,6 @@ namespace TribalWars.Worlds
             private void DownloadFile(string urlFile, string outputFile)
             {
                 var client = Network.CreateWebRequest(urlFile);
-
-				// TODO: need proxy here.
-
                 using (var response = client.GetResponse())
                 {
                     var stream = response.GetResponseStream();

@@ -105,5 +105,41 @@ namespace TribalWars.Properties {
                 this["Culture"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Proxy {
+            get {
+                return ((bool)(this["Proxy"]));
+            }
+            set {
+                this["Proxy"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProxyAddress {
+            get {
+                return ((string)(this["ProxyAddress"]));
+            }
+            set {
+                this["ProxyAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ProxyPort {
+            get {
+                return ((int)(this["ProxyPort"]));
+            }
+            set {
+                this["ProxyPort"] = value;
+            }
+        }
     }
 }
