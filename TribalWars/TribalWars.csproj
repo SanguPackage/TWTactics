@@ -785,6 +785,9 @@
     <EmbeddedResource Include="Maps\Markers\MarkerSettingsControl.nl.resx">
       <DependentUpon>MarkerSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maps\Monitoring\MonitoringControl.nl.resx">
+      <DependentUpon>MonitoringControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Maps\Monitoring\MonitoringControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MonitoringControl.cs</DependentUpon>

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TribalWars.Controls;
 using TribalWars.Controls.AccordeonLocation;
 using TribalWars.Tools;
 using TribalWars.Worlds;
@@ -17,11 +18,6 @@ namespace TribalWars.Maps.Monitoring
     /// </summary>
     public partial class MonitoringControl : UserControl
     {
-        #region Constants
-        private const string CurrentDateSuffix = " (Current)";
-        private const string PreviousDateSuffix = " (Previous)";
-        #endregion
-
         #region Constructors
         public MonitoringControl()
         {
@@ -86,7 +82,7 @@ namespace TribalWars.Maps.Monitoring
                         if (info.IsPreviousData())
                         {
                             item.BackColor = Color.Transparent;
-                            item.Text = item.Text.Replace(PreviousDateSuffix, "");
+							item.Text = item.Text.Replace(ControlsRes.MonitoringControl_DatePrevious, "");
                         }
                     }
 
@@ -121,7 +117,7 @@ namespace TribalWars.Maps.Monitoring
                     if (info.IsCurrentData())
                     {
                         listItem.BackColor = Color.Green;
-                        listItem.Text += CurrentDateSuffix;
+						listItem.Text += ControlsRes.MonitoringControl_DateCurrent;
                     }
                     else
                     {
@@ -146,7 +142,7 @@ namespace TribalWars.Maps.Monitoring
                         if (info.IsPreviousData())
                         {
                             item.BackColor = Color.Green;
-                            item.Text += PreviousDateSuffix;
+							item.Text += ControlsRes.MonitoringControl_DatePrevious;
                         }
                     }
 
