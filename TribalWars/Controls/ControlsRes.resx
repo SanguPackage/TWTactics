@@ -525,4 +525,31 @@ Or... Right click on the map for more help.</value>
     <value>cluster {0}</value>
     <comment>{0} = autoincrement</comment>
   </data>
+  <data name="AttackPlanCollectionControl_AttackersPoolDepleted" xml:space="preserve">
+    <value>Attackers pool depleted!</value>
+  </data>
+  <data name="AttackPlanCollectionControl_AttackersPoolTitle" xml:space="preserve">
+    <value>Attackers pool</value>
+  </data>
+  <data name="AttackPlanCollectionControl_EmptyAttackersPool" xml:space="preserve">
+    <value>Your attackers pool is empty.
+In the top menu, choose 'Windows' &gt; 'Manage your villages' to learn how to create one!</value>
+  </data>
+  <data name="AttackPlanCollectionControl_PlanExportCaption" xml:space="preserve">
+    <value>{0} {1} ({2}pts) - {3} attacks</value>
+    <comment>{0} = target coords, {1} = village name, {2} = points, {3} = amount of attacks on target</comment>
+  </data>
+  <data name="AttackPlanCollectionControl_PlanExportCaption_OnPlayer" xml:space="preserve">
+    <value>on {0}</value>
+    <comment>{0} = target owner name</comment>
+  </data>
+  <data name="InternalStructure_DownloadNewTwSnapshot" xml:space="preserve">
+    <value>It has been {0} hours since you downloaded the latest TW data.\nDownload now?</value>
+  </data>
+  <data name="InternalStructure_DownloadNewTwSnapshotTitle" xml:space="preserve">
+    <value>Download latest data</value>
+  </data>
+  <data name="InternalStructure_DownloadOnlyOncePerHour" xml:space="preserve">
+    <value>You can only download the data once per hour! (TW data is not updated any quicker)</value>
+  </data>
 </root>

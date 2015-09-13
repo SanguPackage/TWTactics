@@ -535,4 +535,31 @@ Or... Right click on the map for more help.</comment>
     <value>cluster {0}</value>
     <comment>{0} = autoincrement</comment>
   </data>
+  <data name="AttackPlanCollectionControl_AttackersPoolDepleted" xml:space="preserve">
+    <value>Aanvalspoel opgebruikt!</value>
+  </data>
+  <data name="AttackPlanCollectionControl_AttackersPoolTitle" xml:space="preserve">
+    <value>Aanvalspoel</value>
+  </data>
+  <data name="AttackPlanCollectionControl_EmptyAttackersPool" xml:space="preserve">
+    <value>Je aanvalspoel is leeg.
+Kies 'Windows' &gt; 'Beheer je aanvalspoel' om er een te maken!</value>
+  </data>
+  <data name="AttackPlanCollectionControl_PlanExportCaption" xml:space="preserve">
+    <value>{0} {1} ({2}ptn) - {3} aanvallen</value>
+    <comment>{0} = target coords, {1} = village name, {2} = points, {3} = amount of attacks on target</comment>
+  </data>
+  <data name="AttackPlanCollectionControl_PlanExportCaption_OnPlayer" xml:space="preserve">
+    <value>op {0}</value>
+    <comment>{0} = target owner name</comment>
+  </data>
+  <data name="InternalStructure_DownloadNewTwSnapshot" xml:space="preserve">
+    <value>Het is {0} uur geleden sinds je laatst TW data geüpdate hebt.\nNu downloaden?</value>
+  </data>
+  <data name="InternalStructure_DownloadNewTwSnapshotTitle" xml:space="preserve">
+    <value>Laatste TW data downloaden</value>
+  </data>
+  <data name="InternalStructure_DownloadOnlyOncePerHour" xml:space="preserve">
+    <value>Je kan slechts eenmaal per uur TW data downloaden!</value>
+  </data>
 </root>

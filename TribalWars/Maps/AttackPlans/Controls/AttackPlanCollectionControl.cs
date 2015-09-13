@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using TribalWars.Controls;
 using TribalWars.Forms.Small;
 using TribalWars.Maps.AttackPlans.EventArg;
 using TribalWars.Tools;
@@ -250,7 +251,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
         {
             if (World.Default.Map.Manipulators.AttackManipulator.IsAttackersPoolEmpty)
             {
-                MessageBox.Show("In the top menu, choose 'Windows' > 'Manage your villages' to create an attackers pool!", "Attackers pool");
+				MessageBox.Show(ControlsRes.AttackPlanCollectionControl_EmptyAttackersPool, ControlsRes.AttackPlanCollectionControl_AttackersPoolTitle);
             }
             else if (ActivePlan != null && UnitInput.Unit != null)
             {
@@ -260,7 +261,7 @@ namespace TribalWars.Maps.AttackPlans.Controls
                 var searchIn = World.Default.Map.Manipulators.AttackManipulator.GetAttackersFromPool(ActivePlan.Plan, UnitInput.Unit, villageType, out depleted);
                 if (depleted)
                 {
-                    MessageBox.Show("Attackers pool depleted!", "Attackers pool");
+					MessageBox.Show(ControlsRes.AttackPlanCollectionControl_AttackersPoolDepleted, ControlsRes.AttackPlanCollectionControl_AttackersPoolTitle);
                 }
 
                 foreach (var attacker in searchIn)
@@ -292,8 +293,8 @@ namespace TribalWars.Maps.AttackPlans.Controls
         private string GetAttackToolstripText(AttackPlan plan)
         {
             Village vil = plan.Target;
-            string attackDesc = string.Format("{0} {1} ({2}pts) - {3} attacks", vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points), plan.Attacks.Count());
-            if (vil.HasPlayer) attackDesc += " on " + vil.Player.Name;
+			string attackDesc = string.Format(ControlsRes.AttackPlanCollectionControl_PlanExportCaption, vil.LocationString, vil.Name, Common.GetPrettyNumber(vil.Points), plan.Attacks.Count());
+            if (vil.HasPlayer) attackDesc += string.Format(ControlsRes.AttackPlanCollectionControl_PlanExportCaption_OnPlayer, vil.Player.Name);
             return attackDesc;
         }
 

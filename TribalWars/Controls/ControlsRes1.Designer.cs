@@ -193,6 +193,52 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attackers pool depleted!.
+        /// </summary>
+        internal static string AttackPlanCollectionControl_AttackersPoolDepleted {
+            get {
+                return ResourceManager.GetString("AttackPlanCollectionControl_AttackersPoolDepleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attackers pool.
+        /// </summary>
+        internal static string AttackPlanCollectionControl_AttackersPoolTitle {
+            get {
+                return ResourceManager.GetString("AttackPlanCollectionControl_AttackersPoolTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your attackers pool is empty.
+        ///In the top menu, choose &apos;Windows&apos; &gt; &apos;Manage your villages&apos; to learn how to create one!.
+        /// </summary>
+        internal static string AttackPlanCollectionControl_EmptyAttackersPool {
+            get {
+                return ResourceManager.GetString("AttackPlanCollectionControl_EmptyAttackersPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} ({2}pts) - {3} attacks.
+        /// </summary>
+        internal static string AttackPlanCollectionControl_PlanExportCaption {
+            get {
+                return ResourceManager.GetString("AttackPlanCollectionControl_PlanExportCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on {0}.
+        /// </summary>
+        internal static string AttackPlanCollectionControl_PlanExportCaption_OnPlayer {
+            get {
+                return ResourceManager.GetString("AttackPlanCollectionControl_PlanExportCaption_OnPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attack {0}.
         /// </summary>
         internal static string AttackPlanExporter_AttackX {
@@ -432,6 +478,33 @@ namespace TribalWars.Controls {
         internal static string Date_DiffHours {
             get {
                 return ResourceManager.GetString("Date_DiffHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It has been {0} hours since you downloaded the latest TW data.\nDownload now?.
+        /// </summary>
+        internal static string InternalStructure_DownloadNewTwSnapshot {
+            get {
+                return ResourceManager.GetString("InternalStructure_DownloadNewTwSnapshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download latest data.
+        /// </summary>
+        internal static string InternalStructure_DownloadNewTwSnapshotTitle {
+            get {
+                return ResourceManager.GetString("InternalStructure_DownloadNewTwSnapshotTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can only download the data once per hour! (TW data is not updated any quicker).
+        /// </summary>
+        internal static string InternalStructure_DownloadOnlyOncePerHour {
+            get {
+                return ResourceManager.GetString("InternalStructure_DownloadOnlyOncePerHour", resourceCulture);
             }
         }
         

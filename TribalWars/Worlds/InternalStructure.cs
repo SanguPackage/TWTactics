@@ -11,6 +11,7 @@ using System.IO;
 using System.Xml.Linq;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Controls;
 using TribalWars.Forms;
 using TribalWars.Forms.Small;
 using TribalWars.Maps.Drawing.Displays;
@@ -182,19 +183,17 @@ namespace TribalWars.Worlds
                             _currentData = new DirectoryInfo(dirs[dirs.Length - 1]).Name;
                             if (dirs.Length != 1) _previousData = new DirectoryInfo(dirs[dirs.Length - 2]).Name;
 
-#if !DEBUG
                             // Redownload after x hours
                             TimeSpan? lastDownload = Default.Settings.ServerTime - CurrentData;
                             if (lastDownload.HasValue && lastDownload.Value.TotalHours >= 12)
                             {
-                                string text = string.Format("It has been {0} hours since you downloaded the latest TW data.\nDownload now?", (int)lastDownload.Value.TotalHours);
-                                DialogResult doDownload = MessageBox.Show(text, "Download latest data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+								string text = string.Format(ControlsRes.InternalStructure_DownloadNewTwSnapshot, (int)lastDownload.Value.TotalHours);
+								DialogResult doDownload = MessageBox.Show(text, ControlsRes.InternalStructure_DownloadNewTwSnapshotTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (doDownload == DialogResult.Yes)
                                 {
                                     DownloadNewTwSnapshot();
                                 }
                             }
-#endif
                         }
                         else
                         {
@@ -652,7 +651,7 @@ namespace TribalWars.Worlds
                 string dirName = CurrentWorldDataDirectory + _currentData;
                 if (Directory.Exists(dirName))
                 {
-                    MessageBox.Show("You can only download the data once per hour!");
+					MessageBox.Show(ControlsRes.InternalStructure_DownloadOnlyOncePerHour);
                 }
                 else
                 {
@@ -685,7 +684,7 @@ namespace TribalWars.Worlds
             {
                 var client = Network.CreateWebRequest(urlFile);
 
-				// need proxy here.
+				// TODO: need proxy here.
 
                 using (var response = client.GetResponse())
                 {
