@@ -420,4 +420,64 @@
   <data name="TwDate_TomorrowAt" xml:space="preserve">
     <value>morgen om {0}</value>
   </data>
+  <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
+    <value>Clusters</value>
+  </data>
+  <data name="NoPolygonContextMenu_DeleteAll" xml:space="preserve">
+    <value>Verwijder alle clusters ({0})</value>
+    <comment>{0} = # clusters</comment>
+  </data>
+  <data name="NoPolygonContextMenu_DeleteAllConfirm" xml:space="preserve">
+    <value>Alle clusters verwijderen?</value>
+  </data>
+  <data name="NoPolygonContextMenu_Help" xml:space="preserve">
+    <value>Teken clusters om BbCodes te genereren, de dorpen aan te vallen om vanuit die dorpen aan te vallen.
+
+Hou de linker muisknop ingedrukt om een cluster te tekenen.
+Hou de Control toets ingedrukt tijdens het tekenen om vertikaal te tekenen. Shift voor horizontaal.
+
+Klik in een cluster om te selecteren. Delete om de cluster te verwijderen en de pijltjes om hem te bewegen.
+
+Rechts klik in een cluster of erbuiten voor meer opties</value>
+  </data>
+  <data name="NoPolygonContextMenu_HelpCaption" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="NoPolygonContextMenu_HideAll" xml:space="preserve">
+    <value>Verberg alle zichtbare clusters ({0})</value>
+    <comment>{0} = # visible clusters</comment>
+  </data>
+  <data name="NoPolygonContextMenu_ManipulateAll" xml:space="preserve">
+    <value>Manipuleer de dorpen van alle clusters</value>
+  </data>
+  <data name="NoPolygonContextMenu_ShowAll" xml:space="preserve">
+    <value>Toon alle verborgen clusters ({0})</value>
+    <comment>{0} = # hidden clusters</comment>
+  </data>
+  <data name="PolygonContextMenu_Color" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="PolygonContextMenu_Delete" xml:space="preserve">
+    <value>Verwijder</value>
+  </data>
+  <data name="PolygonContextMenu_Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="PolygonContextMenu_Hide" xml:space="preserve">
+    <value>Verberg</value>
+  </data>
+  <data name="PolygonContextMenu_Manipulate" xml:space="preserve">
+    <value>Manipuleer dorpen in "{0}"</value>
+    <comment>{0} = cluster name</comment>
+  </data>
+  <data name="PolygonContextMenu_Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="PolygonContextMenu_Show" xml:space="preserve">
+    <value>Toon</value>
+  </data>
+  <data name="PolygonDrawerManipulator_NewClusterName" xml:space="preserve">
+    <value>cluster {0}</value>
+    <comment>{0} = autoincrement</comment>
+  </data>
 </root>

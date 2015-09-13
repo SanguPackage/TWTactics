@@ -417,4 +417,61 @@
   <data name="VillageTooltip_TribeChanged" xml:space="preserve">
     <value>Changed from {0}</value>
   </data>
+  <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
+    <value>Clusters</value>
+  </data>
+  <data name="NoPolygonContextMenu_DeleteAll" xml:space="preserve">
+    <value>Delete all clusters ({0})</value>
+    <comment>{0} = # clusters</comment>
+  </data>
+  <data name="NoPolygonContextMenu_DeleteAllConfirm" xml:space="preserve">
+    <value>Delete all clusters?</value>
+  </data>
+  <data name="NoPolygonContextMenu_Help" xml:space="preserve">
+    <value>Click and hold the left mouse button to draw the area (=cluster) you want to generate BB codes for.
+Use Control to force drawing vertically and Shift to force drawing horizontally. (in case you don't have a steady hand:)
+Click on a cluster to select it. Use Del to remove the selected cluster. Use the arrow keys to move it.
+
+Right click inside/outside a cluster for more options.</value>
+  </data>
+  <data name="NoPolygonContextMenu_HelpCaption" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="NoPolygonContextMenu_HideAll" xml:space="preserve">
+    <value>Hide all visible clusters ({0})</value>
+    <comment>{0} = # visible clusters</comment>
+  </data>
+  <data name="NoPolygonContextMenu_ManipulateAll" xml:space="preserve">
+    <value>Manipulate villages from all clusters</value>
+  </data>
+  <data name="NoPolygonContextMenu_ShowAll" xml:space="preserve">
+    <value>Show all hidden clusters ({0})</value>
+    <comment>{0} = # hidden clusters</comment>
+  </data>
+  <data name="PolygonContextMenu_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="PolygonContextMenu_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="PolygonContextMenu_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="PolygonContextMenu_Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="PolygonContextMenu_Manipulate" xml:space="preserve">
+    <value>Manipulate villages in "{0}"</value>
+    <comment>{0} = cluster name</comment>
+  </data>
+  <data name="PolygonContextMenu_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PolygonContextMenu_Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="PolygonDrawerManipulator_NewClusterName" xml:space="preserve">
+    <value>cluster {0}</value>
+    <comment>{0} = autoincrement</comment>
+  </data>
 </root>

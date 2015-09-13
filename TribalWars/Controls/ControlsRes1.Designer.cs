@@ -475,6 +475,82 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clusters.
+        /// </summary>
+        internal static string NoPolygonContextMenu_Clusters {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_Clusters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all clusters ({0}).
+        /// </summary>
+        internal static string NoPolygonContextMenu_DeleteAll {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_DeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all clusters?.
+        /// </summary>
+        internal static string NoPolygonContextMenu_DeleteAllConfirm {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_DeleteAllConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click and hold the left mouse button to draw the area (=cluster) you want to generate BB codes for.
+        ///Use Control to force drawing vertically and Shift to force drawing horizontally. (in case you don&apos;t have a steady hand:)
+        ///Click on a cluster to select it. Use Del to remove the selected cluster. Use the arrow keys to move it.
+        ///
+        ///Right click inside/outside a cluster for more options..
+        /// </summary>
+        internal static string NoPolygonContextMenu_Help {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string NoPolygonContextMenu_HelpCaption {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_HelpCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide all visible clusters ({0}).
+        /// </summary>
+        internal static string NoPolygonContextMenu_HideAll {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_HideAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manipulate villages from all clusters.
+        /// </summary>
+        internal static string NoPolygonContextMenu_ManipulateAll {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_ManipulateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show all hidden clusters ({0}).
+        /// </summary>
+        internal static string NoPolygonContextMenu_ShowAll {
+            get {
+                return ResourceManager.GetString("NoPolygonContextMenu_ShowAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always show attack plans.
         /// </summary>
         internal static string NoVillageAttackContextMenu_AlwaysShowAttackPlans {
@@ -615,6 +691,78 @@ namespace TribalWars.Controls {
         internal static string PlayerOrTribeRow_Text {
             get {
                 return ResourceManager.GetString("PlayerOrTribeRow_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string PolygonContextMenu_Color {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string PolygonContextMenu_Delete {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        internal static string PolygonContextMenu_Group {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        internal static string PolygonContextMenu_Hide {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manipulate villages in &quot;{0}&quot;.
+        /// </summary>
+        internal static string PolygonContextMenu_Manipulate {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Manipulate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string PolygonContextMenu_Name {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        internal static string PolygonContextMenu_Show {
+            get {
+                return ResourceManager.GetString("PolygonContextMenu_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cluster {0}.
+        /// </summary>
+        internal static string PolygonDrawerManipulator_NewClusterName {
+            get {
+                return ResourceManager.GetString("PolygonDrawerManipulator_NewClusterName", resourceCulture);
             }
         }
         

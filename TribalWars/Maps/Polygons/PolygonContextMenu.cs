@@ -25,16 +25,16 @@ namespace TribalWars.Maps.Polygons
 
             Debug.Assert(_polygonDrawer.ActivePolygon != null);
 
-            _menu.AddCommand(string.Format("Manipulate villages in \"{0}\"", _polygonDrawer.ActivePolygon.Name), OnGenerate);
+			_menu.AddCommand(string.Format(ControlsRes.PolygonContextMenu_Manipulate, _polygonDrawer.ActivePolygon.Name), OnGenerate);
             AttackersPoolContextMenuCommandCreator.Add(_menu, _polygonDrawer.ActivePolygon.GetVillages().Where(x => x.Player == World.Default.You));
             _menu.AddSeparator();
 
-            _menu.AddCommand("Delete", OnDelete, Shortcut.Del);
-            _menu.AddTextBoxCommand("Name", _polygonDrawer.ActivePolygon.Name, NameChanged);
-            _menu.AddTextBoxCommand("Group", _polygonDrawer.ActivePolygon.Group, GroupChanged);
-            _menu.AddChangeColorCommand("Color", _polygonDrawer.ActivePolygon.LineColor, SelectedColorChanged);
+			_menu.AddCommand(ControlsRes.PolygonContextMenu_Delete, OnDelete, Shortcut.Del);
+			_menu.AddTextBoxCommand(ControlsRes.PolygonContextMenu_Name, _polygonDrawer.ActivePolygon.Name, NameChanged);
+			_menu.AddTextBoxCommand(ControlsRes.PolygonContextMenu_Group, _polygonDrawer.ActivePolygon.Group, GroupChanged);
+			_menu.AddChangeColorCommand(ControlsRes.PolygonContextMenu_Color, _polygonDrawer.ActivePolygon.LineColor, SelectedColorChanged);
 
-            _menu.AddCommand(_polygonDrawer.ActivePolygon.Visible ? "Hide" : "Show", ToggleVisibility);
+			_menu.AddCommand(_polygonDrawer.ActivePolygon.Visible ? ControlsRes.PolygonContextMenu_Hide : ControlsRes.PolygonContextMenu_Show, ToggleVisibility);
         }
 
         public void Show(Control control, Point pos)

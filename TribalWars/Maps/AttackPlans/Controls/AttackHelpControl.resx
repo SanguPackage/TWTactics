@@ -121,7 +121,7 @@
     <value>There are different ways to plan attacks. Let's start with the most boring one:
 
 You can add coordinates manually here above and click the icon to attack it and then use the new icon to add a village as attacker.
-To add many targets at once, you can use a Polygon or the specifically designed 'Windows' &gt; 'Import village coordinates'.</value>
+To add many targets at once, you can use a Cluster or the specifically designed 'Windows' &gt; 'Import village coordinates'.</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
     <value>groupBox1</value>

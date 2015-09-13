@@ -401,7 +401,7 @@ namespace TribalWars.Maps.Polygons
         {
             _lastAddedMapLocation = loc;
 
-            _activePolygon = new Polygon("cluster" + _nextId.ToString(CultureInfo.InvariantCulture), _lastAddedMapLocation);
+            _activePolygon = new Polygon(string.Format(ControlsRes.PolygonDrawerManipulator_NewClusterName, _nextId.ToString(CultureInfo.InvariantCulture)), _lastAddedMapLocation);
             _collection.Add(_activePolygon);
             _parent.SetFullControlManipulator(this);
         }
