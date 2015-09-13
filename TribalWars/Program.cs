@@ -15,8 +15,8 @@ namespace TribalWars
         [STAThread]
         static void Main()
         {
-			Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("nl-BE");
-			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nl-BE");
+			//Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("nl-BE");
+			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nl-BE");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

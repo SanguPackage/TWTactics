@@ -140,6 +140,36 @@
   <data name="AreaLabel.Text" xml:space="preserve">
     <value>Gebied</value>
   </data>
+  <data name="Filter.Items" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="Filter.Items1" xml:space="preserve">
+    <value>Sterksten</value>
+  </data>
+  <data name="Filter.Items2" xml:space="preserve">
+    <value>Nieuw verlaten</value>
+  </data>
+  <data name="Filter.Items3" xml:space="preserve">
+    <value>Inactieven</value>
+  </data>
+  <data name="Filter.Items4" xml:space="preserve">
+    <value>Punten verloren</value>
+  </data>
+  <data name="Filter.Items5" xml:space="preserve">
+    <value>Geëdeld</value>
+  </data>
+  <data name="Filter.Items6" xml:space="preserve">
+    <value>Stamverandering</value>
+  </data>
+  <data name="Area.Items" xml:space="preserve">
+    <value>Volledige kaart</value>
+  </data>
+  <data name="Area.Items1" xml:space="preserve">
+    <value>Zichtbare kaart</value>
+  </data>
+  <data name="Area.Items2" xml:space="preserve">
+    <value>Gecontroleerd gebied</value>
+  </data>
   <data name="LimitResultsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -202,63 +232,16 @@
   <data name="DropDown.ToolTip" xml:space="preserve">
     <value>Open/Sluit het menu met extra filters</value>
   </data>
-  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="Area.Items" xml:space="preserve">
-    <value>Volledige kaart</value>
-    <comment>Entire map</comment>
-  </data>
-  <data name="Area.Items1" xml:space="preserve">
-    <value>Zichtbare kaart</value>
-    <comment>Visible map</comment>
-  </data>
-  <data name="Area.Items2" xml:space="preserve">
-    <value>Gecontroleerd gebied</value>
-    <comment>Monitored Area</comment>
-  </data>
-  <data name="Area.Items3" xml:space="preserve">
-    <value>Clusters</value>
-    <comment>Clusters</comment>
-  </data>
-  <data name="Filter.Items" xml:space="preserve">
-    <value>Alle</value>
-    <comment>All</comment>
-  </data>
-  <data name="Filter.Items1" xml:space="preserve">
-    <value>Sterksten</value>
-    <comment>Strongest</comment>
-  </data>
-  <data name="Filter.Items2" xml:space="preserve">
-    <value>Nieuw verlaten</value>
-    <comment>New abandoned villages</comment>
-  </data>
-  <data name="Filter.Items3" xml:space="preserve">
-    <value>Inactieven</value>
-    <comment>Inactives</comment>
-  </data>
-  <data name="Filter.Items4" xml:space="preserve">
-    <value>Punten verloren</value>
-    <comment>Points lost villages</comment>
-  </data>
-  <data name="Filter.Items5" xml:space="preserve">
-    <value>Geëdeld</value>
-    <comment>Nobled villages</comment>
-  </data>
-  <data name="Filter.Items6" xml:space="preserve">
-    <value>Stamverandering</value>
-    <comment>Tribe change players</comment>
-  </data>
   <data name="What.Items" xml:space="preserve">
     <value>Spelers</value>
-    <comment>Players</comment>
   </data>
   <data name="What.Items1" xml:space="preserve">
     <value>Stammen</value>
-    <comment>Tribes</comment>
   </data>
   <data name="What.Items2" xml:space="preserve">
     <value>Dorpen</value>
-    <comment>Villages</comment>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
 </root>

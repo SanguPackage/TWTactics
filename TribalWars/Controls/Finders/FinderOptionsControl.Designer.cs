@@ -60,23 +60,19 @@ namespace TribalWars.Controls.Finders
 			// 
 			resources.ApplyResources(this.WithinTribeLabel, "WithinTribeLabel");
 			this.WithinTribeLabel.Name = "WithinTribeLabel";
-			this.toolTip1.SetToolTip(this.WithinTribeLabel, resources.GetString("WithinTribeLabel.ToolTip"));
 			// 
 			// FilterLabel
 			// 
 			resources.ApplyResources(this.FilterLabel, "FilterLabel");
 			this.FilterLabel.Name = "FilterLabel";
-			this.toolTip1.SetToolTip(this.FilterLabel, resources.GetString("FilterLabel.ToolTip"));
 			// 
 			// AreaLabel
 			// 
 			resources.ApplyResources(this.AreaLabel, "AreaLabel");
 			this.AreaLabel.Name = "AreaLabel";
-			this.toolTip1.SetToolTip(this.AreaLabel, resources.GetString("AreaLabel.ToolTip"));
 			// 
 			// Filter
 			// 
-			resources.ApplyResources(this.Filter, "Filter");
 			this.Filter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Filter.FormattingEnabled = true;
 			this.Filter.Items.AddRange(new object[] {
@@ -87,12 +83,11 @@ namespace TribalWars.Controls.Finders
             resources.GetString("Filter.Items4"),
             resources.GetString("Filter.Items5"),
             resources.GetString("Filter.Items6")});
+			resources.ApplyResources(this.Filter, "Filter");
 			this.Filter.Name = "Filter";
-			this.toolTip1.SetToolTip(this.Filter, resources.GetString("Filter.ToolTip"));
 			// 
 			// Area
 			// 
-			resources.ApplyResources(this.Area, "Area");
 			this.Area.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Area.FormattingEnabled = true;
 			this.Area.Items.AddRange(new object[] {
@@ -100,52 +95,48 @@ namespace TribalWars.Controls.Finders
             resources.GetString("Area.Items1"),
             resources.GetString("Area.Items2"),
             resources.GetString("Area.Items3")});
+			resources.ApplyResources(this.Area, "Area");
 			this.Area.Name = "Area";
-			this.toolTip1.SetToolTip(this.Area, resources.GetString("Area.ToolTip"));
 			// 
 			// LimitResultsLabel
 			// 
 			resources.ApplyResources(this.LimitResultsLabel, "LimitResultsLabel");
 			this.LimitResultsLabel.Name = "LimitResultsLabel";
-			this.toolTip1.SetToolTip(this.LimitResultsLabel, resources.GetString("LimitResultsLabel.ToolTip"));
 			// 
 			// PointsBetweenLabel
 			// 
 			resources.ApplyResources(this.PointsBetweenLabel, "PointsBetweenLabel");
 			this.PointsBetweenLabel.Name = "PointsBetweenLabel";
-			this.toolTip1.SetToolTip(this.PointsBetweenLabel, resources.GetString("PointsBetweenLabel.ToolTip"));
 			// 
 			// PointsBetweenEnd
 			// 
-			resources.ApplyResources(this.PointsBetweenEnd, "PointsBetweenEnd");
 			this.PointsBetweenEnd.Increment = new decimal(new int[] {
             10000,
             0,
             0,
             0});
+			resources.ApplyResources(this.PointsBetweenEnd, "PointsBetweenEnd");
 			this.PointsBetweenEnd.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
 			this.PointsBetweenEnd.Name = "PointsBetweenEnd";
-			this.toolTip1.SetToolTip(this.PointsBetweenEnd, resources.GetString("PointsBetweenEnd.ToolTip"));
 			// 
 			// ResultLimit
 			// 
-			resources.ApplyResources(this.ResultLimit, "ResultLimit");
 			this.ResultLimit.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+			resources.ApplyResources(this.ResultLimit, "ResultLimit");
 			this.ResultLimit.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
 			this.ResultLimit.Name = "ResultLimit";
-			this.toolTip1.SetToolTip(this.ResultLimit, resources.GetString("ResultLimit.ToolTip"));
 			this.ResultLimit.Value = new decimal(new int[] {
             100,
             0,
@@ -154,19 +145,18 @@ namespace TribalWars.Controls.Finders
 			// 
 			// PointsBetweenStart
 			// 
-			resources.ApplyResources(this.PointsBetweenStart, "PointsBetweenStart");
 			this.PointsBetweenStart.Increment = new decimal(new int[] {
             10000,
             0,
             0,
             0});
+			resources.ApplyResources(this.PointsBetweenStart, "PointsBetweenStart");
 			this.PointsBetweenStart.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
 			this.PointsBetweenStart.Name = "PointsBetweenStart";
-			this.toolTip1.SetToolTip(this.PointsBetweenStart, resources.GetString("PointsBetweenStart.ToolTip"));
 			// 
 			// cmdVillage
 			// 
@@ -202,38 +192,34 @@ namespace TribalWars.Controls.Finders
 			// 
 			// What
 			// 
-			resources.ApplyResources(this.What, "What");
 			this.What.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.What.FormattingEnabled = true;
 			this.What.Items.AddRange(new object[] {
             resources.GetString("What.Items"),
             resources.GetString("What.Items1"),
             resources.GetString("What.Items2")});
+			resources.ApplyResources(this.What, "What");
 			this.What.Name = "What";
-			this.toolTip1.SetToolTip(this.What, resources.GetString("What.ToolTip"));
 			// 
 			// label6
 			// 
 			resources.ApplyResources(this.label6, "label6");
 			this.label6.Name = "label6";
-			this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
 			// 
 			// Tribe
 			// 
-			resources.ApplyResources(this.Tribe, "Tribe");
 			this.Tribe.AllowPlayer = false;
+			resources.ApplyResources(this.Tribe, "Tribe");
 			this.Tribe.AutoOpenOnFocus = false;
 			this.Tribe.BackColor = System.Drawing.Color.Transparent;
 			this.Tribe.Name = "Tribe";
-			this.toolTip1.SetToolTip(this.Tribe, resources.GetString("Tribe.ToolTip"));
 			// 
 			// Search
 			// 
 			resources.ApplyResources(this.Search, "Search");
-			this.Search.LabelText = "Zoek";
+			this.Search.LabelText = "Find";
 			this.Search.Name = "Search";
 			this.Search.TextBoxWidth = 70;
-			this.toolTip1.SetToolTip(this.Search, resources.GetString("Search.ToolTip"));
 			// 
 			// FinderOptionsControl
 			// 
@@ -259,7 +245,6 @@ namespace TribalWars.Controls.Finders
 			this.Controls.Add(this.PointsBetweenStart);
 			this.Controls.Add(this.ResultLimit);
 			this.Name = "FinderOptionsControl";
-			this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
 			this.Load += new System.EventHandler(this.FinderOptionsControl_Load);
 			((System.ComponentModel.ISupportInitialize)(this.PointsBetweenEnd)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ResultLimit)).EndInit();
