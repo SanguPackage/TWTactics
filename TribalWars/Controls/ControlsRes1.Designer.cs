@@ -61,6 +61,48 @@ namespace TribalWars.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press +, - and the arrow keys to 
+        ///grow and shrink the area.
+        ///
+        ///Left click to save the area.
+        ///Right click to cancel.
+        ///
+        ///Press &apos;s&apos; to remove this tooltip..
+        /// </summary>
+        internal static string ActiveRectangleManipulator_Help {
+            get {
+                return ResourceManager.GetString("ActiveRectangleManipulator_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitoring Area.
+        /// </summary>
+        internal static string ActiveRectangleManipulator_HelpTitle {
+            get {
+                return ResourceManager.GetString("ActiveRectangleManipulator_HelpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Monitoring Area.
+        /// </summary>
+        internal static string ActiveRectangleManipulator_Set {
+            get {
+                return ResourceManager.GetString("ActiveRectangleManipulator_Set", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set this as the new Monitoring Area? This is the area you monitor growth for in the Monitoring tab..
+        /// </summary>
+        internal static string ActiveRectangleManipulator_SetTitle {
+            get {
+                return ResourceManager.GetString("ActiveRectangleManipulator_SetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add {0} villages to attackers pool.
         /// </summary>
         internal static string AttackersPoolContextMenu_AddXToPool {

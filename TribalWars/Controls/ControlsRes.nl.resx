@@ -420,6 +420,23 @@
   <data name="TwDate_TomorrowAt" xml:space="preserve">
     <value>morgen om {0}</value>
   </data>
+  <data name="ActiveRectangleManipulator_Help" xml:space="preserve">
+    <value>Gebruik + en - om de grootte van het gebied aan te passen.
+
+Klik links om op te slaan.
+Klik rechts om te annuleren.
+
+Duw 's' om deze help te verbergen.</value>
+  </data>
+  <data name="ActiveRectangleManipulator_HelpTitle" xml:space="preserve">
+    <value>Gecontroleerd Gebied</value>
+  </data>
+  <data name="ActiveRectangleManipulator_Set" xml:space="preserve">
+    <value>Zet Gecontroleerd Gebied</value>
+  </data>
+  <data name="ActiveRectangleManipulator_SetTitle" xml:space="preserve">
+    <value>Zet dit als het nieuw gecontroleerd gebied? Dit is het gebied waarin je alle activiteit kan opvolgen.</value>
+  </data>
   <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
     <value>Clusters</value>
   </data>

@@ -417,6 +417,24 @@
   <data name="VillageTooltip_TribeChanged" xml:space="preserve">
     <value>Changed from {0}</value>
   </data>
+  <data name="ActiveRectangleManipulator_Help" xml:space="preserve">
+    <value>Press +, - and the arrow keys to 
+grow and shrink the area.
+
+Left click to save the area.
+Right click to cancel.
+
+Press 's' to remove this tooltip.</value>
+  </data>
+  <data name="ActiveRectangleManipulator_HelpTitle" xml:space="preserve">
+    <value>Monitoring Area</value>
+  </data>
+  <data name="ActiveRectangleManipulator_Set" xml:space="preserve">
+    <value>Set Monitoring Area</value>
+  </data>
+  <data name="ActiveRectangleManipulator_SetTitle" xml:space="preserve">
+    <value>Set this as the new Monitoring Area? This is the area you monitor growth for in the Monitoring tab.</value>
+  </data>
   <data name="NoPolygonContextMenu_Clusters" xml:space="preserve">
     <value>Clusters</value>
   </data>

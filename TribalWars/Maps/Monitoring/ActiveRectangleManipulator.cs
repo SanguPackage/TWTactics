@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TribalWars.Controls;
 using TribalWars.Maps.Manipulators;
 using TribalWars.Maps.Manipulators.EventArg;
 using TribalWars.Maps.Manipulators.Implementations;
@@ -28,15 +29,6 @@ namespace TribalWars.Maps.Monitoring
 
         private bool _showHelpTooltip;
         private Point _lastTooltipLocation;
-        private const string HelpTitle = "Monitoring Area";
-        private const string HelpBody = 
-                @"Press +, - and the arrow keys to 
-grow and shrink the area.
-
-Left click to save the area.
-Right click to cancel.
-
-Press 's' to remove this tooltip.";
         #endregion
 
         #region Constructors
@@ -92,8 +84,7 @@ Press 's' to remove this tooltip.";
         {
             if (e.MouseEventArgs.Button == MouseButtons.Left)
             {
-                string text = string.Format("Set this as the new Monitoring Area? This is the area you monitor growth for in the Monitoring tab.");
-                var saveActiveRectangle = MessageBox.Show(text, "Set Monitoring Area", MessageBoxButtons.YesNoCancel);
+				var saveActiveRectangle = MessageBox.Show(ControlsRes.ActiveRectangleManipulator_SetTitle, ControlsRes.ActiveRectangleManipulator_Set, MessageBoxButtons.YesNoCancel);
                 if (saveActiveRectangle == DialogResult.Cancel)
                 {
                     return false;
@@ -121,7 +112,7 @@ Press 's' to remove this tooltip.";
             if (_showHelpTooltip && _lastTooltipLocation != e.Location)
             {
                 _lastTooltipLocation = e.Location;
-                _map.ShowTooltip(HelpTitle, HelpBody);
+				_map.ShowTooltip(ControlsRes.ActiveRectangleManipulator_HelpTitle, ControlsRes.ActiveRectangleManipulator_Help);
             }
             
             CalculateActiveRectanglePosition(e.Location.X, e.Location.Y);

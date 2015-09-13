@@ -210,9 +210,6 @@
   <data name="LoadPolygonData.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 45</value>
   </data>
-  <data name="&gt;&gt;LoadPolygonData.Name" xml:space="preserve">
-    <value>LoadPolygonData</value>
-  </data>
   <data name="CurrentModusGroupbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -242,6 +239,9 @@
   </data>
   <data name="&gt;&gt;polygonDataSet1.Name" xml:space="preserve">
     <value>polygonDataSet1</value>
+  </data>
+  <data name="GridExPolygon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>706, 244</value>
   </data>
   <data name="GridExVillageShowFieldChooser.Text" xml:space="preserve">
     <value>Show/Hide Columns</value>
@@ -327,17 +327,14 @@
   <data name="ModusVillage.Text" xml:space="preserve">
     <value>BBCodes Generator</value>
   </data>
-  <data name="&gt;&gt;LoadPolygonData.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;GridExVillage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="GridExPolygon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>706, 244</value>
+  <data name="ModusVillage.ToolTipText" xml:space="preserve">
+    <value>Generate BBCodes based on villages inside the drawn clusters</value>
   </data>
   <data name="ModusPolygon.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 70</value>
@@ -360,11 +357,14 @@
   <data name="ButtonGenerate.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 72</value>
   </data>
-  <data name="ModusVillage.ToolTipText" xml:space="preserve">
-    <value>Generate BBCodes based on villages inside the drawn clusters</value>
+  <data name="&gt;&gt;LoadPolygonData.Name" xml:space="preserve">
+    <value>LoadPolygonData</value>
   </data>
   <data name="LoadPolygonData.ToolTipText" xml:space="preserve">
     <value>Load (or reload) all your drawn clusters.</value>
+  </data>
+  <data name="&gt;&gt;GridExPolygon.Name" xml:space="preserve">
+    <value>GridExPolygon</value>
   </data>
   <data name="uiGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 124</value>
@@ -417,8 +417,8 @@
   <data name="GridExPolygon.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
-  <data name="&gt;&gt;GridExPolygon.Name" xml:space="preserve">
-    <value>GridExPolygon</value>
+  <data name="&gt;&gt;LoadPolygonData.Type" xml:space="preserve">
+    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
   </data>
   <data name="&gt;&gt;ModusVillage.Type" xml:space="preserve">
     <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
