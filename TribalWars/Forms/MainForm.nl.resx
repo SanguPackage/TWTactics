@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MiniMap.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MiniMap.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.Panel1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="locationControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="locationControl1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="LeftNavigation_Location.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -136,6 +154,18 @@
         6qqL6qqL6qqL6qaG6aF/6Jt255Rs5o5i5YdY5IFO5HtG43Y+43Y+4nI5
 </value>
   </data>
+  <data name="LeftNavigation_Location.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation_Location.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="detailsControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="detailsControl1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="LeftNavigation_QuickFind.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -153,6 +183,18 @@
         uuBiAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="LeftNavigation_QuickFind.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation_QuickFind.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="markersContainerControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="markersContainerControl1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="LeftNavigation_Markers.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -168,6 +210,18 @@
         /TyZlm+LJdwdC/UCarqBrfe7yBW3sZIrI7FSQlgtsA9GnenY9GRavmXx9gLoxr+mC/j/wPQDyvclEgJx
         Ig4AAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="LeftNavigation_Markers.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation_Markers.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_attackPlan.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_attackPlan.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="LeftNavigation_Distance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -186,6 +240,42 @@
         7YOL4faRTVB93IGazllIkRZDRnbBjOxR6Rm8ORHip0ChPF9UVpMtz69wZOaWH6ZlF8KV9FwuK6dAJpHl
         nT4eigJJ/wBwos827PUaKAAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="LeftNavigation_Distance.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation_Distance.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftNavigation.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.Panel2.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftSplitter.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.Panel1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Map.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Map.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="TabsMap.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -224,6 +314,18 @@
   <data name="TabsMap.Text" xml:space="preserve">
     <value>Kaart</value>
   </data>
+  <data name="TabsMap.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabsMap.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="browserControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="browserControl1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="TabsBrowser.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAABILAAASCwAAAAEAAAAB
@@ -252,6 +354,18 @@
         AACwDQAAgAEAAIfhAAAX6AAAP/wAAD/8AAA=
 </value>
   </data>
+  <data name="TabsBrowser.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabsBrowser.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Polygon.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Polygon.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="TabsPolygon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAA
@@ -276,8 +390,20 @@
         AAAAAAAAAAAAAA==
 </value>
   </data>
+  <data name="TabsPolygon.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabsPolygon.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="TabsPolygon.ToolTipText" xml:space="preserve">
     <value>Genereer BBCodes van clusters die je op de kaart getekend hebt</value>
+  </data>
+  <data name="monitoringControl1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="monitoringControl1.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="TabsMonitoring.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -304,8 +430,62 @@
   <data name="TabsMonitoring.Text" xml:space="preserve">
     <value>Gecontroleerd gebied</value>
   </data>
+  <data name="TabsMonitoring.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabsMonitoring.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="TabsMonitoring.ToolTipText" xml:space="preserve">
     <value>Hou in de gaten wat er zich afspeelt in je gecontroleerd gebied, in je stam en in de wereld.</value>
+  </data>
+  <data name="Tabs.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Tabs.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.Panel2.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSplitter.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.BottomToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.ContentPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.ContentPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.LeftToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.RightToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="ToolstripButtonCreateWorld.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -343,19 +523,19 @@
   <data name="ToolStripDownload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
-        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
+        aoF0O0tWS1ntYRoxxJJHNHOctrDE6f7c1dW75nZFIJPbIeNKoDbYMDQZQ2a8FgUqNkBmEzWXKwxiyUNe
+        9vUd/T296YXu1CAUilIGOaBQ2lCxx40JHMILHIbNV8oGWLMaY4jtSacXyCvRCaano2Njy9XBOLiCMsgZ
+        JOdt8EXKcgMaYfXQgGJRI6Y6GAN5tELhE4kgFL2ffD0DJV8OXuWDYPLAFfAheMCPaRzHLJrgC3lg8zrB
+        sZNt2+KALN/FfqNrTWc0z0joQS8qVSXUugA6bsTwCS2YwlE8Rg3GERKHzK2eRuVBPzZvcoDnysUBeqP5
+        rYSOcXNkZKUq0MAmV0Em9aPzVhzPsB+3UYR7cOPN3xZEExFIt1awzQQQ8NeDPOIv0EUkW1qXzl/oBSff
+        w/a+D7wyitT9ejxCGA+wF7H2WjY8ImrEEJs82bokXiKtwmwp/UpH8noT7C5iUBbUwWiqQ2r0CJq6G6Hk
+        4mKPNGKIJY+4Rgq11nDNGQz/SvUPo8J3AlpVA3TqY9CrmsSkmnqk9fQNo5Kx5BHNuchTqvV37faqxWDw
+        0mrbmTQioXMQtAkxwzVncao9jWCwb9Vu37VILHmy1vXI43nNFe1Oy4/d0ejvZDK50nHxKiipph5pPK8d
+        JDZr2SAUCoWJ49V31Brhg85gmKekmnqk5bBcSCT/AF60gbhMVlTiAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ToolStripDownload.ToolTipText" xml:space="preserve">
@@ -411,22 +591,22 @@
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="ToolStripActiveRectangle.ToolTipText" xml:space="preserve">
@@ -561,7 +741,25 @@
 </value>
   </data>
   <data name="ToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>628, 31</value>
+    <value>651, 31</value>
+  </data>
+  <data name="ToolStrip.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ToolStrip.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormToolbarContainer.TopToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Status.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Status.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="MenuFileNew.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 22</value>
@@ -647,6 +845,15 @@
   </data>
   <data name="MenuFileSynchronizeTime.Text" xml:space="preserve">
     <value>Synchroniseer Server Tijd</value>
+  </data>
+  <data name="SetLanguage_English.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="SetLanguage_Dutch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="setLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 22</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>302, 6</value>
@@ -905,6 +1112,42 @@
   <data name="MenuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 22</value>
   </data>
+  <data name="MenuBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuBar.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BottomToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RightToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftToolStripPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ContentPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ContentPanel.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAAAIABoBAAAJgAAACAgAAAAACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAEAE
@@ -1002,5 +1245,11 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>TW Tactics - door Sangu</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.ToolTip1" xml:space="preserve">
+    <value />
   </data>
 </root>

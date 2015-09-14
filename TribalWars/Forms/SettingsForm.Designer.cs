@@ -52,35 +52,22 @@
 			// 
 			// CancelBtn
 			// 
-			this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.CancelBtn, "CancelBtn");
 			this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.CancelBtn.Location = new System.Drawing.Point(496, 410);
 			this.CancelBtn.Name = "CancelBtn";
-			this.CancelBtn.Size = new System.Drawing.Size(75, 23);
-			this.CancelBtn.TabIndex = 2;
-			this.CancelBtn.Text = "Cancel";
 			this.CancelBtn.Click += new System.EventHandler(this.CancelButton_Click);
 			// 
 			// OkButton
 			// 
-			this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.OkButton.Location = new System.Drawing.Point(415, 410);
+			resources.ApplyResources(this.OkButton, "OkButton");
 			this.OkButton.Name = "OkButton";
-			this.OkButton.Size = new System.Drawing.Size(75, 23);
-			this.OkButton.TabIndex = 1;
-			this.OkButton.Text = "OK";
 			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
 			// 
 			// uiTab1
 			// 
-			this.uiTab1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.uiTab1, "uiTab1");
 			this.uiTab1.InputFocusTab = this.uiTabPage1;
-			this.uiTab1.Location = new System.Drawing.Point(12, 12);
 			this.uiTab1.Name = "uiTab1";
-			this.uiTab1.Size = new System.Drawing.Size(559, 392);
-			this.uiTab1.TabIndex = 0;
 			this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPage1});
 			// 
@@ -88,11 +75,9 @@
 			// 
 			this.uiTabPage1.Controls.Add(this.uiGroupBox1);
 			this.uiTabPage1.Key = "Network";
-			this.uiTabPage1.Location = new System.Drawing.Point(1, 21);
+			resources.ApplyResources(this.uiTabPage1, "uiTabPage1");
 			this.uiTabPage1.Name = "uiTabPage1";
-			this.uiTabPage1.Size = new System.Drawing.Size(555, 368);
 			this.uiTabPage1.TabStop = true;
-			this.uiTabPage1.Text = "Network";
 			// 
 			// uiGroupBox1
 			// 
@@ -100,10 +85,8 @@
 			this.uiGroupBox1.Controls.Add(this.ConnectedProxyGroupbox);
 			this.uiGroupBox1.Controls.Add(this.ConnectedProxy);
 			this.uiGroupBox1.Controls.Add(this.ConnectedDirect);
-			this.uiGroupBox1.Location = new System.Drawing.Point(3, 3);
+			resources.ApplyResources(this.uiGroupBox1, "uiGroupBox1");
 			this.uiGroupBox1.Name = "uiGroupBox1";
-			this.uiGroupBox1.Size = new System.Drawing.Size(549, 362);
-			this.uiGroupBox1.TabIndex = 0;
 			// 
 			// ConnectedProxyGroupbox
 			// 
@@ -111,80 +94,56 @@
 			this.ConnectedProxyGroupbox.Controls.Add(this.ProxyAddress);
 			this.ConnectedProxyGroupbox.Controls.Add(this.label2);
 			this.ConnectedProxyGroupbox.Controls.Add(this.label1);
-			this.ConnectedProxyGroupbox.Enabled = false;
-			this.ConnectedProxyGroupbox.Location = new System.Drawing.Point(8, 86);
+			resources.ApplyResources(this.ConnectedProxyGroupbox, "ConnectedProxyGroupbox");
 			this.ConnectedProxyGroupbox.Name = "ConnectedProxyGroupbox";
-			this.ConnectedProxyGroupbox.Size = new System.Drawing.Size(363, 208);
-			this.ConnectedProxyGroupbox.TabIndex = 2;
-			this.ConnectedProxyGroupbox.Text = "Proxy settings";
 			// 
 			// ProxyPort
 			// 
-			this.ProxyPort.Location = new System.Drawing.Point(307, 19);
+			resources.ApplyResources(this.ProxyPort, "ProxyPort");
 			this.ProxyPort.Name = "ProxyPort";
-			this.ProxyPort.Size = new System.Drawing.Size(47, 20);
-			this.ProxyPort.TabIndex = 2;
 			// 
 			// ProxyAddress
 			// 
-			this.ProxyAddress.Location = new System.Drawing.Point(59, 20);
+			resources.ApplyResources(this.ProxyAddress, "ProxyAddress");
 			this.ProxyAddress.Name = "ProxyAddress";
-			this.ProxyAddress.Size = new System.Drawing.Size(207, 20);
-			this.ProxyAddress.TabIndex = 1;
 			// 
 			// label2
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(272, 23);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(29, 13);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "Port:";
 			// 
 			// label1
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 23);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(48, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Address:";
 			// 
 			// ConnectedProxy
 			// 
-			this.ConnectedProxy.Location = new System.Drawing.Point(15, 61);
+			resources.ApplyResources(this.ConnectedProxy, "ConnectedProxy");
 			this.ConnectedProxy.Name = "ConnectedProxy";
-			this.ConnectedProxy.Size = new System.Drawing.Size(248, 23);
-			this.ConnectedProxy.TabIndex = 1;
-			this.ConnectedProxy.Text = "I connect with the internet through a proxy";
 			this.ConnectedProxy.CheckedChanged += new System.EventHandler(this.ConnectedProxy_CheckedChanged);
 			// 
 			// ConnectedDirect
 			// 
 			this.ConnectedDirect.Checked = true;
-			this.ConnectedDirect.Location = new System.Drawing.Point(15, 32);
+			resources.ApplyResources(this.ConnectedDirect, "ConnectedDirect");
 			this.ConnectedDirect.Name = "ConnectedDirect";
-			this.ConnectedDirect.Size = new System.Drawing.Size(248, 23);
-			this.ConnectedDirect.TabIndex = 0;
 			this.ConnectedDirect.TabStop = true;
-			this.ConnectedDirect.Text = "I am connected directly to the internet";
 			this.ConnectedDirect.CheckedChanged += new System.EventHandler(this.ConnectedDirect_CheckedChanged);
 			// 
 			// SettingsForm
 			// 
 			this.AcceptButton = this.OkButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.CancelBtn;
-			this.ClientSize = new System.Drawing.Size(583, 439);
 			this.Controls.Add(this.uiTab1);
 			this.Controls.Add(this.OkButton);
 			this.Controls.Add(this.CancelBtn);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Name = "SettingsForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Settings";
+			this.TopMost = true;
+			this.Load += new System.EventHandler(this.SettingsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.uiTab1)).EndInit();
 			this.uiTab1.ResumeLayout(false);
 			this.uiTabPage1.ResumeLayout(false);

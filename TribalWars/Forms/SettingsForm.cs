@@ -36,5 +36,13 @@ namespace TribalWars.Forms.NotUsed
         {
             ConnectedProxyGroupbox.Enabled = true;
         }
+
+		private void SettingsForm_Load(object sender, EventArgs e)
+		{
+			ConnectedDirect.Checked = !Properties.Settings.Default.Proxy;
+			ConnectedProxy.Checked = Properties.Settings.Default.Proxy;
+			ProxyAddress.Text = Properties.Settings.Default.ProxyAddress;
+			ProxyPort.Text = Properties.Settings.Default.ProxyPort.ToString();
+		}
     }
 }

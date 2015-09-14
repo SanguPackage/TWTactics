@@ -117,308 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CancelBtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="CancelBtn.Text" xml:space="preserve">
+    <value>Annuleren</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="CancelBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 410</value>
-  </data>
-  <data name="CancelBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CancelBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="CancelBtn.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;CancelBtn.Name" xml:space="preserve">
-    <value>CancelBtn</value>
-  </data>
-  <data name="&gt;&gt;CancelBtn.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;CancelBtn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CancelBtn.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="OkButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="OkButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>415, 410</value>
-  </data>
-  <data name="OkButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="OkButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="OkButton.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;OkButton.Name" xml:space="preserve">
-    <value>OkButton</value>
-  </data>
-  <data name="&gt;&gt;OkButton.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;OkButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;OkButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="uiTab1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="ProxyPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>307, 19</value>
-  </data>
-  <data name="ProxyPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 20</value>
-  </data>
-  <data name="ProxyPort.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;ProxyPort.Name" xml:space="preserve">
-    <value>ProxyPort</value>
-  </data>
-  <data name="&gt;&gt;ProxyPort.Type" xml:space="preserve">
-    <value>Janus.Windows.GridEX.EditControls.EditBox, Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;ProxyPort.Parent" xml:space="preserve">
-    <value>ConnectedProxyGroupbox</value>
-  </data>
-  <data name="&gt;&gt;ProxyPort.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ProxyAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="ProxyAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 20</value>
-  </data>
-  <data name="ProxyAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;ProxyAddress.Name" xml:space="preserve">
-    <value>ProxyAddress</value>
-  </data>
-  <data name="&gt;&gt;ProxyAddress.Type" xml:space="preserve">
-    <value>Janus.Windows.GridEX.EditControls.EditBox, Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;ProxyAddress.Parent" xml:space="preserve">
-    <value>ConnectedProxyGroupbox</value>
-  </data>
-  <data name="&gt;&gt;ProxyAddress.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 23</value>
-  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 13</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>35, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Port:</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>ConnectedProxyGroupbox</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 23</value>
+    <value>Poort:</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>37, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Address:</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>ConnectedProxyGroupbox</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ConnectedProxyGroupbox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ConnectedProxyGroupbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 86</value>
-  </data>
-  <data name="ConnectedProxyGroupbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 208</value>
-  </data>
-  <data name="ConnectedProxyGroupbox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>Adres:</value>
   </data>
   <data name="ConnectedProxyGroupbox.Text" xml:space="preserve">
-    <value>Proxy settings</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxyGroupbox.Name" xml:space="preserve">
-    <value>ConnectedProxyGroupbox</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxyGroupbox.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxyGroupbox.Parent" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxyGroupbox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ConnectedProxy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 61</value>
-  </data>
-  <data name="ConnectedProxy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 23</value>
-  </data>
-  <data name="ConnectedProxy.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>Proxy instellingen</value>
   </data>
   <data name="ConnectedProxy.Text" xml:space="preserve">
-    <value>I connect with the internet through a proxy</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxy.Name" xml:space="preserve">
-    <value>ConnectedProxy</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxy.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIRadioButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxy.Parent" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;ConnectedProxy.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ConnectedDirect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 32</value>
+    <value>Ik connecteer via een proxy</value>
   </data>
   <data name="ConnectedDirect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 23</value>
-  </data>
-  <data name="ConnectedDirect.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>314, 23</value>
   </data>
   <data name="ConnectedDirect.Text" xml:space="preserve">
-    <value>I am connected directly to the internet</value>
-  </data>
-  <data name="&gt;&gt;ConnectedDirect.Name" xml:space="preserve">
-    <value>ConnectedDirect</value>
-  </data>
-  <data name="&gt;&gt;ConnectedDirect.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIRadioButton, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;ConnectedDirect.Parent" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;ConnectedDirect.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="uiGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="uiGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>549, 362</value>
-  </data>
-  <data name="uiGroupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.Name" xml:space="preserve">
-    <value>uiGroupBox1</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIGroupBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.Parent" xml:space="preserve">
-    <value>uiTabPage1</value>
-  </data>
-  <data name="&gt;&gt;uiGroupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="uiTabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 21</value>
-  </data>
-  <data name="uiTabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 368</value>
+    <value>Ik ben rechtstreeks met het internet geconnecteerd</value>
   </data>
   <data name="uiTabPage1.Text" xml:space="preserve">
-    <value>Network</value>
-  </data>
-  <data name="&gt;&gt;uiTabPage1.Name" xml:space="preserve">
-    <value>uiTabPage1</value>
-  </data>
-  <data name="&gt;&gt;uiTabPage1.Type" xml:space="preserve">
-    <value>Janus.Windows.UI.Tab.UITabPage, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;uiTabPage1.Parent" xml:space="preserve">
-    <value>uiTab1</value>
-  </data>
-  <data name="&gt;&gt;uiTabPage1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="uiTab1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="uiTab1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>559, 392</value>
-  </data>
-  <data name="uiTab1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;uiTab1.Name" xml:space="preserve">
-    <value>uiTab1</value>
-  </data>
-  <data name="&gt;&gt;uiTab1.Type" xml:space="preserve">
-    <value>Janus.Windows.UI.Tab.UITab, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=21d5517571b185bf</value>
-  </data>
-  <data name="&gt;&gt;uiTab1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;uiTab1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>583, 439</value>
+    <value>Netwerk</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6592,16 +6320,7 @@
         AADgBwAA4A8AAPAfAADgPwAAgB8AAIAfAACAAQAAAYAAAAGAAAABwAAAgQMAAIMHAAA=
 </value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SettingsForm</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Instellingen</value>
   </data>
 </root>
