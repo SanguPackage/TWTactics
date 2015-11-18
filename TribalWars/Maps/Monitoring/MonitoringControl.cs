@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using TribalWars.Controls;
 using TribalWars.Controls.AccordeonLocation;
+using TribalWars.Forms;
 using TribalWars.Tools;
 using TribalWars.Worlds;
 
@@ -19,10 +20,42 @@ namespace TribalWars.Maps.Monitoring
     public partial class MonitoringControl : UserControl
     {
         #region Constructors
+	    private void AddNode(TreeNode node, string caption, string tooltip, string tag)
+	    {
+		    var subNode = node.Nodes.Add("", caption);
+		    subNode.ToolTipText = tooltip;
+		    subNode.Tag = tag;
+	    }
+
+		private void AddOptionsTreeNodes()
+		{
+			var inactiveColor = Color.FromArgb(255, 192, 192);
+
+			var villageNode = OptionsTree.Nodes.Add("", FormRes.TreeOptions_Villages);
+			villageNode.ForeColor = inactiveColor;
+			AddNode(villageNode, FormRes.TreeOptions_Villages_VillageNewInactive, FormRes.TreeOptions_Villages_VillageNewInactiveTooltip, "VillageNewInactive");
+			AddNode(villageNode, FormRes.TreeOptions_Villages_VillageLostPoints, FormRes.TreeOptions_Villages_VillageLostPointsTooltip, "VillageLostPoints");
+			AddNode(villageNode, FormRes.TreeOptions_Villages_PlayerNobled, FormRes.TreeOptions_Villages_PlayerNobledTooltip, "PlayerNobled");
+
+			var playersNode = OptionsTree.Nodes.Add("", FormRes.TreeOptions_Players);
+			AddNode(playersNode, FormRes.TreeOptions_Players_PlayerNoActivity, FormRes.TreeOptions_Players_PlayerNoActivityTooltip, "PlayerNoActivity");
+			AddNode(playersNode, FormRes.TreeOptions_Players_PlayerTribeChange, FormRes.TreeOptions_Players_PlayerTribeChangeTooltip, "PlayerTribeChange");
+			playersNode.ForeColor = inactiveColor;
+
+			var tribeNode = OptionsTree.Nodes.Add("", FormRes.TreeOptions_YourTribe);
+			AddNode(tribeNode, FormRes.TreeOptions_YourTribe_TribePlayers, FormRes.TreeOptions_YourTribe_TribePlayersTooltip, "TribePlayers");
+			AddNode(tribeNode, FormRes.TreeOptions_YourTribe_TribeNobled, FormRes.TreeOptions_YourTribe_TribeNobledTooltip, "TribeNobled");
+			AddNode(tribeNode, FormRes.TreeOptions_YourTribe_TribeNoActivity, FormRes.TreeOptions_YourTribe_TribeNoActivityTooltip, "TribeNoActivity");
+			AddNode(tribeNode, FormRes.TreeOptions_YourTribe_TribeLostPoints, FormRes.TreeOptions_YourTribe_TribeLostPointsTooltip, "TribeLostPoints");
+			tribeNode.ForeColor = inactiveColor;
+	    }
+
         public MonitoringControl()
         {
             InitializeComponent();
 
+			OptionsTree.Nodes.Clear();
+	        AddOptionsTreeNodes();
             for (int i = 0; i <= OptionsTree.Nodes.Count - 1; i++)
                 OptionsTree.Nodes[i].Expand();
 

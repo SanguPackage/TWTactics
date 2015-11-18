@@ -215,6 +215,69 @@ Right click a village if you don't know where to start.</value>
   <data name="PlayerTribeDropdown_EmptyTooltip_Tribe" xml:space="preserve">
     <value>, tribe tag</value>
   </data>
+  <data name="TreeOptions_Players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerNoActivity" xml:space="preserve">
+    <value>No activity</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerNoActivityTooltip" xml:space="preserve">
+    <value>Players that have not increased in points</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerTribeChange" xml:space="preserve">
+    <value>Tribe change</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerTribeChangeTooltip" xml:space="preserve">
+    <value>Players that have changed tribes</value>
+  </data>
+  <data name="TreeOptions_Villages" xml:space="preserve">
+    <value>Villages</value>
+  </data>
+  <data name="TreeOptions_Villages_PlayerNobled" xml:space="preserve">
+    <value>Nobled</value>
+  </data>
+  <data name="TreeOptions_Villages_PlayerNobledTooltip" xml:space="preserve">
+    <value>Villages that have been nobled</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageLostPoints" xml:space="preserve">
+    <value>Lost points</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageLostPointsTooltip" xml:space="preserve">
+    <value>Villages that lost points</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageNewInactive" xml:space="preserve">
+    <value>New inactives</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageNewInactiveTooltip" xml:space="preserve">
+    <value>Villages that have gone barbarian</value>
+  </data>
+  <data name="TreeOptions_YourTribe" xml:space="preserve">
+    <value>Your Tribe</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeLostPoints" xml:space="preserve">
+    <value>Lost points</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeLostPointsTooltip" xml:space="preserve">
+    <value>See who has lost points in your tribe.</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNoActivity" xml:space="preserve">
+    <value>No activity</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNoActivityTooltip" xml:space="preserve">
+    <value>See who has not grown in your tribe.</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNobled" xml:space="preserve">
+    <value>Nobled</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNobledTooltip" xml:space="preserve">
+    <value>See who has nobled or was nobled in your tribe</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribePlayers" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribePlayersTooltip" xml:space="preserve">
+    <value>Get a list of all players</value>
+  </data>
   <data name="VillageCoordinatesImporterForm_Help" xml:space="preserve">
     <value>Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right.
 

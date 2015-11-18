@@ -16,8 +16,8 @@ namespace TribalWars
 		[STAThread]
 		static void Main()
 		{
-			try
-			{
+			//try
+			//{
 				try
 				{
 					var ci = CultureInfo.GetCultureInfo(Properties.Settings.Default.Culture);
@@ -34,12 +34,12 @@ namespace TribalWars
 				Application.SetCompatibleTextRenderingDefault(false);
 
 				Application.Run(new MainForm());
-			}
-			catch (Exception ex)
-			{
-				File.WriteAllText(@"c:\Users\vagrant\Desktop\TWTactics\twtactics.txt", ex.ToString());
-				MessageBox.Show(ex.ToString(), "oepsie");
-			}
+			//}
+			//catch (Exception ex)
+			//{
+			//	File.WriteAllText(@"c:\Users\vagrant\Desktop\TWTactics\twtactics.txt", ex.ToString());
+			//	MessageBox.Show(ex.ToString(), "oepsie");
+			//}
 		}
 	}
 }

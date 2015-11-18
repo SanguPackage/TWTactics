@@ -32,7 +32,6 @@ namespace TribalWars.Maps.Monitoring
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoringControl));
-			this.OptionsTree = new System.Windows.Forms.TreeView();
 			this.AdditionalFiltersGroupbox = new Janus.Windows.EditControls.UIGroupBox();
 			this.AdditionalFilters = new TribalWars.Controls.Finders.FinderOptionsControl();
 			this.ActivateAdditionalFilters = new System.Windows.Forms.CheckBox();
@@ -43,6 +42,7 @@ namespace TribalWars.Maps.Monitoring
 			this.NobledPoints = new XPTable.Models.NumberColumn();
 			this.NobledPointsOld = new XPTable.Models.NumberColumn();
 			this.FiltersPremadeGroupbox = new Janus.Windows.EditControls.UIGroupBox();
+			this.OptionsTree = new System.Windows.Forms.TreeView();
 			this.groupBox2 = new Janus.Windows.EditControls.UIGroupBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox5 = new Janus.Windows.EditControls.UIGroupBox();
@@ -67,34 +67,19 @@ namespace TribalWars.Maps.Monitoring
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// OptionsTree
-			// 
-			resources.ApplyResources(this.OptionsTree, "OptionsTree");
-			this.OptionsTree.HideSelection = false;
-			this.OptionsTree.Name = "OptionsTree";
-			this.OptionsTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            ((System.Windows.Forms.TreeNode)(resources.GetObject("OptionsTree.Nodes"))),
-            ((System.Windows.Forms.TreeNode)(resources.GetObject("OptionsTree.Nodes1"))),
-            ((System.Windows.Forms.TreeNode)(resources.GetObject("OptionsTree.Nodes2")))});
-			this.OptionsTree.ShowNodeToolTips = true;
-			this.OptionsTree.ShowPlusMinus = false;
-			this.OptionsTree.ShowRootLines = false;
-			this.OptionsTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OptionsTree_BeforeSelect);
-			this.OptionsTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OptionsTree_NodeMouseClick);
-			// 
 			// AdditionalFiltersGroupbox
 			// 
-			resources.ApplyResources(this.AdditionalFiltersGroupbox, "AdditionalFiltersGroupbox");
 			this.AdditionalFiltersGroupbox.Controls.Add(this.AdditionalFilters);
 			this.AdditionalFiltersGroupbox.Controls.Add(this.ActivateAdditionalFilters);
 			this.AdditionalFiltersGroupbox.Controls.Add(this.ApplyAdditionalFilters);
+			resources.ApplyResources(this.AdditionalFiltersGroupbox, "AdditionalFiltersGroupbox");
 			this.AdditionalFiltersGroupbox.Name = "AdditionalFiltersGroupbox";
 			// 
 			// AdditionalFilters
 			// 
-			resources.ApplyResources(this.AdditionalFilters, "AdditionalFilters");
 			this.AdditionalFilters.BackColor = System.Drawing.Color.Transparent;
 			this.AdditionalFilters.Buttonsvisible = false;
+			resources.ApplyResources(this.AdditionalFilters, "AdditionalFilters");
 			this.AdditionalFilters.Expanded = true;
 			this.AdditionalFilters.LimitResultsValue = new decimal(new int[] {
             100,
@@ -139,9 +124,21 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// FiltersPremadeGroupbox
 			// 
-			resources.ApplyResources(this.FiltersPremadeGroupbox, "FiltersPremadeGroupbox");
 			this.FiltersPremadeGroupbox.Controls.Add(this.OptionsTree);
+			resources.ApplyResources(this.FiltersPremadeGroupbox, "FiltersPremadeGroupbox");
 			this.FiltersPremadeGroupbox.Name = "FiltersPremadeGroupbox";
+			// 
+			// OptionsTree
+			// 
+			this.OptionsTree.HideSelection = false;
+			resources.ApplyResources(this.OptionsTree, "OptionsTree");
+			this.OptionsTree.Name = "OptionsTree";
+			this.OptionsTree.ShowLines = false;
+			this.OptionsTree.ShowNodeToolTips = true;
+			this.OptionsTree.ShowPlusMinus = false;
+			this.OptionsTree.ShowRootLines = false;
+			this.OptionsTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.OptionsTree_BeforeSelect);
+			this.OptionsTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.OptionsTree_NodeMouseClick);
 			// 
 			// groupBox2
 			// 
@@ -158,15 +155,15 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// groupBox5
 			// 
-			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Controls.Add(this.PreviousDateList);
+			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Name = "groupBox5";
 			// 
 			// PreviousDateList
 			// 
-			resources.ApplyResources(this.PreviousDateList, "PreviousDateList");
 			this.PreviousDateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TextPrevious});
+			resources.ApplyResources(this.PreviousDateList, "PreviousDateList");
 			this.PreviousDateList.FullRowSelect = true;
 			this.PreviousDateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.PreviousDateList.HideSelection = false;
@@ -183,8 +180,8 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// groupBox4
 			// 
-			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Controls.Add(this.CurrentDataDate);
+			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Name = "groupBox4";
 			// 
 			// CurrentDataDate
@@ -200,10 +197,10 @@ namespace TribalWars.Maps.Monitoring
 			// 
 			// Table
 			// 
-			resources.ApplyResources(this.Table, "Table");
 			this.Table.AutoSelectSingleRow = true;
 			this.Table.BackColor = System.Drawing.Color.Transparent;
 			this.Table.DisplayType = TribalWars.Controls.XPTables.TableWrapperControl.ColumnDisplayTypeEnum.All;
+			resources.ApplyResources(this.Table, "Table");
 			this.Table.Name = "Table";
 			this.Table.RowSelectionAction = TribalWars.Controls.XPTables.TableWrapperControl.RowSelectionActionEnum.SelectVillage;
 			this.Table.VisiblePlayerFields = TribalWars.Controls.XPTables.PlayerFields.None;
@@ -245,8 +242,7 @@ namespace TribalWars.Maps.Monitoring
         private XPTable.Models.TextColumn NobledPlayer;
         private XPTable.Models.TextColumn NobledPlayerOld;
         private XPTable.Models.NumberColumn NobledPoints;
-        private XPTable.Models.NumberColumn NobledPointsOld;
-        private System.Windows.Forms.TreeView OptionsTree;
+		private XPTable.Models.NumberColumn NobledPointsOld;
 		private Janus.Windows.EditControls.UIGroupBox AdditionalFiltersGroupbox;
         private TableWrapperControl Table;
         private Janus.Windows.EditControls.UIGroupBox FiltersPremadeGroupbox;
@@ -261,6 +257,7 @@ namespace TribalWars.Maps.Monitoring
         private System.Windows.Forms.ColumnHeader TextPrevious;
 		private System.Windows.Forms.CheckBox ActivateAdditionalFilters;
 		private FinderOptionsControl AdditionalFilters;
+		private System.Windows.Forms.TreeView OptionsTree;
 
     }
 }

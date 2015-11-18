@@ -344,6 +344,195 @@ namespace TribalWars.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Players.
+        /// </summary>
+        internal static string TreeOptions_Players {
+            get {
+                return ResourceManager.GetString("TreeOptions_Players", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No activity.
+        /// </summary>
+        internal static string TreeOptions_Players_PlayerNoActivity {
+            get {
+                return ResourceManager.GetString("TreeOptions_Players_PlayerNoActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players that have not increased in points.
+        /// </summary>
+        internal static string TreeOptions_Players_PlayerNoActivityTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_Players_PlayerNoActivityTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tribe change.
+        /// </summary>
+        internal static string TreeOptions_Players_PlayerTribeChange {
+            get {
+                return ResourceManager.GetString("TreeOptions_Players_PlayerTribeChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players that have changed tribes.
+        /// </summary>
+        internal static string TreeOptions_Players_PlayerTribeChangeTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_Players_PlayerTribeChangeTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Villages.
+        /// </summary>
+        internal static string TreeOptions_Villages {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nobled.
+        /// </summary>
+        internal static string TreeOptions_Villages_PlayerNobled {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_PlayerNobled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Villages that have been nobled.
+        /// </summary>
+        internal static string TreeOptions_Villages_PlayerNobledTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_PlayerNobledTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lost points.
+        /// </summary>
+        internal static string TreeOptions_Villages_VillageLostPoints {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_VillageLostPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Villages that lost points.
+        /// </summary>
+        internal static string TreeOptions_Villages_VillageLostPointsTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_VillageLostPointsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New inactives.
+        /// </summary>
+        internal static string TreeOptions_Villages_VillageNewInactive {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_VillageNewInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Villages that have gone barbarian.
+        /// </summary>
+        internal static string TreeOptions_Villages_VillageNewInactiveTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_Villages_VillageNewInactiveTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Tribe.
+        /// </summary>
+        internal static string TreeOptions_YourTribe {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lost points.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeLostPoints {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeLostPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See who has lost points in your tribe..
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeLostPointsTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeLostPointsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No activity.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeNoActivity {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeNoActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See who has not grown in your tribe..
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeNoActivityTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeNoActivityTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nobled.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeNobled {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeNobled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See who has nobled or was nobled in your tribe.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribeNobledTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribeNobledTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribePlayers {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribePlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a list of all players.
+        /// </summary>
+        internal static string TreeOptions_YourTribe_TribePlayersTooltip {
+            get {
+                return ResourceManager.GetString("TreeOptions_YourTribe_TribePlayersTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get a list of village coordinates somehow, paste them in the box on the left and they will appear in the grid on the right.
         ///
         ///Use Control + A to select all imported villages. Right click to set their purpose or to attack them.

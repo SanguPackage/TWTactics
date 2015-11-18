@@ -215,6 +215,69 @@ Klik rechts op een dorp indien je niet goed weet hoe te beginnen.</value>
   <data name="PlayerTribeDropdown_EmptyTooltip_Tribe" xml:space="preserve">
     <value>, stamtag</value>
   </data>
+  <data name="TreeOptions_Players" xml:space="preserve">
+    <value>Spelers</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerNoActivity" xml:space="preserve">
+    <value>Geen activiteit</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerNoActivityTooltip" xml:space="preserve">
+    <value>Spelers die niet in punten gestegen zijn</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerTribeChange" xml:space="preserve">
+    <value>Stamwissels</value>
+  </data>
+  <data name="TreeOptions_Players_PlayerTribeChangeTooltip" xml:space="preserve">
+    <value>Spelers die van stam veranderd zijn</value>
+  </data>
+  <data name="TreeOptions_Villages" xml:space="preserve">
+    <value>Dorpen</value>
+  </data>
+  <data name="TreeOptions_Villages_PlayerNobled" xml:space="preserve">
+    <value>Geëdeld</value>
+  </data>
+  <data name="TreeOptions_Villages_PlayerNobledTooltip" xml:space="preserve">
+    <value>Dorpen die overgenomen zijn</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageLostPoints" xml:space="preserve">
+    <value>Punten verloren</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageLostPointsTooltip" xml:space="preserve">
+    <value>Dorpen die punten verloren zijn</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageNewInactive" xml:space="preserve">
+    <value>Nieuwe inactieven</value>
+  </data>
+  <data name="TreeOptions_Villages_VillageNewInactiveTooltip" xml:space="preserve">
+    <value>Dorpen die verlaten geworden zijn</value>
+  </data>
+  <data name="TreeOptions_YourTribe" xml:space="preserve">
+    <value>Jouw Stam</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeLostPoints" xml:space="preserve">
+    <value>Punten verloren</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeLostPointsTooltip" xml:space="preserve">
+    <value>Wie in je stam is punten aan het verliezen</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNoActivity" xml:space="preserve">
+    <value>Geen activiteit</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNoActivityTooltip" xml:space="preserve">
+    <value>Wie in je stam is niet gegroeid</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNobled" xml:space="preserve">
+    <value>Geëdeld</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribeNobledTooltip" xml:space="preserve">
+    <value>Wie heeft dorpen gewonnen of verloren in jouw stam</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribePlayers" xml:space="preserve">
+    <value>Spelers</value>
+  </data>
+  <data name="TreeOptions_YourTribe_TribePlayersTooltip" xml:space="preserve">
+    <value>Overzicht van alle spelers in je stam</value>
+  </data>
   <data name="VillageCoordinatesImporterForm_Help" xml:space="preserve">
     <value>Dorpscoordinaten importeren?</value>
   </data>
