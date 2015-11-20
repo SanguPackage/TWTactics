@@ -664,7 +664,9 @@ namespace TribalWars.Worlds
                 }
 
                 // Keep statistics :)
+#if !DEBUG
                 UpdateCounter();
+#endif
             }
 
             private void UpdateCounter()
