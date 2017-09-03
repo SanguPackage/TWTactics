@@ -607,9 +607,9 @@ namespace TribalWars.Worlds
                         list.Add(new TwUnit
                         {
                             Type = type,
-                            Wood = Convert.ToInt32(xmlUnit.Element("wood").Value),
-                            Clay = Convert.ToInt32(xmlUnit.Element("stone").Value),
-                            Iron = Convert.ToInt32(xmlUnit.Element("iron").Value),
+                            //Wood = Convert.ToInt32(xmlUnit.Element("wood").Value),
+                            //Clay = Convert.ToInt32(xmlUnit.Element("stone").Value),
+                            //Iron = Convert.ToInt32(xmlUnit.Element("iron").Value),
                             Population = Convert.ToInt32(xmlUnit.Element("pop").Value),
                             Speed = Convert.ToSingle(xmlUnit.Element("speed").Value, CultureInfo.InvariantCulture),
                             Carry = Convert.ToInt32(xmlUnit.Element("carry").Value)
@@ -621,6 +621,10 @@ namespace TribalWars.Worlds
 
             /// <summary>
             /// Holder class with data from TW API
+            /// 
+            /// ATTN: Wood, Clay and Iron are no longer in the output
+            /// (they remain at 0)
+            /// Not really used in TW Tactics so ok?
             /// </summary>
             private class TwUnit
             {
