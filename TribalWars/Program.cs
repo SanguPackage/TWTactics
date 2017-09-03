@@ -16,11 +16,18 @@ namespace TribalWars
 		[STAThread]
 		static void Main()
 		{
+            // TODO: Add error handling; send log entries to sangu.be?
+            // TODO: Check if has write access to the current directory?
+
 			//try
 			//{
 				try
 				{
 					var ci = CultureInfo.GetCultureInfo(Properties.Settings.Default.Culture);
+				    if (ci.Name == "")
+				    {
+				        ci = new CultureInfo("en-US");
+				    }
 					Thread.CurrentThread.CurrentCulture = ci;
 					Thread.CurrentThread.CurrentUICulture = ci;
 				}
