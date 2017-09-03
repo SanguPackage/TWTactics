@@ -667,9 +667,17 @@ namespace TribalWars.Worlds
                     // Download data
                     Directory.CreateDirectory(dirName);
 
-                    DownloadFile(DownloadVillage, dirName + "\\" + FileVillageString);
-                    DownloadFile(DownloadTribe, dirName + "\\" + FileTribeString);
-                    DownloadFile(DownloadPlayer, dirName + "\\" + FilePlayerString);
+                    try
+                    {
+                        DownloadFile(DownloadVillage, dirName + "\\" + FileVillageString);
+                        DownloadFile(DownloadTribe, dirName + "\\" + FileTribeString);
+                        DownloadFile(DownloadPlayer, dirName + "\\" + FilePlayerString);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString(), "Something went horribly wrong");
+                        Directory.Delete(dirName, true);
+                    }
                 }
 
                 // Keep statistics :)
