@@ -390,21 +390,27 @@ namespace TribalWars.Worlds
                 var file = Network.GetWebRequest(string.Format(AvailableWorlds, serverName));
                 var worldsObject = (Hashtable)new Serializer().Deserialize(file);
 
-                string[] worldsPlayerCanStart = worldsObject.Keys.OfType<string>().ToArray();
+                string[] worldsPlayerCanStart = worldsObject.Keys.OfType<string>().OrderBy(x => x).ToArray();
+                return worldsPlayerCanStart;
 
-                var worldsPerWorldType = worldsPlayerCanStart.Select(SplitIntoServerPrefixAndWorldNumber).ToLookup(x => x.Key, x => x.Value);
-                var worlds = new List<string>();
-                foreach (var worldType in worldsPerWorldType)
-                {
-                    IGrouping<string, int> fixedType = worldType;
-                    if (fixedType.Max() != -1)
-                    {
-                        IEnumerable<string> allWorldsInType = Enumerable.Range(1, fixedType.Max()).Select(x => fixedType.Key + x);
-                        worlds.AddRange(allWorldsInType);
-                    }
-                }
+                // The code below was to also add worlds a new player could NOT start
+                // This was useful to look at a finished world to see how ended
+                // This info is no longer available now because worlds are now archived
+                // and no longer offer this info
 
-                return worlds.ToArray();
+                //var worldsPerWorldType = worldsPlayerCanStart.Select(SplitIntoServerPrefixAndWorldNumber).ToLookup(x => x.Key, x => x.Value);
+                //var worlds = new List<string>();
+                //foreach (var worldType in worldsPerWorldType)
+                //{
+                //    IGrouping<string, int> fixedType = worldType;
+                //    if (fixedType.Max() != -1)
+                //    {
+                //        IEnumerable<string> allWorldsInType = Enumerable.Range(1, fixedType.Max()).Select(x => fixedType.Key + x);
+                //        worlds.AddRange(allWorldsInType);
+                //    }
+                //}
+
+                //return worlds.ToArray();
             }
 
             /// <summary>
