@@ -49,7 +49,7 @@
             this.labelVersion = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.VerifyProductKey = new Janus.Windows.EditControls.UIButton();
-            this.GnuLicense = new Janus.Windows.EditControls.UIButton();
+            this.License = new Janus.Windows.EditControls.UIButton();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -256,14 +256,14 @@
             this.VerifyProductKey.Text = "Verify";
             this.VerifyProductKey.Click += new System.EventHandler(this.VerifyProductKey_Click);
             // 
-            // GnuLicense
+            // License
             // 
-            this.GnuLicense.Location = new System.Drawing.Point(174, 96);
-            this.GnuLicense.Name = "GnuLicense";
-            this.GnuLicense.Size = new System.Drawing.Size(103, 23);
-            this.GnuLicense.TabIndex = 39;
-            this.GnuLicense.Text = "GNU GPL";
-            this.GnuLicense.Click += new System.EventHandler(this.GnuLicense_Click);
+            this.License.Location = new System.Drawing.Point(174, 96);
+            this.License.Name = "License";
+            this.License.Size = new System.Drawing.Size(103, 23);
+            this.License.TabIndex = 39;
+            this.License.Text = "MIT";
+            this.License.Click += new System.EventHandler(this.License_Click);
             // 
             // label8
             // 
@@ -281,7 +281,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 467);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.GnuLicense);
+            this.Controls.Add(this.License);
             this.Controls.Add(this.VerifyProductKey);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.labelVersion);
@@ -340,7 +340,7 @@
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label label7;
         private Janus.Windows.EditControls.UIButton VerifyProductKey;
-        private Janus.Windows.EditControls.UIButton GnuLicense;
+        private Janus.Windows.EditControls.UIButton License;
         private System.Windows.Forms.Label label8;
     }
 }
