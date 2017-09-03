@@ -32,9 +32,9 @@ namespace TribalWars.Worlds
         public sealed class InternalStructure
         {
             #region Constants
-            private const string AvailableWorlds = "http://www.{0}/backend/get_servers.php";
+            private const string AvailableWorlds = "https://www.{0}/backend/get_servers.php";
             private const string UnitGraphicsUrlFormat = "http://dsen.innogamescdn.com/8.24/20950/graphic/unit/unit_{0}.png";
-            private const string ServerSettingsUrl = "http://{0}.{1}/interface.php?func={2}";
+            private const string ServerSettingsUrl = "https://{0}.{1}/interface.php?func={2}";
 
             /// <summary>
             /// Match input like nl1, de5, en9, ...
@@ -517,14 +517,13 @@ namespace TribalWars.Worlds
             /// </summary>
             private static TwWorldSettings DownloadWorldSettings(string worldName, string worldServer)
             {
-                // http://nl2.tribalwars.nl/interface.php?func=get_config
+                // https://nl57.tribalwars.nl/interface.php?func=get_config
                 var xdoc = Network.DownloadXml(string.Format(ServerSettingsUrl, worldName, worldServer, "get_config"));
                 Debug.Assert(xdoc.Root != null, "xdoc.Root != null");
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
 
                 bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "1";
-
                 bool hasChurch = xdoc.Root.Element("game").Element("church").Value == "1";
 
                 return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery, hasChurch);
