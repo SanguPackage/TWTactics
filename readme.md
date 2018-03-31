@@ -16,8 +16,8 @@ Contributing is not only possible but the main reason the project is hosted here
 
 ### Author ###
 
-Wouter 'Laoujin' Van Schandevijl (woutervs@hotmail.com)
+Wouter 'Laoujin' Van Schandevijl (sangu@pongit.be)
 
 ### License ###
 
-MIT Copyright (c) 2015 Wouter Van Schandevijl
+MIT Copyright (c) 2015-2018 Wouter Van Schandevijl
