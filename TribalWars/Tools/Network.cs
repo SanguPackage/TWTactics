@@ -50,6 +50,12 @@ namespace TribalWars.Tools
 
         public static WebRequest CreateWebRequest(string url)
         {
+            // https://stackoverflow.com/questions/2859790/the-request-was-aborted-could-not-create-ssl-tls-secure-channel
+            ServicePointManager.Expect100Continue = true;
+            // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+
             var client = WebRequest.Create(url);
 	        client.Proxy = GetProxy();
             return client;
