@@ -9,8 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TribalWarsTests", "TribalWa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{F65938C2-89D8-47A2-9536-BB5DFA51C8E8}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
 		Publish.md = Publish.md
 		README.md = README.md
+		TWTactics TODO.txt = TWTactics TODO.txt
 	EndProjectSection
 EndProject
 Global
