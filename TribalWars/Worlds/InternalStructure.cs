@@ -529,7 +529,8 @@ namespace TribalWars.Worlds
                 var worldSpeed = float.Parse(xdoc.Root.Element("speed").Value.Trim(), CultureInfo.InvariantCulture);
                 var worldUnitSpeed = float.Parse(xdoc.Root.Element("unit_speed").Value.Trim(), CultureInfo.InvariantCulture);
 
-                bool isOldScenery = xdoc.Root.Element("coord").Element("legacy_scenery").Value == "1";
+                var coords = xdoc.Root.Element("coord");
+                bool isOldScenery = coords.Elements().Any(el => el.Name == "legacy_scenery") ? coords.Element("legacy_scenery").Value == "1" : false;
                 bool hasChurch = xdoc.Root.Element("game").Element("church").Value == "1";
 
                 return new TwWorldSettings(worldSpeed, worldUnitSpeed, isOldScenery, hasChurch);
