@@ -20,4 +20,4 @@ Wouter 'Laoujin' Van Schandevijl (sangu@pongit.be)
 
 ### License ###
 
-MIT Copyright (c) 2015-2024 Wouter Van Schandevijl
+MIT Copyright (c) 2014-2024 Wouter Van Schandevijl
