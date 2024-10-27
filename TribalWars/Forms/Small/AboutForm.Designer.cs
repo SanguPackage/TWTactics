@@ -173,7 +173,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 98);
             this.label4.TabIndex = 32;
-            this.label4.Text = "Van Schandevijl Wouter\r\n\r\nDoolhofstraat 37\r\n9300 Aalst\r\nBelgium";
+            this.label4.Text = "Van Schandevijl Wouter\r\n\r\nGentbruggestraat 204\r\n9040 Sint-Amandsberg\r\nBelgium";
             // 
             // label5
             // 
