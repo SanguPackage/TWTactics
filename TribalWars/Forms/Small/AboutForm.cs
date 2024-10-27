@@ -37,7 +37,7 @@ namespace TribalWars.Forms.Small
         {
             try
             {
-                string registrator = Network.GetWebRequest("http://www.sangu.be/api/registertactics.php?key=" + ProductKey.Text);
+                string registrator = Network.GetWebRequest("https://tw-stats.sangu.be/registertactics.php?key=" + ProductKey.Text);
                 if (!string.IsNullOrWhiteSpace(registrator))
                 {
                     Properties.Settings.Default.RegistratedTo = registrator;

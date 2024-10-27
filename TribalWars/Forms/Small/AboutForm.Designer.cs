@@ -92,7 +92,7 @@
             this.OfficialSiteLink.Size = new System.Drawing.Size(82, 13);
             this.OfficialSiteLink.TabIndex = 25;
             this.OfficialSiteLink.TabStop = true;
-            this.OfficialSiteLink.Text = "http://sangu.be";
+            this.OfficialSiteLink.Text = "https://sangu.be";
             this.OfficialSiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OfficialSiteLink_LinkClicked);
             // 
             // SourceControlLink

@@ -694,7 +694,14 @@ namespace TribalWars.Worlds
                 data["world"] = Default.Settings.Name;
                 data["player"] = Default.You.Name;
                 data["tribe"] = Default.You.HasTribe ? Default.You.Tribe.Tag : "";
-                Network.PostValues("http://sangu.be/api/twtacticsusage.php", data);
+                try
+                {
+                    Network.PostValues("https://tw-stats.sangu.be/twtacticsusage.php", data);
+                }
+                catch
+                {
+                    // Don't care about failed logging
+                }
             }
 
             /// <summary>
