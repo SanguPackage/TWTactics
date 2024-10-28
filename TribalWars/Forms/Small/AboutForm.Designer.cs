@@ -59,7 +59,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(435, 432);
+            this.okButton.Location = new System.Drawing.Point(472, 432);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
@@ -87,9 +87,9 @@
             // OfficialSiteLink
             // 
             this.OfficialSiteLink.AutoSize = true;
-            this.OfficialSiteLink.Location = new System.Drawing.Point(418, 9);
+            this.OfficialSiteLink.Location = new System.Drawing.Point(460, 11);
             this.OfficialSiteLink.Name = "OfficialSiteLink";
-            this.OfficialSiteLink.Size = new System.Drawing.Size(82, 13);
+            this.OfficialSiteLink.Size = new System.Drawing.Size(87, 13);
             this.OfficialSiteLink.TabIndex = 25;
             this.OfficialSiteLink.TabStop = true;
             this.OfficialSiteLink.Text = "https://sangu.be";
@@ -123,7 +123,7 @@
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape2,
             this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(501, 449);
+            this.shapeContainer1.Size = new System.Drawing.Size(538, 449);
             this.shapeContainer1.TabIndex = 28;
             this.shapeContainer1.TabStop = false;
             // 
@@ -133,7 +133,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineShape2.Name = "lineShape2";
             this.lineShape2.X1 = 8;
-            this.lineShape2.X2 = 501;
+            this.lineShape2.X2 = 538;
             this.lineShape2.Y1 = 417;
             this.lineShape2.Y2 = 417;
             // 
@@ -143,7 +143,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.X1 = 6;
-            this.lineShape1.X2 = 503;
+            this.lineShape1.X2 = 540;
             this.lineShape1.Y1 = 165;
             this.lineShape1.Y2 = 165;
             // 
@@ -171,7 +171,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(378, 249);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 98);
+            this.label4.Size = new System.Drawing.Size(169, 98);
             this.label4.TabIndex = 32;
             this.label4.Text = "Van Schandevijl Wouter\r\n\r\nGentbruggestraat 204\r\n9040 Sint-Amandsberg\r\nBelgium";
             // 
@@ -179,7 +179,7 @@
             // 
             this.label5.Location = new System.Drawing.Point(382, 363);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 31);
+            this.label5.Size = new System.Drawing.Size(162, 31);
             this.label5.TabIndex = 33;
             this.label5.Text = "And receive your free registration key!";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -279,7 +279,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 467);
+            this.ClientSize = new System.Drawing.Size(556, 467);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.License);
             this.Controls.Add(this.VerifyProductKey);
