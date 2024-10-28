@@ -674,6 +674,19 @@ namespace TribalWars.Worlds
                         DownloadFile(DownloadTribe, dirName + "\\" + FileTribeString);
                         DownloadFile(DownloadPlayer, dirName + "\\" + FilePlayerString);
                     }
+                    catch (System.IO.InvalidDataException ex)
+                    {
+                        if (ex.Message == "The magic number in GZip header is not correct. Make sure you are passing in a GZip stream.")
+                        {
+                            MessageBox.Show("The world has ended, no more data can be downloaded!", "World Ended");
+                            Directory.Delete(dirName, true);
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.ToString(), "Something went horribly wrong");
+                            Directory.Delete(dirName, true);
+                        }
+                    }
                     catch (Exception e)
                     {
                         MessageBox.Show(e.ToString(), "Something went horribly wrong");
