@@ -45,6 +45,7 @@ namespace TribalWars.Tools
             {
 	            wb.Proxy = GetProxy();
                 var response = wb.UploadValues(url, "POST", data);
+                string output = UTF8Encoding.Default.GetString(response);
             }
         }
 
